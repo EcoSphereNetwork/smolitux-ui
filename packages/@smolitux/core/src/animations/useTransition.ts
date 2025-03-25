@@ -18,17 +18,18 @@ export type TransitionOptions = {
   onExited?: (() => void) | null;
 };
 
-export type TransitionResult = {
+export type TransitionResult<T extends HTMLElement = HTMLElement> = {
   state: TransitionState;
   isVisible: boolean;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<T>;
   style: React.CSSProperties;
 };
 
 /**
  * Hook zum Erstellen von Übergangseffekten für das Erscheinen/Verschwinden von Elementen
+ * @template T - Der HTML-Element-Typ, standardmäßig HTMLElement
  */
-export const useTransition = (options: TransitionOptions): TransitionResult => {
+export const useTransition = <T extends HTMLElement = HTMLElement>(options: TransitionOptions): TransitionResult<T> => {
   const {
     in: inProp,
     timeout = 300,
@@ -56,7 +57,7 @@ export const useTransition = (options: TransitionOptions): TransitionResult => {
     return !mountOnEnter;
   });
   
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<T>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Transition-Optionen auflösen
