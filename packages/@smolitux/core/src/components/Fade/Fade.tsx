@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { forwardRef, ElementType, ComponentPropsWithRef } from 'react';
 import { AnimatePresence } from '../../animations/AnimatePresence';
 import { useTransition } from '../../animations/useTransition';
 import { TransitionPresetName, TransitionPreset } from '../../animations/transitions';
 
-export type FadeProps = {
+export type FadeProps<C extends ElementType = 'div'> = {
   /**
    * Ob das Element sichtbar sein soll
    */
@@ -58,25 +58,38 @@ export type FadeProps = {
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
-};
+  
+  /**
+   * Das zu verwendende Element, wenn kein Kind übergeben wird
+   */
+  as?: C;
+} & Omit<ComponentPropsWithRef<C>, 'as' | 'children' | 'style' | 'className'>;
 
 /**
  * Fade-Komponente für Ein- und Ausblendeffekte
  */
-export const Fade: React.FC<FadeProps> = ({
-  in: inProp = false,
-  timeout = 300,
-  transition = 'fade',
-  appear = false,
-  mountOnEnter = false,
-  unmountOnExit = true,
-  onEntered,
-  onExited,
-  children,
-  className,
-  style,
-}) => {
-  const { state, isVisible, ref, style: transitionStyle } = useTransition({
+export const Fade = forwardRef(function Fade<C extends ElementType = 'div'>(
+  props: FadeProps<C>,
+  forwardedRef: React.Ref<Element>
+) {
+  const {
+    in: inProp = false,
+    timeout = 300,
+    transition = 'fade',
+    appear = false,
+    mountOnEnter = false,
+    unmountOnExit = true,
+    onEntered,
+    onExited,
+    children,
+    className,
+    style,
+    as,
+    ...rest
+  } = props;
+
+  // Wir verwenden einen generischen Typ für useTransition, um die Typsicherheit zu verbessern
+  const { state, isVisible, ref, style: transitionStyle } = useTransition<HTMLElement>({
     in: inProp,
     timeout,
     transition,
@@ -91,11 +104,27 @@ export const Fade: React.FC<FadeProps> = ({
     return null;
   }
   
+  // Kombiniere den übergebenen Ref mit unserem internen Ref
+  const handleRef = (element: HTMLElement | null) => {
+    // Setze den internen Ref
+    if (ref && 'current' in ref) {
+      (ref as React.MutableRefObject<HTMLElement | null>).current = element;
+    }
+    
+    // Setze den übergebenen Ref
+    if (forwardedRef) {
+      if (typeof forwardedRef === 'function') {
+        forwardedRef(element);
+      } else if (forwardedRef && 'current' in forwardedRef) {
+        (forwardedRef as React.MutableRefObject<HTMLElement | null>).current = element;
+      }
+    }
+  };
+
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {
     return React.cloneElement(children, {
-      // Wir müssen den Ref explizit als any casten, da TypeScript sonst Probleme hat
-      ref: ref as any,
+      ref: handleRef,
       style: {
         ...transitionStyle,
         ...style,
@@ -103,20 +132,25 @@ export const Fade: React.FC<FadeProps> = ({
       },
       className: className ? `${className} ${children.props.className || ''}` : children.props.className,
       'data-state': state,
+      ...rest
     });
   }
   
-  // Ansonsten wrappen wir die Kinder in einem div
+  // Ansonsten wrappen wir die Kinder in einem Element
+  const Component = as || 'div';
   return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+    <Component
+      ref={handleRef}
       className={className}
       style={{ ...transitionStyle, ...style }}
       data-state={state}
+      {...rest}
     >
       {children}
-    </div>
+    </Component>
   );
-};
+});
+
+Fade.displayName = 'Fade';
 
 export default Fade;
