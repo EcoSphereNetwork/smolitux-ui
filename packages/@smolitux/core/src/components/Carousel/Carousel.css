@@ -1,0 +1,289 @@
+.smolitux-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Aspect Ratio Container */
+.smolitux-carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.smolitux-carousel-container--1-1 {
+  padding-top: 100%;
+}
+
+.smolitux-carousel-container--4-3 {
+  padding-top: 75%;
+}
+
+.smolitux-carousel-container--16-9 {
+  padding-top: 56.25%;
+}
+
+.smolitux-carousel-container--21-9 {
+  padding-top: 42.85%;
+}
+
+/* Slides */
+.smolitux-carousel-slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.smolitux-carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Animation: Slide */
+.smolitux-carousel--animation-slide .smolitux-carousel-slides {
+  display: flex;
+}
+
+/* Animation: Fade */
+.smolitux-carousel--animation-fade .smolitux-carousel-slides {
+  display: block;
+}
+
+.smolitux-carousel--animation-fade .smolitux-carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.smolitux-carousel--animation-fade .smolitux-carousel-slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Animation: None */
+.smolitux-carousel--animation-none .smolitux-carousel-slides {
+  transition: none;
+}
+
+.smolitux-carousel--animation-none .smolitux-carousel-slide {
+  display: none;
+}
+
+.smolitux-carousel--animation-none .smolitux-carousel-slide--active {
+  display: block;
+}
+
+/* Navigation Arrows */
+.smolitux-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--carousel-arrow-bg, rgba(255, 255, 255, 0.8));
+  color: var(--carousel-arrow-color, #1f2937);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  outline: none;
+}
+
+.smolitux-carousel-arrow:hover {
+  background-color: var(--carousel-arrow-hover-bg, rgba(255, 255, 255, 0.9));
+}
+
+.smolitux-carousel-arrow:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.smolitux-carousel-arrow--prev {
+  left: 1rem;
+}
+
+.smolitux-carousel-arrow--next {
+  right: 1rem;
+}
+
+.smolitux-carousel-arrow--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.smolitux-carousel-arrow-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Indicators */
+.smolitux-carousel-indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.smolitux-carousel-indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--carousel-indicator-bg, rgba(255, 255, 255, 0.5));
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.smolitux-carousel-indicator:hover {
+  background-color: var(--carousel-indicator-hover-bg, rgba(255, 255, 255, 0.8));
+}
+
+.smolitux-carousel-indicator:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.smolitux-carousel-indicator--active {
+  background-color: var(--carousel-indicator-active-bg, white);
+  transform: scale(1.2);
+}
+
+/* Thumbnail Indicators */
+.smolitux-carousel-thumbnails {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.smolitux-carousel-thumbnail {
+  width: 4rem;
+  height: 3rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid transparent;
+  padding: 0;
+  background: none;
+}
+
+.smolitux-carousel-thumbnail:hover {
+  opacity: 0.9;
+}
+
+.smolitux-carousel-thumbnail:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.smolitux-carousel-thumbnail--active {
+  border-color: var(--carousel-thumbnail-active-border-color, #3b82f6);
+}
+
+.smolitux-carousel-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Disabled State */
+.smolitux-carousel--disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Autoplay Progress */
+.smolitux-carousel-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--carousel-progress-bg, rgba(59, 130, 246, 0.5));
+  transition: width 0.1s linear;
+  z-index: 10;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .smolitux-carousel-arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .smolitux-carousel-arrow-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .smolitux-carousel-arrow--prev {
+    left: 0.5rem;
+  }
+  
+  .smolitux-carousel-arrow--next {
+    right: 0.5rem;
+  }
+  
+  .smolitux-carousel-indicators {
+    bottom: 0.5rem;
+  }
+  
+  .smolitux-carousel-indicator {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  
+  .smolitux-carousel-thumbnail {
+    width: 3rem;
+    height: 2.25rem;
+  }
+}
+
+/* Dark Mode */
+.dark .smolitux-carousel-arrow {
+  background-color: var(--carousel-arrow-bg-dark, rgba(31, 41, 55, 0.8));
+  color: var(--carousel-arrow-color-dark, #f9fafb);
+}
+
+.dark .smolitux-carousel-arrow:hover {
+  background-color: var(--carousel-arrow-hover-bg-dark, rgba(31, 41, 55, 0.9));
+}
+
+.dark .smolitux-carousel-indicator {
+  background-color: var(--carousel-indicator-bg-dark, rgba(75, 85, 99, 0.5));
+}
+
+.dark .smolitux-carousel-indicator:hover {
+  background-color: var(--carousel-indicator-hover-bg-dark, rgba(75, 85, 99, 0.8));
+}
+
+.dark .smolitux-carousel-indicator--active {
+  background-color: var(--carousel-indicator-active-bg-dark, #9ca3af);
+}
+
+.dark .smolitux-carousel-thumbnail--active {
+  border-color: var(--carousel-thumbnail-active-border-color-dark, #60a5fa);
+}
+
+.dark .smolitux-carousel-progress {
+  background-color: var(--carousel-progress-bg-dark, rgba(96, 165, 250, 0.5));
+}
