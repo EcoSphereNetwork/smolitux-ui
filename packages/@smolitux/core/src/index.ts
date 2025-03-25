@@ -80,3 +80,10 @@ export { default as useField } from './validation/useField';
 export { default as useValidation } from './validation/useValidation';
 export * from './validation/validators';
 export * from './validation/types';
+
+// Internationalization
+export { default as I18nProvider, useI18n, type I18nProviderProps } from './i18n/I18nProvider';
+export { default as useTranslation } from './i18n/useTranslation';
+export { default as LanguageSwitcher, type LanguageSwitcherProps } from './components/LanguageSwitcher/LanguageSwitcher';
+export * from './i18n/types';
+export * from './i18n/constants';
