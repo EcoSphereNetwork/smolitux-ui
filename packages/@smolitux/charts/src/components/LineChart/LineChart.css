@@ -1,0 +1,135 @@
+.smolitux-line-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.smolitux-line-chart .chart-background {
+  fill: var(--chart-background-color, #f9fafb);
+  stroke: var(--chart-border-color, #e5e7eb);
+  stroke-width: 1;
+}
+
+.smolitux-line-chart .grid-line {
+  stroke: var(--chart-grid-color, #e5e7eb);
+  stroke-width: 1;
+  stroke-dasharray: 4, 4;
+}
+
+.smolitux-line-chart .axis-line {
+  stroke: var(--chart-axis-color, #9ca3af);
+  stroke-width: 1;
+}
+
+.smolitux-line-chart .axis-tick {
+  stroke: var(--chart-axis-color, #9ca3af);
+  stroke-width: 1;
+}
+
+.smolitux-line-chart .axis-label {
+  fill: var(--chart-text-color, #4b5563);
+  font-size: 12px;
+}
+
+.smolitux-line-chart .axis-title {
+  fill: var(--chart-text-color, #4b5563);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.smolitux-line-chart .data-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.smolitux-line-chart .data-point {
+  stroke-width: 2;
+}
+
+.smolitux-line-chart .legend-item {
+  cursor: pointer;
+}
+
+.smolitux-line-chart .legend-text {
+  fill: var(--chart-text-color, #4b5563);
+  font-size: 12px;
+  dominant-baseline: middle;
+}
+
+/* Animation für Linien */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.smolitux-line-chart .animate-draw {
+  animation: draw 1.5s ease-in-out forwards;
+}
+
+/* Animation für Punkte */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.smolitux-line-chart .animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards 1.5s;
+}
+
+/* Tooltip-Styling */
+.smolitux-line-chart-tooltip {
+  position: absolute;
+  background-color: var(--tooltip-background, rgba(0, 0, 0, 0.8));
+  color: var(--tooltip-text-color, white);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.smolitux-line-chart-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--tooltip-background, rgba(0, 0, 0, 0.8));
+}
+
+/* Dark Mode Anpassungen */
+.dark .smolitux-line-chart .chart-background {
+  fill: var(--chart-background-color-dark, #1f2937);
+  stroke: var(--chart-border-color-dark, #374151);
+}
+
+.dark .smolitux-line-chart .grid-line {
+  stroke: var(--chart-grid-color-dark, #374151);
+}
+
+.dark .smolitux-line-chart .axis-line,
+.dark .smolitux-line-chart .axis-tick {
+  stroke: var(--chart-axis-color-dark, #6b7280);
+}
+
+.dark .smolitux-line-chart .axis-label,
+.dark .smolitux-line-chart .axis-title,
+.dark .smolitux-line-chart .legend-text {
+  fill: var(--chart-text-color-dark, #d1d5db);
+}
+
+.dark .smolitux-line-chart .data-point {
+  fill: var(--chart-point-fill-dark, #1f2937);
+}
