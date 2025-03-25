@@ -21,7 +21,7 @@ Die aktuelle Version befindet sich in der Alpha-Phase und enthält die grundlege
 
 - [x] API-Referenz für alle Komponenten
 - [ ] Interaktive Beispiele
-- [ ] Storybook-Integration
+- [x] Storybook-Integration
 - [ ] Nutzungsrichtlinien und Best Practices
 
 ### Tests
