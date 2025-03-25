@@ -196,8 +196,8 @@ export const shadows = {
 // packages/@smolitux/theme/src/theme-utils.ts
 // Hilfsfunktionen für Theme-Operationen
 
-import { ThemeMode } from './theme-provider';
-import { colors } from './tokens';
+// Verwende den bereits definierten ThemeMode-Typ
+// import { colors } from './tokens';
 
 /**
  * Berechnet eine Farbe basierend auf dem aktuellen Theme

@@ -158,17 +158,17 @@ export const Motion = forwardRef<HTMLElement, MotionProps>(
         : animate;
       
       // Animation erstellen und starten
-      animationRef.current = ref.current.animate(keyframeValue, {
+      animationRef.current = ref.current.animate(keyframeValue as Keyframe[], {
         duration: transitionPreset.duration,
         easing: transitionPreset.easing,
-        delay: transitionPreset.delay || 0,
+        delay: (transitionPreset as any).delay || 0,
         iterations: repeat === 'infinite' ? Infinity : repeat,
         fill: 'both',
       });
       
       // Event-Listener für Animation
       if (onAnimationStart) {
-        animationRef.current.onstart = onAnimationStart;
+        (animationRef.current as any).onstart = onAnimationStart;
       }
       
       if (onAnimationComplete) {
@@ -199,7 +199,11 @@ export const Motion = forwardRef<HTMLElement, MotionProps>(
       let variantStyle: React.CSSProperties = {};
       
       // Basis-Variante anwenden
-      if (currentVariant && allVariants[currentVariant]) {
+      if (currentVariant && typeof currentVariant === 'string' && 
+          (currentVariant === 'tap' || currentVariant === 'focus' || 
+           currentVariant === 'hover' || currentVariant === 'exit' || 
+           currentVariant === 'initial') && 
+          allVariants[currentVariant]) {
         variantStyle = { ...variantStyle, ...allVariants[currentVariant] };
       }
       
@@ -217,8 +221,9 @@ export const Motion = forwardRef<HTMLElement, MotionProps>(
       }
       
       // Transition hinzufügen
+      const delay = (transitionPreset as any).delay || 0;
       const transitionValue = `all ${transitionPreset.duration}ms ${transitionPreset.easing}${
-        transitionPreset.delay ? ` ${transitionPreset.delay}ms` : ''
+        delay > 0 ? ` ${delay}ms` : ''
       }`;
       
       return {

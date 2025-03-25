@@ -874,7 +874,7 @@ export default BarChart;ingWidth;
                       )}
                     </g>
                   );
-                })}
+                })
               </g>
             );
           } else {
@@ -883,4 +883,4 @@ export default BarChart;ingWidth;
               <g key={`category-${category}`}>
                 {normData.map((series, seriesIndex) => {
                   const dataPoint = series.processedData[categoryIndex];
-                  const barWidth = scaleValue(dataPoint.value) * draw
+                  const barWidth = scaleValue(dataPoint.value) * drawingWidth;

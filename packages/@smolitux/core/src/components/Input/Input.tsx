@@ -380,13 +380,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   
   // Kombiniere den externen Ref mit unserem internen Ref
   const handleRef = useCallback((element: HTMLInputElement | null) => {
-    inputRef.current = element;
+    if (inputRef) {
+      (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
+    }
     
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
-      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
-      ref.current = element;
+      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
     }
   }, [ref]);
   

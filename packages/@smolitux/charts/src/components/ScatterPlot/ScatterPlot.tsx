@@ -762,7 +762,7 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
                               strokeWidth={1}
                             />
                           );
-                      })()}
+                      })()
                     </g>
                     <text
                       x={20}

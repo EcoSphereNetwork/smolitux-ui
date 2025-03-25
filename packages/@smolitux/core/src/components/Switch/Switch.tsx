@@ -150,7 +150,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Playful-Style angezeigt werden soll */
   isPlayful?: boolean;
   /** Ob der Switch als Elegant-Style angezeigt werden soll */
-  isElegant?: boolean;
+  isElegantStyle?: boolean;
   /** Ob der Switch als Corporate-Style angezeigt werden soll */
   isCorporate?: boolean;
   /** Ob der Switch als Handdrawn-Style angezeigt werden soll */
@@ -170,13 +170,13 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Gradient-Style angezeigt werden soll */
   isGradient?: boolean;
   /** Ob der Switch als Animated-Style angezeigt werden soll */
-  isAnimated?: boolean;
+  isAnimatedStyle?: boolean;
   /** Ob der Switch als Interactive-Style angezeigt werden soll */
   isInteractive?: boolean;
   /** Ob der Switch als Accessible-Style angezeigt werden soll */
   isAccessible?: boolean;
   /** Ob der Switch als Responsive-Style angezeigt werden soll */
-  isResponsive?: boolean;
+  isResponsiveStyle?: boolean;
   /** Ob der Switch als Customizable-Style angezeigt werden soll */
   isCustomizable?: boolean;
   /** Ob der Switch als Themeable-Style angezeigt werden soll */
@@ -194,11 +194,11 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Scalable-Style angezeigt werden soll */
   isScalable?: boolean;
   /** Ob der Switch als Performant-Style angezeigt werden soll */
-  isPerformant?: boolean;
+  isPerformantStyle?: boolean;
   /** Ob der Switch als Optimized-Style angezeigt werden soll */
-  isOptimized?: boolean;
+  isOptimizedStyle?: boolean;
   /** Ob der Switch als Efficient-Style angezeigt werden soll */
-  isEfficient?: boolean;
+  isEfficientMode?: boolean;
   /** Ob der Switch als Robust-Style angezeigt werden soll */
   isRobust?: boolean;
   /** Ob der Switch als Resilient-Style angezeigt werden soll */
@@ -210,9 +210,9 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Standard-Style angezeigt werden soll */
   isStandard?: boolean;
   /** Ob der Switch als Consistent-Style angezeigt werden soll */
-  isConsistent?: boolean;
+  isConsistentStyle?: boolean;
   /** Ob der Switch als Coherent-Style angezeigt werden soll */
-  isCoherent?: boolean;
+  isCoherentStyle?: boolean;
   /** Ob der Switch als Intuitive-Style angezeigt werden soll */
   isIntuitive?: boolean;
   /** Ob der Switch als Usable-Style angezeigt werden soll */
@@ -248,11 +248,11 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Convincing-Style angezeigt werden soll */
   isConvincing?: boolean;
   /** Ob der Switch als Trustworthy-Style angezeigt werden soll */
-  isTrustworthy?: boolean;
+  isTrustworthyStyle?: boolean;
   /** Ob der Switch als Reliable-Style angezeigt werden soll */
-  isReliable?: boolean;
+  isReliableStyle?: boolean;
   /** Ob der Switch als Dependable-Style angezeigt werden soll */
-  isDependable?: boolean;
+  isDependableStyle?: boolean;
   /** Ob der Switch als Predictable-Style angezeigt werden soll */
   isPredictable?: boolean;
   /** Ob der Switch als Familiar-Style angezeigt werden soll */
@@ -292,7 +292,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Sophisticated-Style angezeigt werden soll */
   isSophisticated?: boolean;
   /** Ob der Switch als Elegant-Style angezeigt werden soll */
-  isElegant?: boolean;
+  isElegantDesign?: boolean;
   /** Ob der Switch als Refined-Style angezeigt werden soll */
   isRefined?: boolean;
   /** Ob der Switch als Polished-Style angezeigt werden soll */
@@ -304,15 +304,15 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Aerodynamic-Style angezeigt werden soll */
   isAerodynamic?: boolean;
   /** Ob der Switch als Efficient-Style angezeigt werden soll */
-  isEfficient?: boolean;
+  isEfficientStyle?: boolean;
   /** Ob der Switch als Optimized-Style angezeigt werden soll */
-  isOptimized?: boolean;
+  isOptimizedDesign?: boolean;
   /** Ob der Switch als Performant-Style angezeigt werden soll */
-  isPerformant?: boolean;
+  isPerformantDesign?: boolean;
   /** Ob der Switch als Fast-Style angezeigt werden soll */
   isFast?: boolean;
   /** Ob der Switch als Responsive-Style angezeigt werden soll */
-  isResponsive?: boolean;
+  isResponsiveDesign?: boolean;
   /** Ob der Switch als Adaptive-Style angezeigt werden soll */
   isAdaptive?: boolean;
   /** Ob der Switch als Flexible-Style angezeigt werden soll */
@@ -350,9 +350,9 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Uniform-Style angezeigt werden soll */
   isUniform?: boolean;
   /** Ob der Switch als Consistent-Style angezeigt werden soll */
-  isConsistent?: boolean;
+  isConsistentDesign?: boolean;
   /** Ob der Switch als Coherent-Style angezeigt werden soll */
-  isCoherent?: boolean;
+  isCoherentDesign?: boolean;
   /** Ob der Switch als Harmonious-Style angezeigt werden soll */
   isHarmonious?: boolean;
   /** Ob der Switch als Balanced-Style angezeigt werden soll */
@@ -364,7 +364,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Asymmetrical-Style angezeigt werden soll */
   isAsymmetrical?: boolean;
   /** Ob der Switch als Dynamic-Style angezeigt werden soll */
-  isDynamic?: boolean;
+  isDynamicStyle?: boolean;
   /** Ob der Switch als Static-Style angezeigt werden soll */
   isStatic?: boolean;
   /** Ob der Switch als Stable-Style angezeigt werden soll */
@@ -434,7 +434,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Ineffective-Style angezeigt werden soll */
   isIneffective?: boolean;
   /** Ob der Switch als Efficient-Style angezeigt werden soll */
-  isEfficient?: boolean;
+  isEfficientVariant?: boolean;
   /** Ob der Switch als Inefficient-Style angezeigt werden soll */
   isInefficient?: boolean;
   /** Ob der Switch als Productive-Style angezeigt werden soll */
@@ -478,7 +478,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Unlively-Style angezeigt werden soll */
   isUnlively?: boolean;
   /** Ob der Switch als Animated-Style angezeigt werden soll */
-  isAnimated?: boolean;
+  isAnimatedVariant?: boolean;
   /** Ob der Switch als Unanimated-Style angezeigt werden soll */
   isUnanimated?: boolean;
   /** Ob der Switch als Energetic-Style angezeigt werden soll */
@@ -486,7 +486,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Unenergetic-Style angezeigt werden soll */
   isUnenergetic?: boolean;
   /** Ob der Switch als Dynamic-Style angezeigt werden soll */
-  isDynamic?: boolean;
+  isDynamicDesign?: boolean;
   /** Ob der Switch als Undynamic-Style angezeigt werden soll */
   isUndynamic?: boolean;
   /** Ob der Switch als Active-Style angezeigt werden soll */
@@ -530,15 +530,15 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Ob der Switch als Unfaithful-Style angezeigt werden soll */
   isUnfaithful?: boolean;
   /** Ob der Switch als Trustworthy-Style angezeigt werden soll */
-  isTrustworthy?: boolean;
+  isTrustworthyDesign?: boolean;
   /** Ob der Switch als Untrustworthy-Style angezeigt werden soll */
   isUntrustworthy?: boolean;
   /** Ob der Switch als Reliable-Style angezeigt werden soll */
-  isReliable?: boolean;
+  isReliableDesign?: boolean;
   /** Ob der Switch als Unreliable-Style angezeigt werden soll */
   isUnreliable?: boolean;
   /** Ob der Switch als Dependable-Style angezeigt werden soll */
-  isDependable?: boolean;
+  isDependableDesign?: boolean;
   /** Ob der Switch als Undependable-Style angezeigt werden soll */
   isUndependable?: boolean;
   /** Ob der Switch als Responsible-Style angezeigt werden soll */
@@ -849,12 +849,14 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
   
   // Kombiniere den externen Ref mit unserem internen Ref
   const handleRef = (element: HTMLInputElement | null) => {
-    switchRef.current = element;
+    if (switchRef) {
+      (switchRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
+    }
     
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
-      ref.current = element;
+      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
     }
   };
   
@@ -1126,7 +1128,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
   
   // Stil-spezifische Klassen
   const styleClasses = useMemo(() => ({
-    default: {},
+    default: {
+      track: '',
+      trackChecked: '',
+      thumb: '',
+      thumbChecked: ''
+    },
     ios: {
       track: 'bg-gray-200 dark:bg-gray-700',
       trackChecked: 'bg-green-500 dark:bg-green-400',
@@ -1427,8 +1434,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
             ${rounded ? 'rounded-full' : 'rounded-none'}
             ${transition ? 'transition-colors duration-200 ease-in-out' : ''}
             ${isChecked 
-              ? styleClasses[style].trackChecked || variantClasses[variant].trackChecked
-              : styleClasses[style].track || variantClasses[variant].track
+              ? (styleClasses[style] as any).trackChecked || (variantClasses[variant] as any).trackChecked
+              : (styleClasses[style] as any).track || (variantClasses[variant] as any).track
             }
             ${shadow ? 'shadow' : ''}
             ${transparent ? 'bg-opacity-50 dark:bg-opacity-50' : ''}
@@ -1444,8 +1451,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
               ${shadow ? 'shadow-md' : ''}
               transform ${transition ? 'transition-transform duration-200 ease-in-out' : ''}
               ${isChecked 
-                ? `${sizeClasses[_size].thumbChecked} ${styleClasses[style].thumbChecked || variantClasses[variant].thumbChecked}`
-                : styleClasses[style].thumb || variantClasses[variant].thumb
+                ? `${sizeClasses[_size].thumbChecked} ${(styleClasses[style] as any).thumbChecked || (variantClasses[variant] as any).thumbChecked}`
+                : (styleClasses[style] as any).thumb || (variantClasses[variant] as any).thumb
               }
               flex items-center justify-center
               ${thumbClassName}

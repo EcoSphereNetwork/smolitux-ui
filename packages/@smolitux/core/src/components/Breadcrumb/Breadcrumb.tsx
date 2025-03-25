@@ -123,7 +123,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
           const baseClasses = [
             'inline-flex items-center',
             isLast || isExpandIcon ? '' : 'hover:text-gray-900 dark:hover:text-gray-100',
-            item.active || isLast 
+            (item as BreadcrumbItem).active || isLast 
               ? `font-medium text-gray-800 dark:text-gray-100 ${activeItemClassName}` 
               : 'text-gray-500 dark:text-gray-400',
             (!isLast && !isExpandIcon) ? '' : '',
@@ -140,12 +140,12 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
               )}
               
               {/* Item-Inhalt */}
-              {item.href && !item.active && !isExpandIcon ? (
+              {(item as BreadcrumbItem).href && !(item as BreadcrumbItem).active && !isExpandIcon ? (
                 <Link
-                  href={item.href}
+                  href={(item as BreadcrumbItem).href || ''}
                   className={baseClasses}
-                  aria-current={item.active ? 'page' : undefined}
-                  {...item.linkProps}
+                  aria-current={(item as BreadcrumbItem).active ? 'page' : undefined}
+                  {...(item as BreadcrumbItem).linkProps}
                 >
                   {item.icon && <span className="mr-1">{item.icon}</span>}
                   {item.label}
@@ -153,7 +153,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
               ) : (
                 <span
                   className={baseClasses}
-                  aria-current={item.active ? 'page' : undefined}
+                  aria-current={(item as BreadcrumbItem).active ? 'page' : undefined}
                 >
                   {item.icon && <span className="mr-1">{item.icon}</span>}
                   {item.label}

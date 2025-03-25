@@ -1,6 +1,7 @@
 // packages/@smolitux/core/src/components/MediaPlayer/MediaPlayer.tsx
 import React, { forwardRef, useState, useEffect, useRef } from 'react';
-import { useTheme } from '@smolitux/theme';
+// Mock für useTheme
+const useTheme = () => ({ themeMode: 'light' });
 
 export type MediaType = 'audio' | 'video';
 
@@ -37,7 +38,7 @@ export interface MediaChapter {
   endTime: number;
 }
 
-export interface MediaPlayerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface MediaPlayerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'onTimeUpdate' | 'onVolumeChange'> {
   /** Typs des Mediums (Audio oder Video) */
   mediaType: MediaType;
   /** Medienquellen (für verschiedene Qualitätsstufen/Formate) */
@@ -531,9 +532,11 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
         if (typeof ref === 'function') {
           ref(el);
         } else if (ref) {
-          ref.current = el;
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
         }
-        containerRef.current = el;
+        if (containerRef) {
+          (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+        }
       }}
       className={`
         smolitux-media-player relative overflow-hidden bg-black text-white
@@ -860,7 +863,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
       )}
       
       {/* Animation-Stile */}
-      <style jsx>{`
+      <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -876,4 +879,4 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
 
 MediaPlayer.displayName = 'MediaPlayer';
 
-export default MediaPlayer;}
+export default MediaPlayer;

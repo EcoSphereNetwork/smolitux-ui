@@ -1,5 +1,6 @@
 // packages/@smolitux/core/src/components/DatePicker/DatePicker.tsx
 import React, { forwardRef, useState, useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { useFormControl } from '../FormControl/FormControl';
 
 // Typen für Datum und Datumsformatierung
@@ -98,7 +99,7 @@ const monthNames = [
 
 const weekdayNames = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
-export interface DatePickerProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
+export interface DatePickerProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'defaultValue' | 'size'> {
   /** Ausgewähltes Datum */
   value?: DateValue;
   /** Standard-Ausgewähltes Datum */
@@ -215,6 +216,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   const combinedProps = {
     id: uniqueId,
     disabled: disabled || formControl.disabled,
+    required: rest.required,
     'aria-invalid': error ? true : formControl.hasError || undefined,
     'aria-describedby': error || formControl.hasError 
       ? `${uniqueId}-error` 
@@ -458,7 +460,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   }, [isOpen]);
   
   // Picker-Element generieren
-  const popupPosition = calculatePopupPosition();
+  const calculatedPosition = calculatePopupPosition();
   
   // Kalender-Icon für den Input
   const CalendarIcon = () => (
@@ -485,8 +487,8 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
         ref={pickerRef}
         className={`absolute z-${zIndex} bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 w-64`}
         style={{
-          top: popupPosition.top,
-          left: popupPosition.left,
+          top: calculatedPosition.top,
+          left: calculatedPosition.left,
         }}
       >
         {/* Header mit Monat/Jahr und Navigation */}
@@ -638,9 +640,11 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
             if (typeof ref === 'function') {
               ref(el);
             } else if (ref) {
-              ref.current = el;
+              (ref as React.MutableRefObject<HTMLInputElement | null>).current = el;
             }
-            inputRef.current = el;
+            if (inputRef) {
+              (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
+            }
           }}
           type="text"
           value={inputValue}
