@@ -1,8 +1,11 @@
-import React, { forwardRef, useRef, useEffect, useState } from 'react';
+import React, { forwardRef, useRef, useEffect, useState, useMemo, useCallback } from 'react';
 import { useFormControl } from '../FormControl';
 
 export type CheckboxSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type CheckboxVariant = 'solid' | 'outline' | 'filled';
+export type CheckboxVariant = 'solid' | 'outline' | 'filled' | 'minimal';
+export type CheckboxColorScheme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+export type CheckboxLabelPosition = 'left' | 'right';
+export type CheckboxDisplayType = 'checkbox' | 'switch' | 'radio' | 'toggle' | 'button';
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /** Text-Label */
