@@ -261,12 +261,14 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   
   // Kombiniere den externen Ref mit unserem internen Ref
   const handleRef = (element: HTMLInputElement | null) => {
-    radioRef.current = element;
+    if (radioRef) {
+      (radioRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
+    }
     
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
-      ref.current = element;
+      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
     }
   };
   
@@ -296,12 +298,13 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   };
   
   // Klassen für verschiedene Varianten
-  const variantClasses = {
+  const variantClasses: Record<RadioVariant, string> = {
     solid: 'bg-white dark:bg-gray-700',
     outline: bordered 
       ? 'border-2 border-gray-300 dark:border-gray-600 bg-transparent' 
       : 'bg-transparent',
-    filled: 'bg-gray-100 dark:bg-gray-800'
+    filled: 'bg-gray-100 dark:bg-gray-800',
+    minimal: 'bg-transparent'
   };
   
   // Klassen für verschiedene Farben
@@ -405,7 +408,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   }, []);
   
   // Rendere das passende Icon basierend auf dem Zustand
-  const renderIcon = useMemo(() => {
+  const iconToRender = useMemo(() => {
     if (_checked && checkedIcon) {
       return checkedIcon;
     }
@@ -422,7 +425,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   }, [_checked, checkedIcon, uncheckedIcon, icon]);
   
   // Rendere Indikatoren (Erfolg, Fehler, Laden)
-  const renderIndicators = useMemo(() => {
+  const indicatorsToRender = useMemo(() => {
     if (!showSuccessIndicator && !showErrorIndicator && !showLoadingIndicator && !showValidationIndicator) {
       return null;
     }
@@ -475,7 +478,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   ]);
   
   // Bestimme die ARIA-Attribute für die Radio
-  const getAriaAttributes = useMemo(() => {
+  const ariaAttributes = useMemo(() => {
     const attributes: Record<string, string> = {};
     
     if (description) {
@@ -520,7 +523,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
             transition-colors duration-200 ease-in-out
           `}
           title={radioTooltip || tooltip}
-          {...getAriaAttributes()}
+          {...ariaAttributes}
         >
           {label}
           <input
@@ -578,7 +581,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
             onKeyUp={handleKeyUp}
             className="sr-only"
             title={radioTooltip || tooltip}
-            {...getAriaAttributes()}
+            {...ariaAttributes}
             {...props}
           />
           
@@ -653,7 +656,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
           onKeyUp={handleKeyUp}
           className={radioClasses}
           title={radioTooltip || tooltip}
-          {...getAriaAttributes()}
+          {...ariaAttributes}
           {...props}
         />
         
@@ -671,10 +674,10 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
         )}
         
         {/* Icon */}
-        {renderIcon()}
+        {iconToRender}
         
         {/* Indikatoren */}
-        {renderIndicators()}
+        {indicatorsToRender}
       </div>
     );
   };
