@@ -1,9 +1,12 @@
-import React, { forwardRef, useRef, useEffect, useState, useContext } from 'react';
+import React, { forwardRef, useRef, useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import { useFormControl } from '../FormControl';
 import { RadioGroupContext } from './RadioGroup';
 
 export type RadioSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type RadioVariant = 'solid' | 'outline' | 'filled';
+export type RadioVariant = 'solid' | 'outline' | 'filled' | 'minimal';
+export type RadioColorScheme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+export type RadioLabelPosition = 'left' | 'right';
+export type RadioDisplayType = 'radio' | 'button' | 'card';
 
 export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /** Text-Label */
@@ -19,7 +22,7 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   /** Visuelle Variante */
   variant?: RadioVariant;
   /** Farbe der Radio */
-  colorScheme?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
+  colorScheme?: RadioColorScheme;
   /** Ob die Radio einen Rahmen haben soll */
   bordered?: boolean;
   /** Ob die Radio abgerundete Ecken haben soll */
@@ -34,7 +37,7 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   transition?: boolean;
   /** Ob die Radio einen transparenten Hintergrund haben soll */
   transparent?: boolean;
-  /** Ob die Radio einen Tooltip haben soll */
+  /** Tooltip für die Radio */
   tooltip?: string;
   /** Ob die Radio im Ladezustand ist */
   isLoading?: boolean;
@@ -84,22 +87,52 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   description?: string;
   /** Ob die Radio automatisch fokussiert werden soll */
   autoFocus?: boolean;
-  /** Ob die Radio ein Icon haben soll */
+  /** Benutzerdefiniertes Icon */
   icon?: React.ReactNode;
-  /** Ob die Radio ein Icon für den ausgewählten Zustand haben soll */
+  /** Benutzerdefiniertes Icon für den ausgewählten Zustand */
   checkedIcon?: React.ReactNode;
-  /** Ob die Radio ein Icon für den nicht ausgewählten Zustand haben soll */
+  /** Benutzerdefiniertes Icon für den nicht ausgewählten Zustand */
   uncheckedIcon?: React.ReactNode;
-  /** Ob die Radio ein Ripple-Effekt haben soll */
+  /** Ob die Radio einen Ripple-Effekt haben soll */
   ripple?: boolean;
-  /** Ob die Radio links vom Label angezeigt werden soll */
-  labelPosition?: 'left' | 'right';
+  /** Position des Labels relativ zur Radio */
+  labelPosition?: RadioLabelPosition;
   /** Ob die Radio vertikal ausgerichtet werden soll */
   isVertical?: boolean;
+  /** Darstellungstyp der Radio */
+  displayType?: RadioDisplayType;
   /** Ob die Radio als Card angezeigt werden soll */
   isCard?: boolean;
   /** Ob die Radio als Button angezeigt werden soll */
   isButton?: boolean;
+  /** Ob die Radio als iOS-Style angezeigt werden soll */
+  isIOS?: boolean;
+  /** Ob die Radio als Android-Style angezeigt werden soll */
+  isAndroid?: boolean;
+  /** Ob die Radio als Material-Style angezeigt werden soll */
+  isMaterial?: boolean;
+  /** Ob die Radio als Windows-Style angezeigt werden soll */
+  isWindows?: boolean;
+  /** Ob die Radio als Fluent-Style angezeigt werden soll */
+  isFluent?: boolean;
+  /** Ob die Radio als Flat-Style angezeigt werden soll */
+  isFlat?: boolean;
+  /** Ob die Radio als 3D-Style angezeigt werden soll */
+  is3D?: boolean;
+  /** Ob die Radio als Neon-Style angezeigt werden soll */
+  isNeon?: boolean;
+  /** Ob die Radio als Glassmorphism-Style angezeigt werden soll */
+  isGlass?: boolean;
+  /** Ob die Radio als Neumorphism-Style angezeigt werden soll */
+  isNeumorphic?: boolean;
+  /** Ob die Radio als Skeuomorphism-Style angezeigt werden soll */
+  isSkeuomorphic?: boolean;
+  /** Ob die Radio als Retro-Style angezeigt werden soll */
+  isRetro?: boolean;
+  /** Ob die Radio als Futuristic-Style angezeigt werden soll */
+  isFuturistic?: boolean;
+  /** Ob die Radio als Minimal-Style angezeigt werden soll */
+  isMinimal?: boolean;
 }
 
 /**
@@ -272,14 +305,15 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   };
   
   // Klassen für verschiedene Farben
-  const colorClasses = {
+  const colorClasses = useMemo(() => ({
     primary: 'text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400',
     secondary: 'text-secondary-600 dark:text-secondary-500 focus:ring-secondary-500 dark:focus:ring-secondary-400',
     success: 'text-green-600 dark:text-green-500 focus:ring-green-500 dark:focus:ring-green-400',
     danger: 'text-red-600 dark:text-red-500 focus:ring-red-500 dark:focus:ring-red-400',
     warning: 'text-yellow-600 dark:text-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-400',
-    info: 'text-blue-600 dark:text-blue-500 focus:ring-blue-500 dark:focus:ring-blue-400'
-  };
+    info: 'text-blue-600 dark:text-blue-500 focus:ring-blue-500 dark:focus:ring-blue-400',
+    neutral: 'text-gray-600 dark:text-gray-500 focus:ring-gray-500 dark:focus:ring-gray-400'
+  }), []);
   
   // Zustandsabhängige Klassen
   const stateClasses = _isInvalid
@@ -314,26 +348,26 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   ].filter(Boolean).join(' ');
   
   // Event-Handler
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(true);
     onFocus?.(e);
-  };
+  }, [onFocus]);
   
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
     onBlur?.(e);
-  };
+  }, [onBlur]);
   
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
-  };
+  }, []);
   
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
     setIsPressed(false);
-  };
+  }, []);
   
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsPressed(true);
     
     // Ripple-Effekt
@@ -350,28 +384,28 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
       setShowRipple(true);
       setTimeout(() => setShowRipple(false), 600);
     }
-  };
+  }, [ripple]);
   
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsPressed(false);
-  };
+  }, []);
   
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === ' ' || e.key === 'Enter') {
       setIsPressed(true);
     }
     
     onKeyDown?.(e);
-  };
+  }, [onKeyDown]);
   
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === ' ' || e.key === 'Enter') {
       setIsPressed(false);
     }
-  };
+  }, []);
   
   // Rendere das passende Icon basierend auf dem Zustand
-  const renderIcon = () => {
+  const renderIcon = useMemo(() => {
     if (_checked && checkedIcon) {
       return checkedIcon;
     }
@@ -385,10 +419,10 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
     }
     
     return null;
-  };
+  }, [_checked, checkedIcon, uncheckedIcon, icon]);
   
   // Rendere Indikatoren (Erfolg, Fehler, Laden)
-  const renderIndicators = () => {
+  const renderIndicators = useMemo(() => {
     if (!showSuccessIndicator && !showErrorIndicator && !showLoadingIndicator && !showValidationIndicator) {
       return null;
     }
@@ -429,10 +463,19 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
         {indicator}
       </div>
     );
-  };
+  }, [
+    showSuccessIndicator, 
+    showErrorIndicator, 
+    showLoadingIndicator, 
+    showValidationIndicator,
+    _isLoading,
+    _isInvalid,
+    _isSuccess,
+    _isValid
+  ]);
   
   // Bestimme die ARIA-Attribute für die Radio
-  const getAriaAttributes = () => {
+  const getAriaAttributes = useMemo(() => {
     const attributes: Record<string, string> = {};
     
     if (description) {
@@ -453,7 +496,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(({
     }
     
     return attributes;
-  };
+  }, [description, _error, helperText, successMessage, _id]);
   
   // Rendere die Radio basierend auf dem Typ
   const renderRadio = () => {
