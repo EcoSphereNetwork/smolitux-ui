@@ -10,12 +10,12 @@ export type TransitionOptions = {
   unmountOnExit?: boolean;
   appear?: boolean;
   transition?: TransitionPresetName | TransitionPreset;
-  onEnter?: () => void;
-  onEntering?: () => void;
-  onEntered?: () => void;
-  onExit?: () => void;
-  onExiting?: () => void;
-  onExited?: () => void;
+  onEnter?: (() => void) | null;
+  onEntering?: (() => void) | null;
+  onEntered?: (() => void) | null;
+  onExit?: (() => void) | null;
+  onExiting?: (() => void) | null;
+  onExited?: (() => void) | null;
 };
 
 export type TransitionResult = {
@@ -113,11 +113,11 @@ export const useTransition = (options: TransitionOptions): TransitionResult => {
       
       if (state === 'exited' || state === 'exiting') {
         nextState = 'entering';
-        callback = onEnter;
+        callback = onEnter || null;
         
         timeoutRef.current = setTimeout(() => {
           nextState = 'entered';
-          callback = onEntered;
+          callback = onEntered || null;
           performStateChange();
         }, getTimeout('enter'));
         
@@ -128,11 +128,11 @@ export const useTransition = (options: TransitionOptions): TransitionResult => {
       // Austrittsübergang
       if (state === 'entering' || state === 'entered') {
         nextState = 'exiting';
-        callback = onExit;
+        callback = onExit || null;
         
         timeoutRef.current = setTimeout(() => {
           nextState = 'exited';
-          callback = onExited;
+          callback = onExited || null;
           
           if (unmountOnExit) {
             setMounted(false);

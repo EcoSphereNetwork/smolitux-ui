@@ -459,12 +459,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   
   // Kombiniere den externen Ref mit unserem internen Ref
   const handleRef = (element: HTMLInputElement | null) => {
-    checkboxRef.current = element;
+    if (checkboxRef) {
+      (checkboxRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
+    }
     
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
-      ref.current = element;
+      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
     }
   };
   
@@ -501,12 +503,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   };
   
   // Klassen für verschiedene Varianten
-  const variantClasses = {
+  const variantClasses: Record<CheckboxVariant, string> = {
     solid: 'bg-white dark:bg-gray-700',
     outline: bordered 
       ? 'border-2 border-gray-300 dark:border-gray-600 bg-transparent' 
       : 'bg-transparent',
-    filled: 'bg-gray-100 dark:bg-gray-800'
+    filled: 'bg-gray-100 dark:bg-gray-800',
+    minimal: 'bg-transparent'
   };
   
   // Klassen für verschiedene Farben

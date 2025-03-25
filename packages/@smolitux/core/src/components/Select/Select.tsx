@@ -159,12 +159,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   
   // Kombiniere den externen Ref mit unserem internen Ref
   const handleRef = (element: HTMLSelectElement | null) => {
-    selectRef.current = element;
+    if (selectRef) {
+      (selectRef as React.MutableRefObject<HTMLSelectElement | null>).current = element;
+    }
     
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
-      ref.current = element;
+      (ref as React.MutableRefObject<HTMLSelectElement | null>).current = element;
     }
   };
   
@@ -322,7 +324,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
           ref={handleRef}
           id={uniqueId}
           disabled={disabled}
-          readOnly={readOnly}
+          {...(readOnly ? { 'aria-readonly': 'true' } : {})}
           className={selectClasses}
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={

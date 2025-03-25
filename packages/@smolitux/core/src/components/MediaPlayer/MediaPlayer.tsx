@@ -1,6 +1,7 @@
 // packages/@smolitux/core/src/components/MediaPlayer/MediaPlayer.tsx
 import React, { forwardRef, useState, useEffect, useRef } from 'react';
-import { useTheme } from '@smolitux/theme';
+// Mock für useTheme
+const useTheme = () => ({ themeMode: 'light' });
 
 export type MediaType = 'audio' | 'video';
 

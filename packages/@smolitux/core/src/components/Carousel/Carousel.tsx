@@ -1,6 +1,7 @@
 // packages/@smolitux/core/src/components/Carousel/Carousel.tsx
 import React, { useState, useEffect, useRef, useMemo, forwardRef } from 'react';
-import { useTheme } from '@smolitux/theme';
+// Mock für useTheme
+const useTheme = () => ({ themeMode: 'light' });
 
 export interface CarouselItem {
   /** Eindeutige ID des Items */

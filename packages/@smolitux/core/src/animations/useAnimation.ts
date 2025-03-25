@@ -8,7 +8,7 @@ export type AnimationOptions = {
   delay?: number;
   duration?: number;
   easing?: string;
-  iterationCount?: number | 'infinite';
+  iterationCount?: number;
   direction?: 'normal' | 'reverse' | 'alternate' | 'alternate-reverse';
   fillMode?: 'none' | 'forwards' | 'backwards' | 'both';
   playState?: 'running' | 'paused';
@@ -50,7 +50,7 @@ export const useAnimation = (
     return {
       duration: options.duration || transitionPreset.duration,
       easing: options.easing || transitionPreset.easing,
-      delay: options.delay || transitionPreset.delay || 0,
+      delay: options.delay || (transitionPreset as any).delay || 0,
       iterations: options.iterationCount || 1,
       direction: options.direction || 'normal',
       fill: options.fillMode || 'both',
@@ -68,7 +68,7 @@ export const useAnimation = (
     
     // Neue Animation erstellen und starten
     animationRef.current = ref.current.animate(
-      keyframeValue,
+      keyframeValue as Keyframe[],
       getAnimationOptions()
     );
     

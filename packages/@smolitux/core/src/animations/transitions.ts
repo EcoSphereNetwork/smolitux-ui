@@ -15,10 +15,12 @@ export const transitions = {
   default: {
     duration: 300,
     easing: 'cubic-bezier(0.4, 0, 0.2, 1)', // Standard Material Design Easing
+    delay: 0,
   },
   linear: {
     duration: 300,
     easing: 'linear',
+    delay: 0,
   },
   
   // Geschwindigkeits-Varianten
@@ -111,7 +113,8 @@ export const createTransition = (
   preset: TransitionPresetName | TransitionPreset = 'default'
 ): string => {
   const config = typeof preset === 'string' ? transitions[preset] : preset;
-  const { duration, easing, delay = 0 } = config;
+  const { duration, easing } = config;
+  const delay = (config as any).delay || 0;
   const props = Array.isArray(properties) ? properties.join(', ') : properties;
   
   return `${props} ${duration}ms ${easing}${delay > 0 ? ` ${delay}ms` : ''}`;
