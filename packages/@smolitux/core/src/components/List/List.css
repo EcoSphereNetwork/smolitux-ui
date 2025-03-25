@@ -1,0 +1,207 @@
+/* packages/@smolitux/core/src/components/List/List.css */
+
+/* List Base */
+.smolitux-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* List Variants */
+.smolitux-list--ordered {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+.smolitux-list--unordered {
+  list-style: var(--list-marker, disc);
+  padding-left: 1.5rem;
+}
+
+.smolitux-list--description {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.smolitux-list--custom {
+  list-style: none;
+  padding-left: 0;
+}
+
+.smolitux-list--no-indent {
+  padding-left: 0;
+}
+
+/* List Sizes */
+.smolitux-list--sm .smolitux-list-item {
+  padding: 0.375rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.smolitux-list--md .smolitux-list-item {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+}
+
+.smolitux-list--lg .smolitux-list-item {
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+}
+
+/* List Density */
+.smolitux-list--compact .smolitux-list-item {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.smolitux-list--comfortable .smolitux-list-item {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* List Alignment */
+.smolitux-list--align-start .smolitux-list-item {
+  text-align: left;
+}
+
+.smolitux-list--align-center .smolitux-list-item {
+  text-align: center;
+}
+
+.smolitux-list--align-end .smolitux-list-item {
+  text-align: right;
+}
+
+/* List with Dividers */
+.smolitux-list--dividers .smolitux-list-item--divider {
+  border-bottom: 1px solid var(--list-divider-color, #e5e7eb);
+}
+
+.smolitux-list--dividers .smolitux-list-item--divider:last-child {
+  border-bottom: none;
+}
+
+/* Horizontal List */
+.smolitux-list--horizontal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.smolitux-list--horizontal .smolitux-list-item--horizontal {
+  margin-right: 1rem;
+}
+
+/* Selectable List */
+.smolitux-list--selectable .smolitux-list-item--clickable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.smolitux-list--selectable .smolitux-list-item--clickable:hover {
+  background-color: var(--list-item-hover-bg, #f3f4f6);
+}
+
+.smolitux-list--selectable .smolitux-list-item--selected {
+  background-color: var(--list-item-selected-bg, #eff6ff);
+  color: var(--list-item-selected-color, #1d4ed8);
+}
+
+/* List Item */
+.smolitux-list-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.smolitux-list-item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.smolitux-list-item--clickable {
+  cursor: pointer;
+}
+
+/* List Item Content */
+.smolitux-list-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.smolitux-list-item-primary {
+  font-weight: 500;
+  color: var(--list-item-primary-color, #1f2937);
+}
+
+.smolitux-list-item-secondary {
+  font-size: 0.875em;
+  color: var(--list-item-secondary-color, #6b7280);
+  margin-top: 0.25rem;
+}
+
+/* List Item Icon */
+.smolitux-list-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  color: var(--list-item-icon-color, #6b7280);
+}
+
+/* List Item Action */
+.smolitux-list-item-action {
+  display: flex;
+  align-items: center;
+  margin-left: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Description List */
+.smolitux-list-item-term {
+  font-weight: 500;
+  color: var(--list-item-term-color, #1f2937);
+}
+
+.smolitux-list-item-description {
+  color: var(--list-item-description-color, #6b7280);
+  margin: 0;
+}
+
+/* Dark Mode */
+.dark .smolitux-list--dividers .smolitux-list-item--divider {
+  border-bottom-color: var(--list-divider-color-dark, #374151);
+}
+
+.dark .smolitux-list--selectable .smolitux-list-item--clickable:hover {
+  background-color: var(--list-item-hover-bg-dark, #374151);
+}
+
+.dark .smolitux-list--selectable .smolitux-list-item--selected {
+  background-color: var(--list-item-selected-bg-dark, #1e3a8a);
+  color: var(--list-item-selected-color-dark, #93c5fd);
+}
+
+.dark .smolitux-list-item-primary {
+  color: var(--list-item-primary-color-dark, #f3f4f6);
+}
+
+.dark .smolitux-list-item-secondary {
+  color: var(--list-item-secondary-color-dark, #9ca3af);
+}
+
+.dark .smolitux-list-item-icon {
+  color: var(--list-item-icon-color-dark, #9ca3af);
+}
+
+.dark .smolitux-list-item-term {
+  color: var(--list-item-term-color-dark, #f3f4f6);
+}
+
+.dark .smolitux-list-item-description {
+  color: var(--list-item-description-color-dark, #9ca3af);
+}
