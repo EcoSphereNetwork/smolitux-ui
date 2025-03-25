@@ -1,5 +1,5 @@
 // packages/@smolitux/core/src/components/Switch/Switch.tsx
-import React, { forwardRef, useEffect, useState, useRef } from 'react';
+import React, { forwardRef, useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import { useFormControl } from '../FormControl';
 
 export type SwitchSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -873,7 +873,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
   }, [checked]);
   
   // Event-Handler für Änderungen
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     // Wenn es eine kontrollierte Komponente ist, erfolgt die Änderung über onChange
     if (checked === undefined) {
       setIsChecked(e.target.checked);
@@ -882,7 +882,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
     if (onChange) {
       onChange(e);
     }
-  };
+  }, [checked, setIsChecked, onChange]);
   
   // State für Fokus, Hover und Ripple
   const [isFocused, setIsFocused] = useState(false);
@@ -892,26 +892,26 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
   const [showRipple, setShowRipple] = useState(false);
   
   // Event-Handler
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(true);
     rest.onFocus?.(e);
-  };
+  }, [rest]);
   
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
     rest.onBlur?.(e);
-  };
+  }, [rest]);
   
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
-  };
+  }, []);
   
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
     setIsPressed(false);
-  };
+  }, []);
   
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsPressed(true);
     
     // Ripple-Effekt
@@ -928,28 +928,28 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
       setShowRipple(true);
       setTimeout(() => setShowRipple(false), 600);
     }
-  };
+  }, [ripple]);
   
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsPressed(false);
-  };
+  }, []);
   
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === ' ' || e.key === 'Enter') {
       setIsPressed(true);
     }
     
     rest.onKeyDown?.(e);
-  };
+  }, [rest]);
   
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === ' ' || e.key === 'Enter') {
       setIsPressed(false);
     }
-  };
+  }, []);
   
   // Bestimme den Stil basierend auf den Props
-  const getStyle = () => {
+  const style = useMemo(() => {
     if (isIOS) return 'ios';
     if (isAndroid) return 'android';
     if (isMaterial) return 'material';
@@ -965,12 +965,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
     if (isFuturistic) return 'futuristic';
     if (isMinimal) return 'minimal';
     return 'default';
-  };
-  
-  const style = getStyle();
+  }, [
+    isIOS, isAndroid, isMaterial, isWindows, isFluent, isFlat, is3D, 
+    isNeon, isGlass, isNeumorphic, isSkeuomorphic, isRetro, isFuturistic, isMinimal
+  ]);
   
   // Größen-spezifische Klassen
-  const sizeClasses = {
+  const sizeClasses = useMemo(() => ({
     xs: {
       track: 'w-6 h-3',
       thumb: 'w-2 h-2',
@@ -1006,37 +1007,10 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
       text: 'text-lg',
       labelGap: 'gap-4'
     }
-  };
-  
-  // Varianten-spezifische Klassen
-  const variantClasses = {
-    solid: {
-      track: 'bg-gray-300 dark:bg-gray-600',
-      trackChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
-      thumb: 'bg-white'
-    },
-    outline: {
-      track: 'bg-transparent border-2 border-gray-300 dark:border-gray-600',
-      trackChecked: `bg-transparent border-2 ${colorClasses[colorScheme].border} ${colorClasses[colorScheme].borderDark}`,
-      thumb: 'bg-gray-500 dark:bg-gray-400',
-      thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
-    },
-    filled: {
-      track: 'bg-gray-200 dark:bg-gray-700',
-      trackChecked: `${colorClasses[colorScheme].bgLight} ${colorClasses[colorScheme].bg}`,
-      thumb: 'bg-gray-500 dark:bg-gray-400',
-      thumbChecked: 'bg-white'
-    },
-    minimal: {
-      track: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
-      trackChecked: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
-      thumb: 'bg-gray-400 dark:bg-gray-600',
-      thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
-    }
-  };
+  }), []);
   
   // Farben-spezifische Klassen
-  const colorClasses = {
+  const colorClasses = useMemo(() => ({
     primary: {
       bg: 'bg-primary-600',
       bgDark: 'dark:bg-primary-500',
@@ -1121,10 +1095,37 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
       ring: 'ring-gray-600',
       ringDark: 'dark:ring-gray-500'
     }
-  };
+  }), []);
+  
+  // Varianten-spezifische Klassen
+  const variantClasses = useMemo(() => ({
+    solid: {
+      track: 'bg-gray-300 dark:bg-gray-600',
+      trackChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
+      thumb: 'bg-white'
+    },
+    outline: {
+      track: 'bg-transparent border-2 border-gray-300 dark:border-gray-600',
+      trackChecked: `bg-transparent border-2 ${colorClasses[colorScheme].border} ${colorClasses[colorScheme].borderDark}`,
+      thumb: 'bg-gray-500 dark:bg-gray-400',
+      thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
+    },
+    filled: {
+      track: 'bg-gray-200 dark:bg-gray-700',
+      trackChecked: `${colorClasses[colorScheme].bgLight} ${colorClasses[colorScheme].bg}`,
+      thumb: 'bg-gray-500 dark:bg-gray-400',
+      thumbChecked: 'bg-white'
+    },
+    minimal: {
+      track: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
+      trackChecked: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
+      thumb: 'bg-gray-400 dark:bg-gray-600',
+      thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
+    }
+  }), [colorClasses, colorScheme]);
   
   // Stil-spezifische Klassen
-  const styleClasses = {
+  const styleClasses = useMemo(() => ({
     default: {},
     ios: {
       track: 'bg-gray-200 dark:bg-gray-700',
@@ -1210,7 +1211,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
       thumb: 'bg-gray-400 dark:bg-gray-600',
       thumbChecked: 'bg-primary-500 dark:bg-primary-400'
     }
-  };
+  }), [colorClasses, colorScheme]);
   
   // Icon-Komponenten für checked/unchecked
   const CheckedIcon = () => checkedIcon || (
