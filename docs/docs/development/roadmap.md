@@ -28,8 +28,8 @@ Die aktuelle Version befindet sich in der Alpha-Phase und enthält die grundlege
 
 - [x] Unit-Tests für Kernkomponenten
 - [x] Snapshot-Tests für alle Komponenten
-- [ ] Integrationstests
-- [ ] Visuelle Regressionstests
+- [x] Integrationstests
+- [x] Visuelle Regressionstests
 
 ## Mittelfristige Ziele (Q3-Q4 2025)
 
