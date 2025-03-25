@@ -1,72 +1,131 @@
-_**ESN_Repo-Template**_
-# Quick Start Guide
+# Smolitux UI - Quick Start Guide
 
-This guide will help you get started with the project template.
+Diese Anleitung hilft dir beim Einstieg in die Smolitux UI Komponentenbibliothek.
 
-## Prerequisites
+## Voraussetzungen
 
-- Python 3.9 or higher
+- Node.js 16 oder hoher
+- npm oder yarn
 - Git
-- Docker (optional)
 
 ## Installation
 
-1. Create a new repository from the template:
+### Installation in deinem Projekt
+
+1. Installiere die Smolitux UI Pakete:
+
    ```bash
-   gh repo create my-project --template EcoSphereNetwork/Repo-Template_-new-
-   # or
-   git clone https://github.com/EcoSphereNetwork/Repo-Template_-new-.git my-project
+   # Mit npm
+   npm install @smolitux/core @smolitux/theme
+   
+   # Mit yarn
+   yarn add @smolitux/core @smolitux/theme
+   
+   # Optional: Layout-Komponenten
+   npm install @smolitux/layout
+   
+   # Optional: Chart-Komponenten
+   npm install @smolitux/charts
    ```
 
-2. Initialize the project:
-   ```bash
-   cd my-project
-   ./scripts/init.sh
+2. Konfiguriere den ThemeProvider in deiner App:
+
+   ```jsx
+   import React from 'react';
+   import { ThemeProvider } from '@smolitux/theme';
+   import { Button } from '@smolitux/core';
+   
+   function App() {
+     return (
+       <ThemeProvider>
+         <div className="app">
+           <Button variant="primary">Mein Button</Button>
+         </div>
+       </ThemeProvider>
+     );
+   }
+   
+   export default App;
    ```
 
-3. Set up the development environment:
+## Entwicklung der Bibliothek
+
+1. Klone das Repository:
+
    ```bash
-   poetry install
-   pre-commit install
+   git clone https://github.com/EcoSphereNetwork/smolitux-ui.git
+   cd smolitux-ui
    ```
 
-## Development
+2. Installiere die Abhangigkeiten:
 
-1. Activate the virtual environment:
    ```bash
-   poetry shell
+   npm install
    ```
 
-2. Run the application:
+3. Starte die Storybook-Entwicklungsumgebung:
+
    ```bash
-   poetry run app
+   npm run storybook
    ```
 
-3. Run tests:
+4. Fuhre Tests aus:
+
    ```bash
-   poetry run pytest
+   npm test
    ```
 
-4. Check code quality:
-   ```bash
-   poetry run black .
-   poetry run ruff check .
-   poetry run mypy .
-   ```
+## Verfugbare Pakete
 
-## Docker Support
+Die Smolitux UI Bibliothek ist in mehrere Pakete aufgeteilt:
 
-1. Build the image:
-   ```bash
-   docker-compose build
-   ```
+- **@smolitux/core**: Grundlegende UI-Komponenten (Buttons, Inputs, Cards, etc.)
+- **@smolitux/theme**: Theme-Provider und Styling-Utilities
+- **@smolitux/layout**: Layout-Komponenten (Container, Grid, Flex, etc.)
+- **@smolitux/charts**: Datenvisualisierungskomponenten (LineChart, BarChart, etc.)
 
-2. Run the application:
-   ```bash
-   docker-compose up
-   ```
+## Beispiel: Verwendung von Komponenten
 
-## Next Steps
+```jsx
+import React from 'react';
+import { ThemeProvider } from '@smolitux/theme';
+import { Button, Card, Input } from '@smolitux/core';
+import { Container, Grid } from '@smolitux/layout';
 
-- Read the [Development Guide](../development/guide.md)
-- Check out the [API Reference](../api/reference.md)
+function MyApp() {
+  return (
+    <ThemeProvider>
+      <Container maxWidth="lg">
+        <h1>Meine Anwendung</h1>
+        
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <Card.Header>Formular</Card.Header>
+              <Card.Body>
+                <Input label="Name" placeholder="Dein Name" />
+                <Button variant="primary" className="mt-4">Absenden</Button>
+              </Card.Body>
+            </Card>
+          </Grid>
+          
+          <Grid item xs={12} md={6}>
+            <Card>
+              <Card.Header>Informationen</Card.Header>
+              <Card.Body>
+                <p>Hier sind weitere Informationen.</p>
+              </Card.Body>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+    </ThemeProvider>
+  );
+}
+```
+
+## Nachste Schritte
+
+- Lies den [Entwicklungsleitfaden](../development/guide.md)
+- Schau dir die [API-Referenz](../api/reference.md) an
+- Entdecke die [Komponenten-Dokumentation](../components/overview.md)
