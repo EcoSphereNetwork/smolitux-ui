@@ -44,3 +44,25 @@ export { default as Popover, type PopoverProps, type PopoverPlacement } from './
 export { default as FileUpload, type FileUploadProps, type FileInfo } from './components/FileUpload/FileUpload';
 export { default as MediaPlayer, type MediaPlayerProps, type MediaType, type MediaSource, type MediaTrack, type MediaChapter } from './components/MediaPlayer/MediaPlayer';
 export { default as DatePicker, type DatePickerProps } from './components/DatePicker/DatePicker';
+
+// Animation components
+export { default as Fade, type FadeProps } from './components/Fade/Fade';
+export { default as Slide, type SlideProps, type SlideDirection } from './components/Slide/Slide';
+export { default as Collapse, type CollapseProps } from './components/Collapse/Collapse';
+export { default as Zoom, type ZoomProps } from './components/Zoom/Zoom';
+
+// Form validation
+export { default as Form, useFormContext, type FormProps } from './validation/Form';
+export { default as FormField, type FormFieldProps } from './validation/FormField';
+export { default as useForm } from './validation/useForm';
+export { default as useField } from './validation/useField';
+export { default as useValidation } from './validation/useValidation';
+export * from './validation/validators';
+export * from './validation/types';
+
+// Internationalization
+export { default as I18nProvider, useI18n, type I18nProviderProps } from './i18n/I18nProvider';
+export { default as useTranslation } from './i18n/useTranslation';
+export { default as LanguageSwitcher, type LanguageSwitcherProps } from './components/LanguageSwitcher/LanguageSwitcher';
+export * from './i18n/types';
+export * from './i18n/constants';
