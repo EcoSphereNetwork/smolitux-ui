@@ -87,7 +87,7 @@
   <meta name="current-catalog-service-hash" content="f3abb0cc802f3d7b95fc8762b94bdcb13bf39634c40c357301c4aa1d67a256fb">
 
 
-  <meta name="request-id" content="8045:1B6F92:4BCA762:4DF1E8D:67E2BB1F" data-turbo-transient="true" /><meta name="html-safe-nonce" content="3f0dcc29c3f77d27a5df322e81198fde391c828ad4d52365dba6d4ad542f834e" data-turbo-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6bnVsbCwicmVxdWVzdF9pZCI6IjgwNDU6MUI2RjkyOjRCQ0E3NjI6NERGMUU4RDo2N0UyQkIxRiIsInZpc2l0b3JfaWQiOiI3OTA3ODE2NzQ0MDE0NzU2NjQwIiwicmVnaW9uX2VkZ2UiOiJmcmEiLCJyZWdpb25fcmVuZGVyIjoiaWFkIn0=" data-turbo-transient="true" /><meta name="visitor-hmac" content="25a5fe2fed7a760308ffd593a8a2e5fc188b22aa87b3948c325993526996cd5a" data-turbo-transient="true" />
+  <meta name="request-id" content="8038:1B6F92:4C22CBD:4E4BDE3:67E2BBE8" data-turbo-transient="true" /><meta name="html-safe-nonce" content="3bd824ec64edf608d1b7abd50d2afa5cbdb47e9f700723d6cbfab1a729598245" data-turbo-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6bnVsbCwicmVxdWVzdF9pZCI6IjgwMzg6MUI2RjkyOjRDMjJDQkQ6NEU0QkRFMzo2N0UyQkJFOCIsInZpc2l0b3JfaWQiOiI1MDM3NjM3MzI3MjgxODk2NDI0IiwicmVnaW9uX2VkZ2UiOiJmcmEiLCJyZWdpb25fcmVuZGVyIjoiaWFkIn0=" data-turbo-transient="true" /><meta name="visitor-hmac" content="187cd93b380f19c2414a6cf5dfa40228804048c327cc28840566a16c93b7b8c8" data-turbo-transient="true" />
 
 
 
@@ -95,7 +95,7 @@
   <meta name="github-keyboard-shortcuts" content="copilot" data-turbo-transient="true" />
   
 
-  <meta name="selected-link" value="/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx" data-turbo-transient>
+  <meta name="selected-link" value="/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md" data-turbo-transient>
   <link rel="assets" href="https://github.githubassets.com/">
 
     <meta name="google-site-verification" content="Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I">
@@ -123,7 +123,7 @@
 
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
     <meta property="fb:app_id" content="1401488693436528">
-    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx" />
+    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md" />
 
       <meta property="og:url" content="https://github.com">
   <meta property="og:site_name" content="GitHub">
@@ -178,7 +178,7 @@
 
 
 
-      <link rel="canonical" href="https://github.com/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx" data-turbo-transient>
+      <link rel="canonical" href="https://github.com/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md" data-turbo-transient>
 
 
     <meta name="turbo-body-classes" content="logged-out env-production page-responsive min-height-full d-flex flex-column">
@@ -274,9 +274,9 @@
 
       <div class="flex-1 flex-order-2 text-right">
           <a
-            href="/login?return_to=https%3A%2F%2Fgithub.com%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F73a6e6731fa81ff4486343daf45e3660778f3881%2Fpackages%252F%2540smolitux%252Fcore%252Fsrc%252Fcomponents%252FSkeleton%252F__tests__%252FSkeleton.test.tsx"
+            href="/login?return_to=https%3A%2F%2Fgithub.com%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F385932e933f42d82bf1ddb89115e7d0b50de04ed%2Fdocs%252Fdocs%252Fcomponents%252Flayout%252Fgrid.md"
             class="HeaderMenu-link HeaderMenu-button d-inline-flex d-lg-none flex-order-1 f5 no-underline border color-border-default rounded-2 px-2 py-1 color-fg-inherit js-prevent-focus-on-mobile-nav"
-            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="cdbbf0d96edbe3e09e608d0f38b54562d6130db2c939cf68f9b7ea96840be0a7"
+            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="258fc670b18a908614556d8d94282bf4458aed903dd5febbef6fd313bc295fa6"
             data-analytics-event="{&quot;category&quot;:&quot;Marketing nav&quot;,&quot;action&quot;:&quot;click to Sign in&quot;,&quot;label&quot;:&quot;ref_page:Marketing;ref_cta:Sign in;ref_loc:Header&quot;}"
           >
             Sign in
@@ -846,7 +846,7 @@
                 
 
 
-<qbsearch-input class="search-input" data-scope="" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="Hm3qtGFoDoGFeZvRDVrGyVB8ClPXgMxjhy0-N9EWFbSo0yLBzwknXl5_kaIRBXbGYWy07oGXZIDr9pRMv64fkA" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="" data-current-org="" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
+<qbsearch-input class="search-input" data-scope="" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="k75PawH3VELWSNfQFdzQvhKtowDTOIQ-V3DoreqW3eMRdpzLEwsBTY89Cm0RwlrlmSd6A8aE5LJfeyGrxHOqRA" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="" data-current-org="" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
   <div
     class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center mr-4 rounded"
     data-action="click:qbsearch-input#searchInputContainerClicked"
@@ -911,7 +911,7 @@
           ></div>
           <div class="QueryBuilder-InputWrapper">
             <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-00ae0bcf-cef6-4884-8f7e-5baaf52a48a9" data-target="query-builder.input" data-action="
+            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-3a7fe453-60b7-4d5a-800b-ca7432bb6e4c" data-target="query-builder.input" data-action="
           input:query-builder#inputChange
           blur:query-builder#inputBlur
           keydown:query-builder#inputKeydown
@@ -1148,7 +1148,7 @@
                   id="query-builder-test-results"
                 ></ul>
         </div>
-      <div class="FormControl-inlineValidation" id="validation-00ae0bcf-cef6-4884-8f7e-5baaf52a48a9" hidden="hidden">
+      <div class="FormControl-inlineValidation" id="validation-3a7fe453-60b7-4d5a-800b-ca7432bb6e4c" hidden="hidden">
         <span class="FormControl-inlineValidation--visual">
           <svg aria-hidden="true" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
     <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
@@ -1189,7 +1189,7 @@
   
 </div>
       <scrollable-region data-labelled-by="feedback-dialog-title">
-        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="rGwn4Fj56zvntbfCavnZKjOC2wlLhKj0TJsesPwZQoa62X8Aot7EgwE8YeYn1auUNkyUFc7tdxQtwah9CO42CA" />
+        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="TlU4Dl5cK-TxQKfX3Qvz7uqUtVy7bCsPf0fZTOTDMM6wFeztj0-Y-lDlB5LX66h1XSPBjZTeiGZ5hqFZ-93w5Q" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -1227,7 +1227,7 @@
         <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="LFyNfEIOkYE6p4Y6XaXFSKvIzBgCaIvjQM3oQmkNL6ivcSL9tMrso6Jqev70M5zGvEbyAk8ysnMEq0gNTrZZzA" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="tTZoIoDGKfhHYjYjtmQ4vQE3IzbtafaxUg3tn3YLoZ0-_Nrw2x4kTQEFaznerSfs-EEqVpoiM0owS6pjXJSr4Q" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -1245,7 +1245,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" value="xVPCDgzydq4s3or2gf5tKo4kIwUj8MCzCCQmOorq7jYah22HjHlxv2-3gAbX-iGR-zE6_nb_hIoZ-AYOefGUaA" data-csrf="true" />
+              <input type="hidden" value="6Z4OiGhtVmqu7plwIkDAcyKtEyZgMhPfL1Q_9fXKxYcv1PrxRWKxCeMfMfqzfxV0OMwY_MtTbCae_-HE80F8oA" data-csrf="true" />
             </auto-check>
           </div>
 
@@ -1287,10 +1287,10 @@
 
             <div class="position-relative HeaderMenu-link-wrap d-lg-inline-block">
               <a
-                href="/login?return_to=https%3A%2F%2Fgithub.com%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F73a6e6731fa81ff4486343daf45e3660778f3881%2Fpackages%252F%2540smolitux%252Fcore%252Fsrc%252Fcomponents%252FSkeleton%252F__tests__%252FSkeleton.test.tsx"
+                href="/login?return_to=https%3A%2F%2Fgithub.com%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F385932e933f42d82bf1ddb89115e7d0b50de04ed%2Fdocs%252Fdocs%252Fcomponents%252Flayout%252Fgrid.md"
                 class="HeaderMenu-link HeaderMenu-link--sign-in HeaderMenu-button flex-shrink-0 no-underline d-none d-lg-inline-flex border border-lg-0 rounded rounded-lg-0 px-2 py-1"
                 style="margin-left: 12px;"
-                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="cdbbf0d96edbe3e09e608d0f38b54562d6130db2c939cf68f9b7ea96840be0a7"
+                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="258fc670b18a908614556d8d94282bf4458aed903dd5febbef6fd313bc295fa6"
                 data-analytics-event="{&quot;category&quot;:&quot;Marketing nav&quot;,&quot;action&quot;:&quot;click to go to homepage&quot;,&quot;label&quot;:&quot;ref_page:Marketing;ref_cta:Sign in;ref_loc:Header&quot;}"
               >
                 Sign in
@@ -1300,7 +1300,7 @@
     <h4 data-view-component="true" class="color-fg-default mb-2">                    Sign in to GitHub
 </h4>
                         
-<!-- '"` --><!-- </textarea></xmp> --></option></form><form data-turbo="false" action="/session" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="5RZT7Tn3PLZRwstT1dbeNQx52TaqgpjZyUpfT18a1tMTAUNIcjN70qfJHYxfGGyGfgo_FBeJy9--pnZfhnY1Yg" />  <input type="hidden" name="add_account" id="add_account" autocomplete="off" class="form-control" />
+<!-- '"` --><!-- </textarea></xmp> --></option></form><form data-turbo="false" action="/session" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="pwPdlQ4TKU9phjNInLLevq09ZGO1WMYcFT6bXNcJlTvVSW5FUj3LL3Di4iPkqP9T06wYM8omEEJZPTUUIrGGkQ" />  <input type="hidden" name="add_account" id="add_account" autocomplete="off" class="form-control" />
 
     <label for="login_field">
       Username or email address
@@ -1318,17 +1318,17 @@
 <input type="hidden" class="js-support" name="javascript-support" value="unknown">
 <input type="hidden" class="js-webauthn-support" name="webauthn-support" value="unknown">
 <input type="hidden" class="js-webauthn-iuvpaa-support" name="webauthn-iuvpaa-support" value="unknown">
-<input type="hidden" name="return_to" id="return_to" value="https://github.com/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx" autocomplete="off" class="form-control" />
+<input type="hidden" name="return_to" id="return_to" value="https://github.com/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md" autocomplete="off" class="form-control" />
 <input type="hidden" name="allow_signup" id="allow_signup" autocomplete="off" class="form-control" />
 <input type="hidden" name="client_id" id="client_id" autocomplete="off" class="form-control" />
 <input type="hidden" name="integration" id="integration" autocomplete="off" class="form-control" />
-<input type="text" name="required_field_9666" hidden="hidden" class="form-control" /><input type="hidden" name="timestamp" value="1742912288084" autocomplete="off" class="form-control" /><input type="hidden" name="timestamp_secret" value="6aa2f1a2816fea2072685d88507cda70a42b0f8829177896268bb41d12c15f86" autocomplete="off" class="form-control" />
+<input type="text" name="required_field_8617" hidden="hidden" class="form-control" /><input type="hidden" name="timestamp" value="1742912488402" autocomplete="off" class="form-control" /><input type="hidden" name="timestamp_secret" value="0f4ce60e4a3c9675866be9298fa24c8c37f3af767b79cabcce59df9c082eb951" autocomplete="off" class="form-control" />
 
     <input type="submit" name="commit" value="Sign in" class="btn btn-primary btn-block js-sign-in-button" data-disable-with="Signing in…" data-signin-label="Sign in" data-sso-label="Sign in with your identity provider" development="false" disable-emu-sso="false" />
   </div>
 </form>  <webauthn-status class="js-webauthn-login-emu-control">
         <div data-target="webauthn-status.partial" class="d-flex flex-justify-between flex-column mt-3 mb-0" hidden>
-          <a href="/login?passkey=true&amp;return_to=https%3A%2F%2Fgithub.com%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F73a6e6731fa81ff4486343daf45e3660778f3881%2Fpackages%252F%2540smolitux%252Fcore%252Fsrc%252Fcomponents%252FSkeleton%252F__tests__%252FSkeleton.test.tsx" data-analytics-event="{&quot;category&quot;:&quot;passkey_404_login&quot;,&quot;action&quot;:&quot;clicked&quot;,&quot;label&quot;:null}" data-view-component="true" class="Button--link Button--medium Button">  <span class="Button-content">
+          <a href="/login?passkey=true&amp;return_to=https%3A%2F%2Fgithub.com%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F385932e933f42d82bf1ddb89115e7d0b50de04ed%2Fdocs%252Fdocs%252Fcomponents%252Flayout%252Fgrid.md" data-analytics-event="{&quot;category&quot;:&quot;passkey_404_login&quot;,&quot;action&quot;:&quot;clicked&quot;,&quot;label&quot;:null}" data-view-component="true" class="Button--link Button--medium Button">  <span class="Button-content">
     <span class="Button-label">or sign in with a passkey</span>
   </span>
 </a>
@@ -1338,10 +1338,10 @@
 
 </div></div>            </div>
 
-              <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F73a6e6731fa81ff4486343daf45e3660778f3881%2Fpackages%252F%2540smolitux%252Fcore%252Fsrc%252Fcomponents%252FSkeleton%252F__tests__%252FSkeleton.test.tsx&amp;source=header"
+              <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2FEcoSphereNetwork%2Fsmolitux-ui%2Fraw%2F385932e933f42d82bf1ddb89115e7d0b50de04ed%2Fdocs%252Fdocs%252Fcomponents%252Flayout%252Fgrid.md&amp;source=header"
                 class="HeaderMenu-link HeaderMenu-link--sign-up HeaderMenu-button flex-shrink-0 d-flex d-lg-inline-flex no-underline border color-border-default rounded px-2 py-1"
-                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="cdbbf0d96edbe3e09e608d0f38b54562d6130db2c939cf68f9b7ea96840be0a7"
-                data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/EcoSphereNetwork/smolitux-ui/raw/73a6e6731fa81ff4486343daf45e3660778f3881/packages%2F%40smolitux%2Fcore%2Fsrc%2Fcomponents%2FSkeleton%2F__tests__%2FSkeleton.test.tsx;ref_cta:Sign up;ref_loc:header logged out&quot;}"
+                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="258fc670b18a908614556d8d94282bf4458aed903dd5febbef6fd313bc295fa6"
+                data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/EcoSphereNetwork/smolitux-ui/raw/385932e933f42d82bf1ddb89115e7d0b50de04ed/docs%2Fdocs%2Fcomponents%2Flayout%2Fgrid.md;ref_cta:Sign up;ref_loc:header logged out&quot;}"
               >
                 Sign up
               </a>
@@ -1361,10 +1361,10 @@
         <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
         <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
 
-    <button id="icon-button-61bf2ac9-15e2-49e7-9435-a3548474949a" aria-labelledby="tooltip-a265f7fa-7e6a-48de-8f8c-36b65c88ac0c" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
+    <button id="icon-button-65f7f23d-0de7-4762-9a76-3b08a3da313d" aria-labelledby="tooltip-932f50cb-561d-4bfc-82a1-d43b868b9bc6" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
 </svg>
-</button><tool-tip id="tooltip-a265f7fa-7e6a-48de-8f8c-36b65c88ac0c" for="icon-button-61bf2ac9-15e2-49e7-9435-a3548474949a" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
+</button><tool-tip id="tooltip-932f50cb-561d-4bfc-82a1-d43b868b9bc6" for="icon-button-65f7f23d-0de7-4762-9a76-3b08a3da313d" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
 
 
   
