@@ -40,6 +40,7 @@ module.exports = {
         slideInRight: 'slideInRight 0.3s ease-in-out',
         slideInBottom: 'slideInBottom 0.3s ease-in-out',
         slideInLeft: 'slideInLeft 0.3s ease-in-out',
+        ripple: 'ripple 0.6s linear',
       },
       keyframes: {
         fadeIn: {
@@ -65,6 +66,11 @@ module.exports = {
         slideInLeft: {
           '0%': { transform: 'translateX(-10%)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        ripple: {
+          '0%': { transform: 'scale(0)', opacity: '1' },
+          '50%': { transform: 'scale(1.5)', opacity: '0.5' },
+          '100%': { transform: 'scale(2)', opacity: '0' },
         },
       },
     },
