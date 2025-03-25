@@ -330,14 +330,18 @@ export const Popover: React.FC<PopoverProps> = ({
     const commonProps = {
       ref: (el: Element | null) => {
         // Ref vom Original beibehalten, wenn vorhanden
-        if (React.isValidElement(children) && children.ref) {
-          if (typeof children.ref === 'function') {
-            children.ref(el);
-          } else if (children.ref.hasOwnProperty('current')) {
-            (children.ref as React.MutableRefObject<HTMLElement | null>).current = el as HTMLElement;
+        const child = React.Children.only(children);
+        if (React.isValidElement(child)) {
+          const originalRef = (child as any).ref;
+          if (originalRef && typeof originalRef === 'function') {
+            originalRef(el);
+          } else if (originalRef && typeof originalRef === 'object' && 'current' in originalRef) {
+            (originalRef as React.MutableRefObject<HTMLElement | null>).current = el as HTMLElement;
           }
         }
-        triggerRef.current = el as HTMLElement;
+        if (triggerRef) {
+          (triggerRef as React.MutableRefObject<HTMLElement | null>).current = el as HTMLElement;
+        }
       }
     };
     
