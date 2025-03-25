@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect, useRef } from 'react';
+import React, { forwardRef, useState, useEffect, useRef, useCallback } from 'react';
 
 export interface SelectOption {
   value: string;
@@ -154,19 +154,22 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
 }, ref) => {
   // Generiere eine eindeutige ID, falls keine angegeben wurde
   const uniqueId = id || `select-${Math.random().toString(36).substring(2, 9)}`;
-  const selectRef = useRef<HTMLSelectElement>(null);
+  const selectRef = useRef<HTMLSelectElement | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   
   // Kombiniere den externen Ref mit unserem internen Ref
-  const handleRef = (element: HTMLSelectElement | null) => {
+  const handleRef = useCallback((element: HTMLSelectElement | null) => {
+    // Setze den internen Ref
     selectRef.current = element;
     
+    // Leite den Ref weiter
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
+      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier, da wir es nur für die Typprüfung benötigen
       ref.current = element;
     }
-  };
+  }, [ref]);
   
   // Autofokus
   useEffect(() => {
@@ -322,7 +325,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
           ref={handleRef}
           id={uniqueId}
           disabled={disabled}
-          readOnly={readOnly}
+          // readOnly ist keine gültige Eigenschaft für select-Elemente
+          // readOnly={readOnly}
           className={selectClasses}
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={

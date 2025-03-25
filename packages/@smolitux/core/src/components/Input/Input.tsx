@@ -358,7 +358,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   const [currentValue, setCurrentValue] = useState<string>(
     (value !== undefined ? String(value) : defaultValue !== undefined ? String(defaultValue) : '') as string
   );
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   
   // Aktualisiere den internen Wert, wenn sich der externe Wert ändert
   useEffect(() => {
@@ -380,12 +380,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   
   // Kombiniere den externen Ref mit unserem internen Ref
   const handleRef = useCallback((element: HTMLInputElement | null) => {
+    // Setze den internen Ref
     inputRef.current = element;
     
+    // Leite den Ref weiter
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
-      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
+      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier, da wir es nur für die Typprüfung benötigen
       ref.current = element;
     }
   }, [ref]);

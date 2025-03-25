@@ -455,18 +455,21 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   const [showRipple, setShowRipple] = useState(false);
   
   // Refs
-  const checkboxRef = useRef<HTMLInputElement>(null);
+  const checkboxRef = useRef<HTMLInputElement | null>(null);
   
   // Kombiniere den externen Ref mit unserem internen Ref
-  const handleRef = (element: HTMLInputElement | null) => {
+  const handleRef = useCallback((element: HTMLInputElement | null) => {
+    // Setze den internen Ref
     checkboxRef.current = element;
     
+    // Leite den Ref weiter
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
+      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier, da wir es nur für die Typprüfung benötigen
       ref.current = element;
     }
-  };
+  }, [ref]);
   
   // Setze den indeterminaten Zustand
   useEffect(() => {
@@ -506,7 +509,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
     outline: bordered 
       ? 'border-2 border-gray-300 dark:border-gray-600 bg-transparent' 
       : 'bg-transparent',
-    filled: 'bg-gray-100 dark:bg-gray-800'
+    filled: 'bg-gray-100 dark:bg-gray-800',
+    minimal: 'bg-transparent'
   };
   
   // Klassen für verschiedene Farben
