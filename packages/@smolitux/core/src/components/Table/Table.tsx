@@ -1,698 +1,441 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronUp, ChevronDown, Search, Filter, ArrowLeft, ArrowRight, RefreshCw, Download } from 'lucide-react';
-import { useTheme } from '../../../theme/src/theme-provider';
 
 export type SortDirection = 'asc' | 'desc' | null;
 
-export interface TableColumn<T> {
+export interface TableColumn<T = any> {
   /** Eindeutige ID der Spalte */
   id: string;
-  /** Angezeigter Header-Text */
+  /** Anzeigename der Spalte */
   header: React.ReactNode;
-  /** Funktion zur Extraktion des Zellwerts aus einer Zeile */
-  accessor: (row: T) => any;
-  /** Benutzerdefinierte Render-Funktion für die Zelle */
-  cell?: (value: any, row: T, index: number) => React.ReactNode;
+  /** Funktion zum Rendern der Zelle */
+  cell: (row: T, rowIndex: number) => React.ReactNode;
+  /** Ob die Spalte sortierbar ist */
+  sortable?: boolean;
+  /** Funktion zum Sortieren der Spalte */
+  sortFn?: (a: T, b: T, direction: SortDirection) => number;
+  /** Breite der Spalte */
+  width?: string | number;
+  /** Ausrichtung des Inhalts */
+  align?: 'left' | 'center' | 'right';
+  /** Ob die Spalte fixiert ist */
+  fixed?: boolean;
+  /** Ob die Spalte ausgeblendet ist */
+  hidden?: boolean;
   /** Zusätzliche CSS-Klassen für die Spalte */
   className?: string;
-  /** CSS-Klassen für den Header der Spalte */
+  /** Zusätzliche CSS-Klassen für den Header */
   headerClassName?: string;
-  /** Falls true, ist die Spalte sortierbar */
-  sortable?: boolean;
-  /** Falls true, ist die Spalte filterbar */
-  filterable?: boolean;
-  /** Breite der Spalte */
-  width?: string;
-  /** Minimale Breite der Spalte */
-  minWidth?: string;
-  /** Maximale Breite der Spalte */
-  maxWidth?: string;
-  /** Falls true, wird die Spalte ausgeblendet */
-  hide?: boolean;
+  /** Zusätzliche CSS-Klassen für die Zellen */
+  cellClassName?: string;
 }
 
-export interface TableProps<T> {
-  /** Tabellendaten als Array von Objekten */
+export interface TableProps<T = any> {
+  /** Daten für die Tabelle */
   data: T[];
-  /** Spaltenkonfiguration */
+  /** Spaltendefinitionen */
   columns: TableColumn<T>[];
-  /** Funktion zur Generierung eines eindeutigen Schlüssels für jede Zeile */
-  rowKey?: (row: T) => string;
-  /** Callback für Klick auf eine Zeile */
-  onRowClick?: (row: T) => void;
-  /** Zeigt einen Ladeindikator an */
-  loading?: boolean;
-  /** Nachricht, wenn keine Daten vorhanden sind */
-  emptyMessage?: React.ReactNode;
-  /** Zusätzliche CSS-Klassen für die Tabelle */
-  className?: string;
-  /** CSS-Klassen für den Tabellenkopf */
-  headerClassName?: string;
-  /** CSS-Klassen für die Zeilen */
-  rowClassName?: string | ((row: T, index: number) => string);
-  /** Ob die Tabelle Zebrastreifen haben soll */
+  /** Ob die Tabelle gestreift sein soll */
   striped?: boolean;
-  /** Ob die Tabelle Rahmen haben soll */
+  /** Ob die Tabelle einen Hover-Effekt haben soll */
+  hover?: boolean;
+  /** Ob die Tabelle einen Rahmen haben soll */
   bordered?: boolean;
-  /** Ob die Tabelle responsiv sein soll */
-  responsive?: boolean;
   /** Ob die Tabelle kompakt sein soll */
   compact?: boolean;
-  /** Ob die Zeilen bei Hover hervorgehoben werden sollen */
-  hoverable?: boolean;
-  /** Initiale Sortierung */
-  initialSortBy?: { id: string; direction: SortDirection };
-  /** Ob die Tabelle Paginierung anzeigen soll */
-  showPagination?: boolean;
-  /** Anzahl der Elemente pro Seite */
+  /** Ob die Tabelle einen Schatten haben soll */
+  shadow?: boolean;
+  /** Ob die Tabelle abgerundete Ecken haben soll */
+  rounded?: boolean;
+  /** Ob die Tabelle responsive sein soll */
+  responsive?: boolean;
+  /** Ob die Tabelle einen Header haben soll */
+  showHeader?: boolean;
+  /** Ob die Tabelle eine Fußzeile haben soll */
+  showFooter?: boolean;
+  /** Ob die Tabelle sortierbar sein soll */
+  sortable?: boolean;
+  /** Standardsortierung */
+  defaultSort?: { id: string; direction: SortDirection };
+  /** Callback bei Sortierungsänderung */
+  onSort?: (id: string, direction: SortDirection) => void;
+  /** Ob die Tabelle paginiert sein soll */
+  paginated?: boolean;
+  /** Anzahl der Einträge pro Seite */
   itemsPerPage?: number;
-  /** Ob eine Suchfunktion angezeigt werden soll */
-  showSearch?: boolean;
-  /** Ob die Tabelle selektierbare Zeilen haben soll */
-  selectable?: boolean;
-  /** Callback für Refresh-Funktion */
-  onRefresh?: () => Promise<void>;
-  /** Callback für Export-Funktion */
-  onExport?: () => void;
-  /** Aktionen für die Tabelle */
-  actions?: React.ReactNode;
-  /** Titel der Tabelle */
-  title?: string;
-  /** Untertitel der Tabelle */
-  subtitle?: string;
+  /** Aktuelle Seite */
+  currentPage?: number;
+  /** Callback bei Seitenänderung */
+  onPageChange?: (page: number) => void;
+  /** Callback bei Klick auf eine Zeile */
+  onRowClick?: (row: T, index: number) => void;
+  /** Funktion zum Rendern einer leeren Tabelle */
+  emptyState?: React.ReactNode;
+  /** Funktion zum Rendern einer Ladeanimation */
+  loading?: boolean;
+  /** Funktion zum Rendern eines Ladezustands */
+  loadingState?: React.ReactNode;
+  /** Zusätzliche CSS-Klassen */
+  className?: string;
+  /** Zusätzliche CSS-Klassen für den Container */
+  containerClassName?: string;
+  /** Zusätzliche CSS-Klassen für den Header */
+  headerClassName?: string;
+  /** Zusätzliche CSS-Klassen für den Body */
+  bodyClassName?: string;
+  /** Zusätzliche CSS-Klassen für die Zeilen */
+  rowClassName?: string | ((row: T, index: number) => string);
+  /** Zusätzliche CSS-Klassen für die Zellen */
+  cellClassName?: string;
+  /** Zusätzliche CSS-Klassen für die Fußzeile */
+  footerClassName?: string;
+  /** Zusätzliche CSS-Klassen für die Paginierung */
+  paginationClassName?: string;
+  /** ID für die Tabelle */
+  id?: string;
+  /** ARIA-Label für die Tabelle */
+  ariaLabel?: string;
+  /** Ob die Tabelle eine Zusammenfassung haben soll */
+  summary?: string;
+  /** Ob die Tabelle einen Titel haben soll */
+  caption?: React.ReactNode;
+  /** Position des Titels */
+  captionPosition?: 'top' | 'bottom';
 }
 
-/**
- * Tabellen-Komponente für tabellarische Daten
- */
-function Table<T>({
-  data,
-  columns,
-  rowKey = (row: T) => JSON.stringify(row),
-  onRowClick,
-  loading = false,
-  emptyMessage = 'Keine Daten verfügbar',
-  className = '',
-  headerClassName = '',
-  rowClassName = '',
+const Table = <T extends Record<string, any>>({
+  data = [],
+  columns = [],
   striped = false,
+  hover = true,
   bordered = false,
-  responsive = true,
   compact = false,
-  hoverable = true,
-  initialSortBy,
-  showPagination = true,
+  shadow = false,
+  rounded = true,
+  responsive = true,
+  showHeader = true,
+  showFooter = false,
+  sortable = true,
+  defaultSort,
+  onSort,
+  paginated = false,
   itemsPerPage = 10,
-  showSearch = true,
-  selectable = false,
-  onRefresh,
-  onExport,
-  actions,
-  title,
-  subtitle
-}: TableProps<T>) {
-  const { themeMode } = useTheme();
-  const [sortBy, setSortBy] = useState<{ id: string; direction: SortDirection }>(
-    initialSortBy || { id: '', direction: null }
-  );
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filters, setFilters] = useState<Record<string, string>>({});
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const [filterPosition, setFilterPosition] = useState({ top: 0, left: 0 });
-  const [selectedRows, setSelectedRows] = useState<T[]>([]);
-  const [selectAll, setSelectAll] = useState(false);
-
-  // Reset zu erster Seite, wenn Suchbegriff sich ändert
+  currentPage: controlledCurrentPage,
+  onPageChange,
+  onRowClick,
+  emptyState = <div className="p-4 text-center text-gray-500 dark:text-gray-400">Keine Daten vorhanden</div>,
+  loading = false,
+  loadingState = <div className="p-4 text-center text-gray-500 dark:text-gray-400">Laden...</div>,
+  className = '',
+  containerClassName = '',
+  headerClassName = '',
+  bodyClassName = '',
+  rowClassName = '',
+  cellClassName = '',
+  footerClassName = '',
+  paginationClassName = '',
+  id,
+  ariaLabel = 'Datentabelle',
+  summary,
+  caption,
+  captionPosition = 'top',
+}: TableProps<T>) => {
+  // Zustand für Sortierung
+  const [sortColumn, setSortColumn] = useState<string | null>(defaultSort?.id || null);
+  const [sortDirection, setSortDirection] = useState<SortDirection>(defaultSort?.direction || null);
+  
+  // Zustand für Paginierung
+  const [currentPage, setCurrentPage] = useState(controlledCurrentPage || 1);
+  
+  // Effekt für kontrollierte Paginierung
   useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, filters]);
-
-  // Markiere alle Zeilen als ausgewählt, wenn selectAll aktiviert ist
-  useEffect(() => {
-    if (selectAll) {
-      setSelectedRows(filteredData);
-    } else if (selectedRows.length === filteredData.length) {
-      setSelectedRows([]);
+    if (controlledCurrentPage !== undefined) {
+      setCurrentPage(controlledCurrentPage);
     }
-  }, [selectAll]);
-
-  // Suche und Filterung der Daten
-  const filteredData = useMemo(() => {
-    return data.filter(row => {
-      // Suche anwenden
-      if (searchTerm) {
-        const searchString = searchTerm.toLowerCase();
-        const searchMatch = columns.some(column => {
-          if (column.hide) return false;
-          
-          const value = column.accessor(row);
-          return value !== null && value !== undefined &&
-            String(value).toLowerCase().includes(searchString);
-        });
-        
-        if (!searchMatch) return false;
-      }
-      
-      // Filter anwenden
-      for (const [columnId, filterValue] of Object.entries(filters)) {
-        if (!filterValue) continue;
-        
-        const column = columns.find(col => col.id === columnId);
-        if (!column) continue;
-        
-        const value = column.accessor(row);
-        if (value === null || value === undefined) return false;
-        
-        const stringValue = String(value).toLowerCase();
-        if (!stringValue.includes(filterValue.toLowerCase())) return false;
-      }
-      
-      return true;
-    });
-  }, [data, columns, searchTerm, filters]);
-
-  // Sortierung der Daten
+  }, [controlledCurrentPage]);
+  
+  // Sortierte Daten
   const sortedData = useMemo(() => {
-    if (!sortBy.id || sortBy.direction === null) return filteredData;
+    if (!sortColumn || !sortDirection) return data;
     
-    const column = columns.find(col => col.id === sortBy.id);
-    if (!column) return filteredData;
+    const column = columns.find(col => col.id === sortColumn);
+    if (!column || !column.sortable) return data;
     
-    return [...filteredData].sort((a, b) => {
-      const aValue = column.accessor(a);
-      const bValue = column.accessor(b);
+    return [...data].sort((a, b) => {
+      if (column.sortFn) {
+        return column.sortFn(a, b, sortDirection);
+      }
+      
+      const aValue = a[sortColumn];
+      const bValue = b[sortColumn];
       
       if (aValue === bValue) return 0;
       
-      // Behandlung von null/undefined Werten
-      if (aValue === null || aValue === undefined) return sortBy.direction === 'asc' ? -1 : 1;
-      if (bValue === null || bValue === undefined) return sortBy.direction === 'asc' ? 1 : -1;
-      
-      // Sortierung von Zahlen
-      if (typeof aValue === 'number' && typeof bValue === 'number') {
-        return sortBy.direction === 'asc' ? aValue - bValue : bValue - aValue;
+      if (sortDirection === 'asc') {
+        return aValue < bValue ? -1 : 1;
+      } else {
+        return aValue > bValue ? -1 : 1;
       }
-      
-      // Sortierung von Daten
-      if (aValue instanceof Date && bValue instanceof Date) {
-        return sortBy.direction === 'asc' 
-          ? aValue.getTime() - bValue.getTime() 
-          : bValue.getTime() - aValue.getTime();
-      }
-      
-      // Sortierung von Strings
-      const aString = String(aValue);
-      const bString = String(bValue);
-      
-      return sortBy.direction === 'asc'
-        ? aString.localeCompare(bString)
-        : bString.localeCompare(aString);
     });
-  }, [filteredData, sortBy, columns]);
-
-  // Paginierung der sortierten Daten
+  }, [data, columns, sortColumn, sortDirection]);
+  
+  // Paginierte Daten
   const paginatedData = useMemo(() => {
-    if (!showPagination) return sortedData;
+    if (!paginated) return sortedData;
     
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     
     return sortedData.slice(startIndex, endIndex);
-  }, [sortedData, currentPage, itemsPerPage, showPagination]);
-
-  // Berechnung der Gesamtseitenzahl
-  const totalPages = useMemo(() => {
-    if (!showPagination) return 1;
-    return Math.max(1, Math.ceil(sortedData.length / itemsPerPage));
-  }, [sortedData, itemsPerPage, showPagination]);
-
-  // Sortierung verwalten
+  }, [sortedData, paginated, currentPage, itemsPerPage]);
+  
+  // Funktion zum Ändern der Sortierung
   const handleSort = (columnId: string) => {
     const column = columns.find(col => col.id === columnId);
-    if (!column || column.sortable === false) return;
+    if (!column || !column.sortable) return;
     
-    if (sortBy.id === columnId) {
-      // Zyklisch: asc -> desc -> null
-      let newDirection: SortDirection = null;
-      if (sortBy.direction === null) newDirection = 'asc';
-      else if (sortBy.direction === 'asc') newDirection = 'desc';
-      else newDirection = null;
-      
-      setSortBy({ id: columnId, direction: newDirection });
+    let newDirection: SortDirection = null;
+    
+    if (sortColumn !== columnId) {
+      newDirection = 'asc';
+    } else if (sortDirection === 'asc') {
+      newDirection = 'desc';
+    } else if (sortDirection === 'desc') {
+      newDirection = null;
     } else {
-      setSortBy({ id: columnId, direction: 'asc' });
+      newDirection = 'asc';
     }
-  };
-
-  // Aktualisierung verwalten
-  const handleRefresh = async () => {
-    if (!onRefresh || isRefreshing) return;
     
-    setIsRefreshing(true);
-    try {
-      await onRefresh();
-    } finally {
-      setIsRefreshing(false);
+    setSortColumn(newDirection ? columnId : null);
+    setSortDirection(newDirection);
+    
+    if (onSort) {
+      onSort(columnId, newDirection);
     }
   };
-
-  // Seitenwechsel
-  const handlePreviousPage = () => {
-    setCurrentPage(prev => Math.max(1, prev - 1));
+  
+  // Funktion zum Ändern der Seite
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    
+    if (onPageChange) {
+      onPageChange(page);
+    }
   };
-
-  const handleNextPage = () => {
-    setCurrentPage(prev => Math.min(totalPages, prev + 1));
-  };
-
-  const goToPage = (page: number) => {
-    setCurrentPage(Math.min(Math.max(1, page), totalPages));
-  };
-
-  // Zeilenauswahl
-  const isRowSelected = (row: T) => {
-    return selectedRows.some(selectedRow => 
-      rowKey(selectedRow) === rowKey(row)
+  
+  // Funktion zum Rendern des Sortierungssymbols
+  const renderSortIcon = (columnId: string) => {
+    if (sortColumn !== columnId) {
+      return (
+        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+        </svg>
+      );
+    }
+    
+    if (sortDirection === 'asc') {
+      return (
+        <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+        </svg>
+      );
+    }
+    
+    return (
+      <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
     );
   };
-
-  const toggleRowSelection = (row: T) => {
-    if (isRowSelected(row)) {
-      setSelectedRows(selectedRows.filter(selectedRow => 
-        rowKey(selectedRow) !== rowKey(row)
-      ));
-    } else {
-      setSelectedRows([...selectedRows, row]);
-    }
-  };
-
-  const toggleSelectAll = () => {
-    setSelectAll(!selectAll);
-  };
-
-  // Filter-Klick behandeln
-  const handleFilterClick = (columnId: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    const column = columns.find(col => col.id === columnId);
-    if (!column || column.filterable === false) return;
+  
+  // CSS-Klassen für die Tabelle
+  const tableClasses = [
+    'min-w-full divide-y divide-gray-200 dark:divide-gray-700',
+    striped ? 'table-striped' : '',
+    bordered ? 'border border-gray-200 dark:border-gray-700' : '',
+    rounded ? 'rounded-lg overflow-hidden' : '',
+    shadow ? 'shadow-md' : '',
+    className
+  ].filter(Boolean).join(' ');
+  
+  // CSS-Klassen für den Container
+  const wrapperClasses = [
+    responsive ? 'overflow-x-auto' : '',
+    shadow && !bordered ? 'shadow-md' : '',
+    rounded && !bordered ? 'rounded-lg' : '',
+    containerClassName
+  ].filter(Boolean).join(' ');
+  
+  // CSS-Klassen für die Zeilen
+  const getRowClasses = (row: T, index: number) => {
+    const baseClasses = [
+      hover ? 'hover:bg-gray-50 dark:hover:bg-gray-800' : '',
+      striped && index % 2 === 1 ? 'bg-gray-50 dark:bg-gray-800' : '',
+      onRowClick ? 'cursor-pointer' : '',
+      typeof rowClassName === 'function' ? rowClassName(row, index) : rowClassName
+    ].filter(Boolean).join(' ');
     
-    // Filter-Popup umschalten
-    if (activeFilter === columnId) {
-      setActiveFilter(null);
-    } else {
-      setActiveFilter(columnId);
-      
-      // Position des Filter-Popups setzen
-      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-      setFilterPosition({
-        top: rect.bottom + window.scrollY,
-        left: rect.left + window.scrollX
-      });
-    }
+    return baseClasses;
   };
-
-  // Filter anwenden
-  const handleFilterApply = (columnId: string, value: string) => {
-    if (value) {
-      setFilters(prev => ({ ...prev, [columnId]: value }));
-    } else {
-      setFilters(prev => {
-        const newFilters = { ...prev };
-        delete newFilters[columnId];
-        return newFilters;
-      });
-    }
-    setActiveFilter(null);
+  
+  // CSS-Klassen für die Zellen
+  const getCellClasses = (column: TableColumn<T>) => {
+    return [
+      'px-6 py-4 whitespace-nowrap',
+      compact ? 'px-3 py-2 text-sm' : '',
+      column.align === 'center' ? 'text-center' : '',
+      column.align === 'right' ? 'text-right' : '',
+      column.className || '',
+      cellClassName
+    ].filter(Boolean).join(' ');
   };
-
-  // Alle Filter löschen
-  const handleClearFilters = () => {
-    setFilters({});
-    setSearchTerm('');
+  
+  // CSS-Klassen für die Header-Zellen
+  const getHeaderClasses = (column: TableColumn<T>) => {
+    return [
+      'px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider',
+      compact ? 'px-3 py-2' : '',
+      column.align === 'center' ? 'text-center' : '',
+      column.align === 'right' ? 'text-right' : '',
+      column.sortable && sortable ? 'cursor-pointer' : '',
+      column.headerClassName || '',
+      headerClassName
+    ].filter(Boolean).join(' ');
   };
-
-  // Zellenwert formatieren
-  const formatCellValue = (value: any): React.ReactNode => {
-    if (value === null || value === undefined) {
-      return <span className="text-gray-400 dark:text-gray-600">—</span>;
-    }
-    
-    if (typeof value === 'boolean') {
-      return value ? 'Ja' : 'Nein';
-    }
-    
-    if (value instanceof Date) {
-      return value.toLocaleString();
-    }
-    
-    return String(value);
-  };
-
-  // Seitenzahlen für Paginierung generieren
-  const generatePageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
-    
-    if (totalPages <= maxVisiblePages) {
-      // Alle Seiten zeigen, wenn es wenige sind
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      // Eine Teilmenge von Seiten mit Ellipsen zeigen
-      if (currentPage <= 3) {
-        // Nahe dem Anfang
-        for (let i = 1; i <= 3; i++) {
-          pages.push(i);
-        }
-        pages.push('ellipsis');
-        pages.push(totalPages);
-      } else if (currentPage >= totalPages - 2) {
-        // Nahe dem Ende
-        pages.push(1);
-        pages.push('ellipsis');
-        for (let i = totalPages - 2; i <= totalPages; i++) {
-          pages.push(i);
-        }
-      } else {
-        // In der Mitte
-        pages.push(1);
-        pages.push('ellipsis');
-        pages.push(currentPage - 1);
-        pages.push(currentPage);
-        pages.push(currentPage + 1);
-        pages.push('ellipsis');
-        pages.push(totalPages);
-      }
-    }
-    
-    return pages;
-  };
-
+  
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden ${className}`}>
-      {/* Tabellen-Header mit Suche und Aktionen */}
-      {(title || subtitle || showSearch || onRefresh || onExport || actions) && (
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-            {/* Titel */}
-            {(title || subtitle) && (
-              <div>
-                {title && <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>}
-                {subtitle && <p className="text-sm text-gray-500 dark:text-gray-400">{subtitle}</p>}
-              </div>
+    <div className={wrapperClasses}>
+      {loading ? (
+        loadingState
+      ) : data.length === 0 ? (
+        emptyState
+      ) : (
+        <div>
+          {caption && captionPosition === 'top' && (
+            <div className="px-6 py-3 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-medium">
+              {caption}
+            </div>
+          )}
+          
+          <table 
+            className={tableClasses}
+            id={id}
+            aria-label={ariaLabel}
+            summary={summary}
+          >
+            {caption && captionPosition === 'bottom' && (
+              <caption className="px-6 py-3 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-medium">
+                {caption}
+              </caption>
             )}
             
-            {/* Suche und Aktionen */}
-            <div className="flex flex-wrap items-center gap-2">
-              {showSearch && (
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Suchen..."
-                    className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                  />
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search size={18} className="text-gray-400" />
-                  </div>
-                </div>
-              )}
-              
-              {/* Filter-Indikatoren */}
-              {Object.keys(filters).length > 0 && (
-                <div className="flex items-center gap-2">
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Filter:</div>
-                  <div className="flex flex-wrap gap-1">
-                    {Object.entries(filters).map(([columnId, value]) => {
-                      const column = columns.find(col => col.id === columnId);
-                      return (
-                        <div 
-                          key={columnId}
-                          className="flex items-center bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs px-2 py-1 rounded"
-                        >
-                          <span>{column?.header || columnId}: {value}</span>
-                          <button
-                            className="ml-1 text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-100"
-                            onClick={() => handleFilterApply(columnId, '')}
-                          >
-                            ×
-                          </button>
-                        </div>
-                      );
-                    })}
-                    <button
-                      className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
-                      onClick={handleClearFilters}
-                    >
-                      Alle löschen
-                    </button>
-                  </div>
-                </div>
-              )}
-              
-              <div className="flex ml-auto gap-2">
-                {/* Aktualisieren-Button */}
-                {onRefresh && (
-                  <button
-                    className="p-2 rounded text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={handleRefresh}
-                    disabled={isRefreshing}
-                  >
-                    <RefreshCw size={18} className={isRefreshing ? "animate-spin" : ""} />
-                  </button>
-                )}
-                
-                {/* Export-Button */}
-                {onExport && (
-                  <button
-                    className="p-2 rounded text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={onExport}
-                  >
-                    <Download size={18} />
-                  </button>
-                )}
-                
-                {/* Benutzerdefinierte Aktionen */}
-                {actions}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      {/* Tabelle */}
-      <div className={responsive ? 'overflow-x-auto' : ''}>
-        <table className={`min-w-full divide-y divide-gray-200 dark:divide-gray-700 ${bordered ? 'border-collapse border border-gray-200 dark:border-gray-700' : ''}`}>
-          <thead className={`bg-gray-50 dark:bg-gray-800 ${headerClassName}`}>
-            <tr>
-              {/* Auswahlcheckbox */}
-              {selectable && (
-                <th className="px-3 py-3 text-left">
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700"
-                      checked={selectAll}
-                      onChange={toggleSelectAll}
-                    />
-                  </div>
-                </th>
-              )}
-              
-              {/* Spaltenüberschriften */}
-              {columns.filter(col => !col.hide).map(column => (
-                <th 
-                  key={column.id}
-                  className={`${compact ? 'px-2 py-2' : 'px-3 py-3'} text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider ${column.headerClassName || ''}`}
-                  style={{
-                    width: column.width,
-                    minWidth: column.minWidth,
-                    maxWidth: column.maxWidth
-                  }}
-                >
-                  <div className="flex items-center space-x-1">
-                    <button
-                      className={`flex items-center font-medium ${column.sortable === false ? 'cursor-default' : 'cursor-pointer hover:text-gray-700 dark:hover:text-gray-300'}`}
-                      onClick={() => handleSort(column.id)}
-                      disabled={column.sortable === false}
-                    >
-                      <span>{column.header}</span>
-                      {column.sortable !== false && (
-                        <span className="ml-1">
-                          {sortBy.id === column.id ? (
-                            sortBy.direction === 'asc' ? (
-                              <ChevronUp size={14} />
-                            ) : sortBy.direction === 'desc' ? (
-                              <ChevronDown size={14} />
-                            ) : null
-                          ) : null}
-                        </span>
-                      )}
-                    </button>
-                    
-                    {/* Filter-Button */}
-                    {column.filterable !== false && (
-                      <button
-                        className={`p-1 rounded ${
-                          activeFilter === column.id 
-                            ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300'
-                            : filters[column.id] 
-                              ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300'
-                              : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
-                        }`}
-                        onClick={(e) => handleFilterClick(column.id, e)}
+            {showHeader && (
+              <thead className="bg-gray-50 dark:bg-gray-800">
+                <tr>
+                  {columns.map((column) => (
+                    !column.hidden && (
+                      <th
+                        key={column.id}
+                        scope="col"
+                        className={getHeaderClasses(column)}
+                        style={{ width: column.width }}
+                        onClick={() => column.sortable && sortable && handleSort(column.id)}
                       >
-                        <Filter size={14} />
-                      </button>
-                    )}
-                  </div>
-                  
-                  {/* Filter-Popup */}
-                  {activeFilter === column.id && (
-                    <div 
-                      className="fixed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-10 p-3 mt-1"
-                      style={{
-                        top: filterPosition.top,
-                        left: filterPosition.left
-                      }}
-                      onClick={e => e.stopPropagation()}
-                    >
-                      <div className="text-sm text-gray-900 dark:text-gray-100 mb-2">
-                        Filtern nach {column.header}
-                      </div>
-                      <div className="flex">
-                        <input
-                          type="text"
-                          className="form-input rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-white text-sm mr-2"
-                          placeholder="Filterwert..."
-                          defaultValue={filters[column.id] || ''}
-                          autoFocus
-                          onKeyDown={e => {
-                            if (e.key === 'Enter') {
-                              handleFilterApply(column.id, e.currentTarget.value);
-                            } else if (e.key === 'Escape') {
-                              setActiveFilter(null);
-                            }
-                          }}
-                        />
-                        <button
-                          className="px-2 py-1 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-sm"
-                          onClick={e => {
-                            const input = (e.currentTarget.previousSibling as HTMLInputElement);
-                            handleFilterApply(column.id, input.value);
-                          }}
-                        >
-                          Anwenden
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-            {loading ? (
-              <tr>
-                <td
-                  colSpan={columns.filter(col => !col.hide).length + (selectable ? 1 : 0)}
-                  className={`${compact ? 'px-2 py-2' : 'px-3 py-4'} text-center text-gray-500 dark:text-gray-400`}
-                >
-                  <div className="flex justify-center items-center">
-                    <RefreshCw size={20} className="animate-spin mr-2" />
-                    <span>Laden...</span>
-                  </div>
-                </td>
-              </tr>
-            ) : paginatedData.length === 0 ? (
-              <tr>
-                <td
-                  colSpan={columns.filter(col => !col.hide).length + (selectable ? 1 : 0)}
-                  className={`${compact ? 'px-2 py-2' : 'px-3 py-4'} text-center text-gray-500 dark:text-gray-400`}
-                >
-                  {emptyMessage}
-                </td>
-              </tr>
-            ) : (
-              paginatedData.map((row, index) => (
-                <tr
-                  key={rowKey(row)}
-                  className={`
-                    ${onRowClick ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700' : ''}
-                    ${hoverable && !onRowClick ? 'hover:bg-gray-50 dark:hover:bg-gray-700' : ''}
-                    ${isRowSelected(row) ? 'bg-indigo-50 dark:bg-indigo-900/20' : ''}
-                    ${striped && index % 2 === 1 ? 'bg-gray-50 dark:bg-gray-800/50' : ''}
-                    ${typeof rowClassName === 'function' ? rowClassName(row, index) : rowClassName}
-                  `}
-                  onClick={() => onRowClick && onRowClick(row)}
-                >
-                  {/* Auswahlcheckbox */}
-                  {selectable && (
-                    <td className={`${compact ? 'px-2 py-2' : 'px-3 py-4'}`} onClick={e => e.stopPropagation()}>
-                      <div className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700"
-                          checked={isRowSelected(row)}
-                          onChange={() => toggleRowSelection(row)}
-                        />
-                      </div>
-                    </td>
-                  )}
-                  
-                  {/* Zellen */}
-                  {columns.filter(col => !col.hide).map(column => (
-                    <td
-                      key={column.id}
-                      className={`${compact ? 'px-2 py-2' : 'px-3 py-4'} whitespace-nowrap text-sm ${column.className || ''}`}
-                    >
-                      {column.cell
-                        ? column.cell(column.accessor(row), row, index)
-                        : formatCellValue(column.accessor(row))}
-                    </td>
+                        <div className="flex items-center justify-between">
+                          <div>{column.header}</div>
+                          {column.sortable && sortable && (
+                            <div className="ml-2">
+                              {renderSortIcon(column.id)}
+                            </div>
+                          )}
+                        </div>
+                      </th>
+                    )
                   ))}
                 </tr>
-              ))
+              </thead>
             )}
-          </tbody>
-        </table>
-      </div>
-      
-      {/* Paginierung */}
-      {showPagination && totalPages > 1 && (
-        <div className="bg-white dark:bg-gray-800 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700">
-          <div className="flex-1 flex justify-between sm:hidden">
-            <button
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-              className={`relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md ${
-                currentPage === 1
-                  ? 'text-gray-300 dark:text-gray-600 bg-gray-50 dark:bg-gray-800'
-                  : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'
-              }`}
-            >
-              Zurück
-            </button>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md ${
-                currentPage === totalPages
-                  ? 'text-gray-300 dark:text-gray-600 bg-gray-50 dark:bg-gray-800'
-                  : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'
-              }`}
-            >
-              Weiter
-            </button>
-          </div>
-          <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                Zeige <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> bis{' '}
-                <span className="font-medium">
-                  {Math.min(currentPage * itemsPerPage, sortedData.length)}
-                </span>
+            
+            <tbody className={`bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 ${bodyClassName}`}>
+              {paginatedData.map((row, rowIndex) => (
+                <tr 
+                  key={rowIndex}
+                  className={getRowClasses(row, rowIndex)}
+                  onClick={() => onRowClick && onRowClick(row, rowIndex)}
+                >
+                  {columns.map((column) => (
+                    !column.hidden && (
+                      <td
+                        key={column.id}
+                        className={getCellClasses(column)}
+                      >
+                        {column.cell(row, rowIndex)}
+                      </td>
+                    )
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+            
+            {showFooter && (
+              <tfoot className={`bg-gray-50 dark:bg-gray-800 ${footerClassName}`}>
+                <tr>
+                  {columns.map((column) => (
+                    !column.hidden && (
+                      <td
+                        key={column.id}
+                        className={getCellClasses(column)}
+                      >
+                        {/* Footer-Inhalt hier */}
+                      </td>
+                    )
+                  ))}
+                </tr>
+              </tfoot>
+            )}
+          </table>
+          
+          {paginated && (
+            <div className={`bg-white dark:bg-gray-900 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6 ${paginationClassName}`}>
+              <div className="flex-1 flex justify-between sm:hidden">
+                <button
+                  onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className={`relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md ${
+                    currentPage === 1
+                      ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  Zurück
+                </button>
+                <button
+                  onClick={() => handlePageChange(Math.min(Math.ceil(sortedData.length / itemsPerPage), currentPage + 1))}
+                  disabled={currentPage >= Math.ceil(sortedData.length / itemsPerPage)}
+                  className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md ${
+                    currentPage >= Math.ceil(sortedData.length / itemsPerPage)
+                      ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  Weiter
+                </button>
+              </div>
+              <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    Zeige <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> bis{' '}
+                    <span className="font-medium">
+                      {Math.min(currentPage * itemsPerPage, sortedData.length)}
+                    </span> von <span className="font-medium">{sortedData.length}</span> Einträgen
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Table;

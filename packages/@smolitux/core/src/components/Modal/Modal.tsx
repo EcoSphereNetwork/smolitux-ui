@@ -374,3 +374,5 @@ export const Modal: React.FC<ModalProps> = ({
   
   return modalContent;
 };
+
+export default Modal;
