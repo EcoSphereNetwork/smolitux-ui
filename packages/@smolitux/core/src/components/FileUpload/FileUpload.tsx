@@ -23,7 +23,7 @@ export interface FileInfo {
   previewUrl?: string;
 }
 
-export interface FileUploadProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'onChange'> {
+export interface FileUploadProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'onChange' | 'size'> {
   /** Label für die Dateiauswahl */
   label?: string;
   /** Text im Dropbereich */
@@ -506,9 +506,11 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
               if (typeof ref === 'function') {
                 ref(el);
               } else if (ref) {
-                ref.current = el;
+                (ref as React.MutableRefObject<HTMLInputElement | null>).current = el;
               }
-              inputRef.current = el;
+              if (inputRef) {
+                (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
+              }
             }}
             type="file"
             className="hidden"
@@ -633,9 +635,11 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
                 if (typeof ref === 'function') {
                   ref(el);
                 } else if (ref) {
-                  ref.current = el;
+                  (ref as React.MutableRefObject<HTMLInputElement | null>).current = el;
                 }
-                inputRef.current = el;
+                if (inputRef) {
+                  (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
+                }
               }}
               type="file"
               className="
@@ -773,9 +777,11 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
             if (typeof ref === 'function') {
               ref(el);
             } else if (ref) {
-              ref.current = el;
+              (ref as React.MutableRefObject<HTMLInputElement | null>).current = el;
             }
-            inputRef.current = el;
+            if (inputRef) {
+              (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
+            }
           }}
           type="file"
           className="hidden"
