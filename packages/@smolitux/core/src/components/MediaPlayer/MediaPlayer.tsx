@@ -876,4 +876,4 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
 
 MediaPlayer.displayName = 'MediaPlayer';
 
-export default MediaPlayer;}
+export default MediaPlayer;

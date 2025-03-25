@@ -235,3 +235,66 @@ export const AreaChart = forwardRef<SVGSVGElement, AreaChartProps>(({
         minY = startYAxisAtZero ? 0 : minY * 0.9;
         maxY = maxY * 1.1;
       }
+    }
+    
+    // Y-Skala für die Normalisierung der Werte
+    const yScale = (value: number) => {
+      return 1 - ((value - minY) / (maxY - minY));
+    };
+    
+    // Normalisierte Daten für die Darstellung
+    const normalizedSeries = seriesArray.map((series, index) => {
+      return {
+        ...series,
+        color: series.color || chartColors[index % chartColors.length],
+        data: series.data.map(point => ({
+          ...point,
+          normalizedY: yScale(point.y)
+        }))
+      };
+    });
+    
+    return {
+      xLabels: allXValues,
+      yMin: minY,
+      yMax: maxY,
+      normalizedSeries,
+      yScale
+    };
+  }, [seriesArray, startYAxisAtZero, stacked, baseValue, chartColors]);
+  
+  // Hier würde die eigentliche Rendering-Logik folgen
+  // Für dieses Beispiel geben wir nur ein Platzhalter-SVG zurück
+  return (
+    <svg
+      ref={ref}
+      width={width}
+      height={height}
+      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+      className={`smolitux-area-chart ${className}`}
+      {...rest}
+    >
+      <rect
+        x="0"
+        y="0"
+        width={viewBoxWidth}
+        height={viewBoxHeight}
+        fill="none"
+        stroke={themeMode === 'dark' ? '#374151' : '#E5E7EB'}
+        strokeWidth="1"
+      />
+      <text
+        x={viewBoxWidth / 2}
+        y={viewBoxHeight / 2}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
+        fontSize="24"
+      >
+        AreaChart Platzhalter
+      </text>
+    </svg>
+  );
+});
+
+export default AreaChart;

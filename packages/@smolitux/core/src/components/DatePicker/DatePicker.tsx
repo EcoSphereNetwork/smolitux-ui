@@ -458,7 +458,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   }, [isOpen]);
   
   // Picker-Element generieren
-  const popupPosition = calculatePopupPosition();
+  const calculatedPosition = calculatePopupPosition();
   
   // Kalender-Icon für den Input
   const CalendarIcon = () => (
@@ -485,8 +485,8 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
         ref={pickerRef}
         className={`absolute z-${zIndex} bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 w-64`}
         style={{
-          top: popupPosition.top,
-          left: popupPosition.left,
+          top: calculatedPosition.top,
+          left: calculatedPosition.left,
         }}
       >
         {/* Header mit Monat/Jahr und Navigation */}
