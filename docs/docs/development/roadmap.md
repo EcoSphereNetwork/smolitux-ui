@@ -13,9 +13,9 @@ Die aktuelle Version befindet sich in der Alpha-Phase und enthält die grundlege
 - [x] Grundlegende Komponenten (Button, Input, Card, etc.)
 - [x] Formular-Komponenten (Checkbox, Radio, Select, etc.)
 - [x] Layout-Komponenten (Container, Flex, Grid)
-- [ ] Feedback-Komponenten (Toast, Spinner, Progress)
-- [ ] Navigation-Komponenten (Tabs, Breadcrumb, Pagination)
-- [ ] Daten-Komponenten (Table, List, DataGrid)
+- [x] Feedback-Komponenten (Toast, Spinner, Progress)
+- [x] Navigation-Komponenten (Tabs, Breadcrumb, Pagination)
+- [x] Daten-Komponenten (Table, List, DataGrid)
 
 ### Dokumentation
 
@@ -27,7 +27,7 @@ Die aktuelle Version befindet sich in der Alpha-Phase und enthält die grundlege
 ### Tests
 
 - [x] Unit-Tests für Kernkomponenten
-- [ ] Snapshot-Tests für alle Komponenten
+- [x] Snapshot-Tests für alle Komponenten
 - [ ] Integrationstests
 - [ ] Visuelle Regressionstests
 
@@ -43,7 +43,7 @@ Die aktuelle Version befindet sich in der Alpha-Phase und enthält die grundlege
 
 ### Erweiterungen
 
-- [ ] Datums- und Zeitauswahl-Komponenten
+- [x] Datums- und Zeitauswahl-Komponenten
 - [ ] Erweiterte Chart-Komponenten
 - [ ] Drag-and-Drop-Funktionalität
 - [ ] Virtualisierte Listen und Tabellen
