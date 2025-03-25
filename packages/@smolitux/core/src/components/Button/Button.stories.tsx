@@ -1,7 +1,17 @@
-// packages/@smolitux/core/src/components/Button/Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 
+/**
+ * Die Button-Komponente ist ein grundlegendes UI-Element für Benutzerinteraktionen.
+ * Sie unterstützt verschiedene Varianten, Größen und Zustände.
+ * 
+ * ## Barrierefreiheit
+ * 
+ * - Verwendet semantisches `<button>`-Element
+ * - Unterstützt Keyboard-Navigation (Enter/Space)
+ * - Enthält ARIA-Attribute für verschiedene Zustände
+ * - Icons sind mit `aria-hidden="true"` markiert
+ */
 const meta: Meta<typeof Button> = {
   title: 'Core/Button',
   component: Button,
@@ -36,6 +46,15 @@ const meta: Meta<typeof Button> = {
     rightIcon: {
       control: { type: null },
       description: 'Icon nach dem Text'
+    },
+    type: {
+      control: 'select',
+      options: ['button', 'submit', 'reset'],
+      description: 'Der Typ des Buttons (Standard: button)'
+    },
+    onClick: {
+      action: 'clicked',
+      description: 'Callback-Funktion, die beim Klicken ausgeführt wird'
     },
   },
 };
@@ -157,6 +176,39 @@ export const ButtonGroup: Story = {
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>
+    </div>
+  ),
+};
+
+// Beispiel für Barrierefreiheit
+export const Accessibility: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div>
+        <h3 className="text-sm font-medium mb-2">Keyboard-Navigation</h3>
+        <Button 
+          onClick={() => alert('Button wurde aktiviert!')}
+          aria-describedby="keyboard-hint"
+        >
+          Fokussieren und Enter/Space drücken
+        </Button>
+        <p id="keyboard-hint" className="text-xs text-gray-500 mt-1">
+          Dieser Button kann mit der Tastatur (Enter oder Space) aktiviert werden
+        </p>
+      </div>
+      
+      <div>
+        <h3 className="text-sm font-medium mb-2">ARIA-Attribute</h3>
+        <Button 
+          loading 
+          aria-describedby="loading-hint"
+        >
+          Loading-Zustand
+        </Button>
+        <p id="loading-hint" className="text-xs text-gray-500 mt-1">
+          Dieser Button hat aria-busy="true" und aria-disabled="true"
+        </p>
+      </div>
     </div>
   ),
 };
