@@ -1,0 +1,484 @@
+.smolitux-stepper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Horizontal Stepper */
+.smolitux-stepper--horizontal .smolitux-stepper-steps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-connector {
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+  height: 1px;
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-connector-line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--stepper-connector-color, #e5e7eb);
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step--completed .smolitux-stepper-connector-line {
+  background-color: var(--stepper-completed-color, #3b82f6);
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step-header:hover {
+  background-color: var(--stepper-hover-bg, #f3f4f6);
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--stepper-icon-bg, #e5e7eb);
+  color: var(--stepper-icon-color, #6b7280);
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step-label {
+  text-align: center;
+  max-width: 120px;
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step-title {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--stepper-title-color, #374151);
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step-description {
+  font-size: 0.75rem;
+  color: var(--stepper-description-color, #6b7280);
+  margin-top: 0.25rem;
+}
+
+.smolitux-stepper--horizontal .smolitux-stepper-step-optional {
+  font-size: 0.75rem;
+  color: var(--stepper-optional-color, #9ca3af);
+  margin-top: 0.25rem;
+}
+
+/* Vertical Stepper */
+.smolitux-stepper--vertical .smolitux-stepper-steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step:last-child {
+  margin-bottom: 0;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step-header:hover {
+  background-color: var(--stepper-hover-bg, #f3f4f6);
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step-icon {
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--stepper-icon-bg, #e5e7eb);
+  color: var(--stepper-icon-color, #6b7280);
+  transition: all 0.2s ease-in-out;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step-label {
+  margin-left: 0.5rem;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step-title {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--stepper-title-color, #374151);
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step-description {
+  font-size: 0.75rem;
+  color: var(--stepper-description-color, #6b7280);
+  margin-top: 0.25rem;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step-optional {
+  font-size: 0.75rem;
+  color: var(--stepper-optional-color, #9ca3af);
+  margin-top: 0.25rem;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-connector {
+  position: absolute;
+  top: 2rem;
+  left: 1rem;
+  width: 1px;
+  bottom: -1rem;
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-connector-line {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: var(--stepper-connector-color, #e5e7eb);
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step--completed .smolitux-stepper-connector-line {
+  background-color: var(--stepper-completed-color, #3b82f6);
+}
+
+.smolitux-stepper--vertical .smolitux-stepper-step:last-child .smolitux-stepper-connector {
+  display: none;
+}
+
+/* Step Status Styles */
+.smolitux-stepper-step--completed .smolitux-stepper-step-icon {
+  background-color: var(--stepper-completed-bg, #dbeafe);
+  color: var(--stepper-completed-color, #3b82f6);
+}
+
+.smolitux-stepper-step--current .smolitux-stepper-step-icon {
+  background-color: var(--stepper-current-bg, #3b82f6);
+  color: var(--stepper-current-icon-color, white);
+  box-shadow: 0 0 0 4px var(--stepper-current-shadow, rgba(59, 130, 246, 0.2));
+}
+
+.smolitux-stepper-step--current .smolitux-stepper-step-title {
+  color: var(--stepper-current-title-color, #1f2937);
+  font-weight: 600;
+}
+
+.smolitux-stepper-step--error .smolitux-stepper-step-icon {
+  background-color: var(--stepper-error-bg, #fee2e2);
+  color: var(--stepper-error-color, #ef4444);
+}
+
+.smolitux-stepper-step--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.smolitux-stepper-step--disabled .smolitux-stepper-step-header {
+  cursor: not-allowed;
+}
+
+/* Check Icon */
+.smolitux-stepper-check-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+/* Stepper Content */
+.smolitux-stepper-content {
+  margin-top: 2rem;
+}
+
+.smolitux-stepper-content-container {
+  width: 100%;
+}
+
+/* Stepper Actions */
+.smolitux-stepper-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.smolitux-stepper-back-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--stepper-back-button-bg, white);
+  color: var(--stepper-back-button-color, #6b7280);
+  border: 1px solid var(--stepper-back-button-border, #d1d5db);
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.smolitux-stepper-back-button:hover {
+  background-color: var(--stepper-back-button-hover-bg, #f9fafb);
+}
+
+.smolitux-stepper-back-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.smolitux-stepper-next-button,
+.smolitux-stepper-complete-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--stepper-next-button-bg, #3b82f6);
+  color: var(--stepper-next-button-color, white);
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.smolitux-stepper-next-button:hover,
+.smolitux-stepper-complete-button:hover {
+  background-color: var(--stepper-next-button-hover-bg, #2563eb);
+}
+
+.smolitux-stepper-complete-button {
+  background-color: var(--stepper-complete-button-bg, #10b981);
+}
+
+.smolitux-stepper-complete-button:hover {
+  background-color: var(--stepper-complete-button-hover-bg, #059669);
+}
+
+/* Variants */
+.smolitux-stepper--outlined .smolitux-stepper-step-icon {
+  background-color: transparent;
+  border: 2px solid var(--stepper-icon-border, #e5e7eb);
+}
+
+.smolitux-stepper--outlined .smolitux-stepper-step--completed .smolitux-stepper-step-icon {
+  border-color: var(--stepper-completed-color, #3b82f6);
+  background-color: transparent;
+}
+
+.smolitux-stepper--outlined .smolitux-stepper-step--current .smolitux-stepper-step-icon {
+  border-color: var(--stepper-current-color, #3b82f6);
+  background-color: transparent;
+  color: var(--stepper-current-color, #3b82f6);
+  box-shadow: none;
+}
+
+.smolitux-stepper--contained .smolitux-stepper-step-header {
+  background-color: var(--stepper-contained-bg, #f3f4f6);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+}
+
+.smolitux-stepper--contained .smolitux-stepper-step--current .smolitux-stepper-step-header {
+  background-color: var(--stepper-contained-current-bg, #dbeafe);
+}
+
+.smolitux-stepper--contained .smolitux-stepper-step--completed .smolitux-stepper-step-header {
+  background-color: var(--stepper-contained-completed-bg, #f0fdf4);
+}
+
+/* Sizes */
+.smolitux-stepper--sm .smolitux-stepper-step-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.75rem;
+}
+
+.smolitux-stepper--sm .smolitux-stepper-step-title {
+  font-size: 0.75rem;
+}
+
+.smolitux-stepper--sm .smolitux-stepper-step-description {
+  font-size: 0.625rem;
+}
+
+.smolitux-stepper--lg .smolitux-stepper-step-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+
+.smolitux-stepper--lg .smolitux-stepper-step-title {
+  font-size: 1rem;
+}
+
+.smolitux-stepper--lg .smolitux-stepper-step-description {
+  font-size: 0.875rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .smolitux-stepper--horizontal .smolitux-stepper-steps {
+    flex-direction: column;
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-step {
+    flex: none;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-left: 2.5rem;
+    align-items: flex-start;
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-step:last-child {
+    margin-bottom: 0;
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-step-header {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-step-icon {
+    position: absolute;
+    left: 0;
+    margin-bottom: 0;
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-step-label {
+    text-align: left;
+    margin-left: 0.5rem;
+    max-width: none;
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-connector {
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    right: auto;
+    width: 1px;
+    height: calc(100% - 1rem);
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-connector-line {
+    width: 1px;
+    height: 100%;
+  }
+  
+  .smolitux-stepper--horizontal .smolitux-stepper-step:last-child .smolitux-stepper-connector {
+    display: none;
+  }
+}
+
+/* Dark Mode */
+.dark .smolitux-stepper-step-icon {
+  background-color: var(--stepper-icon-bg-dark, #374151);
+  color: var(--stepper-icon-color-dark, #9ca3af);
+}
+
+.dark .smolitux-stepper-step-title {
+  color: var(--stepper-title-color-dark, #e5e7eb);
+}
+
+.dark .smolitux-stepper-step-description {
+  color: var(--stepper-description-color-dark, #9ca3af);
+}
+
+.dark .smolitux-stepper-step-optional {
+  color: var(--stepper-optional-color-dark, #6b7280);
+}
+
+.dark .smolitux-stepper-connector-line {
+  background-color: var(--stepper-connector-color-dark, #4b5563);
+}
+
+.dark .smolitux-stepper-step--completed .smolitux-stepper-step-icon {
+  background-color: var(--stepper-completed-bg-dark, #1e40af);
+  color: var(--stepper-completed-color-dark, #93c5fd);
+}
+
+.dark .smolitux-stepper-step--completed .smolitux-stepper-connector-line {
+  background-color: var(--stepper-completed-color-dark, #3b82f6);
+}
+
+.dark .smolitux-stepper-step--current .smolitux-stepper-step-icon {
+  background-color: var(--stepper-current-bg-dark, #2563eb);
+  color: var(--stepper-current-icon-color-dark, white);
+  box-shadow: 0 0 0 4px var(--stepper-current-shadow-dark, rgba(59, 130, 246, 0.3));
+}
+
+.dark .smolitux-stepper-step--current .smolitux-stepper-step-title {
+  color: var(--stepper-current-title-color-dark, #f9fafb);
+}
+
+.dark .smolitux-stepper-step-header:hover {
+  background-color: var(--stepper-hover-bg-dark, #374151);
+}
+
+.dark .smolitux-stepper-back-button {
+  background-color: var(--stepper-back-button-bg-dark, #1f2937);
+  color: var(--stepper-back-button-color-dark, #d1d5db);
+  border-color: var(--stepper-back-button-border-dark, #4b5563);
+}
+
+.dark .smolitux-stepper-back-button:hover {
+  background-color: var(--stepper-back-button-hover-bg-dark, #374151);
+}
+
+.dark .smolitux-stepper-next-button,
+.dark .smolitux-stepper-complete-button {
+  background-color: var(--stepper-next-button-bg-dark, #2563eb);
+  color: var(--stepper-next-button-color-dark, white);
+}
+
+.dark .smolitux-stepper-next-button:hover,
+.dark .smolitux-stepper-complete-button:hover {
+  background-color: var(--stepper-next-button-hover-bg-dark, #1d4ed8);
+}
+
+.dark .smolitux-stepper-complete-button {
+  background-color: var(--stepper-complete-button-bg-dark, #059669);
+}
+
+.dark .smolitux-stepper-complete-button:hover {
+  background-color: var(--stepper-complete-button-hover-bg-dark, #047857);
+}
+
+.dark .smolitux-stepper--outlined .smolitux-stepper-step-icon {
+  border-color: var(--stepper-icon-border-dark, #4b5563);
+}
+
+.dark .smolitux-stepper--contained .smolitux-stepper-step-header {
+  background-color: var(--stepper-contained-bg-dark, #374151);
+}
+
+.dark .smolitux-stepper--contained .smolitux-stepper-step--current .smolitux-stepper-step-header {
+  background-color: var(--stepper-contained-current-bg-dark, #1e3a8a);
+}
+
+.dark .smolitux-stepper--contained .smolitux-stepper-step--completed .smolitux-stepper-step-header {
+  background-color: var(--stepper-contained-completed-bg-dark, #064e3b);
+}
