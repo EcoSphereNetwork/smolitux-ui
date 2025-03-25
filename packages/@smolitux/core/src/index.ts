@@ -29,6 +29,8 @@ export { default as TimePicker, type TimePickerProps } from './components/TimePi
 
 // New components
 export { default as FormControl, type FormControlProps, useFormControl } from './components/FormControl/FormControl';
+export { default as Form, type FormProps } from './components/Form/Form';
+export { default as FormField, type FormFieldProps } from './components/FormField/FormField';
 export { default as TextArea, type TextAreaProps } from './components/TextArea/TextArea';
 export { default as Switch, type SwitchProps } from './components/Switch/Switch';
 export { default as Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from './components/Breadcrumb/Breadcrumb';
@@ -44,3 +46,18 @@ export { default as Popover, type PopoverProps, type PopoverPlacement } from './
 export { default as FileUpload, type FileUploadProps, type FileInfo } from './components/FileUpload/FileUpload';
 export { default as MediaPlayer, type MediaPlayerProps, type MediaType, type MediaSource, type MediaTrack, type MediaChapter } from './components/MediaPlayer/MediaPlayer';
 export { default as DatePicker, type DatePickerProps } from './components/DatePicker/DatePicker';
+
+// Animation components
+export { default as Fade, type FadeProps } from './components/Fade/Fade';
+export { default as Slide, type SlideProps, type SlideDirection } from './components/Slide/Slide';
+export { default as Collapse, type CollapseProps } from './components/Collapse/Collapse';
+export { default as Zoom, type ZoomProps } from './components/Zoom/Zoom';
+
+// Form validation
+export { default as Form, useFormContext, type FormProps } from './validation/Form';
+export { default as FormField, type FormFieldProps } from './validation/FormField';
+export { default as useForm } from './validation/useForm';
+export { default as useField } from './validation/useField';
+export { default as useValidation } from './validation/useValidation';
+export * from './validation/validators';
+export * from './validation/types';
