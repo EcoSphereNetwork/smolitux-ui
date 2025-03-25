@@ -18,7 +18,7 @@ export type InputType =
   | 'week' 
   | 'color';
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /** Text-Label */
   label?: React.ReactNode;
   /** Hilfetext */
@@ -385,6 +385,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
+      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
       ref.current = element;
     }
   }, [ref]);
@@ -830,3 +831,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
 });
 
 Input.displayName = 'Input';
+
+export default Input;

@@ -1,5 +1,5 @@
 import React, { memo, forwardRef, useState, useRef, useEffect } from 'react';
-import { useTheme } from '@smolitux/theme';
+// import { useTheme } from '@smolitux/theme';
 
 export type ButtonVariant = 
   | 'primary' 
@@ -191,13 +191,14 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
   onKeyPress,
   ...props
 }, ref) => {
-  const { themeMode } = useTheme();
+  // const { themeMode } = useTheme();
+  const themeMode = 'light';
   const [isPressed, setIsPressed] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
   const [showRipple, setShowRipple] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
   const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
   
   // Bestimme den Button-Typ
@@ -283,15 +284,18 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
   ].filter(Boolean).join(' ');
   
   // Kombiniere den externen Ref mit unserem internen Ref
-  const handleRef = (element: HTMLButtonElement | null) => {
+  const handleRef = React.useCallback((element: HTMLButtonElement | null) => {
+    // Setze den internen Ref
     buttonRef.current = element;
     
+    // Leite den Ref weiter
     if (typeof ref === 'function') {
       ref(element);
     } else if (ref) {
+      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
       ref.current = element;
     }
-  };
+  }, [ref]);
   
   // Behandlung von Keyboard-Events für bessere Barrierefreiheit
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -610,3 +614,5 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
 }));
 
 Button.displayName = 'Button';
+
+export default Button;

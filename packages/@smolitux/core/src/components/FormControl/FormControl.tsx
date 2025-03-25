@@ -548,3 +548,5 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(({
 });
 
 FormControl.displayName = 'FormControl';
+
+export default FormControl;

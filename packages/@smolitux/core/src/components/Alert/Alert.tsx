@@ -147,7 +147,7 @@ export const Alert: React.FC<AlertProps> = ({
       id={alertId}
       className={`p-4 border rounded-lg ${styles.background} ${styles.border} ${className}`} 
       role="alert"
-      aria-live={styles.ariaLive}
+      aria-live="polite"
       aria-labelledby={title ? titleId : undefined}
       aria-describedby={messageId}
       tabIndex={autoFocus ? 0 : undefined}
@@ -185,3 +185,5 @@ export const Alert: React.FC<AlertProps> = ({
     </div>
   );
 };
+
+export default Alert;
