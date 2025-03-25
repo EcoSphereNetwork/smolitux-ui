@@ -1,5 +1,9 @@
 # Smolitux UI Bibliothek
 
+![CI](https://github.com/EcoSphereNetwork/smolitux-ui/workflows/CI/badge.svg)
+![Coverage](https://img.shields.io/codecov/c/github/EcoSphereNetwork/smolitux-ui)
+![License](https://img.shields.io/github/license/EcoSphereNetwork/smolitux-ui)
+
 Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
 
 ## 📦 Packages
@@ -231,8 +235,10 @@ Wir freuen uns über Beiträge zur smolitux UI Bibliothek! Bitte beachten Sie fo
 - [ ] Weitere Kern-Komponenten implementieren
 - [ ] Diagramm-Bibliothek ausbauen
 - [ ] Beispiel-App erweitern
-- [ ] E2E-Tests hinzufügen
-- [ ] Dokumentation verbessern
+- [x] E2E-Tests hinzufügen
+- [x] CI/CD-Pipeline einrichten
+- [ ] Visuelle Regressionstests mit Chromatic einrichten
+- [ ] Testabdeckung erhöhen
 
 ## 📄 Lizenz
 

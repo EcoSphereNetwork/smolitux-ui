@@ -9,12 +9,24 @@
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "build": "lerna run build",
-    "test": "lerna run test",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage",
+    "test:e2e": "playwright test",
+    "test:visual": "chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}",
     "lint": "lerna run lint",
     "storybook": "cd packages/docs && npm run storybook",
+    "build-storybook": "cd packages/docs && npm run build-storybook",
     "dev": "cd packages/playground && npm run dev"
   },
   "devDependencies": {
-    "lerna": "^6.6.2"
+    "@playwright/test": "^1.51.1",
+    "chromatic": "^11.27.0",
+    "concurrently": "^9.1.2",
+    "http-server": "^14.1.1",
+    "jest-junit": "^16.0.0",
+    "lerna": "^6.6.2",
+    "wait-on": "^8.0.3"
   }
 }
