@@ -1,0 +1,25 @@
+{
+  "name": "smolitux-showcase",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@smolitux/core": "file:../../packages/@smolitux/core",
+    "@smolitux/theme": "file:../../packages/@smolitux/theme",
+    "@smolitux/charts": "file:../../packages/@smolitux/charts",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.1"
+  }
+}
