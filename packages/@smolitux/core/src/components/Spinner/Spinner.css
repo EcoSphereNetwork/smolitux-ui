@@ -1,0 +1,260 @@
+/* packages/@smolitux/core/src/components/Spinner/Spinner.css */
+
+/* Container */
+.smolitux-spinner-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.smolitux-spinner-container--centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.smolitux-spinner-container--full-width {
+  width: 100%;
+}
+
+/* Spinner Base */
+.smolitux-spinner {
+  display: inline-block;
+  vertical-align: middle;
+  --spinner-animation-duration: 0.75s;
+}
+
+/* Spinner Sizes */
+.smolitux-spinner--xs {
+  width: 1rem;
+  height: 1rem;
+}
+
+.smolitux-spinner--sm {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.smolitux-spinner--md {
+  width: 2rem;
+  height: 2rem;
+}
+
+.smolitux-spinner--lg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.smolitux-spinner--xl {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Spinner Colors */
+.smolitux-spinner--primary {
+  --spinner-color: var(--spinner-primary-color, #3b82f6);
+}
+
+.smolitux-spinner--secondary {
+  --spinner-color: var(--spinner-secondary-color, #6b7280);
+}
+
+.smolitux-spinner--success {
+  --spinner-color: var(--spinner-success-color, #10b981);
+}
+
+.smolitux-spinner--danger {
+  --spinner-color: var(--spinner-danger-color, #ef4444);
+}
+
+.smolitux-spinner--warning {
+  --spinner-color: var(--spinner-warning-color, #f59e0b);
+}
+
+.smolitux-spinner--info {
+  --spinner-color: var(--spinner-info-color, #3b82f6);
+}
+
+.smolitux-spinner--light {
+  --spinner-color: var(--spinner-light-color, #f3f4f6);
+}
+
+.smolitux-spinner--dark {
+  --spinner-color: var(--spinner-dark-color, #1f2937);
+}
+
+/* Border Spinner */
+.smolitux-spinner--border {
+  border-radius: 50%;
+  border: 0.2em solid var(--spinner-color);
+  border-right-color: transparent;
+  animation: smolitux-spinner-border var(--spinner-animation-duration) linear infinite;
+}
+
+@keyframes smolitux-spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Grow Spinner */
+.smolitux-spinner--grow {
+  background-color: var(--spinner-color);
+  border-radius: 50%;
+  animation: smolitux-spinner-grow var(--spinner-animation-duration) ease-in-out infinite;
+}
+
+@keyframes smolitux-spinner-grow {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Dots Spinner */
+.smolitux-spinner--dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+.smolitux-spinner-dot {
+  width: 25%;
+  height: 25%;
+  background-color: var(--spinner-color);
+  border-radius: 50%;
+  animation: smolitux-spinner-dots var(--spinner-animation-duration) infinite ease-in-out;
+}
+
+.smolitux-spinner-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.smolitux-spinner-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes smolitux-spinner-dots {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Ring Spinner */
+.smolitux-spinner--ring {
+  position: relative;
+}
+
+.smolitux-spinner-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0.2em solid transparent;
+  border-top-color: var(--spinner-color);
+  border-radius: 50%;
+  animation: smolitux-spinner-ring var(--spinner-animation-duration) linear infinite;
+}
+
+.smolitux-spinner-ring::after {
+  content: '';
+  position: absolute;
+  top: 0.15em;
+  left: 0.15em;
+  right: 0.15em;
+  bottom: 0.15em;
+  border: 0.2em solid transparent;
+  border-top-color: var(--spinner-color);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: smolitux-spinner-ring-inner calc(var(--spinner-animation-duration) * 0.8) linear infinite;
+}
+
+@keyframes smolitux-spinner-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes smolitux-spinner-ring-inner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Text */
+.smolitux-spinner-text {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--spinner-text-color, #6b7280);
+}
+
+/* Screen Reader Only */
+.smolitux-spinner-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Dark Mode */
+.dark .smolitux-spinner--primary {
+  --spinner-color: var(--spinner-primary-color-dark, #60a5fa);
+}
+
+.dark .smolitux-spinner--secondary {
+  --spinner-color: var(--spinner-secondary-color-dark, #9ca3af);
+}
+
+.dark .smolitux-spinner--success {
+  --spinner-color: var(--spinner-success-color-dark, #34d399);
+}
+
+.dark .smolitux-spinner--danger {
+  --spinner-color: var(--spinner-danger-color-dark, #f87171);
+}
+
+.dark .smolitux-spinner--warning {
+  --spinner-color: var(--spinner-warning-color-dark, #fbbf24);
+}
+
+.dark .smolitux-spinner--info {
+  --spinner-color: var(--spinner-info-color-dark, #60a5fa);
+}
+
+.dark .smolitux-spinner--light {
+  --spinner-color: var(--spinner-light-color-dark, #374151);
+}
+
+.dark .smolitux-spinner--dark {
+  --spinner-color: var(--spinner-dark-color-dark, #f9fafb);
+}
+
+.dark .smolitux-spinner-text {
+  color: var(--spinner-text-color-dark, #9ca3af);
+}
