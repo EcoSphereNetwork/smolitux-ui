@@ -9,6 +9,9 @@ const sidebars: SidebarsConfig = {
       items: [
         'guides/quickstart',
         'guides/reorganize',
+        'guides/form-validation',
+        'guides/internationalization',
+        'guides/animations',
       ],
     },
     {
@@ -25,6 +28,16 @@ const sidebars: SidebarsConfig = {
       label: 'API Reference',
       collapsed: true,
       items: ['api/reference'],
+    },
+    {
+      type: 'category',
+      label: 'Examples',
+      collapsed: true,
+      items: [
+        'examples/form-examples',
+        'examples/layout-examples',
+        'examples/form-validation-examples',
+      ],
     },
   ],
   tutorialSidebar: [
