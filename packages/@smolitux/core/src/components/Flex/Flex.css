@@ -1,0 +1,179 @@
+/* packages/@smolitux/core/src/components/Flex/Flex.css */
+
+/* Flex Container */
+.smolitux-flex {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.smolitux-flex-inline {
+  display: inline-flex;
+}
+
+/* Flex Direction */
+.smolitux-flex-direction-row {
+  flex-direction: row;
+}
+
+.smolitux-flex-direction-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.smolitux-flex-direction-column {
+  flex-direction: column;
+}
+
+.smolitux-flex-direction-column-reverse {
+  flex-direction: column-reverse;
+}
+
+/* Flex Wrap */
+.smolitux-flex-wrap-nowrap {
+  flex-wrap: nowrap;
+}
+
+.smolitux-flex-wrap-wrap {
+  flex-wrap: wrap;
+}
+
+.smolitux-flex-wrap-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* Justify Content */
+.smolitux-flex-justify-flex-start {
+  justify-content: flex-start;
+}
+
+.smolitux-flex-justify-flex-end {
+  justify-content: flex-end;
+}
+
+.smolitux-flex-justify-center {
+  justify-content: center;
+}
+
+.smolitux-flex-justify-space-between {
+  justify-content: space-between;
+}
+
+.smolitux-flex-justify-space-around {
+  justify-content: space-around;
+}
+
+.smolitux-flex-justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+/* Align Items */
+.smolitux-flex-align-flex-start {
+  align-items: flex-start;
+}
+
+.smolitux-flex-align-flex-end {
+  align-items: flex-end;
+}
+
+.smolitux-flex-align-center {
+  align-items: center;
+}
+
+.smolitux-flex-align-baseline {
+  align-items: baseline;
+}
+
+.smolitux-flex-align-stretch {
+  align-items: stretch;
+}
+
+/* Align Content */
+.smolitux-flex-align-content-flex-start {
+  align-content: flex-start;
+}
+
+.smolitux-flex-align-content-flex-end {
+  align-content: flex-end;
+}
+
+.smolitux-flex-align-content-center {
+  align-content: center;
+}
+
+.smolitux-flex-align-content-space-between {
+  align-content: space-between;
+}
+
+.smolitux-flex-align-content-space-around {
+  align-content: space-around;
+}
+
+.smolitux-flex-align-content-stretch {
+  align-content: stretch;
+}
+
+/* Full Width/Height */
+.smolitux-flex-full-width {
+  width: 100%;
+}
+
+.smolitux-flex-full-height {
+  height: 100%;
+}
+
+/* Flex Item */
+.smolitux-flex-item {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Flex Item Align Self */
+.smolitux-flex-item-align-flex-start {
+  align-self: flex-start;
+}
+
+.smolitux-flex-item-align-flex-end {
+  align-self: flex-end;
+}
+
+.smolitux-flex-item-align-center {
+  align-self: center;
+}
+
+.smolitux-flex-item-align-baseline {
+  align-self: baseline;
+}
+
+.smolitux-flex-item-align-stretch {
+  align-self: stretch;
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .smolitux-flex-direction-row-sm-only {
+    flex-direction: row;
+  }
+  
+  .smolitux-flex-direction-column-sm-only {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .smolitux-flex-direction-row-md-only {
+    flex-direction: row;
+  }
+  
+  .smolitux-flex-direction-column-md-only {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1025px) {
+  .smolitux-flex-direction-row-lg-only {
+    flex-direction: row;
+  }
+  
+  .smolitux-flex-direction-column-lg-only {
+    flex-direction: column;
+  }
+}
