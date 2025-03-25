@@ -1,0 +1,236 @@
+.smolitux-tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.smolitux-tooltip {
+  position: absolute;
+  z-index: 1000;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--tooltip-text-color, white);
+  background-color: var(--tooltip-bg, #1f2937);
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-width: 250px;
+  width: max-content;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+}
+
+.smolitux-tooltip--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Tooltip-Pfeil */
+.smolitux-tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Pfeil-Positionen */
+.smolitux-tooltip--top .smolitux-tooltip-arrow {
+  bottom: -0.25rem;
+  border-width: 0.25rem 0.25rem 0 0.25rem;
+  border-color: var(--tooltip-bg, #1f2937) transparent transparent transparent;
+}
+
+.smolitux-tooltip--right .smolitux-tooltip-arrow {
+  left: -0.25rem;
+  border-width: 0.25rem 0.25rem 0.25rem 0;
+  border-color: transparent var(--tooltip-bg, #1f2937) transparent transparent;
+}
+
+.smolitux-tooltip--bottom .smolitux-tooltip-arrow {
+  top: -0.25rem;
+  border-width: 0 0.25rem 0.25rem 0.25rem;
+  border-color: transparent transparent var(--tooltip-bg, #1f2937) transparent;
+}
+
+.smolitux-tooltip--left .smolitux-tooltip-arrow {
+  right: -0.25rem;
+  border-width: 0.25rem 0 0.25rem 0.25rem;
+  border-color: transparent transparent transparent var(--tooltip-bg, #1f2937);
+}
+
+/* Tooltip-Inhalt */
+.smolitux-tooltip-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animationen */
+@keyframes smolitux-tooltip-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes smolitux-tooltip-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.smolitux-tooltip--animate-in {
+  animation: smolitux-tooltip-fade-in 0.15s ease-in-out forwards;
+}
+
+.smolitux-tooltip--animate-out {
+  animation: smolitux-tooltip-fade-out 0.1s ease-in-out forwards;
+}
+
+/* Positionsvarianten mit Offset */
+.smolitux-tooltip--top {
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.smolitux-tooltip--right {
+  left: calc(100% + 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.smolitux-tooltip--bottom {
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.smolitux-tooltip--left {
+  right: calc(100% + 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Varianten */
+.smolitux-tooltip--info {
+  background-color: var(--tooltip-info-bg, #3b82f6);
+}
+
+.smolitux-tooltip--info .smolitux-tooltip-arrow {
+  border-color: var(--tooltip-info-bg, #3b82f6);
+}
+
+.smolitux-tooltip--info.smolitux-tooltip--top .smolitux-tooltip-arrow {
+  border-color: var(--tooltip-info-bg, #3b82f6) transparent transparent transparent;
+}
+
+.smolitux-tooltip--info.smolitux-tooltip--right .smolitux-tooltip-arrow {
+  border-color: transparent var(--tooltip-info-bg, #3b82f6) transparent transparent;
+}
+
+.smolitux-tooltip--info.smolitux-tooltip--bottom .smolitux-tooltip-arrow {
+  border-color: transparent transparent var(--tooltip-info-bg, #3b82f6) transparent;
+}
+
+.smolitux-tooltip--info.smolitux-tooltip--left .smolitux-tooltip-arrow {
+  border-color: transparent transparent transparent var(--tooltip-info-bg, #3b82f6);
+}
+
+.smolitux-tooltip--success {
+  background-color: var(--tooltip-success-bg, #10b981);
+}
+
+.smolitux-tooltip--success.smolitux-tooltip--top .smolitux-tooltip-arrow {
+  border-color: var(--tooltip-success-bg, #10b981) transparent transparent transparent;
+}
+
+.smolitux-tooltip--success.smolitux-tooltip--right .smolitux-tooltip-arrow {
+  border-color: transparent var(--tooltip-success-bg, #10b981) transparent transparent;
+}
+
+.smolitux-tooltip--success.smolitux-tooltip--bottom .smolitux-tooltip-arrow {
+  border-color: transparent transparent var(--tooltip-success-bg, #10b981) transparent;
+}
+
+.smolitux-tooltip--success.smolitux-tooltip--left .smolitux-tooltip-arrow {
+  border-color: transparent transparent transparent var(--tooltip-success-bg, #10b981);
+}
+
+.smolitux-tooltip--warning {
+  background-color: var(--tooltip-warning-bg, #f59e0b);
+}
+
+.smolitux-tooltip--warning.smolitux-tooltip--top .smolitux-tooltip-arrow {
+  border-color: var(--tooltip-warning-bg, #f59e0b) transparent transparent transparent;
+}
+
+.smolitux-tooltip--warning.smolitux-tooltip--right .smolitux-tooltip-arrow {
+  border-color: transparent var(--tooltip-warning-bg, #f59e0b) transparent transparent;
+}
+
+.smolitux-tooltip--warning.smolitux-tooltip--bottom .smolitux-tooltip-arrow {
+  border-color: transparent transparent var(--tooltip-warning-bg, #f59e0b) transparent;
+}
+
+.smolitux-tooltip--warning.smolitux-tooltip--left .smolitux-tooltip-arrow {
+  border-color: transparent transparent transparent var(--tooltip-warning-bg, #f59e0b);
+}
+
+.smolitux-tooltip--danger {
+  background-color: var(--tooltip-danger-bg, #ef4444);
+}
+
+.smolitux-tooltip--danger.smolitux-tooltip--top .smolitux-tooltip-arrow {
+  border-color: var(--tooltip-danger-bg, #ef4444) transparent transparent transparent;
+}
+
+.smolitux-tooltip--danger.smolitux-tooltip--right .smolitux-tooltip-arrow {
+  border-color: transparent var(--tooltip-danger-bg, #ef4444) transparent transparent;
+}
+
+.smolitux-tooltip--danger.smolitux-tooltip--bottom .smolitux-tooltip-arrow {
+  border-color: transparent transparent var(--tooltip-danger-bg, #ef4444) transparent;
+}
+
+.smolitux-tooltip--danger.smolitux-tooltip--left .smolitux-tooltip-arrow {
+  border-color: transparent transparent transparent var(--tooltip-danger-bg, #ef4444);
+}
+
+/* Größen */
+.smolitux-tooltip--sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.smolitux-tooltip--lg {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+/* Dark Mode */
+.dark .smolitux-tooltip {
+  color: var(--tooltip-text-color-dark, #f9fafb);
+  background-color: var(--tooltip-bg-dark, #374151);
+}
+
+.dark .smolitux-tooltip--top .smolitux-tooltip-arrow {
+  border-color: var(--tooltip-bg-dark, #374151) transparent transparent transparent;
+}
+
+.dark .smolitux-tooltip--right .smolitux-tooltip-arrow {
+  border-color: transparent var(--tooltip-bg-dark, #374151) transparent transparent;
+}
+
+.dark .smolitux-tooltip--bottom .smolitux-tooltip-arrow {
+  border-color: transparent transparent var(--tooltip-bg-dark, #374151) transparent;
+}
+
+.dark .smolitux-tooltip--left .smolitux-tooltip-arrow {
+  border-color: transparent transparent transparent var(--tooltip-bg-dark, #374151);
+}
