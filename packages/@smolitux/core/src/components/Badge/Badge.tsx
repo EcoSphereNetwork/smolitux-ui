@@ -1,22 +1,47 @@
 import React from 'react';
 
+export type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
+export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
+
 export interface BadgeProps {
   /** Anzeigetext */
   children: React.ReactNode;
   /** Variante der Badge */
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
+  variant?: BadgeVariant;
   /** Größe der Badge */
-  size?: 'sm' | 'md' | 'lg'; 
+  size?: BadgeSize; 
   /** Abgerundeter Stil */
   rounded?: boolean;
   /** Zusätzliche CSS-Klassen */
   className?: string;
   /** Optional Icon */
   icon?: React.ReactNode;
+  /** Ob die Badge als Zähler angezeigt werden soll (z.B. für Benachrichtigungen) */
+  isCounter?: boolean;
+  /** Maximaler Wert für Zähler (z.B. 99+) */
+  maxCount?: number;
+  /** Ob die Badge als Punkt ohne Text angezeigt werden soll */
+  isDot?: boolean;
+  /** Ob die Badge als Outline angezeigt werden soll */
+  outline?: boolean;
+  /** Zusätzliche HTML-Attribute */
+  htmlProps?: React.HTMLAttributes<HTMLSpanElement>;
+  /** ID für Barrierefreiheit */
+  id?: string;
 }
 
 /**
  * Badge-Komponente zum Anzeigen von Status oder Kennzeichnungen
+ * 
+ * @example
+ * ```tsx
+ * <Badge>Default</Badge>
+ * <Badge variant="primary">Primary</Badge>
+ * <Badge variant="success" icon={<CheckIcon />}>Success</Badge>
+ * <Badge variant="error" rounded>Error</Badge>
+ * <Badge isCounter maxCount={99}>100</Badge>
+ * <Badge isDot variant="warning" />
+ * ```
  */
 export const Badge: React.FC<BadgeProps> = ({
   children,
@@ -24,43 +49,92 @@ export const Badge: React.FC<BadgeProps> = ({
   size = 'md',
   rounded = false,
   className = '',
-  icon
+  icon,
+  isCounter = false,
+  maxCount,
+  isDot = false,
+  outline = false,
+  htmlProps = {},
+  id
 }) => {
   // Varianten-spezifische Klassen
   const variantClasses = {
-    default: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
-    primary: 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
-    success: 'bg-success-100 text-success-800 dark:bg-success-900/30 dark:text-success-300',
-    warning: 'bg-warning-100 text-warning-800 dark:bg-warning-900/30 dark:text-warning-300',
-    error: 'bg-error-100 text-error-800 dark:bg-error-900/30 dark:text-error-300',
-    info: 'bg-info-100 text-info-800 dark:bg-info-900/30 dark:text-info-300'
+    default: outline 
+      ? 'bg-transparent border border-gray-300 text-gray-800 dark:border-gray-600 dark:text-gray-300' 
+      : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
+    primary: outline 
+      ? 'bg-transparent border border-primary-500 text-primary-700 dark:border-primary-400 dark:text-primary-300' 
+      : 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
+    success: outline 
+      ? 'bg-transparent border border-green-500 text-green-700 dark:border-green-400 dark:text-green-300' 
+      : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
+    warning: outline 
+      ? 'bg-transparent border border-yellow-500 text-yellow-700 dark:border-yellow-400 dark:text-yellow-300' 
+      : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
+    error: outline 
+      ? 'bg-transparent border border-red-500 text-red-700 dark:border-red-400 dark:text-red-300' 
+      : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300',
+    info: outline 
+      ? 'bg-transparent border border-blue-500 text-blue-700 dark:border-blue-400 dark:text-blue-300' 
+      : 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
   };
 
   // Größen-spezifische Klassen
   const sizeClasses = {
-    sm: 'text-xs px-1.5 py-0.5',
-    md: 'text-xs px-2.5 py-0.5',
-    lg: 'text-sm px-3 py-1'
+    xs: isDot ? 'h-1.5 w-1.5' : 'text-xs px-1 py-0.5 min-w-[1rem]',
+    sm: isDot ? 'h-2 w-2' : 'text-xs px-1.5 py-0.5 min-w-[1.25rem]',
+    md: isDot ? 'h-2.5 w-2.5' : 'text-xs px-2.5 py-0.5 min-w-[1.5rem]',
+    lg: isDot ? 'h-3 w-3' : 'text-sm px-3 py-1 min-w-[1.75rem]'
   };
 
   // Form-Klassen
-  const roundedClass = rounded ? 'rounded-full' : 'rounded-md';
+  const roundedClass = isDot 
+    ? 'rounded-full' 
+    : (rounded ? 'rounded-full' : 'rounded-md');
+
+  // Zähler-Formatierung
+  let displayContent = children;
+  if (isCounter && typeof children === 'string' || typeof children === 'number') {
+    const count = Number(children);
+    if (!isNaN(count) && maxCount && count > maxCount) {
+      displayContent = `${maxCount}+`;
+    }
+  }
 
   // Kombinierte Klassen
   const badgeClasses = [
-    'inline-flex items-center font-medium',
+    isDot ? '' : 'inline-flex items-center justify-center font-medium',
     variantClasses[variant],
     sizeClasses[size],
     roundedClass,
+    isCounter && !isDot ? 'text-center' : '',
     className
-  ].join(' ');
+  ].filter(Boolean).join(' ');
+
+  // Barrierefreiheits-Attribute
+  const ariaProps = {
+    role: 'status',
+    ...htmlProps,
+    ...(id ? { id } : {})
+  };
+
+  if (isDot) {
+    return (
+      <span 
+        className={badgeClasses} 
+        aria-hidden="true"
+        {...ariaProps}
+      />
+    );
+  }
 
   return (
-    <span className={badgeClasses}>
-      {icon && <span className="mr-1">{icon}</span>}
-      {children}
+    <span 
+      className={badgeClasses}
+      {...ariaProps}
+    >
+      {icon && <span className="mr-1" aria-hidden="true">{icon}</span>}
+      {displayContent}
     </span>
   );
 };
-
-export default Badge;
