@@ -38,7 +38,7 @@ export interface MediaChapter {
   endTime: number;
 }
 
-export interface MediaPlayerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'onTimeUpdate'> {
+export interface MediaPlayerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'onTimeUpdate' | 'onVolumeChange'> {
   /** Typs des Mediums (Audio oder Video) */
   mediaType: MediaType;
   /** Medienquellen (für verschiedene Qualitätsstufen/Formate) */
