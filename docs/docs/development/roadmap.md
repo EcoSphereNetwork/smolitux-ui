@@ -35,8 +35,8 @@ Die aktuelle Version befindet sich in der Alpha-Phase und enthält die grundlege
 
 ### Erweiterte Funktionen
 
-- [ ] Animationen und Übergänge
-- [ ] Erweiterte Formularvalidierung
+- [x] Animationen und Übergänge
+- [x] Erweiterte Formularvalidierung
 - [ ] Internationalisierung (i18n)
 - [ ] Barrierefreiheit (a11y) Verbesserungen
 - [ ] Mobile-First Optimierungen
