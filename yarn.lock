@@ -517,6 +517,13 @@
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@playwright/test@^1.51.1":
+  version "1.51.1"
+  resolved "https://registry.npmjs.org/@playwright/test/-/test-1.51.1.tgz"
+  integrity sha512-nM+kEaTSAoVlXmMPH10017vn3FSiFqr/bh4fKg9vmAdMfd9SDqRZNvPSiAHADc/itWak+qPvMPZQOPwCBW7k7Q==
+  dependencies:
+    playwright "1.51.1"
+
 "@sigstore/bundle@^1.1.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@sigstore/bundle/-/bundle-1.1.0.tgz"
@@ -551,25 +558,25 @@
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.8.tgz"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
-"@smolitux/charts@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/charts":
+"@smolitux/charts@file:/workspace/smolitux-ui/packages/@smolitux/charts":
   version "0.1.0"
   resolved "file:packages/@smolitux/charts"
   dependencies:
     "@smolitux/core" "0.1.0"
     "@smolitux/theme" "0.1.0"
 
-"@smolitux/core@0.1.0", "@smolitux/core@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/core":
+"@smolitux/core@0.1.0", "@smolitux/core@file:/workspace/smolitux-ui/packages/@smolitux/core":
   version "0.1.0"
   resolved "file:packages/@smolitux/core"
 
-"@smolitux/layout@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/layout":
+"@smolitux/layout@file:/workspace/smolitux-ui/packages/@smolitux/layout":
   version "0.1.0"
   resolved "file:packages/@smolitux/layout"
   dependencies:
     "@smolitux/core" "0.1.0"
     "@smolitux/theme" "0.1.0"
 
-"@smolitux/theme@0.1.0", "@smolitux/theme@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/theme":
+"@smolitux/theme@0.1.0", "@smolitux/theme@file:/workspace/smolitux-ui/packages/@smolitux/theme":
   version "0.1.0"
   resolved "file:packages/@smolitux/theme"
 
@@ -2299,6 +2306,16 @@ jake@^10.8.5:
     filelist "^1.0.4"
     minimatch "^3.1.2"
 
+jest-junit@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.npmjs.org/jest-junit/-/jest-junit-16.0.0.tgz"
+  integrity sha512-A94mmw6NfJab4Fg/BlvVOUXzXgF0XIH6EmTgJ5NDPp4xoKq0Kr7sErb+4Xs9nZvu58pJojz5RFGpqnZYJTrRfQ==
+  dependencies:
+    mkdirp "^1.0.4"
+    strip-ansi "^6.0.1"
+    uuid "^8.3.2"
+    xml "^1.0.1"
+
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -3594,6 +3611,20 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
+playwright-core@1.51.1:
+  version "1.51.1"
+  resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.51.1.tgz"
+  integrity sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw==
+
+playwright@1.51.1:
+  version "1.51.1"
+  resolved "https://registry.npmjs.org/playwright/-/playwright-1.51.1.tgz"
+  integrity sha512-kkx+MB2KQRkyxjYPc3a0wLZZoDczmppyGJIvQ43l+aZihkaVvmu/21kiyaHeHjiFxjxNNFnUncKmcGIyOojsaw==
+  dependencies:
+    playwright-core "1.51.1"
+  optionalDependencies:
+    fsevents "2.3.2"
+
 postcss-selector-parser@^6.0.10:
   version "6.1.2"
   resolved "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.2.tgz"
@@ -4444,7 +4475,7 @@ util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
-uuid@8.3.2:
+uuid@^8.3.2, uuid@8.3.2:
   version "8.3.2"
   resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
@@ -4625,6 +4656,11 @@ write-pkg@4.0.0:
     sort-keys "^2.0.0"
     type-fest "^0.4.1"
     write-json-file "^3.2.0"
+
+xml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
+  integrity sha512-huCv9IH9Tcf95zuYCsQraZtWnJvBtLVE0QHMOs8bWyZAFZNDcYjsPq1nEx8jKA9y+Beo9v+7OBPRisQTjinQMw==
 
 xtend@~4.0.1:
   version "4.0.2"

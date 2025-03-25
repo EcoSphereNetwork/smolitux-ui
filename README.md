@@ -1,6 +1,12 @@
 # Smolitux UI Bibliothek
 
-Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
+![CI](https://github.com/EcoSphereNetwork/smolitux-ui/workflows/CI/badge.svg)
+![Release](https://github.com/EcoSphereNetwork/smolitux-ui/workflows/Release/badge.svg)
+![Coverage](https://img.shields.io/codecov/c/github/EcoSphereNetwork/smolitux-ui)
+![License](https://img.shields.io/github/license/EcoSphereNetwork/smolitux-ui)
+![Version](https://img.shields.io/npm/v/@smolitux/core)
+
+Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von Anwendungen im Smolitux Ökosystem.
 
 ## 📦 Packages
 
@@ -231,8 +237,19 @@ Wir freuen uns über Beiträge zur smolitux UI Bibliothek! Bitte beachten Sie fo
 - [ ] Weitere Kern-Komponenten implementieren
 - [ ] Diagramm-Bibliothek ausbauen
 - [ ] Beispiel-App erweitern
-- [ ] E2E-Tests hinzufügen
+- [x] E2E-Tests hinzufügen
+- [x] CI/CD-Pipeline einrichten
 - [ ] Dokumentation verbessern
+
+## 🔄 Continuous Integration
+
+Dieses Projekt verwendet GitHub Actions für Continuous Integration und Continuous Deployment:
+
+- **CI-Pipeline**: Führt bei jedem Pull Request und Push auf main/develop automatisch Lint, Build und Tests aus
+- **Release-Pipeline**: Veröffentlicht neue Versionen auf npm und aktualisiert die Dokumentation
+- **Test-Abdeckung**: Wird automatisch an Codecov gesendet
+- **Visuelle Regressionstests**: Werden mit Chromatic durchgeführt (optional)
+- **E2E-Tests**: Werden mit Playwright für verschiedene Browser ausgeführt
 
 ## 📄 Lizenz
 
