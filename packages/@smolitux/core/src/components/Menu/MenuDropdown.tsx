@@ -1,5 +1,6 @@
 // packages/@smolitux/core/src/components/Menu/MenuDropdown.tsx
 import React, { useState, useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import Menu from './Menu';
 
 export interface MenuDropdownProps {
@@ -206,10 +207,11 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
   const triggerElement = React.cloneElement(trigger, {
     ref: (el: HTMLElement | null) => {
       // Die Ref an das ursprüngliche Element weiterleiten
-      if (trigger.ref && typeof trigger.ref === 'function') {
-        trigger.ref(el);
-      } else if (trigger.ref) {
-        (trigger.ref as React.MutableRefObject<HTMLElement | null>).current = el;
+      const originalRef = (trigger as any).ref;
+      if (originalRef && typeof originalRef === 'function') {
+        originalRef(el);
+      } else if (originalRef && typeof originalRef === 'object' && 'current' in originalRef) {
+        (originalRef as React.MutableRefObject<HTMLElement | null>).current = el;
       }
       triggerRef.current = el;
     },
