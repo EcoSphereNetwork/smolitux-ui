@@ -110,7 +110,8 @@ export const Zoom: React.FC<ZoomProps> = ({
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {
     return React.cloneElement(children, {
-      ref,
+      // Wir müssen den Ref explizit als any casten, da TypeScript sonst Probleme hat
+      ref: ref as any,
       style: {
         ...zoomStyle,
         ...style,
@@ -124,7 +125,7 @@ export const Zoom: React.FC<ZoomProps> = ({
   // Ansonsten wrappen wir die Kinder in einem div
   return (
     <div
-      ref={ref}
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={className}
       style={{ ...zoomStyle, ...style }}
       data-state={state}
