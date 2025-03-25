@@ -1,0 +1,102 @@
+.smolitux-card {
+  background-color: var(--card-bg, white);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.smolitux-card--bordered {
+  border: 1px solid var(--card-border-color, #e5e7eb);
+}
+
+.smolitux-card--hoverable {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.smolitux-card--hoverable:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.smolitux-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--card-border-color, #e5e7eb);
+}
+
+.smolitux-card__title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--card-title-color, #111827);
+  margin: 0;
+}
+
+.smolitux-card__content {
+  padding: 1rem;
+}
+
+.smolitux-card__content--no-padding {
+  padding: 0;
+}
+
+.smolitux-card__footer {
+  padding: 1rem;
+  border-top: 1px solid var(--card-border-color, #e5e7eb);
+}
+
+/* Varianten */
+.smolitux-card--primary {
+  border-top: 4px solid var(--primary-500, #3b82f6);
+}
+
+.smolitux-card--secondary {
+  border-top: 4px solid var(--secondary-500, #8b5cf6);
+}
+
+.smolitux-card--success {
+  border-top: 4px solid var(--green-500, #10b981);
+}
+
+.smolitux-card--danger {
+  border-top: 4px solid var(--red-500, #ef4444);
+}
+
+.smolitux-card--warning {
+  border-top: 4px solid var(--yellow-500, #f59e0b);
+}
+
+.smolitux-card--info {
+  border-top: 4px solid var(--blue-500, #3b82f6);
+}
+
+/* Größen */
+.smolitux-card--sm .smolitux-card__header,
+.smolitux-card--sm .smolitux-card__content,
+.smolitux-card--sm .smolitux-card__footer {
+  padding: 0.5rem;
+}
+
+.smolitux-card--lg .smolitux-card__header,
+.smolitux-card--lg .smolitux-card__content,
+.smolitux-card--lg .smolitux-card__footer {
+  padding: 1.5rem;
+}
+
+/* Dark Mode */
+.dark .smolitux-card {
+  background-color: var(--card-bg-dark, #1f2937);
+}
+
+.dark .smolitux-card--bordered {
+  border-color: var(--card-border-color-dark, #374151);
+}
+
+.dark .smolitux-card__header,
+.dark .smolitux-card__footer {
+  border-color: var(--card-border-color-dark, #374151);
+}
+
+.dark .smolitux-card__title {
+  color: var(--card-title-color-dark, #f9fafb);
+}
