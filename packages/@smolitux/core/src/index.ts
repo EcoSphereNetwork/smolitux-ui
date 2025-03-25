@@ -1,5 +1,25 @@
 // packages/@smolitux/core/src/index.ts
 // Core UI Components
+
+// Animation exports
+export { default as AnimatePresence, type AnimatePresenceProps } from './animations/AnimatePresence';
+export { default as Motion, type MotionProps, type MotionVariants } from './animations/Motion';
+export { default as keyframes, type KeyframeAnimation } from './animations/keyframes';
+export { 
+  default as transitions, 
+  type TransitionPreset, 
+  type TransitionPresetName, 
+  type TransitionVariant,
+  createTransition,
+  createMultiTransition
+} from './animations/transitions';
+export { default as useAnimation, type AnimationOptions, type AnimationControls } from './animations/useAnimation';
+export { 
+  default as useTransition, 
+  type TransitionState, 
+  type TransitionOptions, 
+  type TransitionResult 
+} from './animations/useTransition';
 export { default as Alert, type AlertProps, type AlertType } from './components/Alert/Alert';
 export { default as Badge, type BadgeProps } from './components/Badge/Badge';
 export { default as Button, type ButtonProps } from './components/Button/Button';
@@ -44,3 +64,9 @@ export { default as Popover, type PopoverProps, type PopoverPlacement } from './
 export { default as FileUpload, type FileUploadProps, type FileInfo } from './components/FileUpload/FileUpload';
 export { default as MediaPlayer, type MediaPlayerProps, type MediaType, type MediaSource, type MediaTrack, type MediaChapter } from './components/MediaPlayer/MediaPlayer';
 export { default as DatePicker, type DatePickerProps } from './components/DatePicker/DatePicker';
+
+// Animation components
+export { default as Fade, type FadeProps } from './components/Fade/Fade';
+export { default as Slide, type SlideProps, type SlideDirection } from './components/Slide/Slide';
+export { default as Collapse, type CollapseProps } from './components/Collapse/Collapse';
+export { default as Zoom, type ZoomProps } from './components/Zoom/Zoom';
