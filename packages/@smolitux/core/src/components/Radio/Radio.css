@@ -1,0 +1,411 @@
+.smolitux-radio-container {
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  cursor: pointer;
+}
+
+.smolitux-radio-container--disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.smolitux-radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.smolitux-radio-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--radio-border-color, #d1d5db);
+  border-radius: 50%;
+  background-color: var(--radio-bg, white);
+  transition: all 0.2s ease-in-out;
+}
+
+.smolitux-radio-control--shadow {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control {
+  border-color: var(--radio-checked-border-color, #3b82f6);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--radio-checked-dot-color, #3b82f6);
+}
+
+.smolitux-radio-input:focus + .smolitux-radio-control {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.smolitux-radio-input:disabled + .smolitux-radio-control {
+  background-color: var(--radio-disabled-bg, #f3f4f6);
+  border-color: var(--radio-disabled-border-color, #d1d5db);
+}
+
+.smolitux-radio-label {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--radio-label-color, #374151);
+  user-select: none;
+}
+
+.smolitux-radio-container--label-left {
+  flex-direction: row-reverse;
+}
+
+.smolitux-radio-container--label-left .smolitux-radio-label {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.smolitux-radio-helper-text {
+  font-size: 0.75rem;
+  color: var(--radio-helper-text-color, #6b7280);
+  margin-top: 0.25rem;
+  margin-left: 1.5rem;
+}
+
+.smolitux-radio-error {
+  font-size: 0.75rem;
+  color: var(--radio-error-color, #ef4444);
+  margin-top: 0.25rem;
+  margin-left: 1.5rem;
+}
+
+.smolitux-radio-success-message {
+  font-size: 0.75rem;
+  color: var(--radio-success-color, #10b981);
+  margin-top: 0.25rem;
+  margin-left: 1.5rem;
+}
+
+/* Größen */
+.smolitux-radio-control--xs {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--xs::before {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.smolitux-radio-container--xs .smolitux-radio-label {
+  font-size: 0.75rem;
+}
+
+.smolitux-radio-control--sm {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--sm::before {
+  width: 0.4375rem;
+  height: 0.4375rem;
+}
+
+.smolitux-radio-container--sm .smolitux-radio-label {
+  font-size: 0.8125rem;
+}
+
+.smolitux-radio-control--lg {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-width: 2px;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--lg::before {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.smolitux-radio-container--lg .smolitux-radio-label {
+  font-size: 1rem;
+}
+
+.smolitux-radio-control--xl {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 2px;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--xl::before {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.smolitux-radio-container--xl .smolitux-radio-label {
+  font-size: 1.125rem;
+}
+
+/* Varianten */
+.smolitux-radio-control--outline {
+  background-color: transparent;
+}
+
+.smolitux-radio-control--filled {
+  background-color: var(--radio-filled-bg, #f3f4f6);
+  border-color: transparent;
+}
+
+.smolitux-radio-control--minimal {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--minimal::before {
+  background-color: var(--radio-checked-dot-color, #3b82f6);
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Farbschemata */
+.smolitux-radio-input:checked + .smolitux-radio-control--primary {
+  border-color: var(--primary-500, #3b82f6);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--primary::before {
+  background-color: var(--primary-500, #3b82f6);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--secondary {
+  border-color: var(--secondary-500, #8b5cf6);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--secondary::before {
+  background-color: var(--secondary-500, #8b5cf6);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--success {
+  border-color: var(--green-500, #10b981);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--success::before {
+  background-color: var(--green-500, #10b981);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--danger {
+  border-color: var(--red-500, #ef4444);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--danger::before {
+  background-color: var(--red-500, #ef4444);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--warning {
+  border-color: var(--yellow-500, #f59e0b);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--warning::before {
+  background-color: var(--yellow-500, #f59e0b);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--info {
+  border-color: var(--blue-500, #3b82f6);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--info::before {
+  background-color: var(--blue-500, #3b82f6);
+}
+
+/* Anzeigetypen */
+.smolitux-radio-control--button {
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background-color: var(--radio-button-bg, #f3f4f6);
+  border-color: var(--radio-button-border-color, #d1d5db);
+  border-radius: 0.375rem;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--button {
+  background-color: var(--radio-button-checked-bg, #3b82f6);
+  border-color: var(--radio-button-checked-border-color, #3b82f6);
+  color: white;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--button::before {
+  display: none;
+}
+
+.smolitux-radio-control--card {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--radio-card-bg, white);
+  border: 1px solid var(--radio-card-border-color, #e5e7eb);
+  transition: all 0.2s ease-in-out;
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--card {
+  background-color: var(--radio-card-checked-bg, #eff6ff);
+  border-color: var(--radio-card-checked-border-color, #3b82f6);
+}
+
+.smolitux-radio-input:checked + .smolitux-radio-control--card::before {
+  display: none;
+}
+
+/* Zustände */
+.smolitux-radio-container--invalid .smolitux-radio-control {
+  border-color: var(--radio-error-border-color, #ef4444);
+}
+
+.smolitux-radio-container--valid .smolitux-radio-control {
+  border-color: var(--radio-success-border-color, #10b981);
+}
+
+.smolitux-radio-container--success .smolitux-radio-control {
+  border-color: var(--radio-success-border-color, #10b981);
+}
+
+.smolitux-radio-container--loading {
+  pointer-events: none;
+}
+
+.smolitux-radio-container--loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0.25rem;
+}
+
+.smolitux-radio-container--loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--primary-200, #bfdbfe);
+  border-top-color: var(--primary-500, #3b82f6);
+  border-radius: 50%;
+  animation: smolitux-radio-spin 1s linear infinite;
+  z-index: 1;
+}
+
+@keyframes smolitux-radio-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Hover-Effekt */
+.smolitux-radio-container--hoverable:hover .smolitux-radio-control:not(.smolitux-radio-control--disabled) {
+  border-color: var(--radio-hover-border-color, #9ca3af);
+}
+
+/* RadioGroup */
+.smolitux-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.smolitux-radio-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.smolitux-radio-group-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--radio-group-label-color, #374151);
+  margin-bottom: 0.5rem;
+}
+
+.smolitux-radio-group-helper-text {
+  font-size: 0.75rem;
+  color: var(--radio-group-helper-text-color, #6b7280);
+  margin-top: 0.25rem;
+}
+
+.smolitux-radio-group-error {
+  font-size: 0.75rem;
+  color: var(--radio-group-error-color, #ef4444);
+  margin-top: 0.25rem;
+}
+
+.smolitux-radio-group-success-message {
+  font-size: 0.75rem;
+  color: var(--radio-group-success-color, #10b981);
+  margin-top: 0.25rem;
+}
+
+/* Dark Mode */
+.dark .smolitux-radio-control {
+  border-color: var(--radio-border-color-dark, #4b5563);
+  background-color: var(--radio-bg-dark, #1f2937);
+}
+
+.dark .smolitux-radio-label {
+  color: var(--radio-label-color-dark, #e5e7eb);
+}
+
+.dark .smolitux-radio-helper-text {
+  color: var(--radio-helper-text-color-dark, #9ca3af);
+}
+
+.dark .smolitux-radio-input:disabled + .smolitux-radio-control {
+  background-color: var(--radio-disabled-bg-dark, #374151);
+  border-color: var(--radio-disabled-border-color-dark, #4b5563);
+}
+
+.dark .smolitux-radio-control--filled {
+  background-color: var(--radio-filled-bg-dark, #374151);
+}
+
+.dark .smolitux-radio-control--button {
+  background-color: var(--radio-button-bg-dark, #374151);
+  border-color: var(--radio-button-border-color-dark, #4b5563);
+}
+
+.dark .smolitux-radio-control--card {
+  background-color: var(--radio-card-bg-dark, #1f2937);
+  border-color: var(--radio-card-border-color-dark, #374151);
+}
+
+.dark .smolitux-radio-input:checked + .smolitux-radio-control--card {
+  background-color: var(--radio-card-checked-bg-dark, #1e3a8a);
+  border-color: var(--radio-card-checked-border-color-dark, #3b82f6);
+}
+
+.dark .smolitux-radio-container--hoverable:hover .smolitux-radio-control:not(.smolitux-radio-control--disabled) {
+  border-color: var(--radio-hover-border-color-dark, #6b7280);
+}
+
+.dark .smolitux-radio-container--loading::after {
+  background-color: rgba(31, 41, 55, 0.5);
+}
+
+.dark .smolitux-radio-group-label {
+  color: var(--radio-group-label-color-dark, #e5e7eb);
+}
+
+.dark .smolitux-radio-group-helper-text {
+  color: var(--radio-group-helper-text-color-dark, #9ca3af);
+}
