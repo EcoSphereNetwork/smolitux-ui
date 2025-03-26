@@ -226,6 +226,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
     <div
       ref={ref}
       role="alert"
+      data-testid="toast"
       className={`
         ${getPositionStyles()}
         ${getTypeStyles()}
@@ -267,7 +268,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
           
           {/* Aktionen */}
           {actions && (
-            <div className="mt-2">
+            <div className="mt-2" data-testid="toast-actions">
               {actions}
             </div>
           )}

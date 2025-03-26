@@ -89,8 +89,8 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
   const sizeClasses = {
     xs: 'h-1',
     sm: 'h-2',
-    md: 'h-3',
-    lg: 'h-4'
+    md: 'h-4',
+    lg: 'h-6'
   };
   
   // Farben-spezifische Klassen
@@ -171,13 +171,14 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
         aria-valuenow={indeterminate ? undefined : Math.max(min, Math.min(max, value))}
         aria-valuemin={min}
         aria-valuemax={max}
+        data-testid="progressbar"
         {...rest}
       >
         <div data-testid="progress-fill" className={progressClasses} style={progressStyle}></div>
       </div>
       
       {/* Animation-Stile */}
-      <style jsx>{`
+      <style>{`
         .bg-stripes {
           background-image: linear-gradient(
             45deg,
