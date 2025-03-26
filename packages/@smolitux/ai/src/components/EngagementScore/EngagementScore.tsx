@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, ProgressBar, Tooltip } from '@smolitux/core';
+import { Card, Button, ProgressBar, Tooltip } from '@smolitux/utils/src/components/patterns';
 
 export interface EngagementMetric {
   /** Name der Metrik */
@@ -206,7 +206,7 @@ export const EngagementScore: React.FC<EngagementScoreProps> = ({
   };
   
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <div className={`overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 ${className}`}>
       <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -215,12 +215,10 @@ export const EngagementScore: React.FC<EngagementScoreProps> = ({
           
           <div className="flex space-x-2">
             {onRefresh && (
-              <Button
-                variant="outline"
-                size="sm"
+              <button
                 onClick={handleRefresh}
                 disabled={isRefreshing}
-                className="p-2"
+                className="p-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 aria-label="Analyse aktualisieren"
               >
                 <svg
@@ -465,11 +463,15 @@ export const EngagementScore: React.FC<EngagementScoreProps> = ({
                         </span>
                         
                         {metric.description && (
-                          <Tooltip content={metric.description}>
-                            <svg className="w-4 h-4 ml-1 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <div className="relative inline-block">
+                            <svg className="w-4 h-4 ml-1 text-gray-400 dark:text-gray-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                             </svg>
-                          </Tooltip>
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-10">
+                              {metric.description}
+                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                            </div>
+                          </div>
                         )}
                       </div>
                       
@@ -566,6 +568,6 @@ export const EngagementScore: React.FC<EngagementScoreProps> = ({
           </>
         )}
       </div>
-    </Card>
+    </div>
   );
 };

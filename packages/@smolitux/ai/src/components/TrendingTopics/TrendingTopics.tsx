@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, TabView } from '@smolitux/core';
+import { Card, Button, TabView } from '@smolitux/utils/src/components/patterns';
 
 export interface TrendingTopic {
   /** Eindeutige ID des Themas */
@@ -235,7 +235,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
   };
   
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <div className={`overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 ${className}`}>
       <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -244,12 +244,10 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
           
           <div className="flex space-x-2">
             {onRefresh && (
-              <Button
-                variant="outline"
-                size="sm"
+              <button
                 onClick={handleRefresh}
                 disabled={isRefreshing}
-                className="p-2"
+                className="p-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 aria-label="Themen aktualisieren"
               >
                 <svg
@@ -342,15 +340,25 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       
       {/* Tabs */}
       <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
-        <TabView
-          tabs={[
+        <div className="flex space-x-4">
+          {[
             { id: 'trending', label: 'Trending' },
             { id: 'rising', label: 'Aufsteigend' },
             { id: 'new', label: 'Neu' },
-          ]}
-          activeTab={activeTab}
-          onChange={tab => setActiveTab(tab as any)}
-        />
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`px-2 py-1 text-sm font-medium ${
+                activeTab === tab.id
+                  ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
       
       <div className="p-6">
@@ -542,6 +550,6 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
           </div>
         )}
       </div>
-    </Card>
+    </div>
   );
 };
