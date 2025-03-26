@@ -5,7 +5,58 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - 2025-03-25
+## [0.2.1] - 2025-03-26
+
+### Hinzugefügt
+- Neue Komponenten für ResonanceLink:
+  - Governance-Komponenten:
+    - GovernanceDashboard: Übersicht über Community-Governance
+    - ProposalView: Detailansicht für Vorschläge
+    - VotingSystem: System für Abstimmungen
+  - Monetarisierungs-Komponenten:
+    - RevenueModel: Visualisierung des 30-30-30-Modells
+    - RewardSystem: Belohnungssystem für Benutzeraktivitäten
+    - CreatorDashboard: Dashboard für Content-Ersteller
+  - Feed-Komponenten:
+    - FeedView: Anzeige von Beiträgen im Feed
+    - PostCreator: Erstellung von Beiträgen
+  - Post-Komponenten:
+    - PostView: Anzeige von Beiträgen
+    - PostInteractions: Interaktionen mit Beiträgen
+    - PostMetrics: Metriken für Beiträge
+  - Profil-Komponenten:
+    - ProfileView: Anzeige von Benutzerprofilen
+- Neue KI-Komponenten:
+  - FakeNewsDetector: Erkennung von Falschinformationen
+  - TrollFilter: Filterung von toxischen Kommentaren
+  - ContentModerator: Moderation von Inhalten
+- Neue Blockchain-Komponenten:
+  - TokenEconomy: Visualisierung der Token-Wirtschaft
+  - SmartContractInteraction: Interaktion mit Smart Contracts
+
+### Verbessert
+- Verbesserte Typendefinitionen für alle Komponenten
+- Bessere Dokumentation mit JSDoc-Kommentaren
+- Optimierte Leistung bei komplexen Komponenten
+
+### Fehlerbehebungen
+- Behoben: Syntaxfehler in Charts-Komponenten
+- Behoben: Fehlerhafte Snapshot-Tests
+- Behoben: Probleme mit der Formularvalidierung
+
+## [0.2.0] - 2025-03-25
+
+### Hinzugefügt
+- Erste Version der erweiterten Komponenten-Bibliothek
+- Neue Pakete für spezifische Anwendungsbereiche:
+  - @smolitux/ai: KI-bezogene Komponenten
+  - @smolitux/blockchain: Blockchain-bezogene Komponenten
+  - @smolitux/community: Community-bezogene Komponenten
+  - @smolitux/federation: Föderations-bezogene Komponenten
+  - @smolitux/media: Medien-bezogene Komponenten
+  - @smolitux/utils: Hilfsfunktionen und -komponenten
+
+## [0.1.0] - 2025-03-24
 
 ### Hinzugefügt
 - Erste Version der Smolitux UI Komponenten-Bibliothek
