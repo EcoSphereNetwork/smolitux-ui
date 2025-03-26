@@ -1,6 +1,6 @@
 import React from 'react';
-import { Flex } from '@smolitux/utils/src/components/primitives';
-import { TabView } from '@smolitux/utils/src/components/patterns';
+import { Flex } from '../primitives';
+import { TabView } from '@smolitux/core';
 
 export interface FilterOption {
   /** Filter-ID */

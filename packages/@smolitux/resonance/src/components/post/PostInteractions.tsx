@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
-import { Button, Tooltip } from '@smolitux/utils/src/components/patterns';
+import { Box, Flex, Text } from '../primitives';
+import { Button, Tooltip } from '@smolitux/core';
 
 export interface PostInteractionsProps {
   /** Anzahl der Likes */

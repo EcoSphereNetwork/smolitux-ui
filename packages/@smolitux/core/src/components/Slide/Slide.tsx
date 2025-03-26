@@ -131,17 +131,17 @@ export const Slide: React.FC<SlideProps> = ({
       style: {
         ...slideStyle,
         ...style,
-        ...children.props.style,
+        ...(children.props.style || {}),
       },
       className: className ? `${className} ${children.props.className || ''}` : children.props.className,
       'data-state': state,
-    });
+    } as any);
   }
   
   // Ansonsten wrappen wir die Kinder in einem div
   return (
     <div
-      ref={ref}
+      ref={ref as React.LegacyRef<HTMLDivElement>}
       className={className}
       style={{ ...slideStyle, ...style }}
       data-state={state}

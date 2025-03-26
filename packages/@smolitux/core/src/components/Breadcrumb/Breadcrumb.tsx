@@ -209,13 +209,13 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
                   className={baseClasses}
                   {...(item as BreadcrumbItemData).linkProps}
                 >
-                  {item.icon && <span className="mr-1">{item.icon}</span>}
-                  {item.label}
+                  {item?.icon && <span className="mr-1">{item.icon}</span>}
+                  {item?.label}
                 </Link>
               ) : (
                 <span className={baseClasses}>
-                  {item.icon && <span className="mr-1">{item.icon}</span>}
-                  {item.label}
+                  {item?.icon && <span className="mr-1">{item.icon}</span>}
+                  {item?.label}
                 </span>
               )}
             </li>

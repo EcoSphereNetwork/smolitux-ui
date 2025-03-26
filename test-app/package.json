@@ -1,0 +1,39 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@smolitux/ai": "file:../smolitux-ai-0.2.1.tgz",
+    "@smolitux/blockchain": "file:../smolitux-blockchain-0.2.1.tgz",
+    "@smolitux/charts": "file:../smolitux-charts-0.2.1.tgz",
+    "@smolitux/community": "file:../smolitux-community-0.2.1.tgz",
+    "@smolitux/core": "file:../smolitux-core-0.2.1.tgz",
+    "@smolitux/federation": "file:../smolitux-federation-0.2.1.tgz",
+    "@smolitux/layout": "file:../smolitux-layout-0.2.1.tgz",
+    "@smolitux/media": "file:../smolitux-media-0.2.1.tgz",
+    "@smolitux/resonance": "file:../smolitux-resonance-0.2.1.tgz",
+    "@smolitux/theme": "file:../smolitux-theme-0.2.1.tgz",
+    "@smolitux/utils": "file:../smolitux-utils-0.2.1.tgz",
+    "http-server": "^14.1.1",
+    "qs": "^6.14.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.3"
+  }
+}

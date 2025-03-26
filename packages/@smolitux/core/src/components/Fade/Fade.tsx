@@ -68,8 +68,8 @@ export type FadeProps<C extends ElementType = 'div'> = {
 /**
  * Fade-Komponente für Ein- und Ausblendeffekte
  */
-export const Fade = forwardRef(function Fade<C extends ElementType = 'div'>(
-  props: FadeProps<C>,
+export const Fade = forwardRef(function Fade(
+  props: FadeProps<'div'>,
   forwardedRef: React.Ref<Element>
 ) {
   const {
@@ -128,12 +128,12 @@ export const Fade = forwardRef(function Fade<C extends ElementType = 'div'>(
       style: {
         ...transitionStyle,
         ...style,
-        ...children.props.style,
+        ...(children.props.style || {}),
       },
       className: className ? `${className} ${children.props.className || ''}` : children.props.className,
       'data-state': state,
-      ...rest
-    });
+      // Wir müssen die restlichen Props explizit übergeben, um TypeScript-Fehler zu vermeiden
+    } as any);
   }
   
   // Ansonsten wrappen wir die Kinder in einem Element

@@ -103,7 +103,9 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   const renderChildren = () => {
     return React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
+        // Typensichere Klonierung
         return React.cloneElement(child, {
+          ...child.props,
           name,
           checked: currentValue === child.props.value,
           onChange: handleChange,
@@ -119,7 +121,13 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   const contextValue: RadioGroupContextType = {
     name,
     value,
-    onChange: handleChange,
+    onChange: (value: string) => {
+      // Adapter-Funktion, die einen String-Wert akzeptiert
+      const syntheticEvent = {
+        target: { value }
+      } as React.ChangeEvent<HTMLInputElement>;
+      handleChange(syntheticEvent);
+    },
     disabled,
     required: false,
     error,

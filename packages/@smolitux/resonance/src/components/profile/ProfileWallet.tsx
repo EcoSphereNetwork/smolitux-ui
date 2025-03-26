@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Flex, Text, Grid } from '@smolitux/utils/src/components/primitives';
-import { Card, Button } from '@smolitux/utils/src/components/patterns';
+import { Box, Flex, Text } from '../primitives';
+import { Card, Button } from '@smolitux/core';
 
 export interface ProfileWalletProps {
   /** Wallet-Adresse */

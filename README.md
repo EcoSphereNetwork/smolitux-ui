@@ -49,8 +49,11 @@ function MyComponent() {
     <div>
       <Button variant="primary">Primärer Button</Button>
       <Button variant="secondary">Sekundärer Button</Button>
-      <Button variant="outline">Outline Button</Button>
-      <Button loading>Lädt...</Button>
+      <Button variant="ghost">Ghost Button</Button>
+      <Button variant="link">Link Button</Button>
+      <Button variant="solid">Solid Button (Alias für primary)</Button>
+      <Button variant="outline">Outline Button (Alias für ghost)</Button>
+      <Button isLoading>Lädt...</Button>
     </div>
   );
 }
@@ -228,6 +231,8 @@ Wir freuen uns über Beiträge zur smolitux UI Bibliothek! Bitte beachten Sie fo
 
 ## 📋 ToDo-Liste
 
+- [x] Button-Komponente mit zusätzlichen Varianten (solid, outline) erweitern
+- [x] TabView-Komponente mit onChange-Prop für bessere Kompatibilität erweitern
 - [ ] Weitere Kern-Komponenten implementieren
 - [ ] Diagramm-Bibliothek ausbauen
 - [ ] Beispiel-App erweitern

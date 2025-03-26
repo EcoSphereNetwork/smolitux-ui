@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Flex } from '@smolitux/utils/src/components/primitives';
-import { Button } from '@smolitux/utils/src/components/patterns';
+import { Box, Flex } from '../primitives';
+import { Button } from '@smolitux/core';
 import { FeedItem, FeedItemData } from './FeedItem';
 import { FeedFilter, FilterOption } from './FeedFilter';
 import { FeedSidebar } from './FeedSidebar';
