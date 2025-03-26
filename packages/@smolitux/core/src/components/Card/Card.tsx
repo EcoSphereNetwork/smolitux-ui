@@ -17,6 +17,20 @@ export interface CardProps {
   bordered?: boolean;
   /** Header-Aktion (z.B. Button oder Icon) */
   headerAction?: ReactNode;
+  /** Variante der Karte */
+  variant?: 'elevated' | 'outlined' | 'flat';
+  /** Padding-Größe */
+  padding?: 'none' | 'small' | 'medium' | 'large';
+  /** Randradius */
+  borderRadius?: 'none' | 'small' | 'medium' | 'large';
+  /** Benutzerdefinierte Breite */
+  width?: string;
+  /** Benutzerdefinierte Höhe */
+  height?: string;
+  /** Benutzerdefinierte Hintergrundfarbe */
+  backgroundColor?: string;
+  /** Benutzerdefinierte Randfarbe */
+  borderColor?: string;
 }
 
 /**
@@ -30,17 +44,52 @@ export const Card: React.FC<CardProps> = ({
   noPadding = false,
   hoverable = false,
   bordered = true,
-  headerAction
+  headerAction,
+  variant = 'flat',
+  padding = 'medium',
+  borderRadius = 'medium',
+  width,
+  height,
+  backgroundColor,
+  borderColor
 }) => {
+  // Varianten-Klassen
+  const variantClasses = {
+    elevated: 'shadow-md',
+    outlined: 'border border-gray-200 dark:border-gray-700',
+    flat: ''
+  };
+
+  // Padding-Klassen
+  const paddingClasses = {
+    none: 'p-0',
+    small: 'p-3',
+    medium: 'p-4',
+    large: 'p-6'
+  };
+
+  // Border-Radius-Klassen
+  const borderRadiusClasses = {
+    none: 'rounded-none',
+    small: 'rounded-sm',
+    medium: 'rounded-lg',
+    large: 'rounded-xl'
+  };
+
   return (
     <div 
       className={`
-        bg-white dark:bg-gray-800 
-        shadow rounded-lg 
-        ${bordered ? 'border border-gray-200 dark:border-gray-700' : ''} 
-        ${hoverable ? 'transition-shadow duration-200 hover:shadow-md' : ''} 
+        ${backgroundColor || 'bg-white dark:bg-gray-800'} 
+        shadow ${borderRadiusClasses[borderRadius]} 
+        ${bordered ? borderColor || 'border border-gray-200 dark:border-gray-700' : ''} 
+        ${hoverable ? 'transition-shadow duration-200 hover:shadow-lg' : ''} 
+        ${variantClasses[variant]}
         ${className}
       `}
+      style={{
+        width: width,
+        height: height
+      }}
     >
       {title && (
         <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3">
@@ -51,7 +100,7 @@ export const Card: React.FC<CardProps> = ({
         </div>
       )}
       
-      <div className={noPadding ? '' : 'p-4'}>
+      <div className={noPadding ? '' : paddingClasses[padding]}>
         {children}
       </div>
       

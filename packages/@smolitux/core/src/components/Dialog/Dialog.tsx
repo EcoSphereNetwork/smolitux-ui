@@ -210,6 +210,7 @@ export const Dialog: React.FC<DialogProps> = ({
     >
       {/* Overlay */}
       <div 
+        data-testid="dialog-overlay"
         className={`fixed inset-0 bg-black bg-opacity-50 ${animated ? 'transition-opacity duration-300 ease-out' : ''}`}
         onClick={closeOnOverlayClick ? handleCancel : undefined}
         aria-hidden="true"
@@ -246,7 +247,7 @@ export const Dialog: React.FC<DialogProps> = ({
                 type="button"
                 className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
                 onClick={handleCancel}
-                aria-label="Close"
+                aria-label="Schließen"
               >
                 <svg 
                   className="h-6 w-6" 

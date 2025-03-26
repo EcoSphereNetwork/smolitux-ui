@@ -286,7 +286,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               hover:bg-opacity-75 dark:hover:bg-opacity-75
               ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
             `}
-            aria-label="Previous slide"
+            aria-label="Vorheriges Bild"
             onClick={goToPrev}
             disabled={disabled}
           >
@@ -320,7 +320,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               hover:bg-opacity-75 dark:hover:bg-opacity-75
               ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
             `}
-            aria-label="Next slide"
+            aria-label="Nächstes Bild"
             onClick={goToNext}
             disabled={disabled}
           >
