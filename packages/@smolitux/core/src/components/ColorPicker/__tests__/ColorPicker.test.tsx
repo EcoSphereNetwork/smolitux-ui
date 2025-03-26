@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { ColorPicker } from '../ColorPicker';
+import ColorPicker from '../ColorPicker';
 
 // Mock für ThemeProvider
 jest.mock('@smolitux/theme', () => ({

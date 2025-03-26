@@ -168,12 +168,12 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
         ref={ref}
         className={containerClasses}
         role="progressbar"
-        aria-valuenow={indeterminate ? undefined : value}
+        aria-valuenow={indeterminate ? undefined : Math.max(min, Math.min(max, value))}
         aria-valuemin={min}
         aria-valuemax={max}
         {...rest}
       >
-        <div className={progressClasses} style={progressStyle}></div>
+        <div data-testid="progress-fill" className={progressClasses} style={progressStyle}></div>
       </div>
       
       {/* Animation-Stile */}
