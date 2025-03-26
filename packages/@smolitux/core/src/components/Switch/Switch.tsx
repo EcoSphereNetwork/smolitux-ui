@@ -1459,7 +1459,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
             `}
           >
             {/* Optionale Icons innerhalb des Thumbs */}
-            {icons && (isChecked ? <CheckedIcon /> : <UncheckedIcon />)}
+            {icons && (
+              <>
+                {isChecked && React.isValidElement(CheckedIcon) ? CheckedIcon : null}
+                {!isChecked && React.isValidElement(UncheckedIcon) ? UncheckedIcon : null}
+              </>
+            )}
             {thumbIcon}
             
             {/* Ripple-Effekt */}

@@ -216,7 +216,10 @@ export const Form: React.FC<FormProps> = ({
   const handleReset = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onReset?.();
-    props.resetForm?.();
+    // Sicherstellen, dass resetForm existiert, bevor es aufgerufen wird
+    if ('resetForm' in props && typeof props.resetForm === 'function') {
+      props.resetForm();
+    }
   };
   
   // Abbrechen-Handler
@@ -225,12 +228,19 @@ export const Form: React.FC<FormProps> = ({
     onCancel?.();
   };
   
+  // Extrahiere nur die Eigenschaften, die von ValidationForm unterstützt werden
+  const validationProps = props as ValidationFormProps;
+  
+  // Erstelle die ValidationForm-Props
+  const validationFormProps = {
+    ...validationProps,
+    className: formClasses,
+    style
+  };
+  
   return (
     <ValidationForm
-      className={formClasses}
-      style={style}
-      disabled={disabled}
-      {...props}
+      {...validationFormProps}
     >
       {legend && (
         <legend className="text-lg font-medium text-gray-900 dark:text-white mb-4">
@@ -259,7 +269,15 @@ export const Form: React.FC<FormProps> = ({
             <button
               type="reset"
               className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              onClick={handleReset}
+              onClick={(e) => {
+                // Konvertiere MouseEvent zu FormEvent
+                const formEvent = {
+                  ...e,
+                  currentTarget: e.currentTarget.form || e.currentTarget,
+                  preventDefault: e.preventDefault.bind(e)
+                } as unknown as React.FormEvent<HTMLFormElement>;
+                handleReset(formEvent);
+              }}
             >
               {resetButtonText}
             </button>

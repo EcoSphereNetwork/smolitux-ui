@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Flex } from '@smolitux/utils/src/components/primitives';
-import { Button, Input, TextArea } from '@smolitux/utils/src/components/patterns';
+import { Box, Flex } from '../primitives';
+import { Button, Input, TextArea } from '@smolitux/core';
 
 export interface ProfileEditorProps {
   /** Initialer Benutzername */

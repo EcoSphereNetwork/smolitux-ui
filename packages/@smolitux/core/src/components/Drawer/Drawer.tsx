@@ -179,7 +179,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           bg-white dark:bg-gray-800 shadow-xl flex flex-col
           ${isHorizontal ? 'h-full' : 'w-full'}
           ${className}
-          ${getPositionStyles().className || ''}
+          ${(getPositionStyles() as any).className || ''}
         `}
         style={getPositionStyles()}
       >

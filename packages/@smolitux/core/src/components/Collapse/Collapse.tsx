@@ -135,7 +135,7 @@ export const Collapse: React.FC<CollapseProps> = ({
   
   return (
     <div
-      ref={ref}
+      ref={ref as React.LegacyRef<HTMLDivElement>}
       className={className}
       style={{ ...collapseStyle, ...style }}
       data-state={state}

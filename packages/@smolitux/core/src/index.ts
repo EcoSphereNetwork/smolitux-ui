@@ -53,7 +53,7 @@ export { default as Form, type FormProps } from './components/Form/Form';
 export { default as FormField, type FormFieldProps } from './components/FormField/FormField';
 export { default as TextArea, type TextAreaProps } from './components/TextArea/TextArea';
 export { default as Switch, type SwitchProps } from './components/Switch/Switch';
-export { default as Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from './components/Breadcrumb/Breadcrumb';
+export { default as Breadcrumb, type BreadcrumbProps, type BreadcrumbItemData } from './components/Breadcrumb/Breadcrumb';
 export { default as ColorPicker, type ColorPickerProps } from './components/ColorPicker/ColorPicker';
 export { default as Carousel, type CarouselProps, type CarouselItem } from './components/Carousel/Carousel';
 export { default as Menu, type MenuProps } from './components/Menu/Menu';
@@ -64,7 +64,7 @@ export { default as Drawer, type DrawerProps, type DrawerPlacement } from './com
 export { default as Dialog, type DialogProps } from './components/Dialog/Dialog';
 export { default as Popover, type PopoverProps, type PopoverPlacement } from './components/Popover/Popover';
 export { default as FileUpload, type FileUploadProps, type FileInfo } from './components/FileUpload/FileUpload';
-export { default as MediaPlayer, type MediaPlayerProps, type MediaType, type MediaSource, type MediaTrack, type MediaChapter } from './components/MediaPlayer/MediaPlayer';
+export { MediaPlayer, type MediaPlayerProps, type MediaSource, type MediaTrack } from './components/MediaPlayer/MediaPlayer';
 export { default as DatePicker, type DatePickerProps } from './components/DatePicker/DatePicker';
 
 // Animation components

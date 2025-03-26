@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Button, TabView } from '@smolitux/utils/src/components/patterns';
-import { Box, Flex, Text, Grid } from '@smolitux/utils/src/components/primitives';
+import { Card, Button, TabView } from '@smolitux/core';
+import { Box, Flex, Text } from '../primitives';
 import { ProposalStatus } from './ProposalView';
 
 export interface ProposalSummary {
