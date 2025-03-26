@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Button, Tooltip, ProgressBar } from '@smolitux/utils/src/components/patterns';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
+import { Card, Button, Tooltip, ProgressBar } from '@smolitux/core';
+import { Box, Flex, Text } from '../primitives';
 
 export interface FakeNewsDetectorProps {
   /** Zu analysierender Text */

@@ -1,3 +1,6 @@
+// Import i18n
+import './i18n/i18n';
+
 // Export all AI components
 export * from './components/RecommendationCarousel';
 export * from './components/ContentAnalytics';

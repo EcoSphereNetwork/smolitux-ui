@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, Button, TabView } from '@smolitux/utils/src/components/patterns';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
-import { CommentSection } from '@smolitux/community/src/components';
+import { Card, Button, TabView } from '@smolitux/core';
+import { Box, Flex, Text } from '../primitives';
+// import { CommentSection } from '@smolitux/community/src/components'; // Temporarily commented out
 import { VotingSystem, VoteOption } from './VotingSystem';
 
 export interface ProposalStatus {
@@ -182,12 +182,10 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
       label: 'Discussion',
       content: (
         <Box style={{ padding: '16px' }}>
-          <CommentSection
-            comments={formattedComments}
-            onAddComment={onComment}
-            onLikeComment={onCommentLike}
-            onReplyToComment={onCommentReply}
-          />
+          <Box style={{ padding: '16px' }}>
+            <Text weight="bold" size="lg">Comments</Text>
+            <Text size="sm" color="#6b7280">Comments functionality temporarily disabled</Text>
+          </Box>
         </Box>
       ),
     },

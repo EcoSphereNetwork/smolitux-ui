@@ -1,3 +1,6 @@
+// Import i18n
+import './i18n/i18n';
+
 // Feed components
 export * from './components/feed/FeedView';
 export * from './components/feed/FeedFilter';

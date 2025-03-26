@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, Button } from '@smolitux/utils/src/components/patterns';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
-import { MediaPlayer } from '@smolitux/media/src/components';
-import { CommentSection } from '@smolitux/community/src/components';
+import { Card, Button } from '@smolitux/core';
+import { Box, Flex, Text } from '../primitives';
+import { MediaPlayer } from '@smolitux/core';
+// import { CommentSection } from '@smolitux/community/src/components'; // Temporarily commented out
 import { PostInteractions } from './PostInteractions';
 import { PostMetrics } from './PostMetrics';
 import { FeedItemData } from '../feed/FeedItem';
@@ -400,12 +400,10 @@ export const PostView: React.FC<PostViewProps> = ({
       {/* Comments */}
       {showComments && (
         <Card>
-          <CommentSection
-            comments={formattedComments}
-            onAddComment={onComment}
-            onLikeComment={onCommentLike}
-            onReplyToComment={onCommentReply}
-          />
+          <Box style={{ padding: '16px' }}>
+            <Text weight="bold" size="lg">Comments</Text>
+            <Text size="sm" color="#6b7280">Comments functionality temporarily disabled</Text>
+          </Box>
         </Card>
       )}
     </Box>
