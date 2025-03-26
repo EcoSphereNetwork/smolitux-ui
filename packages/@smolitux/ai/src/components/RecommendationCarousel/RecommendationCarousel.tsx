@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Card, Button } from '@smolitux/core';
 
 export interface RecommendationItem {
   /** Eindeutige ID des empfohlenen Elements */
@@ -217,11 +216,10 @@ export const RecommendationCarousel: React.FC<RecommendationCarouselProps> = ({
         <div className="flex items-center space-x-2">
           {/* Aktualisieren-Button */}
           {onRefresh && (
-            <Button
-              variant="outline"
+            <button
               onClick={handleRefresh}
               disabled={isRefreshing}
-              className="p-2"
+              className="p-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
               aria-label="Empfehlungen aktualisieren"
             >
               <svg
@@ -238,7 +236,7 @@ export const RecommendationCarousel: React.FC<RecommendationCarouselProps> = ({
                   d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                 />
               </svg>
-            </Button>
+            </button>
           )}
         </div>
       </div>
@@ -335,8 +333,8 @@ export const RecommendationCarousel: React.FC<RecommendationCarouselProps> = ({
                     className="flex-shrink-0 px-2"
                     style={{ width: `calc(100% / ${visibleItems})` }}
                   >
-                    <Card
-                      className="h-full overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+                    <div
+                      className="h-full overflow-hidden hover:shadow-md transition-shadow cursor-pointer border border-gray-200 dark:border-gray-700 rounded-lg"
                       onClick={() => handleItemClick(item)}
                     >
                       {/* Thumbnail */}
@@ -401,7 +399,7 @@ export const RecommendationCarousel: React.FC<RecommendationCarouselProps> = ({
                           </p>
                         )}
                       </div>
-                    </Card>
+                    </div>
                   </div>
                 ))
               )}
