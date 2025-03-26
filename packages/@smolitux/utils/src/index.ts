@@ -1,10 +1,11 @@
 // @smolitux/utils
 
 // Component utilities
-export * from './components';
+export * from "./components";
 
 // Styling utilities
-export * from './styling';
+export * from "./styling";
 
-// Type utilities
-export * from './types';
+// Type utilities - Explicit re-exports to avoid ambiguities
+import * as Types from "./types";
+export { Types };

@@ -7,9 +7,14 @@
     "packages/@smolitux/*"
   ],
   "scripts": {
-    "install-deps": "lerna exec -- npm install",
-    "clean": "lerna clean --yes",
+    "install-deps": "npm install && lerna exec -- npm install",
+    "clean": "lerna clean --yes && rm -rf node_modules",
     "build": "lerna run build --no-bail",
+    "build:utils": "cd packages/@smolitux/utils && npm run build",
+    "build:core": "cd packages/@smolitux/core && npm run build",
+    "build:ai": "cd packages/@smolitux/ai && npm run build",
+    "build:blockchain": "cd packages/@smolitux/blockchain && npm run build",
+    "build:resonance": "cd packages/@smolitux/resonance && npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",

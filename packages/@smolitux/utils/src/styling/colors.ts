@@ -97,7 +97,11 @@ export const getColor = (color: string, shade: number = 500): string => {
     ? color.split('.') 
     : [color, shade.toString()];
   
-  return colors[colorName as keyof typeof colors]?.[colorShade as keyof typeof colors.primary] || color;
+  // Typensichere Version mit expliziter Typumwandlung
+  const colorObj = colors[colorName as keyof typeof colors];
+  if (!colorObj) return color;
+  
+  return (colorObj as Record<string, string>)[colorShade] || color;
 };
 
 // Lighten a color by a percentage

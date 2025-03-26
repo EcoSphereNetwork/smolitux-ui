@@ -1,3 +1,5 @@
 // Common types
-export * from './style';
-export * from './responsive';
+import * as Style from "./style";
+import * as Responsive from "./responsive";
+
+export { Style, Responsive };

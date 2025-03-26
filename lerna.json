@@ -1,12 +1,21 @@
 {
   "version": "0.2.1",
   "npmClient": "npm",
+  "useWorkspaces": true,
   "packages": ["packages/*", "packages/@smolitux/*"],
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "command": {
     "publish": {
       "conventionalCommits": true,
       "yes": true
+    },
+    "run": {
+      "stream": true
+    },
+    "version": {
+      "message": "chore(release): publish %s",
+      "conventionalCommits": true,
+      "createRelease": "github"
     }
   }
 }
