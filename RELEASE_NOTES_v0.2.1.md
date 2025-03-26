@@ -59,8 +59,14 @@ Diese Version bringt umfangreiche Erweiterungen für die Smolitux UI-Bibliothek,
 - Behoben: Syntaxfehler in Charts-Komponenten
 - Behoben: Fehlerhafte Snapshot-Tests
 - Behoben: Probleme mit der Formularvalidierung
+- Behoben: Falsche Modul-Pfade in package.json-Dateien (index.mjs statt index.esm.js)
+- Behoben: Probleme mit i18n-Initialisierung in Node.js-Umgebungen
+- Behoben: Fehlerhafte Importe zwischen Paketen, die auf interne Quellcode-Pfade verwiesen
 
 ## Entwickler-Hinweise
 - Alle Tests wurden in die `__tests__`-Ordnerstruktur verschoben
 - Jest-Konfiguration wurde aktualisiert, um die neue Teststruktur zu unterstützen
 - Neue Skripte für die Verwaltung von Paketen wurden hinzugefügt
+- Verbesserte Browserkompatibilität durch Erkennung der Ausführungsumgebung
+- Hinzugefügt: Primitive Komponenten (Box, Flex, Text) für konsistentes Layout
+- Hinzugefügt: Test-App zur Demonstration der Komponenten
