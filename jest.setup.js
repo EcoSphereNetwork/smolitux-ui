@@ -1,4 +1,5 @@
-import '@testing-library/jest-dom';
+// Wir verwenden keine externen Abhängigkeiten für die Tests
+// require('@testing-library/jest-dom');
 
 // Globale Mock-Funktionen
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
