@@ -7,8 +7,9 @@
     "packages/@smolitux/*"
   ],
   "scripts": {
-    "clean": "lerna clean",
-    "build": "lerna run build",
+    "install-deps": "lerna exec -- npm install",
+    "clean": "lerna clean --yes",
+    "build": "lerna run build --no-bail",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
