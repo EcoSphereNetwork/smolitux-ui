@@ -1,305 +1,241 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Input } from '../Input';
+import { Input } from './Input';
 
-// Mock für den FormControl-Context
-jest.mock('../../FormControl', () => ({
-  useFormControl: () => ({
-    disabled: false,
-    required: false,
-    hasError: false,
-    id: undefined,
-    label: undefined,
-    name: undefined,
-    size: 'md',
-    readOnly: false,
-    isFocused: false,
-    isValid: false,
-    isInvalid: false,
-    isSuccess: false,
-    isLoading: false
-  })
-}));
-
-describe('Input Component', () => {
-  test('renders correctly with default props', () => {
+describe('Input', () => {
+  it('renders correctly with default props', () => {
     render(<Input />);
+    
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
-    expect(input).toHaveClass('bg-white');
+    expect(input).toHaveClass('input');
   });
-  
-  test('renders with label', () => {
+
+  it('renders with placeholder text', () => {
+    render(<Input placeholder="Enter your name" />);
+    
+    const input = screen.getByPlaceholderText('Enter your name');
+    expect(input).toBeInTheDocument();
+  });
+
+  it('renders with label when provided', () => {
     render(<Input label="Username" />);
+    
     expect(screen.getByText('Username')).toBeInTheDocument();
     expect(screen.getByLabelText('Username')).toBeInTheDocument();
   });
-  
-  test('renders with helper text', () => {
-    render(<Input helperText="Enter your username" />);
-    expect(screen.getByText('Enter your username')).toBeInTheDocument();
-  });
-  
-  test('renders with error message', () => {
-    render(<Input error="Username is required" />);
-    expect(screen.getByText('Username is required')).toBeInTheDocument();
-    expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'true');
-  });
-  
-  test('renders with success message', () => {
-    render(<Input successMessage="Username is available" />);
-    expect(screen.getByText('Username is available')).toBeInTheDocument();
-  });
-  
-  test('renders with left icon', () => {
-    const leftIcon = <span data-testid="left-icon">@</span>;
-    render(<Input leftIcon={leftIcon} />);
-    expect(screen.getByTestId('left-icon')).toBeInTheDocument();
-  });
-  
-  test('renders with right icon', () => {
-    const rightIcon = <span data-testid="right-icon">✓</span>;
-    render(<Input rightIcon={rightIcon} />);
-    expect(screen.getByTestId('right-icon')).toBeInTheDocument();
-  });
-  
-  test('renders with different sizes', () => {
-    const { rerender } = render(<Input size="xs" />);
-    expect(screen.getByRole('textbox')).toHaveClass('px-2 py-1 text-xs');
+
+  it('renders with helper text when provided', () => {
+    render(<Input helperText="Must be at least 8 characters" />);
     
-    rerender(<Input size="sm" />);
-    expect(screen.getByRole('textbox')).toHaveClass('px-3 py-1.5 text-sm');
+    expect(screen.getByText('Must be at least 8 characters')).toBeInTheDocument();
+  });
+
+  it('renders with error state and message', () => {
+    render(<Input error errorText="This field is required" />);
+    
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-error');
+    expect(screen.getByText('This field is required')).toBeInTheDocument();
+  });
+
+  it('renders as disabled', () => {
+    render(<Input disabled />);
+    
+    const input = screen.getByRole('textbox');
+    expect(input).toBeDisabled();
+    expect(input).toHaveClass('input-disabled');
+  });
+
+  it('renders as readonly', () => {
+    render(<Input readOnly value="Read only value" />);
+    
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveAttribute('readonly');
+    expect(input).toHaveValue('Read only value');
+  });
+
+  it('renders with custom className', () => {
+    render(<Input className="custom-input" />);
+    
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveClass('custom-input');
+  });
+
+  it('renders with custom style', () => {
+    const customStyle = { backgroundColor: 'lightblue', padding: '10px' };
+    render(<Input style={customStyle} />);
+    
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveStyle('background-color: lightblue');
+    expect(input).toHaveStyle('padding: 10px');
+  });
+
+  it('renders with different sizes', () => {
+    const { rerender } = render(<Input size="sm" />);
+    
+    let input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-sm');
     
     rerender(<Input size="md" />);
-    expect(screen.getByRole('textbox')).toHaveClass('px-4 py-2 text-base');
+    input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-md');
     
     rerender(<Input size="lg" />);
-    expect(screen.getByRole('textbox')).toHaveClass('px-5 py-3 text-lg');
-    
-    rerender(<Input size="xl" />);
-    expect(screen.getByRole('textbox')).toHaveClass('px-6 py-4 text-xl');
+    input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-lg');
   });
-  
-  test('renders with different variants', () => {
+
+  it('renders with different variants', () => {
     const { rerender } = render(<Input variant="outline" />);
-    expect(screen.getByRole('textbox')).toHaveClass('border');
+    
+    let input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-outline');
     
     rerender(<Input variant="filled" />);
-    expect(screen.getByRole('textbox')).toHaveClass('bg-gray-100');
+    input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-filled');
     
     rerender(<Input variant="flushed" />);
-    expect(screen.getByRole('textbox')).toHaveClass('border-b-2');
+    input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-flushed');
+  });
+
+  it('renders with left addon', () => {
+    render(<Input leftAddon="$" />);
     
-    rerender(<Input variant="unstyled" />);
-    expect(screen.getByRole('textbox')).toHaveClass('bg-transparent');
+    expect(screen.getByText('$')).toBeInTheDocument();
+    const addonGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(addonGroup).toBeInTheDocument();
+    expect(screen.getByText('$').closest('.input-addon-left')).toBeInTheDocument();
   });
-  
-  test('renders with full width', () => {
-    render(<Input fullWidth />);
-    expect(screen.getByRole('textbox').parentElement?.parentElement?.parentElement).toHaveClass('w-full');
-  });
-  
-  test('renders with shadow', () => {
-    render(<Input shadow />);
-    expect(screen.getByRole('textbox')).toHaveClass('shadow-md');
-  });
-  
-  test('renders without border', () => {
-    render(<Input bordered={false} />);
-    expect(screen.getByRole('textbox')).not.toHaveClass('border');
-  });
-  
-  test('renders without rounded corners', () => {
-    render(<Input rounded={false} />);
-    expect(screen.getByRole('textbox')).not.toHaveClass('rounded-md');
-  });
-  
-  test('renders with transparent background', () => {
-    render(<Input transparent />);
-    expect(screen.getByRole('textbox')).toHaveClass('bg-transparent');
-  });
-  
-  test('renders with counter when showCounter is true', () => {
-    render(<Input showCounter maxLength={10} value="Hello" />);
-    expect(screen.getByText('5/10')).toBeInTheDocument();
-  });
-  
-  test('renders with progress bar when showProgressBar is true', () => {
-    render(<Input showProgressBar progressValue={50} progressMax={100} />);
-    const progressBar = screen.getByRole('progressbar');
-    expect(progressBar).toBeInTheDocument();
-    expect(progressBar).toHaveAttribute('aria-valuenow', '50');
-    expect(progressBar).toHaveAttribute('aria-valuemax', '100');
-  });
-  
-  test('renders with loading indicator', () => {
-    render(<Input isLoading showLoadingIndicator />);
-    expect(screen.getByText('⟳')).toBeInTheDocument();
-  });
-  
-  test('renders with error indicator', () => {
-    render(<Input error="Error" showErrorIndicator />);
-    expect(screen.getByText('✕')).toBeInTheDocument();
-  });
-  
-  test('renders with success indicator', () => {
-    render(<Input isSuccess showSuccessIndicator />);
-    expect(screen.getByText('✓')).toBeInTheDocument();
-  });
-  
-  test('renders with validation indicator', () => {
-    render(<Input isValid showValidationIndicator />);
-    expect(screen.getByText('✓')).toBeInTheDocument();
-  });
-  
-  test('renders with hidden label', () => {
-    render(<Input label="Hidden Label" hideLabel />);
-    expect(screen.getByText('Hidden Label')).toHaveClass('sr-only');
-  });
-  
-  test('renders with description for screen readers', () => {
-    render(<Input description="Description for screen readers" />);
-    expect(screen.getByText('Description for screen readers')).toHaveClass('sr-only');
-  });
-  
-  test('renders with clickable right icon', () => {
-    const handleClick = jest.fn();
-    const rightIcon = <span data-testid="right-icon">✓</span>;
-    render(<Input rightIcon={rightIcon} isRightIconClickable onRightIconClick={handleClick} />);
+
+  it('renders with right addon', () => {
+    render(<Input rightAddon=".com" />);
     
-    fireEvent.click(screen.getByTestId('right-icon').parentElement as HTMLElement);
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('.com')).toBeInTheDocument();
+    const addonGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(addonGroup).toBeInTheDocument();
+    expect(screen.getByText('.com').closest('.input-addon-right')).toBeInTheDocument();
   });
-  
-  test('renders with clickable left icon', () => {
-    const handleClick = jest.fn();
-    const leftIcon = <span data-testid="left-icon">@</span>;
-    render(<Input leftIcon={leftIcon} isLeftIconClickable onLeftIconClick={handleClick} />);
+
+  it('renders with left icon', () => {
+    render(<Input leftIcon={<span data-testid="left-icon">🔍</span>} />);
     
-    fireEvent.click(screen.getByTestId('left-icon').parentElement as HTMLElement);
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('left-icon')).toBeInTheDocument();
+    const iconGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(iconGroup).toBeInTheDocument();
+    expect(screen.getByTestId('left-icon').closest('.input-icon-left')).toBeInTheDocument();
   });
-  
-  test('renders with password toggle', () => {
-    render(<Input type="password" showPasswordToggle />);
+
+  it('renders with right icon', () => {
+    render(<Input rightIcon={<span data-testid="right-icon">✓</span>} />);
     
-    // Anfangs sollte das Passwort verborgen sein
-    expect(screen.getByRole('textbox')).toHaveAttribute('type', 'password');
-    
-    // Nach dem Klick auf das Icon sollte das Passwort sichtbar sein
-    fireEvent.click(screen.getByRole('button', { name: /Passwort anzeigen/i }));
-    expect(screen.getByRole('textbox')).toHaveAttribute('type', 'text');
-    
-    // Nach einem weiteren Klick sollte das Passwort wieder verborgen sein
-    fireEvent.click(screen.getByRole('button', { name: /Passwort verbergen/i }));
-    expect(screen.getByRole('textbox')).toHaveAttribute('type', 'password');
+    expect(screen.getByTestId('right-icon')).toBeInTheDocument();
+    const iconGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(iconGroup).toBeInTheDocument();
+    expect(screen.getByTestId('right-icon').closest('.input-icon-right')).toBeInTheDocument();
   });
-  
-  test('renders with clearable button', () => {
-    const handleClear = jest.fn();
-    render(<Input value="Test" isClearable onClear={handleClear} />);
-    
-    fireEvent.click(screen.getByRole('button', { name: /Eingabe löschen/i }));
-    expect(handleClear).toHaveBeenCalledTimes(1);
-  });
-  
-  test('renders with prefix', () => {
-    const prefix = <span data-testid="prefix">$</span>;
-    render(<Input prefix={prefix} />);
-    expect(screen.getByTestId('prefix')).toBeInTheDocument();
-  });
-  
-  test('renders with suffix', () => {
-    const suffix = <span data-testid="suffix">kg</span>;
-    render(<Input suffix={suffix} />);
-    expect(screen.getByTestId('suffix')).toBeInTheDocument();
-  });
-  
-  test('renders with datalist', () => {
-    render(<Input list="options" datalist={['Option 1', 'Option 2', 'Option 3']} />);
-    
-    const datalist = document.getElementById('options');
-    expect(datalist).toBeInTheDocument();
-    expect(datalist?.children.length).toBe(3);
-  });
-  
-  test('calls onChange handler when value changes', () => {
+
+  it('calls onChange when input value changes', () => {
     const handleChange = jest.fn();
     render(<Input onChange={handleChange} />);
     
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'New Value' } });
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'test value' } });
+    
     expect(handleChange).toHaveBeenCalledTimes(1);
+    expect(input).toHaveValue('test value');
   });
-  
-  test('calls onFocus handler when input is focused', () => {
+
+  it('calls onFocus when input is focused', () => {
     const handleFocus = jest.fn();
     render(<Input onFocus={handleFocus} />);
     
-    fireEvent.focus(screen.getByRole('textbox'));
+    const input = screen.getByRole('textbox');
+    fireEvent.focus(input);
+    
     expect(handleFocus).toHaveBeenCalledTimes(1);
   });
-  
-  test('calls onBlur handler when input loses focus', () => {
+
+  it('calls onBlur when input loses focus', () => {
     const handleBlur = jest.fn();
     render(<Input onBlur={handleBlur} />);
     
-    fireEvent.blur(screen.getByRole('textbox'));
-    expect(handleBlur).toHaveBeenCalledTimes(1);
-  });
-  
-  test('formats value on blur when formatOnBlur is true', () => {
-    const formatValue = jest.fn(value => `$${value}`);
-    render(<Input formatValue={formatValue} formatOnBlur />);
-    
     const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: '100' } });
+    fireEvent.focus(input);
     fireEvent.blur(input);
     
-    expect(formatValue).toHaveBeenCalledWith('100');
+    expect(handleBlur).toHaveBeenCalledTimes(1);
   });
-  
-  test('formats value on type when formatOnType is true', () => {
-    const formatValue = jest.fn(value => `$${value}`);
-    render(<Input formatValue={formatValue} formatOnType />);
+
+  it('renders with different input types', () => {
+    const { rerender } = render(<Input type="text" />);
+    
+    let input = screen.getByRole('textbox');
+    expect(input).toHaveAttribute('type', 'text');
+    
+    rerender(<Input type="password" />);
+    input = screen.getByLabelText(/password/i);
+    expect(input).toHaveAttribute('type', 'password');
+    
+    rerender(<Input type="email" />);
+    input = screen.getByRole('textbox');
+    expect(input).toHaveAttribute('type', 'email');
+    
+    rerender(<Input type="number" />);
+    input = screen.getByRole('spinbutton');
+    expect(input).toHaveAttribute('type', 'number');
+  });
+
+  it('renders with required attribute when required is true', () => {
+    render(<Input required />);
     
     const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: '100' } });
+    expect(input).toHaveAttribute('required');
+  });
+
+  it('renders with autofocus attribute when autoFocus is true', () => {
+    render(<Input autoFocus />);
     
-    expect(formatValue).toHaveBeenCalledWith('100');
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveFocus();
   });
-  
-  test('auto-selects text when autoSelect is true', () => {
-    const selectSpy = jest.spyOn(HTMLInputElement.prototype, 'select');
-    render(<Input value="Test" autoFocus autoSelect />);
+
+  it('forwards ref to input element', () => {
+    const ref = React.createRef<HTMLInputElement>();
+    render(<Input ref={ref} />);
     
-    expect(selectSpy).toHaveBeenCalled();
-    selectSpy.mockRestore();
+    expect(ref.current).not.toBeNull();
+    expect(ref.current?.tagName).toBe('INPUT');
   });
-  
-  test('renders with different input types', () => {
-    const types = ['text', 'password', 'email', 'number', 'tel', 'url', 'search', 'date'];
+
+  it('renders with aria attributes', () => {
+    render(
+      <Input 
+        aria-label="Search"
+        aria-describedby="search-description"
+        aria-invalid={false}
+      />
+    );
     
-    types.forEach(type => {
-      const { unmount } = render(<Input type={type} />);
-      expect(screen.getByRole(type === 'text' ? 'textbox' : 'spinbutton')).toHaveAttribute('type', type);
-      unmount();
-    });
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveAttribute('aria-label', 'Search');
+    expect(input).toHaveAttribute('aria-describedby', 'search-description');
+    expect(input).toHaveAttribute('aria-invalid', 'false');
   });
-  
-  test('renders with disabled state', () => {
-    render(<Input disabled />);
-    expect(screen.getByRole('textbox')).toBeDisabled();
-    expect(screen.getByRole('textbox')).toHaveClass('opacity-50');
+
+  it('renders with full width when fullWidth is true', () => {
+    render(<Input fullWidth />);
+    
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-full-width');
   });
-  
-  test('renders with readonly state', () => {
-    render(<Input readOnly />);
-    expect(screen.getByRole('textbox')).toHaveAttribute('readonly');
-  });
-  
-  test('renders with required state', () => {
-    render(<Input required label="Required Field" />);
-    expect(screen.getByRole('textbox')).toBeRequired();
-    expect(screen.getByText('*')).toBeInTheDocument();
+
+  it('renders with custom width when width is provided', () => {
+    render(<Input width="300px" />);
+    
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveStyle('width: 300px');
   });
 });

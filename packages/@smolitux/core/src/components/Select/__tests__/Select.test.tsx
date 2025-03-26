@@ -1,236 +1,378 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Select } from '../Select';
+import { Select } from './Select';
+import { Option } from './Option';
 
-const mockOptions = [
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3', disabled: true }
-];
+describe('Select', () => {
+  const options = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3' }
+  ];
 
-const mockGroupedOptions = [
-  { value: 'option1', label: 'Option 1', group: 'Group 1' },
-  { value: 'option2', label: 'Option 2', group: 'Group 1' },
-  { value: 'option3', label: 'Option 3', group: 'Group 2' }
-];
-
-const mockOptionsWithDescriptions = [
-  { value: 'option1', label: 'Option 1', description: 'Description 1' },
-  { value: 'option2', label: 'Option 2', description: 'Description 2' }
-];
-
-describe('Select Component', () => {
-  test('renders correctly with default props', () => {
-    render(<Select options={mockOptions} />);
-    
-    const selectElement = screen.getByRole('combobox');
-    expect(selectElement).toBeInTheDocument();
-    expect(selectElement).toHaveClass('bg-white');
-    expect(selectElement).toHaveClass('rounded-md');
-    
-    const options = screen.getAllByRole('option');
-    expect(options).toHaveLength(3);
-    expect(options[0]).toHaveTextContent('Option 1');
-    expect(options[1]).toHaveTextContent('Option 2');
-    expect(options[2]).toHaveTextContent('Option 3');
-  });
-  
-  test('renders with label', () => {
-    render(<Select options={mockOptions} label="Test Label" />);
-    
-    expect(screen.getByText('Test Label')).toBeInTheDocument();
-    expect(screen.getByLabelText('Test Label')).toBeInTheDocument();
-  });
-  
-  test('renders with helper text', () => {
-    render(<Select options={mockOptions} helperText="Helper Text" />);
-    
-    expect(screen.getByText('Helper Text')).toBeInTheDocument();
-  });
-  
-  test('renders with error message', () => {
-    render(<Select options={mockOptions} error="Error Message" />);
-    
-    const errorMessage = screen.getByText('Error Message');
-    expect(errorMessage).toBeInTheDocument();
-    expect(errorMessage).toHaveClass('text-red-600');
-    
-    const selectElement = screen.getByRole('combobox');
-    expect(selectElement).toHaveAttribute('aria-invalid', 'true');
-  });
-  
-  test('renders with different sizes', () => {
-    const { rerender } = render(<Select options={mockOptions} size="sm" />);
-    expect(screen.getByRole('combobox')).toHaveClass('px-3 py-1.5 text-sm');
-    
-    rerender(<Select options={mockOptions} size="md" />);
-    expect(screen.getByRole('combobox')).toHaveClass('px-4 py-2 text-base');
-    
-    rerender(<Select options={mockOptions} size="lg" />);
-    expect(screen.getByRole('combobox')).toHaveClass('px-5 py-3 text-lg');
-    
-    rerender(<Select options={mockOptions} size="xs" />);
-    expect(screen.getByRole('combobox')).toHaveClass('px-2 py-1 text-xs');
-  });
-  
-  test('renders with different variants', () => {
-    const { rerender } = render(<Select options={mockOptions} variant="default" />);
-    expect(screen.getByRole('combobox')).toHaveClass('bg-white');
-    
-    rerender(<Select options={mockOptions} variant="filled" />);
-    expect(screen.getByRole('combobox')).toHaveClass('bg-gray-100');
-    
-    rerender(<Select options={mockOptions} variant="outlined" />);
-    expect(screen.getByRole('combobox')).toHaveClass('bg-transparent');
-    
-    rerender(<Select options={mockOptions} variant="unstyled" />);
-    expect(screen.getByRole('combobox')).toHaveClass('bg-transparent');
-    expect(screen.getByRole('combobox')).toHaveClass('border-0');
-  });
-  
-  test('renders with full width', () => {
-    render(<Select options={mockOptions} fullWidth />);
-    
-    const container = screen.getByRole('combobox').parentElement?.parentElement;
-    expect(container).toHaveClass('w-full');
-  });
-  
-  test('renders with left icon', () => {
-    const leftIcon = <span data-testid="left-icon">★</span>;
-    render(<Select options={mockOptions} leftIcon={leftIcon} />);
-    
-    expect(screen.getByTestId('left-icon')).toBeInTheDocument();
-    expect(screen.getByRole('combobox')).toHaveClass('pl-10');
-  });
-  
-  test('renders with right icon', () => {
-    const rightIcon = <span data-testid="right-icon">★</span>;
-    render(<Select options={mockOptions} rightIcon={rightIcon} />);
-    
-    expect(screen.getByTestId('right-icon')).toBeInTheDocument();
-  });
-  
-  test('renders with placeholder', () => {
-    render(<Select options={mockOptions} placeholder="Select an option" />);
-    
-    const placeholderOption = screen.getByRole('option', { name: 'Select an option' });
-    expect(placeholderOption).toBeInTheDocument();
-    expect(placeholderOption).toHaveValue('');
-  });
-  
-  test('renders with required indicator', () => {
-    render(<Select options={mockOptions} label="Test Label" required />);
-    
-    const requiredIndicator = screen.getByText('*');
-    expect(requiredIndicator).toBeInTheDocument();
-    expect(requiredIndicator).toHaveClass('text-red-500');
-    
-    const selectElement = screen.getByRole('combobox');
-    expect(selectElement).toHaveAttribute('aria-required', 'true');
-  });
-  
-  test('renders in disabled state', () => {
-    render(<Select options={mockOptions} disabled />);
-    
-    const selectElement = screen.getByRole('combobox');
-    expect(selectElement).toBeDisabled();
-    expect(selectElement).toHaveClass('opacity-50');
-    expect(selectElement).toHaveClass('cursor-not-allowed');
-    expect(selectElement).toHaveAttribute('aria-disabled', 'true');
-  });
-  
-  test('renders in readonly state', () => {
-    render(<Select options={mockOptions} readOnly />);
-    
-    const selectElement = screen.getByRole('combobox');
-    expect(selectElement).toHaveAttribute('readonly', '');
-    expect(selectElement).toHaveClass('opacity-70');
-    expect(selectElement).toHaveClass('cursor-default');
-    expect(selectElement).toHaveAttribute('aria-readonly', 'true');
-  });
-  
-  test('renders with grouped options', () => {
-    render(<Select options={mockGroupedOptions} groupOptions />);
-    
-    const optgroups = screen.getAllByRole('group');
-    expect(optgroups).toHaveLength(2);
-    expect(optgroups[0]).toHaveAttribute('label', 'Group 1');
-    expect(optgroups[1]).toHaveAttribute('label', 'Group 2');
-  });
-  
-  test('renders with option descriptions', () => {
-    render(<Select options={mockOptionsWithDescriptions} showOptionDescription />);
-    
-    const options = screen.getAllByRole('option');
-    expect(options[0]).toHaveAttribute('title', 'Description 1');
-    expect(options[0]).toHaveAttribute('data-description', 'Description 1');
-    expect(options[1]).toHaveAttribute('title', 'Description 2');
-    expect(options[1]).toHaveAttribute('data-description', 'Description 2');
-  });
-  
-  test('calls onChange when value changes', async () => {
-    const handleChange = jest.fn();
-    render(<Select options={mockOptions} onChange={handleChange} />);
-    
-    await userEvent.selectOptions(screen.getByRole('combobox'), 'option2');
-    
-    expect(handleChange).toHaveBeenCalledTimes(1);
-  });
-  
-  test('calls onValueChange when value changes', async () => {
-    const handleValueChange = jest.fn();
-    render(<Select options={mockOptions} onValueChange={handleValueChange} />);
-    
-    await userEvent.selectOptions(screen.getByRole('combobox'), 'option2');
-    
-    expect(handleValueChange).toHaveBeenCalledTimes(1);
-    expect(handleValueChange).toHaveBeenCalledWith('option2');
-  });
-  
-  test('calls onFocusChange when focus changes', () => {
-    const handleFocusChange = jest.fn();
-    render(<Select options={mockOptions} onFocusChange={handleFocusChange} />);
-    
-    const selectElement = screen.getByRole('combobox');
-    
-    fireEvent.focus(selectElement);
-    expect(handleFocusChange).toHaveBeenCalledWith(true);
-    
-    fireEvent.blur(selectElement);
-    expect(handleFocusChange).toHaveBeenCalledWith(false);
-  });
-  
-  test('auto focuses when autoFocus is true', () => {
-    render(<Select options={mockOptions} autoFocus />);
-    
-    expect(screen.getByRole('combobox')).toHaveFocus();
-  });
-  
-  test('renders with tooltip', () => {
-    render(<Select options={mockOptions} tooltip="Tooltip Text" />);
-    
-    const container = screen.getByRole('combobox').parentElement?.parentElement;
-    expect(container).toHaveAttribute('title', 'Tooltip Text');
-  });
-  
-  test('renders with custom class names', () => {
+  it('renders correctly with default props', () => {
     render(
-      <Select 
-        options={mockOptions} 
-        className="custom-class"
-        containerClassName="container-class"
-        labelClassName="label-class"
-        helperTextClassName="helper-class"
-        errorClassName="error-class"
-        label="Label"
-        helperText="Helper"
-      />
+      <Select>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
     );
     
-    expect(screen.getByRole('combobox')).toHaveClass('custom-class');
-    expect(screen.getByRole('combobox').parentElement?.parentElement).toHaveClass('container-class');
-    expect(screen.getByText('Label')).toHaveClass('label-class');
-    expect(screen.getByText('Helper')).toHaveClass('helper-class');
+    const select = screen.getByRole('combobox');
+    expect(select).toBeInTheDocument();
+    
+    // Options should not be visible initially
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 2')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 3')).not.toBeInTheDocument();
+  });
+
+  it('displays options when clicked', () => {
+    render(
+      <Select>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    fireEvent.click(select);
+    
+    // Options should be visible after click
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+    expect(screen.getByText('Option 2')).toBeInTheDocument();
+    expect(screen.getByText('Option 3')).toBeInTheDocument();
+  });
+
+  it('selects an option when clicked', () => {
+    render(
+      <Select>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    fireEvent.click(select);
+    
+    const option2 = screen.getByText('Option 2');
+    fireEvent.click(option2);
+    
+    // Select should display the selected option
+    expect(select).toHaveTextContent('Option 2');
+    
+    // Options should be hidden after selection
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 3')).not.toBeInTheDocument();
+  });
+
+  it('calls onChange when an option is selected', () => {
+    const handleChange = jest.fn();
+    render(
+      <Select onChange={handleChange}>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    fireEvent.click(select);
+    
+    const option3 = screen.getByText('Option 3');
+    fireEvent.click(option3);
+    
+    expect(handleChange).toHaveBeenCalledTimes(1);
+    expect(handleChange).toHaveBeenCalledWith(expect.any(Object), 'option3');
+  });
+
+  it('renders with placeholder text', () => {
+    render(
+      <Select placeholder="Select an option">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    expect(select).toHaveTextContent('Select an option');
+  });
+
+  it('renders with default value', () => {
+    render(
+      <Select defaultValue="option2">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    expect(select).toHaveTextContent('Option 2');
+  });
+
+  it('renders with controlled value', () => {
+    render(
+      <Select value="option3">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    expect(select).toHaveTextContent('Option 3');
+  });
+
+  it('renders as disabled', () => {
+    render(
+      <Select disabled>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    expect(select).toBeDisabled();
+    
+    // Should not open options when clicked
+    fireEvent.click(select);
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
+  });
+
+  it('renders with custom className', () => {
+    render(
+      <Select className="custom-select">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const selectContainer = screen.getByTestId('select-container');
+    expect(selectContainer).toHaveClass('custom-select');
+  });
+
+  it('renders with custom style', () => {
+    const customStyle = { backgroundColor: 'lightblue', width: '300px' };
+    render(
+      <Select style={customStyle}>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const selectContainer = screen.getByTestId('select-container');
+    expect(selectContainer).toHaveStyle('background-color: lightblue');
+    expect(selectContainer).toHaveStyle('width: 300px');
+  });
+
+  it('renders with different sizes', () => {
+    const { rerender } = render(
+      <Select size="sm">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    let selectContainer = screen.getByTestId('select-container');
+    expect(selectContainer).toHaveClass('select-sm');
+    
+    rerender(
+      <Select size="md">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    selectContainer = screen.getByTestId('select-container');
+    expect(selectContainer).toHaveClass('select-md');
+    
+    rerender(
+      <Select size="lg">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    selectContainer = screen.getByTestId('select-container');
+    expect(selectContainer).toHaveClass('select-lg');
+  });
+
+  it('renders with label', () => {
+    render(
+      <Select label="Choose an option">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    expect(screen.getByText('Choose an option')).toBeInTheDocument();
+  });
+
+  it('renders with helper text', () => {
+    render(
+      <Select helperText="Please select one option">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    expect(screen.getByText('Please select one option')).toBeInTheDocument();
+  });
+
+  it('renders with error state', () => {
+    render(
+      <Select error errorText="Selection is required">
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const selectContainer = screen.getByTestId('select-container');
+    expect(selectContainer).toHaveClass('select-error');
+    expect(screen.getByText('Selection is required')).toBeInTheDocument();
+  });
+
+  it('renders with required attribute', () => {
+    render(
+      <Select required>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    expect(select).toHaveAttribute('required');
+  });
+
+  it('renders with multiple selection', () => {
+    render(
+      <Select multiple>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('listbox');
+    expect(select).toHaveAttribute('multiple');
+    
+    // Options should be visible for multiple select
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+    expect(screen.getByText('Option 2')).toBeInTheDocument();
+    expect(screen.getByText('Option 3')).toBeInTheDocument();
+  });
+
+  it('allows multiple selections', () => {
+    const handleChange = jest.fn();
+    render(
+      <Select multiple onChange={handleChange}>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const option1 = screen.getByText('Option 1');
+    const option3 = screen.getByText('Option 3');
+    
+    fireEvent.click(option1);
+    fireEvent.click(option3);
+    
+    expect(handleChange).toHaveBeenCalledTimes(2);
+    expect(handleChange).toHaveBeenNthCalledWith(1, expect.any(Object), ['option1']);
+    expect(handleChange).toHaveBeenNthCalledWith(2, expect.any(Object), ['option1', 'option3']);
+  });
+
+  it('renders with search functionality', () => {
+    render(
+      <Select searchable>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    fireEvent.click(select);
+    
+    const searchInput = screen.getByPlaceholderText(/search/i);
+    expect(searchInput).toBeInTheDocument();
+    
+    // Search for "Option 2"
+    fireEvent.change(searchInput, { target: { value: '2' } });
+    
+    // Only Option 2 should be visible
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
+    expect(screen.getByText('Option 2')).toBeInTheDocument();
+    expect(screen.queryByText('Option 3')).not.toBeInTheDocument();
+  });
+
+  it('renders with custom option rendering', () => {
+    const renderOption = (option) => (
+      <div data-testid={`custom-option-${option.value}`}>
+        <span>{option.label}</span>
+        <span>({option.value})</span>
+      </div>
+    );
+    
+    render(
+      <Select renderOption={renderOption}>
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
+        ))}
+      </Select>
+    );
+    
+    const select = screen.getByRole('combobox');
+    fireEvent.click(select);
+    
+    expect(screen.getByTestId('custom-option-option1')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-option-option2')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-option-option3')).toBeInTheDocument();
+    
+    expect(screen.getByText('(option1)')).toBeInTheDocument();
+    expect(screen.getByText('(option2)')).toBeInTheDocument();
+    expect(screen.getByText('(option3)')).toBeInTheDocument();
+  });
+
+  it('closes dropdown when clicking outside', () => {
+    render(
+      <div>
+        <div data-testid="outside-element">Outside</div>
+        <Select>
+          {options.map(option => (
+            <Option key={option.value} value={option.value}>{option.label}</Option>
+          ))}
+        </Select>
+      </div>
+    );
+    
+    const select = screen.getByRole('combobox');
+    fireEvent.click(select);
+    
+    // Options should be visible
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+    
+    // Click outside
+    const outsideElement = screen.getByTestId('outside-element');
+    fireEvent.mouseDown(outsideElement);
+    
+    // Options should be hidden
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
   });
 });

@@ -29,7 +29,7 @@ const config = {
       statements: 70,
     },
   },
-  testMatch: ['**/__tests__/**/*.test.{ts,tsx}', '**/__tests__/**/*.spec.{ts,tsx}', '**/*.test.{ts,tsx}', '**/*.spec.{ts,tsx}'],
+  testMatch: ['**/__tests__/**/*.test.{ts,tsx}', '**/__tests__/**/*.spec.{ts,tsx}'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },

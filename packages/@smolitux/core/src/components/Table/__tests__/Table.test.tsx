@@ -1,195 +1,156 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Table from '../Table';
-
-// Mock für useTheme
-jest.mock('@smolitux/theme', () => ({
-  useTheme: () => ({
-    colors: {
-      primary: {
-        500: '#3182ce',
-      },
-    },
-  }),
-}));
-
-// Mock für Lucide Icons
-jest.mock('lucide-react', () => ({
-  ChevronUp: () => <span data-testid="icon-chevron-up">↑</span>,
-  ChevronDown: () => <span data-testid="icon-chevron-down">↓</span>,
-  Search: () => <span data-testid="icon-search">🔍</span>,
-  Filter: () => <span data-testid="icon-filter">🔧</span>,
-  ArrowLeft: () => <span data-testid="icon-arrow-left">←</span>,
-  ArrowRight: () => <span data-testid="icon-arrow-right">→</span>,
-  RefreshCw: () => <span data-testid="icon-refresh">↻</span>,
-  Download: () => <span data-testid="icon-download">↓</span>,
-}));
+import { Table } from './Table';
+import { TableHead } from './TableHead';
+import { TableBody } from './TableBody';
+import { TableRow } from './TableRow';
+import { TableCell } from './TableCell';
+import { TableFooter } from './TableFooter';
 
 describe('Table', () => {
-  const mockData = [
-    { id: 1, name: 'John Doe', age: 30, city: 'New York' },
-    { id: 2, name: 'Jane Smith', age: 25, city: 'Los Angeles' },
-    { id: 3, name: 'Bob Johnson', age: 40, city: 'Chicago' },
+  const sampleData = [
+    { id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
+    { id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com' },
+    { id: 3, name: 'Bob Johnson', age: 40, email: 'bob@example.com' }
   ];
 
-  const mockColumns = [
-    { 
-      id: 'name', 
-      header: 'Name', 
-      cell: (row: any) => row.name, 
-      sortable: true 
-    },
-    { 
-      id: 'age', 
-      header: 'Age', 
-      cell: (row: any) => row.age, 
-      sortable: true 
-    },
-    { 
-      id: 'city', 
-      header: 'City', 
-      cell: (row: any) => row.city 
-    },
+  const columns = [
+    { id: 'name', label: 'Name' },
+    { id: 'age', label: 'Age' },
+    { id: 'email', label: 'Email' }
   ];
 
-  it('renders table with data and columns', () => {
-    render(<Table data={mockData} columns={mockColumns} />);
+  it('renders correctly with default props', () => {
+    render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            {columns.map(column => (
+              <TableCell key={column.id}>{column.label}</TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {sampleData.map(row => (
+            <TableRow key={row.id}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.age}</TableCell>
+              <TableCell>{row.email}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
     
-    // Check headers
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('Age')).toBeInTheDocument();
-    expect(screen.getByText('City')).toBeInTheDocument();
+    expect(screen.getByText('Email')).toBeInTheDocument();
     
-    // Check data
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('30')).toBeInTheDocument();
-    expect(screen.getByText('New York')).toBeInTheDocument();
+    expect(screen.getByText('john@example.com')).toBeInTheDocument();
     
     expect(screen.getByText('Jane Smith')).toBeInTheDocument();
     expect(screen.getByText('25')).toBeInTheDocument();
-    expect(screen.getByText('Los Angeles')).toBeInTheDocument();
+    expect(screen.getByText('jane@example.com')).toBeInTheDocument();
     
     expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
     expect(screen.getByText('40')).toBeInTheDocument();
-    expect(screen.getByText('Chicago')).toBeInTheDocument();
+    expect(screen.getByText('bob@example.com')).toBeInTheDocument();
   });
 
-  it('renders empty state when no data is provided', () => {
-    render(<Table data={[]} columns={mockColumns} emptyText="No data available" />);
-    
-    expect(screen.getByText('No data available')).toBeInTheDocument();
-  });
-
-  it('renders with custom cell renderer', () => {
-    const columnsWithRenderer = [
-      ...mockColumns,
-      {
-        id: 'actions',
-        header: 'Actions',
-        accessor: (row: any) => row.id,
-        cell: (value: any) => <button data-testid={`action-${value}`}>Edit</button>,
-      },
-    ];
-    
-    render(<Table data={mockData} columns={columnsWithRenderer} />);
-    
-    expect(screen.getByTestId('action-1')).toBeInTheDocument();
-    expect(screen.getByTestId('action-2')).toBeInTheDocument();
-    expect(screen.getByTestId('action-3')).toBeInTheDocument();
-  });
-
-  it('sorts data when clicking on sortable column header', () => {
-    render(<Table data={mockData} columns={mockColumns} />);
-    
-    // Initial order: John, Jane, Bob
-    const rows = screen.getAllByRole('row');
-    expect(rows[1]).toHaveTextContent('John Doe');
-    expect(rows[2]).toHaveTextContent('Jane Smith');
-    expect(rows[3]).toHaveTextContent('Bob Johnson');
-    
-    // Click on Name header to sort
-    fireEvent.click(screen.getByText('Name'));
-    
-    // Sorted order (ascending): Bob, Jane, John
-    const sortedRows = screen.getAllByRole('row');
-    expect(sortedRows[1]).toHaveTextContent('Bob Johnson');
-    expect(sortedRows[2]).toHaveTextContent('Jane Smith');
-    expect(sortedRows[3]).toHaveTextContent('John Doe');
-    
-    // Click again to reverse sort
-    fireEvent.click(screen.getByText('Name'));
-    
-    // Sorted order (descending): John, Jane, Bob
-    const reverseSortedRows = screen.getAllByRole('row');
-    expect(reverseSortedRows[1]).toHaveTextContent('John Doe');
-    expect(reverseSortedRows[2]).toHaveTextContent('Jane Smith');
-    expect(reverseSortedRows[3]).toHaveTextContent('Bob Johnson');
-  });
-
-  it('paginates data when pagination is enabled', () => {
+  it('renders with custom className', () => {
     render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        pagination 
-        pageSize={2}
-      />
+      <Table className="custom-table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
-    // First page should show first 2 items
-    expect(screen.getByText('John Doe')).toBeInTheDocument();
-    expect(screen.getByText('Jane Smith')).toBeInTheDocument();
-    expect(screen.queryByText('Bob Johnson')).not.toBeInTheDocument();
-    
-    // Go to next page
-    fireEvent.click(screen.getByTestId('icon-arrow-right').parentElement!);
-    
-    // Second page should show last item
-    expect(screen.queryByText('John Doe')).not.toBeInTheDocument();
-    expect(screen.queryByText('Jane Smith')).not.toBeInTheDocument();
-    expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
+    const table = screen.getByRole('table');
+    expect(table).toHaveClass('custom-table');
   });
 
-  it('filters data when search is enabled', () => {
+  it('renders with custom style', () => {
+    const customStyle = { width: '100%', borderCollapse: 'collapse' };
     render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        search 
-      />
+      <Table style={customStyle}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
-    // Search input should be present
-    const searchInput = screen.getByPlaceholderText('Search...');
-    expect(searchInput).toBeInTheDocument();
-    
-    // Search for "Jane"
-    fireEvent.change(searchInput, { target: { value: 'Jane' } });
-    
-    // Only Jane should be visible
-    expect(screen.queryByText('John Doe')).not.toBeInTheDocument();
-    expect(screen.getByText('Jane Smith')).toBeInTheDocument();
-    expect(screen.queryByText('Bob Johnson')).not.toBeInTheDocument();
+    const table = screen.getByRole('table');
+    expect(table).toHaveStyle('width: 100%');
+    expect(table).toHaveStyle('border-collapse: collapse');
   });
 
   it('renders with different variants', () => {
     const { rerender } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        variant="striped" 
-      />
+      <Table variant="simple">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
     let table = screen.getByRole('table');
+    expect(table).toHaveClass('table-simple');
+    
+    rerender(
+      <Table variant="striped">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+    
+    table = screen.getByRole('table');
     expect(table).toHaveClass('table-striped');
     
     rerender(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        variant="bordered" 
-      />
+      <Table variant="bordered">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
     table = screen.getByRole('table');
@@ -198,102 +159,300 @@ describe('Table', () => {
 
   it('renders with different sizes', () => {
     const { rerender } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        size="sm" 
-      />
+      <Table size="sm">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
     let table = screen.getByRole('table');
     expect(table).toHaveClass('table-sm');
     
     rerender(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        size="lg" 
-      />
+      <Table size="md">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+    
+    table = screen.getByRole('table');
+    expect(table).toHaveClass('table-md');
+    
+    rerender(
+      <Table size="lg">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
     table = screen.getByRole('table');
     expect(table).toHaveClass('table-lg');
   });
 
-  it('renders with hover effect when hover is true', () => {
+  it('renders with footer', () => {
     render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        hover 
-      />
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Age</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+            <TableCell>30</TableCell>
+          </TableRow>
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell>Total</TableCell>
+            <TableCell>30</TableCell>
+          </TableRow>
+        </TableFooter>
+      </Table>
+    );
+    
+    const footerCells = screen.getAllByText(/total|30/i);
+    expect(footerCells.length).toBe(2);
+  });
+
+  it('renders with sortable columns', () => {
+    const onSort = jest.fn();
+    render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell sortable onSort={() => onSort('name')}>Name</TableCell>
+            <TableCell sortable onSort={() => onSort('age')}>Age</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+            <TableCell>30</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+    
+    const sortableHeaders = screen.getAllByRole('columnheader');
+    expect(sortableHeaders[0]).toHaveClass('sortable');
+    expect(sortableHeaders[1]).toHaveClass('sortable');
+    
+    fireEvent.click(sortableHeaders[0]);
+    expect(onSort).toHaveBeenCalledWith('name');
+  });
+
+  it('renders with selectable rows', () => {
+    const onSelect = jest.fn();
+    render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Select</TableCell>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow selectable onSelect={() => onSelect(1)}>
+            <TableCell>
+              <input type="checkbox" />
+            </TableCell>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+    
+    const selectableRow = screen.getByText('John Doe').closest('tr');
+    expect(selectableRow).toHaveClass('selectable');
+    
+    fireEvent.click(selectableRow);
+    expect(onSelect).toHaveBeenCalledWith(1);
+  });
+
+  it('renders with hoverable rows', () => {
+    render(
+      <Table hoverable>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
     const table = screen.getByRole('table');
-    expect(table).toHaveClass('table-hover');
+    expect(table).toHaveClass('table-hoverable');
   });
 
-  it('renders with custom className', () => {
+  it('renders with sticky header', () => {
     render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        className="custom-table" 
-      />
+      <Table stickyHeader>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+    
+    const tableHead = screen.getByText('Name').closest('thead');
+    expect(tableHead).toHaveClass('sticky-header');
+  });
+
+  it('renders with responsive design', () => {
+    render(
+      <Table responsive>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+    
+    const tableContainer = screen.getByRole('table').parentElement;
+    expect(tableContainer).toHaveClass('table-responsive');
+  });
+
+  it('renders with caption', () => {
+    render(
+      <Table caption="Employee List">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+    
+    expect(screen.getByText('Employee List')).toBeInTheDocument();
+  });
+
+  it('renders with aria attributes', () => {
+    render(
+      <Table aria-label="Employee data" aria-describedby="table-description">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
     const table = screen.getByRole('table');
-    expect(table).toHaveClass('custom-table');
+    expect(table).toHaveAttribute('aria-label', 'Employee data');
+    expect(table).toHaveAttribute('aria-describedby', 'table-description');
   });
 
-  it('calls onRowClick when a row is clicked', () => {
-    const handleRowClick = jest.fn();
-    
+  it('renders with custom width', () => {
     render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        onRowClick={handleRowClick} 
-      />
+      <Table width="800px">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
-    // Click on the first data row
-    fireEvent.click(screen.getByText('John Doe'));
-    
-    expect(handleRowClick).toHaveBeenCalledWith(mockData[0]);
+    const table = screen.getByRole('table');
+    expect(table).toHaveStyle('width: 800px');
   });
 
-  it('renders with selectable rows when selectable is true', () => {
+  it('renders with loading state', () => {
     render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        selectable 
-      />
+      <Table isLoading>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>John Doe</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
     
-    // Checkbox in header for select all
-    expect(screen.getByRole('checkbox', { name: 'Select all rows' })).toBeInTheDocument();
-    
-    // Checkboxes for each row
-    expect(screen.getAllByRole('checkbox')).toHaveLength(mockData.length + 1); // +1 for header
+    expect(screen.getByTestId('table-loading-overlay')).toBeInTheDocument();
   });
 
-  it('selects all rows when select all checkbox is clicked', () => {
-    const handleSelectionChange = jest.fn();
-    
+  it('renders with empty state', () => {
     render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        selectable 
-        onSelectionChange={handleSelectionChange} 
-      />
+      <Table emptyText="No data available">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {[].map(row => (
+            <TableRow key={row.id}>
+              <TableCell>{row.name}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     );
     
-    // Click select all checkbox
-    fireEvent.click(screen.getByRole('checkbox', { name: 'Select all rows' }));
-    
-    expect(handleSelectionChange).toHaveBeenCalledWith(mockData);
+    expect(screen.getByText('No data available')).toBeInTheDocument();
   });
 });
