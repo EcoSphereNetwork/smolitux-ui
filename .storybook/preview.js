@@ -1,3 +1,5 @@
+import '../packages/@smolitux/utils/src/styling/global.css';
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
@@ -7,6 +9,8 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      expanded: true,
+      sort: 'requiredFirst',
     },
     backgrounds: {
       default: 'light',
@@ -18,6 +22,14 @@ const preview = {
         {
           name: 'dark',
           value: '#1f2937',
+        },
+        {
+          name: 'white',
+          value: '#ffffff',
+        },
+        {
+          name: 'black',
+          value: '#000000',
         },
       ],
     },
@@ -44,12 +56,27 @@ const preview = {
             height: '800px',
           },
         },
+        widescreen: {
+          name: 'Widescreen',
+          styles: {
+            width: '1920px',
+            height: '1080px',
+          },
+        },
       },
     },
     docs: {
       toc: true,
       source: {
         state: 'open',
+      },
+      description: {
+        component: null,
+      },
+    },
+    options: {
+      storySort: {
+        order: ['Introduction', 'Components', ['Basic', 'Layout', 'Form', 'Feedback', 'Navigation', 'Data Display']],
       },
     },
   },

@@ -1,0 +1,84 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Smolitux UI Komponenten-Bibliothek
+
+Willkommen bei der Smolitux UI Komponenten-Bibliothek! Diese Bibliothek bietet eine Sammlung von React-Komponenten für die Entwicklung moderner Web-Anwendungen.
+
+## Pakete
+
+Die Bibliothek ist in mehrere Pakete unterteilt:
+
+- **@smolitux/utils**: Grundlegende Utility-Funktionen und Komponenten
+- **@smolitux/core**: Basis-UI-Komponenten
+- **@smolitux/ai**: KI-bezogene Komponenten
+- **@smolitux/blockchain**: Blockchain-bezogene Komponenten
+- **@smolitux/community**: Community-bezogene Komponenten
+- **@smolitux/federation**: Föderations-bezogene Komponenten
+- **@smolitux/media**: Medien-bezogene Komponenten
+- **@smolitux/theme**: Theming-System
+- **@smolitux/layout**: Layout-Komponenten
+- **@smolitux/charts**: Chart-Komponenten
+
+## Installation
+
+```bash
+# Installation des gesamten Pakets
+npm install @smolitux/ui
+
+# Installation einzelner Pakete
+npm install @smolitux/utils
+npm install @smolitux/core
+npm install @smolitux/ai
+# usw.
+```
+
+## Verwendung
+
+```jsx
+import { Card, Button } from '@smolitux/utils/components/patterns';
+import { ContentAnalytics } from '@smolitux/ai';
+
+function App() {
+  return (
+    <Card>
+      <h1>Meine App</h1>
+      <Button>Klick mich</Button>
+      <ContentAnalytics />
+    </Card>
+  );
+}
+```
+
+## Theming
+
+Die Komponenten unterstützen ein flexibles Theming-System, das auf CSS-Variablen basiert. Sie können das Erscheinungsbild der Komponenten anpassen, indem Sie die CSS-Variablen überschreiben.
+
+```css
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #6b7280;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+}
+```
+
+## Barrierefreiheit
+
+Alle Komponenten sind so konzipiert, dass sie den WCAG 2.1 AA-Richtlinien entsprechen. Sie unterstützen Tastaturnavigation, Screenreader und andere Hilfstechnologien.
+
+## Browser-Unterstützung
+
+Die Komponenten unterstützen alle modernen Browser, einschließlich:
+
+- Chrome (letzte 2 Versionen)
+- Firefox (letzte 2 Versionen)
+- Safari (letzte 2 Versionen)
+- Edge (letzte 2 Versionen)
+
+## Mitwirken
+
+Wir freuen uns über Beiträge zur Verbesserung der Komponenten-Bibliothek. Bitte lesen Sie unsere Beitragsrichtlinien, bevor Sie einen Pull Request erstellen.

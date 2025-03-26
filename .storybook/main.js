@@ -13,8 +13,8 @@ function getAbsolutePath(value) {
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {
   "stories": [
-    "../packages/**/*.mdx",
-    "../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    "../packages/@smolitux/*/src/**/*.mdx",
+    "../packages/@smolitux/*/src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   "addons": [
     getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
@@ -37,6 +37,18 @@ const config = {
   "framework": {
     "name": getAbsolutePath('@storybook/react-webpack5'),
     "options": {}
+  },
+  "typescript": {
+    "check": false,
+    "checkOptions": {},
+    "reactDocgen": 'react-docgen-typescript',
+    "reactDocgenTypescriptOptions": {
+      "shouldExtractLiteralValuesFromEnum": true,
+      "propFilter": (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
+  },
+  "docs": {
+    "autodocs": "tag",
   }
-};
+}
 export default config;
