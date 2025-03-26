@@ -76,11 +76,6 @@
     "wait-on": "^7.2.0"
   },
   "dependencies": {
-    "@smolitux/ai": "^0.1.0",
-    "@smolitux/blockchain": "^0.1.0",
-    "@smolitux/community": "^0.1.0",
-    "@smolitux/federation": "^0.1.0",
-    "@smolitux/media": "^0.1.0",
     "lucide-react": "^0.484.0",
     "typescript": "^5.8.2",
     "y18n": "5.0.8"

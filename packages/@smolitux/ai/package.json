@@ -17,7 +17,6 @@
   },
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0",
-    "@smolitux/core": ">=0.1.0"
+    "react-dom": ">=18.0.0"
   }
 }
