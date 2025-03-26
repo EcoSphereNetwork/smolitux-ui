@@ -1,6 +1,8 @@
 /** @type {import('jest').Config} */
 const config = {
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  roots: ['<rootDir>/packages'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     // CSS-Module-Mocking
@@ -8,15 +10,15 @@ const config = {
     // SVG und andere Assets
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/src/__mocks__/fileMock.js',
     // Alias-Auflösung für '@smolitux/'
-    '^@smolitux/(.*)$': '<rootDir>/packages/@smolitux/$1',
+    '^@smolitux/(.*)$': '<rootDir>/packages/@smolitux/$1/src',
     // Mock für y18n
     '^y18n$': '<rootDir>/src/__mocks__/node_modules/y18n.js',
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   collectCoverageFrom: [
-    'packages/@smolitux/**/*.{ts,tsx}',
-    '!packages/@smolitux/**/*.stories.{ts,tsx}',
-    '!packages/@smolitux/**/*.d.ts',
+    'packages/@smolitux/*/src/**/*.{ts,tsx}',
+    '!packages/@smolitux/*/src/**/*.stories.{ts,tsx}',
+    '!packages/@smolitux/*/src/**/*.d.ts',
     '!**/node_modules/**',
   ],
   coverageThreshold: {
@@ -28,9 +30,9 @@ const config = {
     },
   },
   testMatch: ['**/__tests__/**/*.test.{ts,tsx}', '**/__tests__/**/*.spec.{ts,tsx}'],
-  // transform: {
-  //   '^.+\\.(ts|tsx)$': 'babel-jest',
-  // },
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
   transformIgnorePatterns: [
     '/node_modules/(?!y18n)/'
   ],
@@ -38,6 +40,11 @@ const config = {
     'default',
   ],
   snapshotSerializers: [],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.json',
+    },
+  },
 };
 
 module.exports = config;

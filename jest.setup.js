@@ -1,5 +1,5 @@
-// Wir verwenden keine externen Abh�ngigkeiten f�r die Tests
-// require('@testing-library/jest-dom');
+// Jest setup file
+require('@testing-library/jest-dom');
 
 // Globale Mock-Funktionen
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -22,3 +22,42 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn(),
   })),
 });
+
+// Mock für window.IntersectionObserver
+global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
+// Mock für window.scrollTo
+global.scrollTo = jest.fn();
+
+// Unterdrücke Konsolenwarnungen während der Tests
+const originalConsoleWarn = console.warn;
+console.warn = (...args) => {
+  // Ignoriere bestimmte Warnungen
+  if (
+    args[0] && 
+    (args[0].includes('ReactDOM.render is no longer supported') || 
+     args[0].includes('forwardRef render functions do not support propTypes'))
+  ) {
+    return;
+  }
+  originalConsoleWarn(...args);
+};
+
+// Unterdrücke Konsolenfehler während der Tests
+const originalConsoleError = console.error;
+console.error = (...args) => {
+  // Ignoriere bestimmte Fehler
+  if (
+    args[0] && 
+    (args[0].includes('Warning: ReactDOM.render is no longer supported') || 
+     args[0].includes('Warning: An update to') || 
+     args[0].includes('Warning: Cannot update a component'))
+  ) {
+    return;
+  }
+  originalConsoleError(...args);
+};
