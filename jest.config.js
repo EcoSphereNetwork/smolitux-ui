@@ -28,18 +28,14 @@ const config = {
     },
   },
   testMatch: ['**/__tests__/**/*.test.{ts,tsx}', '**/__tests__/**/*.spec.{ts,tsx}'],
-  transform: {
-    '^.+\\.(ts|tsx)$': ['babel-jest', { presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'] }],
-  },
+  // transform: {
+  //   '^.+\\.(ts|tsx)$': 'babel-jest',
+  // },
   transformIgnorePatterns: [
     '/node_modules/(?!y18n)/'
   ],
   reporters: [
     'default',
-    ['jest-junit', {
-      outputDirectory: './reports/jest',
-      outputName: 'jest-junit.xml',
-    }],
   ],
   snapshotSerializers: [],
 };

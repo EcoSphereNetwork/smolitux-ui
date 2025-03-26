@@ -1,0 +1,578 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Drawer Snapshots renders default drawer correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; right: 0px; top: 0px; bottom: 0px; width: 320px; transform: translateX(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with custom className correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          custom-drawer
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; right: 0px; top: 0px; bottom: 0px; width: 320px; transform: translateX(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with custom height correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          w-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; bottom: 0px; left: 0px; right: 0px; height: 300px; transform: translateY(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with custom width correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; right: 0px; top: 0px; bottom: 0px; width: 400px; transform: translateX(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with different placements correctly: Drawer with placement bottom 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          w-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; bottom: 0px; left: 0px; right: 0px; height: 320px; transform: translateY(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with different placements correctly: Drawer with placement left 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; left: 0px; top: 0px; bottom: 0px; width: 320px; transform: translateX(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with different placements correctly: Drawer with placement right 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; right: 0px; top: 0px; bottom: 0px; width: 320px; transform: translateX(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with different placements correctly: Drawer with placement top 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          w-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; top: 0px; left: 0px; right: 0px; height: 320px; transform: translateY(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with footer correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; right: 0px; top: 0px; bottom: 0px; width: 320px; transform: translateX(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      />
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+    <div
+      class="border-t border-gray-200 dark:border-gray-700 px-4 py-3"
+    >
+      <button>
+        Footer Button
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders with title correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-labelledby="drawer-title"
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; right: 0px; top: 0px; bottom: 0px; width: 320px; transform: translateX(0);"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center"
+    >
+      <h2
+        class="text-lg font-medium text-gray-900 dark:text-white"
+        id="drawer-title"
+      >
+        Drawer Title
+      </h2>
+      <button
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        type="button"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Drawer Snapshots renders without header correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+    style="z-index: 50;"
+  />
+  <div
+    aria-labelledby="drawer-title"
+    aria-modal="true"
+    class="
+          bg-white dark:bg-gray-800 shadow-xl flex flex-col
+          h-full
+          
+        "
+    role="dialog"
+    style="position: fixed; z-index: 51; transition: all 0.3s ease-in-out; right: 0px; top: 0px; bottom: 0px; width: 320px; transform: translateX(0);"
+  >
+    <div
+      class="flex-grow overflow-y-auto p-4"
+    >
+      Drawer Content
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -41,15 +41,15 @@ describe('Dialog', () => {
     expect(screen.getByText('Dialog Title')).toBeInTheDocument();
   });
 
-  it('calls onClose when close button is clicked', () => {
+  it('calls onClose when cancel button is clicked', () => {
     render(
       <Dialog isOpen={true} onClose={mockOnClose}>
         Dialog Content
       </Dialog>
     );
     
-    const closeButton = screen.getByLabelText('Schließen');
-    fireEvent.click(closeButton);
+    const cancelButton = screen.getByText('Abbrechen');
+    fireEvent.click(cancelButton);
     
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });

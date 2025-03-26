@@ -1,7 +1,22 @@
 // packages/@smolitux/core/src/components/Breadcrumb/Breadcrumb.tsx
-import React, { forwardRef } from 'react';
+import React, { forwardRef, Children, isValidElement, cloneElement } from 'react';
 
-export interface BreadcrumbItem {
+export interface BreadcrumbItemProps {
+  /** Link-Text */
+  children: React.ReactNode;
+  /** Link-Ziel (wenn nicht angegeben, wird kein Link dargestellt) */
+  href?: string;
+  /** Icon vor dem Label */
+  icon?: React.ReactNode;
+  /** Zusätzliche Eigenschaften für das Link-Element */
+  linkProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
+  /** Ist das Element aktiv/aktuell? */
+  isCurrentPage?: boolean;
+  /** Benutzerdefinierte Klasse */
+  className?: string;
+}
+
+export interface BreadcrumbItemData {
   /** Link-Text */
   label: React.ReactNode;
   /** Link-Ziel (wenn nicht angegeben, wird kein Link dargestellt) */
@@ -15,10 +30,14 @@ export interface BreadcrumbItem {
 }
 
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
-  /** Array von Breadcrumb-Items */
-  items: BreadcrumbItem[];
+  /** Array von Breadcrumb-Items (alternativ zu children) */
+  items?: BreadcrumbItemData[];
+  /** Kinder-Elemente (BreadcrumbItem-Komponenten) */
+  children?: React.ReactNode;
   /** Benutzerdefiniertes Trennzeichen */
   separator?: React.ReactNode;
+  /** Abstand zwischen den Elementen */
+  spacing?: string;
   /** Maximal anzuzeigende Items (bei Überschreitung wird ein "..." angezeigt) */
   maxItems?: number;
   /** Anzahl der letzten Items, die immer angezeigt werden */
@@ -46,6 +65,7 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
  * 
  * @example
  * ```tsx
+ * // Mit items-Array
  * <Breadcrumb 
  *   items={[
  *     { label: 'Home', href: '/' },
@@ -54,11 +74,21 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
  *     { label: 'Produkt', active: true }
  *   ]}
  * />
+ * 
+ * // Mit Komponenten
+ * <Breadcrumb>
+ *   <BreadcrumbItem href="/">Home</BreadcrumbItem>
+ *   <BreadcrumbItem href="/products">Produkte</BreadcrumbItem>
+ *   <BreadcrumbItem href="/products/category">Kategorie</BreadcrumbItem>
+ *   <BreadcrumbItem isCurrentPage>Produkt</BreadcrumbItem>
+ * </Breadcrumb>
  * ```
  */
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
-  items,
+  items = [],
+  children,
   separator = '/',
+  spacing,
   maxItems,
   itemsAfterCollapse = 1,
   itemsBeforeCollapse = 1,
@@ -84,10 +114,30 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
     </svg>
   );
   
+  // Verarbeite children zu items, wenn vorhanden
+  const childrenItems = children ? Children.toArray(children)
+    .filter(child => isValidElement(child))
+    .map((child) => {
+      if (isValidElement(child)) {
+        const { children: label, href, icon, isCurrentPage, ...rest } = child.props;
+        return {
+          label,
+          href,
+          icon,
+          active: isCurrentPage,
+          linkProps: rest
+        };
+      }
+      return null;
+    }).filter(Boolean) : [];
+
+  // Verwende entweder die übergebenen items oder die aus children erstellten
+  const itemsToUse = children ? childrenItems : items;
+  
   // Wenn Home-Icon angezeigt werden soll und noch nicht in den Items enthalten ist
   const allItems = showHomeIcon 
-    ? [{ label: 'Home', href: homeHref, icon: homeIcon || defaultHomeIcon }, ...items]
-    : items;
+    ? [{ label: 'Home', href: homeHref, icon: homeIcon || defaultHomeIcon }, ...itemsToUse]
+    : itemsToUse;
   
   // Sollen Items wegen maxItems zusammengefasst werden?
   const needsCollapse = maxItems !== undefined && allItems.length > maxItems;
@@ -97,7 +147,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
     ? [
       ...allItems.slice(0, itemsBeforeCollapse),
       // Collapse-Element (...)
-      { label: expandIcon } as BreadcrumbItem,
+      { label: expandIcon } as BreadcrumbItemData,
       ...allItems.slice(allItems.length - itemsAfterCollapse)
     ]
     : allItems;
@@ -112,7 +162,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
       className={`flex ${className}`}
       {...rest}
     >
-      <ol className="inline-flex items-center space-x-1 md:space-x-2">
+      <ol className={`inline-flex items-center ${spacing ? spacing : 'space-x-1 md:space-x-2'}`}>
         {displayedItems.map((item, index) => {
           // Letztes Element?
           const isLast = index === displayedItems.length - 1;
@@ -123,15 +173,28 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
           const baseClasses = [
             'inline-flex items-center',
             isLast || isExpandIcon ? '' : 'hover:text-gray-900 dark:hover:text-gray-100',
-            (item as BreadcrumbItem).active || isLast 
+            (item as BreadcrumbItemData).active || isLast 
               ? `font-medium text-gray-800 dark:text-gray-100 ${activeItemClassName}` 
               : 'text-gray-500 dark:text-gray-400',
             (!isLast && !isExpandIcon) ? '' : '',
             itemClassName
           ].filter(Boolean).join(' ');
           
+          // Bestimme, ob das Element das aktuelle ist
+          const isCurrentPage = (item as BreadcrumbItemData).active || isLast;
+          
+          // Bestimme die Klasse für das li-Element
+          const liClassName = [
+            "inline-flex items-center",
+            (item as BreadcrumbItemData).linkProps?.className || ""
+          ].filter(Boolean).join(' ');
+          
           return (
-            <li key={index} className="inline-flex items-center">
+            <li 
+              key={index} 
+              className={liClassName}
+              aria-current={isCurrentPage ? 'page' : undefined}
+            >
               {/* Trennzeichen (außer beim ersten Element) */}
               {index > 0 && (
                 <span className="mx-2 text-gray-400 dark:text-gray-500">
@@ -140,21 +203,17 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
               )}
               
               {/* Item-Inhalt */}
-              {(item as BreadcrumbItem).href && !(item as BreadcrumbItem).active && !isExpandIcon ? (
+              {(item as BreadcrumbItemData).href && !isCurrentPage && !isExpandIcon ? (
                 <Link
-                  href={(item as BreadcrumbItem).href || ''}
+                  href={(item as BreadcrumbItemData).href || ''}
                   className={baseClasses}
-                  aria-current={(item as BreadcrumbItem).active ? 'page' : undefined}
-                  {...(item as BreadcrumbItem).linkProps}
+                  {...(item as BreadcrumbItemData).linkProps}
                 >
                   {item.icon && <span className="mr-1">{item.icon}</span>}
                   {item.label}
                 </Link>
               ) : (
-                <span
-                  className={baseClasses}
-                  aria-current={(item as BreadcrumbItem).active ? 'page' : undefined}
-                >
+                <span className={baseClasses}>
                   {item.icon && <span className="mr-1">{item.icon}</span>}
                   {item.label}
                 </span>

@@ -255,6 +255,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
           className={`
             fixed z-50 p-2 text-sm text-white rounded shadow-md
             bg-gray-800 dark:bg-gray-700
+            tooltip tooltip-${position} tooltip-content
             ${className}
           `}
           style={{ 
@@ -268,6 +269,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
           
           {arrow && (
             <div
+              data-testid="tooltip-arrow"
               className="absolute w-0 h-0 text-gray-800 dark:text-gray-700"
               style={{
                 ...getArrowStyle(),
