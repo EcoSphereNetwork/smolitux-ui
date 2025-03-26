@@ -38,11 +38,17 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Verbesserte Typendefinitionen für alle Komponenten
 - Bessere Dokumentation mit JSDoc-Kommentaren
 - Optimierte Leistung bei komplexen Komponenten
+- Verbesserte Browserkompatibilität durch Erkennung der Ausführungsumgebung
+- Hinzugefügt: Primitive Komponenten (Box, Flex, Text) für konsistentes Layout
+- Hinzugefügt: Test-App zur Demonstration der Komponenten
 
 ### Fehlerbehebungen
 - Behoben: Syntaxfehler in Charts-Komponenten
 - Behoben: Fehlerhafte Snapshot-Tests
 - Behoben: Probleme mit der Formularvalidierung
+- Behoben: Falsche Modul-Pfade in package.json-Dateien (index.mjs statt index.esm.js)
+- Behoben: Probleme mit i18n-Initialisierung in Node.js-Umgebungen
+- Behoben: Fehlerhafte Importe zwischen Paketen, die auf interne Quellcode-Pfade verwiesen
 
 ## [0.2.0] - 2025-03-25
 
