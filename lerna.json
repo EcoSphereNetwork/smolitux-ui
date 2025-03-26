@@ -2,6 +2,7 @@
   "version": "0.2.0",
   "npmClient": "npm",
   "packages": ["packages/*", "packages/@smolitux/*"],
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "command": {
     "publish": {
       "conventionalCommits": true,

@@ -1,7 +1,7 @@
 {
-  "name": "@smolitux/theme",
+  "name": "@smolitux/utils",
   "version": "0.2.0",
-  "description": "Theming system for Smolitux UI",
+  "description": "Utility functions and components for Smolitux UI",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build:js": "tsup src/index.ts --format cjs,esm",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "test": "jest"

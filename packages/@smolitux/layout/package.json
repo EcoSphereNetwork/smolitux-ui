@@ -1,6 +1,6 @@
 {
   "name": "@smolitux/layout",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Layout components for Smolitux UI",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -19,7 +19,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@smolitux/core": "0.1.0",
-    "@smolitux/theme": "0.1.0"
+    "@smolitux/core": "0.2.0",
+    "@smolitux/theme": "0.2.0"
   }
 }
