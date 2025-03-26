@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-export interface CardProps {
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Karteninhalt */
   children: ReactNode;
   /** Titel der Karte */
@@ -51,7 +51,8 @@ export const Card: React.FC<CardProps> = ({
   width,
   height,
   backgroundColor,
-  borderColor
+  borderColor,
+  ...rest
 }) => {
   // Varianten-Klassen
   const variantClasses = {
@@ -84,15 +85,18 @@ export const Card: React.FC<CardProps> = ({
         ${bordered ? borderColor || 'border border-gray-200 dark:border-gray-700' : ''} 
         ${hoverable ? 'transition-shadow duration-200 hover:shadow-lg' : ''} 
         ${variantClasses[variant]}
+        ${noPadding ? '' : paddingClasses[padding]}
         ${className}
       `}
       style={{
         width: width,
         height: height
       }}
+      {...rest}
+      data-testid="card"
     >
       {title && (
-        <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+        <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3" data-testid="card-header">
           <h3 className="font-medium text-gray-900 dark:text-white">{title}</h3>
           {headerAction && (
             <div>{headerAction}</div>
@@ -100,12 +104,12 @@ export const Card: React.FC<CardProps> = ({
         </div>
       )}
       
-      <div className={noPadding ? '' : paddingClasses[padding]}>
+      <div data-testid="card-content">
         {children}
       </div>
       
       {footer && (
-        <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3">
+        <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3" data-testid="card-footer">
           {footer}
         </div>
       )}

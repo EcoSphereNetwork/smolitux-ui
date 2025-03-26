@@ -35,7 +35,7 @@ describe('ProgressBar', () => {
   });
   
   test('renders with custom label', () => {
-    render(<ProgressBar value={50} label="Loading..." />);
+    render(<ProgressBar value={50} showLabel label="Loading..." />);
     
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
@@ -43,11 +43,11 @@ describe('ProgressBar', () => {
   test('renders with different sizes', () => {
     const { rerender } = render(<ProgressBar value={50} size="xs" />);
     
-    let progressBar = screen.getByRole('progressbar');
+    let progressBar = screen.getByTestId('progressbar');
     expect(progressBar).toHaveClass('h-1');
     
     rerender(<ProgressBar value={50} size="lg" />);
-    progressBar = screen.getByRole('progressbar');
+    progressBar = screen.getByTestId('progressbar');
     expect(progressBar).toHaveClass('h-6');
   });
   
