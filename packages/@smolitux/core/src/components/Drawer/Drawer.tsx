@@ -118,6 +118,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           bottom: 0,
           width: typeof width === 'number' ? `${width}px` : width,
           transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
+          className: 'left-0',
         };
       case 'right':
         return {
@@ -127,6 +128,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           bottom: 0,
           width: typeof width === 'number' ? `${width}px` : width,
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
+          className: 'right-0',
         };
       case 'top':
         return {
@@ -136,6 +138,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           right: 0,
           height: typeof height === 'number' ? `${height}px` : height,
           transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+          className: 'top-0',
         };
       case 'bottom':
         return {
@@ -145,6 +148,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           right: 0,
           height: typeof height === 'number' ? `${height}px` : height,
           transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
+          className: 'bottom-0',
         };
       default:
         return commonStyles;
@@ -162,6 +166,7 @@ export const Drawer: React.FC<DrawerProps> = ({
         style={{ zIndex }}
         onClick={closeOnOverlayClick ? onClose : undefined}
         aria-hidden="true"
+        data-testid="drawer-overlay"
       />
       
       {/* Drawer */}
@@ -174,6 +179,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           bg-white dark:bg-gray-800 shadow-xl flex flex-col
           ${isHorizontal ? 'h-full' : 'w-full'}
           ${className}
+          ${getPositionStyles().className || ''}
         `}
         style={getPositionStyles()}
       >
@@ -187,7 +193,7 @@ export const Drawer: React.FC<DrawerProps> = ({
               type="button"
               className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
               onClick={onClose}
-              aria-label="Close"
+              aria-label="Schließen"
             >
               <svg 
                 className="h-6 w-6" 

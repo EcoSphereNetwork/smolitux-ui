@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip Snapshots renders disabled tooltip correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with arrow correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with custom className correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with custom maxWidth correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with different positions correctly: Tooltip with position bottom 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with different positions correctly: Tooltip with position left 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with different positions correctly: Tooltip with position right 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with different positions correctly: Tooltip with position top 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Tooltip Snapshots renders tooltip with rich content correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Hover Me
+  </button>
+</DocumentFragment>
+`;
