@@ -4,3 +4,7 @@ export * from './components/TokenDisplay';
 export * from './components/TransactionHistory';
 export * from './components/StakingInterface';
 export * from './components/TokenDistributionChart';
+
+// Export new Blockchain components
+export * from './components/TokenEconomy';
+export * from './components/SmartContractInteraction';
