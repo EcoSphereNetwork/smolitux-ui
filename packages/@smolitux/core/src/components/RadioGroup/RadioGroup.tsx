@@ -1,5 +1,23 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import Radio from './Radio';
+
+// Kontext für die RadioGroup
+export interface RadioGroupContextType {
+  name?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  disabled?: boolean;
+  required?: boolean;
+  error?: string;
+  isInvalid?: boolean;
+  isValid?: boolean;
+  isSuccess?: boolean;
+  isLoading?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  getRadioId?: (value: string) => string;
+}
+
+export const RadioGroupContext = createContext<RadioGroupContextType | null>(null);
 
 export interface RadioOption {
   value: string;
@@ -11,9 +29,11 @@ export interface RadioGroupProps {
   /** Name für die Radio-Gruppe (wichtig für Formular-Handling) */
   name: string;
   /** Array von Radio-Optionen */
-  options: RadioOption[];
+  options?: RadioOption[];
   /** Aktuell ausgewählter Wert */
   value?: string;
+  /** Standard-Wert */
+  defaultValue?: string;
   /** Callback bei Änderungen */
   onChange?: (value: string) => void;
   /** Label für die gesamte Gruppe */
@@ -25,11 +45,13 @@ export interface RadioGroupProps {
   /** Größe der Radios */
   size?: 'sm' | 'md' | 'lg';
   /** Ausrichtung der Optionen */
-  direction?: 'horizontal' | 'vertical';
+  layout?: 'horizontal' | 'vertical';
   /** Deaktiviert alle Optionen */
   disabled?: boolean;
   /** Zusätzliche CSS-Klassen */
   className?: string;
+  /** Kinder-Elemente (Radio-Komponenten) */
+  children?: React.ReactNode;
 }
 
 /**
@@ -39,56 +61,105 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   name,
   options,
   value,
+  defaultValue,
   onChange,
   label,
   helperText,
   error,
   size = 'md',
-  direction = 'vertical',
+  layout = 'vertical',
   disabled = false,
   className = '',
+  children
 }) => {
   // Generiere eine eindeutige ID für die Gruppe
   const groupId = `radio-group-${Math.random().toString(36).substring(2, 9)}`;
   
+  // State für uncontrolled mode
+  const [internalValue, setInternalValue] = React.useState(defaultValue);
+  
+  // Aktueller Wert (controlled oder uncontrolled)
+  const currentValue = value !== undefined ? value : internalValue;
+  
   // Handler für Änderungen
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Wenn das Radio disabled ist, nichts tun
+    if (e.target.disabled) {
+      return;
+    }
+    
+    // Für uncontrolled mode
+    if (value === undefined) {
+      setInternalValue(e.target.value);
+    }
+    
+    // Callback aufrufen
     if (onChange) {
       onChange(e.target.value);
     }
   };
 
-  return (
-    <div 
-      className={`${className}`}
-      role="radiogroup"
-      aria-labelledby={label ? `${groupId}-label` : undefined}
-      aria-describedby={
-        error ? `${groupId}-error` : 
-        helperText ? `${groupId}-helper` : 
-        undefined
+  // Klonen der Kinder-Elemente mit den richtigen Props
+  const renderChildren = () => {
+    return React.Children.map(children, (child) => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {
+          name,
+          checked: currentValue === child.props.value,
+          onChange: handleChange,
+          size,
+          disabled: disabled || child.props.disabled
+        });
       }
-    >
+      return child;
+    });
+  };
+
+  // Kontext-Wert für RadioGroup
+  const contextValue: RadioGroupContextType = {
+    name,
+    value,
+    onChange: handleChange,
+    disabled,
+    required: false,
+    error,
+    isInvalid: Boolean(error),
+    size,
+    getRadioId: (val: string) => `${groupId}-${val}`
+  };
+
+  return (
+    <RadioGroupContext.Provider value={contextValue}>
+      <div 
+        className={`${className}`}
+        role="radiogroup"
+        aria-labelledby={label ? `${groupId}-label` : undefined}
+        aria-describedby={
+          error ? `${groupId}-error` : 
+          helperText ? `${groupId}-helper` : 
+          undefined
+        }
+      >
       {label && (
         <div id={`${groupId}-label`} className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
           {label}
         </div>
       )}
       
-      <div className={`${direction === 'horizontal' ? 'flex flex-wrap gap-4' : 'space-y-2'}`}>
-        {options.map((option) => (
+      <div className={`${layout === 'horizontal' ? 'flex flex-row' : 'flex flex-col'} gap-2`}>
+        {options ? options.map((option) => (
           <Radio
             key={option.value}
             id={`${groupId}-${option.value}`}
             name={name}
             value={option.value}
-            checked={value === option.value}
+            checked={value === option.value || defaultValue === option.value}
             onChange={handleChange}
             label={option.label}
             size={size}
             disabled={disabled || option.disabled}
           />
-        ))}
+        )) : renderChildren()}
       </div>
       
       {(error || helperText) && (
@@ -105,6 +176,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
         </div>
       )}
     </div>
+    </RadioGroupContext.Provider>
   );
 };
 
