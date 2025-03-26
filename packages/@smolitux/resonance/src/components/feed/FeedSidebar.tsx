@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
-import { Card, Button } from '@smolitux/utils/src/components/patterns';
-import { TrendingTopics } from '@smolitux/ai/src/components';
+import { Box, Flex, Text } from '../primitives';
+import { Card, Button } from '@smolitux/core';
+import { TrendingTopics } from '@smolitux/ai';
 
 export interface TrendingTopic {
   id: string;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, TabView } from '@smolitux/utils/src/components/patterns';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
+import { Card, TabView } from '@smolitux/core';
+import { Box, Flex, Text } from '../primitives';
 
 export interface TokenEconomyProps {
   /** Token-Informationen */

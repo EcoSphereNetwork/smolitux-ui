@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card } from '@smolitux/utils/src/components/patterns';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
-import { EngagementScore } from '@smolitux/ai/src/components';
+import { Card } from '@smolitux/core';
+import { Box, Flex, Text } from '../primitives';
+import { EngagementScore } from '@smolitux/ai';
 
 export interface PostMetric {
   name: string;

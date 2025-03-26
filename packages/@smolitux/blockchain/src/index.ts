@@ -1,3 +1,6 @@
+// Import i18n
+import './i18n/i18n';
+
 // Export all Blockchain components
 export * from './components/WalletConnect';
 export * from './components/TokenDisplay';

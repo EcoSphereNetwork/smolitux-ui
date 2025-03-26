@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smolitux UI Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .tab-container {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            margin-right: 5px;
+        }
+        .tab.active {
+            border-color: #ddd;
+            border-radius: 4px 4px 0 0;
+            background-color: #f9f9f9;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smolitux UI Test</h1>
+        
+        <div class="tab-container">
+            <div class="tab active" data-tab="core">Core Components</div>
+            <div class="tab" data-tab="ai">AI Components</div>
+            <div class="tab" data-tab="blockchain">Blockchain Components</div>
+            <div class="tab" data-tab="resonance">Resonance Components</div>
+        </div>
+        
+        <div id="core" class="tab-content active">
+            <div class="card">
+                <h2>Button Component</h2>
+                <button class="button" onclick="alert('Button clicked!')">Click Me</button>
+            </div>
+        </div>
+        
+        <div id="ai" class="tab-content">
+            <div class="card">
+                <h2>Trending Topics</h2>
+                <ul>
+                    <li>Smolitux (1250)</li>
+                    <li>React (980)</li>
+                    <li>TypeScript (750)</li>
+                    <li>UI Components (520)</li>
+                    <li>Web Development (320)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="blockchain" class="tab-content">
+            <div class="card">
+                <h2>Token Display</h2>
+                <div>
+                    <h3>SMX - Smolitux Token</h3>
+                    <p>Balance: 1,250.75</p>
+                    <p>Value: $12,507.50</p>
+                    <p>Change: +5.25%</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="resonance" class="tab-content">
+            <div class="card">
+                <h2>Feed View</h2>
+                <div class="card">
+                    <h3>John Doe</h3>
+                    <p>This is a test post</p>
+                    <div>Likes: 25 | Comments: 10 | Shares: 5</div>
+                </div>
+                <div class="card">
+                    <h3>Jane Smith</h3>
+                    <p>Another test post</p>
+                    <div>Likes: 15 | Comments: 5 | Shares: 2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
