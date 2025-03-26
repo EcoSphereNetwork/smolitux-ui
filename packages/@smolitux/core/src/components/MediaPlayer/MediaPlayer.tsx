@@ -168,7 +168,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
   const [buffered, setBuffered] = useState(0);
   const [showControls, setShowControls] = useState(showControlsOnLoad);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [selectedQuality, setSelectedQuality] = useState(sources[0]?.quality || '');
+  const [selectedQuality, setSelectedQuality] = useState(sources && sources.length > 0 ? sources[0]?.quality || '' : '');
   const [showQualityMenu, setShowQualityMenu] = useState(false);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
   const [hoveredTime, setHoveredTime] = useState<number | null>(null);
@@ -538,7 +538,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
           (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
         }
       }}
-      className={`
+      className={`data-testid="media-player" 
         smolitux-media-player relative overflow-hidden bg-black text-white
         ${className}
       `}
@@ -570,7 +570,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
       {mediaType === 'video' && (
         <div className={`relative ${size === 'full' ? aspectRatioStyles[aspectRatio] : ''}`}>
           {/* Video-Element */}
-          <video
+          <video data-testid="video-element"
             ref={mediaRef as React.RefObject<HTMLVideoElement>}
             className={`absolute top-0 left-0 w-full h-full object-contain bg-black ${controls && !showControls ? 'cursor-none' : ''}`}
             poster={poster}
@@ -655,7 +655,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(({
       
       {/* Steuerelemente */}
       {controls && showControls && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 transition-opacity duration-300">
+        <div className="absolute data-testid="media-controls"  bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 transition-opacity duration-300">
           {/* Obere Zeile mit Titel und Einstellungen */}
           <div className="flex justify-between items-center mb-2">
             <div className="text-sm font-medium truncate max-w-[70%]">

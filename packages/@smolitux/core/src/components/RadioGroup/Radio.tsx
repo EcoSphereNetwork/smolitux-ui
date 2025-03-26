@@ -1,14 +1,6 @@
 // packages/@smolitux/core/src/components/RadioGroup/Radio.tsx
 import React, { forwardRef } from 'react';
-
-export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  /** Label für das Radio */
-  label?: string;
-  /** Größe des Radios */
-  size?: 'sm' | 'md' | 'lg';
-  /** Zusätzliche CSS-Klassen */
-  className?: string;
-}
+import { RadioProps } from './RadioProps';
 
 /**
  * Radio-Komponente für Formulare
@@ -28,8 +20,11 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(({
   label,
   size = 'md',
   className = '',
+  children,
   ...rest
 }, ref) => {
+  // Wenn children vorhanden ist, verwende es als Label
+  const displayLabel = children || label;
   // Größen-spezifische Klassen
   const sizeClasses = {
     sm: 'h-3.5 w-3.5',
@@ -66,9 +61,9 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(({
           {...rest}
         />
       </div>
-      {label && (
+      {displayLabel && (
         <span className={`ml-2 ${labelSizeClasses[size]} ${rest.disabled ? 'text-gray-400' : 'text-gray-700'}`}>
-          {label}
+          {displayLabel}
         </span>
       )}
     </label>
