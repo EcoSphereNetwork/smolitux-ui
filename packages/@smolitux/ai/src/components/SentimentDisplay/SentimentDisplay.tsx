@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, ProgressBar } from '@smolitux/core';
 
 export interface SentimentScore {
   /** Positive Stimmung (0-1) */
@@ -269,7 +268,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
     : sentiment.positive - sentiment.negative;
   
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <div className={`overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 ${className}`}>
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-2">
@@ -279,12 +278,10 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
           
           <div className="flex space-x-2">
             {onRefresh && (
-              <Button
-                variant="outline"
-                size="sm"
+              <button
                 onClick={handleRefresh}
                 disabled={isRefreshing}
-                className="p-2"
+                className="p-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 aria-label="Analyse aktualisieren"
               >
                 <svg
@@ -445,12 +442,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Positiv</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.positive * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={sentiment.positive * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-green-500"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-green-500" 
+                            style={{ width: `${sentiment.positive * 100}%` }}
+                          />
+                        </div>
                       </div>
                       
                       {/* Neutrale Stimmung */}
@@ -459,12 +456,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Neutral</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.neutral * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={sentiment.neutral * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-gray-400"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gray-400" 
+                            style={{ width: `${sentiment.neutral * 100}%` }}
+                          />
+                        </div>
                       </div>
                       
                       {/* Negative Stimmung */}
@@ -473,12 +470,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Negativ</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.negative * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={sentiment.negative * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-red-500"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-red-500" 
+                            style={{ width: `${sentiment.negative * 100}%` }}
+                          />
+                        </div>
                       </div>
                       
                       {/* Gemischte Stimmung */}
@@ -488,12 +485,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                             <span className="text-sm text-gray-700 dark:text-gray-300">Gemischt</span>
                             <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.mixed * 100).toFixed(1)}%</span>
                           </div>
-                          <ProgressBar
-                            value={sentiment.mixed * 100}
-                            max={100}
-                            className="h-2 bg-gray-200 dark:bg-gray-600"
-                            progressClassName="bg-purple-500"
-                          />
+                          <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-purple-500" 
+                              style={{ width: `${sentiment.mixed * 100}%` }}
+                            />
+                          </div>
                         </div>
                       )}
                     </div>
@@ -529,12 +526,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Freude</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.joy * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={emotions.joy * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-yellow-400"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-yellow-400" 
+                            style={{ width: `${emotions.joy * 100}%` }}
+                          />
+                        </div>
                       </div>
                       
                       {/* Traurigkeit */}
@@ -543,12 +540,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Traurigkeit</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.sadness * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={emotions.sadness * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-blue-400"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-blue-400" 
+                            style={{ width: `${emotions.sadness * 100}%` }}
+                          />
+                        </div>
                       </div>
                       
                       {/* Angst */}
@@ -557,12 +554,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Angst</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.fear * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={emotions.fear * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-purple-400"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-purple-400" 
+                            style={{ width: `${emotions.fear * 100}%` }}
+                          />
+                        </div>
                       </div>
                       
                       {/* Wut */}
@@ -571,12 +568,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Wut</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.anger * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={emotions.anger * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-red-400"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-red-400" 
+                            style={{ width: `${emotions.anger * 100}%` }}
+                          />
+                        </div>
                       </div>
                       
                       {/* Überraschung */}
@@ -585,12 +582,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           <span className="text-sm text-gray-700 dark:text-gray-300">Überraschung</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.surprise * 100).toFixed(1)}%</span>
                         </div>
-                        <ProgressBar
-                          value={emotions.surprise * 100}
-                          max={100}
-                          className="h-2 bg-gray-200 dark:bg-gray-600"
-                          progressClassName="bg-orange-400"
-                        />
+                        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-orange-400" 
+                            style={{ width: `${emotions.surprise * 100}%` }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -651,6 +648,6 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
           </>
         )}
       </div>
-    </Card>
+    </div>
   );
 };
