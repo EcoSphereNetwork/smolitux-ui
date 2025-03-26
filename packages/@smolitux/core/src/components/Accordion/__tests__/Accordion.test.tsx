@@ -6,8 +6,8 @@ describe('Accordion', () => {
   it('renders accordion with items', () => {
     render(
       <Accordion>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
-        <AccordionItem title="Section 2">Content 2</AccordionItem>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="1" title="Section 2">Content 2</AccordionItem>
       </Accordion>
     );
     
@@ -18,8 +18,8 @@ describe('Accordion', () => {
   it('expands item when clicked', () => {
     render(
       <Accordion>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
-        <AccordionItem title="Section 2">Content 2</AccordionItem>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="1" title="Section 2">Content 2</AccordionItem>
       </Accordion>
     );
     
@@ -36,7 +36,7 @@ describe('Accordion', () => {
   it('collapses expanded item when clicked again', () => {
     render(
       <Accordion>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
       </Accordion>
     );
     
@@ -52,8 +52,8 @@ describe('Accordion', () => {
   it('allows multiple items to be expanded when allowMultiple is true', () => {
     render(
       <Accordion allowMultiple>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
-        <AccordionItem title="Section 2">Content 2</AccordionItem>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="1" title="Section 2">Content 2</AccordionItem>
       </Accordion>
     );
     
@@ -72,8 +72,8 @@ describe('Accordion', () => {
   it('collapses previously expanded item when allowMultiple is false', () => {
     render(
       <Accordion allowMultiple={false}>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
-        <AccordionItem title="Section 2">Content 2</AccordionItem>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="1" title="Section 2">Content 2</AccordionItem>
       </Accordion>
     );
     
@@ -89,11 +89,11 @@ describe('Accordion', () => {
     expect(screen.getByText('Content 2')).toBeVisible();
   });
 
-  it('renders with defaultIndex to pre-expand items', () => {
+  it('renders with defaultOpenItems to pre-expand items', () => {
     render(
-      <Accordion defaultIndex={[0]}>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
-        <AccordionItem title="Section 2">Content 2</AccordionItem>
+      <Accordion defaultOpenItems={["0"]}>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="1" title="Section 2">Content 2</AccordionItem>
       </Accordion>
     );
     
@@ -102,11 +102,11 @@ describe('Accordion', () => {
     expect(screen.queryByText('Content 2')).not.toBeVisible();
   });
 
-  it('renders with multiple defaultIndex when allowMultiple is true', () => {
+  it('renders with multiple defaultOpenItems when allowMultiple is true', () => {
     render(
-      <Accordion defaultIndex={[0, 1]} allowMultiple>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
-        <AccordionItem title="Section 2">Content 2</AccordionItem>
+      <Accordion defaultOpenItems={["0", "1"]} allowMultiple>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="1" title="Section 2">Content 2</AccordionItem>
       </Accordion>
     );
     
@@ -118,7 +118,7 @@ describe('Accordion', () => {
   it('renders disabled accordion item', () => {
     render(
       <Accordion>
-        <AccordionItem title="Section 1" isDisabled>Content 1</AccordionItem>
+        <AccordionItem id="0" title="Section 1" disabled>Content 1</AccordionItem>
       </Accordion>
     );
     
@@ -135,12 +135,12 @@ describe('Accordion', () => {
     
     render(
       <Accordion onChange={handleChange}>
-        <AccordionItem title="Section 1">Content 1</AccordionItem>
+        <AccordionItem id="0" title="Section 1">Content 1</AccordionItem>
       </Accordion>
     );
     
     fireEvent.click(screen.getByText('Section 1'));
-    expect(handleChange).toHaveBeenCalledWith([0]);
+    expect(handleChange).toHaveBeenCalledWith(["0"]);
     
     fireEvent.click(screen.getByText('Section 1'));
     expect(handleChange).toHaveBeenCalledWith([]);
@@ -150,6 +150,7 @@ describe('Accordion', () => {
     render(
       <Accordion>
         <AccordionItem 
+          id="0"
           title="Section 1" 
           icon={<span data-testid="custom-icon">+</span>}
         >

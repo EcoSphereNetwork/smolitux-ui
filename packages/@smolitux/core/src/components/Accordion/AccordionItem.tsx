@@ -130,7 +130,10 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         id={`accordion-content-${id}`}
         ref={contentRef}
         className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{ maxHeight: contentHeight !== undefined ? `${contentHeight}px` : undefined }}
+        style={{ 
+          maxHeight: contentHeight !== undefined ? `${contentHeight}px` : undefined,
+          display: isOpen ? 'block' : 'none'
+        }}
         aria-hidden={!isOpen}
       >
         <div className="p-4 bg-white dark:bg-gray-800">

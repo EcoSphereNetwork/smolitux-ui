@@ -933,6 +933,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
             ${labelClassName}
           `}
           title={labelTooltip}
+          data-testid="checkbox-label"
         >
           {label}
           {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
@@ -978,6 +979,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   return (
     <div 
       className={`${isVertical ? 'flex flex-col' : 'flex items-start'} ${containerClassName} ${className}`}
+      data-testid="checkbox-container"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseDown={handleMouseDown}
@@ -996,7 +998,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
       
       {/* Label rechts */}
       {labelPosition === 'right' && (
-        <div className={`${isVertical ? '' : 'ml-2'}`}>
+        <div className={`${isVertical ? '' : 'ml-2'}`} data-testid="label-container">
           {renderLabel()}
           {renderHelperText()}
         </div>

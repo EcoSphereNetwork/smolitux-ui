@@ -191,7 +191,7 @@ describe('Checkbox', () => {
   test('renders as button', () => {
     render(<Checkbox isButton label="Button Checkbox" />);
     expect(screen.getByRole('button')).toBeInTheDocument();
-    expect(screen.getByText('Button Checkbox')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toHaveTextContent('Button Checkbox');
     expect(screen.getByRole('checkbox')).toHaveClass('sr-only');
   });
   
@@ -216,7 +216,7 @@ describe('Checkbox', () => {
   
   test('renders with vertical layout', () => {
     render(<Checkbox label="Vertical Layout" isVertical />);
-    expect(screen.getByRole('checkbox').parentElement?.parentElement).toHaveClass('flex flex-col');
+    expect(screen.getByTestId('checkbox-container')).toHaveClass('flex flex-col');
   });
   
   // Effekte
@@ -243,7 +243,8 @@ describe('Checkbox', () => {
   // Barrierefreiheit
   test('renders with hidden label', () => {
     render(<Checkbox label="Hidden Label" hideLabel />);
-    expect(screen.getByText('Hidden Label')).toHaveClass('sr-only');
+    const labelContainer = screen.getByText('Hidden Label').closest('div');
+    expect(labelContainer).toHaveClass('sr-only');
   });
   
   test('renders with hidden helper text', () => {

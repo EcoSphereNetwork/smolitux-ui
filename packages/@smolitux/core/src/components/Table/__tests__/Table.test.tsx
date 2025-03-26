@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Table } from '../Table';
+import Table from '../Table';
 
 // Mock für useTheme
-jest.mock('../../../theme/src/theme-provider', () => ({
+jest.mock('@smolitux/theme', () => ({
   useTheme: () => ({
     colors: {
       primary: {
@@ -33,9 +33,23 @@ describe('Table', () => {
   ];
 
   const mockColumns = [
-    { id: 'name', header: 'Name', accessor: (row: any) => row.name, sortable: true },
-    { id: 'age', header: 'Age', accessor: (row: any) => row.age, sortable: true },
-    { id: 'city', header: 'City', accessor: (row: any) => row.city },
+    { 
+      id: 'name', 
+      header: 'Name', 
+      cell: (row: any) => row.name, 
+      sortable: true 
+    },
+    { 
+      id: 'age', 
+      header: 'Age', 
+      cell: (row: any) => row.age, 
+      sortable: true 
+    },
+    { 
+      id: 'city', 
+      header: 'City', 
+      cell: (row: any) => row.city 
+    },
   ];
 
   it('renders table with data and columns', () => {
