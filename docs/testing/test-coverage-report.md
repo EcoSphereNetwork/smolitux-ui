@@ -10,8 +10,8 @@ Die Testabdeckung wurde durch die Hinzufügung umfassender Tests für verschiede
 
 - **@smolitux/ai**: Tests für alle 8 Komponenten (FakeNewsDetector, TrollFilter, ContentModerator, SentimentDisplay, ContentAnalytics, TrendingTopics, EngagementScore, RecommendationCarousel)
 - **@smolitux/blockchain**: Tests für alle 7 Komponenten (TokenEconomy, SmartContractInteraction, WalletConnect, TokenDisplay, TransactionHistory, StakingInterface, TokenDistributionChart)
-- **@smolitux/resonance**: Tests für 6 Komponenten (ProfileHeader, ProfileContent, GovernanceDashboard, ProposalView, RevenueModel, CreatorDashboard)
-- **@smolitux/core**: Tests für 4 Komponenten (Button, Card, Input, Modal)
+- **@smolitux/resonance**: Tests für 15 Komponenten (ProfileHeader, ProfileContent, GovernanceDashboard, ProposalView, RevenueModel, CreatorDashboard, FeedView, FeedFilter, FeedItem, FeedSidebar, PostView, PostCreator, PostInteractions, PostMetrics, ProfileEditor)
+- **@smolitux/core**: Tests für 8 Komponenten (Button, Card, Input, Modal, Checkbox, Radio, Select, Textarea)
 
 ### Teststatistik
 
@@ -19,10 +19,10 @@ Die Testabdeckung wurde durch die Hinzufügung umfassender Tests für verschiede
 |-------|-------------|-------|----------------------|
 | @smolitux/ai | 8 | 8 | 100% |
 | @smolitux/blockchain | 7 | 7 | 100% |
-| @smolitux/resonance | 21 | 6 | 29% |
-| @smolitux/core | 12 | 4 | 33% |
+| @smolitux/resonance | 21 | 15 | 71% |
+| @smolitux/core | 12 | 8 | 67% |
 | @smolitux/utils | 10 | 3 | 30% |
-| **Gesamt** | **58** | **28** | **48%** |
+| **Gesamt** | **58** | **41** | **71%** |
 
 ### Testtypen
 
