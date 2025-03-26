@@ -169,7 +169,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   format = 'yyyy-MM-dd',
   minDate,
   maxDate,
-  placeholder = 'Datum auswählen',
+  placeholder = 'YYYY-MM-DD',
   weekDayLabels = weekdayNames,
   monthLabels = monthNames,
   size = 'md',
@@ -486,6 +486,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
       <div
         ref={pickerRef}
         className={`absolute z-${zIndex} bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 w-64`}
+        data-testid="date-picker-calendar"
         style={{
           top: calculatedPosition.top,
           left: calculatedPosition.left,

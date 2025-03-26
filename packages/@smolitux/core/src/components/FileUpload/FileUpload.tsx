@@ -471,7 +471,7 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   // Button-Variante rendern
   if (variant === 'button') {
     return (
-      <div className={`${className}`}>
+      <div className={`${className}`} data-testid="file-upload-container">
         {/* Label */}
         {(label || formControl.label) && (
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -617,7 +617,7 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   // Simple Variante rendern (nur Input und Dateiliste, ohne Dropzone)
   if (variant === 'simple') {
     return (
-      <div className={`${className}`}>
+      <div className={`${className}`} data-testid="file-upload-container">
         {/* Label */}
         {(label || formControl.label) && (
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -743,7 +743,7 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   
   // Default Variante mit Dropzone rendern
   return (
-    <div className={`${className}`}>
+    <div className={`${className}`} data-testid="file-upload-container">
       {/* Label */}
       {(label || formControl.label) && (
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

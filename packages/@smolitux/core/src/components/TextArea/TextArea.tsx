@@ -188,7 +188,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   };
   
   return (
-    <div className={`${fullWidth ? 'w-full' : ''}`}>
+    <div className={`${fullWidth ? 'w-full' : ''}`} data-testid="textarea-container">
       {/* Label (falls außerhalb eines FormControl) */}
       {label && !formControl.label && (
         <label 
@@ -211,6 +211,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
         value={value}
         defaultValue={defaultValue}
         className={inputClasses}
+        data-testid="textarea"
         {...combinedProps}
         {...rest}
       />
@@ -220,14 +221,17 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
         <div className="mt-1 flex justify-between text-sm">
           {/* Hilfetexzt oder Fehlermeldung */}
           {(helperText || error) && !formControl.hasError && (
-            <p className={error ? 'text-red-600 dark:text-red-400' : 'text-gray-500 dark:text-gray-400'}>
+            <p 
+              className={error ? 'text-red-600 dark:text-red-400' : 'text-gray-500 dark:text-gray-400'}
+              data-testid={error ? 'textarea-error' : 'textarea-helper'}
+            >
               {error || helperText}
             </p>
           )}
           
           {/* Zeichenzähler */}
           {showCount && (
-            <p className={`text-gray-500 dark:text-gray-400 ${!helperText && !error ? 'ml-auto' : ''}`}>
+            <p className={`text-gray-500 dark:text-gray-400 ${!helperText && !error ? 'ml-auto' : ''}`} data-testid="textarea-counter">
               {textLength}{maxLength ? `/${maxLength}` : ''}
             </p>
           )}
