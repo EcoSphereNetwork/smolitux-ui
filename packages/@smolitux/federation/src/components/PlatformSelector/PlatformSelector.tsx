@@ -2,31 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Input } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
 
-export interface FederatedPlatform {
-  /** Eindeutige ID der Plattform */
-  id: string;
-  /** Name der Plattform */
-  name: string;
-  /** URL der Plattform */
-  url: string;
-  /** Logo-URL der Plattform */
-  logoUrl?: string;
-  /** Beschreibung der Plattform */
-  description?: string;
-  /** Ist die Plattform aktiv? */
-  isActive: boolean;
-  /** Ist die Plattform vertrauenswürdig? */
-  isTrusted?: boolean;
-  /** Anzahl der Inhalte auf der Plattform */
-  contentCount?: number;
-  /** Anzahl der Benutzer auf der Plattform */
-  userCount?: number;
-  /** Kategorie der Plattform */
-  category?: string;
-  /** Zusätzliche Metadaten zur Plattform */
-  metadata?: Record<string, any>;
-}
-
 export interface PlatformSelectorProps {
   /** Verfügbare Plattformen */
   platforms: FederatedPlatform[];
