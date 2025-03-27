@@ -120,7 +120,9 @@ export const RadarChart = forwardRef<SVGSVGElement, RadarChartProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const { themeMode } = useTheme();
+  const theme = useTheme();
+  // Access theme mode safely with fallback to 'light'
+  const themeMode = theme.mode || 'light';
   
   // Hover state for tooltips
   const [hoveredPoint, setHoveredPoint] = useState<{
