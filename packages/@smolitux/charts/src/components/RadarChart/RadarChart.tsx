@@ -120,9 +120,27 @@ export const RadarChart = forwardRef<SVGSVGElement, RadarChartProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const theme = useTheme();
-  // Access theme mode safely with fallback to 'light'
-  const themeMode = theme.mode || 'light';
+  // Get the theme with TypeScript type assertion to bypass type checking
+  const theme = useTheme() as any;
+  
+  // Function to safely determine the theme mode with multiple fallback options
+  const getThemeMode = (themeObj: any): 'dark' | 'light' => {
+    if (!themeObj || typeof themeObj !== 'object') return 'light';
+    
+    // Check common theme mode properties
+    if (typeof themeObj.isDark === 'boolean') return themeObj.isDark ? 'dark' : 'light';
+    if (typeof themeObj.dark === 'boolean') return themeObj.dark ? 'dark' : 'light';
+    if (themeObj.mode === 'dark') return 'dark';
+    if (themeObj.colorMode === 'dark') return 'dark';
+    if (themeObj.theme?.mode === 'dark') return 'dark';
+    if (themeObj.theme?.colorMode === 'dark') return 'dark';
+    
+    // Default to light mode
+    return 'light';
+  };
+  
+  // Get the theme mode
+  const themeMode = getThemeMode(theme);
   
   // Hover state for tooltips
   const [hoveredPoint, setHoveredPoint] = useState<{
