@@ -2,6 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Input } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
 
+export interface PlatformSelectorProps {
+  /** Föderierte Plattformen */
+  platforms: FederatedPlatform[];
+  /** Ausgewählte Plattformen */
+  selectedPlatforms?: string[];
+  /** Callback bei Änderung der ausgewählten Plattformen */
+  onSelectionChange: (platformIds: string[]) => void;
+  /** Callback beim Hinzufügen einer Plattform */
+  onAddPlatform?: (url: string) => Promise<void>;
+  /** Callback beim Entfernen einer Plattform */
+  onRemovePlatform?: (platformId: string) => Promise<void>;
+  /** Callback beim Aktualisieren der Plattformliste */
+  onRefresh?: () => Promise<void>;
+  /** Zusätzliche CSS-Klassen */
+  className?: string;
+  /** Ist die Komponente im Ladezustand? */
+  loading?: boolean;
+  /** Mehrfachauswahl erlauben? */
+  multiSelect?: boolean;
+  /** Hinzufügen neuer Plattformen erlauben? */
+  allowAddNew?: boolean;
+  /** Entfernen von Plattformen erlauben? */
+  allowRemove?: boolean;
+  /** Kategoriefilter anzeigen? */
+  showCategoryFilter?: boolean;
+  /** Suchfeld anzeigen? */
+  showSearch?: boolean;
+  /** Vertrauensfilter anzeigen? */
+  showTrustFilter?: boolean;
+}
+
 /**
  * PlatformSelector-Komponente für die Auswahl und Konfiguration von Föderationsplattformen
  */
