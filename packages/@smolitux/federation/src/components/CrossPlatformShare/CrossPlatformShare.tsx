@@ -2,29 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Input, Modal } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
 
-export interface FederatedPlatform {
-  /** Eindeutige ID der Plattform */
-  id: string;
-  /** Name der Plattform */
-  name: string;
-  /** URL der Plattform */
-  url: string;
-  /** Logo-URL der Plattform */
-  logoUrl?: string;
-  /** Ist die Plattform aktiv? */
-  isActive: boolean;
-  /** Ist die Plattform vertrauenswürdig? */
-  isTrusted?: boolean;
-  /** Unterstützt die Plattform das Teilen von Inhalten? */
-  supportsSharing: boolean;
-  /** Unterstützte Inhaltstypen */
-  supportedContentTypes?: ('text' | 'image' | 'video' | 'audio' | 'link')[];
-  /** Maximale Textlänge */
-  maxTextLength?: number;
-  /** Zusätzliche Metadaten zur Plattform */
-  metadata?: Record<string, any>;
-}
-
 export interface ShareableContent {
   /** Eindeutige ID des Inhalts */
   id: string;
@@ -390,7 +367,7 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
                             {/* Fehlerindikator */}
                             {isSelected && isDisabled && (
                               <svg className="w-5 h-5 ml-auto text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                               </svg>
                             )}
                           </div>
@@ -698,144 +675,4 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
                           {/* Fehlerindikator */}
                           {isSelected && isDisabled && (
                             <svg className="w-5 h-5 ml-auto text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                            </svg>
-                          )}
-                        </div>
-                        
-                        {/* Fehlermeldung */}
-                        {isSelected && !isValidText && (
-                          <p className="text-xs text-red-500 dark:text-red-400 mt-1">
-                            Text zu lang
-                          </p>
-                        )}
-                        
-                        {isSelected && !isValidType && (
-                          <p className="text-xs text-red-500 dark:text-red-400 mt-1">
-                            Inhaltstyp nicht unterstützt
-                          </p>
-                        )}
-                      </div>
-                    );
-                  })}
-              </div>
-              
-              {platforms.filter(platform => platform.isActive && platform.supportsSharing).length === 0 && (
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  Keine Plattformen verfügbar, die das Teilen unterstützen.
-                </p>
-              )}
-            </div>
-            
-            {/* Fehlermeldung */}
-            {error && (
-              <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-md text-sm">
-                {error}
-              </div>
-            )}
-            
-            {/* Ergebnisse */}
-            {shareResults.length > 0 && (
-              <div className="mb-6">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Ergebnisse
-                </h3>
-                
-                <div className="space-y-2">
-                  {shareResults.map(result => {
-                    const platform = platforms.find(p => p.id === result.platformId);
-                    
-                    return (
-                      <div
-                        key={result.id}
-                        className={`p-3 rounded-md ${
-                          result.status === 'success'
-                            ? 'bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800'
-                            : result.status === 'error'
-                            ? 'bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800'
-                            : 'bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-800'
-                        }`}
-                      >
-                        <div className="flex items-center">
-                          {/* Logo */}
-                          {platform?.logoUrl ? (
-                            <img
-                              src={platform.logoUrl}
-                              alt={platform.name}
-                              className="w-5 h-5 rounded-full mr-2"
-                            />
-                          ) : (
-                            <div className="w-5 h-5 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 text-xs font-bold mr-2">
-                              {platform?.name.charAt(0).toUpperCase() || '?'}
-                            </div>
-                          )}
-                          
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {platform?.name || 'Unbekannte Plattform'}
-                          </span>
-                          
-                          <span className="ml-auto text-xs font-medium">
-                            {result.status === 'success' && (
-                              <span className="text-green-600 dark:text-green-400">Erfolgreich</span>
-                            )}
-                            {result.status === 'error' && (
-                              <span className="text-red-600 dark:text-red-400">Fehler</span>
-                            )}
-                            {result.status === 'pending' && (
-                              <span className="text-yellow-600 dark:text-yellow-400">Ausstehend</span>
-                            )}
-                          </span>
-                        </div>
-                        
-                        {result.status === 'success' && result.sharedUrl && (
-                          <a
-                            href={result.sharedUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-primary-600 dark:text-primary-400 hover:underline mt-1 block"
-                          >
-                            Geteilten Inhalt anzeigen
-                          </a>
-                        )}
-                        
-                        {result.status === 'error' && result.error && (
-                          <p className="text-xs text-red-600 dark:text-red-400 mt-1">
-                            {result.error}
-                          </p>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-            
-            {/* Aktionen */}
-            <div className="flex justify-end space-x-2">
-              {onClose && (
-                <Button
-                  variant="outline"
-                  onClick={handleClose}
-                >
-                  Abbrechen
-                </Button>
-              )}
-              
-              <Button
-                variant="primary"
-                onClick={handleShare}
-                disabled={
-                  isSharing ||
-                  selectedPlatforms.length === 0 ||
-                  selectedPlatforms.some(platformId => !checkTextLength(platformId) || !checkContentType(platformId))
-                }
-              >
-                {isSharing ? 'Wird geteilt...' : 'Teilen'}
-              </Button>
-            </div>
-          </>
-        )}
-      </div>
-    </Card>
-  );
-};
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.
