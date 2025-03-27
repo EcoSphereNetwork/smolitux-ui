@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Button, Input } from '@smolitux/core';
 
 export interface CommentData {
@@ -270,7 +270,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                 <div className="flex-1">
                   <Input
                     value={replyContent}
-                    onChange={e => setReplyContent(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setReplyContent(e.target.value)}
                     placeholder="Antwort schreiben..."
                     className="mb-2"
                   />
@@ -345,7 +345,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
           <div className="flex-1">
             <Input
               value={newComment}
-              onChange={e => setNewComment(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setNewComment(e.target.value)}
               placeholder="Kommentar schreiben..."
               className="mb-2"
             />
