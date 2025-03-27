@@ -739,3 +739,11 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                   )}
                 </div>
               </div>
+              </div>
+            </div>
+          ))}
+        )}
+      </div>
+    </Card>
+  );
+};
