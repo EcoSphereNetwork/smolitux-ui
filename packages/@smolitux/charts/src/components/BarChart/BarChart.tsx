@@ -274,7 +274,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
         ? allCategories.length 
         : allCategories.length * seriesArray.length;
       
-      const availableWidth = drawingWidth;
+      const availableWidth = typeof drawingWidth === 'number' ? drawingWidth : 0;
       // Ein bisschen Abstand zwischen den Balken lassen (20%)
       return (availableWidth * 0.8) / totalBars;
     }
@@ -288,7 +288,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
     return (
       <g>
         {allCategories.map((category, categoryIndex) => {
-          const categoryX = paddingLeft + (drawingWidth / allCategories.length) * (categoryIndex + 0.5);
+          const categoryX = paddingLeft + (Number(drawingWidth) / allCategories.length) * (categoryIndex + 0.5);
           
           // Bei gestapelten Balken
           if (stacked) {
@@ -434,7 +434,65 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
               <g key={`category-${category}`}>
                 {normData.map((series, seriesIndex) => {
                   const dataPoint = series.processedData[categoryIndex];
-                  const barWidth = scaleValue(dataPoint.value) * drawingWidth;
+                  const barWidth = scaleValue(dataPoint.value) * Number(drawingWidth);
+                  
+                  // Position innerhalb der Gruppe berechnen
+                  const y = categoryY - barHeight / 2;
+                  const x = paddingLeft + stackStart;
+                  
+                  // Position für nächsten Balken in diesem Stack updaten
+                  stackStart += barWidth;
+                  
+                  return (
+                    <g key={`bar-${series.id}-${category}`}>
+                      <rect
+                        x={x}
+                        y={y}
+                        width={barWidth}
+                        height={barHeight}
+                        fill={dataPoint.color}
+                        strokeWidth={1}
+                        stroke={themeMode === 'dark' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.5)'}
+                        rx={2}
+                        className={animated ? 'animate-grow' : ''}
+                        style={animated ? {
+                          transformOrigin: 'left',
+                          transform: 'scaleX(0)',
+                          animation: `growRight ${0.5 + seriesIndex * 0.1}s ease-out forwards ${seriesIndex * 0.1}s`
+                        } : {}}
+                      />
+                      
+                      {/* Wert neben dem Balken anzeigen */}
+                      {showValues && dataPoint.value > 0 && (
+                        <text
+                          x={x + barWidth + 5}
+                          y={y + barHeight / 2}
+                          dominantBaseline="middle"
+                          fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
+                          fontSize={12}
+                          fontWeight="bold"
+                          className={animated ? 'animate-fade-in' : ''}
+                          style={animated ? {
+                            opacity: 0,
+                            animation: 'fadeIn 0.5s ease-out forwards 0.5s'
+                          } : {}}
+                        >
+                          {formatYLabel(dataPoint.value)}
+                          {yUnit ? ` ${yUnit}` : ''}
+                        </text>
+                      )}
+                    </g>
+                  );
+                })}
+              </g>
+            );
+          } else {
+            // Bei gruppierten Balken
+            return (
+              <g key={`category-${category}`}>
+                {normData.map((series, seriesIndex) => {
+                  const dataPoint = series.processedData[categoryIndex];
+                  const barWidth = scaleValue(dataPoint.value) * Number(drawingWidth);
                   
                   // Position innerhalb der Gruppe berechnen
                   const groupOffsetY = (seriesIndex - seriesArray.length / 2 + 0.5) * (barHeight + barSpacing);
@@ -514,7 +572,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
       {/* Titel (falls vorhanden) */}
       {title && (
         <text
-          x={width / 2}
+          x={typeof width === 'number' ? width / 2 : viewBoxWidth / 2}
           y={paddingTop / 2}
           textAnchor="middle"
           fill={themeMode === 'dark' ? '#F9FAFB' : '#1F2937'}
@@ -531,7 +589,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
           {yAxisTicks.map((tick, index) => {
             if (horizontal) {
               // Vertikale Grid-Linien für horizontale Balken
-              const x = paddingLeft + scaleValue(tick.value) * drawingWidth;
+              const x = paddingLeft + scaleValue(tick.value) * Number(drawingWidth);
               return (
                 <line
                   key={`grid-${index}`}
@@ -552,7 +610,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
                   key={`grid-${index}`}
                   x1={paddingLeft}
                   y1={y}
-                  x2={paddingLeft + drawingWidth}
+                  x2={paddingLeft + Number(drawingWidth)}
                   y2={y}
                   stroke={themeMode === 'dark' ? '#374151' : '#E5E7EB'}
                   strokeWidth={1}
@@ -572,7 +630,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
         <line
           x1={paddingLeft}
           y1={paddingTop + drawingHeight}
-          x2={paddingLeft + drawingWidth}
+          x2={paddingLeft + Number(drawingWidth)}
           y2={paddingTop + drawingHeight}
           stroke={themeMode === 'dark' ? '#6B7280' : '#9CA3AF'}
           strokeWidth={1}
@@ -581,7 +639,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
         {/* Kategorien/Labels */}
         {showLabels && !horizontal && (
           allCategories.map((category, index) => {
-            const x = paddingLeft + (drawingWidth / allCategories.length) * (index + 0.5);
+            const x = paddingLeft + (Number(drawingWidth) / allCategories.length) * (index + 0.5);
             return (
               <text
                 key={`label-${category}`}
@@ -600,7 +658,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
         {/* X-Achsentitel */}
         {axisLabels?.x && !horizontal && (
           <text
-            x={paddingLeft + drawingWidth / 2}
+            x={paddingLeft + Number(drawingWidth) / 2}
             y={height - 10}
             textAnchor="middle"
             fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
@@ -614,7 +672,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
         {/* Horizontale Variante: Y-Achsentitel auf der X-Achse */}
         {axisLabels?.y && horizontal && (
           <text
-            x={paddingLeft + drawingWidth / 2}
+            x={paddingLeft + Number(drawingWidth) / 2}
             y={height - 10}
             textAnchor="middle"
             fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
@@ -641,7 +699,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
         {horizontal ? (
           // Horizontale Balken: Werte auf der X-Achse
           yAxisTicks.map((tick, index) => {
-            const x = paddingLeft + scaleValue(tick.value) * drawingWidth;
+            const x = paddingLeft + scaleValue(tick.value) * Number(drawingWidth);
             return (
               <g key={`tick-${index}`}>
                 <line
@@ -758,7 +816,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
                 : paddingTop + 10;
                 
             const legendX = legendPosition === 'right' 
-              ? paddingLeft + drawingWidth + 10 
+              ? paddingLeft + Number(drawingWidth) + 10 
               : legendPosition === 'left' 
                 ? 10 
                 : paddingLeft + 10;
