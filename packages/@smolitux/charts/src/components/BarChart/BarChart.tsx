@@ -110,7 +110,9 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const { themeMode } = useTheme();
+  const theme = useTheme() as any;
+  const themeMode = theme.themeMode ?? 'light';
+
   
   // Sicherstellen, dass wir mit einem Array von Serien arbeiten
   const seriesArray = Array.isArray(data) ? data : [data];
@@ -821,66 +823,4 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
 
 BarChart.displayName = 'BarChart';
 
-export default BarChart;ingWidth;
-                  
-                  // Überspringe Balken mit Wert 0
-                  if (dataPoint.value === 0) {
-                    return null;
-                  }
-                  
-                  const y = categoryY - barHeight / 2;
-                  const x = paddingLeft + stackStart;
-                  
-                  // Position für nächsten Balken in diesem Stack updaten
-                  stackStart += barWidth;
-                  
-                  return (
-                    <g key={`bar-${series.id}-${category}`}>
-                      <rect
-                        x={x}
-                        y={y}
-                        width={barWidth}
-                        height={barHeight}
-                        fill={dataPoint.color}
-                        strokeWidth={1}
-                        stroke={themeMode === 'dark' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.5)'}
-                        rx={2}
-                        className={animated ? 'animate-grow' : ''}
-                        style={animated ? {
-                          transformOrigin: 'left',
-                          transform: 'scaleX(0)',
-                          animation: `growRight ${0.5 + seriesIndex * 0.1}s ease-out forwards ${seriesIndex * 0.1}s`
-                        } : {}}
-                      />
-                      
-                      {/* Wert neben dem Balken anzeigen */}
-                      {showValues && dataPoint.value > 0 && (
-                        <text
-                          x={x + barWidth + 5}
-                          y={y + barHeight / 2}
-                          dominantBaseline="middle"
-                          fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
-                          fontSize={12}
-                          fontWeight="bold"
-                          className={animated ? 'animate-fade-in' : ''}
-                          style={animated ? {
-                            opacity: 0,
-                            animation: 'fadeIn 0.5s ease-out forwards 0.5s'
-                          } : {}}
-                        >
-                          {formatYLabel(dataPoint.value)}
-                          {yUnit ? ` ${yUnit}` : ''}
-                        </text>
-                      )}
-                    </g>
-                  );
-                })
-              </g>
-            );
-          } else {
-            // Bei gruppierten Balken
-            return (
-              <g key={`category-${category}`}>
-                {normData.map((series, seriesIndex) => {
-                  const dataPoint = series.processedData[categoryIndex];
-                  const barWidth = scaleValue(dataPoint.value) * drawingWidth;
+export default BarChart;

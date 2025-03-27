@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import Radio from './Radio';
+import Radio from '../Radio/Radio';
 
 // Kontext für die RadioGroup
 export interface RadioGroupContextType {

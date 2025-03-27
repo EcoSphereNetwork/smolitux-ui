@@ -2,6 +2,12 @@
 import React, { useMemo, forwardRef } from 'react';
 import { useTheme } from '@smolitux/theme';
 
+// Define the expected theme shape
+interface Theme {
+  themeMode?: 'light' | 'dark';
+  [key: string]: any;
+}
+
 export interface LineChartDataPoint {
   /** X-Wert (Label) */
   x: string | number;
@@ -109,8 +115,8 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const { themeMode } = useTheme();
-  
+  const theme = useTheme() as Theme;
+  const themeMode = theme?.themeMode || 'light';  
   // Sicherstellen, dass wir mit einem Array von Serien arbeiten
   const seriesArray = Array.isArray(data) ? data : [data];
   
@@ -139,6 +145,7 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
   
   // Eigentliche Zeichenfläche (ohne Padding)
   const drawingWidth = typeof width === 'number' ? width - paddingLeft - paddingRight : '100%';
+  const numericDrawingWidth = typeof drawingWidth === 'number' ? drawingWidth : 0;
   const drawingHeight = height - paddingTop - paddingBottom;
   
   // Datenaufbereitung und Skalierung
@@ -227,7 +234,8 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
     if (points.length === 0) return '';
     
     const pathParts = points.map((point, i) => {
-      const x = paddingLeft + point.x * drawingWidth;
+      // Explizite Typumwandlungen, da drawingWidth sowohl string als auch number sein kann
+      const x = paddingLeft + point.x * (typeof drawingWidth === 'number' ? drawingWidth : 0);
       const y = paddingTop + point.y * drawingHeight;
       
       return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
@@ -310,7 +318,7 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
       <rect
         x={paddingLeft}
         y={paddingTop}
-        width={drawingWidth}
+        width={typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth}
         height={drawingHeight}
         fill={themeMode === 'dark' ? '#1F2937' : '#F9FAFB'}
         strokeWidth={1}
@@ -326,7 +334,7 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
               key={`y-grid-${tick.value}`}
               x1={paddingLeft}
               y1={paddingTop + tick.position * drawingHeight}
-              x2={paddingLeft + drawingWidth}
+              x2={paddingLeft + (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
               y2={paddingTop + tick.position * drawingHeight}
               stroke={themeMode === 'dark' ? '#374151' : '#E5E7EB'}
               strokeWidth={1}
@@ -338,9 +346,9 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
           {xAxisTicks.map(tick => (
             <line
               key={`x-grid-${tick.value}`}
-              x1={paddingLeft + tick.position * drawingWidth}
+              x1={paddingLeft + tick.position * (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
               y1={paddingTop}
-              x2={paddingLeft + tick.position * drawingWidth}
+              x2={paddingLeft + tick.position * (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
               y2={paddingTop + drawingHeight}
               stroke={themeMode === 'dark' ? '#374151' : '#E5E7EB'}
               strokeWidth={1}
@@ -375,7 +383,7 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
             {showPoints && series.points.map((point, i) => (
               <circle
                 key={`${series.id}-point-${i}`}
-                cx={paddingLeft + point.x * drawingWidth}
+                cx={paddingLeft + point.x * (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
                 cy={paddingTop + point.y * drawingHeight}
                 r={4}
                 fill={themeMode === 'dark' ? '#1F2937' : '#FFFFFF'}
@@ -449,7 +457,7 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
         <line
           x1={paddingLeft}
           y1={paddingTop + drawingHeight}
-          x2={paddingLeft + drawingWidth}
+          x2={paddingLeft + (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
           y2={paddingTop + drawingHeight}
           stroke={themeMode === 'dark' ? '#6B7280' : '#9CA3AF'}
           strokeWidth={1}
@@ -459,15 +467,15 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
         {xAxisTicks.map(tick => (
           <g key={`x-tick-${tick.value}`}>
             <line
-              x1={paddingLeft + tick.position * drawingWidth}
+              x1={paddingLeft + tick.position * (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
               y1={paddingTop + drawingHeight}
-              x2={paddingLeft + tick.position * drawingWidth}
+              x2={paddingLeft + tick.position * (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
               y2={paddingTop + drawingHeight + 5}
               stroke={themeMode === 'dark' ? '#6B7280' : '#9CA3AF'}
               strokeWidth={1}
             />
             <text
-              x={paddingLeft + tick.position * drawingWidth}
+              x={paddingLeft + tick.position * (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth)}
               y={paddingTop + drawingHeight + 20}
               textAnchor="middle"
               fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
@@ -482,7 +490,7 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
         {/* X-Achsentitel */}
         {axisLabels?.x && (
           <text
-            x={paddingLeft + drawingWidth / 2}
+            x={paddingLeft + (typeof drawingWidth === 'number' ? drawingWidth / 2 : numericDrawingWidth / 2)}
             y={height - 10}
             textAnchor="middle"
             fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
@@ -506,7 +514,7 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
                 : paddingTop + 10;
                 
             const legendX = legendPosition === 'right' 
-              ? paddingLeft + drawingWidth + 10 
+              ? paddingLeft + (typeof drawingWidth === 'number' ? drawingWidth : numericDrawingWidth) + 10 
               : legendPosition === 'left' 
                 ? 10 
                 : paddingLeft + 10;
@@ -564,5 +572,10 @@ export const LineChart = forwardRef<SVGSVGElement, LineChartProps>(({
 });
 
 LineChart.displayName = 'LineChart';
+
+// Add CSS classes from LineChart.css
+LineChart.defaultProps = {
+  className: 'smolitux-line-chart'
+};
 
 export default LineChart;

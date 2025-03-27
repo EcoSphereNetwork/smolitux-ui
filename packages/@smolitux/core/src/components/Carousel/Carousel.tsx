@@ -1,7 +1,8 @@
 // packages/@smolitux/core/src/components/Carousel/Carousel.tsx
 import React, { useState, useEffect, useRef, useMemo, forwardRef } from 'react';
-// Mock für useTheme
-const useTheme = () => ({ themeMode: 'light' });
+import { useTheme } from '@smolitux/theme';
+// Falls der Import fehlschlägt, verwenden wir einen Fallback
+const useThemeLocal = () => ({ themeMode: 'light' });
 
 export interface CarouselItem {
   /** Eindeutige ID des Items */
@@ -88,7 +89,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const { themeMode } = useTheme();
+  const { themeMode } = useTheme ? useTheme() : useThemeLocal();
   
   // Kontrolliert vs. unkontrolliert
   const isControlled = controlledActiveIndex !== undefined;

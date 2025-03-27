@@ -132,7 +132,9 @@ export const AreaChart = forwardRef<SVGSVGElement, AreaChartProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const { themeMode } = useTheme();
+  const theme = useTheme() as any;
+  const themeMode = theme.themeMode ?? 'light';
+
   
   // Sicherstellen, dass wir mit einem Array von Serien arbeiten
   const seriesArray = Array.isArray(data) ? data : [data];

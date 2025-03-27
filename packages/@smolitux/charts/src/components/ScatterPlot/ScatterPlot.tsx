@@ -128,7 +128,9 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const { themeMode } = useTheme();
+  const theme = useTheme() as any;
+  const themeMode = theme.themeMode ?? 'light';
+
   
   // Hover state for tooltips
   const [hoveredPoint, setHoveredPoint] = useState<{
@@ -327,7 +329,7 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
   // Hilfsfunktion zum Zeichnen von Punkten in verschiedenen Formen
   const renderPoint = (point: ScatterPlotDataPoint & { normalizedX: number; normalizedY: number; pointColor: string; pointSize: number }, seriesIndex: number, shape: string) => {
     // Position in Pixeln berechnen
-    const x = paddingLeft + point.normalizedX * drawingWidth;
+    const x = paddingLeft + point.normalizedX * Number(drawingWidth);
     const y = paddingTop + point.normalizedY * drawingHeight;
     const size = point.pointSize;
     
@@ -337,7 +339,7 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
         setHoveredPoint({
           point,
           seriesIndex,
-          x: x + size / 2,
+          x: x + (typeof size === 'string' ? parseFloat(size) : size) / 2,
           y: y - size
         });
       }
@@ -359,8 +361,8 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
         return (
           <rect
             key={`point-${seriesIndex}-${point.x}-${point.y}`}
-            x={x - size / 2}
-            y={y - size / 2}
+            x={x - (typeof size === 'string' ? parseFloat(size) : size) / 2}
+            y={y - (typeof size === 'string' ? parseFloat(size) : size) / 2}
             width={size}
             height={size}
             fill={point.pointColor}
@@ -379,7 +381,8 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
         return (
           <path
             key={`point-${seriesIndex}-${point.x}-${point.y}`}
-            d={trianglePath}
+            const triangleSize = typeof size === 'string' ? parseFloat(size) : size;
+            const trianglePath = `M ${x} ${y - triangleSize / Math.sqrt(3)} L ${x + triangleSize / 2} ${y + triangleSize / (2 * Math.sqrt(3))} L ${x - triangleSize / 2} ${y + triangleSize / (2 * Math.sqrt(3))} Z`;
             fill={point.pointColor}
             stroke={themeMode === 'dark' ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)'}
             strokeWidth={1}
@@ -421,18 +424,18 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
             cursor={onPointClick ? 'pointer' : 'default'}
           >
             <line
-              x1={x - crossSize}
-              y1={y - crossSize}
-              x2={x + crossSize}
-              y2={y + crossSize}
+              x1={x - Number(crossSize)}
+              y1={y - Number(crossSize)}
+              x2={x + Number(crossSize)}
+              y2={y + Number(crossSize)}
               stroke={point.pointColor}
               strokeWidth={2}
             />
             <line
-              x1={x - crossSize}
-              y1={y + crossSize}
-              x2={x + crossSize}
-              y2={y - crossSize}
+              x1={x - Number(crossSize)}
+              y1={y + Number(crossSize)}
+              x2={x + Number(crossSize)}
+              y2={y - Number(crossSize)}
               stroke={point.pointColor}
               strokeWidth={2}
             />
@@ -445,7 +448,7 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
             key={`point-${seriesIndex}-${point.x}-${point.y}`}
             cx={x}
             cy={y}
-            r={size / 2}
+            r={(typeof size === 'string' ? parseFloat(size) : size) / 2}
             fill={point.pointColor}
             stroke={themeMode === 'dark' ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)'}
             strokeWidth={1}
@@ -660,7 +663,7 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
         {/* Y-Achsentitel */}
         {axisLabels?.y && (
           <text
-            transform={`rotate(-90, ${paddingLeft / 3}, ${paddingTop + drawingHeight / 2})`}
+            transform={`rotate(-90, ${paddingLeft / 3}, ${paddingTop + Number(drawingHeight) / 2})`}
             x={paddingLeft / 3}
             y={paddingTop + drawingHeight / 2}
             textAnchor="middle"
@@ -672,9 +675,9 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
           </text>
         )}
       </g>
-      
-      {/* Legende */}
-      {showLegend && normalizedSeries.length > 1 && (
+
+{/* Legende */}
+{showLegend && normalizedSeries.length > 1 && (
         <g className="chart-legend">
           {(() => {
             // Positionierung der Legende basierend auf legendPosition
@@ -762,7 +765,9 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
                               strokeWidth={1}
                             />
                           );
-                      })()
+                        }
+                        return null; // Fallback für TypeScript
+                      })()}
                     </g>
                     <text
                       x={20}
@@ -773,3 +778,17 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
                     >
                       {series.name}
                     </text>
+                  </g>
+                ))}
+              </g>
+            );
+          })()}
+        </g>
+      )}
+    </svg>
+  );
+});
+
+ScatterPlot.displayName = 'ScatterPlot';
+
+export default ScatterPlot;

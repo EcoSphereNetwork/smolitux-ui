@@ -2,6 +2,12 @@
 import React, { useMemo, forwardRef } from 'react';
 import { useTheme } from '@smolitux/theme';
 
+// Proper typing for theme object
+interface Theme {
+  themeMode?: 'light' | 'dark';
+  [key: string]: any;
+}
+
 export interface PieChartDataPoint {
   /** Label für das Segment */
   label: string;
@@ -94,7 +100,9 @@ export const PieChart = forwardRef<SVGSVGElement, PieChartProps>(({
   className = '',
   ...rest
 }, ref) => {
-  const { themeMode } = useTheme();
+  const theme = useTheme() as Theme;
+  const themeMode = theme.themeMode ?? 'light';  
+
   
   // Standard-Farbpalette
   const defaultColors = [
@@ -458,7 +466,7 @@ export const PieChart = forwardRef<SVGSVGElement, PieChartProps>(({
       )}
       
       {/* Animation-Styles */}
-      <style jsx>{`
+      <style>{`
         @keyframes fillIn {
           from { opacity: 0; }
           to { opacity: 1; }
