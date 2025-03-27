@@ -21,4 +21,11 @@ declare module '@smolitux/core' {
   }
 
   export const Input: React.FC<InputProps>;
+
+  export interface CardProps {
+    className?: string;
+    children?: React.ReactNode;
+  }
+
+  export const Card: React.FC<CardProps>;
 }
