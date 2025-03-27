@@ -1,9 +1,9 @@
-// Export types only once
+// Export types
 export * from './types';
 
 // Export components
-export * from './components/FederatedSearch';
-export * from './components/PlatformSelector';
-export * from './components/ActivityStream';
-export * from './components/FederationStatus';
-export * from './components/CrossPlatformShare';
+export { FederatedSearch } from './components/FederatedSearch';
+export { PlatformSelector } from './components/PlatformSelector';
+export { ActivityStream } from './components/ActivityStream';
+export { FederationStatus } from './components/FederationStatus';
+export { CrossPlatformShare } from './components/CrossPlatformShare';
