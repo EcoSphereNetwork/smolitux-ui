@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Input, Button, Card } from '@smolitux/core';
+import { FederatedPlatform } from '../../types';
 
 export interface FederatedPlatform {
   /** Eindeutige ID der Plattform */
