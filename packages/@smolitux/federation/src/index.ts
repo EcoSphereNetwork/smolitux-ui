@@ -1,5 +1,3 @@
-// packages/@smolitux/federation/src/index.ts
-
 // Export types first (but only once)
 export * from './types';
 
