@@ -1,6 +1,6 @@
-// File: packages/@smolitux/federation/src/index.ts
+// packages/@smolitux/federation/src/index.ts
 
-// Export shared types first
+// Export types first (but only once)
 export * from './types';
 
 // Export all components
