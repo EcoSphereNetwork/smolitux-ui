@@ -1,4 +1,9 @@
-// Export all Federation components
+// File: packages/@smolitux/federation/src/index.ts
+
+// Export shared types first
+export * from './types';
+
+// Export all components
 export * from './components/FederatedSearch';
 export * from './components/PlatformSelector';
 export * from './components/ActivityStream';
