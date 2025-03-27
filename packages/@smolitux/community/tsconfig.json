@@ -23,3 +23,10 @@
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
 }
+{
+  "extends": "../../tsconfig.template.json",
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+  "include": ["src"]
+}
