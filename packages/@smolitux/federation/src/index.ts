@@ -1,7 +1,7 @@
-// Export types first (but only once)
+// Export types only once
 export * from './types';
 
-// Export all components
+// Export components
 export * from './components/FederatedSearch';
 export * from './components/PlatformSelector';
 export * from './components/ActivityStream';
