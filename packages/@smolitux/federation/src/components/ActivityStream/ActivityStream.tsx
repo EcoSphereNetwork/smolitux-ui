@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, Input } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
 
-
 export type ActivityType = 
   | 'Create' 
   | 'Update' 
