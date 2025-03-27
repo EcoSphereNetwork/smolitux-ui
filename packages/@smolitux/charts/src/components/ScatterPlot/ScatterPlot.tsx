@@ -792,13 +792,4 @@ export const ScatterPlot = forwardRef<SVGSVGElement, ScatterPlotProps>(({
 
 ScatterPlot.displayName = 'ScatterPlot';
 
-export default ScatterPlot;'}
-                              strokeWidth={1}
-                            />
-                          );
-                        case 'triangle':
-                          return (
-                            <path
-                              d="M6 0 L12 12 L0 12 Z"
-                              fill={series.color}
-                              stroke={themeMode === 'dark' ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)
+export default ScatterPlot;
