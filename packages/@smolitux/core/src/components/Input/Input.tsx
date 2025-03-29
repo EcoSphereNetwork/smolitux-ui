@@ -477,13 +477,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   // Validiere den Wert
   const validateInput = useCallback((val: string): { isValid: boolean; message?: string } => {
     // Wenn keine Validierung erforderlich ist, ist der Wert gültig
-    if (!validationRule && !validationFunc && !pattern && !required) {
+    if (!props.validationRule && !props.validationFunc && !pattern && !_required) {
       return { isValid: true };
     }
     
     // Prüfe, ob der Wert leer ist und ob er erforderlich ist
-    if ((!val || val.trim() === '') && required) {
-      return { isValid: false, message: validationMessage || 'Dieses Feld ist erforderlich' };
+    if ((!val || val.trim() === '') && _required) {
+      return { isValid: false, message: props.validationMessage || 'Dieses Feld ist erforderlich' };
     }
     
     // Wenn der Wert leer ist und nicht erforderlich, ist er gültig
@@ -495,23 +495,23 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     if (pattern) {
       const regex = new RegExp(pattern);
       if (!regex.test(val)) {
-        return { isValid: false, message: validationMessage || 'Ungültiges Format' };
+        return { isValid: false, message: props.validationMessage || 'Ungültiges Format' };
       }
     }
     
     // Prüfe gegen die Validierungsregel, wenn vorhanden
-    if (validationRule && !validationRule.test(val)) {
-      return { isValid: false, message: validationMessage || 'Ungültige Eingabe' };
+    if (props.validationRule && !props.validationRule.test(val)) {
+      return { isValid: false, message: props.validationMessage || 'Ungültige Eingabe' };
     }
     
     // Prüfe mit der Validierungsfunktion, wenn vorhanden
-    if (validationFunc && !validationFunc(val)) {
-      return { isValid: false, message: validationMessage || 'Ungültige Eingabe' };
+    if (props.validationFunc && !props.validationFunc(val)) {
+      return { isValid: false, message: props.validationMessage || 'Ungültige Eingabe' };
     }
     
     // Wenn alle Prüfungen bestanden wurden, ist der Wert gültig
     return { isValid: true };
-  }, [validationRule, validationFunc, pattern, required, validationMessage]);
+  }, [props.validationRule, props.validationFunc, pattern, _required, props.validationMessage]);
   
   // Event-Handler
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -528,8 +528,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     const validationResult = validateInput(newValue);
     
     // Aktualisiere den Validierungsstatus
-    if (onValidate) {
-      onValidate(validationResult.isValid);
+    if (props.onValidate) {
+      props.onValidate(validationResult.isValid);
     }
     
     // Rufe den onChange-Handler auf
@@ -565,8 +565,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     const validationResult = validateInput(e.target.value);
     
     // Aktualisiere den Validierungsstatus
-    if (onValidate) {
-      onValidate(validationResult.isValid);
+    if (props.onValidate) {
+      props.onValidate(validationResult.isValid);
     }
     
     // Setze den Fehler, wenn die Validierung fehlschlägt

@@ -23,12 +23,15 @@
 - [x] Badge-Komponente getestet und verbessert
   - Barrierefreiheits-Attribute für Dot-Variante hinzugefügt
   - Tests angepasst und erfolgreich durchgeführt
+- [x] Input-Komponente getestet und verbessert
+  - Validierungsfunktionalität korrigiert
+  - Event-Handler für onValidate korrigiert
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Input-Komponente testen und verbessern
 - [ ] Select-Komponente testen und verbessern
 - [ ] Modal-Komponente testen und verbessern
 - [ ] TabView-Komponente testen und verbessern
