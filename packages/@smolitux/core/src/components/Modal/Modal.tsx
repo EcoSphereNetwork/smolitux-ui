@@ -69,6 +69,28 @@ export interface ModalProps {
   onOpen?: () => void;
   /** Callback, wenn der Modal vollständig geschlossen ist */
   onClosed?: () => void;
+  /** Benutzerdefinierte Breite des Modals */
+  width?: string;
+  /** Benutzerdefinierte Höhe des Modals */
+  height?: string;
+  /** Ob Standard-Footer-Buttons angezeigt werden sollen */
+  footerButtons?: boolean;
+  /** Text für den Abbrechen-Button */
+  cancelButtonText?: string;
+  /** Text für den Bestätigen-Button */
+  confirmButtonText?: string;
+  /** Callback für den Abbrechen-Button */
+  onCancel?: () => void;
+  /** Callback für den Bestätigen-Button */
+  onConfirm?: () => void;
+  /** Benutzerdefinierter Header-Inhalt */
+  header?: React.ReactNode;
+  /** Beschreibung des Modals für Screenreader */
+  description?: string;
+  /** Ob der Modal eine Rolle als Alert-Dialog haben soll */
+  isAlertDialog?: boolean;
+  /** Ob der Modal eine Rolle als Vollbild-Dialog haben soll */
+  isFullscreenDialog?: boolean;
 }
 
 /**
@@ -127,7 +149,18 @@ export const Modal: React.FC<ModalProps> = ({
   modalProps = {},
   overlayProps = {},
   onOpen,
-  onClosed
+  onClosed,
+  width,
+  height,
+  footerButtons = false,
+  cancelButtonText = 'Cancel',
+  confirmButtonText = 'Confirm',
+  onCancel,
+  onConfirm,
+  header,
+  description,
+  isAlertDialog = false,
+  isFullscreenDialog = false
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -135,6 +168,7 @@ export const Modal: React.FC<ModalProps> = ({
   const modalId = id || `modal-${Math.random().toString(36).substr(2, 9)}`;
   const titleId = `${modalId}-title`;
   const bodyId = `${modalId}-body`;
+  const descriptionId = description ? `${modalId}-description` : undefined;
   
   // Speichern des vorherigen Fokus
   useEffect(() => {
@@ -294,9 +328,9 @@ export const Modal: React.FC<ModalProps> = ({
     <div 
       className={`fixed inset-0 z-50 overflow-y-auto ${scrollable ? '' : 'overflow-hidden'}`}
       aria-modal="true"
-      role="dialog"
+      role={isAlertDialog ? "alertdialog" : "dialog"}
       aria-labelledby={title ? titleId : undefined}
-      aria-describedby={bodyId}
+      aria-describedby={description ? descriptionId : bodyId}
       {...modalProps}
     >
       {/* Overlay */}
@@ -304,6 +338,7 @@ export const Modal: React.FC<ModalProps> = ({
         className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity ${animationClasses.overlay} ${overlayClassName}`}
         onClick={closeOnOverlayClick && !isStatic && !blocking ? onClose : undefined}
         aria-hidden="true"
+        data-testid="modal-overlay"
         {...overlayProps}
       ></div>
       
@@ -313,17 +348,27 @@ export const Modal: React.FC<ModalProps> = ({
         <div 
           ref={modalRef}
           id={modalId}
-          className={`relative bg-white dark:bg-gray-800 text-left transform transition-all w-full ${sizeClasses[size]} ${styleClasses.shadow} ${styleClasses.rounded} ${styleClasses.bordered} ${animationClasses.modal} ${className}`}
+          className={`relative bg-white dark:bg-gray-800 text-left transform transition-all w-full ${sizeClasses[size]} ${styleClasses.shadow} ${styleClasses.rounded} ${styleClasses.bordered} ${animationClasses.modal} ${className} ${isFullscreenDialog ? 'h-full m-0 max-w-full' : ''}`}
           onClick={(e) => e.stopPropagation()}
           tabIndex={-1}
+          style={{
+            ...(width ? { width } : {}),
+            ...(height ? { height } : {})
+          }}
         >
           {/* Modal-Header */}
-          {(title || showCloseButton) && (
+          {(title || header || showCloseButton) && (
             <div className={`border-b border-gray-200 dark:border-gray-700 px-6 py-4 ${headerClassName}`}>
-              {title && (
-                <h3 id={titleId} className="text-lg font-medium text-gray-900 dark:text-white">
-                  {title}
-                </h3>
+              {header ? (
+                header
+              ) : (
+                <>
+                  {title && (
+                    <h3 id={titleId} className="text-lg font-medium text-gray-900 dark:text-white">
+                      {title}
+                    </h3>
+                  )}
+                </>
               )}
               {showCloseButton && (
                 <button
@@ -354,12 +399,46 @@ export const Modal: React.FC<ModalProps> = ({
           )}
           
           {/* Modal-Body */}
-          <div id={bodyId} className={`p-6 ${bodyClassName}`}>{children}</div>
+          <div id={bodyId} className={`p-6 ${bodyClassName}`} data-testid="modal-body">
+            {description && (
+              <div id={descriptionId} className="sr-only">
+                {description}
+              </div>
+            )}
+            {children}
+          </div>
           
           {/* Modal-Footer */}
-          {footer && (
+          {(footer || footerButtons) && (
             <div className={`border-t border-gray-200 dark:border-gray-700 px-6 py-4 ${footerClassName}`}>
-              {footer}
+              {footer || (
+                <div className="flex justify-end space-x-3">
+                  {onCancel && (
+                    <button
+                      type="button"
+                      className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                      onClick={() => {
+                        onCancel();
+                        if (!onConfirm) onClose();
+                      }}
+                    >
+                      {cancelButtonText}
+                    </button>
+                  )}
+                  {onConfirm && (
+                    <button
+                      type="button"
+                      className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                      onClick={() => {
+                        onConfirm();
+                        onClose();
+                      }}
+                    >
+                      {confirmButtonText}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </div>
