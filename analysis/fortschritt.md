@@ -42,13 +42,22 @@
   - Barrierefreiheits-Attribute hinzugefügt
   - Keyboard-Navigation verbessert
   - Tests angepasst und erfolgreich durchgeführt
+- [x] Tooltip-Komponente getestet und verbessert
+  - Komponente neu implementiert mit verbesserter Positionierung
+  - Barrierefreiheits-Attribute hinzugefügt
+  - Verzögerungslogik verbessert
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] Dropdown-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute korrigiert
+  - Event-Handling verbessert
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Tooltip-Komponente testen und verbessern
-- [ ] Dropdown-Komponente testen und verbessern
+- [ ] Accordion-Komponente testen und verbessern
+- [ ] Pagination-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 

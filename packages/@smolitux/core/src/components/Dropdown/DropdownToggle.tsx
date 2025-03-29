@@ -163,7 +163,7 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, DropdownToggle
       aria-haspopup="menu"
       aria-expanded={isOpen}
       aria-controls={isOpen ? `${dropdownId}-menu` : undefined}
-      aria-disabled={isDisabled}
+      aria-disabled={isDisabled ? 'true' : 'false'}
       disabled={isDisabled}
       {...rest}
     >
