@@ -9,12 +9,13 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 1. **Accordion** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Tastaturnavigation
 2. **Alert** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
 3. **Breadcrumb** - Verbesserte ARIA-Attribute, Schema.org strukturierte Daten, Tastaturnavigation
-4. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
-5. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
-6. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen
-7. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung
-8. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
-9. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+4. **Button** - Verbesserte ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+5. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+6. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
+7. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen
+8. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung
+9. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
+10. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
 
 ## Noch zu verbessernde Komponenten
 
@@ -22,10 +23,9 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 
 1. **Avatar** - Benötigt Alt-Text, ARIA-Attribute
 2. **Badge** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-3. **Button** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-4. **Card** - Benötigt ARIA-Attribute, Fokussierbarkeit
-5. **Carousel** - Benötigt ARIA-Attribute, Tastaturnavigation, Pause-Funktion
-6. **Checkbox** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+3. **Card** - Benötigt ARIA-Attribute, Fokussierbarkeit
+4. **Carousel** - Benötigt ARIA-Attribute, Tastaturnavigation, Pause-Funktion
+5. **Checkbox** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
 6. **Collapse** - Benötigt ARIA-Attribute, Tastaturnavigation
 7. **ColorPicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
 8. **Drawer** - Benötigt ARIA-Attribute, Fokus-Management
