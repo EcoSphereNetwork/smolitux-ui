@@ -39,6 +39,28 @@ export interface DialogProps {
   className?: string;
   /** Z-Index-Wert */
   zIndex?: number;
+  /** Beschreibung für Screenreader */
+  description?: string;
+  /** ID für den Dialog */
+  id?: string;
+  /** Ob der Dialog ein Alert-Dialog ist */
+  isAlertDialog?: boolean;
+  /** Ob der Dialog beim Schließen den vorherigen Fokus wiederherstellen soll */
+  returnFocus?: boolean;
+  /** Ob der Dialog blockierend sein soll (kein Klick außerhalb möglich) */
+  blocking?: boolean;
+  /** Ob der Dialog eine bestimmte Aktion erfordert */
+  requiresAction?: boolean;
+  /** Ob der Bestätigen-Button deaktiviert sein soll */
+  confirmDisabled?: boolean;
+  /** Ob der Bestätigen-Button im Ladezustand sein soll */
+  confirmLoading?: boolean;
+  /** Ob der Dialog eine Rolle als Vollbild-Dialog haben soll */
+  isFullscreenDialog?: boolean;
+  /** Benutzerdefinierte Breite des Dialogs */
+  width?: string;
+  /** Benutzerdefinierte Höhe des Dialogs */
+  height?: string;
 }
 
 /**
@@ -75,13 +97,38 @@ export const Dialog: React.FC<DialogProps> = ({
   animated = true,
   className = '',
   zIndex = 50,
+  description,
+  id,
+  isAlertDialog = false,
+  returnFocus = true,
+  blocking = false,
+  requiresAction = false,
+  confirmDisabled = false,
+  confirmLoading = false,
+  isFullscreenDialog = false,
+  width,
+  height,
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   
+  // Speichern des vorherigen Fokus
+  useEffect(() => {
+    if (isOpen && returnFocus) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+    }
+    
+    return () => {
+      if (returnFocus && previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
+        previousFocusRef.current.focus();
+      }
+    };
+  }, [isOpen, returnFocus]);
+
   // Schließen mit Escape-Taste
   useEffect(() => {
-    if (!closeOnEsc) return;
+    if (!closeOnEsc || blocking || requiresAction) return;
     
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -91,7 +138,7 @@ export const Dialog: React.FC<DialogProps> = ({
     
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [isOpen, closeOnEsc]);
+  }, [isOpen, closeOnEsc, blocking, requiresAction]);
   
   // Verhindern des Body-Scrollings
   useEffect(() => {
@@ -109,16 +156,56 @@ export const Dialog: React.FC<DialogProps> = ({
   // Fokus auf Dialog oder Confirm-Button
   useEffect(() => {
     if (isOpen && initialFocus) {
-      if (confirmButtonRef.current) {
-        confirmButtonRef.current.focus();
-      } else if (dialogRef.current) {
-        dialogRef.current.focus();
-      }
+      // Verzögerung für Animation
+      const timer = setTimeout(() => {
+        if (confirmButtonRef.current && !confirmDisabled) {
+          confirmButtonRef.current.focus();
+        } else if (dialogRef.current) {
+          dialogRef.current.focus();
+        }
+      }, 50);
+      
+      return () => clearTimeout(timer);
     }
-  }, [isOpen, initialFocus]);
+  }, [isOpen, initialFocus, confirmDisabled]);
+  
+  // Tab-Fokus innerhalb des Dialogs halten
+  useEffect(() => {
+    if (!isOpen) return;
+    
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key === 'Tab' && dialogRef.current) {
+        const focusableElements = Array.from(
+          dialogRef.current.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          )
+        ) as HTMLElement[];
+        
+        if (focusableElements.length === 0) return;
+        
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    };
+    
+    document.addEventListener('keydown', handleTabKey);
+    return () => document.removeEventListener('keydown', handleTabKey);
+  }, [isOpen]);
   
   // Cancel-Handler
   const handleCancel = () => {
+    if (requiresAction || blocking) {
+      return;
+    }
+    
     if (onCancel) {
       onCancel();
     }
@@ -127,10 +214,17 @@ export const Dialog: React.FC<DialogProps> = ({
   
   // Confirm-Handler
   const handleConfirm = () => {
+    if (confirmDisabled) {
+      return;
+    }
+    
     if (onConfirm) {
       onConfirm();
     }
-    onClose();
+    
+    if (!confirmLoading) {
+      onClose();
+    }
   };
   
   // Wenn nicht offen, nicht rendern
@@ -201,18 +295,26 @@ export const Dialog: React.FC<DialogProps> = ({
   
   const { iconColor, icon: variantIcon } = getVariantProps();
   
+  // Generiere IDs für Barrierefreiheit
+  const dialogId = id || `dialog-${Math.random().toString(36).substr(2, 9)}`;
+  const titleId = `${dialogId}-title`;
+  const descriptionId = description ? `${dialogId}-description` : undefined;
+  const bodyId = `${dialogId}-body`;
+
   return (
     <div
       className={`fixed inset-0 z-${zIndex} overflow-y-auto`}
-      aria-labelledby="dialog-title"
-      role="dialog"
+      aria-labelledby={title ? titleId : undefined}
+      aria-describedby={description ? descriptionId : bodyId}
+      role={isAlertDialog ? "alertdialog" : "dialog"}
       aria-modal="true"
+      id={dialogId}
     >
       {/* Overlay */}
       <div 
         data-testid="dialog-overlay"
         className={`fixed inset-0 bg-black bg-opacity-50 ${animated ? 'transition-opacity duration-300 ease-out' : ''}`}
-        onClick={closeOnOverlayClick ? handleCancel : undefined}
+        onClick={closeOnOverlayClick && !blocking && !requiresAction ? handleCancel : undefined}
         aria-hidden="true"
       />
       
@@ -228,9 +330,14 @@ export const Dialog: React.FC<DialogProps> = ({
             w-full
             ${sizeClasses[size]}
             ${animated ? 'transform transition-all duration-300 ease-out' : ''}
+            ${isFullscreenDialog ? 'h-full m-0 max-w-full' : ''}
             ${className}
           `}
           tabIndex={-1}
+          style={{
+            ...(width ? { width } : {}),
+            ...(height ? { height } : {})
+          }}
         >
           {/* Dialog Header */}
           {title && (
@@ -240,15 +347,17 @@ export const Dialog: React.FC<DialogProps> = ({
                   {variantIcon}
                 </div>
               )}
-              <h3 id="dialog-title" className="text-lg font-medium text-gray-900 dark:text-white">
+              <h3 id={titleId} className="text-lg font-medium text-gray-900 dark:text-white">
                 {title}
               </h3>
-              <button
-                type="button"
-                className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
-                onClick={handleCancel}
-                aria-label="Schließen"
-              >
+              {!requiresAction && !blocking && (
+                <button
+                  type="button"
+                  className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  onClick={handleCancel}
+                  aria-label="Schließen"
+                  disabled={requiresAction || blocking}
+                >
                 <svg 
                   className="h-6 w-6" 
                   fill="none" 
@@ -263,12 +372,18 @@ export const Dialog: React.FC<DialogProps> = ({
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-              </button>
+                </button>
+              )}
             </div>
           )}
           
           {/* Dialog Content */}
-          <div className="p-6">
+          <div id={bodyId} className="p-6">
+            {description && (
+              <div id={descriptionId} className="sr-only">
+                {description}
+              </div>
+            )}
             {variantIcon && !title && (
               <div className={`mb-4 flex-shrink-0 ${iconColor} flex justify-center`}>
                 {variantIcon}
@@ -285,16 +400,21 @@ export const Dialog: React.FC<DialogProps> = ({
               footerButtons
             ) : (
               <>
-                <Button 
-                  variant="outline" 
-                  onClick={handleCancel}
-                >
-                  {cancelLabel}
-                </Button>
+                {!requiresAction && (
+                  <Button 
+                    variant="outline" 
+                    onClick={handleCancel}
+                    disabled={blocking || requiresAction}
+                  >
+                    {cancelLabel}
+                  </Button>
+                )}
                 <Button 
                   ref={confirmButtonRef}
                   variant="primary" 
                   onClick={handleConfirm}
+                  disabled={confirmDisabled}
+                  isLoading={confirmLoading}
                 >
                   {confirmLabel}
                 </Button>
