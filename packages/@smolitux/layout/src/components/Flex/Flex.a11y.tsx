@@ -223,15 +223,18 @@ export const FlexA11y = forwardRef<HTMLDivElement, FlexProps>(({
   // Rendere das entsprechende Element basierend auf der 'as'-Prop
   const Component = as as keyof JSX.IntrinsicElements;
 
-  return (
-    <Component
-      ref={ref}
-      className={classes}
-      {...filteredAriaAttributes}
-      {...rest}
-    >
-      {children}
-    </Component>
+  // Kombiniere alle Props in einem Objekt
+  const componentProps = {
+    ref,
+    className: classes,
+    ...filteredAriaAttributes,
+    ...rest
+  };
+
+  return React.createElement(
+    Component,
+    componentProps,
+    children
   );
 });
 

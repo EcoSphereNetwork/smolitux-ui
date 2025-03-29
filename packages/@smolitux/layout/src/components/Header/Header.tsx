@@ -2,7 +2,7 @@
 import React, { forwardRef } from 'react';
 import { useTheme } from '@smolitux/theme';
 
-export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
+export interface HeaderProps {
   /** Titel im Header */
   title?: React.ReactNode;
   /** Logo des Headers */
