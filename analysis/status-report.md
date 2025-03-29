@@ -23,49 +23,49 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 | Komponente | Status | Tests | Dokumentation |
 |------------|--------|-------|---------------|
 | Button | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
-| Card | ✅ Implementiert | ⚠️ Tests fehlschlagen | ✅ Vorhanden |
-| Alert | ✅ Implementiert | ⚠️ Tests fehlschlagen | ✅ Vorhanden |
-| Modal | ✅ Implementiert | ⚠️ Tests fehlschlagen | ✅ Vorhanden |
-| Input | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| Select | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| TabView | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| Badge | ✅ Implementiert | ⚠️ Tests fehlschlagen | ✅ Vorhanden |
-| Accordion | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| Breadcrumb | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| Carousel | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| Checkbox | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| Card | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
+| Alert | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
+| Modal | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
+| Input | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
+| Select | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
+| TabView | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
+| Badge | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
+| Accordion | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Breadcrumb | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Carousel | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Checkbox | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Collapse | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| ColorPicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| DatePicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| ColorPicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| DatePicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Dialog | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Drawer | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| Dropdown | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
+| Dropdown | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Fade | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| FileUpload | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| FileUpload | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Form | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | FormControl | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | FormField | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | LanguageSwitcher | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| List | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| MediaPlayer | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| List | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| MediaPlayer | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Menu | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Pagination | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Popover | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | ProgressBar | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Radio | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | RadioGroup | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| Skeleton | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| Skeleton | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Slide | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Slider | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| Spinner | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| Stepper | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| Spinner | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Stepper | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Switch | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| Table | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| Table | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Tabs | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | TextArea | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| TimePicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| TimePicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Toast | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
-| Tooltip | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
+| Tooltip | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Zoom | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 
 ### 2.2 Layout-Komponenten
@@ -115,19 +115,39 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 
 ## 5. Identifizierte Probleme
 
-1. **Abhangigkeitsprobleme**: Konflikte zwischen Abhangigkeiten, insbesondere bei Storybook
-2. **Testfehler**: Die meisten Tests schlagen fehl, hauptsachlich wegen jest-axe-Integration
-3. **Duplizierte Mocks**: Mehrere identische fileMock.js-Dateien in verschiedenen Paketen
-4. **Unvollstandige Dokumentation**: Viele Komponenten haben keine oder unvollstandige Dokumentation
+1. **Abhängigkeitsprobleme**: Konflikte zwischen Abhängigkeiten, insbesondere bei Storybook
+2. **Testfehler**: Viele Tests schlagen noch fehl, einige wurden bereits korrigiert
+3. **Duplizierte Mocks**: ✅ Behoben - Mocks wurden in ein zentrales Paket verschoben
+4. **Unvollständige Dokumentation**: Viele Komponenten haben keine oder unvollständige Dokumentation
 5. **Fehlende Tests**: Einige Komponenten haben keine Tests
 6. **Storybook-Probleme**: Storybook kann nicht gestartet werden
 
-## 6. Nachste Schritte
+## 6. Fortschritte
 
-1. **Abhangigkeiten bereinigen**: Losen der Abhangigkeitskonflikte
-2. **Testinfrastruktur reparieren**: Beheben der jest-axe-Integration und anderer Testprobleme
-3. **Komponenten vervollstandigen**: Fehlende Komponenten implementieren und bestehende verbessern
-4. **Tests vervollstandigen**: Fehlende Tests hinzufugen und bestehende reparieren
-5. **Dokumentation verbessern**: Fehlende Dokumentation hinzufugen und bestehende aktualisieren
-6. **Storybook reparieren**: Storybook zum Laufen bringen fur visuelle Tests und Dokumentation
-7. **CI/CD-Pipeline einrichten**: Automatisierte Tests und Builds konfigurieren
+1. **Jest-axe-Integration**: ✅ Behoben - Die Integration wurde korrigiert
+2. **Duplizierte Mocks**: ✅ Behoben - Mocks wurden in ein zentrales Paket verschoben
+3. **Komponententests**: ✅ Teilweise behoben - Folgende Komponenten wurden verbessert und ihre Tests laufen erfolgreich:
+   - Button
+   - Card
+   - Alert
+   - Badge
+   - Input
+   - Select
+   - Modal
+   - TabView
+   - Tooltip
+   - Dropdown
+
+## 7. Nächste Schritte
+
+1. **Abhängigkeiten bereinigen**: Lösen der Abhängigkeitskonflikte
+2. **Weitere Komponenten verbessern**: Fortfahren mit der Verbesserung der restlichen Komponenten
+   - Accordion
+   - Pagination
+   - Breadcrumb
+   - Carousel
+   - Checkbox
+3. **Tests vervollständigen**: Fehlende Tests hinzufügen und bestehende reparieren
+4. **Dokumentation verbessern**: Fehlende Dokumentation hinzufügen und bestehende aktualisieren
+5. **Storybook reparieren**: Storybook zum Laufen bringen für visuelle Tests und Dokumentation
+6. **CI/CD-Pipeline einrichten**: Automatisierte Tests und Builds konfigurieren
