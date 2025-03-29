@@ -56,6 +56,96 @@ export default App;
 
 ### Core-Komponenten
 
+#### DatePicker
+
+Die DatePicker-Komponente ermöglicht die Auswahl eines Datums oder eines Datumsbereichs.
+
+```jsx
+import { DatePicker } from '@smolitux/core';
+
+// Einzeldatum-Auswahl
+<DatePicker 
+  label="Datum auswählen" 
+  format="dd.MM.yyyy"
+  placeholder="TT.MM.JJJJ"
+/>
+
+// Datumsbereich-Auswahl
+<DatePicker 
+  label="Zeitraum auswählen" 
+  selectionMode="range"
+  format="dd.MM.yyyy"
+  placeholder="TT.MM.JJJJ - TT.MM.JJJJ"
+/>
+```
+
+**Props:**
+
+| Prop | Typ | Standard | Beschreibung |
+|------|-----|----------|--------------|
+| value | Date \| null \| [Date \| null, Date \| null] | - | Ausgewähltes Datum oder Datumsbereich |
+| defaultValue | Date \| null \| [Date \| null, Date \| null] | - | Standard-Ausgewähltes Datum oder Datumsbereich |
+| onChange | (date: Date \| null \| [Date \| null, Date \| null]) => void | - | Callback bei Auswahl eines Datums |
+| selectionMode | 'single' \| 'range' | 'single' | Auswahlmodus (einzeln oder Bereich) |
+| format | string | 'yyyy-MM-dd' | Format des Datums |
+| minDate | Date | - | Minimales Datum |
+| maxDate | Date | - | Maximales Datum |
+| placeholder | string | 'YYYY-MM-DD' | Platzhaltertext |
+| disabled | boolean | false | Ob der DatePicker deaktiviert ist |
+| readOnly | boolean | false | Ob der DatePicker schreibgeschützt ist |
+| allowManualInput | boolean | true | Ob manuelle Eingabe erlaubt ist |
+| closeOnSelect | boolean | true | Ob der Picker nach Auswahl geschlossen werden soll |
+
+#### Table
+
+Die Table-Komponente zeigt Daten in einer Tabelle an und bietet Funktionen wie Sortierung, Filterung, Suche und Paginierung.
+
+```jsx
+import { Table } from '@smolitux/core';
+
+const columns = [
+  { id: 'name', header: 'Name', cell: (row) => row.name, sortable: true },
+  { id: 'age', header: 'Alter', cell: (row) => row.age, sortable: true },
+  { id: 'city', header: 'Stadt', cell: (row) => row.city }
+];
+
+const data = [
+  { name: 'Max Mustermann', age: 30, city: 'Berlin' },
+  { name: 'Erika Musterfrau', age: 25, city: 'München' },
+  { name: 'John Doe', age: 40, city: 'Hamburg' }
+];
+
+<Table 
+  data={data} 
+  columns={columns}
+  sortable={true}
+  paginated={true}
+  searchable={true}
+  filterable={true}
+  selectable={true}
+/>
+```
+
+**Props:**
+
+| Prop | Typ | Standard | Beschreibung |
+|------|-----|----------|--------------|
+| data | any[] | [] | Daten für die Tabelle |
+| columns | TableColumn[] | [] | Spaltendefinitionen |
+| sortable | boolean | true | Ob die Tabelle sortierbar sein soll |
+| paginated | boolean | false | Ob die Tabelle paginiert sein soll |
+| itemsPerPage | number | 10 | Anzahl der Einträge pro Seite |
+| searchable | boolean | false | Ob die Tabelle eine Suchfunktion haben soll |
+| filterable | boolean | false | Ob die Tabelle filterbar sein soll |
+| selectable | boolean | false | Ob die Tabelle Zeilenauswahl unterstützen soll |
+| multiSelect | boolean | true | Ob mehrere Zeilen ausgewählt werden können |
+| exportable | boolean | false | Ob die Tabelle exportierbar sein soll |
+| onRowClick | (row, index) => void | - | Callback bei Klick auf eine Zeile |
+| onSort | (id, direction) => void | - | Callback bei Sortierungsänderung |
+| onFilter | (filters) => void | - | Callback bei Filteränderung |
+| onSearch | (searchTerm) => void | - | Callback bei Suchbegriffsänderung |
+| onRowSelect | (selectedRows) => void | - | Callback bei Zeilenauswahländerung |
+
 #### Alert
 
 Die Alert-Komponente wird verwendet, um wichtige Nachrichten anzuzeigen.

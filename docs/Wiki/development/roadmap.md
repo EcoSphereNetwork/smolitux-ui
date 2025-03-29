@@ -27,10 +27,10 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 
 ### 1.2 Entwicklungsstand
 
-- **Komponenten**: Viele Komponenten sind bereits angelegt, aber einige sind unvollständig oder benötigen Verbesserungen
+- **Komponenten**: Viele Komponenten sind bereits angelegt, einige wurden kürzlich verbessert (DatePicker, Table, Modal, Tooltip)
 - **Tests**: Die Testinfrastruktur ist definiert, aber viele Tests schlagen fehl (531 von 1254 Tests)
 - **Dokumentation**: Storybook ist eingerichtet, aber es gibt Konfigurationsprobleme
-- **Barrierefreiheit**: Muss für alle Komponenten überprüft und verbessert werden
+- **Barrierefreiheit**: Für einige Komponenten bereits verbessert (DatePicker, Table, Modal, Tooltip), muss für weitere Komponenten überprüft und verbessert werden
 
 ### 1.3 Identifizierte Probleme
 

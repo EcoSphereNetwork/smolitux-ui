@@ -15,12 +15,13 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 7. **Card** - Verbesserte ARIA-Attribute, Fokussierbarkeit, Tastaturnavigation
 8. **Checkbox** - Verbesserte ARIA-Attribute, Tastaturunterstützung, Screenreader-Ankündigungen
 9. **Collapse** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Zustandsankündigungen
-10. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+10. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation, Datumsbereich-Unterstützung
 11. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
-12. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen
-13. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung
+12. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen, optimierte Fokus-Verwaltung
+13. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung, Filterung, Suche, Zeilenauswahl
 14. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
 15. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+16. **Tooltip** - Verbesserte ARIA-Attribute, erweiterte Platzierungsoptionen, Tastaturaktivierung
 
 ## Noch zu verbessernde Komponenten
 
@@ -56,8 +57,7 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 28. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
 29. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
 30. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-31. **Tooltip** - Benötigt ARIA-Attribute, Tastaturaktivierung
-32. **Zoom** - Benötigt ARIA-Attribute für Animation
+31. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Prioritäten für die nächsten Verbesserungen
 

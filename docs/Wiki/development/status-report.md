@@ -23,6 +23,10 @@ Die folgenden Komponenten sind bereits implementiert und haben Tests:
 - **Checkbox**: Implementiert mit Unit-Tests
 - **Radio**: Implementiert mit Unit-Tests
 - **TabView**: Implementiert mit Unit-Tests
+- **DatePicker**: Vollständig implementiert mit Datumsbereich-Unterstützung und Unit-Tests
+- **Table**: Vollständig implementiert mit Sortierung, Filterung, Suche, Zeilenauswahl und Unit-Tests
+- **Modal**: Vollständig implementiert mit verbesserter Fokus-Verwaltung und Unit-Tests
+- **Tooltip**: Vollständig implementiert mit erweiterten Platzierungsoptionen und Unit-Tests
 
 #### Teilweise implementierte Komponenten:
 
@@ -35,14 +39,12 @@ Die folgenden Komponenten sind implementiert, haben aber keine oder unvollständ
 - **Breadcrumb**
 - **Carousel**
 - **ColorPicker**
-- **DatePicker**
 - **Dialog**
 - **Drawer**
 - **FileUpload**
 - **FormControl**
 - **MediaPlayer**
 - **Menu**
-- **Modal**
 - **Pagination**
 - **Popover**
 - **ProgressBar**
@@ -50,11 +52,9 @@ Die folgenden Komponenten sind implementiert, haben aber keine oder unvollständ
 - **Select**
 - **Skeleton**
 - **Switch**
-- **Table**
 - **TextArea**
 - **TimePicker**
 - **Toast**
-- **Tooltip**
 
 #### Fehlende Komponenten:
 

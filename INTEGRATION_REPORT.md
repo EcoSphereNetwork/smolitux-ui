@@ -57,6 +57,18 @@ The following new packages were created:
 
 2. **Testing**: Due to the dependency issues, comprehensive testing could not be completed. Tests need to be updated to work with the new package structure.
 
+## Aktuelle Fortschritte
+
+Seit dem letzten Bericht wurden folgende Verbesserungen implementiert:
+
+1. **Erweiterte Komponenten**:
+   - **DatePicker**: Implementierung von Datumsbereich-Unterstützung (Range-Picker)
+   - **Table**: Implementierung von erweiterten Filterfunktionen, Suchfunktionalität, Zeilenauswahl und verbesserter Paginierung
+   - **Modal**: Verbesserte Fokus-Verwaltung für bessere Barrierefreiheit
+   - **Tooltip**: Erweiterte Platzierungsoptionen und verbesserte Barrierefreiheit
+
+2. **Dokumentation**: Die Dokumentation für die verbesserten Komponenten wurde aktualisiert.
+
 ## Next Steps
 
 1. **Resolve Dependencies**: Update components to use their own implementations or proper imports from @smolitux/core.
