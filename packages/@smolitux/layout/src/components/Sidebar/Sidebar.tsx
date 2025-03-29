@@ -27,7 +27,7 @@ export interface SidebarItem {
   className?: string;
 }
 
-export interface SidebarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface SidebarProps {
   /** Navigation-Items */
   items: SidebarItem[];
   /** Titel der Sidebar */
@@ -38,6 +38,8 @@ export interface SidebarProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
   collapsed?: boolean;
   /** Callback bei Änderung des Collapse-Status */
   onCollapseChange?: (collapsed: boolean) => void;
+  /** Zusätzliche HTML-Attribute */
+  htmlProps?: Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'>;
   /** Callback bei Auswahl eines Items */
   onSelect?: (item: SidebarItem) => void;
   /** Position der Sidebar */
