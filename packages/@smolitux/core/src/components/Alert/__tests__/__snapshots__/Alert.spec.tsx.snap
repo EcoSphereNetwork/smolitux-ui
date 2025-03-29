@@ -1,0 +1,476 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert Snapshots renders correctly with ReactNode as message 1`] = `
+<div
+  aria-describedby="alert-6wuxbfjtb-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 "
+  id="alert-6wuxbfjtb"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-blue-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-blue-700 dark:text-blue-400 "
+        id="alert-6wuxbfjtb-message"
+      >
+        <span
+          data-testid="custom-message"
+        >
+          Custom Message
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with children 1`] = `
+<div
+  aria-describedby="alert-06lkyup8a-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 "
+  id="alert-06lkyup8a"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-blue-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-blue-700 dark:text-blue-400 "
+        id="alert-06lkyup8a-message"
+      >
+        Test message
+      </div>
+      <div
+        className="mt-3"
+      >
+        <button>
+          Action Button
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with close button 1`] = `
+<div
+  aria-describedby="alert-gmjlveept-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 "
+  id="alert-gmjlveept"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-blue-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-blue-700 dark:text-blue-400 "
+        id="alert-gmjlveept-message"
+      >
+        Test message
+      </div>
+    </div>
+    <button
+      aria-label="Close"
+      className="ml-auto -mx-1.5 -my-1.5 text-blue-700 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+      type="button"
+    >
+      <span
+        className="sr-only"
+      >
+        Close
+      </span>
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6 18L18 6M6 6l12 12"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with custom className 1`] = `
+<div
+  aria-describedby="alert-yclf9o815-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 custom-class"
+  id="alert-yclf9o815"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-blue-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-blue-700 dark:text-blue-400 "
+        id="alert-yclf9o815-message"
+      >
+        Test message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with default props 1`] = `
+<div
+  aria-describedby="alert-jmy6m4qaf-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 "
+  id="alert-jmy6m4qaf"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-blue-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-blue-700 dark:text-blue-400 "
+        id="alert-jmy6m4qaf-message"
+      >
+        Test message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with error type 1`] = `
+<div
+  aria-describedby="alert-j0o3p8jr7-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-800 "
+  id="alert-j0o3p8jr7"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-red-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-red-700 dark:text-red-400 "
+        id="alert-j0o3p8jr7-message"
+      >
+        Error message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with success type 1`] = `
+<div
+  aria-describedby="alert-hqjnov9r5-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-800 "
+  id="alert-hqjnov9r5"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-green-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-green-700 dark:text-green-400 "
+        id="alert-hqjnov9r5-message"
+      >
+        Success message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with title 1`] = `
+<div
+  aria-describedby="alert-h1ftd0aoh-message"
+  aria-labelledby="alert-h1ftd0aoh-title"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 "
+  id="alert-h1ftd0aoh"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-blue-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <h3
+        className="text-sm font-medium text-blue-800 dark:text-blue-300"
+        id="alert-h1ftd0aoh-title"
+      >
+        Test Title
+      </h3>
+      <div
+        className="text-sm text-blue-700 dark:text-blue-400 mt-2"
+        id="alert-h1ftd0aoh-message"
+      >
+        Test message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly with warning type 1`] = `
+<div
+  aria-describedby="alert-afvorw2i2-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-yellow-50 dark:bg-yellow-900/20 border-yellow-300 dark:border-yellow-800 "
+  id="alert-afvorw2i2"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="flex-shrink-0"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-5 h-5 text-yellow-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="ml-3 flex-1"
+    >
+      <div
+        className="text-sm text-yellow-700 dark:text-yellow-400 "
+        id="alert-afvorw2i2-message"
+      >
+        Warning message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshots renders correctly without icon 1`] = `
+<div
+  aria-describedby="alert-x6wk925gp-message"
+  aria-live="polite"
+  className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 "
+  id="alert-x6wk925gp"
+  onKeyDown={[Function]}
+  role="alert"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className=" flex-1"
+    >
+      <div
+        className="text-sm text-blue-700 dark:text-blue-400 "
+        id="alert-x6wk925gp-message"
+      >
+        Test message
+      </div>
+    </div>
+  </div>
+</div>
+`;

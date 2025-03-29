@@ -1,0 +1,756 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormControl Snapshots renders correctly with counter 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+    <div
+      className="mt-1 text-xs text-right"
+    >
+      <span
+        className="text-gray-500"
+      >
+        5
+        /10
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with custom class names 1`] = `
+<div
+  className="
+          
+          
+          custom-class
+          container-class
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block label-class mb-1"
+    htmlFor="form-control-fo4789t"
+    style={{}}
+  >
+    Label
+  </label>
+  <div
+    className="field-container-class"
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+    <div
+      className="mt-1 text-sm"
+    >
+      <p
+        className="text-gray-500 dark:text-gray-400 helper-class"
+        id="form-control-fo4789t-helper"
+      >
+        Helper
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with default props 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with description for screen readers 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="sr-only"
+      id="form-control-caalisf-description"
+    >
+      Description for screen readers
+    </div>
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with error indicator 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+      <div
+        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+      >
+        <span
+          aria-hidden="true"
+          className="text-red-500"
+        >
+          ✕
+        </span>
+      </div>
+    </div>
+    <div
+      className="mt-1 text-sm"
+    >
+      <p
+        className="text-red-600 dark:text-red-400 "
+        id="form-control-2jfukjc-error"
+        role="alert"
+      >
+        Error
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with error message 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+      <div
+        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+      >
+        <span
+          aria-hidden="true"
+          className="text-red-500"
+        >
+          ✕
+        </span>
+      </div>
+    </div>
+    <div
+      className="mt-1 text-sm"
+    >
+      <p
+        className="text-red-600 dark:text-red-400 "
+        id="form-control-raqtbor-error"
+        role="alert"
+      >
+        Error Message
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with full width 1`] = `
+<div
+  className="
+          w-full
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with helper text 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+    <div
+      className="mt-1 text-sm"
+    >
+      <p
+        className="text-gray-500 dark:text-gray-400 "
+        id="form-control-kz4x4h1-helper"
+      >
+        Helper Text
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with hidden label 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 sr-only  mb-1"
+    htmlFor="form-control-04n8w87"
+    style={{}}
+  >
+    Hidden Label
+  </label>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with label 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  mb-1"
+    htmlFor="form-control-94i6j3p"
+    style={{}}
+  >
+    Test Label
+  </label>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with label position bottom 1`] = `
+<div
+  className="
+          
+          flex flex-col-reverse
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  mt-1"
+    htmlFor="form-control-hoojyc6"
+    style={{}}
+  >
+    Test Label
+  </label>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with label position floating 1`] = `
+<div
+  className="
+          
+          relative
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  absolute left-2 top-0 px-1 bg-white dark:bg-gray-800 text-xs transform -translate-y-1/2 pointer-events-none transition-all duration-200"
+    htmlFor="form-control-je2ezh2"
+    style={{}}
+  >
+    Test Label
+  </label>
+  <div
+    className=""
+  >
+    <div
+      className="relative pt-2"
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with label position left 1`] = `
+<div
+  className="
+          
+          flex items-start
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  pt-2 pr-4"
+    htmlFor="form-control-yblhk0y"
+    style={
+      {
+        "width": "33%",
+      }
+    }
+  >
+    Test Label
+  </label>
+  <div
+    className="flex-1"
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with label position right 1`] = `
+<div
+  className="
+          
+          flex flex-row-reverse items-start
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  pt-2 pl-4"
+    htmlFor="form-control-yhieyya"
+    style={
+      {
+        "width": "33%",
+      }
+    }
+  >
+    Test Label
+  </label>
+  <div
+    className="flex-1"
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with label position top 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  mb-1"
+    htmlFor="form-control-35ru2d1"
+    style={{}}
+  >
+    Test Label
+  </label>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with loading indicator 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+      <div
+        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+      >
+        <span
+          aria-hidden="true"
+          className="text-primary-500 animate-spin"
+        >
+          ⟳
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with multiple props combined 1`] = `
+<div
+  className="
+          w-full
+          relative
+          
+          
+        "
+  title="Tooltip Text"
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  absolute left-2 top-0 px-1 bg-white dark:bg-gray-800 text-xs transform -translate-y-1/2 pointer-events-none transition-all duration-200"
+    htmlFor="form-control-4i10coc"
+    style={{}}
+  >
+    Combined Label
+    <span
+      aria-hidden="true"
+      className="ml-1 text-red-500"
+    >
+      *
+    </span>
+  </label>
+  <div
+    className=""
+  >
+    <div
+      className="relative pt-2"
+    >
+      <input />
+      <div
+        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+      >
+        <span
+          aria-hidden="true"
+          className="text-primary-500 animate-spin"
+        >
+          ⟳
+        </span>
+      </div>
+    </div>
+    <div
+      className="mt-1 text-xs text-right"
+    >
+      <span
+        className="text-gray-500"
+      >
+        5
+        /10
+      </span>
+    </div>
+    <div
+      className="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+    >
+      <div
+        aria-valuemax={100}
+        aria-valuemin={0}
+        aria-valuenow={50}
+        className="h-full bg-primary-500 transition-all duration-300 ease-in-out"
+        role="progressbar"
+        style={
+          {
+            "width": "50%",
+          }
+        }
+      />
+    </div>
+    <div
+      className="mt-1 text-sm"
+    >
+      <p
+        className="text-gray-500 dark:text-gray-400 "
+        id="form-control-4i10coc-helper"
+      >
+        Helper Text
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with progress bar 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+    <div
+      className="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+    >
+      <div
+        aria-valuemax={100}
+        aria-valuemin={0}
+        aria-valuenow={50}
+        className="h-full bg-primary-500 transition-all duration-300 ease-in-out"
+        role="progressbar"
+        style={
+          {
+            "width": "50%",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with required indicator 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <label
+    className="text-sm font-medium text-gray-700 dark:text-gray-300 block  mb-1"
+    htmlFor="form-control-v4t7xw3"
+    style={{}}
+  >
+    Test Label
+    <span
+      aria-hidden="true"
+      className="ml-1 text-red-500"
+    >
+      *
+    </span>
+  </label>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with success indicator 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+      <div
+        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+      >
+        <span
+          aria-hidden="true"
+          className="text-green-500"
+        >
+          ✓
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with success message 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+    <div
+      className="mt-1 text-sm"
+    >
+      <p
+        className="text-green-600 dark:text-green-400 "
+        id="form-control-1495pci-success"
+      >
+        Success Message
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with tooltip 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+  title="Tooltip Text"
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormControl Snapshots renders correctly with validation indicator 1`] = `
+<div
+  className="
+          
+          
+          
+          
+        "
+>
+  <div
+    className=""
+  >
+    <div
+      className="relative "
+    >
+      <input />
+      <div
+        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+      >
+        <span
+          aria-hidden="true"
+          className="text-green-500"
+        >
+          ✓
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -8,11 +8,11 @@ const config = {
     // CSS-Module-Mocking
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     // SVG und andere Assets
-    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/src/__mocks__/fileMock.js',
+    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/test-utils/fileMock.js',
     // Alias-Auflösung für '@smolitux/'
     '^@smolitux/(.*)$': '<rootDir>/packages/@smolitux/$1/src',
     // Mock für y18n
-    '^y18n$': '<rootDir>/src/__mocks__/node_modules/y18n.js',
+    '^y18n$': '<rootDir>/test-utils/y18n.js',
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   collectCoverageFrom: [
