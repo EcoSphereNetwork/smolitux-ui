@@ -7,7 +7,7 @@ Diese Dokumentation gibt einen Überblick über den aktuellen Status der Barrier
 Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbessert:
 
 1. **Accordion** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Tastaturnavigation
-2. **Alert** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+2. **Alert** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation, verschiedene Varianten, Animationen, Aktions-Buttons
 3. **Avatar** - Verbesserte ARIA-Attribute, Alt-Text-Unterstützung, Screenreader-Ankündigungen
 4. **Badge** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Status-Ankündigungen
 5. **Breadcrumb** - Verbesserte ARIA-Attribute, Schema.org strukturierte Daten, Tastaturnavigation
@@ -58,29 +58,6 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 29. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
 30. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
 31. **Zoom** - Benötigt ARIA-Attribute für Animation
-
-## Prioritäten für die nächsten Verbesserungen
-
-Basierend auf der Häufigkeit der Verwendung und der Wichtigkeit für die Barrierefreiheit sollten die folgenden Komponenten als nächstes verbessert werden:
-
-### Hohe Priorität
-1. **Input** - Grundlegende Formularkomponente
-2. **Select** - Wichtige Formularkomponente
-3. **Radio/RadioGroup** - Wichtige Formularkomponente
-4. **FormControl/FormField** - Wichtige Formularkomponenten
-5. **Switch** - Wichtige Interaktionskomponente
-
-### Mittlere Priorität
-1. **Menu** - Wichtig für Navigation
-2. **Pagination** - Wichtig für Navigation
-3. **Dropdown** - Wichtig für Interaktion
-4. **Popover** - Wichtig für Interaktion
-5. **Tooltip** - Wichtig für Hilfetexte
-
-### Niedrige Priorität
-1. **Animationskomponenten** (Fade, Slide, Zoom)
-2. **Layout-Komponenten** (Flex)
-3. **Dekorative Komponenten** (Skeleton, Spinner)
 
 ## Nächste Schritte
 

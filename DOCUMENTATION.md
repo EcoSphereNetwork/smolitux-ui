@@ -153,22 +153,50 @@ Die Alert-Komponente wird verwendet, um wichtige Nachrichten anzuzeigen.
 ```jsx
 import { Alert } from '@smolitux/core';
 
-<Alert variant="success" title="Erfolg">
-  Die Aktion wurde erfolgreich abgeschlossen.
-</Alert>
+// Einfacher Alert
+<Alert type="success" message="Die Aktion wurde erfolgreich ausgeführt." />
+
+// Alert mit Titel
+<Alert 
+  type="error" 
+  title="Fehler" 
+  message="Es ist ein Fehler aufgetreten." 
+/>
+
+// Alert mit Varianten
+<Alert type="success" variant="outline" message="Outline-Variante" />
+<Alert type="error" variant="filled" message="Filled-Variante" />
+
+// Alert mit Animationen
+<Alert type="info" animation="slide-right" message="Slide-Right Animation" />
+
+// Alert mit Aktions-Buttons
+<Alert 
+  type="info" 
+  title="Information" 
+  message="Möchten Sie fortfahren?" 
+  actions={[
+    { label: "Abbrechen", onClick: handleCancel },
+    { label: "Fortfahren", onClick: handleContinue, variant: "primary" }
+  ]}
+/>
 ```
 
 **Props:**
 
 | Prop | Typ | Standard | Beschreibung |
 |------|-----|----------|--------------|
-| variant | 'info' \| 'success' \| 'warning' \| 'error' | 'info' | Variante des Alerts |
+| type | 'success' \| 'error' \| 'warning' \| 'info' | - | Typ des Alerts |
+| message | string \| ReactNode | - | Nachrichtentext |
 | title | string | - | Titel des Alerts |
-| children | ReactNode | - | Inhalt des Alerts |
-| onClose | () => void | - | Callback beim Schließen |
-| closable | boolean | false | Ob der Alert schließbar ist |
-| icon | ReactNode | - | Benutzerdefiniertes Icon |
-| className | string | - | Zusätzliche CSS-Klassen |
+| onClose | () => void | - | Callback zum Schließen des Alerts |
+| showIcon | boolean | true | Icon anzeigen |
+| closable | boolean | false | Schließbar machen |
+| autoClose | number | 0 | Automatisch schließen nach X Millisekunden |
+| variant | 'default' \| 'outline' \| 'filled' \| 'subtle' | 'default' | Variante des Alerts |
+| animation | 'fade' \| 'slide-right' \| 'slide-down' \| 'none' | 'fade' | Animation des Alerts |
+| actions | Array<{ label: string, onClick: () => void, variant?: string }> | [] | Aktions-Buttons |
+| className | string | '' | Zusätzliche CSS-Klassen |
 
 #### Badge
 

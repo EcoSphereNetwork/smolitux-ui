@@ -66,6 +66,7 @@ Seit dem letzten Bericht wurden folgende Verbesserungen implementiert:
    - **Table**: Implementierung von erweiterten Filterfunktionen, Suchfunktionalität, Zeilenauswahl und verbesserter Paginierung
    - **Modal**: Verbesserte Fokus-Verwaltung, verschiedene Animationstypen, Fokus-Trap und verbesserte Tastaturnavigation für bessere Barrierefreiheit
    - **Tooltip**: Erweiterte Platzierungsoptionen und verbesserte Barrierefreiheit
+   - **Alert**: Implementierung von verschiedenen Varianten (outline, filled, subtle), Animationen, Aktions-Buttons und verbesserte Barrierefreiheit
 
 2. **Dokumentation**: Die Dokumentation für die verbesserten Komponenten wurde aktualisiert.
 

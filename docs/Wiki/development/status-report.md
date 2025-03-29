@@ -27,12 +27,11 @@ Die folgenden Komponenten sind bereits implementiert und haben Tests:
 - **Table**: Vollständig implementiert mit Sortierung, Filterung, Suche, Zeilenauswahl und Unit-Tests
 - **Modal**: Vollständig implementiert mit verbesserter Fokus-Verwaltung, verschiedenen Animationstypen, Fokus-Trap und Unit-Tests
 - **Tooltip**: Vollständig implementiert mit erweiterten Platzierungsoptionen und Unit-Tests
+- **Alert**: Vollständig implementiert mit verschiedenen Varianten, Animationen, Aktions-Buttons und Unit-Tests
 
 #### Teilweise implementierte Komponenten:
 
 Die folgenden Komponenten sind implementiert, haben aber keine oder unvollständige Tests:
-
-- **Alert**
 - **Badge**
 - **Accordion**
 - **Avatar**
