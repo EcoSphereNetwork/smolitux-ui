@@ -27,12 +27,16 @@
   - Validierungsfunktionalität korrigiert
   - Event-Handler für onValidate korrigiert
   - Tests angepasst und erfolgreich durchgeführt
+- [x] Select-Komponente getestet und verbessert
+  - Option-Komponente implementiert
+  - Fehlerbehandlung verbessert
+  - Barrierefreiheits-Attribute hinzugefügt
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Select-Komponente testen und verbessern
 - [ ] Modal-Komponente testen und verbessern
 - [ ] TabView-Komponente testen und verbessern
 
