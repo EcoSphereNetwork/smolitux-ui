@@ -53,9 +53,12 @@ console.error = (...args) => {
   // Ignoriere bestimmte Fehler
   if (
     args[0] && 
+    typeof args[0] === 'string' &&
     (args[0].includes('Warning: ReactDOM.render is no longer supported') || 
      args[0].includes('Warning: An update to') || 
-     args[0].includes('Warning: Cannot update a component'))
+     args[0].includes('Warning: Cannot update a component') ||
+     args[0].includes('Warning: Each child in a list should have a unique') ||
+     args[0].includes('Warning: validateDOMNesting'))
   ) {
     return;
   }

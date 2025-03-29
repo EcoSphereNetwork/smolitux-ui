@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover Snapshots renders default popover correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with arrow correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with custom className correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            custom-popover
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with custom width correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with different placements correctly: Popover with placement bottom 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with different placements correctly: Popover with placement left 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; right: -5px; border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; top: -10px; left: -18px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with different placements correctly: Popover with placement right 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-left: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; left: -7px; top: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with different placements correctly: Popover with placement top 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      Popover Content
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; bottom: -5px; border-bottom: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; top: -18px; left: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popover Snapshots renders with rich content correctly 1`] = `
+<DocumentFragment>
+  <button>
+    Trigger
+  </button>
+  <div
+    class="
+            absolute z-50 bg-white dark:bg-gray-800 
+            border border-gray-200 dark:border-gray-700 
+            rounded-md shadow-md p-4
+            
+          "
+    role="tooltip"
+    style="top: 10px; left: 10px; max-width: 320px;"
+  >
+    <div>
+      <div>
+        <h3>
+          Popover Title
+        </h3>
+        <p>
+          This is a paragraph of text.
+        </p>
+        <button>
+          Action
+        </button>
+      </div>
+    </div>
+    <div
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+    />
+  </div>
+</DocumentFragment>
+`;

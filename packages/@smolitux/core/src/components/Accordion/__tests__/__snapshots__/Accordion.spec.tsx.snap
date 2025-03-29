@@ -1,0 +1,732 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion Snapshots renders default accordion correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=" "
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 1
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 1
+        </div>
+      </div>
+    </div>
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 2
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 2
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Accordion Snapshots renders with allowMultiple correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=" "
+    defaultindex="0,1"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 1
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 1
+        </div>
+      </div>
+    </div>
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 2
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 2
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Accordion Snapshots renders with custom icon correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=" "
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <span
+            class="mr-3"
+          >
+            <span>
+              +
+            </span>
+          </span>
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 1
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 1
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Accordion Snapshots renders with defaultIndex correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=" "
+    defaultindex="0"
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 1
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 1
+        </div>
+      </div>
+    </div>
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 2
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 2
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Accordion Snapshots renders with different variants correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="undefined "
+  >
+    <div
+      class="undefined "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Outline Variant
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="undefined "
+  >
+    <div
+      class="undefined "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Filled Variant
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="undefined "
+  >
+    <div
+      class="undefined "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Unstyled Variant
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Accordion Snapshots renders with disabled item correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=" "
+  >
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 1
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 1
+        </div>
+      </div>
+    </div>
+    <div
+      class="border-b border-gray-200 dark:border-gray-700 last:border-b-0 "
+    >
+      <button
+        aria-controls="accordion-content-undefined"
+        aria-expanded="false"
+        class="
+          flex items-center justify-between w-full p-4 text-left
+          bg-white dark:bg-gray-800
+          cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50
+          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+        "
+        type="button"
+      >
+        <div
+          class="flex items-center"
+        >
+          <h3
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+          >
+            Section 2
+          </h3>
+        </div>
+        <div
+          class="ml-6 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 transition-transform duration-300 "
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15l7-7 7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        aria-hidden="true"
+        class="overflow-hidden transition-all duration-300 ease-in-out"
+        id="accordion-content-undefined"
+        style="display: none; max-height: 0px;"
+      >
+        <div
+          class="p-4 bg-white dark:bg-gray-800"
+        >
+          Content 2
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge Snapshots renders correctly as counter with maxCount 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md text-center"
+  role="status"
+>
+  99+
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly as dot without text 1`] = `
+<span
+  aria-hidden="true"
+  className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 h-2.5 w-2.5 rounded-full"
+  role="status"
+/>
+`;
+
+exports[`Badge Snapshots renders correctly with custom ID 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  id="test-badge-id"
+  role="status"
+>
+  Custom ID
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with custom className 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md custom-class"
+  role="status"
+>
+  Custom
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with default props 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  Default
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with error variant 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  Error
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with icon 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  <span
+    aria-hidden="true"
+    className="mr-1"
+  >
+    <span>
+      ★
+    </span>
+  </span>
+  With Icon
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with info variant 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  Info
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with lg size 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm px-3 py-1 min-w-[1.75rem] rounded-md"
+  role="status"
+>
+  LG
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with md size 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  MD
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with multiple props combined 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-transparent border border-primary-500 text-primary-700 dark:border-primary-400 dark:text-primary-300 text-sm px-3 py-1 min-w-[1.75rem] rounded-full custom-class"
+  id="test-badge"
+  role="status"
+>
+  <span
+    aria-hidden="true"
+    className="mr-1"
+  >
+    <span>
+      ★
+    </span>
+  </span>
+  Combined
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with outline style 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-transparent border border-gray-300 text-gray-800 dark:border-gray-600 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  Outline
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with primary variant 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  Primary
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with rounded style 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-full"
+  role="status"
+>
+  Rounded
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with sm size 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-1.5 py-0.5 min-w-[1.25rem] rounded-md"
+  role="status"
+>
+  SM
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with success variant 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  Success
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with warning variant 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs px-2.5 py-0.5 min-w-[1.5rem] rounded-md"
+  role="status"
+>
+  Warning
+</span>
+`;
+
+exports[`Badge Snapshots renders correctly with xs size 1`] = `
+<span
+  className="inline-flex items-center justify-center font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs px-1 py-0.5 min-w-[1rem] rounded-md"
+  role="status"
+>
+  XS
+</span>
+`;

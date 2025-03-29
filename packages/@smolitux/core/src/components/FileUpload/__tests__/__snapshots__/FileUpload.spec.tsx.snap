@@ -1,0 +1,1494 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileUpload Snapshots renders default file upload correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders disabled file upload correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          opacity-50 cursor-not-allowed
+        "
+    >
+      <input
+        class="hidden"
+        disabled=""
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with accept attribute correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        accept=".jpg,.png"
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+      <p
+        class="mt-1 text-xs text-gray-500 dark:text-gray-400"
+      >
+        Erlaubte Dateitypen: .jpg,.png
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with all features enabled correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <label
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+    >
+      Upload Files
+    </label>
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-8
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        accept=".jpg,.png"
+        class="hidden"
+        colorscheme="primary"
+        maxfilesize="5000000"
+        multiple=""
+        type="file"
+      />
+      <svg
+        class="h-16 w-16"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Drop files here
+      </p>
+      <p
+        class="mt-1 text-xs text-gray-500 dark:text-gray-400"
+      >
+        Erlaubte Dateitypen: .jpg,.png
+      </p>
+    </div>
+    <div
+      class="mt-1 text-sm"
+    >
+      <p
+        class="text-gray-500 dark:text-gray-400"
+      >
+        Max file size: 5MB
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with custom className correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="custom-file-upload"
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with custom dropzone text correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Custom dropzone text
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different color schemes correctly: FileUpload with color scheme danger 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        colorscheme="danger"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different color schemes correctly: FileUpload with color scheme info 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        colorscheme="info"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different color schemes correctly: FileUpload with color scheme primary 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        colorscheme="primary"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different color schemes correctly: FileUpload with color scheme secondary 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        colorscheme="secondary"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different color schemes correctly: FileUpload with color scheme success 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        colorscheme="success"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different color schemes correctly: FileUpload with color scheme warning 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        colorscheme="warning"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different sizes correctly: FileUpload with size lg 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-8
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-16 w-16"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different sizes correctly: FileUpload with size md 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different sizes correctly: FileUpload with size sm 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-4
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-8 w-8"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different variants correctly: FileUpload with variant filled 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different variants correctly: FileUpload with variant flushed 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different variants correctly: FileUpload with variant outline 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with different variants correctly: FileUpload with variant unstyled 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with error message correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+    <div
+      class="mt-1 text-sm"
+    >
+      <p
+        class="text-red-600 dark:text-red-400"
+      >
+        File too large
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with fullWidth correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with helper text correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+    <div
+      class="mt-1 text-sm"
+    >
+      <p
+        class="text-gray-500 dark:text-gray-400"
+      >
+        Max file size: 5MB
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with label correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <label
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+    >
+      Upload Files
+    </label>
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with maxFileSize correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        maxfilesize="5000000"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with maxFiles correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        multiple=""
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with multiple attribute correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        multiple=""
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FileUpload Snapshots renders file upload with showPreviews correctly 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    data-testid="file-upload-container"
+  >
+    <div
+      class="
+          border-2 border-dashed rounded-lg
+          flex flex-col items-center justify-center
+          transition-colors duration-150
+          p-6
+          border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500
+          cursor-pointer
+        "
+    >
+      <input
+        class="hidden"
+        type="file"
+      />
+      <svg
+        class="h-12 w-12"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="17 8 12 3 7 8"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="15"
+        />
+      </svg>
+      <p
+        class="mt-2 text-sm text-gray-600 dark:text-gray-300"
+      >
+        Dateien hierher ziehen oder klicken zum Auswählen
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

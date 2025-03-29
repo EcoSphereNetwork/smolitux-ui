@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar Snapshots renders with badge correctly 1`] = `
+<DocumentFragment>
+  <div
+    badge="online"
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-pink-500"
+    >
+      O
+    </div>
+  </div>
+  <div
+    badge="busy"
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-yellow-500"
+    >
+      B
+    </div>
+  </div>
+  <div
+    badge="away"
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-green-500"
+    >
+      A
+    </div>
+  </div>
+  <div
+    badge="offline"
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-yellow-500"
+    >
+      O
+    </div>
+  </div>
+  <div
+    badge="custom"
+    badgecolor="pink-500"
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-yellow-500"
+    >
+      C
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with border correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-teal-500"
+    >
+      JD
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with custom className correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  custom-avatar"
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-teal-500"
+    >
+      JD
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with custom colors correctly 1`] = `
+<DocumentFragment>
+  <div
+    bgcolor="purple-500"
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+    textcolor="white"
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-teal-500"
+    >
+      JD
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with different sizes correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-6 w-6 text-xs rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-yellow-500"
+    >
+      X
+    </div>
+  </div>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-8 w-8 text-sm rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-red-500"
+    >
+      S
+    </div>
+  </div>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-blue-500"
+    >
+      M
+    </div>
+  </div>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-16 w-16 text-lg rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-yellow-500"
+    >
+      L
+    </div>
+  </div>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-20 w-20 text-xl rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-purple-500"
+    >
+      X
+    </div>
+  </div>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden  rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-yellow-500"
+    >
+      C
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with fallback icon correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-gray-300 dark:bg-gray-600"
+    >
+      <svg
+        class="h-1/2 w-1/2 text-gray-300 dark:text-gray-500"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with image correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <img
+      alt="User Avatar"
+      class="h-full w-full object-cover"
+      src="https://example.com/avatar.jpg"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with initials correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-full  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-teal-500"
+    >
+      JD
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar Snapshots renders with square shape correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative inline-flex items-center justify-center overflow-hidden h-12 w-12 text-base rounded-none  bg-gray-200 dark:bg-gray-700  "
+  >
+    <div
+      class="h-full w-full flex items-center justify-center text-white bg-teal-500"
+    >
+      JD
+    </div>
+  </div>
+</DocumentFragment>
+`;

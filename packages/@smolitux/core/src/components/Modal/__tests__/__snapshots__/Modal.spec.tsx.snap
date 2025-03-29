@@ -1,0 +1,980 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Snapshots renders correctly with bottom position 1`] = `
+<div
+  aria-describedby="modal-8mg0r52uk-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-end justify-center pb-10"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
+      id="modal-8mg0r52uk"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-8mg0r52uk-body"
+      >
+        <p>
+          Bottom Modal
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with custom ID 1`] = `
+<div
+  aria-describedby="custom-modal-id-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
+      id="custom-modal-id"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="custom-modal-id-body"
+      >
+        <p>
+          Modal with custom ID
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with custom className 1`] = `
+<div
+  aria-describedby="modal-szcf4i1gj-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  custom-class"
+      id="modal-szcf4i1gj"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-szcf4i1gj-body"
+      >
+        <p>
+          Modal with custom class
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with default props 1`] = `
+<div
+  aria-describedby="modal-9wisssv33-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
+      id="modal-9wisssv33"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-9wisssv33-body"
+      >
+        <p>
+          Modal Content
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with footer 1`] = `
+<div
+  aria-describedby="modal-q1atbrt1h-body"
+  aria-labelledby="modal-q1atbrt1h-title"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
+      id="modal-q1atbrt1h"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <h3
+          className="text-lg font-medium text-gray-900 dark:text-white"
+          id="modal-q1atbrt1h-title"
+        >
+          Test Modal
+        </h3>
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-q1atbrt1h-body"
+      >
+        <p>
+          Modal Content
+        </p>
+      </div>
+      <div
+        className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button>
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with large size 1`] = `
+<div
+  aria-describedby="modal-i778wzrql-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
+      id="modal-i778wzrql"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-i778wzrql-body"
+      >
+        <p>
+          Large Modal
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with multiple props combined 1`] = `
+<div
+  aria-describedby="combined-modal-body"
+  aria-labelledby="combined-modal-title"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-start justify-center pt-10"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  custom-class"
+      id="combined-modal"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 header-class"
+      >
+        <h3
+          className="text-lg font-medium text-gray-900 dark:text-white"
+          id="combined-modal-title"
+        >
+          Combined Modal
+        </h3>
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 body-class"
+        id="combined-modal-body"
+      >
+        <p>
+          Modal with multiple props
+        </p>
+      </div>
+      <div
+        className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 footer-class"
+      >
+        <button>
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with small size 1`] = `
+<div
+  aria-describedby="modal-wgd8alp91-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-sm shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
+      id="modal-wgd8alp91"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-wgd8alp91-body"
+      >
+        <p>
+          Small Modal
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with title 1`] = `
+<div
+  aria-describedby="modal-pr1s6120n-body"
+  aria-labelledby="modal-pr1s6120n-title"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
+      id="modal-pr1s6120n"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <h3
+          className="text-lg font-medium text-gray-900 dark:text-white"
+          id="modal-pr1s6120n-title"
+        >
+          Test Modal
+        </h3>
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-pr1s6120n-body"
+      >
+        <p>
+          Modal Content
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly with top position 1`] = `
+<div
+  aria-describedby="modal-a6fusfagx-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-start justify-center pt-10"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
+      id="modal-a6fusfagx"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-a6fusfagx-body"
+      >
+        <p>
+          Top Modal
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly without animation 1`] = `
+<div
+  aria-describedby="modal-fqm1bhkvq-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
+      id="modal-fqm1bhkvq"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-fqm1bhkvq-body"
+      >
+        <p>
+          Modal without animation
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly without border 1`] = `
+<div
+  aria-describedby="modal-c0g87eyys-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg   "
+      id="modal-c0g87eyys"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-c0g87eyys-body"
+      >
+        <p>
+          Modal without border
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly without close button 1`] = `
+<div
+  aria-describedby="modal-0olszxfvz-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
+      id="modal-0olszxfvz"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="p-6 "
+        id="modal-0olszxfvz-body"
+      >
+        <p>
+          Modal without close button
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly without rounded corners 1`] = `
+<div
+  aria-describedby="modal-zajsp1ibx-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl  border border-gray-200 dark:border-gray-700 animate-scaleIn "
+      id="modal-zajsp1ibx"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-zajsp1ibx-body"
+      >
+        <p>
+          Modal without rounded corners
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal Snapshots renders correctly without shadow 1`] = `
+<div
+  aria-describedby="modal-d0vsks2i2-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md  rounded-lg border border-gray-200 dark:border-gray-700  "
+      id="modal-d0vsks2i2"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
+      >
+        <button
+          aria-label="Close"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="sr-only"
+          >
+            Close
+          </span>
+          <svg
+            aria-hidden="true"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className="p-6 "
+        id="modal-d0vsks2i2-body"
+      >
+        <p>
+          Modal without shadow
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
