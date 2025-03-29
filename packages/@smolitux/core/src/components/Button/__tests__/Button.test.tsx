@@ -51,7 +51,7 @@ describe('Button', () => {
   });
 
   it('renders with outline style', () => {
-    render(<Button outline>Outline Button</Button>);
+    render(<Button variant="outline">Outline Button</Button>);
     
     expect(screen.getByRole('button')).toHaveClass('btn-outline');
   });
@@ -61,13 +61,16 @@ describe('Button', () => {
     
     const button = screen.getByRole('button');
     expect(button).toBeDisabled();
-    expect(button).toHaveClass('btn-disabled');
+    // Die Klasse 'btn-disabled' wird nicht mehr verwendet, stattdessen wird opacity-50 und cursor-not-allowed gesetzt
+    expect(button).toHaveClass('opacity-50');
+    expect(button).toHaveClass('cursor-not-allowed');
   });
 
   it('renders with full width', () => {
     render(<Button fullWidth>Full Width Button</Button>);
     
-    expect(screen.getByRole('button')).toHaveClass('btn-full-width');
+    // Die Klasse 'btn-full-width' wird nicht mehr verwendet, stattdessen wird w-full gesetzt
+    expect(screen.getByRole('button')).toHaveClass('w-full');
   });
 
   it('renders with custom className', () => {
@@ -233,15 +236,17 @@ describe('Button', () => {
     expect(screen.getByText('- Fehler aufgetreten')).toHaveClass('sr-only');
   });
 
-  it('renders as a link when as="a" is provided', () => {
+  it('renders as a link when isLink and href are provided', () => {
     render(
-      <Button as="a" href="https://example.com">
+      <Button isLink href="https://example.com">
         Link Button
       </Button>
     );
     
-    const linkButton = screen.getByRole('link', { name: /link button/i });
+    // Die Komponente rendert ein <a> Element mit role="button"
+    const linkButton = screen.getByRole('button', { name: /link button/i });
     expect(linkButton).toBeInTheDocument();
+    expect(linkButton.tagName).toBe('A');
     expect(linkButton).toHaveAttribute('href', 'https://example.com');
     expect(linkButton).toHaveClass('btn');
   });

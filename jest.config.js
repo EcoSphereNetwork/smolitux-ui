@@ -8,7 +8,7 @@ const config = {
     // CSS-Module-Mocking
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     // SVG und andere Assets
-    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/test-utils/fileMock.js',
+    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/packages/@smolitux/testing/mocks/fileMock.js',
     // Alias-Auflösung für '@smolitux/'
     '^@smolitux/(.*)$': '<rootDir>/packages/@smolitux/$1/src',
     // Mock für y18n

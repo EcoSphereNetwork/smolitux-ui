@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Card } from './Card';
+import { Card } from '../Card';
 
 describe('Card', () => {
   it('renders correctly with default props', () => {
@@ -11,7 +11,7 @@ describe('Card', () => {
     );
     
     expect(screen.getByText('Card Content')).toBeInTheDocument();
-    const card = screen.getByText('Card Content').closest('.card');
+    const card = screen.getByTestId('card');
     expect(card).toBeInTheDocument();
     expect(card).toHaveClass('card');
   });
@@ -101,52 +101,52 @@ describe('Card', () => {
   it('renders with header when provided', () => {
     render(
       <Card
-        header={<div data-testid="card-header">Custom Header</div>}
+        header={<div data-testid="custom-header">Custom Header</div>}
       >
         <div>Card Content</div>
       </Card>
     );
     
-    expect(screen.getByTestId('card-header')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-header')).toBeInTheDocument();
     expect(screen.getByText('Custom Header')).toBeInTheDocument();
     expect(screen.getByText('Card Content')).toBeInTheDocument();
     
-    const headerElement = screen.getByTestId('card-header');
-    expect(headerElement.closest('.card-header')).toBeInTheDocument();
+    const headerContainer = screen.getByTestId('card-header');
+    expect(headerContainer).toHaveClass('card-header');
   });
 
   it('renders with footer when provided', () => {
     render(
       <Card
-        footer={<div data-testid="card-footer">Custom Footer</div>}
+        footer={<div data-testid="custom-footer">Custom Footer</div>}
       >
         <div>Card Content</div>
       </Card>
     );
     
-    expect(screen.getByTestId('card-footer')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-footer')).toBeInTheDocument();
     expect(screen.getByText('Custom Footer')).toBeInTheDocument();
     expect(screen.getByText('Card Content')).toBeInTheDocument();
     
-    const footerElement = screen.getByTestId('card-footer');
-    expect(footerElement.closest('.card-footer')).toBeInTheDocument();
+    const footerContainer = screen.getByTestId('card-footer');
+    expect(footerContainer).toHaveClass('card-footer');
   });
 
   it('renders with image when provided', () => {
     render(
       <Card
-        image={<img src="card-image.jpg" alt="Card Image" data-testid="card-image" />}
+        image={<img src="card-image.jpg" alt="Card Image" data-testid="custom-image" />}
       >
         <div>Card Content</div>
       </Card>
     );
     
-    expect(screen.getByTestId('card-image')).toBeInTheDocument();
-    expect(screen.getByAlt('Card Image')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-image')).toBeInTheDocument();
+    expect(screen.getByRole('img')).toHaveAttribute('alt', 'Card Image');
     expect(screen.getByText('Card Content')).toBeInTheDocument();
     
-    const imageElement = screen.getByTestId('card-image');
-    expect(imageElement.closest('.card-image')).toBeInTheDocument();
+    const imageContainer = screen.getByTestId('card-image');
+    expect(imageContainer).toHaveClass('card-image');
   });
 
   it('renders with different sizes', () => {
