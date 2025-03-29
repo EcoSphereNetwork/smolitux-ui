@@ -189,8 +189,8 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         ref={contentRef}
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ 
-          maxHeight: contentHeight !== undefined ? `${contentHeight}px` : undefined,
-          display: isOpen ? 'block' : 'none'
+          maxHeight: isOpen ? (contentHeight !== undefined ? `${contentHeight}px` : 'none') : '0',
+          visibility: isOpen ? 'visible' : 'hidden'
         }}
         aria-hidden={!isOpen}
         aria-labelledby={`accordion-button-${id}`}
@@ -198,9 +198,11 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         tabIndex={isOpen ? 0 : -1}
         {...(description && { 'aria-describedby': `accordion-description-${id}` })}
       >
-        <div className={`p-4 bg-white dark:bg-gray-800 ${contentClassName}`}>
-          {children}
-        </div>
+        {isOpen && (
+          <div className={`p-4 bg-white dark:bg-gray-800 ${contentClassName}`}>
+            {children}
+          </div>
+        )}
       </div>
     </div>
   );

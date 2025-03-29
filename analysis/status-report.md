@@ -30,7 +30,7 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 | Select | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | TabView | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Badge | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
-| Accordion | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Accordion | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Breadcrumb | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Carousel | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Checkbox | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |

@@ -51,13 +51,16 @@
   - Barrierefreiheits-Attribute korrigiert
   - Event-Handling verbessert
   - Tests angepasst und erfolgreich durchgeführt
+- [x] Accordion-Komponente getestet und verbessert
+  - Inhaltsanzeige korrigiert
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Accordion-Komponente testen und verbessern
 - [ ] Pagination-Komponente testen und verbessern
+- [ ] Breadcrumb-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 
