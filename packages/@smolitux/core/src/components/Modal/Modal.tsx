@@ -91,6 +91,39 @@ export interface ModalProps {
   isAlertDialog?: boolean;
   /** Ob der Modal eine Rolle als Vollbild-Dialog haben soll */
   isFullscreenDialog?: boolean;
+  /** Lokalisierungsobjekt */
+  i18n?: {
+    /** Text für den Schließen-Button */
+    close?: string;
+    /** Text für den Abbrechen-Button */
+    cancel?: string;
+    /** Text für den Bestätigen-Button */
+    confirm?: string;
+    /** Text für Screenreader, wenn der Modal geöffnet wird */
+    modalOpened?: string;
+    /** Text für Screenreader, wenn der Modal geschlossen wird */
+    modalClosed?: string;
+  };
+  /** Fokussiertes Element beim Öffnen des Modals (CSS-Selektor oder Ref) */
+  initialFocusRef?: React.RefObject<HTMLElement> | string;
+  /** Ob der Modal eine Rolle als Form-Dialog haben soll */
+  isFormDialog?: boolean;
+  /** Ob der Tab-Index des Modals angepasst werden soll */
+  tabIndex?: number;
+  /** Ob der Modal eine Rolle als Bestätigungs-Dialog haben soll */
+  isConfirmationDialog?: boolean;
+  /** Ob der Modal eine Rolle als Informations-Dialog haben soll */
+  isInformationDialog?: boolean;
+  /** Ob der Modal eine Rolle als Fehler-Dialog haben soll */
+  isErrorDialog?: boolean;
+  /** Ob der Modal eine Rolle als Erfolgs-Dialog haben soll */
+  isSuccessDialog?: boolean;
+  /** Ob der Modal eine Rolle als Warn-Dialog haben soll */
+  isWarningDialog?: boolean;
+  /** Ob der Modal eine Rolle als Hilfe-Dialog haben soll */
+  isHelpDialog?: boolean;
+  /** Ob der Modal eine Rolle als Status-Dialog haben soll */
+  isStatusDialog?: boolean;
 }
 
 /**
@@ -160,28 +193,71 @@ export const Modal: React.FC<ModalProps> = ({
   header,
   description,
   isAlertDialog = false,
-  isFullscreenDialog = false
+  isFullscreenDialog = false,
+  i18n = {
+    close: 'Schließen',
+    cancel: 'Abbrechen',
+    confirm: 'Bestätigen',
+    modalOpened: 'Dialog geöffnet',
+    modalClosed: 'Dialog geschlossen'
+  },
+  initialFocusRef,
+  isFormDialog = false,
+  tabIndex = -1,
+  isConfirmationDialog = false,
+  isInformationDialog = false,
+  isErrorDialog = false,
+  isSuccessDialog = false,
+  isWarningDialog = false,
+  isHelpDialog = false,
+  isStatusDialog = false
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [announcement, setAnnouncement] = useState<string | null>(null);
   const modalId = id || `modal-${Math.random().toString(36).substr(2, 9)}`;
   const titleId = `${modalId}-title`;
   const bodyId = `${modalId}-body`;
   const descriptionId = description ? `${modalId}-description` : undefined;
   
+  // Bestimme die korrekte Dialog-Rolle
+  const getDialogRole = () => {
+    if (isAlertDialog) return "alertdialog";
+    if (isFormDialog) return "form";
+    if (isConfirmationDialog || isInformationDialog || isErrorDialog || 
+        isSuccessDialog || isWarningDialog || isHelpDialog || isStatusDialog) {
+      return "alertdialog";
+    }
+    return "dialog";
+  };
+  
+  // Ankündigung für Screenreader
+  const announceToScreenReader = (message: string) => {
+    setAnnouncement(message);
+    setTimeout(() => setAnnouncement(null), 1000);
+  };
+  
   // Speichern des vorherigen Fokus
   useEffect(() => {
     if (isOpen && returnFocus) {
       previousFocusRef.current = document.activeElement as HTMLElement;
+      
+      // Ankündigung für Screenreader
+      announceToScreenReader(i18n.modalOpened);
     }
     
     return () => {
+      if (!isOpen) {
+        // Ankündigung für Screenreader beim Schließen
+        announceToScreenReader(i18n.modalClosed);
+      }
+      
       if (returnFocus && previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
         previousFocusRef.current.focus();
       }
     };
-  }, [isOpen, returnFocus]);
+  }, [isOpen, returnFocus, i18n]);
   
   // Schließen mit Escape-Taste
   useEffect(() => {
@@ -201,20 +277,43 @@ export const Modal: React.FC<ModalProps> = ({
   
   // Focus Lock innerhalb des Modals
   useEffect(() => {
-    if (isOpen && modalRef.current && initialFocus) {
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
+    if (isOpen && initialFocus) {
+      // Wenn eine spezifische Referenz für den initialen Fokus angegeben wurde
+      if (initialFocusRef) {
+        let elementToFocus: HTMLElement | null = null;
+        
+        if (typeof initialFocusRef === 'string') {
+          // Wenn ein CSS-Selektor angegeben wurde
+          elementToFocus = modalRef.current?.querySelector(initialFocusRef) as HTMLElement;
+        } else if (initialFocusRef.current) {
+          // Wenn eine React-Ref angegeben wurde
+          elementToFocus = initialFocusRef.current;
+        }
+        
+        if (elementToFocus) {
+          setTimeout(() => {
+            elementToFocus?.focus();
+          }, 0);
+          return;
+        }
+      }
       
-      if (focusableElements.length > 0) {
-        setTimeout(() => {
-          (focusableElements[0] as HTMLElement).focus();
-        }, 0);
-      } else {
-        modalRef.current.focus();
+      // Fallback: Fokussiere das erste fokussierbare Element oder den Modal selbst
+      if (modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        
+        if (focusableElements.length > 0) {
+          setTimeout(() => {
+            (focusableElements[0] as HTMLElement).focus();
+          }, 0);
+        } else {
+          modalRef.current.focus();
+        }
       }
     }
-  }, [isOpen, initialFocus]);
+  }, [isOpen, initialFocus, initialFocusRef]);
   
   // Tab-Fokus innerhalb des Modals halten
   const handleTabKey = useCallback((e: KeyboardEvent) => {
@@ -328,11 +427,17 @@ export const Modal: React.FC<ModalProps> = ({
     <div 
       className={`fixed inset-0 z-50 overflow-y-auto ${scrollable ? '' : 'overflow-hidden'}`}
       aria-modal="true"
-      role={isAlertDialog ? "alertdialog" : "dialog"}
+      role={getDialogRole()}
       aria-labelledby={title ? titleId : undefined}
       aria-describedby={description ? descriptionId : bodyId}
       {...modalProps}
     >
+      {/* Screenreader-Ankündigung */}
+      {announcement && (
+        <div className="sr-only" aria-live="polite">
+          {announcement}
+        </div>
+      )}
       {/* Overlay */}
       <div 
         className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity ${animationClasses.overlay} ${overlayClassName}`}
@@ -350,7 +455,8 @@ export const Modal: React.FC<ModalProps> = ({
           id={modalId}
           className={`relative bg-white dark:bg-gray-800 text-left transform transition-all w-full ${sizeClasses[size]} ${styleClasses.shadow} ${styleClasses.rounded} ${styleClasses.bordered} ${animationClasses.modal} ${className} ${isFullscreenDialog ? 'h-full m-0 max-w-full' : ''}`}
           onClick={(e) => e.stopPropagation()}
-          tabIndex={-1}
+          tabIndex={tabIndex}
+          data-testid="modal-content"
           style={{
             ...(width ? { width } : {}),
             ...(height ? { height } : {})
@@ -375,9 +481,10 @@ export const Modal: React.FC<ModalProps> = ({
                   type="button"
                   className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                   onClick={onClose}
-                  aria-label="Close"
+                  aria-label={i18n.close}
+                  data-testid="modal-close-button"
                 >
-                  <span className="sr-only">Close</span>
+                  <span className="sr-only">{i18n.close}</span>
                   <svg 
                     className="h-6 w-6" 
                     fill="none" 
@@ -422,7 +529,7 @@ export const Modal: React.FC<ModalProps> = ({
                         if (!onConfirm) onClose();
                       }}
                     >
-                      {cancelButtonText}
+                      {i18n.cancel || cancelButtonText}
                     </button>
                   )}
                   {onConfirm && (
@@ -433,8 +540,9 @@ export const Modal: React.FC<ModalProps> = ({
                         onConfirm();
                         onClose();
                       }}
+                      data-testid="modal-confirm-button"
                     >
-                      {confirmButtonText}
+                      {i18n.confirm || confirmButtonText}
                     </button>
                   )}
                 </div>
