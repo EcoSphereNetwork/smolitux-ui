@@ -122,9 +122,9 @@ const Table = <T extends Record<string, any>>({
   currentPage: controlledCurrentPage,
   onPageChange,
   onRowClick,
-  emptyState = <div className="p-4 text-center text-gray-500 dark:text-gray-400">Keine Daten vorhanden</div>,
+  emptyState = <div className="p-4 text-center text-gray-500 dark:text-gray-400" role="status" aria-live="polite">Keine Daten vorhanden</div>,
   loading = false,
-  loadingState = <div className="p-4 text-center text-gray-500 dark:text-gray-400">Laden...</div>,
+  loadingState = <div className="p-4 text-center text-gray-500 dark:text-gray-400" role="status" aria-live="polite">Laden...</div>,
   className = '',
   containerClassName = '',
   headerClassName = '',
@@ -226,7 +226,7 @@ const Table = <T extends Record<string, any>>({
   const renderSortIcon = (columnId: string) => {
     if (sortColumn !== columnId) {
       return (
-        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
         </svg>
       );
@@ -234,14 +234,14 @@ const Table = <T extends Record<string, any>>({
     
     if (sortDirection === 'asc') {
       return (
-        <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
         </svg>
       );
     }
     
     return (
-      <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
       </svg>
     );
@@ -321,6 +321,7 @@ const Table = <T extends Record<string, any>>({
             id={id}
             aria-label={ariaLabel}
             summary={summary}
+            role="grid"
           >
             {caption && captionPosition === 'bottom' && (
               <caption className="px-6 py-3 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-medium">
@@ -330,7 +331,7 @@ const Table = <T extends Record<string, any>>({
             
             {showHeader && (
               <thead className="bg-gray-50 dark:bg-gray-800">
-                <tr>
+                <tr role="row">
                   {columns.map((column) => (
                     !column.hidden && (
                       <th
@@ -339,11 +340,33 @@ const Table = <T extends Record<string, any>>({
                         className={getHeaderClasses(column)}
                         style={{ width: column.width }}
                         onClick={() => column.sortable && sortable && handleSort(column.id)}
+                        role="columnheader"
+                        aria-sort={
+                          sortColumn === column.id 
+                            ? sortDirection === 'asc' 
+                              ? 'ascending' 
+                              : sortDirection === 'desc' 
+                                ? 'descending' 
+                                : undefined 
+                            : undefined
+                        }
+                        tabIndex={column.sortable && sortable ? 0 : undefined}
+                        onKeyDown={(e) => {
+                          if (column.sortable && sortable && (e.key === 'Enter' || e.key === ' ')) {
+                            e.preventDefault();
+                            handleSort(column.id);
+                          }
+                        }}
+                        aria-label={
+                          column.sortable && sortable
+                            ? `${column.header}${sortColumn === column.id ? `, sortiert ${sortDirection === 'asc' ? 'aufsteigend' : 'absteigend'}` : ', klicken zum Sortieren'}`
+                            : undefined
+                        }
                       >
                         <div className="flex items-center justify-between">
                           <div>{column.header}</div>
                           {column.sortable && sortable && (
-                            <div className="ml-2">
+                            <div className="ml-2" aria-hidden="true">
                               {renderSortIcon(column.id)}
                             </div>
                           )}
@@ -361,12 +384,22 @@ const Table = <T extends Record<string, any>>({
                   key={rowIndex}
                   className={getRowClasses(row, rowIndex)}
                   onClick={() => onRowClick && onRowClick(row, rowIndex)}
+                  role="row"
+                  tabIndex={onRowClick ? 0 : undefined}
+                  onKeyDown={(e) => {
+                    if (onRowClick && (e.key === 'Enter' || e.key === ' ')) {
+                      e.preventDefault();
+                      onRowClick(row, rowIndex);
+                    }
+                  }}
+                  aria-selected={false}
                 >
                   {columns.map((column) => (
                     !column.hidden && (
                       <td
                         key={column.id}
                         className={getCellClasses(column)}
+                        role="gridcell"
                       >
                         {column.cell(row, rowIndex)}
                       </td>
@@ -384,6 +417,7 @@ const Table = <T extends Record<string, any>>({
                       <td
                         key={column.id}
                         className={getCellClasses(column)}
+                        role="gridcell"
                       >
                         {/* Footer-Inhalt hier */}
                       </td>
@@ -405,6 +439,8 @@ const Table = <T extends Record<string, any>>({
                       ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                       : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
+                  aria-label="Vorherige Seite"
+                  aria-disabled={currentPage === 1}
                 >
                   Zurück
                 </button>
@@ -416,13 +452,15 @@ const Table = <T extends Record<string, any>>({
                       ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                       : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
+                  aria-label="Nächste Seite"
+                  aria-disabled={currentPage >= Math.ceil(sortedData.length / itemsPerPage)}
                 >
                   Weiter
                 </button>
               </div>
               <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <p className="text-sm text-gray-700 dark:text-gray-300" aria-live="polite">
                     Zeige <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> bis{' '}
                     <span className="font-medium">
                       {Math.min(currentPage * itemsPerPage, sortedData.length)}

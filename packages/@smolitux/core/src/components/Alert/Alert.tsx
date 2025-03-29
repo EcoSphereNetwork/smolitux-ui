@@ -147,9 +147,10 @@ export const Alert: React.FC<AlertProps> = ({
       id={alertId}
       className={`p-4 border rounded-lg ${styles.background} ${styles.border} ${className}`} 
       role="alert"
-      aria-live="polite"
+      aria-live={styles.ariaLive}
       aria-labelledby={title ? titleId : undefined}
       aria-describedby={messageId}
+      data-type={type}
       tabIndex={autoFocus ? 0 : undefined}
       onKeyDown={handleKeyDown}
     >
@@ -173,9 +174,10 @@ export const Alert: React.FC<AlertProps> = ({
             type="button"
             className={`ml-auto -mx-1.5 -my-1.5 ${styles.textColor} hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500`}
             onClick={onClose}
-            aria-label="Close"
+            aria-label="Schließen"
+            data-testid="alert-close-button"
           >
-            <span className="sr-only">Close</span>
+            <span className="sr-only">Schließen</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
