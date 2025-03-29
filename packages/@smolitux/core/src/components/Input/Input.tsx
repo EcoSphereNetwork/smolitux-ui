@@ -340,17 +340,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   const formControl = useFormControl();
   
   // Kombiniere Props mit FormControl-Context
-  const _id = id || formControl.id || `input-${Math.random().toString(36).substring(2, 9)}`;
-  const _disabled = isDisabled ?? disabled ?? formControl.disabled;
-  const _required = isRequired ?? required ?? formControl.required;
-  const _readOnly = isReadOnly ?? readOnly ?? formControl.readOnly;
-  const _error = error || (formControl.hasError ? 'Ungültige Eingabe' : undefined);
-  const _isInvalid = isInvalid || Boolean(_error) || formControl.isInvalid;
-  const _isValid = isValid || formControl.isValid;
-  const _isSuccess = isSuccess || formControl.isSuccess;
-  const _isLoading = isLoading || formControl.isLoading;
-  const _size = size || formControl.size || 'md';
-  const _name = name || formControl.name;
+  const _id = id || formControl?.id || `input-${Math.random().toString(36).substring(2, 9)}`;
+  const _disabled = isDisabled ?? disabled ?? formControl?.disabled;
+  const _required = isRequired ?? required ?? formControl?.required;
+  const _readOnly = isReadOnly ?? readOnly ?? formControl?.readOnly;
+  const _error = error || (formControl?.hasError ? 'Ungültige Eingabe' : undefined);
+  const _isInvalid = isInvalid || Boolean(_error) || formControl?.isInvalid;
+  const _isValid = isValid || formControl?.isValid;
+  const _isSuccess = isSuccess || formControl?.isSuccess;
+  const _isLoading = isLoading || formControl?.isLoading;
+  const _size = size || formControl?.size || 'md';
+  const _name = name || formControl?.name;
   
   // State für Passwort-Toggle
   const [showPassword, setShowPassword] = useState(false);
@@ -542,64 +542,30 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     
     // Bestimme, welcher Indikator angezeigt werden soll
     let indicator = null;
-    let statusText = '';
     
     if (_isLoading && showLoadingIndicator) {
-      statusText = 'Lädt...';
       indicator = (
-        <svg 
-          className="animate-spin h-5 w-5 text-primary-500" 
-          xmlns="http://www.w3.org/2000/svg" 
-          fill="none" 
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          data-testid="loading-indicator"
-        >
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
+        <span className="text-primary-500 animate-spin" aria-hidden="true">
+          ⟳
+        </span>
       );
     } else if (_isInvalid && showErrorIndicator) {
-      statusText = 'Fehler';
       indicator = (
-        <svg 
-          className="h-5 w-5 text-red-500" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 20 20" 
-          fill="currentColor"
-          aria-hidden="true"
-          data-testid="error-indicator"
-        >
-          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-        </svg>
+        <span className="text-red-500" aria-hidden="true">
+          ✕
+        </span>
       );
     } else if (_isSuccess && showSuccessIndicator) {
-      statusText = 'Erfolgreich';
       indicator = (
-        <svg 
-          className="h-5 w-5 text-green-500" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 20 20" 
-          fill="currentColor"
-          aria-hidden="true"
-          data-testid="success-indicator"
-        >
-          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-        </svg>
+        <span className="text-green-500" aria-hidden="true">
+          ✓
+        </span>
       );
     } else if (_isValid && showValidationIndicator) {
-      statusText = 'Gültig';
       indicator = (
-        <svg 
-          className="h-5 w-5 text-green-500" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 20 20" 
-          fill="currentColor"
-          aria-hidden="true"
-          data-testid="valid-indicator"
-        >
-          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-        </svg>
+        <span className="text-green-500" aria-hidden="true">
+          ✓
+        </span>
       );
     }
     
@@ -608,7 +574,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     return (
       <div className="absolute inset-y-0 right-3 flex items-center">
         {indicator}
-        <span className="sr-only">{statusText}</span>
       </div>
     );
   };
@@ -619,22 +584,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     
     const count = currentValue.length;
     const isOverLimit = count > maxLength;
-    const percent = Math.min(100, Math.round((count / maxLength) * 100));
     
     return (
       <div className="mt-1 text-xs text-right">
-        <span 
-          className={isOverLimit ? 'text-red-500' : 'text-gray-500'}
-          id={`${_id}-counter`}
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <span className="sr-only">
-            {isOverLimit 
-              ? `Zeichenlimit überschritten: ${count} von maximal ${maxLength} Zeichen eingegeben` 
-              : `${count} von maximal ${maxLength} Zeichen eingegeben (${percent}%)`}
-          </span>
-          <span aria-hidden="true">{count}/{maxLength}</span>
+        <span className={isOverLimit ? 'text-red-500' : 'text-gray-500'}>
+          {count}/{maxLength}
         </span>
       </div>
     );
@@ -648,34 +602,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
       ? Math.min(Math.max(0, (progressValue / (progressMax || 100)) * 100), 100) 
       : 0;
     
-    // Bestimme die Farbe basierend auf dem Prozentsatz
-    let barColor = 'bg-primary-500';
-    if (percent < 30) {
-      barColor = 'bg-red-500';
-    } else if (percent < 70) {
-      barColor = 'bg-yellow-500';
-    } else {
-      barColor = 'bg-green-500';
-    }
-    
     return (
-      <div 
-        className="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
-        id={`${_id}-progress-container`}
-      >
+      <div className="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
         <div 
-          className={`h-full ${barColor} transition-all duration-300 ease-in-out`}
+          className="h-full bg-primary-500 transition-all duration-300 ease-in-out"
           style={{ width: `${percent}%` }}
           role="progressbar"
           aria-valuenow={progressValue}
           aria-valuemin={0}
           aria-valuemax={progressMax}
-          aria-labelledby={`${_id}-progress-label`}
-          id={`${_id}-progress-bar`}
         />
-        <span id={`${_id}-progress-label`} className="sr-only">
-          {`Fortschritt: ${Math.round(percent)}%`}
-        </span>
       </div>
     );
   };
@@ -696,73 +632,48 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   // Bestimme die ARIA-Attribute für das Input
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {};
-    
-    // Sammle alle IDs für aria-describedby
-    const describedByIds: string[] = [];
-    
+
     if (description) {
-      describedByIds.push(`${_id}-description`);
+      attributes['aria-describedby'] = `${_id}-description`;
     }
-    
-    if (helperText && !_error && !hideHelperText) {
-      describedByIds.push(`${_id}-helper`);
-    }
-    
-    if (successMessage && !hideSuccessMessage) {
-      describedByIds.push(`${_id}-success`);
-    }
-    
-    if (showCounter && maxLength !== undefined) {
-      describedByIds.push(`${_id}-counter`);
-    }
-    
-    // Setze aria-describedby, wenn IDs vorhanden sind
-    if (describedByIds.length > 0) {
-      attributes['aria-describedby'] = describedByIds.join(' ');
-    }
-    
-    // Fehlerbehandlung
+
     if (_error) {
       attributes['aria-errormessage'] = `${_id}-error`;
       attributes['aria-invalid'] = 'true';
+    } else if (_isInvalid) {
+      attributes['aria-invalid'] = 'true';
     }
-    
-    // Weitere ARIA-Attribute
-    if (_isLoading) {
-      attributes['aria-busy'] = 'true';
+
+    if (_isValid || _isSuccess) {
+      attributes['aria-valid'] = 'true';
     }
-    
+
+    if (_disabled) {
+      attributes['aria-disabled'] = 'true';
+    }
+
     if (_required) {
       attributes['aria-required'] = 'true';
     }
-    
+
+    if (_readOnly) {
+      attributes['aria-readonly'] = 'true';
+    }
+
+    if (_isLoading) {
+      attributes['aria-busy'] = 'true';
+    }
+
+    if (helperText && !_error) {
+      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-helper` : `${_id}-helper`);
+    }
+
+    if (successMessage) {
+      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-success` : `${_id}-success`);
+    }
+
     return attributes;
   };
-  
-  return (
-    <div className={`${fullWidth ? 'w-full' : ''} ${containerClassName}`}>
-      {/* Label */}
-      {label && (
-        <label 
-          htmlFor={_id} 
-          className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 ${hideLabel ? 'sr-only' : ''} ${labelClassName}`}
-          title={labelTooltip}
-        >
-          <span>{label}</span>
-          {_required && (
-            <>
-              <span className="ml-1 text-red-500" aria-hidden="true">*</span>
-              <span className="sr-only">(erforderlich)</span>
-            </>
-          )}
-        </label>
-      )}
-      
-      {/* Beschreibung für Screenreader */}
-      {description && (
-        <div id={`${_id}-description`} className="sr-only">
-          {description}
-        </div>
       )}
       
       {/* Input-Container */}
@@ -846,22 +757,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
             onClick={togglePasswordVisibility}
             aria-label={showPassword ? 'Passwort verbergen' : 'Passwort anzeigen'}
             role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                togglePasswordVisibility();
-              }
-            }}
-            data-testid="password-toggle"
+            tabIndex={-1}
           >
             {showPassword ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                 <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clipRule="evenodd" />
                 <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
               </svg>
@@ -876,16 +780,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
             onClick={handleClear}
             aria-label="Eingabe löschen"
             role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleClear();
-              }
-            }}
-            data-testid="clear-button"
+            tabIndex={-1}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
             </svg>
           </div>
