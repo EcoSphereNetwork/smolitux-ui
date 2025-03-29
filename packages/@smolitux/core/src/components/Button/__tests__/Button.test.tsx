@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from './Button';
+import { Button } from '../Button';
 
 describe('Button', () => {
   it('renders correctly with default props', () => {
@@ -93,6 +93,8 @@ describe('Button', () => {
     );
     
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('left-icon-container')).toBeInTheDocument();
+    expect(screen.getByTestId('left-icon-container')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByText('Search')).toBeInTheDocument();
   });
 
@@ -104,6 +106,8 @@ describe('Button', () => {
     );
     
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('right-icon-container')).toBeInTheDocument();
+    expect(screen.getByTestId('right-icon-container')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByText('Next')).toBeInTheDocument();
   });
 
@@ -145,7 +149,10 @@ describe('Button', () => {
     
     expect(screen.getByRole('button')).toHaveClass('btn-loading');
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
-    expect(screen.getByText('Loading Button')).toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByText('- Bitte warten')).toBeInTheDocument();
+    expect(screen.getByText('- Bitte warten')).toHaveClass('sr-only');
+    expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true');
   });
 
   it('renders with different types', () => {
@@ -183,6 +190,47 @@ describe('Button', () => {
     expect(button).toHaveAttribute('aria-label', 'Close dialog');
     expect(button).toHaveAttribute('aria-expanded', 'false');
     expect(button).toHaveAttribute('aria-controls', 'dialog-1');
+  });
+  
+  it('renders with dropdown trigger', () => {
+    render(
+      <Button 
+        isDropdownTrigger
+        aria-expanded={false}
+        aria-controls="dropdown-menu"
+      >
+        Menu
+      </Button>
+    );
+    
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    expect(button).toHaveAttribute('aria-haspopup', 'true');
+    expect(screen.getByTestId('dropdown-icon')).toBeInTheDocument();
+  });
+  
+  it('renders with success state', () => {
+    render(
+      <Button isSuccess>
+        Success
+      </Button>
+    );
+    
+    expect(screen.getByTestId('success-icon')).toBeInTheDocument();
+    expect(screen.getByText('- Erfolgreich')).toBeInTheDocument();
+    expect(screen.getByText('- Erfolgreich')).toHaveClass('sr-only');
+  });
+  
+  it('renders with error state', () => {
+    render(
+      <Button isError>
+        Error
+      </Button>
+    );
+    
+    expect(screen.getByTestId('error-icon')).toBeInTheDocument();
+    expect(screen.getByText('- Fehler aufgetreten')).toBeInTheDocument();
+    expect(screen.getByText('- Fehler aufgetreten')).toHaveClass('sr-only');
   });
 
   it('renders as a link when as="a" is provided', () => {

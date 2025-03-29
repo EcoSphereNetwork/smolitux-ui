@@ -257,11 +257,12 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
     active: active ? 'active' : '',
     disabled: disabled || isButtonLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
     hover: hoverable && !disabled && !isButtonLoading ? 'hover:opacity-90' : '',
-    focus: focusable && !disabled && !isButtonLoading ? 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500' : '',
+    focus: focusable && !disabled && !isButtonLoading ? 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50' : '',
     pressed: isPressed && !disabled && !isButtonLoading ? 'transform scale-95' : '',
     success: isSuccess ? 'bg-green-600 text-white' : '',
     error: isError ? 'bg-red-600 text-white' : '',
-    toggle: isToggle && isToggleOn ? 'bg-primary-600 text-white' : ''
+    toggle: isToggle && isToggleOn ? 'bg-primary-600 text-white' : '',
+    loading: isButtonLoading ? 'btn-loading' : ''
   };
 
   // Effekt-spezifische Klassen
@@ -275,6 +276,7 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
   const buttonClasses = [
     'font-medium',
     'inline-flex items-center justify-center',
+    'relative', // Für absolute positionierte Elemente wie Ripple
     normalizedVariant !== 'unstyled' ? shapeClasses[shape] : '',
     fullWidth ? 'w-full' : '',
     variantClasses[normalizedVariant],
@@ -287,10 +289,14 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
     stateClasses.success,
     stateClasses.error,
     stateClasses.toggle,
+    stateClasses.loading,
     effectClasses.shadow,
     effectClasses.transition,
     effectClasses.transparent,
     isIconButton ? 'p-2' : '',
+    'btn', // Basis-Klasse für alle Buttons
+    `btn-${normalizedVariant}`, // Varianten-Klasse
+    `btn-${size}`, // Größen-Klasse
     className
   ].filter(Boolean).join(' ');
 
@@ -310,11 +316,20 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
 
   // Behandlung von Keyboard-Events für bessere Barrierefreiheit
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    // Für Icon-Buttons und Dropdown-Trigger sollten wir sicherstellen, dass sie mit der Tastatur bedienbar sind
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       setIsPressed(true);
       onPress?.();
+      
+      // Simuliere einen Klick für bessere Barrierefreiheit
       onClick?.(event as unknown as React.MouseEvent<HTMLButtonElement>);
+      
+      // Wenn es ein Dropdown-Trigger ist, sollten wir aria-expanded umschalten
+      if (isDropdownTrigger && props['aria-expanded'] !== undefined) {
+        // Wir können den Zustand hier nicht direkt ändern, da wir keinen Zugriff auf den Setter haben
+        // Dies sollte vom übergeordneten Komponenten behandelt werden
+      }
     }
 
     onKeyDown?.(event);
@@ -524,10 +539,12 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
       className={buttonClasses}
       onClick={onClick}
       type={buttonType}
-      role="button"
+      role={isIconButton ? 'button' : undefined}
       aria-disabled={disabled || isButtonLoading}
       aria-busy={isButtonLoading}
       aria-pressed={isToggle ? isToggleOn : undefined}
+      aria-expanded={isDropdownTrigger ? props['aria-expanded'] : undefined}
+      aria-haspopup={isDropdownTrigger ? 'true' : undefined}
       title={tooltip}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
@@ -562,12 +579,16 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
               fill="none"
               viewBox="0 0 24 24"
               aria-hidden="true"
+              data-testid="loading-spinner"
             >
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           )}
-          {loadingPlaceholder || <span>{loadingText}</span>}
+          <span>
+            {loadingPlaceholder || loadingText}
+            <span className="sr-only"> - Bitte warten</span>
+          </span>
         </>
       ) : isSuccess ? (
         <>
@@ -579,11 +600,15 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
               viewBox="0 0 24 24"
               stroke="currentColor"
               aria-hidden="true"
+              data-testid="success-icon"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           )}
-          {children}
+          <span>
+            {children}
+            <span className="sr-only"> - Erfolgreich</span>
+          </span>
         </>
       ) : isError ? (
         <>
@@ -595,17 +620,39 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
               viewBox="0 0 24 24"
               stroke="currentColor"
               aria-hidden="true"
+              data-testid="error-icon"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           )}
-          {children}
+          <span>
+            {children}
+            <span className="sr-only"> - Fehler aufgetreten</span>
+          </span>
         </>
       ) : (
         <>
-          {leftIcon && <span className={`${isIconButton ? '' : 'mr-2'}`} aria-hidden="true">{leftIcon}</span>}
-          {!isIconButton && children}
-          {rightIcon && <span className={`${isIconButton ? '' : 'ml-2'}`} aria-hidden="true">{rightIcon}</span>}
+          {leftIcon && (
+            <span 
+              className={`${isIconButton ? '' : 'mr-2'} inline-flex`} 
+              aria-hidden="true"
+              data-testid="left-icon-container"
+            >
+              {leftIcon}
+            </span>
+          )}
+          {!isIconButton && (
+            <span className="button-text">{children}</span>
+          )}
+          {rightIcon && (
+            <span 
+              className={`${isIconButton ? '' : 'ml-2'} inline-flex`} 
+              aria-hidden="true"
+              data-testid="right-icon-container"
+            >
+              {rightIcon}
+            </span>
+          )}
           {isDropdownTrigger && (
             <svg
               className="ml-2 h-4 w-4"
@@ -614,6 +661,7 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
               viewBox="0 0 24 24"
               stroke="currentColor"
               aria-hidden="true"
+              data-testid="dropdown-icon"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>

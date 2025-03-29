@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Snapshots renders correctly without close button 1`] = `
+<div
+  aria-describedby="modal-kpvfuno7o-body"
+  aria-modal="true"
+  className="fixed inset-0 z-50 overflow-y-auto "
+  role="dialog"
+>
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    onClick={[Function]}
+  />
+  <div
+    className="flex min-h-screen p-4 items-center justify-center"
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
+      id="modal-kpvfuno7o"
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      <div
+        className="p-6 "
+        id="modal-kpvfuno7o-body"
+      >
+        <p>
+          Modal without close button
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

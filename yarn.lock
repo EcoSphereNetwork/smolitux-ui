@@ -29,7 +29,7 @@
   resolved "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.26.8.tgz"
   integrity sha512-oH5UPLMWR3L2wEFLnFJ1TZXqHufiTKAiLfqw5zkhS4dKXLJ10yVztfil/twG8EDTA4F/tvVNw9nOl4ZMslB8rQ==
 
-"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.0.0-0 || ^8.0.0-0 <8.0.0", "@babel/core@^7.11.6", "@babel/core@^7.12.0", "@babel/core@^7.12.3", "@babel/core@^7.13.0", "@babel/core@^7.18.9", "@babel/core@^7.23.9", "@babel/core@^7.26.10", "@babel/core@^7.4.0 || ^8.0.0-0 <8.0.0", "@babel/core@^7.8.0":
+"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.0.0-0 || ^8.0.0-0 <8.0.0", "@babel/core@^7.11.6", "@babel/core@^7.12.0", "@babel/core@^7.12.3", "@babel/core@^7.13.0", "@babel/core@^7.18.9", "@babel/core@^7.23.9", "@babel/core@^7.26.10", "@babel/core@^7.4.0 || ^8.0.0-0 <8.0.0", "@babel/core@^7.8.0", "@babel/core@>=7.0.0-beta.0 <8":
   version "7.26.10"
   resolved "https://registry.npmjs.org/@babel/core/-/core-7.26.10.tgz"
   integrity sha512-vMqyb7XCDMPvJFFOaT9kxtiRh42GwlZEg1/uIgtZshS5a/8OaduUfCi7kynKgc3Tw/6Uo2D+db9qBttghhmxwQ==
@@ -1235,7 +1235,7 @@
     jest-haste-map "^29.7.0"
     slash "^3.0.0"
 
-"@jest/transform@^29.7.0":
+"@jest/transform@^29.0.0", "@jest/transform@^29.7.0":
   version "29.7.0"
   resolved "https://registry.npmjs.org/@jest/transform/-/transform-29.7.0.tgz"
   integrity sha512-ok/BTPFzFKVMwO5eOHRrvnBVHdRy9IrsrW1GpMaQ9MCnilNLXQKmAX8s1YXDFaai9xJpac2ySzV0YeRRECr2Vw==
@@ -1256,7 +1256,7 @@
     slash "^3.0.0"
     write-file-atomic "^4.0.2"
 
-"@jest/types@^29.6.3":
+"@jest/types@^29.0.0", "@jest/types@^29.6.3":
   version "29.6.3"
   resolved "https://registry.npmjs.org/@jest/types/-/types-29.6.3.tgz"
   integrity sha512-u3UPsIilWKOM3F9CXtrG8LEJmNxwoCQC/XVj4IKYXvvpx7QIi/Kg1LI5uDmDpKlac62NUtX7eLjRh+jVZcLOzw==
@@ -1847,19 +1847,19 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@smolitux/ai@^0.2.1", "@smolitux/ai@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/ai":
+"@smolitux/ai@^0.2.1", "@smolitux/ai@file:/workspace/smolitux-ui/packages/@smolitux/ai":
   version "0.2.1"
   resolved "file:packages/@smolitux/ai"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/blockchain@^0.2.1", "@smolitux/blockchain@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/blockchain":
+"@smolitux/blockchain@^0.2.1", "@smolitux/blockchain@file:/workspace/smolitux-ui/packages/@smolitux/blockchain":
   version "0.2.1"
   resolved "file:packages/@smolitux/blockchain"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/charts@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/charts":
+"@smolitux/charts@file:/workspace/smolitux-ui/packages/@smolitux/charts":
   version "0.2.1"
   resolved "file:packages/@smolitux/charts"
   dependencies:
@@ -1867,13 +1867,13 @@
     "@smolitux/theme" "^0.2.1"
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/community@^0.2.1", "@smolitux/community@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/community":
+"@smolitux/community@^0.2.1", "@smolitux/community@file:/workspace/smolitux-ui/packages/@smolitux/community":
   version "0.2.1"
   resolved "file:packages/@smolitux/community"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/core@^0.2.1", "@smolitux/core@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/core":
+"@smolitux/core@^0.2.1", "@smolitux/core@file:/workspace/smolitux-ui/packages/@smolitux/core":
   version "0.2.1"
   resolved "file:packages/@smolitux/core"
   dependencies:
@@ -1883,13 +1883,13 @@
     i18next-http-backend "^3.0.2"
     react-i18next "^15.4.1"
 
-"@smolitux/federation@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/federation":
+"@smolitux/federation@file:/workspace/smolitux-ui/packages/@smolitux/federation":
   version "0.2.1"
   resolved "file:packages/@smolitux/federation"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/layout@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/layout":
+"@smolitux/layout@file:/workspace/smolitux-ui/packages/@smolitux/layout":
   version "0.2.1"
   resolved "file:packages/@smolitux/layout"
   dependencies:
@@ -1897,13 +1897,13 @@
     "@smolitux/theme" "^0.2.1"
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/media@^0.2.1", "@smolitux/media@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/media":
+"@smolitux/media@^0.2.1", "@smolitux/media@file:/workspace/smolitux-ui/packages/@smolitux/media":
   version "0.2.1"
   resolved "file:packages/@smolitux/media"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/resonance@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/resonance":
+"@smolitux/resonance@file:/workspace/smolitux-ui/packages/@smolitux/resonance":
   version "0.2.1"
   resolved "file:packages/@smolitux/resonance"
   dependencies:
@@ -1913,13 +1913,13 @@
     "@smolitux/media" "^0.2.1"
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/theme@^0.2.1", "@smolitux/theme@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/theme":
+"@smolitux/theme@^0.2.1", "@smolitux/theme@file:/workspace/smolitux-ui/packages/@smolitux/theme":
   version "0.2.1"
   resolved "file:packages/@smolitux/theme"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/utils@^0.2.1", "@smolitux/utils@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/utils":
+"@smolitux/utils@^0.2.1", "@smolitux/utils@file:/workspace/smolitux-ui/packages/@smolitux/utils":
   version "0.2.1"
   resolved "file:packages/@smolitux/utils"
   dependencies:
@@ -3095,7 +3095,7 @@ axios@^1.0.0:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
-babel-jest@^29.7.0:
+babel-jest@^29.0.0, babel-jest@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/babel-jest/-/babel-jest-29.7.0.tgz"
   integrity sha512-BrvGY3xZSwEcCzKvKsCi2GgHqDqsYkOP4/by5xCgIwGXQxIEh+8ew3gmrE1y7XRR6LHZIj6yLYnUi/mm2KXKBg==
@@ -3276,6 +3276,13 @@ browserslist@^4.24.0, browserslist@^4.24.4, "browserslist@>= 4.21.0":
     electron-to-chromium "^1.5.73"
     node-releases "^2.0.19"
     update-browserslist-db "^1.1.1"
+
+bs-logger@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.npmjs.org/bs-logger/-/bs-logger-0.2.6.tgz"
+  integrity sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog==
+  dependencies:
+    fast-json-stable-stringify "2.x"
 
 bser@2.1.1:
   version "2.1.1"
@@ -4270,7 +4277,7 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
-ejs@^3.1.7:
+ejs@^3.1.10, ejs@^3.1.7:
   version "3.1.10"
   resolved "https://registry.npmjs.org/ejs/-/ejs-3.1.10.tgz"
   integrity sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==
@@ -4750,7 +4757,7 @@ fast-json-parse@^1.0.3:
   resolved "https://registry.npmjs.org/fast-json-parse/-/fast-json-parse-1.0.3.tgz"
   integrity sha512-FRWsaZRWEJ1ESVNbDWmsAlqDk96gPQezzLghafp5J4GUKjbCz3OkAHuZs5TuPEtkbVQERysLp9xv6c24fBm8Aw==
 
-fast-json-stable-stringify@^2.0.0, fast-json-stable-stringify@^2.1.0:
+fast-json-stable-stringify@^2.0.0, fast-json-stable-stringify@^2.1.0, fast-json-stable-stringify@2.x:
   version "2.1.0"
   resolved "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz"
   integrity sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
@@ -6382,7 +6389,7 @@ jest-snapshot@^29.7.0:
     pretty-format "^29.7.0"
     semver "^7.5.3"
 
-jest-util@^29.7.0:
+jest-util@^29.0.0, jest-util@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/jest-util/-/jest-util-29.7.0.tgz"
   integrity sha512-z6EbKajIpqGKU56y5KBUgy1dt1ihhQJgWzUlZHArA/+X2ad7Cb5iF+AK1EWVL/Bo7Rz9uurpqw6SiBCefUbCGA==
@@ -6838,6 +6845,11 @@ lodash.ismatch@^4.4.0:
   resolved "https://registry.npmjs.org/lodash.ismatch/-/lodash.ismatch-4.4.0.tgz"
   integrity sha512-fPMfXjGQEV9Xsq/8MTSgUf255gawYRbjwMyDbcvDhXgV7enSZA0hynz6vMPnpAb5iONEzBHBPsT+0zes5Z301g==
 
+lodash.memoize@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-4.1.2.tgz"
+  integrity sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -6952,6 +6964,11 @@ make-dir@^4.0.0:
   integrity sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==
   dependencies:
     semver "^7.5.3"
+
+make-error@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.npmjs.org/make-error/-/make-error-1.3.6.tgz"
+  integrity sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==
 
 make-fetch-happen@^10.0.3, make-fetch-happen@^10.0.6:
   version "10.2.1"
@@ -9049,6 +9066,11 @@ semver@^7.6.2:
   resolved "https://registry.npmjs.org/semver/-/semver-7.7.1.tgz"
   integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
 
+semver@^7.7.1:
+  version "7.7.1"
+  resolved "https://registry.npmjs.org/semver/-/semver-7.7.1.tgz"
+  integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
+
 "semver@2 || 3 || 4 || 5":
   version "5.7.2"
   resolved "https://registry.npmjs.org/semver/-/semver-5.7.2.tgz"
@@ -9768,6 +9790,22 @@ ts-interface-checker@^0.1.9:
   resolved "https://registry.npmjs.org/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
 
+ts-jest@^29.3.0:
+  version "29.3.0"
+  resolved "https://registry.npmjs.org/ts-jest/-/ts-jest-29.3.0.tgz"
+  integrity sha512-4bfGBX7Gd1Aqz3SyeDS9O276wEU/BInZxskPrbhZLyv+c1wskDCqDFMJQJLWrIr/fKoAH4GE5dKUlrdyvo+39A==
+  dependencies:
+    bs-logger "^0.2.6"
+    ejs "^3.1.10"
+    fast-json-stable-stringify "^2.1.0"
+    jest-util "^29.0.0"
+    json5 "^2.2.3"
+    lodash.memoize "^4.1.2"
+    make-error "^1.3.6"
+    semver "^7.7.1"
+    type-fest "^4.37.0"
+    yargs-parser "^21.1.1"
+
 tsconfig-paths@^4.1.2, tsconfig-paths@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/tsconfig-paths/-/tsconfig-paths-4.2.0.tgz"
@@ -9860,6 +9898,11 @@ type-fest@^0.8.1:
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.8.1.tgz"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
+type-fest@^4.37.0:
+  version "4.38.0"
+  resolved "https://registry.npmjs.org/type-fest/-/type-fest-4.38.0.tgz"
+  integrity sha512-2dBz5D5ycHIoliLYLi0Q2V7KRaDlH0uWIvmk7TYlAg5slqwiPv1ezJdZm1QEM0xgk29oYWMCbIG7E6gHpvChlg==
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
@@ -9870,7 +9913,7 @@ typedarray@^0.0.6:
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
-typescript@^5, typescript@^5.0.0, typescript@^5.0.4, "typescript@>= 4.2.x", "typescript@>= 4.3.x", "typescript@>= 4.x", typescript@>=4.5.0, typescript@>3.6.0:
+typescript@^5, typescript@^5.0.0, typescript@^5.0.4, "typescript@>= 4.2.x", "typescript@>= 4.3.x", "typescript@>= 4.x", "typescript@>=4.3 <6", typescript@>=4.5.0, typescript@>3.6.0:
   version "5.0.4"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.4.tgz"
   integrity sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==

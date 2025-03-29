@@ -1,0 +1,1353 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Snapshots renders correctly as active toggle button 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  aria-pressed={true}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 bg-primary-600 text-white transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Toggle Button On
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly as download link 1`] = `
+<a
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  download={true}
+  href="https://example.com/file.pdf"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  Download Button
+</a>
+`;
+
+exports[`Button Snapshots renders correctly as dropdown trigger 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  aria-haspopup="true"
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Dropdown Button
+  </span>
+  <svg
+    aria-hidden="true"
+    className="ml-2 h-4 w-4"
+    data-testid="dropdown-icon"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M19 9l-7 7-7-7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly as external link 1`] = `
+<a
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  href="https://example.com"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  rel="noopener noreferrer"
+>
+  External Link Button
+</a>
+`;
+
+exports[`Button Snapshots renders correctly as icon button 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  aria-label="Icon Button"
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white p-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out p-2 btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  role="button"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    className=" inline-flex"
+    data-testid="left-icon-container"
+  >
+    <span
+      data-testid="icon"
+    >
+      ★
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly as link 1`] = `
+<a
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  href="https://example.com"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  Link Button
+</a>
+`;
+
+exports[`Button Snapshots renders correctly as reset button 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="reset"
+>
+  <span
+    className="button-text"
+  >
+    Reset Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly as submit button 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="submit"
+>
+  <span
+    className="button-text"
+  >
+    Submit Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly as toggle button 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  aria-pressed={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Toggle Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly when disabled 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={true}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base opacity-50 cursor-not-allowed transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={true}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Disabled Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly when loading 1`] = `
+<button
+  aria-busy={true}
+  aria-disabled={true}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base opacity-50 cursor-not-allowed btn-loading transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={true}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+    data-testid="loading-spinner"
+    fill="none"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      strokeWidth="4"
+    />
+    <path
+      className="opacity-75"
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      fill="currentColor"
+    />
+  </svg>
+  <span>
+    Loading...
+    <span
+      className="sr-only"
+    >
+       - Bitte warten
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with active state 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base active cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Active Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with both icons 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    className="mr-2 inline-flex"
+    data-testid="left-icon-container"
+  >
+    <span
+      data-testid="left-icon"
+    >
+      ←
+    </span>
+  </span>
+  <span
+    className="button-text"
+  >
+    Button with Both Icons
+  </span>
+  <span
+    aria-hidden="true"
+    className="ml-2 inline-flex"
+    data-testid="right-icon-container"
+  >
+    <span
+      data-testid="right-icon"
+    >
+      →
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with custom class name 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md custom-class"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Button with Custom Class
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with custom loading spinner 1`] = `
+<button
+  aria-busy={true}
+  aria-disabled={true}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base opacity-50 cursor-not-allowed btn-loading transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={true}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    data-testid="custom-spinner"
+  >
+    ⟳
+  </span>
+  <span>
+    Loading...
+    <span
+      className="sr-only"
+    >
+       - Bitte warten
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with custom loading text 1`] = `
+<button
+  aria-busy={true}
+  aria-disabled={true}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base opacity-50 cursor-not-allowed btn-loading transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={true}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+    data-testid="loading-spinner"
+    fill="none"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      strokeWidth="4"
+    />
+    <path
+      className="opacity-75"
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      fill="currentColor"
+    />
+  </svg>
+  <span>
+    Please wait...
+    <span
+      className="sr-only"
+    >
+       - Bitte warten
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with danger variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-red-600 hover:bg-red-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-danger btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Danger Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with default props 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with error state 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 bg-red-600 text-white transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    className="mr-2 h-4 w-4 text-current"
+    data-testid="error-icon"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6 18L18 6M6 6l12 12"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+  <span>
+    Error Button
+    <span
+      className="sr-only"
+    >
+       - Fehler aufgetreten
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with extra large size 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 text-xl cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-xl"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Extra Large Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with extra small size 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-2 py-1 text-xs cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-xs"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Extra Small Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with full width 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md w-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Full Width Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with ghost variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-ghost btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Ghost Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with info variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-info btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Info Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with large size 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 text-lg cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-lg"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Large Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with left icon 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    className="mr-2 inline-flex"
+    data-testid="left-icon-container"
+  >
+    <span
+      data-testid="left-icon"
+    >
+      ←
+    </span>
+  </span>
+  <span
+    className="button-text"
+  >
+    Button with Left Icon
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with link variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md text-primary-600 dark:text-primary-400 underline hover:text-primary-700 dark:hover:text-primary-300 p-0 cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-link btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Link Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with medium size 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Medium Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with multiple props combined 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-full w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 text-lg cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 shadow-md transition duration-150 ease-in-out btn btn-success btn-lg"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  title="Success Button"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    className="mr-2 inline-flex"
+    data-testid="left-icon-container"
+  >
+    <span
+      data-testid="left-icon"
+    >
+      ←
+    </span>
+  </span>
+  <span
+    className="button-text"
+  >
+    Combined Props Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with outline variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-outline btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Outline Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with pill shape 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Pill Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with primary variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Primary Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with right icon 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Button with Right Icon
+  </span>
+  <span
+    aria-hidden="true"
+    className="ml-2 inline-flex"
+    data-testid="right-icon-container"
+  >
+    <span
+      data-testid="right-icon"
+    >
+      →
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with rounded shape 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Rounded Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with secondary variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-secondary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Secondary Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with shadow 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 shadow-md transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Shadow Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with small size 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-3 py-1.5 text-sm cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-sm"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Small Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with square shape 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-none bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Square Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with success state 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 bg-green-600 text-white transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    className="mr-2 h-4 w-4 text-current"
+    data-testid="success-icon"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M5 13l4 4L19 7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+  <span>
+    Success Button
+    <span
+      className="sr-only"
+    >
+       - Erfolgreich
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with success variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-green-600 hover:bg-green-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-success btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Success Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with tooltip 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  title="Tooltip Text"
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Button with Tooltip
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with transparent background 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out bg-transparent btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Transparent Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with type reset 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="reset"
+>
+  <span
+    className="button-text"
+  >
+    Reset Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with type submit 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="submit"
+>
+  <span
+    className="button-text"
+  >
+    Submit Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with unstyled variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-unstyled btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Unstyled Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly with warning variant 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-warning btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    Warning Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly without border 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-outline btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    No Border Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly without focus effect 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    No Focus Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly without hover effect 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 transition duration-150 ease-in-out btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    No Hover Button
+  </span>
+</button>
+`;
+
+exports[`Button Snapshots renders correctly without transition 1`] = `
+<button
+  aria-busy={false}
+  aria-disabled={false}
+  className="font-medium inline-flex items-center justify-center relative rounded-md bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 text-base cursor-pointer hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-opacity-50 btn btn-primary btn-md"
+  disabled={false}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  type="button"
+>
+  <span
+    className="button-text"
+  >
+    No Transition Button
+  </span>
+</button>
+`;

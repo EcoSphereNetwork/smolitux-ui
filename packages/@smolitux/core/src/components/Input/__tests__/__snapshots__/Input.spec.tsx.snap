@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Snapshots renders correctly with clearable button 1`] = `
+<div
+  className=" "
+>
+  <div
+    className="relative "
+  >
+    <input
+      className="block appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 px-4 py-2 text-base border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400 pr-10 rounded-md hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 transition duration-150 ease-in-out"
+      disabled={false}
+      id="input-reg1bj9"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      readOnly={false}
+      required={false}
+      type="text"
+      value="Test"
+    />
+    <div
+      aria-label="Eingabe löschen"
+      className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 dark:text-gray-500"
+      onClick={[Function]}
+      role="button"
+      tabIndex={-1}
+    >
+      <svg
+        className="h-5 w-5"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clipRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
