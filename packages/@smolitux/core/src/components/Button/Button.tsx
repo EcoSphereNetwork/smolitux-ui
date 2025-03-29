@@ -215,6 +215,9 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
   const relAttribute = isExternal
     ? rel ? `${rel} noopener noreferrer` : 'noopener noreferrer'
     : rel;
+    
+  // Füge automatisch target="_blank" für externe Links hinzu, wenn nicht anders angegeben
+  const targetAttribute = isExternal && !target ? '_blank' : target;
 
   // Normalisiere die Variante (solid -> primary für Kompatibilität)
   const normalizedVariant = variant === 'solid' ? 'primary' : variant;
@@ -400,6 +403,22 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
     setIsFocused(false);
     onBlur?.(event);
   };
+  
+  // Bestimme ARIA-Attribute basierend auf dem Button-Zustand
+  const getAriaAttributes = () => {
+    const ariaAttributes: Record<string, string | boolean | undefined> = {
+      'aria-disabled': disabled || isButtonLoading,
+      'aria-busy': isButtonLoading,
+      'aria-pressed': isToggle ? isToggleOn : undefined,
+    };
+    
+    // Wenn der Button ein Icon-Button ohne Text ist, stellen wir sicher, dass ein aria-label vorhanden ist
+    if (isIconButton && !children && !props['aria-label']) {
+      console.warn('Icon-Buttons ohne Text sollten ein aria-label haben für bessere Barrierefreiheit');
+    }
+    
+    return ariaAttributes;
+  };
 
   // Cleanup beim Unmount
   useEffect(() => {
@@ -429,11 +448,11 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
       <a
         href={href || '#'}
         className={buttonClasses}
-        target={target}
+        target={targetAttribute}
         rel={relAttribute}
         download={download}
-        aria-disabled={disabled || isButtonLoading}
-        aria-busy={isButtonLoading}
+        {...getAriaAttributes()}
+        aria-label={props['aria-label']}
         title={tooltip}
         onClick={(e) => {
           if (disabled || isButtonLoading) {
@@ -455,6 +474,7 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
                 fill="none"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
+                data-testid="loading-spinner"
               >
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -525,9 +545,7 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
       onClick={onClick}
       type={buttonType}
       role="button"
-      aria-disabled={disabled || isButtonLoading}
-      aria-busy={isButtonLoading}
-      aria-pressed={isToggle ? isToggleOn : undefined}
+      {...getAriaAttributes()}
       title={tooltip}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
@@ -562,6 +580,7 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
               fill="none"
               viewBox="0 0 24 24"
               aria-hidden="true"
+              data-testid="loading-spinner"
             >
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
