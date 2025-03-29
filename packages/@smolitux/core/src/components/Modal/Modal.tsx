@@ -275,9 +275,24 @@ export const Modal: React.FC<ModalProps> = ({
     return undefined;
   }, [isOpen, onClose, closeOnEsc, isStatic]);
   
+  // Fokussierbare Elemente finden
+  const getFocusableElements = useCallback(() => {
+    if (!modalRef.current) return [];
+    
+    // Verbesserte Selektor-Liste für fokussierbare Elemente
+    return Array.from(
+      modalRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)'
+      )
+    ) as HTMLElement[];
+  }, []);
+  
   // Focus Lock innerhalb des Modals
   useEffect(() => {
     if (isOpen && initialFocus) {
+      // Verzögerung für Animation
+      const focusDelay = animated ? 100 : 0;
+      
       // Wenn eine spezifische Referenz für den initialen Fokus angegeben wurde
       if (initialFocusRef) {
         let elementToFocus: HTMLElement | null = null;
@@ -293,51 +308,79 @@ export const Modal: React.FC<ModalProps> = ({
         if (elementToFocus) {
           setTimeout(() => {
             elementToFocus?.focus();
-          }, 0);
+            // Stelle sicher, dass das Element tatsächlich fokussiert ist
+            if (document.activeElement !== elementToFocus) {
+              modalRef.current?.focus();
+            }
+          }, focusDelay);
           return;
         }
       }
       
       // Fallback: Fokussiere das erste fokussierbare Element oder den Modal selbst
-      if (modalRef.current) {
-        const focusableElements = modalRef.current.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        
-        if (focusableElements.length > 0) {
-          setTimeout(() => {
-            (focusableElements[0] as HTMLElement).focus();
-          }, 0);
-        } else {
-          modalRef.current.focus();
+      setTimeout(() => {
+        if (modalRef.current) {
+          const focusableElements = getFocusableElements();
+          
+          // Priorisiere interaktive Elemente in dieser Reihenfolge:
+          // 1. Schließen-Button (wenn vorhanden)
+          // 2. Bestätigen-Button (wenn vorhanden)
+          // 3. Abbrechen-Button (wenn vorhanden)
+          // 4. Erstes fokussierbares Element
+          // 5. Modal selbst
+          
+          const closeButton = modalRef.current.querySelector('[data-testid="modal-close-button"]') as HTMLElement;
+          const confirmButton = modalRef.current.querySelector('[data-testid="modal-confirm-button"]') as HTMLElement;
+          // Korrigiere den Selektor für den Abbrechen-Button
+          const cancelButton = modalRef.current.querySelector(`button[type="button"]:not([data-testid="modal-confirm-button"]):not([data-testid="modal-close-button"])`) as HTMLElement;
+          
+          if (closeButton) {
+            closeButton.focus();
+          } else if (confirmButton) {
+            confirmButton.focus();
+          } else if (cancelButton) {
+            cancelButton.focus();
+          } else if (focusableElements.length > 0) {
+            focusableElements[0].focus();
+          } else {
+            modalRef.current.focus();
+          }
         }
-      }
+      }, focusDelay);
     }
-  }, [isOpen, initialFocus, initialFocusRef]);
+  }, [isOpen, initialFocus, initialFocusRef, animated, getFocusableElements]);
   
   // Tab-Fokus innerhalb des Modals halten
   const handleTabKey = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Tab' && modalRef.current) {
-      const focusableElements = Array.from(
-        modalRef.current.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        )
-      ) as HTMLElement[];
+      const focusableElements = getFocusableElements();
       
       if (focusableElements.length === 0) return;
       
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
       
-      if (e.shiftKey && document.activeElement === firstElement) {
+      // Aktives Element
+      const activeElement = document.activeElement;
+      
+      // Wenn Shift+Tab gedrückt wird und das erste Element fokussiert ist oder
+      // das aktive Element vor dem ersten fokussierbaren Element liegt
+      if (e.shiftKey && (activeElement === firstElement || 
+          !focusableElements.includes(activeElement as HTMLElement) || 
+          focusableElements.indexOf(activeElement as HTMLElement) <= 0)) {
         e.preventDefault();
         lastElement.focus();
-      } else if (!e.shiftKey && document.activeElement === lastElement) {
+      } 
+      // Wenn Tab gedrückt wird und das letzte Element fokussiert ist oder
+      // das aktive Element nach dem letzten fokussierbaren Element liegt
+      else if (!e.shiftKey && (activeElement === lastElement || 
+               !focusableElements.includes(activeElement as HTMLElement) || 
+               focusableElements.indexOf(activeElement as HTMLElement) >= focusableElements.length - 1)) {
         e.preventDefault();
         firstElement.focus();
       }
     }
-  }, []);
+  }, [getFocusableElements]);
   
   useEffect(() => {
     if (isOpen) {
