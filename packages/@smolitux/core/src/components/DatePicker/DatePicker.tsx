@@ -5,7 +5,11 @@ import { useFormControl } from '../FormControl/FormControl';
 
 // Typen für Datum und Datumsformatierung
 type DateValue = Date | null;
+type DateRangeValue = [DateValue, DateValue];
 type DateFormat = 'yyyy-MM-dd' | 'dd.MM.yyyy' | 'MM/dd/yyyy' | string;
+
+// Typ für den Auswahlmodus
+type SelectionMode = 'single' | 'range';
 
 // Hilfsfunktionen für Datumsmanipulation
 const daysInMonth = (year: number, month: number): number => {
@@ -100,12 +104,14 @@ const monthNames = [
 const weekdayNames = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
 export interface DatePickerProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'defaultValue' | 'size'> {
-  /** Ausgewähltes Datum */
-  value?: DateValue;
-  /** Standard-Ausgewähltes Datum */
-  defaultValue?: DateValue;
+  /** Ausgewähltes Datum (einzeln oder Bereich) */
+  value?: DateValue | DateRangeValue;
+  /** Standard-Ausgewähltes Datum (einzeln oder Bereich) */
+  defaultValue?: DateValue | DateRangeValue;
   /** Callback bei Auswahl eines Datums */
-  onChange?: (date: DateValue) => void;
+  onChange?: (date: DateValue | DateRangeValue) => void;
+  /** Auswahlmodus (einzeln oder Bereich) */
+  selectionMode?: SelectionMode;
   /** Text-Label */
   label?: string;
   /** Hilfetexzt */
@@ -202,13 +208,14 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   value,
   defaultValue,
   onChange,
+  selectionMode = 'single',
   label,
   helperText,
   error,
   format = 'yyyy-MM-dd',
   minDate,
   maxDate,
-  placeholder = 'YYYY-MM-DD',
+  placeholder = selectionMode === 'single' ? 'YYYY-MM-DD' : 'YYYY-MM-DD - YYYY-MM-DD',
   weekDayLabels = weekdayNames,
   monthLabels = monthNames,
   size = 'md',
@@ -217,7 +224,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   allowManualInput = true,
   leftIcon,
   portalTarget = null,
-  closeOnSelect = true,
+  closeOnSelect = selectionMode === 'single',
   zIndex = 50,
   firstDayOfWeek = 1,
   popupPosition = 'bottom',
@@ -252,16 +259,42 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   
   // Kontrolliert vs. unkontrolliert
   const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = useState<DateValue>(defaultValue || null);
+  const isRangeMode = selectionMode === 'range';
+  
+  // Initialisiere den internen Zustand basierend auf dem Auswahlmodus
+  const [internalValue, setInternalValue] = useState<DateValue | DateRangeValue>(() => {
+    if (isRangeMode) {
+      // Für Range-Modus
+      if (Array.isArray(defaultValue) && defaultValue.length === 2) {
+        return defaultValue;
+      }
+      return [null, null];
+    } else {
+      // Für Single-Modus
+      return !Array.isArray(defaultValue) ? defaultValue || null : null;
+    }
+  });
+  
   const [inputValue, setInputValue] = useState<string>('');
   
-  // Aktuelles Datum
+  // Aktuelles Datum oder Datumsbereich
   const currentDate = isControlled ? value : internalValue;
+  
+  // Hilfsvariablen für den Range-Modus
+  const [rangeStart, rangeEnd] = isRangeMode && Array.isArray(currentDate) 
+    ? currentDate 
+    : [null, null];
+  
+  // Aktuelle Auswahlphase im Range-Modus (0 = Start, 1 = Ende)
+  const [selectionPhase, setSelectionPhase] = useState<0 | 1>(0);
   
   // Popup-Zustand
   const [isOpen, setIsOpen] = useState(false);
   const [viewDate, setViewDate] = useState(() => {
-    return currentDate || new Date();
+    if (isRangeMode && Array.isArray(currentDate)) {
+      return currentDate[0] || currentDate[1] || new Date();
+    }
+    return !Array.isArray(currentDate) ? currentDate || new Date() : new Date();
   });
   
   // Referenz auf Input und Picker-Container
@@ -284,13 +317,36 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
         : undefined,
   };
   
+  // Formatiere einen Datumsbereich als String
+  const formatDateRange = (start: DateValue, end: DateValue, format: DateFormat): string => {
+    if (!start && !end) return '';
+    if (start && !end) return formatDate(start, format);
+    if (!start && end) return formatDate(end, format);
+    return `${formatDate(start, format)} - ${formatDate(end, format)}`;
+  };
+  
+  // Parse einen Datumsbereich aus einem String
+  const parseDateRange = (rangeString: string, format: DateFormat): DateRangeValue => {
+    if (!rangeString) return [null, null];
+    
+    const parts = rangeString.split('-').map(part => part.trim());
+    if (parts.length !== 2) return [parseDate(rangeString, format), null];
+    
+    return [parseDate(parts[0], format), parseDate(parts[1], format)];
+  };
+  
   // Aktualisiere das Input-Feld, wenn sich der Wert ändert
   useEffect(() => {
     if (isControlled) {
-      setInputValue(formatDate(value, format));
-      setViewDate(value || new Date());
+      if (isRangeMode && Array.isArray(value)) {
+        setInputValue(formatDateRange(value[0], value[1], format));
+        setViewDate(value[0] || value[1] || new Date());
+      } else if (!isRangeMode && !Array.isArray(value)) {
+        setInputValue(formatDate(value, format));
+        setViewDate(value || new Date());
+      }
     }
-  }, [value, format, isControlled]);
+  }, [value, format, isControlled, isRangeMode]);
   
   // Klassen für verschiedene Größen
   const sizeClasses = {
@@ -401,26 +457,75 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
       return;
     }
     
-    // Internes Datum aktualisieren (wenn nicht kontrolliert)
-    if (!isControlled) {
-      setInternalValue(newDate);
-    }
-    
-    // Input-Wert aktualisieren
-    setInputValue(formatDate(newDate, format));
-    
-    // Callback aufrufen
-    if (onChange) {
-      onChange(newDate);
-    }
-    
-    // Screenreader-Ankündigung
-    announceToScreenReader(i18n.dateSelected + ': ' + formatDate(newDate, format));
-    
-    // Popup schließen, wenn closeOnSelect
-    if (closeOnSelect) {
-      setIsOpen(false);
-      if (onClose) onClose();
+    if (isRangeMode) {
+      // Bereichsauswahl-Logik
+      let newRange: DateRangeValue = [null, null];
+      
+      if (selectionPhase === 0) {
+        // Startdatum auswählen
+        newRange = [newDate, null];
+        setSelectionPhase(1);
+        
+        // Screenreader-Ankündigung
+        announceToScreenReader('Startdatum ausgewählt: ' + formatDate(newDate, format));
+      } else {
+        // Enddatum auswählen
+        const startDate = Array.isArray(currentDate) ? currentDate[0] : null;
+        
+        // Stellen Sie sicher, dass das Enddatum nach dem Startdatum liegt
+        if (startDate && newDate < startDate) {
+          newRange = [newDate, startDate]; // Tausche Start und Ende
+        } else {
+          newRange = [startDate, newDate];
+        }
+        
+        setSelectionPhase(0);
+        
+        // Screenreader-Ankündigung
+        announceToScreenReader('Datumsbereich ausgewählt: ' + formatDateRange(newRange[0], newRange[1], format));
+      }
+      
+      // Internes Datum aktualisieren (wenn nicht kontrolliert)
+      if (!isControlled) {
+        setInternalValue(newRange);
+      }
+      
+      // Input-Wert aktualisieren
+      setInputValue(formatDateRange(newRange[0], newRange[1], format));
+      
+      // Callback aufrufen
+      if (onChange) {
+        onChange(newRange);
+      }
+      
+      // Popup schließen, wenn closeOnSelect und Bereich vollständig ausgewählt
+      if (closeOnSelect && selectionPhase === 1) {
+        setIsOpen(false);
+        if (onClose) onClose();
+      }
+    } else {
+      // Einzelauswahl-Logik
+      // Internes Datum aktualisieren (wenn nicht kontrolliert)
+      if (!isControlled) {
+        setInternalValue(newDate);
+      }
+      
+      // Input-Wert aktualisieren
+      setInputValue(formatDate(newDate, format));
+      
+      // Callback aufrufen
+      if (onChange) {
+        onChange(newDate);
+      }
+      
+      // Screenreader-Ankündigung
+      announceToScreenReader(i18n.dateSelected + ': ' + formatDate(newDate, format));
+      
+      // Popup schließen, wenn closeOnSelect
+      if (closeOnSelect) {
+        setIsOpen(false);
+        if (onClose) onClose();
+      }
     }
   };
   
@@ -435,7 +540,12 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   const clearDate = () => {
     // Internes Datum aktualisieren (wenn nicht kontrolliert)
     if (!isControlled) {
-      setInternalValue(null);
+      if (isRangeMode) {
+        setInternalValue([null, null]);
+        setSelectionPhase(0);
+      } else {
+        setInternalValue(null);
+      }
     }
     
     // Input-Wert aktualisieren
@@ -443,7 +553,11 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
     
     // Callback aufrufen
     if (onChange) {
-      onChange(null);
+      if (isRangeMode) {
+        onChange([null, null]);
+      } else {
+        onChange(null);
+      }
     }
     
     // Popup schließen
@@ -464,31 +578,62 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
     const newValue = e.target.value;
     setInputValue(newValue);
     
-    // Versuchen, das Datum zu parsen
-    const parsedDate = parseDate(newValue, format);
-    
-    if (parsedDate) {
+    if (isRangeMode) {
+      // Versuchen, den Datumsbereich zu parsen
+      const parsedRange = parseDateRange(newValue, format);
+      
       // Internes Datum aktualisieren (wenn nicht kontrolliert)
       if (!isControlled) {
-        setInternalValue(parsedDate);
+        setInternalValue(parsedRange);
       }
       
       // Ansichtsdatum aktualisieren
-      setViewDate(parsedDate);
+      if (parsedRange[0]) {
+        setViewDate(parsedRange[0]);
+      } else if (parsedRange[1]) {
+        setViewDate(parsedRange[1]);
+      }
       
       // Callback aufrufen
       if (onChange) {
-        onChange(parsedDate);
+        onChange(parsedRange);
+      }
+      
+      // Auswahlphase zurücksetzen, wenn beide Daten vorhanden sind
+      if (parsedRange[0] && parsedRange[1]) {
+        setSelectionPhase(0);
+      } else if (parsedRange[0]) {
+        setSelectionPhase(1);
+      } else {
+        setSelectionPhase(0);
       }
     } else {
-      // Wenn kein gültiges Datum, internes Datum auf null setzen
-      if (!isControlled) {
-        setInternalValue(null);
-      }
+      // Versuchen, das Datum zu parsen
+      const parsedDate = parseDate(newValue, format);
       
-      // Callback aufrufen
-      if (onChange) {
-        onChange(null);
+      if (parsedDate) {
+        // Internes Datum aktualisieren (wenn nicht kontrolliert)
+        if (!isControlled) {
+          setInternalValue(parsedDate);
+        }
+        
+        // Ansichtsdatum aktualisieren
+        setViewDate(parsedDate);
+        
+        // Callback aufrufen
+        if (onChange) {
+          onChange(parsedDate);
+        }
+      } else {
+        // Wenn kein gültiges Datum, internes Datum auf null setzen
+        if (!isControlled) {
+          setInternalValue(null);
+        }
+        
+        // Callback aufrufen
+        if (onChange) {
+          onChange(null);
+        }
       }
     }
   };
@@ -683,10 +828,39 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
             <div key={weekIndex} className="grid grid-cols-7 gap-0">
               {week.map((day, dayIndex) => {
                 // Bestimme, ob dieser Tag selektiert ist
-                const isSelected = currentDate && 
-                  currentDate.getDate() === day && 
-                  currentDate.getMonth() === currentMonth && 
-                  currentDate.getFullYear() === currentYear;
+                let isSelected = false;
+                let isRangeStart = false;
+                let isRangeEnd = false;
+                let isInRange = false;
+                
+                if (isRangeMode && Array.isArray(currentDate)) {
+                  const [start, end] = currentDate;
+                  const cellDate = day !== 0 ? new Date(currentYear, currentMonth, day) : null;
+                  
+                  if (cellDate && start) {
+                    isRangeStart = start.getDate() === day && 
+                                  start.getMonth() === currentMonth && 
+                                  start.getFullYear() === currentYear;
+                  }
+                  
+                  if (cellDate && end) {
+                    isRangeEnd = end.getDate() === day && 
+                                end.getMonth() === currentMonth && 
+                                end.getFullYear() === currentYear;
+                  }
+                  
+                  // Prüfe, ob der Tag im Bereich liegt
+                  if (cellDate && start && end) {
+                    isInRange = cellDate >= start && cellDate <= end && !isRangeStart && !isRangeEnd;
+                  }
+                  
+                  isSelected = isRangeStart || isRangeEnd;
+                } else if (!isRangeMode && !Array.isArray(currentDate)) {
+                  isSelected = currentDate && 
+                    currentDate.getDate() === day && 
+                    currentDate.getMonth() === currentMonth && 
+                    currentDate.getFullYear() === currentYear;
+                }
                 
                 // Bestimme, ob dieser Tag im gültigen Bereich liegt
                 const today = new Date();
@@ -705,10 +879,19 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
                       p-1 text-center text-sm
                       ${day === 0 ? 'invisible' : 'cursor-pointer'}
                       ${isSelected ? 'bg-primary-600 text-white rounded' : ''}
-                      ${isToday && !isSelected ? 'border border-primary-500 rounded' : ''}
+                      ${isRangeStart ? 'bg-primary-600 text-white rounded-l' : ''}
+                      ${isRangeEnd ? 'bg-primary-600 text-white rounded-r' : ''}
+                      ${isInRange ? 'bg-primary-100 dark:bg-primary-900' : ''}
+                      ${isToday && !isSelected && !isInRange && !isRangeStart && !isRangeEnd ? 'border border-primary-500 rounded' : ''}
                       ${isDisabled ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-gray-700'}
                     `}
                     onClick={() => !isDisabled && day !== 0 && selectDate(day)}
+                    aria-selected={isSelected || isRangeStart || isRangeEnd}
+                    aria-current={isToday ? 'date' : undefined}
+                    role="gridcell"
+                    tabIndex={day !== 0 ? 0 : -1}
+                    aria-disabled={isDisabled}
+                    title={isRangeStart ? 'Startdatum' : isRangeEnd ? 'Enddatum' : undefined}
                   >
                     {day !== 0 ? day : ''}
                   </div>
@@ -718,22 +901,80 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
           ))}
         </div>
         
-        {/* Footer mit Heute-Button */}
-        <div className="border-t border-gray-200 dark:border-gray-700 p-2 flex justify-center">
+        {/* Footer mit Buttons */}
+        <div className="border-t border-gray-200 dark:border-gray-700 p-2 flex justify-between">
+          {/* Heute-Button */}
           <button
             type="button"
             className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
             onClick={() => {
               const today = new Date();
-              if (!isControlled) setInternalValue(today);
+              if (!isControlled) {
+                if (isRangeMode) {
+                  if (selectionPhase === 0) {
+                    setInternalValue([today, null]);
+                    setSelectionPhase(1);
+                    setInputValue(formatDate(today, format));
+                    if (onChange) onChange([today, null]);
+                  } else {
+                    const startDate = Array.isArray(currentDate) ? currentDate[0] : null;
+                    const newRange: DateRangeValue = startDate && today < startDate 
+                      ? [today, startDate] 
+                      : [startDate, today];
+                    setInternalValue(newRange);
+                    setSelectionPhase(0);
+                    setInputValue(formatDateRange(newRange[0], newRange[1], format));
+                    if (onChange) onChange(newRange);
+                    if (closeOnSelect) setIsOpen(false);
+                  }
+                } else {
+                  setInternalValue(today);
+                  setInputValue(formatDate(today, format));
+                  if (onChange) onChange(today);
+                  if (closeOnSelect) setIsOpen(false);
+                }
+              } else {
+                if (isRangeMode) {
+                  if (selectionPhase === 0) {
+                    if (onChange) onChange([today, null]);
+                    setSelectionPhase(1);
+                  } else {
+                    const startDate = Array.isArray(currentDate) ? currentDate[0] : null;
+                    const newRange: DateRangeValue = startDate && today < startDate 
+                      ? [today, startDate] 
+                      : [startDate, today];
+                    if (onChange) onChange(newRange);
+                    setSelectionPhase(0);
+                    if (closeOnSelect) setIsOpen(false);
+                  }
+                } else {
+                  if (onChange) onChange(today);
+                  if (closeOnSelect) setIsOpen(false);
+                }
+              }
               setViewDate(today);
-              setInputValue(formatDate(today, format));
-              if (onChange) onChange(today);
-              if (closeOnSelect) setIsOpen(false);
             }}
           >
-            Heute
+            {i18n.today}
           </button>
+          
+          {/* Löschen-Button */}
+          {showClearButton && (
+            <button
+              type="button"
+              className="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+              onClick={clearDate}
+            >
+              {i18n.clear}
+            </button>
+          )}
+          
+          {/* Auswahlphase-Anzeige im Range-Modus */}
+          {isRangeMode && (
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              {selectionPhase === 0 ? 'Startdatum wählen' : 'Enddatum wählen'}
+            </div>
+          )}
         </div>
       </div>
     );
