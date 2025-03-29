@@ -1847,19 +1847,19 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@smolitux/ai@^0.2.1", "@smolitux/ai@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/ai":
+"@smolitux/ai@^0.2.1", "@smolitux/ai@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/ai":
   version "0.2.1"
   resolved "file:packages/@smolitux/ai"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/blockchain@^0.2.1", "@smolitux/blockchain@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/blockchain":
+"@smolitux/blockchain@^0.2.1", "@smolitux/blockchain@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/blockchain":
   version "0.2.1"
   resolved "file:packages/@smolitux/blockchain"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/charts@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/charts":
+"@smolitux/charts@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/charts":
   version "0.2.1"
   resolved "file:packages/@smolitux/charts"
   dependencies:
@@ -1867,13 +1867,13 @@
     "@smolitux/theme" "^0.2.1"
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/community@^0.2.1", "@smolitux/community@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/community":
+"@smolitux/community@^0.2.1", "@smolitux/community@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/community":
   version "0.2.1"
   resolved "file:packages/@smolitux/community"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/core@^0.2.1", "@smolitux/core@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/core":
+"@smolitux/core@^0.2.1", "@smolitux/core@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/core":
   version "0.2.1"
   resolved "file:packages/@smolitux/core"
   dependencies:
@@ -1883,13 +1883,13 @@
     i18next-http-backend "^3.0.2"
     react-i18next "^15.4.1"
 
-"@smolitux/federation@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/federation":
+"@smolitux/federation@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/federation":
   version "0.2.1"
   resolved "file:packages/@smolitux/federation"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/layout@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/layout":
+"@smolitux/layout@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/layout":
   version "0.2.1"
   resolved "file:packages/@smolitux/layout"
   dependencies:
@@ -1897,13 +1897,13 @@
     "@smolitux/theme" "^0.2.1"
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/media@^0.2.1", "@smolitux/media@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/media":
+"@smolitux/media@^0.2.1", "@smolitux/media@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/media":
   version "0.2.1"
   resolved "file:packages/@smolitux/media"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/resonance@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/resonance":
+"@smolitux/resonance@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/resonance":
   version "0.2.1"
   resolved "file:packages/@smolitux/resonance"
   dependencies:
@@ -1913,13 +1913,13 @@
     "@smolitux/media" "^0.2.1"
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/theme@^0.2.1", "@smolitux/theme@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/theme":
+"@smolitux/theme@^0.2.1", "@smolitux/theme@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/theme":
   version "0.2.1"
   resolved "file:packages/@smolitux/theme"
   dependencies:
     "@smolitux/utils" "^0.2.1"
 
-"@smolitux/utils@^0.2.1", "@smolitux/utils@file:/home/sam/EcoSphereNetwork/smolitux-ui/packages/@smolitux/utils":
+"@smolitux/utils@^0.2.1", "@smolitux/utils@file:/home/dev/EcoSphereNetwork/smolitux-ui/packages/@smolitux/utils":
   version "0.2.1"
   resolved "file:packages/@smolitux/utils"
   dependencies:

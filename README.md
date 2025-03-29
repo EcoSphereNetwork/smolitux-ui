@@ -2,7 +2,7 @@
 
 Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
 
-## 📦 Packages
+## 📦 Packages 
 
 - **@smolitux/core**: Grundlegende UI-Komponenten
 - **@smolitux/theme**: Theming und Styling
