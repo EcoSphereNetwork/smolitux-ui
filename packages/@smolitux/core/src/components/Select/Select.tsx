@@ -47,6 +47,14 @@ export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectE
   animated?: boolean;
   /** Ob das Select gruppierte Optionen unterstützen soll */
   groupOptions?: boolean;
+  /** Ob das Select Mehrfachauswahl unterstützen soll */
+  isMulti?: boolean;
+  /** Maximale Anzahl der auswählbaren Optionen (nur bei isMulti=true) */
+  maxSelections?: number;
+  /** Callback, wenn die maximale Anzahl der Auswahlen erreicht ist */
+  onMaxSelectionsReached?: () => void;
+  /** Ob das Select eine Suchfunktion haben soll */
+  isSearchable?: boolean;
   /** Zusätzliche CSS-Klassen für das Label */
   labelClassName?: string;
   /** Zusätzliche CSS-Klassen für den Hilfetext */
@@ -134,6 +142,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   shadow = false,
   animated = true,
   groupOptions = false,
+  isMulti = false,
+  maxSelections,
+  onMaxSelectionsReached,
+  isSearchable = false,
   labelClassName = '',
   helperTextClassName = '',
   errorClassName = '',
@@ -192,7 +204,34 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   
   // Änderungs-Handler
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (onValueChange) onValueChange(e.target.value);
+    if (isMulti && maxSelections) {
+      // Bei Mehrfachauswahl mit maximaler Anzahl
+      const selectedOptions = Array.from(e.target.selectedOptions).map(option => option.value);
+      
+      if (selectedOptions.length > maxSelections) {
+        // Wenn die maximale Anzahl überschritten wird, Auswahl zurücksetzen
+        e.preventDefault();
+        
+        if (onMaxSelectionsReached) {
+          onMaxSelectionsReached();
+        }
+        
+        // Wir könnten hier auch eine Fehlermeldung anzeigen
+        return;
+      }
+    }
+    
+    if (onValueChange) {
+      if (isMulti) {
+        // Bei Mehrfachauswahl ein Array von Werten zurückgeben
+        const selectedValues = Array.from(e.target.selectedOptions).map(option => option.value);
+        onValueChange(selectedValues.join(','));
+      } else {
+        // Bei Einfachauswahl den Wert zurückgeben
+        onValueChange(e.target.value);
+      }
+    }
+    
     if (onChange) onChange(e);
   };
   
@@ -351,6 +390,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
           onBlur={handleBlur}
           onChange={handleChange}
           data-testid="select-element"
+          multiple={isMulti}
+          size={isMulti ? 5 : undefined}
           {...props}
         >
           {placeholder && (
@@ -403,7 +444,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
       
       {/* Screenreader-Anweisungen für bessere Barrierefreiheit */}
       <div className="sr-only" aria-live="polite" id={`${uniqueId}-instructions`}>
-        Drücken Sie die Pfeiltasten, um durch die Optionen zu navigieren, und Enter, um eine Option auszuwählen.
+        {isMulti 
+          ? 'Drücken Sie die Pfeiltasten, um durch die Optionen zu navigieren. Drücken Sie die Leertaste, um eine Option auszuwählen oder abzuwählen. Sie können mehrere Optionen auswählen.'
+          : 'Drücken Sie die Pfeiltasten, um durch die Optionen zu navigieren, und Enter, um eine Option auszuwählen.'
+        }
+        {maxSelections && isMulti && ` Sie können maximal ${maxSelections} Optionen auswählen.`}
       </div>
     </div>
   );
