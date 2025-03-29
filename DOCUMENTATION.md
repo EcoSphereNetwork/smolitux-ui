@@ -339,7 +339,56 @@ import { Input } from '@smolitux/core';
 
 #### Modal
 
-Die Modal-Komponente zeigt Inhalte in einem modalen Dialog an.
+Die Modal-Komponente zeigt Inhalte in einem Overlay an und bietet verschiedene Anpassungsmöglichkeiten.
+
+```jsx
+import { Modal } from '@smolitux/core';
+
+// Einfaches Modal
+<Modal 
+  isOpen={isOpen} 
+  onClose={handleClose} 
+  title="Beispiel Modal"
+>
+  <p>Modal-Inhalt</p>
+</Modal>
+
+// Modal mit Animation
+<Modal 
+  isOpen={isOpen} 
+  onClose={handleClose} 
+  title="Animation"
+  animation="slide-up"
+>
+  <p>Dieses Modal verwendet eine Slide-Up-Animation.</p>
+</Modal>
+```
+
+**Props:**
+
+| Prop | Typ | Standard | Beschreibung |
+|------|-----|----------|--------------|
+| isOpen | boolean | - | Ob der Modal sichtbar ist |
+| onClose | () => void | - | Callback zum Schließen des Modals |
+| title | ReactNode | - | Modal-Titel |
+| children | ReactNode | - | Modal-Inhalt |
+| footer | ReactNode | - | Footer-Inhalt |
+| size | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full' | 'md' | Größe des Modals |
+| position | 'center' \| 'top' \| 'right' \| 'bottom' \| 'left' | 'center' | Position des Modals |
+| animation | 'fade' \| 'scale' \| 'slide-up' \| 'slide-down' \| 'slide-left' \| 'slide-right' \| 'none' | 'scale' | Animation-Typ für den Modal |
+| animated | boolean | true | Ob der Modal animiert werden soll |
+| closeOnOverlayClick | boolean | true | Ob der Modal bei Klick auf das Overlay geschlossen werden soll |
+| closeOnEsc | boolean | true | Ob der Modal bei Drücken der Escape-Taste geschlossen werden soll |
+| showCloseButton | boolean | true | Ob der Modal einen Schließen-Button haben soll |
+| footerButtons | boolean | false | Ob Standard-Footer-Buttons angezeigt werden sollen |
+| onCancel | () => void | - | Callback für den Abbrechen-Button |
+| onConfirm | () => void | - | Callback für den Bestätigen-Button |
+| trapFocus | boolean | true | Ob der Fokus innerhalb des Modals gehalten werden soll |
+| returnFocus | boolean | true | Ob der Fokus nach dem Schließen zurückgesetzt werden soll |
+
+#### Alert
+
+Die Alert-Komponente wird verwendet, um wichtige Nachrichten anzuzeigen.
 
 ```jsx
 import { Modal, Button } from '@smolitux/core';

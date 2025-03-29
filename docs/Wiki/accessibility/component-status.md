@@ -17,7 +17,7 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 9. **Collapse** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Zustandsankündigungen
 10. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation, Datumsbereich-Unterstützung
 11. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
-12. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen, optimierte Fokus-Verwaltung
+12. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen, optimierte Fokus-Verwaltung, Fokus-Trap, verschiedene Animationstypen, verbesserte Tastaturnavigation
 13. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung, Filterung, Suche, Zeilenauswahl
 14. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
 15. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation

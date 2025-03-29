@@ -64,7 +64,7 @@ Seit dem letzten Bericht wurden folgende Verbesserungen implementiert:
 1. **Erweiterte Komponenten**:
    - **DatePicker**: Implementierung von Datumsbereich-Unterstützung (Range-Picker)
    - **Table**: Implementierung von erweiterten Filterfunktionen, Suchfunktionalität, Zeilenauswahl und verbesserter Paginierung
-   - **Modal**: Verbesserte Fokus-Verwaltung für bessere Barrierefreiheit
+   - **Modal**: Verbesserte Fokus-Verwaltung, verschiedene Animationstypen, Fokus-Trap und verbesserte Tastaturnavigation für bessere Barrierefreiheit
    - **Tooltip**: Erweiterte Platzierungsoptionen und verbesserte Barrierefreiheit
 
 2. **Dokumentation**: Die Dokumentation für die verbesserten Komponenten wurde aktualisiert.

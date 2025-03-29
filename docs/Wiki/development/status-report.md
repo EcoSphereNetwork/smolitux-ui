@@ -25,7 +25,7 @@ Die folgenden Komponenten sind bereits implementiert und haben Tests:
 - **TabView**: Implementiert mit Unit-Tests
 - **DatePicker**: Vollständig implementiert mit Datumsbereich-Unterstützung und Unit-Tests
 - **Table**: Vollständig implementiert mit Sortierung, Filterung, Suche, Zeilenauswahl und Unit-Tests
-- **Modal**: Vollständig implementiert mit verbesserter Fokus-Verwaltung und Unit-Tests
+- **Modal**: Vollständig implementiert mit verbesserter Fokus-Verwaltung, verschiedenen Animationstypen, Fokus-Trap und Unit-Tests
 - **Tooltip**: Vollständig implementiert mit erweiterten Platzierungsoptionen und Unit-Tests
 
 #### Teilweise implementierte Komponenten:
