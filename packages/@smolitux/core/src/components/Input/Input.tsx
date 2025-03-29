@@ -340,17 +340,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   const formControl = useFormControl();
   
   // Kombiniere Props mit FormControl-Context
-  const _id = id || formControl.id || `input-${Math.random().toString(36).substring(2, 9)}`;
-  const _disabled = isDisabled ?? disabled ?? formControl.disabled;
-  const _required = isRequired ?? required ?? formControl.required;
-  const _readOnly = isReadOnly ?? readOnly ?? formControl.readOnly;
-  const _error = error || (formControl.hasError ? 'Ungültige Eingabe' : undefined);
-  const _isInvalid = isInvalid || Boolean(_error) || formControl.isInvalid;
-  const _isValid = isValid || formControl.isValid;
-  const _isSuccess = isSuccess || formControl.isSuccess;
-  const _isLoading = isLoading || formControl.isLoading;
-  const _size = size || formControl.size || 'md';
-  const _name = name || formControl.name;
+  const _id = id || formControl?.id || `input-${Math.random().toString(36).substring(2, 9)}`;
+  const _disabled = isDisabled ?? disabled ?? formControl?.disabled;
+  const _required = isRequired ?? required ?? formControl?.required;
+  const _readOnly = isReadOnly ?? readOnly ?? formControl?.readOnly;
+  const _error = error || (formControl?.hasError ? 'Ungültige Eingabe' : undefined);
+  const _isInvalid = isInvalid || Boolean(_error) || formControl?.isInvalid;
+  const _isValid = isValid || formControl?.isValid;
+  const _isSuccess = isSuccess || formControl?.isSuccess;
+  const _isLoading = isLoading || formControl?.isLoading;
+  const _size = size || formControl?.size || 'md';
+  const _name = name || formControl?.name;
   
   // State für Passwort-Toggle
   const [showPassword, setShowPassword] = useState(false);
@@ -632,46 +632,48 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   // Bestimme die ARIA-Attribute für das Input
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {};
-    
+
     if (description) {
       attributes['aria-describedby'] = `${_id}-description`;
     }
-    
+
     if (_error) {
       attributes['aria-errormessage'] = `${_id}-error`;
       attributes['aria-invalid'] = 'true';
+    } else if (_isInvalid) {
+      attributes['aria-invalid'] = 'true';
     }
-    
+
+    if (_isValid || _isSuccess) {
+      attributes['aria-valid'] = 'true';
+    }
+
+    if (_disabled) {
+      attributes['aria-disabled'] = 'true';
+    }
+
+    if (_required) {
+      attributes['aria-required'] = 'true';
+    }
+
+    if (_readOnly) {
+      attributes['aria-readonly'] = 'true';
+    }
+
+    if (_isLoading) {
+      attributes['aria-busy'] = 'true';
+    }
+
     if (helperText && !_error) {
       attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-helper` : `${_id}-helper`);
     }
-    
+
     if (successMessage) {
       attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-success` : `${_id}-success`);
     }
-    
+
     return attributes;
   };
-  
-  return (
-    <div className={`${fullWidth ? 'w-full' : ''} ${containerClassName}`}>
-      {/* Label */}
-      {label && (
-        <label 
-          htmlFor={_id} 
-          className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 ${hideLabel ? 'sr-only' : ''} ${labelClassName}`}
-          title={labelTooltip}
-        >
-          {label}
-          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
-        </label>
-      )}
-      
-      {/* Beschreibung für Screenreader */}
-      {description && (
-        <div id={`${_id}-description`} className="sr-only">
-          {description}
-        </div>
       )}
       
       {/* Input-Container */}
