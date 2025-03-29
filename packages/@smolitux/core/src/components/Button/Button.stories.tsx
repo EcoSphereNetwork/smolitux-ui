@@ -5,12 +5,44 @@ import { Button } from './Button';
  * Die Button-Komponente ist ein grundlegendes UI-Element für Benutzerinteraktionen.
  * Sie unterstützt verschiedene Varianten, Größen und Zustände.
  * 
+ * ## Verwendung
+ * 
+ * ```tsx
+ * import { Button } from '@smolitux/core';
+ * 
+ * // Einfacher Button
+ * <Button>Klick mich</Button>
+ * 
+ * // Button mit Variante und Größe
+ * <Button variant="primary" size="lg">Großer Button</Button>
+ * 
+ * // Button mit Icon
+ * <Button leftIcon={<Icon />}>Mit Icon</Button>
+ * 
+ * // Button als Link
+ * <Button isLink href="https://example.com" target="_blank">Link Button</Button>
+ * 
+ * // Button mit Zuständen
+ * <Button loading>Wird geladen...</Button>
+ * <Button disabled>Deaktiviert</Button>
+ * ```
+ * 
  * ## Barrierefreiheit
  * 
- * - Verwendet semantisches `<button>`-Element
+ * - Verwendet semantisches `<button>`-Element (oder `<a>` für Links)
  * - Unterstützt Keyboard-Navigation (Enter/Space)
- * - Enthält ARIA-Attribute für verschiedene Zustände
+ * - Enthält ARIA-Attribute für verschiedene Zustände (aria-disabled, aria-busy, aria-pressed)
  * - Icons sind mit `aria-hidden="true"` markiert
+ * - Icon-Buttons ohne Text erfordern ein `aria-label`
+ * - Externe Links erhalten automatisch `rel="noopener noreferrer"` und `target="_blank"`
+ * 
+ * ## Best Practices
+ * 
+ * - Verwende klare, handlungsorientierte Beschriftungen
+ * - Wähle die Variante entsprechend der Wichtigkeit der Aktion
+ * - Verwende `loading` für asynchrone Aktionen
+ * - Stelle sicher, dass Icon-Buttons ein `aria-label` haben
+ * - Verwende `fullWidth` nur, wenn der Button eine wichtige Aktion in einem begrenzten Raum darstellt
  */
 const meta: Meta<typeof Button> = {
   title: 'Core/Button',
@@ -19,42 +51,164 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'ghost', 'link'],
-      description: 'Die visuelle Variante des Buttons'
+      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'outline', 'ghost', 'link', 'unstyled'],
+      description: 'Die visuelle Variante des Buttons',
+      table: {
+        category: 'Aussehen',
+        defaultValue: { summary: 'primary' },
+      }
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
-      description: 'Die Größe des Buttons'
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      description: 'Die Größe des Buttons',
+      table: {
+        category: 'Aussehen',
+        defaultValue: { summary: 'md' },
+      }
+    },
+    shape: {
+      control: 'select',
+      options: ['square', 'rounded', 'pill'],
+      description: 'Die Form des Buttons',
+      table: {
+        category: 'Aussehen',
+        defaultValue: { summary: 'rounded' },
+      }
     },
     fullWidth: {
       control: 'boolean',
-      description: 'Ob der Button die volle Breite ausfüllen soll'
+      description: 'Ob der Button die volle Breite ausfüllen soll',
+      table: {
+        category: 'Aussehen',
+        defaultValue: { summary: false },
+      }
+    },
+    shadow: {
+      control: 'boolean',
+      description: 'Ob der Button einen Schatten haben soll',
+      table: {
+        category: 'Aussehen',
+        defaultValue: { summary: false },
+      }
     },
     loading: {
       control: 'boolean',
-      description: 'Loading-Zustand des Buttons'
+      description: 'Loading-Zustand des Buttons',
+      table: {
+        category: 'Zustand',
+        defaultValue: { summary: false },
+      }
+    },
+    isLoading: {
+      control: 'boolean',
+      description: 'Alias für loading',
+      table: {
+        category: 'Zustand',
+        defaultValue: { summary: false },
+      }
     },
     disabled: {
       control: 'boolean',
-      description: 'Ob der Button deaktiviert ist'
+      description: 'Ob der Button deaktiviert ist',
+      table: {
+        category: 'Zustand',
+        defaultValue: { summary: false },
+      }
+    },
+    active: {
+      control: 'boolean',
+      description: 'Ob der Button aktiv ist',
+      table: {
+        category: 'Zustand',
+        defaultValue: { summary: false },
+      }
+    },
+    isSuccess: {
+      control: 'boolean',
+      description: 'Ob der Button im Erfolgs-Zustand ist',
+      table: {
+        category: 'Zustand',
+        defaultValue: { summary: false },
+      }
+    },
+    isError: {
+      control: 'boolean',
+      description: 'Ob der Button im Fehler-Zustand ist',
+      table: {
+        category: 'Zustand',
+        defaultValue: { summary: false },
+      }
     },
     leftIcon: {
       control: { type: null },
-      description: 'Icon vor dem Text'
+      description: 'Icon vor dem Text',
+      table: {
+        category: 'Inhalt',
+      }
     },
     rightIcon: {
       control: { type: null },
-      description: 'Icon nach dem Text'
+      description: 'Icon nach dem Text',
+      table: {
+        category: 'Inhalt',
+      }
+    },
+    loadingText: {
+      control: 'text',
+      description: 'Text, der im Loading-Zustand angezeigt wird',
+      table: {
+        category: 'Inhalt',
+        defaultValue: { summary: 'Loading...' },
+      }
     },
     type: {
       control: 'select',
       options: ['button', 'submit', 'reset'],
-      description: 'Der Typ des Buttons (Standard: button)'
+      description: 'Der Typ des Buttons',
+      table: {
+        category: 'Verhalten',
+        defaultValue: { summary: 'button' },
+      }
+    },
+    isLink: {
+      control: 'boolean',
+      description: 'Ob der Button als Link gerendert werden soll',
+      table: {
+        category: 'Verhalten',
+        defaultValue: { summary: false },
+      }
+    },
+    href: {
+      control: 'text',
+      description: 'URL für Link-Buttons',
+      table: {
+        category: 'Verhalten',
+        defaultValue: { summary: undefined },
+      }
+    },
+    isExternal: {
+      control: 'boolean',
+      description: 'Ob der Link-Button zu einer externen Seite führt',
+      table: {
+        category: 'Verhalten',
+        defaultValue: { summary: false },
+      }
+    },
+    isIconButton: {
+      control: 'boolean',
+      description: 'Ob der Button nur ein Icon enthält',
+      table: {
+        category: 'Aussehen',
+        defaultValue: { summary: false },
+      }
     },
     onClick: {
       action: 'clicked',
-      description: 'Callback-Funktion, die beim Klicken ausgeführt wird'
+      description: 'Callback-Funktion, die beim Klicken ausgeführt wird',
+      table: {
+        category: 'Ereignisse',
+      }
     },
   },
 };
@@ -209,6 +363,57 @@ export const Accessibility: Story = {
           Dieser Button hat aria-busy="true" und aria-disabled="true"
         </p>
       </div>
+      
+      <div>
+        <h3 className="text-sm font-medium mb-2">Icon-Button mit aria-label</h3>
+        <Button 
+          isIconButton
+          aria-label="Suchen"
+          leftIcon={<span>🔍</span>}
+        />
+        <span className="text-xs text-gray-500 ml-2">
+          Icon-Buttons benötigen ein aria-label
+        </span>
+      </div>
+    </div>
+  ),
+};
+
+// Beispiel für verschiedene Formen
+export const Shapes: Story = {
+  render: () => (
+    <div className="flex space-x-4">
+      <Button shape="square">Eckig</Button>
+      <Button shape="rounded">Abgerundet</Button>
+      <Button shape="pill">Pill</Button>
+    </div>
+  ),
+};
+
+// Beispiel für Link-Buttons
+export const LinkButtons: Story = {
+  render: () => (
+    <div className="space-y-2">
+      <Button isLink href="#">Interner Link</Button>
+      <Button isLink href="https://example.com" isExternal>
+        Externer Link
+      </Button>
+      <Button variant="primary" isLink href="#">
+        Styled Link
+      </Button>
+    </div>
+  ),
+};
+
+// Beispiel für Zustände
+export const States: Story = {
+  render: () => (
+    <div className="space-y-2">
+      <Button isSuccess>Erfolg</Button>
+      <Button isError>Fehler</Button>
+      <Button active>Aktiv</Button>
+      <Button isToggle isToggleOn>Toggle (An)</Button>
+      <Button isToggle>Toggle (Aus)</Button>
     </div>
   ),
 };
