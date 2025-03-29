@@ -64,6 +64,27 @@ Die folgenden Komponenten wurden hinsichtlich Barrierefreiheit verbessert:
 - ✅ Barrierefreier Zeichenzähler implementiert
 - ✅ Barrierefreiheitstests erstellt
 
+### 9. Form
+- ✅ ARIA-Attribute hinzugefügt (`aria-labelledby`, `aria-describedby`, etc.)
+- ✅ Tastaturunterstützung verbessert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Barrierefreier Fortschrittsbalken implementiert
+- ✅ Barrierefreiheitstests erstellt
+
+### 10. FormControl
+- ✅ ARIA-Attribute hinzugefügt (`aria-describedby`, `role="alert"`, etc.)
+- ✅ Tastaturunterstützung verbessert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Barrierefreie Indikatoren implementiert
+- ✅ Barrierefreiheitstests erstellt
+
+### 11. FormField
+- ✅ ARIA-Attribute hinzugefügt (`aria-labelledby`, `aria-describedby`, etc.)
+- ✅ Tastaturunterstützung verbessert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Barrierefreie Validierung implementiert
+- ✅ Barrierefreiheitstests erstellt
+
 ## Noch zu verbessern
 
 Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert werden:

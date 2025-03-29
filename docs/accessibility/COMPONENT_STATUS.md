@@ -31,28 +31,25 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert werden:
 
 1. **Flex** - Benötigt semantische Struktur
-2. **Form** - Benötigt ARIA-Attribute, Fehlerbehandlung
-3. **FormControl** - Benötigt ARIA-Attribute, Fehlerbehandlung
-4. **FormField** - Benötigt ARIA-Attribute, Fehlerbehandlung
-5. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
-6. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
-7. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
-8. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
-9. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
-10. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
-11. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-12. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-13. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-14. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
-15. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-16. **Slide** - Benötigt ARIA-Attribute für Animation
-17. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
-18. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-19. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
-20. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-21. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
-22. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-23. **Zoom** - Benötigt ARIA-Attribute für Animation
+2. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
+3. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
+4. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
+5. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
+6. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
+7. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
+8. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+9. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+10. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+11. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
+12. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+13. **Slide** - Benötigt ARIA-Attribute für Animation
+14. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
+15. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+16. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
+17. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+18. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
+19. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+20. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Aktuelle Fortschritte
 
@@ -112,6 +109,27 @@ In der letzten Entwicklungsphase wurden folgende Komponenten verbessert:
    - ✅ Tastaturunterstützung verbessert
    - ✅ Screenreader-Ankündigungen verbessert
    - ✅ Barrierefreier Zeichenzähler implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+9. **Form**
+   - ✅ ARIA-Attribute hinzugefügt (`aria-labelledby`, `aria-describedby`, etc.)
+   - ✅ Tastaturunterstützung verbessert
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Barrierefreier Fortschrittsbalken implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+10. **FormControl**
+   - ✅ ARIA-Attribute hinzugefügt (`aria-describedby`, `role="alert"`, etc.)
+   - ✅ Tastaturunterstützung verbessert
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Barrierefreie Indikatoren implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+11. **FormField**
+   - ✅ ARIA-Attribute hinzugefügt (`aria-labelledby`, `aria-describedby`, etc.)
+   - ✅ Tastaturunterstützung verbessert
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Barrierefreie Validierung implementiert
    - ✅ Barrierefreiheitstests erstellt
 
 ## Nächste Schritte
