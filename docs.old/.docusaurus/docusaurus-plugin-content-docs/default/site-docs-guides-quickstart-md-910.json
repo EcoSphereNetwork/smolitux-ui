@@ -1,0 +1,20 @@
+{
+  "id": "guides/quickstart",
+  "title": "Schnellstart-Anleitung",
+  "description": "Diese Anleitung hilft Ihnen, schnell mit Smolitux UI zu beginnen und die Komponenten in Ihrem React-Projekt zu verwenden.",
+  "source": "@site/docs/guides/quickstart.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/quickstart",
+  "permalink": "/smolitux-ui/ur/docs/guides/quickstart",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/guides/quickstart.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "wikiSidebar",
+  "next": {
+    "title": "reorganize",
+    "permalink": "/smolitux-ui/ur/docs/guides/reorganize"
+  }
+}

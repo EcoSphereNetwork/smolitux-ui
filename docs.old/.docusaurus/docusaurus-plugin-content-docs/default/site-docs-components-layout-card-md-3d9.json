@@ -1,0 +1,24 @@
+{
+  "id": "components/layout/card",
+  "title": "Card",
+  "description": "Die Card-Komponente wird verwendet, um Inhalte in einem abgegrenzten Container zu präsentieren. Sie eignet sich ideal für Dashboards, Listen und Übersichten.",
+  "source": "@site/docs/components/layout/card.md",
+  "sourceDirName": "components/layout",
+  "slug": "/components/layout/card",
+  "permalink": "/smolitux-ui/ur/docs/components/layout/card",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/components/layout/card.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "wikiSidebar",
+  "previous": {
+    "title": "TimePicker",
+    "permalink": "/smolitux-ui/ur/docs/components/forms/timepicker"
+  },
+  "next": {
+    "title": "Container",
+    "permalink": "/smolitux-ui/ur/docs/components/layout/container"
+  }
+}

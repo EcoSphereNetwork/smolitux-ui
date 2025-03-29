@@ -1,4 +1,4 @@
-# Smolitux UI Bibliothek
+# Smolitux UI Bibliothek 
 
 Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
 

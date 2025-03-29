@@ -1,0 +1,24 @@
+{
+  "id": "components/forms/checkbox",
+  "title": "Checkbox",
+  "description": "Die Checkbox-Komponente ermöglicht Benutzern, eine oder mehrere Optionen aus einer Liste auszuwählen. Sie unterstützt verschiedene Größen, Varianten und Zustände und kann als Schalter, Radio-Button oder Toggle-Button dargestellt werden.",
+  "source": "@site/docs/components/forms/checkbox.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/checkbox",
+  "permalink": "/smolitux-ui/ur/docs/components/forms/checkbox",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/components/forms/checkbox.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "wikiSidebar",
+  "previous": {
+    "title": "Button",
+    "permalink": "/smolitux-ui/ur/docs/components/inputs/button"
+  },
+  "next": {
+    "title": "ColorPicker",
+    "permalink": "/smolitux-ui/ur/docs/components/forms/colorpicker"
+  }
+}

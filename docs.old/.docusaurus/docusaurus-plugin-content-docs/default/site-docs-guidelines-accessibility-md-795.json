@@ -1,0 +1,15 @@
+{
+  "id": "guidelines/accessibility",
+  "title": "Barrierefreiheit (Accessibility)",
+  "description": "Diese Seite enthält Richtlinien und Best Practices für die Erstellung barrierefreier Benutzeroberflächen mit Smolitux UI.",
+  "source": "@site/docs/guidelines/accessibility.md",
+  "sourceDirName": "guidelines",
+  "slug": "/guidelines/accessibility",
+  "permalink": "/smolitux-ui/ur/docs/guidelines/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/guidelines/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

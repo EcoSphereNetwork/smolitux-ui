@@ -1,0 +1,50 @@
+
+> docs@0.0.0 build
+> docusaurus build
+
+[INFO] [en] Creating an optimized production build...
+[ERROR] Loading of version failed for version current
+
+[ERROR] Error: Unable to build website for locale en.
+    at tryToBuildLocale (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/build.js:78:15)
+    at async /home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/build.js:34:9
+    ... 4 lines matching cause stack trace ...
+    at async file:///home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/bin/docusaurus.mjs:44:3 {
+  [cause]: Error: Invalid sidebar file at "sidebars.ts".
+  These sidebar document ids do not exist:
+  - components/overview
+  - index
+  
+  Available document ids are:
+  - intro
+  - tutorial-basics/congratulations
+  - tutorial-basics/create-a-blog-post
+  - tutorial-basics/create-a-document
+  - tutorial-basics/create-a-page
+  - tutorial-basics/deploy-your-site
+  - tutorial-basics/markdown-features
+  - tutorial-extras/manage-docs-versions
+  - tutorial-extras/translate-your-site
+  
+      at Object.checkSidebarsDocIds (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/plugin-content-docs/lib/sidebars/utils.js:245:19)
+      at doLoadVersion (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/plugin-content-docs/lib/index.js:176:31)
+      at async loadVersion (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/plugin-content-docs/lib/index.js:193:28)
+      at async Promise.all (index 0)
+      at async Object.loadContent (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/plugin-content-docs/lib/index.js:201:33)
+      at async /home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/server/plugins/plugins.js:39:23
+      at async Promise.all (index 0)
+      at async /home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/server/plugins/plugins.js:140:25
+      at async loadSite (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/server/site.js:144:45)
+      at async buildLocale (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/buildLocale.js:28:18)
+      at async runBuildLocaleTask (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/build.js:93:5)
+      at async /home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/build.js:74:13
+      at async tryToBuildLocale (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/build.js:70:9)
+      at async /home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/build.js:34:9
+      at async mapAsyncSequential (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/utils/lib/jsUtils.js:21:24)
+      at async Command.build (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/build/build.js:33:5)
+      at async Promise.all (index 0)
+      at async runCLI (/home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/lib/commands/cli.js:56:5)
+      at async file:///home/dev/Documents/smolitux-ui-new-docs/TEST/docs/node_modules/@docusaurus/core/bin/docusaurus.mjs:44:3
+}
+[INFO] Docusaurus version: 3.7.0
+Node version: v22.6.0

@@ -1,0 +1,27 @@
+{
+  "id": "docusaurus/tutorial-extras/manage-docs-versions",
+  "title": "Manage Docs Versions",
+  "description": "Docusaurus can manage multiple versions of your docs.",
+  "source": "@site/docs/docusaurus/tutorial-extras/manage-docs-versions.md",
+  "sourceDirName": "docusaurus/tutorial-extras",
+  "slug": "/docusaurus/tutorial-extras/manage-docs-versions",
+  "permalink": "/smolitux-ui/ur/docs/docusaurus/tutorial-extras/manage-docs-versions",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/docusaurus/tutorial-extras/manage-docs-versions.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Markdown Features",
+    "permalink": "/smolitux-ui/ur/docs/docusaurus/tutorial-basics/markdown-features"
+  },
+  "next": {
+    "title": "Translate your site",
+    "permalink": "/smolitux-ui/ur/docs/docusaurus/tutorial-extras/translate-your-site"
+  }
+}

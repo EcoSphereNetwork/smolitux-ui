@@ -1,0 +1,27 @@
+{
+  "id": "docusaurus/tutorial-basics/congratulations",
+  "title": "Congratulations!",
+  "description": "You have just learned the basics of Docusaurus and made some changes to the initial template.",
+  "source": "@site/docs/docusaurus/tutorial-basics/congratulations.md",
+  "sourceDirName": "docusaurus/tutorial-basics",
+  "slug": "/docusaurus/tutorial-basics/congratulations",
+  "permalink": "/smolitux-ui/ur/docs/docusaurus/tutorial-basics/congratulations",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/docusaurus/tutorial-basics/congratulations.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Deploy your site",
+    "permalink": "/smolitux-ui/ur/docs/docusaurus/tutorial-basics/deploy-your-site"
+  },
+  "next": {
+    "title": "Markdown Features",
+    "permalink": "/smolitux-ui/ur/docs/docusaurus/tutorial-basics/markdown-features"
+  }
+}

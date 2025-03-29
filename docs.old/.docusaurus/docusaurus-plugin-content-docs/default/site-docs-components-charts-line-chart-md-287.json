@@ -1,0 +1,24 @@
+{
+  "id": "components/charts/line-chart",
+  "title": "LineChart",
+  "description": "Die LineChart-Komponente ermöglicht die Visualisierung von Datenreihen als Liniendiagramm. Sie ist ideal für die Darstellung von Trends über einen Zeitraum oder für den Vergleich mehrerer Datenreihen.",
+  "source": "@site/docs/components/charts/line-chart.md",
+  "sourceDirName": "components/charts",
+  "slug": "/components/charts/line-chart",
+  "permalink": "/smolitux-ui/ur/docs/components/charts/line-chart",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/components/charts/line-chart.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "wikiSidebar",
+  "previous": {
+    "title": "MediaPlayer",
+    "permalink": "/smolitux-ui/ur/docs/components/media/mediaplayer"
+  },
+  "next": {
+    "title": "API-Referenz",
+    "permalink": "/smolitux-ui/ur/docs/api/reference"
+  }
+}

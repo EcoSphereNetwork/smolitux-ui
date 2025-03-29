@@ -1,0 +1,24 @@
+{
+  "id": "components/navigation/pagination",
+  "title": "Pagination",
+  "description": "Die Pagination-Komponente ermöglicht die Navigation zwischen Seiten von Inhalten, wie z.B. in Tabellen, Listen oder Suchergebnissen.",
+  "source": "@site/docs/components/navigation/pagination.md",
+  "sourceDirName": "components/navigation",
+  "slug": "/components/navigation/pagination",
+  "permalink": "/smolitux-ui/ur/docs/components/navigation/pagination",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/components/navigation/pagination.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "wikiSidebar",
+  "previous": {
+    "title": "Menu",
+    "permalink": "/smolitux-ui/ur/docs/components/navigation/menu"
+  },
+  "next": {
+    "title": "Stepper",
+    "permalink": "/smolitux-ui/ur/docs/components/navigation/stepper"
+  }
+}

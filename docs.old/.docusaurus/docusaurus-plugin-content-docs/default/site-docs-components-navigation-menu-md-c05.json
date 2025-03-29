@@ -1,0 +1,24 @@
+{
+  "id": "components/navigation/menu",
+  "title": "Menu",
+  "description": "Die Menu-Komponente bietet eine flexible Möglichkeit, Navigationsmenüs und Dropdown-Menüs zu erstellen. Sie kann sowohl für horizontale als auch vertikale Menüs verwendet werden und unterstützt verschiedene Varianten und Größen.",
+  "source": "@site/docs/components/navigation/menu.md",
+  "sourceDirName": "components/navigation",
+  "slug": "/components/navigation/menu",
+  "permalink": "/smolitux-ui/ur/docs/components/navigation/menu",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/components/navigation/menu.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "wikiSidebar",
+  "previous": {
+    "title": "Breadcrumb",
+    "permalink": "/smolitux-ui/ur/docs/components/navigation/breadcrumb"
+  },
+  "next": {
+    "title": "Pagination",
+    "permalink": "/smolitux-ui/ur/docs/components/navigation/pagination"
+  }
+}
