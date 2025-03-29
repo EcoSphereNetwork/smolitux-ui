@@ -15,3 +15,12 @@ export type {
   ListItemActionProps,
   ListContextType
 } from './List';
+
+// Barrierefreie Versionen
+export {
+  ListA11y,
+  ListItemA11y,
+  ListItemTextA11y,
+  ListItemIconA11y,
+  ListItemActionA11y
+} from './List.a11y';
