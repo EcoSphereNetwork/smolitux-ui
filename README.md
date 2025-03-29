@@ -2,6 +2,8 @@
 
 Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
 
+> **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](/docs/Wiki/index.md). Informationen zur Barrierefreiheit finden Sie in der [Barrierefreiheits-Dokumentation](/docs/Wiki/accessibility/README.md).
+
 ## 📦 Packages 
 
 - **@smolitux/core**: Grundlegende UI-Komponenten

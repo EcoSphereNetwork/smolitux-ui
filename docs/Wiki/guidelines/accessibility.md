@@ -2,6 +2,8 @@
 
 Diese Seite enthält Richtlinien und Best Practices für die Erstellung barrierefreier Benutzeroberflächen mit Smolitux UI.
 
+> **Hinweis:** Die vollständige Dokumentation zur Barrierefreiheit finden Sie unter [Barrierefreiheit in der Smolitux UI Bibliothek](/docs/Wiki/accessibility/README.md).
+
 ## Warum Barrierefreiheit wichtig ist
 
 Barrierefreiheit (Accessibility, oft als a11y abgekürzt) stellt sicher, dass Anwendungen für alle Benutzer zugänglich sind, einschließlich Personen mit Behinderungen. Eine barrierefreie Anwendung bietet:
