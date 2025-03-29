@@ -1,295 +1,211 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
+import './TabView.css';
 
-export interface TabItem {
-  id: string;
+// TabView Context
+interface TabViewContextType {
+  activeTab: number;
+  setActiveTab: (index: number) => void;
+  variant: string;
+  size: string;
+  colorScheme: string;
+}
+
+const TabViewContext = createContext<TabViewContextType | undefined>(undefined);
+
+// Tab Component
+export interface TabProps {
   label: React.ReactNode;
-  content: React.ReactNode;
-  icon?: React.ReactNode;
   disabled?: boolean;
-  badge?: string | number;
-  badgeColor?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default';
+  icon?: React.ReactNode;
+  children: React.ReactNode;
 }
 
+export const Tab: React.FC<TabProps> = ({ children }) => {
+  return <>{children}</>;
+};
+
+// TabPanel Component
+export interface TabPanelProps {
+  children: React.ReactNode;
+}
+
+export const TabPanel: React.FC<TabPanelProps> = ({ children }) => {
+  return <>{children}</>;
+};
+
+// TabView Component
 export interface TabViewProps {
-  tabs: TabItem[];
-  defaultTabId?: string;
-  activeTabId?: string;
-  onTabChange?: (tabId: string) => void;
-  onChange?: (tabId: string) => void; // Alias für onTabChange für bessere Kompatibilität
-  variant?: 'default' | 'pills' | 'buttons' | 'underline' | 'minimal';
-  fullWidth?: boolean;
+  children: React.ReactNode;
+  defaultActiveTab?: number;
+  activeTab?: number;
+  onTabChange?: (index: number) => void;
+  variant?: 'default' | 'enclosed' | 'underlined' | 'pills' | 'soft-rounded';
+  size?: 'sm' | 'md' | 'lg';
+  colorScheme?: 'primary' | 'secondary' | 'accent' | 'neutral';
   className?: string;
-  tabsClassName?: string;
   contentClassName?: string;
-  position?: 'top' | 'bottom' | 'left' | 'right';
-  showContent?: boolean;
-  lazy?: boolean;
-  tabSize?: 'sm' | 'md' | 'lg';
   centered?: boolean;
-  style?: React.CSSProperties;
+  lazy?: boolean;
 }
 
-/**
- * TabView-Komponente zur Organisation von Inhalten in Registerkarten
- */
 export const TabView: React.FC<TabViewProps> = ({
-  tabs,
-  defaultTabId,
-  activeTabId: controlledActiveTabId,
+  children,
+  defaultActiveTab = 0,
+  activeTab: controlledActiveTab,
   onTabChange,
-  onChange,
   variant = 'default',
-  fullWidth = false,
+  size = 'md',
+  colorScheme = 'primary',
   className = '',
-  tabsClassName = '',
   contentClassName = '',
-  position = 'top',
-  showContent = true,
-  lazy = true,
-  tabSize = 'md',
   centered = false,
-  style,
+  lazy = true,
 }) => {
-  // Support both controlled and uncontrolled mode
-  const isControlled = controlledActiveTabId !== undefined;
-  const [uncontrolledActiveTabId, setUncontrolledActiveTabId] = useState(
-    defaultTabId || (tabs.length > 0 ? tabs[0].id : '')
-  );
+  // Extract tabs and panels from children
+  const tabs: React.ReactElement<TabProps>[] = [];
+  const panels: React.ReactElement<TabPanelProps>[] = [];
 
-  // Get active tab ID from either controlled or uncontrolled state
-  const activeTabId = isControlled ? controlledActiveTabId : uncontrolledActiveTabId;
+  React.Children.forEach(children, (child) => {
+    if (React.isValidElement(child) && child.type === Tab) {
+      const tabChild = child as React.ReactElement<TabProps>;
+      tabs.push(tabChild);
+      
+      // Extract panel from tab's children
+      React.Children.forEach(tabChild.props.children, (panelChild) => {
+        if (React.isValidElement(panelChild) && panelChild.type === TabPanel) {
+          panels.push(panelChild as React.ReactElement<TabPanelProps>);
+        }
+      });
+    }
+  });
 
-  // Tab scroll container reference for horizontal scrolling
-  const tabsRef = useRef<HTMLDivElement>(null);
-
-  // Track which tabs have been rendered (for lazy loading)
-  const [renderedTabs, setRenderedTabs] = useState<Set<string>>(
-    new Set(lazy ? [activeTabId] : tabs.map(tab => tab.id))
-  );
+  // State for active tab
+  const isControlled = controlledActiveTab !== undefined;
+  const [uncontrolledActiveTab, setUncontrolledActiveTab] = useState(defaultActiveTab);
+  const activeTabIndex = isControlled ? controlledActiveTab : uncontrolledActiveTab;
 
   // Handle tab change
-  const handleTabChange = (tabId: string) => {
-    if (tabId === activeTabId) return;
-
-    // If not controlled, update internal state
+  const handleTabChange = (index: number) => {
     if (!isControlled) {
-      setUncontrolledActiveTabId(tabId);
+      setUncontrolledActiveTab(index);
     }
-
-    // Mark tab as rendered for lazy loading
-    if (lazy) {
-      setRenderedTabs(prev => new Set([...prev, tabId]));
-    }
-
-    // Notify parent if callback provided
     if (onTabChange) {
-      onTabChange(tabId);
-    }
-    
-    // Support for onChange alias
-    if (onChange) {
-      onChange(tabId);
+      onTabChange(index);
     }
   };
 
-  // Ensure the active tab is visible (scroll into view)
-  useEffect(() => {
-    if (tabsRef.current && position !== 'left' && position !== 'right') {
-      const tabsContainer = tabsRef.current;
-      const activeTab = tabsContainer.querySelector(`[data-tab-id="${activeTabId}"]`) as HTMLElement;
-
-      if (activeTab) {
-        const containerRect = tabsContainer.getBoundingClientRect();
-        const tabRect = activeTab.getBoundingClientRect();
-
-        if (tabRect.left < containerRect.left) {
-          tabsContainer.scrollLeft -= (containerRect.left - tabRect.left);
-        } else if (tabRect.right > containerRect.right) {
-          tabsContainer.scrollLeft += (tabRect.right - containerRect.right);
-        }
-      }
+  // Keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const nextIndex = (index + 1) % tabs.length;
+      const nextTabElement = document.querySelectorAll('[role="tab"]')[nextIndex] as HTMLElement;
+      nextTabElement?.focus();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prevIndex = (index - 1 + tabs.length) % tabs.length;
+      const prevTabElement = document.querySelectorAll('[role="tab"]')[prevIndex] as HTMLElement;
+      prevTabElement?.focus();
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleTabChange(index);
     }
-  }, [activeTabId, position]);
+  };
 
-  // On first mount, ensure default tab is in rendered tabs set
-  useEffect(() => {
-    if (lazy && activeTabId && !renderedTabs.has(activeTabId)) {
-      setRenderedTabs(prev => new Set([...prev, activeTabId]));
-    }
-  }, [lazy, activeTabId, renderedTabs]);
-
-  // Size classes for tabs
+  // Size classes
   const sizeClasses = {
-    sm: 'text-xs px-2 py-1',
-    md: 'text-sm px-3 py-2',
-    lg: 'text-base px-4 py-3',
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-6 py-3 text-lg',
   };
 
-  // Get variant-specific classes for the tabs container
-  const getTabsContainerClasses = () => {
-    const baseClasses = `${position === 'left' || position === 'right' ? 'flex-col' : 'flex-row'} flex`;
-
-    const variantClasses = {
-      default: 'border-b border-gray-200 dark:border-gray-700',
-      pills: 'space-x-1',
-      buttons: 'p-1 bg-gray-100 dark:bg-gray-800 rounded-lg',
-      underline: 'border-b border-gray-200 dark:border-gray-700',
-      minimal: '',
-    };
-
-    const positionClasses = {
-      top: '',
-      bottom: 'border-t border-b-0',
-      left: 'border-r border-b-0',
-      right: 'border-l border-b-0',
-    };
-
-    return `${baseClasses} ${variantClasses[variant]} ${position === 'top' || variant !== 'default' ? '' : positionClasses[position]}`;
+  // Variant classes
+  const variantClasses = {
+    default: '',
+    enclosed: 'border-b',
+    underlined: 'border-b',
+    pills: '',
+    'soft-rounded': '',
   };
 
-  // Get variant-specific classes for individual tabs
-  const getTabClasses = (isActive: boolean, isDisabled: boolean) => {
-    const baseClasses = `
-      ${sizeClasses[tabSize]}
-      ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-      ${fullWidth ? 'flex-1 text-center' : ''}
-      group
-      flex items-center justify-center whitespace-nowrap
-      transition-all duration-200
-    `;
-
-    const variantActiveClasses = {
-      default: isActive
-        ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
-        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 border-b-2 border-transparent',
-      pills: isActive
-        ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 rounded-full'
-        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full',
-      buttons: isActive
-        ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm rounded-md'
-        : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md',
-      underline: isActive
-        ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
-        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 border-b-2 border-transparent',
-      minimal: isActive
-        ? 'text-primary-600 dark:text-primary-400 font-medium'
-        : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
-    };
-
-    return `${baseClasses} ${variantActiveClasses[variant]}`;
+  // Color classes
+  const colorClasses = {
+    primary: 'text-primary-600',
+    secondary: 'text-secondary-600',
+    accent: 'text-accent-600',
+    neutral: 'text-gray-600',
   };
 
-  // Classes for badge colors
-  const getBadgeClasses = (color: TabItem['badgeColor'] = 'default') => {
-    const classes = {
-      default: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
-      primary: 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
-      success: 'bg-success-100 text-success-800 dark:bg-success-900/30 dark:text-success-300',
-      warning: 'bg-warning-100 text-warning-800 dark:bg-warning-900/30 dark:text-warning-300',
-      danger: 'bg-error-100 text-error-800 dark:bg-error-900/30 dark:text-error-300',
-      info: 'bg-info-100 text-info-800 dark:bg-info-900/30 dark:text-info-300',
-    };
-
-    return `ml-2 px-2 py-0.5 text-xs rounded-full ${classes[color]}`;
+  // Context value
+  const contextValue: TabViewContextType = {
+    activeTab: activeTabIndex,
+    setActiveTab: handleTabChange,
+    variant,
+    size,
+    colorScheme,
   };
 
-  // Render the tabs
-  const renderTabs = () => {
-    return (
-      <div
-        ref={tabsRef}
-        className={`${getTabsContainerClasses()} ${centered && position !== 'left' && position !== 'right' ? 'justify-center' : ''} ${tabsClassName} ${position === 'left' || position === 'right' ? 'h-full' : 'w-full'} overflow-x-auto`}
-        role="tablist"
-      >
-        {tabs.map((tab) => (
-          <div
-            key={tab.id}
-            role="tab"
-            aria-selected={activeTabId === tab.id}
-            aria-controls={`panel-${tab.id}`}
-            data-tab-id={tab.id}
-            className={getTabClasses(activeTabId === tab.id, !!tab.disabled)}
-            onClick={() => !tab.disabled && handleTabChange(tab.id)}
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                !tab.disabled && handleTabChange(tab.id);
-              }
-            }}
-          >
-            {tab.icon && <span className="mr-2">{tab.icon}</span>}
-            <span>{tab.label}</span>
-            {tab.badge && (
-              <span className={getBadgeClasses(tab.badgeColor)}>
-                {tab.badge}
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  // Render the content
-  const renderContent = () => {
-    if (!showContent) return null;
-
-    return (
-      <div className={`tab-content ${contentClassName}`}>
-        {tabs.map((tab) => {
-          // Skip unrendered tabs when lazy loading
-          if (lazy && !renderedTabs.has(tab.id)) {
-            return null;
-          }
-
-          return (
-            <div
-              key={tab.id}
-              id={`panel-${tab.id}`}
-              role="tabpanel"
-              aria-labelledby={tab.id}
-              className={`${activeTabId === tab.id ? 'block' : 'hidden'}`}
-            >
-              {tab.content}
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
-
-  // Layout the tabs and content based on position
   return (
-    <div className={`w-full ${position === 'left' || position === 'right' ? 'flex' : ''} ${className}`} style={style}>
-      {position === 'top' && (
-        <>
-          {renderTabs()}
-          {renderContent()}
-        </>
-      )}
-
-      {position === 'bottom' && (
-        <>
-          {renderContent()}
-          {renderTabs()}
-        </>
-      )}
-
-      {position === 'left' && (
-        <>
-          <div className="mr-4">{renderTabs()}</div>
-          <div className="flex-1">{renderContent()}</div>
-        </>
-      )}
-
-      {position === 'right' && (
-        <>
-          <div className="flex-1">{renderContent()}</div>
-          <div className="ml-4">{renderTabs()}</div>
-        </>
-      )}
-    </div>
+    <TabViewContext.Provider value={contextValue}>
+      <div className={`tab-view ${className}`}>
+        <div 
+          className={`tab-list ${variantClasses[variant]} ${centered ? 'flex justify-center' : ''}`}
+          role="tablist"
+          aria-orientation="horizontal"
+        >
+          {tabs.map((tab, index) => {
+            const isActive = index === activeTabIndex;
+            const isDisabled = tab.props.disabled;
+            
+            return (
+              <button
+                key={index}
+                role="tab"
+                aria-selected={isActive}
+                aria-disabled={isDisabled}
+                aria-controls={`panel-${index}`}
+                id={`tab-${index}`}
+                tabIndex={isActive ? 0 : -1}
+                className={`
+                  tab-item
+                  ${sizeClasses[size]}
+                  ${isActive ? colorClasses[colorScheme] : 'text-gray-500'}
+                  ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                  ${variant === 'enclosed' ? 'rounded-t-md' : ''}
+                  ${isActive && variant === 'underlined' ? 'border-b-2 border-current -mb-px' : ''}
+                  ${isActive && variant === 'enclosed' ? 'bg-white border-b-white' : ''}
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500
+                `}
+                onClick={() => !isDisabled && handleTabChange(index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                disabled={isDisabled}
+              >
+                {tab.props.icon && (
+                  <span className="mr-2">{tab.props.icon}</span>
+                )}
+                {tab.props.label}
+              </button>
+            );
+          })}
+        </div>
+        
+        <div className={`tab-content ${contentClassName}`}>
+          {panels.map((panel, index) => (
+            <div
+              key={index}
+              role="tabpanel"
+              id={`panel-${index}`}
+              aria-labelledby={`tab-${index}`}
+              hidden={index !== activeTabIndex}
+              tabIndex={0}
+              className="tab-panel p-4 focus:outline-none"
+            >
+              {(!lazy || index === activeTabIndex) && panel.props.children}
+            </div>
+          ))}
+        </div>
+      </div>
+    </TabViewContext.Provider>
   );
 };
 

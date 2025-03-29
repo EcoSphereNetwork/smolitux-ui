@@ -14,9 +14,11 @@ export type SelectVariant = 'default' | 'filled' | 'outlined' | 'unstyled';
 
 export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
   /** Options für das Dropdown */
-  options: SelectOption[];
+  options?: SelectOption[];
   /** Text-Label */
   label?: string;
+  /** Fehlermeldung (als Text) */
+  errorText?: string;
   /** Hilfetexzt */
   helperText?: string;
   /** Fehlermeldung */
@@ -127,6 +129,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   label,
   helperText,
   error,
+  errorText,
   size = 'md',
   variant = 'default',
   fullWidth = false,
@@ -252,7 +255,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   };
   
   // Zustandsabhängige Klassen
-  const stateClasses = error
+  const stateClasses = error || errorText
     ? 'border-red-500 dark:border-red-400 focus:ring-red-500 focus:border-red-500'
     : focusable 
       ? 'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400'
@@ -304,7 +307,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   ].filter(Boolean).join(' ');
   
   // Gruppiere Optionen, wenn aktiviert
-  const groupedOptions = groupOptions
+  const groupedOptions = groupOptions && options && Array.isArray(options)
     ? options.reduce((acc, option) => {
         const group = option.group || '';
         if (!acc[group]) acc[group] = [];
@@ -315,6 +318,16 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   
   // Rendere die Optionen
   const renderOptions = () => {
+    // Wenn children vorhanden sind, verwende diese direkt
+    if (props.children) {
+      return props.children;
+    }
+    
+    // Wenn keine options vorhanden sind, gib ein leeres Array zurück
+    if (!options || !Array.isArray(options)) {
+      return [];
+    }
+    
     if (groupOptions) {
       return Object.entries(groupedOptions).map(([group, groupOptions]) => (
         <optgroup key={group} label={group || 'Andere'}>
@@ -343,8 +356,24 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
     </option>
   );
   
+  // Größenklassen für den Container
+  const containerSizeClasses = {
+    xs: 'select-xs',
+    sm: 'select-sm',
+    md: 'select-md',
+    lg: 'select-lg'
+  };
+
+  // Fehlerklasse für den Container
+  const errorClass = error || errorText ? 'select-error' : '';
+
   return (
-    <div className={`${fullWidth ? 'w-full' : ''} ${containerClassName}`} title={tooltip} data-testid="select-container">
+    <div 
+      className={`${fullWidth ? 'w-full' : ''} ${containerSizeClasses[size]} ${errorClass} ${containerClassName} ${className}`} 
+      title={tooltip} 
+      data-testid="select-container"
+      style={props.style}
+    >
       {label && (
         <label 
           id={`${uniqueId}-label`}
@@ -370,15 +399,16 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
           disabled={disabled}
           {...(readOnly ? { 'aria-readonly': 'true' } : {})}
           className={selectClasses}
-          aria-invalid={error ? 'true' : 'false'}
+          aria-invalid={error || errorText ? 'true' : 'false'}
           aria-describedby={
             [
-              error ? `${uniqueId}-error` : null,
-              helperText && !error ? `${uniqueId}-helper` : null,
+              (error || errorText) ? `${uniqueId}-error` : null,
+              helperText && !(error || errorText) ? `${uniqueId}-helper` : null,
               `${uniqueId}-instructions`
             ].filter(Boolean).join(' ') || undefined
           }
           aria-required={required}
+          required={required}
           aria-disabled={disabled}
           aria-readonly={readOnly}
           aria-label={!label ? props['aria-label'] || 'Select' : undefined}
@@ -419,16 +449,16 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
         </div>
       </div>
       
-      {(error || helperText) && (
+      {(error || errorText || helperText) && (
         <div className="mt-1 text-sm">
-          {error ? (
+          {error || errorText ? (
             <p 
               id={`${uniqueId}-error`} 
               className={`text-red-600 dark:text-red-400 ${errorClassName}`}
               role="alert"
               aria-live="assertive"
             >
-              {error}
+              {error || errorText}
             </p>
           ) : helperText ? (
             <p 

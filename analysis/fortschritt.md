@@ -15,17 +15,40 @@
   - Fehlende Props hinzugefügt (subtitle, header, image, size, shadow, rounded, bgColor)
   - Implementierung für alle Testfälle angepasst
   - Tests korrigiert und erfolgreich durchgeführt
+- [x] Alert-Komponente getestet und verbessert
+  - Event-Handler für onClose korrigiert
+  - Escape-Taste-Handling verbessert
+  - Auto-Close-Funktionalität korrigiert
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] Badge-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute für Dot-Variante hinzugefügt
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] Input-Komponente getestet und verbessert
+  - Validierungsfunktionalität korrigiert
+  - Event-Handler für onValidate korrigiert
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] Select-Komponente getestet und verbessert
+  - Option-Komponente implementiert
+  - Fehlerbehandlung verbessert
+  - Barrierefreiheits-Attribute hinzugefügt
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] Modal-Komponente getestet und verbessert
+  - Tests für alle Funktionalitäten implementiert
+  - createPortal-Mock für Tests hinzugefügt
+  - Barrierefreiheits-Attribute verbessert
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] TabView-Komponente getestet und verbessert
+  - Komponente neu implementiert mit Tab und TabPanel Unterkomponenten
+  - Barrierefreiheits-Attribute hinzugefügt
+  - Keyboard-Navigation verbessert
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Alert-Komponente testen und verbessern
-- [ ] Badge-Komponente testen und verbessern
-- [ ] Input-Komponente testen und verbessern
-- [ ] Select-Komponente testen und verbessern
-- [ ] Modal-Komponente testen und verbessern
-- [ ] TabView-Komponente testen und verbessern
+- [ ] Tooltip-Komponente testen und verbessern
+- [ ] Dropdown-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 

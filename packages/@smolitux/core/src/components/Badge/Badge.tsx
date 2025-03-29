@@ -154,7 +154,7 @@ export const Badge: React.FC<BadgeProps> = ({
     'data-size': size,
     'data-testid': 'badge',
     ...(isCounter ? { 'data-counter': 'true' } : {}),
-    ...(isDot ? { 'data-dot': 'true' } : {}),
+    ...(isDot ? { 'data-dot': 'true', 'aria-hidden': 'true' } : {}),
     ...htmlProps
   };
 

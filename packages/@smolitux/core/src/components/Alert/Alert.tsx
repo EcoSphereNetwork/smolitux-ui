@@ -120,17 +120,17 @@ export const Alert: React.FC<AlertProps> = ({
   
   // Animiertes Schließen
   const handleClose = () => {
-    if (!onClose) return;
-    
-    if (animated) {
-      setIsExiting(true);
-      setTimeout(() => {
+    if (onClose) {
+      if (animated) {
+        setIsExiting(true);
+        setTimeout(() => {
+          setIsVisible(false);
+          onClose();
+        }, 300); // Animation-Dauer
+      } else {
         setIsVisible(false);
         onClose();
-      }, 300); // Animation-Dauer
-    } else {
-      setIsVisible(false);
-      onClose();
+      }
     }
   };
   
@@ -140,7 +140,7 @@ export const Alert: React.FC<AlertProps> = ({
     
     if (autoClose > 0 && onClose) {
       timeoutId = setTimeout(() => {
-        handleClose();
+        onClose();
       }, autoClose);
     }
     
@@ -320,7 +320,7 @@ export const Alert: React.FC<AlertProps> = ({
   // Keyboard-Handler für Schließen-Button
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape' && onClose) {
-      handleClose();
+      onClose();
     }
   };
 
@@ -392,7 +392,7 @@ export const Alert: React.FC<AlertProps> = ({
           <button
             type="button"
             className={`ml-auto -mx-1.5 -my-1.5 ${variant === 'filled' ? 'text-white hover:bg-opacity-20' : `${styles.textColor} hover:bg-gray-100 dark:hover:bg-gray-800`} rounded-lg p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500`}
-            onClick={handleClose}
+            onClick={() => onClose && onClose()}
             aria-label="Schließen"
             data-testid="alert-close-button"
           >

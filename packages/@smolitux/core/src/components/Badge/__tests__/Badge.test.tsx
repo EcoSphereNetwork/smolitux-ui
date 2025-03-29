@@ -76,7 +76,7 @@ describe('Badge Component', () => {
   test('renders as dot without text', () => {
     render(<Badge isDot variant="warning" />);
     
-    const dot = screen.getByRole('status');
+    const dot = screen.getByTestId('badge');
     expect(dot).toHaveClass('rounded-full');
     expect(dot).toHaveAttribute('aria-hidden', 'true');
   });
