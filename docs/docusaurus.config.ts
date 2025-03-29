@@ -10,15 +10,16 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://ecospherenetwork.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/smolitux-ui/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'EcoSphereNetwork', // Usually your GitHub org/user name.
-  projectName: 'ESN_Repo-Template', // Usually your repo name.
+  projectName: 'smolitux-ui', // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -53,7 +54,7 @@ i18n: {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
         },
         blog: {
           showReadingTime: true,
@@ -64,7 +65,7 @@ i18n: {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -101,7 +102,7 @@ i18n: {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/EcoSphereNetwork/ESN_Repo-Template',
+          href: 'https://github.com/EcoSphereNetwork/smolitux-ui',
           label: 'GitHub',
           position: 'right',
         },
@@ -158,12 +159,12 @@ i18n: {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/EcoSphereNetwork',
+              href: 'https://github.com/EcoSphereNetwork/smolitux-ui',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} EcoSphereNetwork. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
