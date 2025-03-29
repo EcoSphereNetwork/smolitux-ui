@@ -1,4 +1,5 @@
 export { Slider } from './Slider';
+export { default as SliderA11y } from './Slider.a11y';
 export type { 
   SliderProps, 
   SliderSize, 
