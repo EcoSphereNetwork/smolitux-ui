@@ -317,12 +317,18 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
   // Behandlung von Keyboard-Events für bessere Barrierefreiheit
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     // Für Icon-Buttons und Dropdown-Trigger sollten wir sicherstellen, dass sie mit der Tastatur bedienbar sind
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
+    if ((event.key === 'Enter' || event.key === ' ') && !disabled && !isButtonLoading) {
+      // Verhindern des Standard-Verhaltens nur für Leertaste, da dies sonst zum Scrollen führen würde
+      if (event.key === ' ') {
+        event.preventDefault();
+      }
+      
       setIsPressed(true);
       onPress?.();
       
       // Simuliere einen Klick für bessere Barrierefreiheit
+      // Hinweis: Für Enter ist dies redundant, da Buttons standardmäßig bei Enter aktiviert werden,
+      // aber wir behalten es für Konsistenz bei
       onClick?.(event as unknown as React.MouseEvent<HTMLButtonElement>);
       
       // Wenn es ein Dropdown-Trigger ist, sollten wir aria-expanded umschalten
@@ -330,13 +336,17 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
         // Wir können den Zustand hier nicht direkt ändern, da wir keinen Zugriff auf den Setter haben
         // Dies sollte vom übergeordneten Komponenten behandelt werden
       }
+    } else if (event.key === 'Escape' && isDropdownTrigger && props['aria-expanded'] === 'true') {
+      // Schließen des Dropdowns bei Escape-Taste, wenn es geöffnet ist
+      // Dies ist nur ein Signal an die übergeordnete Komponente
+      onClick?.(event as unknown as React.MouseEvent<HTMLButtonElement>);
     }
 
     onKeyDown?.(event);
   };
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
+    if ((event.key === 'Enter' || event.key === ' ') && !disabled && !isButtonLoading) {
       setIsPressed(false);
       onRelease?.();
     }
@@ -449,6 +459,9 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
         download={download}
         aria-disabled={disabled || isButtonLoading}
         aria-busy={isButtonLoading}
+        data-loading={isButtonLoading ? 'true' : undefined}
+        data-variant={normalizedVariant}
+        role="button"
         title={tooltip}
         onClick={(e) => {
           if (disabled || isButtonLoading) {
@@ -545,6 +558,11 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
       aria-pressed={isToggle ? isToggleOn : undefined}
       aria-expanded={isDropdownTrigger ? props['aria-expanded'] : undefined}
       aria-haspopup={isDropdownTrigger ? 'true' : undefined}
+      aria-controls={isDropdownTrigger && props['aria-controls'] ? props['aria-controls'] : undefined}
+      data-state={isToggle ? (isToggleOn ? 'on' : 'off') : undefined}
+      data-loading={isButtonLoading ? 'true' : undefined}
+      data-variant={normalizedVariant}
+      data-testid={props['data-testid'] || 'button'}
       title={tooltip}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
