@@ -13,6 +13,16 @@ export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement>
   disabled?: boolean;
   /** Inhalt des Panels */
   children: React.ReactNode;
+  /** Zusätzliche Beschreibung für Screenreader */
+  description?: string;
+  /** Benutzerdefinierte Klasse für den Header */
+  headerClassName?: string;
+  /** Benutzerdefinierte Klasse für den Content */
+  contentClassName?: string;
+  /** Callback beim Öffnen des Panels */
+  onOpen?: () => void;
+  /** Callback beim Schließen des Panels */
+  onClose?: () => void;
 }
 
 /**
@@ -32,10 +42,17 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   disabled = false,
   children,
   className = '',
+  description,
+  headerClassName = '',
+  contentClassName = '',
+  onOpen,
+  onClose,
   ...rest
 }) => {
-  const { openItems, toggleItem, variant, iconStyle } = useAccordionContext();
+  const { openItems, toggleItem, variant, iconStyle, id: accordionId, i18n } = useAccordionContext();
   const isOpen = openItems.includes(id);
+  const [liveText, setLiveText] = useState<string | null>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   
   // Refs für Animationen
   const contentRef = useRef<HTMLDivElement>(null);
@@ -47,12 +64,35 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
       if (isOpen) {
         // Wenn geöffnet, messen wir die tatsächliche Höhe
         setContentHeight(contentRef.current.scrollHeight);
+        
+        // Callback beim Öffnen
+        if (onOpen) {
+          onOpen();
+        }
+        
+        // Setze Live-Text für Screenreader
+        setLiveText(i18n.expand);
       } else {
         // Wenn geschlossen, setzen wir auf 0
         setContentHeight(0);
+        
+        // Callback beim Schließen
+        if (onClose) {
+          onClose();
+        }
+        
+        // Setze Live-Text für Screenreader
+        setLiveText(i18n.collapse);
       }
+      
+      // Entferne den Live-Text nach einer kurzen Zeit
+      const timer = setTimeout(() => {
+        setLiveText(null);
+      }, 1000);
+      
+      return () => clearTimeout(timer);
     }
-  }, [isOpen, children]);
+  }, [isOpen, children, onOpen, onClose, i18n]);
   
   // Icon basierend auf dem Stil und Zustand
   const renderIcon = () => {
@@ -97,6 +137,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
     >
       {/* Header */}
       <button
+        ref={buttonRef}
         type="button"
         onClick={() => !disabled && toggleItem(id)}
         className={`
@@ -104,14 +145,17 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
           ${isOpen ? 'bg-gray-50 dark:bg-gray-800/50' : 'bg-white dark:bg-gray-800'}
           ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50'}
           transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+          ${headerClassName}
         `}
         disabled={disabled}
         aria-expanded={isOpen}
         aria-controls={`accordion-content-${id}`}
+        id={`accordion-button-${id}`}
+        aria-disabled={disabled}
       >
         <div className="flex items-center">
           {/* Optional Icon vor dem Titel */}
-          {icon && <span className="mr-3">{icon}</span>}
+          {icon && <span className="mr-3" aria-hidden="true">{icon}</span>}
           
           {/* Titel */}
           <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
@@ -125,6 +169,20 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         </div>
       </button>
       
+      {/* Screenreader-Beschreibung */}
+      {description && (
+        <div id={`accordion-description-${id}`} className="sr-only">
+          {description}
+        </div>
+      )}
+      
+      {/* Live-Region für Screenreader-Ankündigungen */}
+      {liveText && (
+        <div className="sr-only" aria-live="polite">
+          {liveText}
+        </div>
+      )}
+      
       {/* Content mit Animation */}
       <div
         id={`accordion-content-${id}`}
@@ -135,8 +193,12 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
           display: isOpen ? 'block' : 'none'
         }}
         aria-hidden={!isOpen}
+        aria-labelledby={`accordion-button-${id}`}
+        role="region"
+        tabIndex={isOpen ? 0 : -1}
+        {...(description && { 'aria-describedby': `accordion-description-${id}` })}
       >
-        <div className="p-4 bg-white dark:bg-gray-800">
+        <div className={`p-4 bg-white dark:bg-gray-800 ${contentClassName}`}>
           {children}
         </div>
       </div>
