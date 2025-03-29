@@ -716,12 +716,18 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
     if (_isLoading) {
       attributes['aria-busy'] = 'true';
     }
+    
+    // Rollen und Beschreibungen
     if (isSwitch || isToggle) {
+      attributes['role'] = 'switch';
       attributes['aria-roledescription'] = 'Schalter';
+    }
+    
+    if (isButton) {
+      attributes['role'] = 'checkbox';
     }
 
     return attributes;
-  };
   };
   
   // Rendere die Checkbox basierend auf dem Typ
@@ -956,7 +962,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           data-testid="checkbox-label"
         >
           {label}
-          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>{_required && <span className="sr-only">(Erforderlich)</span>}}
+          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
+          {_required && <span className="sr-only">(Erforderlich)</span>}
         </label>
       </div>
     );
@@ -980,6 +987,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           <p 
             id={`${_id}-success`} 
             className={`text-green-600 dark:text-green-400 ${successClassName}`}
+            role="status"
+            aria-live="polite"
           >
             {successMessage}
           </p>
