@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'EcoSphereNetwork',
-  tagline: 'Repository Template',
+  tagline: 'Smolitux-UI',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
