@@ -111,18 +111,57 @@ export const Badge: React.FC<BadgeProps> = ({
     className
   ].filter(Boolean).join(' ');
 
+  // Generiere eine eindeutige ID für ARIA-Attribute, wenn keine angegeben wurde
+  const badgeId = id || `badge-${Math.random().toString(36).substr(2, 9)}`;
+  
+  // Bestimme den richtigen ARIA-Label-Text
+  const getAriaLabel = () => {
+    // Wenn es ein Zähler ist, füge Kontext hinzu
+    if (isCounter) {
+      return `${children} ${typeof children === 'number' && children === 1 ? 'Benachrichtigung' : 'Benachrichtigungen'}`;
+    }
+    
+    // Wenn es ein Punkt ist, beschreibe den Status basierend auf der Variante
+    if (isDot) {
+      const statusMap: Record<string, string> = {
+        default: 'Status',
+        primary: 'Primärer Status',
+        success: 'Erfolgsstatus',
+        warning: 'Warnstatus',
+        error: 'Fehlerstatus',
+        info: 'Informationsstatus'
+      };
+      return statusMap[variant];
+    }
+    
+    // Standardfall: Verwende den Inhalt
+    return typeof children === 'string' ? children : undefined;
+  };
+  
+  // Bestimme die richtige ARIA-Rolle
+  const getAriaRole = () => {
+    if (isCounter) return 'status';
+    if (isDot) return 'status';
+    return 'status'; // Standardrolle
+  };
+  
   // Barrierefreiheits-Attribute
   const ariaProps = {
-    role: 'status',
-    ...htmlProps,
-    ...(id ? { id } : {})
+    role: getAriaRole(),
+    id: badgeId,
+    'aria-label': getAriaLabel(),
+    'data-variant': variant,
+    'data-size': size,
+    'data-testid': 'badge',
+    ...(isCounter ? { 'data-counter': 'true' } : {}),
+    ...(isDot ? { 'data-dot': 'true' } : {}),
+    ...htmlProps
   };
 
   if (isDot) {
     return (
       <span 
         className={badgeClasses} 
-        aria-hidden="true"
         {...ariaProps}
       />
     );
