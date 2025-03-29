@@ -109,6 +109,9 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
       className="h-5 w-5" 
       viewBox="0 0 20 20" 
       fill="currentColor"
+      aria-hidden="true"
+      role="img"
+      aria-label="Home"
     >
       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
     </svg>
@@ -161,8 +164,13 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
       aria-label="Breadcrumb"
       className={`flex ${className}`}
       {...rest}
+      data-testid="breadcrumb-nav"
     >
-      <ol className={`inline-flex items-center ${spacing ? spacing : 'space-x-1 md:space-x-2'}`}>
+      <ol 
+        className={`inline-flex items-center ${spacing ? spacing : 'space-x-1 md:space-x-2'}`}
+        itemScope
+        itemType="https://schema.org/BreadcrumbList"
+      >
         {displayedItems.map((item, index) => {
           // Letztes Element?
           const isLast = index === displayedItems.length - 1;
@@ -194,10 +202,17 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
               key={index} 
               className={liClassName}
               aria-current={isCurrentPage ? 'page' : undefined}
+              itemProp="itemListElement" 
+              itemScope
+              itemType="https://schema.org/ListItem"
+              data-testid={`breadcrumb-item-${index}`}
             >
               {/* Trennzeichen (außer beim ersten Element) */}
               {index > 0 && (
-                <span className="mx-2 text-gray-400 dark:text-gray-500">
+                <span 
+                  className="mx-2 text-gray-400 dark:text-gray-500"
+                  aria-hidden="true"
+                >
                   {separator}
                 </span>
               )}
@@ -207,15 +222,18 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
                 <Link
                   href={(item as BreadcrumbItemData).href || ''}
                   className={baseClasses}
+                  itemProp="item"
                   {...(item as BreadcrumbItemData).linkProps}
                 >
-                  {item?.icon && <span className="mr-1">{item.icon}</span>}
-                  {item?.label}
+                  {item?.icon && <span className="mr-1" aria-hidden="true">{item.icon}</span>}
+                  <span itemProp="name">{item?.label}</span>
+                  <meta itemProp="position" content={`${index + 1}`} />
                 </Link>
               ) : (
-                <span className={baseClasses}>
-                  {item?.icon && <span className="mr-1">{item.icon}</span>}
-                  {item?.label}
+                <span className={baseClasses} itemProp="item">
+                  {item?.icon && <span className="mr-1" aria-hidden="true">{item.icon}</span>}
+                  <span itemProp="name">{item?.label}</span>
+                  <meta itemProp="position" content={`${index + 1}`} />
                 </span>
               )}
             </li>
