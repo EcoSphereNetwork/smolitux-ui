@@ -12,13 +12,14 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 4. **Breadcrumb** - Verbesserte ARIA-Attribute, Schema.org strukturierte Daten, Tastaturnavigation
 5. **Button** - Verbesserte ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
 6. **Card** - Verbesserte ARIA-Attribute, Fokussierbarkeit, Tastaturnavigation
-4. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
-5. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
-6. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen
-7. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung
-8. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
-9. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
-10. **Badge** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Status-Ankündigungen
+5. **Checkbox** - Verbesserte ARIA-Attribute, Tastaturunterstützung, Screenreader-Ankündigungen
+6. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+7. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
+8. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen
+9. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung
+10. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
+11. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+12. **Badge** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Status-Ankündigungen
 
 ## Noch zu verbessernde Komponenten
 
@@ -27,40 +28,39 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 
 
 1. **Carousel** - Benötigt ARIA-Attribute, Tastaturnavigation, Pause-Funktion
-2. **Checkbox** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-3. **Collapse** - Benötigt ARIA-Attribute, Tastaturnavigation
-4. **ColorPicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-6. **Drawer** - Benötigt ARIA-Attribute, Fokus-Management
+2. **Collapse** - Benötigt ARIA-Attribute, Tastaturnavigation
+3. **ColorPicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+4. **Drawer** - Benötigt ARIA-Attribute, Fokus-Management
 5. **Dropdown** - Benötigt ARIA-Attribute, Tastaturnavigation
 6. **Fade** - Benötigt ARIA-Attribute für Animation
 4. **FileUpload** - Benötigt ARIA-Attribute, Tastaturunterstützung
 5. **Flex** - Benötigt semantische Struktur
 6. **Form** - Benötigt ARIA-Attribute, Fehlerbehandlung
-7. **FormControl** - Benötigt ARIA-Attribute, Fehlerbehandlung
-8. **FormField** - Benötigt ARIA-Attribute, Fehlerbehandlung
-7. **Input** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
-7. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
-8. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
-9. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
-10. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
-11. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
-12. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
-12. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-13. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-17. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-18. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
-17. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-18. **Slide** - Benötigt ARIA-Attribute für Animation
-19. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
-20. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-21. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
-22. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-22. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
-23. **Table** - Benötigt ARIA-Attribute, Tastaturnavigation
-27. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
-28. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-29. **Tooltip** - Benötigt ARIA-Attribute, Tastaturaktivierung
-30. **Zoom** - Benötigt ARIA-Attribute für Animation
+5. **FormControl** - Benötigt ARIA-Attribute, Fehlerbehandlung
+6. **FormField** - Benötigt ARIA-Attribute, Fehlerbehandlung
+5. **Input** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
+5. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
+6. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
+7. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
+8. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
+9. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
+10. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
+10. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+11. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+13. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+14. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
+13. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+14. **Slide** - Benötigt ARIA-Attribute für Animation
+15. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
+18. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+19. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
+20. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+20. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
+21. **Table** - Benötigt ARIA-Attribute, Tastaturnavigation
+23. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
+24. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+25. **Tooltip** - Benötigt ARIA-Attribute, Tastaturaktivierung
+28. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Prioritäten für die nächsten Verbesserungen
 
