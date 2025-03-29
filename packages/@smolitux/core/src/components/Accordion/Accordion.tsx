@@ -13,6 +13,15 @@ interface AccordionContextProps {
   variant: 'default' | 'bordered' | 'separated';
   /** Stil der Icons */
   iconStyle: 'arrow' | 'plus' | 'chevron' | 'none';
+  /** ID des Accordions */
+  id: string;
+  /** Lokalisierungsobjekt */
+  i18n: {
+    /** Text für Screenreader, wenn ein Panel geöffnet wird */
+    expand: string;
+    /** Text für Screenreader, wenn ein Panel geschlossen wird */
+    collapse: string;
+  };
 }
 
 const AccordionContext = createContext<AccordionContextProps | undefined>(undefined);
@@ -39,6 +48,21 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   iconStyle?: 'arrow' | 'plus' | 'chevron' | 'none';
   /** Callback bei Panel-Öffnung/Schließung */
   onChange?: (openItems: string[]) => void;
+  /** ID für das Accordion */
+  id?: string;
+  /** Lokalisierungsobjekt */
+  i18n?: {
+    /** Text für Screenreader, wenn ein Panel geöffnet wird */
+    expand?: string;
+    /** Text für Screenreader, wenn ein Panel geschlossen wird */
+    collapse?: string;
+  };
+  /** Animationen aktivieren */
+  animated?: boolean;
+  /** Tastaturnavigation deaktivieren */
+  keyboardNavigation?: boolean;
+  /** Automatische Fokussierung des geöffneten Panels */
+  autoFocus?: boolean;
 }
 
 /**
@@ -64,12 +88,23 @@ export const Accordion: React.FC<AccordionProps> = ({
   iconStyle = 'chevron',
   onChange,
   className = '',
+  id,
+  i18n = {
+    expand: 'Erweitern',
+    collapse: 'Einklappen'
+  },
+  animated = true,
+  keyboardNavigation = true,
+  autoFocus = true,
   ...rest
 }) => {
   // Umwandlung von String zu Array für defaultOpenItems
   const defaultItems = typeof defaultOpenItems === 'string' 
     ? [defaultOpenItems] 
     : defaultOpenItems;
+  
+  // Generiere eine eindeutige ID für das Accordion
+  const accordionId = id || `accordion-${Math.random().toString(36).substr(2, 9)}`;
   
   // State für geöffnete Panels
   const [openItems, setOpenItems] = useState<string[]>(defaultItems);
@@ -104,7 +139,12 @@ export const Accordion: React.FC<AccordionProps> = ({
     toggleItem,
     allowMultiple,
     variant,
-    iconStyle
+    iconStyle,
+    id: accordionId,
+    i18n: {
+      expand: i18n.expand || 'Erweitern',
+      collapse: i18n.collapse || 'Einklappen'
+    }
   };
   
   // Varianten-spezifische Klassen
@@ -117,7 +157,11 @@ export const Accordion: React.FC<AccordionProps> = ({
   return (
     <AccordionContext.Provider value={contextValue}>
       <div 
-        className={`${variantClasses[variant]} ${className}`}
+        className={`${variantClasses[variant]} ${animated ? 'accordion-animated' : ''} ${className}`}
+        id={accordionId}
+        role="region"
+        aria-multiselectable={allowMultiple}
+        data-testid="accordion"
         {...rest}
       >
         {children}

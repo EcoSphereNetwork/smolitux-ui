@@ -144,6 +144,45 @@ export interface DatePickerProps extends Omit<React.InputHTMLAttributes<HTMLInpu
   firstDayOfWeek?: 0 | 1;
   /** Aktuelle Position des Popups */
   popupPosition?: 'bottom' | 'top' | 'auto';
+  /** Lokalisierungsobjekt */
+  i18n?: {
+    /** Text für den Monat-Zurück-Button */
+    prevMonth?: string;
+    /** Text für den Monat-Vor-Button */
+    nextMonth?: string;
+    /** Text für den Heute-Button */
+    today?: string;
+    /** Text für den Löschen-Button */
+    clear?: string;
+    /** Text für Screenreader, wenn ein Datum ausgewählt wird */
+    dateSelected?: string;
+    /** Text für Screenreader, wenn ein Datum nicht verfügbar ist */
+    dateDisabled?: string;
+    /** Text für Screenreader, wenn der Kalender geöffnet wird */
+    calendarOpened?: string;
+    /** Text für Screenreader, wenn der Kalender geschlossen wird */
+    calendarClosed?: string;
+  };
+  /** Heute-Button anzeigen */
+  showTodayButton?: boolean;
+  /** Löschen-Button anzeigen */
+  showClearButton?: boolean;
+  /** Automatische Fokussierung des Kalenders beim Öffnen */
+  autoFocus?: boolean;
+  /** Callback beim Öffnen des Kalenders */
+  onOpen?: () => void;
+  /** Callback beim Schließen des Kalenders */
+  onClose?: () => void;
+  /** Benutzerdefinierte Klasse für den Kalender */
+  calendarClassName?: string;
+  /** Benutzerdefinierte Klasse für den Header */
+  headerClassName?: string;
+  /** Benutzerdefinierte Klasse für die Wochentage */
+  weekdayClassName?: string;
+  /** Benutzerdefinierte Klasse für die Tage */
+  dayClassName?: string;
+  /** Benutzerdefinierte Klasse für die Fußzeile */
+  footerClassName?: string;
 }
 
 /**
@@ -186,6 +225,26 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   disabled = false,
   readOnly = false,
   id,
+  i18n = {
+    prevMonth: 'Vorheriger Monat',
+    nextMonth: 'Nächster Monat',
+    today: 'Heute',
+    clear: 'Löschen',
+    dateSelected: 'Datum ausgewählt',
+    dateDisabled: 'Datum nicht verfügbar',
+    calendarOpened: 'Kalender geöffnet',
+    calendarClosed: 'Kalender geschlossen'
+  },
+  showTodayButton = false,
+  showClearButton = false,
+  autoFocus = true,
+  onOpen,
+  onClose,
+  calendarClassName = '',
+  headerClassName = '',
+  weekdayClassName = '',
+  dayClassName = '',
+  footerClassName = '',
   ...rest
 }, ref) => {
   // Aus dem FormControl-Context importierte Werte
@@ -299,8 +358,31 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   // Popup öffnen/schließen
   const togglePicker = () => {
     if (!disabled && !readOnly) {
-      setIsOpen(!isOpen);
+      const newIsOpen = !isOpen;
+      setIsOpen(newIsOpen);
+      
+      // Callbacks aufrufen
+      if (newIsOpen) {
+        if (onOpen) onOpen();
+      } else {
+        if (onClose) onClose();
+      }
+      
+      // Screenreader-Ankündigung
+      if (newIsOpen) {
+        announceToScreenReader(i18n.calendarOpened);
+      } else {
+        announceToScreenReader(i18n.calendarClosed);
+      }
     }
+  };
+  
+  // Ankündigung für Screenreader
+  const [announcement, setAnnouncement] = useState<string | null>(null);
+  
+  const announceToScreenReader = (message: string) => {
+    setAnnouncement(message);
+    setTimeout(() => setAnnouncement(null), 1000);
   };
   
   // Datum auswählen
@@ -310,8 +392,14 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
     const newDate = new Date(currentYear, currentMonth, day);
     
     // Prüfen, ob das Datum im gültigen Bereich liegt
-    if (minDate && newDate < minDate) return;
-    if (maxDate && newDate > maxDate) return;
+    if (minDate && newDate < minDate) {
+      announceToScreenReader(i18n.dateDisabled);
+      return;
+    }
+    if (maxDate && newDate > maxDate) {
+      announceToScreenReader(i18n.dateDisabled);
+      return;
+    }
     
     // Internes Datum aktualisieren (wenn nicht kontrolliert)
     if (!isControlled) {
@@ -326,10 +414,41 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
       onChange(newDate);
     }
     
+    // Screenreader-Ankündigung
+    announceToScreenReader(i18n.dateSelected + ': ' + formatDate(newDate, format));
+    
     // Popup schließen, wenn closeOnSelect
     if (closeOnSelect) {
       setIsOpen(false);
+      if (onClose) onClose();
     }
+  };
+  
+  // Heute-Datum auswählen
+  const selectToday = () => {
+    const today = new Date();
+    setViewDate(today);
+    selectDate(today.getDate());
+  };
+  
+  // Datum löschen
+  const clearDate = () => {
+    // Internes Datum aktualisieren (wenn nicht kontrolliert)
+    if (!isControlled) {
+      setInternalValue(null);
+    }
+    
+    // Input-Wert aktualisieren
+    setInputValue('');
+    
+    // Callback aufrufen
+    if (onChange) {
+      onChange(null);
+    }
+    
+    // Popup schließen
+    setIsOpen(false);
+    if (onClose) onClose();
   };
   
   // Monat ändern
@@ -485,19 +604,24 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
     return (
       <div
         ref={pickerRef}
-        className={`absolute z-${zIndex} bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 w-64`}
+        className={`absolute z-${zIndex} bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 w-64 ${calendarClassName}`}
         data-testid="date-picker-calendar"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Datumsauswahl"
         style={{
           top: calculatedPosition.top,
           left: calculatedPosition.left,
         }}
+        tabIndex={-1}
       >
         {/* Header mit Monat/Jahr und Navigation */}
-        <div className="flex justify-between items-center p-3 border-b border-gray-200 dark:border-gray-700">
+        <div className={`flex justify-between items-center p-3 border-b border-gray-200 dark:border-gray-700 ${headerClassName}`}>
           <button
             type="button"
-            className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
             onClick={() => changeMonth(-1)}
+            aria-label={i18n.prevMonth}
           >
             <svg
               className="w-5 h-5"
@@ -505,6 +629,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -515,14 +640,15 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
             </svg>
           </button>
           
-          <div className="text-gray-800 dark:text-gray-200 font-medium">
+          <div className="text-gray-800 dark:text-gray-200 font-medium" role="heading" aria-level={2}>
             {monthLabels[currentMonth]} {currentYear}
           </div>
           
           <button
             type="button"
-            className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
             onClick={() => changeMonth(1)}
+            aria-label={i18n.nextMonth}
           >
             <svg
               className="w-5 h-5"
@@ -530,6 +656,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -542,9 +669,9 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
         </div>
         
         {/* Wochentage */}
-        <div className="grid grid-cols-7 gap-0 text-center text-xs text-gray-500 dark:text-gray-400 p-2">
+        <div className={`grid grid-cols-7 gap-0 text-center text-xs text-gray-500 dark:text-gray-400 p-2 ${weekdayClassName}`} role="row">
           {weekDayLabels.map((day, i) => (
-            <div key={i} className="p-1">
+            <div key={i} className="p-1" role="columnheader" aria-label={day}>
               {day}
             </div>
           ))}
