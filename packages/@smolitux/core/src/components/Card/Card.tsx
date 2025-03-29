@@ -5,10 +5,16 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   /** Titel der Karte */
   title?: string;
+  /** Untertitel der Karte */
+  subtitle?: string;
   /** Zusätzliche CSS-Klassen */
   className?: string;
   /** Footer-Inhalt */
   footer?: ReactNode;
+  /** Header-Inhalt */
+  header?: ReactNode;
+  /** Bild-Inhalt */
+  image?: ReactNode;
   /** Kein Padding im Inhaltsbereich */
   noPadding?: boolean;
   /** Hover-Effekt aktivieren */
@@ -18,9 +24,9 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Header-Aktion (z.B. Button oder Icon) */
   headerAction?: ReactNode;
   /** Variante der Karte */
-  variant?: 'elevated' | 'outlined' | 'flat';
+  variant?: 'elevated' | 'outlined' | 'flat' | 'default';
   /** Padding-Größe */
-  padding?: 'none' | 'small' | 'medium' | 'large';
+  padding?: 'none' | 'small' | 'medium' | 'large' | string;
   /** Randradius */
   borderRadius?: 'none' | 'small' | 'medium' | 'large';
   /** Benutzerdefinierte Breite */
@@ -31,6 +37,14 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   backgroundColor?: string;
   /** Benutzerdefinierte Randfarbe */
   borderColor?: string;
+  /** Größe der Karte */
+  size?: 'sm' | 'md' | 'lg';
+  /** Schatten anzeigen */
+  shadow?: boolean;
+  /** Abgerundete Ecken */
+  rounded?: boolean;
+  /** Hintergrundfarbe (für Tests) */
+  bgColor?: string;
 }
 
 /**
@@ -39,8 +53,11 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Card: React.FC<CardProps> = ({
   children,
   title,
+  subtitle,
   className = '',
   footer,
+  header,
+  image,
   noPadding = false,
   hoverable = false,
   bordered = true,
@@ -52,13 +69,18 @@ export const Card: React.FC<CardProps> = ({
   height,
   backgroundColor,
   borderColor,
+  size,
+  shadow = false,
+  rounded = false,
+  bgColor,
   ...rest
 }) => {
   // Varianten-Klassen
   const variantClasses = {
     elevated: 'shadow-md',
     outlined: 'border border-gray-200 dark:border-gray-700',
-    flat: ''
+    flat: '',
+    default: ''
   };
 
   // Padding-Klassen
@@ -67,6 +89,13 @@ export const Card: React.FC<CardProps> = ({
     small: 'p-3',
     medium: 'p-4',
     large: 'p-6'
+  };
+  
+  // Größen-Klassen
+  const sizeClasses = {
+    sm: 'card-sm',
+    md: 'card-md',
+    lg: 'card-lg'
   };
 
   // Border-Radius-Klassen
@@ -99,20 +128,34 @@ export const Card: React.FC<CardProps> = ({
     return !!rest.onClick;
   };
   
+  // Bestimme den Padding-Wert
+  const paddingValue = typeof padding === 'string' && !['none', 'small', 'medium', 'large'].includes(padding) 
+    ? '' // Wenn es ein benutzerdefinierter String ist, verwenden wir ihn als Style
+    : paddingClasses[padding as 'none' | 'small' | 'medium' | 'large'];
+
   return (
     <div 
       className={`
-        ${backgroundColor || 'bg-white dark:bg-gray-800'} 
-        shadow ${borderRadiusClasses[borderRadius]} 
-        ${bordered ? borderColor || 'border border-gray-200 dark:border-gray-700' : ''} 
-        ${hoverable ? 'transition-shadow duration-200 hover:shadow-lg' : ''} 
-        ${variantClasses[variant]}
-        ${noPadding ? '' : paddingClasses[padding]}
+        card
+        card-${variant}
+        ${backgroundColor || bgColor || 'bg-white dark:bg-gray-800'} 
+        ${shadow ? 'card-shadow shadow-lg' : 'shadow'} ${borderRadiusClasses[borderRadius]} 
+        ${bordered ? 'card-bordered ' + (borderColor || 'border border-gray-200 dark:border-gray-700') : ''} 
+        ${hoverable ? 'card-hoverable transition-shadow duration-200 hover:shadow-lg' : ''} 
+        ${rest.onClick ? 'card-clickable cursor-pointer' : ''}
+        ${variant === 'default' ? 'card-default' : ''}
+        ${variant === 'outlined' ? 'card-outlined' : ''}
+        ${variant === 'elevated' ? 'card-elevated' : ''}
+        ${size ? sizeClasses[size] : ''}
+        ${rounded ? 'card-rounded' : ''}
+        ${noPadding ? '' : paddingValue}
         ${className}
       `}
       style={{
         width: width,
-        height: height
+        height: height,
+        ...(typeof padding === 'string' && !['none', 'small', 'medium', 'large'].includes(padding) ? { padding } : {}),
+        ...(bgColor ? { backgroundColor: bgColor } : {})
       }}
       id={cardId}
       role={getAriaRole()}
@@ -123,16 +166,33 @@ export const Card: React.FC<CardProps> = ({
       data-hoverable={hoverable ? 'true' : undefined}
       {...rest}
     >
-      {title && (
+      {header ? (
         <div 
-          className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3" 
+          className="card-header flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3" 
           data-testid="card-header"
           id={headerId}
         >
-          <h3 className="font-medium text-gray-900 dark:text-white">{title}</h3>
+          {header}
+        </div>
+      ) : title && (
+        <div 
+          className="card-header flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3" 
+          data-testid="card-header"
+          id={headerId}
+        >
+          <div>
+            <h3 className="card-title font-medium text-gray-900 dark:text-white">{title}</h3>
+            {subtitle && <p className="card-subtitle text-sm text-gray-600 dark:text-gray-400">{subtitle}</p>}
+          </div>
           {headerAction && (
             <div>{headerAction}</div>
           )}
+        </div>
+      )}
+      
+      {image && (
+        <div className="card-image" data-testid="card-image">
+          {image}
         </div>
       )}
       
@@ -146,7 +206,7 @@ export const Card: React.FC<CardProps> = ({
       
       {footer && (
         <div 
-          className="border-t border-gray-200 dark:border-gray-700 px-4 py-3" 
+          className="card-footer border-t border-gray-200 dark:border-gray-700 px-4 py-3" 
           data-testid="card-footer"
           id={footerId}
         >
