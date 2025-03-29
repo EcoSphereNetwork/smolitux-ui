@@ -777,7 +777,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
           title={labelTooltip}
         >
           {label}
-          {_required && <span className="ml-1 text-red-500">*</span>}}
+          {_required && <span className="ml-1 text-red-500">*</span>}
+        </label>
+      )}
       
       {/* Input-Container */}
       <div className={`relative ${inputContainerClassName}`}>
