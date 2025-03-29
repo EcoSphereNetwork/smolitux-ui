@@ -9,12 +9,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "node build.js",
+    "dev": "nodemon --watch src --exec \"node build.js\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "test": "jest",
-    "build:js": "tsup src/index.ts --format cjs,esm",
-    "build:types": "tsc --emitDeclarationOnly"
+    "build:js": "node build.js",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist --skipLibCheck"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
@@ -26,13 +26,15 @@
     "@smolitux/utils": "^0.2.1"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "tsup": "^8.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "esbuild": "^0.25.1",
     "eslint": "^8.0.0",
     "jest": "^29.0.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/jest-dom": "^6.0.0"
+    "nodemon": "^3.1.9",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
   }
 }
