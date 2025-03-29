@@ -30,38 +30,55 @@ Die folgenden Komponenten wurden hinsichtlich Barrierefreiheit verbessert:
 - ✅ Screenreader-Unterstützung verbessert
 - ✅ Barrierefreiheitstests erstellt
 
+### 4. Dropdown
+- ✅ ARIA-Attribute hinzugefügt (`aria-haspopup`, `aria-expanded`, etc.)
+- ✅ Tastaturnavigation implementiert (Pfeiltasten, Home/End)
+- ✅ Fokus-Management verbessert
+- ✅ Screenreader-Unterstützung verbessert
+- ✅ Barrierefreiheitstests erstellt
+
+### 5. Fade
+- ✅ ARIA-Attribute hinzugefügt (`aria-live`, `aria-atomic`, etc.)
+- ✅ Unterstützung für reduzierte Bewegung implementiert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Barrierefreiheitstests erstellt
+
+### 6. FileUpload
+- ✅ ARIA-Attribute hinzugefügt (`aria-labelledby`, `aria-describedby`, etc.)
+- ✅ Tastaturunterstützung implementiert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Barrierefreie Fortschrittsanzeige implementiert
+- ✅ Barrierefreiheitstests erstellt
+
 ## Noch zu verbessern
 
 Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert werden:
 
-4. **Dropdown** - Benötigt ARIA-Attribute, Tastaturnavigation
-5. **Fade** - Benötigt ARIA-Attribute für Animation
-6. **FileUpload** - Benötigt ARIA-Attribute, Tastaturunterstützung
-7. **Flex** - Benötigt semantische Struktur
-8. **Form** - Benötigt ARIA-Attribute, Fehlerbehandlung
-9. **FormControl** - Benötigt ARIA-Attribute, Fehlerbehandlung
-10. **FormField** - Benötigt ARIA-Attribute, Fehlerbehandlung
-11. **Input** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
-12. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
-13. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
-14. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
-15. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
-16. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
-17. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
-18. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-19. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-20. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-21. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
-22. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-23. **Slide** - Benötigt ARIA-Attribute für Animation
-24. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
-25. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-26. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
-27. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-28. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
-29. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
-30. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-31. **Zoom** - Benötigt ARIA-Attribute für Animation
+1. **Flex** - Benötigt semantische Struktur
+2. **Form** - Benötigt ARIA-Attribute, Fehlerbehandlung
+3. **FormControl** - Benötigt ARIA-Attribute, Fehlerbehandlung
+4. **FormField** - Benötigt ARIA-Attribute, Fehlerbehandlung
+5. **Input** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
+6. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
+7. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
+8. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
+9. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
+10. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
+11. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
+12. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+13. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+14. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+15. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
+16. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+17. **Slide** - Benötigt ARIA-Attribute für Animation
+18. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
+19. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+20. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
+21. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+22. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
+23. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
+24. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+25. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Allgemeine Verbesserungen
 
@@ -69,6 +86,7 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 - Verbesserte Farbkontraste für bessere Lesbarkeit
 - Screenreader-freundliche Fehlermeldungen
 - Tastaturnavigation für alle interaktiven Komponenten
+- Unterstützung für reduzierte Bewegung bei Animationen
 
 ## Nächste Schritte
 
