@@ -1,6 +1,10 @@
 // Jest setup file
 require('@testing-library/jest-dom');
 
+// Extend Jest matchers with jest-axe
+const { toHaveNoViolations } = require('jest-axe');
+expect.extend({ toHaveNoViolations });
+
 // Globale Mock-Funktionen
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
