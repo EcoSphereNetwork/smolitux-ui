@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
+import './animations.css';
 
 export type ModalSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type ModalPosition = 'center' | 'top' | 'right' | 'bottom' | 'left';
+export type ModalAnimation = 'fade' | 'scale' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'none';
 
 export interface ModalProps {
   /** Ist der Modal sichtbar? */
@@ -37,6 +39,8 @@ export interface ModalProps {
   id?: string;
   /** Ob der Modal beim Öffnen animiert werden soll */
   animated?: boolean;
+  /** Animation-Typ für den Modal */
+  animation?: ModalAnimation;
   /** Ob der Modal einen Schließen-Button haben soll */
   showCloseButton?: boolean;
   /** Ob der Modal einen Schatten haben soll */
@@ -118,6 +122,16 @@ export interface ModalProps {
   isErrorDialog?: boolean;
   /** Ob der Modal eine Rolle als Erfolgs-Dialog haben soll */
   isSuccessDialog?: boolean;
+  /** Ob der Modal eine Rolle als Warn-Dialog haben soll */
+  isWarningDialog?: boolean;
+  /** Ob der Modal eine Rolle als Hilfe-Dialog haben soll */
+  isHelpDialog?: boolean;
+  /** Ob der Modal eine Rolle als Status-Dialog haben soll */
+  isStatusDialog?: boolean;
+  /** Ob der Fokus automatisch auf den ersten interaktiven Element gesetzt werden soll */
+  autoFocus?: boolean;
+  /** Ob der Fokus-Trap aktiviert werden soll */
+  trapFocus?: boolean;
   /** Ob der Modal eine Rolle als Warn-Dialog haben soll */
   isWarningDialog?: boolean;
   /** Ob der Modal eine Rolle als Hilfe-Dialog haben soll */

@@ -56,6 +56,96 @@ export default App;
 
 ### Core-Komponenten
 
+#### DatePicker
+
+Die DatePicker-Komponente ermöglicht die Auswahl eines Datums oder eines Datumsbereichs.
+
+```jsx
+import { DatePicker } from '@smolitux/core';
+
+// Einzeldatum-Auswahl
+<DatePicker 
+  label="Datum auswählen" 
+  format="dd.MM.yyyy"
+  placeholder="TT.MM.JJJJ"
+/>
+
+// Datumsbereich-Auswahl
+<DatePicker 
+  label="Zeitraum auswählen" 
+  selectionMode="range"
+  format="dd.MM.yyyy"
+  placeholder="TT.MM.JJJJ - TT.MM.JJJJ"
+/>
+```
+
+**Props:**
+
+| Prop | Typ | Standard | Beschreibung |
+|------|-----|----------|--------------|
+| value | Date \| null \| [Date \| null, Date \| null] | - | Ausgewähltes Datum oder Datumsbereich |
+| defaultValue | Date \| null \| [Date \| null, Date \| null] | - | Standard-Ausgewähltes Datum oder Datumsbereich |
+| onChange | (date: Date \| null \| [Date \| null, Date \| null]) => void | - | Callback bei Auswahl eines Datums |
+| selectionMode | 'single' \| 'range' | 'single' | Auswahlmodus (einzeln oder Bereich) |
+| format | string | 'yyyy-MM-dd' | Format des Datums |
+| minDate | Date | - | Minimales Datum |
+| maxDate | Date | - | Maximales Datum |
+| placeholder | string | 'YYYY-MM-DD' | Platzhaltertext |
+| disabled | boolean | false | Ob der DatePicker deaktiviert ist |
+| readOnly | boolean | false | Ob der DatePicker schreibgeschützt ist |
+| allowManualInput | boolean | true | Ob manuelle Eingabe erlaubt ist |
+| closeOnSelect | boolean | true | Ob der Picker nach Auswahl geschlossen werden soll |
+
+#### Table
+
+Die Table-Komponente zeigt Daten in einer Tabelle an und bietet Funktionen wie Sortierung, Filterung, Suche und Paginierung.
+
+```jsx
+import { Table } from '@smolitux/core';
+
+const columns = [
+  { id: 'name', header: 'Name', cell: (row) => row.name, sortable: true },
+  { id: 'age', header: 'Alter', cell: (row) => row.age, sortable: true },
+  { id: 'city', header: 'Stadt', cell: (row) => row.city }
+];
+
+const data = [
+  { name: 'Max Mustermann', age: 30, city: 'Berlin' },
+  { name: 'Erika Musterfrau', age: 25, city: 'München' },
+  { name: 'John Doe', age: 40, city: 'Hamburg' }
+];
+
+<Table 
+  data={data} 
+  columns={columns}
+  sortable={true}
+  paginated={true}
+  searchable={true}
+  filterable={true}
+  selectable={true}
+/>
+```
+
+**Props:**
+
+| Prop | Typ | Standard | Beschreibung |
+|------|-----|----------|--------------|
+| data | any[] | [] | Daten für die Tabelle |
+| columns | TableColumn[] | [] | Spaltendefinitionen |
+| sortable | boolean | true | Ob die Tabelle sortierbar sein soll |
+| paginated | boolean | false | Ob die Tabelle paginiert sein soll |
+| itemsPerPage | number | 10 | Anzahl der Einträge pro Seite |
+| searchable | boolean | false | Ob die Tabelle eine Suchfunktion haben soll |
+| filterable | boolean | false | Ob die Tabelle filterbar sein soll |
+| selectable | boolean | false | Ob die Tabelle Zeilenauswahl unterstützen soll |
+| multiSelect | boolean | true | Ob mehrere Zeilen ausgewählt werden können |
+| exportable | boolean | false | Ob die Tabelle exportierbar sein soll |
+| onRowClick | (row, index) => void | - | Callback bei Klick auf eine Zeile |
+| onSort | (id, direction) => void | - | Callback bei Sortierungsänderung |
+| onFilter | (filters) => void | - | Callback bei Filteränderung |
+| onSearch | (searchTerm) => void | - | Callback bei Suchbegriffsänderung |
+| onRowSelect | (selectedRows) => void | - | Callback bei Zeilenauswahländerung |
+
 #### Alert
 
 Die Alert-Komponente wird verwendet, um wichtige Nachrichten anzuzeigen.
@@ -63,22 +153,50 @@ Die Alert-Komponente wird verwendet, um wichtige Nachrichten anzuzeigen.
 ```jsx
 import { Alert } from '@smolitux/core';
 
-<Alert variant="success" title="Erfolg">
-  Die Aktion wurde erfolgreich abgeschlossen.
-</Alert>
+// Einfacher Alert
+<Alert type="success" message="Die Aktion wurde erfolgreich ausgeführt." />
+
+// Alert mit Titel
+<Alert 
+  type="error" 
+  title="Fehler" 
+  message="Es ist ein Fehler aufgetreten." 
+/>
+
+// Alert mit Varianten
+<Alert type="success" variant="outline" message="Outline-Variante" />
+<Alert type="error" variant="filled" message="Filled-Variante" />
+
+// Alert mit Animationen
+<Alert type="info" animation="slide-right" message="Slide-Right Animation" />
+
+// Alert mit Aktions-Buttons
+<Alert 
+  type="info" 
+  title="Information" 
+  message="Möchten Sie fortfahren?" 
+  actions={[
+    { label: "Abbrechen", onClick: handleCancel },
+    { label: "Fortfahren", onClick: handleContinue, variant: "primary" }
+  ]}
+/>
 ```
 
 **Props:**
 
 | Prop | Typ | Standard | Beschreibung |
 |------|-----|----------|--------------|
-| variant | 'info' \| 'success' \| 'warning' \| 'error' | 'info' | Variante des Alerts |
+| type | 'success' \| 'error' \| 'warning' \| 'info' | - | Typ des Alerts |
+| message | string \| ReactNode | - | Nachrichtentext |
 | title | string | - | Titel des Alerts |
-| children | ReactNode | - | Inhalt des Alerts |
-| onClose | () => void | - | Callback beim Schließen |
-| closable | boolean | false | Ob der Alert schließbar ist |
-| icon | ReactNode | - | Benutzerdefiniertes Icon |
-| className | string | - | Zusätzliche CSS-Klassen |
+| onClose | () => void | - | Callback zum Schließen des Alerts |
+| showIcon | boolean | true | Icon anzeigen |
+| closable | boolean | false | Schließbar machen |
+| autoClose | number | 0 | Automatisch schließen nach X Millisekunden |
+| variant | 'default' \| 'outline' \| 'filled' \| 'subtle' | 'default' | Variante des Alerts |
+| animation | 'fade' \| 'slide-right' \| 'slide-down' \| 'none' | 'fade' | Animation des Alerts |
+| actions | Array<{ label: string, onClick: () => void, variant?: string }> | [] | Aktions-Buttons |
+| className | string | '' | Zusätzliche CSS-Klassen |
 
 #### Badge
 
@@ -249,7 +367,56 @@ import { Input } from '@smolitux/core';
 
 #### Modal
 
-Die Modal-Komponente zeigt Inhalte in einem modalen Dialog an.
+Die Modal-Komponente zeigt Inhalte in einem Overlay an und bietet verschiedene Anpassungsmöglichkeiten.
+
+```jsx
+import { Modal } from '@smolitux/core';
+
+// Einfaches Modal
+<Modal 
+  isOpen={isOpen} 
+  onClose={handleClose} 
+  title="Beispiel Modal"
+>
+  <p>Modal-Inhalt</p>
+</Modal>
+
+// Modal mit Animation
+<Modal 
+  isOpen={isOpen} 
+  onClose={handleClose} 
+  title="Animation"
+  animation="slide-up"
+>
+  <p>Dieses Modal verwendet eine Slide-Up-Animation.</p>
+</Modal>
+```
+
+**Props:**
+
+| Prop | Typ | Standard | Beschreibung |
+|------|-----|----------|--------------|
+| isOpen | boolean | - | Ob der Modal sichtbar ist |
+| onClose | () => void | - | Callback zum Schließen des Modals |
+| title | ReactNode | - | Modal-Titel |
+| children | ReactNode | - | Modal-Inhalt |
+| footer | ReactNode | - | Footer-Inhalt |
+| size | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full' | 'md' | Größe des Modals |
+| position | 'center' \| 'top' \| 'right' \| 'bottom' \| 'left' | 'center' | Position des Modals |
+| animation | 'fade' \| 'scale' \| 'slide-up' \| 'slide-down' \| 'slide-left' \| 'slide-right' \| 'none' | 'scale' | Animation-Typ für den Modal |
+| animated | boolean | true | Ob der Modal animiert werden soll |
+| closeOnOverlayClick | boolean | true | Ob der Modal bei Klick auf das Overlay geschlossen werden soll |
+| closeOnEsc | boolean | true | Ob der Modal bei Drücken der Escape-Taste geschlossen werden soll |
+| showCloseButton | boolean | true | Ob der Modal einen Schließen-Button haben soll |
+| footerButtons | boolean | false | Ob Standard-Footer-Buttons angezeigt werden sollen |
+| onCancel | () => void | - | Callback für den Abbrechen-Button |
+| onConfirm | () => void | - | Callback für den Bestätigen-Button |
+| trapFocus | boolean | true | Ob der Fokus innerhalb des Modals gehalten werden soll |
+| returnFocus | boolean | true | Ob der Fokus nach dem Schließen zurückgesetzt werden soll |
+
+#### Alert
+
+Die Alert-Komponente wird verwendet, um wichtige Nachrichten anzuzeigen.
 
 ```jsx
 import { Modal, Button } from '@smolitux/core';
