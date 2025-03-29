@@ -9,7 +9,7 @@ Diese Dokumentation enthält wichtige Informationen für Entwickler, die an der 
 
 ### Analyse und Verbesserung
 - [Build-Analyse](./build-analysis.md) - Analyse der Probleme beim Build-Prozess
-- [Verbesserungsplan](./improvement-plan.md) - Plan zur Verbesserung der Bibliothek
+- [Verbesserungsplan](./roadmap.md) - Plan zur Verbesserung der Bibliothek
 - [Build-Fix-Anleitung](./build-fix-guide.md) - Anleitung zur Behebung der Build-Probleme
 
 ### Entwicklungsrichtlinien
