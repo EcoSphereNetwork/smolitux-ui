@@ -67,6 +67,41 @@ export type CollapseProps = {
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
+  
+  /**
+   * ARIA-Attribute für Barrierefreiheit
+   */
+  ariaProps?: {
+    /**
+     * ID des Elements, das den Collapse-Inhalt beschreibt
+     */
+    'aria-labelledby'?: string;
+    
+    /**
+     * ID des Elements, das den Collapse-Inhalt beschreibt
+     */
+    'aria-describedby'?: string;
+    
+    /**
+     * Ob der Collapse-Inhalt aktuell sichtbar ist
+     */
+    'aria-expanded'?: boolean;
+    
+    /**
+     * Ob der Collapse-Inhalt versteckt ist
+     */
+    'aria-hidden'?: boolean;
+    
+    /**
+     * Rolle des Elements für Screenreader
+     */
+    role?: string;
+    
+    /**
+     * ID des Elements
+     */
+    id?: string;
+  };
 };
 
 /**
@@ -86,6 +121,7 @@ export const Collapse: React.FC<CollapseProps> = ({
   children,
   className,
   style,
+  ariaProps,
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<number>(0);
@@ -133,12 +169,33 @@ export const Collapse: React.FC<CollapseProps> = ({
     ...(getSize() === 'auto' && { [`max-${sizeProp}`]: `${size}px` }),
   };
   
+  // Generiere eine eindeutige ID für ARIA-Attribute, wenn keine angegeben wurde
+  const collapseId = ariaProps?.id || `collapse-${Math.random().toString(36).substr(2, 9)}`;
+  
+  // Bestimme die ARIA-Attribute
+  const getAriaAttributes = () => {
+    const defaultAriaProps = {
+      role: 'region',
+      'aria-expanded': inProp,
+      'aria-hidden': !inProp,
+      id: collapseId,
+    };
+    
+    return {
+      ...defaultAriaProps,
+      ...ariaProps,
+    };
+  };
+  
   return (
     <div
       ref={ref as React.LegacyRef<HTMLDivElement>}
       className={className}
       style={{ ...collapseStyle, ...style }}
       data-state={state}
+      data-orientation={orientation}
+      data-testid="collapse"
+      {...getAriaAttributes()}
     >
       <div ref={contentRef}>
         {children}
