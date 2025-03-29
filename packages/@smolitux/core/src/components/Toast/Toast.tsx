@@ -146,6 +146,20 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
     }
   };
   
+  // ARIA-Live-Wert basierend auf Typ
+  const getAriaLive = () => {
+    switch (type) {
+      case 'error':
+        return 'assertive';
+      case 'warning':
+        return 'assertive';
+      case 'success':
+      case 'info':
+      default:
+        return 'polite';
+    }
+  };
+  
   // Icon-Farben basierend auf Typ
   const getIconColor = () => {
     switch (type) {
@@ -226,7 +240,10 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
     <div
       ref={ref}
       role="alert"
+      aria-live={getAriaLive()}
+      aria-atomic="true"
       data-testid="toast"
+      data-type={type}
       className={`
         ${getPositionStyles()}
         ${getTypeStyles()}
@@ -238,7 +255,14 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
     >
       {/* Fortschrittsbalken für automatisches Schließen */}
       {duration > 0 && (
-        <div className="absolute top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-t-lg overflow-hidden">
+        <div 
+          className="absolute top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-t-lg overflow-hidden"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={0}
+          aria-label="Automatisches Schließen"
+        >
           <div
             className={`h-1 ${type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'}`}
             style={{
@@ -252,7 +276,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
       <div className="flex p-4">
         {/* Icon */}
         {showIcon && (
-          <div className={`flex-shrink-0 mr-3 ${getIconColor()}`}>
+          <div className={`flex-shrink-0 mr-3 ${getIconColor()}`} aria-hidden="true">
             {getIcon()}
           </div>
         )}
@@ -260,9 +284,9 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
         {/* Inhalt */}
         <div className="flex-grow">
           {title && (
-            <h3 className="text-sm font-medium mb-1">{title}</h3>
+            <h3 className="text-sm font-medium mb-1" id={`toast-title-${Math.random().toString(36).substr(2, 9)}`}>{title}</h3>
           )}
-          <div className="text-sm">
+          <div className="text-sm" id={`toast-message-${Math.random().toString(36).substr(2, 9)}`}>
             {message}
           </div>
           
@@ -278,11 +302,12 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
         {showCloseButton && (
           <button
             type="button"
-            className="ml-3 flex-shrink-0 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none"
+            className="ml-3 flex-shrink-0 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             onClick={close}
-            aria-label="Close"
+            aria-label="Schließen"
+            data-testid="toast-close-button"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
