@@ -679,29 +679,49 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   // Bestimme die ARIA-Attribute für die Checkbox
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {};
-    
+
+    // Beschreibungen und Hilfetexte
+    const describedByParts = [];
     if (description) {
-      attributes['aria-describedby'] = `${_id}-description`;
+      describedByParts.push(`${_id}-description`);
     }
-    
+    if (helperText && !_error) {
+      describedByParts.push(`${_id}-helper`);
+    }
+    if (successMessage) {
+      describedByParts.push(`${_id}-success`);
+    }
+    if (describedByParts.length > 0) {
+      attributes['aria-describedby'] = describedByParts.join(' ');
+    }
+
+    // Fehlermeldungen
     if (_error) {
       attributes['aria-errormessage'] = `${_id}-error`;
       attributes['aria-invalid'] = 'true';
+    } else if (_isInvalid) {
+      attributes['aria-invalid'] = 'true';
     }
-    
-    if (helperText && !_error) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-helper` : `${_id}-helper`);
-    }
-    
-    if (successMessage) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-success` : `${_id}-success`);
-    }
-    
+
+    // Zustandsattribute
     if (indeterminate) {
       attributes['aria-checked'] = 'mixed';
     }
-    
+    if (_disabled) {
+      attributes['aria-disabled'] = 'true';
+    }
+    if (_required) {
+      attributes['aria-required'] = 'true';
+    }
+    if (_isLoading) {
+      attributes['aria-busy'] = 'true';
+    }
+    if (isSwitch || isToggle) {
+      attributes['aria-roledescription'] = 'Schalter';
+    }
+
     return attributes;
+  };
   };
   
   // Rendere die Checkbox basierend auf dem Typ
@@ -936,7 +956,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           data-testid="checkbox-label"
         >
           {label}
-          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
+          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>{_required && <span className="sr-only">(Erforderlich)</span>}}
         </label>
       </div>
     );
@@ -952,7 +972,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           <p 
             id={`${_id}-error`} 
             className={`text-red-600 dark:text-red-400 ${errorClassName}`}
-            role="alert"
+            role="alert" aria-live="assertive"
           >
             {_error}
           </p>
