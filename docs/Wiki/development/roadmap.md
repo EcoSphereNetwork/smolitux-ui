@@ -1,97 +1,370 @@
-# Entwicklungs-Roadmap
+# Smolitux UI Bibliothek - Konsolidierte Entwicklungs-Roadmap
 
-Diese Roadmap beschreibt die geplanten Entwicklungsschritte für die Smolitux UI Bibliothek.
+Diese Roadmap beschreibt den umfassenden Plan zur Weiterentwicklung und Fertigstellung der Smolitux UI Bibliothek. Sie basiert auf einer gründlichen Analyse des aktuellen Zustands und enthält eine priorisierte Liste von Aufgaben sowie einen detaillierten Zeitplan für die Umsetzung.
 
-## Aktuelle Version: 0.1.0 (Alpha)
+## Inhaltsverzeichnis
 
-Die aktuelle Version befindet sich in der Alpha-Phase und enthält die grundlegenden Komponenten und Funktionen.
+1. [Analyse des aktuellen Zustands](#1-analyse-des-aktuellen-zustands)
+2. [Priorisierte Aufgabenliste](#2-priorisierte-aufgabenliste)
+3. [Phasen und Meilensteine](#3-phasen-und-meilensteine)
+4. [Detaillierter Implementierungsplan](#4-detaillierter-implementierungsplan)
+5. [Ressourcenbedarf und Risikomanagement](#5-ressourcenbedarf-und-risikomanagement)
+6. [Nächste Schritte](#6-nächste-schritte)
+7. [Referenzdokumente](#7-referenzdokumente)
 
-## Kurzfristige Ziele (Q2 2025)
+## 1. Analyse des aktuellen Zustands
 
-### Komponenten-Vervollständigung
+### 1.1 Projektstruktur
 
-- [x] Grundlegende Komponenten (Button, Input, Card, etc.)
-- [x] Formular-Komponenten (Checkbox, Radio, Select, etc.)
-- [x] Layout-Komponenten (Container, Flex, Grid)
-- [x] Feedback-Komponenten (Toast, Spinner, Progress)
-- [x] Navigation-Komponenten (Tabs, Breadcrumb, Pagination)
-- [x] Daten-Komponenten (Table, List, DataGrid)
+Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages/@smolitux/` organisiert:
 
-### Dokumentation
+- **core**: Grundlegende UI-Komponenten (Button, Input, Card, etc.)
+- **theme**: Theming und Styling
+- **layout**: Layout-Komponenten (Container, Grid, Flexbox, etc.)
+- **charts**: Diagramm-Komponenten (in Entwicklung)
+- **utils**: Hilfsfunktionen
+- Weitere Pakete: ai, blockchain, community, federation, media, resonance
 
-- [x] API-Referenz für alle Komponenten
-- [x] Interaktive Beispiele
-- [x] Storybook-Integration
-- [x] Nutzungsrichtlinien und Best Practices
+### 1.2 Entwicklungsstand
 
-### Tests
+- **Komponenten**: Viele Komponenten sind bereits angelegt, aber einige sind unvollständig oder benötigen Verbesserungen
+- **Tests**: Die Testinfrastruktur ist definiert, aber viele Tests schlagen fehl (531 von 1254 Tests)
+- **Dokumentation**: Storybook ist eingerichtet, aber es gibt Konfigurationsprobleme
+- **Barrierefreiheit**: Muss für alle Komponenten überprüft und verbessert werden
 
-- [x] Unit-Tests für Kernkomponenten
-- [x] Snapshot-Tests für alle Komponenten
-- [x] Integrationstests
-- [x] Visuelle Regressionstests
+### 1.3 Identifizierte Probleme
 
-## Mittelfristige Ziele (Q3-Q4 2025)
+- Storybook-Konfiguration hat Fehler (fehlende Abhängigkeiten)
+- Viele Tests schlagen fehl oder fehlen
+- Einige Komponenten haben Implementierungslücken
+- Die Testabdeckung ist unzureichend
+- Es fehlt eine vollständige CI/CD-Integration
+- Build-Prozess hat Optimierungsbedarf
 
-### Erweiterte Funktionen
+### 1.4 Stärken und Schwächen
 
-- [x] Animationen und Übergänge
-- [x] Erweiterte Formularvalidierung
-- [x] Internationalisierung (i18n)
-- [ ] Barrierefreiheit (a11y) Verbesserungen
-- [ ] Mobile-First Optimierungen
+#### Stärken
+- Umfangreiche Komponentensammlung mit vielen bereits angelegten Komponenten
+- Gut strukturiertes Monorepo mit klarer Paketaufteilung
+- Vorhandene Testinfrastruktur und Dokumentationsansätze
+- Moderne Technologien (React 18+, TypeScript, Jest, Storybook)
 
-### Erweiterungen
+#### Schwächen
+- Viele Tests schlagen fehl
+- Storybook-Konfiguration hat Probleme
+- Einige Komponenten sind unvollständig oder benötigen Verbesserungen
+- Die Testabdeckung ist unzureichend
+- Es fehlt eine vollständige CI/CD-Integration
 
-- [x] Datums- und Zeitauswahl-Komponenten
-- [ ] Erweiterte Chart-Komponenten
-- [ ] Drag-and-Drop-Funktionalität
-- [ ] Virtualisierte Listen und Tabellen
-- [ ] Erweiterte Theming-Optionen
+## 2. Priorisierte Aufgabenliste
 
-### Tooling
+### 2.1 Zu vervollständigende Komponenten
 
-- [ ] CLI für Komponenten-Generierung
-- [ ] Design-Token-System
-- [ ] Theme-Builder
-- [ ] Performance-Monitoring
+#### Hohe Priorität
+- Button (Verbesserung der Barrierefreiheit und Behebung von Testfehlern)
+- Input (Vervollständigung und Testabdeckung)
+- Select (Vervollständigung und Testabdeckung)
+- Card (Vervollständigung und Testabdeckung)
+- Modal (Vervollständigung und Testabdeckung)
 
-## Langfristige Ziele (2026+)
+#### Mittlere Priorität
+- TabView (Erweiterung mit onChange-Prop)
+- Form-Komponenten (FormControl, FormField)
+- Alert (Vervollständigung)
+- Badge (Vervollständigung)
+- Dropdown (Vervollständigung)
 
-### Ökosystem-Erweiterung
+#### Niedrige Priorität
+- Spezialkomponenten (FileUpload, MediaPlayer)
+- Dekorative Komponenten (Divider, Skeleton)
+- Selten genutzte Variationen
 
-- [ ] Headless-Komponenten
-- [ ] Server-Komponenten für Next.js
-- [ ] Mobile-Komponenten (React Native)
-- [ ] Enterprise-Komponenten (Dashboards, Analytics)
+### 2.2 Zu überarbeitende Komponenten
 
-### Integration
+- Button (Behebung von Testfehlern und Verbesserung der Barrierefreiheit)
+- TabView (Erweiterung mit onChange-Prop)
+- Flex/Grid (Konsistente API)
+- Theme-Provider (Verbesserung der Typensicherheit)
 
-- [ ] Design-System-Integration
-- [ ] CMS-Integration
-- [ ] Backend-Integration
-- [ ] AI-gestützte Komponenten
+### 2.3 Fehlende Features
 
-### Community
+- Vollständige Unterstützung für Dark Mode
+- Responsives Design für alle Komponenten
+- Internationalisierung (i18n)
+- Barrierefreiheit (WCAG 2.1 AA)
+- Konsistente Fehlerbehandlung
 
-- [ ] Open-Source-Beiträge
-- [ ] Plugin-System
-- [ ] Community-Templates
-- [ ] Marketplace für Erweiterungen
+### 2.4 Durchzuführende Tests
 
-## Aktuelle Prioritäten
+- Unit-Tests für Basiskomponenten
+- Integrationstests für komplexe Komponenten
+- Spezielle Komponententests
+- Visuelle Tests
+- Browserkompatibilitätstests
+- CI/CD-Integration
 
-1. **Komponenten-Vervollständigung**: Alle geplanten Komponenten implementieren und testen
-2. **Dokumentation verbessern**: Vollständige API-Referenz und Beispiele für alle Komponenten
-3. **Testabdeckung erhöhen**: Unit- und Snapshot-Tests für alle Komponenten
-4. **Performance-Optimierung**: Komponenten mit useMemo und useCallback optimieren
-5. **Barrierefreiheit**: ARIA-Attribute und Keyboard-Navigation für alle Komponenten
+### 2.5 Build-Prozess-Optimierungen
 
-## Meilensteine
+- Lerna-Konfiguration aktualisieren
+- Problematische Abhängigkeiten entfernen oder isolieren
+- TypeScript-Konfiguration korrigieren
+- Modulare Build-Pipeline einrichten
+- Verbesserte Fehlerbehandlung
+
+## 3. Phasen und Meilensteine
+
+### Phase 1: Stabilisierung (Woche 1-2)
+- Testinfrastruktur reparieren
+- Entwicklungsumgebung optimieren
+- Storybook-Konfiguration reparieren
+- CI/CD-Pipeline vorbereiten
+
+### Phase 2: Kernkomponenten (Woche 3-6)
+- Button-Komponente verbessern
+- Input-Komponente vervollständigen
+- Select-Komponente vervollständigen
+- Card-Komponente vervollständigen
+- Modal-Komponente vervollständigen
+
+### Phase 3: Layout-Komponenten (Woche 7-8)
+- Container-Komponente verbessern
+- Grid-Komponente verbessern
+- Flexbox-Komponente verbessern
+- Sidebar-Komponente verbessern
+
+### Phase 4: Diagramm-Komponenten (Woche 9-10)
+- LineChart-Komponente verbessern
+- BarChart-Komponente verbessern
+- PieChart-Komponente verbessern
+- AreaChart-Komponente verbessern
+
+### Phase 5: Testdurchführung (Woche 11-14)
+- Unit-Tests durchführen
+- Integrationstests durchführen
+- Spezielle Komponententests durchführen
+- Visuelle Tests durchführen
+- Browserkompatibilitätstests durchführen
+- CI/CD-Integration abschließen
+
+### Phase 6: Dokumentation und Finalisierung (Woche 15-16)
+- Komponentendokumentation vervollständigen
+- Storybook-Dokumentation vervollständigen
+- API-Dokumentation vervollständigen
+- Version 1.0.0 vorbereiten
+
+### Meilensteine
 
 | Meilenstein | Beschreibung | Geplantes Datum |
 |-------------|--------------|-----------------|
-| Alpha Release | Grundlegende Komponenten und Funktionen | Q1 2025 ✓ |
-| Beta Release | Vollständige Komponenten-Suite mit Tests | Q3 2025 |
-| RC Release | Vollständige Dokumentation und Optimierungen | Q4 2025 |
-| 1.0 Release | Stabile Version mit allen geplanten Funktionen | Q1 2026 |
+| M1: Infrastruktur | Grundlegende Infrastruktur repariert | Ende Woche 2 |
+| M2: Kernkomponenten | Kernkomponenten vervollständigt | Ende Woche 6 |
+| M3: Layout | Layout-Komponenten vervollständigt | Ende Woche 8 |
+| M4: Diagramme | Diagramm-Komponenten vervollständigt | Ende Woche 10 |
+| M5: Tests | Alle Tests durchgeführt | Ende Woche 14 |
+| M6: Dokumentation | Dokumentation vervollständigt | Ende Woche 16 |
+| M7: Release 1.0.0 | Stabile Version veröffentlicht | Ende Woche 16 |
+
+## 4. Detaillierter Implementierungsplan
+
+### 4.1 Phase 1: Grundlegende Infrastruktur
+
+#### 4.1.1 Testinfrastruktur einrichten
+- Jest-Konfiguration korrigieren
+- Fehlende Abhängigkeiten installieren
+- Jest-Setup-Datei aktualisieren
+- Mock-Dateien erstellen
+
+#### 4.1.2 Storybook-Konfiguration reparieren
+- Storybook-Konfiguration aktualisieren
+- Fehlende Abhängigkeiten installieren
+- Storybook testen
+
+#### 4.1.3 CI/CD-Pipeline vorbereiten
+- GitHub Actions-Workflow erstellen
+- Linting-Workflow erstellen
+- Build-Prozess automatisieren
+
+#### 4.1.4 Entwicklungsumgebung optimieren
+- ESLint-Konfiguration aktualisieren
+- Prettier-Konfiguration aktualisieren
+- Build-Skripte optimieren
+
+### 4.2 Phase 2: Kernkomponenten
+
+#### 4.2.1 Button-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.2.2 Input-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.2.3 Select-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.2.4 Card-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.2.5 Modal-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+### 4.3 Phase 3: Layout-Komponenten
+
+#### 4.3.1 Container-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.3.2 Grid-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.3.3 Flexbox-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.3.4 Sidebar-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+### 4.4 Phase 4: Diagramm-Komponenten
+
+#### 4.4.1 LineChart-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.4.2 BarChart-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.4.3 PieChart-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+#### 4.4.4 AreaChart-Komponente
+- Analyse der aktuellen Implementierung
+- Verbesserung der Implementierung
+- Tests vervollständigen
+- Storybook-Story aktualisieren
+
+### 4.5 Phase 5: Testdurchführung
+
+#### 4.5.1 Unit-Tests
+- Analyse der aktuellen Tests
+- Behebung fehlgeschlagener Tests
+- Implementierung fehlender Tests
+- Ausführung der Tests
+
+#### 4.5.2 Integrationstests
+- Analyse der aktuellen Tests
+- Behebung fehlgeschlagener Tests
+- Implementierung fehlender Tests
+- Ausführung der Tests
+
+#### 4.5.3 Spezielle Komponententests
+- Analyse der aktuellen Tests
+- Behebung fehlgeschlagener Tests
+- Implementierung fehlender Tests
+- Ausführung der Tests
+
+#### 4.5.4 Visuelle Tests
+- Einrichtung von Storybook
+- Implementierung visueller Tests
+- Durchführung visueller Tests
+
+#### 4.5.5 Browserkompatibilitätstests
+- Einrichtung von Playwright
+- Implementierung von Browserkompatibilitätstests
+- Durchführung von Browserkompatibilitätstests
+
+#### 4.5.6 CI/CD-Integration
+- Aktualisierung der GitHub Actions-Workflows
+- Einrichtung von automatisierten Releases
+
+### 4.6 Phase 6: Dokumentation
+
+#### 4.6.1 Komponentendokumentation
+- Analyse der aktuellen Dokumentation
+- Aktualisierung der Dokumentation
+- Erstellung fehlender Dokumentation
+
+#### 4.6.2 Storybook-Dokumentation
+- Analyse der aktuellen Stories
+- Aktualisierung der Stories
+- Erstellung fehlender Stories
+
+#### 4.6.3 API-Dokumentation
+- Analyse der aktuellen API-Dokumentation
+- Aktualisierung der API-Dokumentation
+- Erstellung fehlender API-Dokumentation
+
+## 5. Ressourcenbedarf und Risikomanagement
+
+### 5.1 Ressourcenbedarf
+
+Für die Umsetzung des Plans werden folgende Ressourcen benötigt:
+
+- **Entwickler**: 1-2 Entwickler mit Erfahrung in React, TypeScript und Komponententests
+- **Zeit**: 16 Wochen für die vollständige Umsetzung
+- **Tools**: Jest, Storybook, Playwright, GitHub Actions
+
+### 5.2 Risikomanagement
+
+| Risiko | Wahrscheinlichkeit | Auswirkung | Abhilfemaßnahme |
+|--------|-------------------|------------|-----------------|
+| Zu viele fehlgeschlagene Tests | Hoch | Mittel | Schrittweise Behebung, Priorisierung nach Komponenten |
+| Storybook-Konfigurationsprobleme | Mittel | Niedrig | Alternative Konfiguration verwenden, auf ältere Version zurückgreifen |
+| Unvollständige Komponenten | Hoch | Hoch | Klare Prioritäten setzen, mit Kernkomponenten beginnen |
+| Browserkompatibilitätsprobleme | Mittel | Mittel | Frühzeitige Tests, browserübergreifende Lösungen implementieren |
+| Zeitüberschreitung | Mittel | Hoch | Regelmäßige Fortschrittsüberprüfung, Anpassung des Plans bei Bedarf |
+
+## 6. Nächste Schritte
+
+Die unmittelbar nächsten Schritte sind:
+
+1. **Testinfrastruktur reparieren**
+   - Jest-Konfiguration korrigieren
+   - Fehlende Abhängigkeiten installieren
+   - Fehlerhafte Tests identifizieren
+
+2. **Storybook-Konfiguration reparieren**
+   - Fehlende Abhängigkeiten installieren
+   - Konfigurationsprobleme beheben
+
+3. **Mit der Verbesserung der Kernkomponenten beginnen**
+   - Button-Komponente verbessern
+   - Input-Komponente vervollständigen
+
+## 7. Referenzdokumente
+
+Für detailliertere Informationen zu bestimmten Aspekten des Plans siehe die folgenden Dokumente:
+
+- **[Schritt-für-Schritt-Anleitung](./roadmap/step-by-step-guide.md)**: Detaillierte Anweisungen zur Umsetzung jedes Schritts
+- **[Implementierungsplan](./roadmap/implementation-plan.md)**: Vollständiger Implementierungsplan mit allen Details
+- **[Zusammenfassung](./roadmap/summary.md)**: Kurze Zusammenfassung der wichtigsten Punkte
