@@ -232,6 +232,7 @@ Wir freuen uns über Beiträge zur smolitux UI Bibliothek! Bitte beachten Sie fo
 ## 📋 ToDo-Liste
 
 - [x] Button-Komponente mit zusätzlichen Varianten (solid, outline) erweitern
+- [x] Button-Komponente für bessere Barrierefreiheit optimieren
 - [x] TabView-Komponente mit onChange-Prop für bessere Kompatibilität erweitern
 - [ ] Weitere Kern-Komponenten implementieren
 - [ ] Diagramm-Bibliothek ausbauen
