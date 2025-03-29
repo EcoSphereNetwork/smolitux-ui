@@ -13,7 +13,8 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 5. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
 6. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen
 7. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung
-6. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
+8. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
+9. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
 
 ## Noch zu verbessernde Komponenten
 
@@ -56,9 +57,8 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 33. **Table** - Benötigt ARIA-Attribute, Tastaturnavigation
 34. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
 35. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-34. **Toast** - Benötigt ARIA-Attribute, Screenreader-Ankündigungen
-35. **Tooltip** - Benötigt ARIA-Attribute, Tastaturaktivierung
-38. **Zoom** - Benötigt ARIA-Attribute für Animation
+36. **Tooltip** - Benötigt ARIA-Attribute, Tastaturaktivierung
+37. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Prioritäten für die nächsten Verbesserungen
 
@@ -76,7 +76,7 @@ Basierend auf der Häufigkeit der Verwendung und der Wichtigkeit für die Barrie
 2. **Menu** - Wichtig für Navigation
 3. **Breadcrumb** - Wichtig für Navigation
 4. **Alert** - Wichtig für Benachrichtigungen
-5. **Toast** - Wichtig für Benachrichtigungen
+
 
 ### Niedrige Priorität
 1. **Animationskomponenten** (Fade, Slide, Zoom)
