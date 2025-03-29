@@ -45,6 +45,7 @@ Deine Aufgaben
     Aktualisiere oder vervollständige die Komponentendokumentation
     Dokumentiere deine Entscheidungen und Implementierungsdetails
     Sorge für aussagekräftige JSDoc-Kommentare im Code
+    Achte auf die Einhaltung der bestehenden Ordnerstruktur der Docs
 
 Workflow
 
