@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Select } from './Select';
-import { Option } from './Option';
+import { Select } from '../Select';
 
 describe('Select', () => {
   const options = [
@@ -12,94 +11,80 @@ describe('Select', () => {
 
   it('renders correctly with default props', () => {
     render(
-      <Select>
-        {options.map(option => (
-          <Option key={option.value} value={option.value}>{option.label}</Option>
-        ))}
-      </Select>
+      <Select options={options} />
     );
     
-    const select = screen.getByRole('combobox');
+    const select = screen.getByTestId('select-element');
     expect(select).toBeInTheDocument();
-    
-    // Options should not be visible initially
-    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
-    expect(screen.queryByText('Option 2')).not.toBeInTheDocument();
-    expect(screen.queryByText('Option 3')).not.toBeInTheDocument();
+    expect(select).toHaveAttribute('role', 'combobox');
   });
 
-  it('displays options when clicked', () => {
+  it('has proper ARIA attributes', () => {
     render(
-      <Select>
-        {options.map(option => (
-          <Option key={option.value} value={option.value}>{option.label}</Option>
-        ))}
-      </Select>
+      <Select 
+        options={options} 
+        label="Test Label" 
+        required={true}
+        error="Error message"
+      />
     );
     
-    const select = screen.getByRole('combobox');
-    fireEvent.click(select);
+    const select = screen.getByTestId('select-element');
+    expect(select).toHaveAttribute('aria-labelledby');
+    expect(select).toHaveAttribute('aria-required', 'true');
+    expect(select).toHaveAttribute('aria-invalid', 'true');
+    expect(select).toHaveAttribute('aria-describedby');
+    expect(select).toHaveAttribute('aria-haspopup', 'listbox');
     
-    // Options should be visible after click
-    expect(screen.getByText('Option 1')).toBeInTheDocument();
-    expect(screen.getByText('Option 2')).toBeInTheDocument();
-    expect(screen.getByText('Option 3')).toBeInTheDocument();
+    // Check for error message with proper role
+    const errorMessage = screen.getByText('Error message');
+    expect(errorMessage).toHaveAttribute('role', 'alert');
+    expect(errorMessage).toHaveAttribute('aria-live', 'assertive');
   });
 
-  it('selects an option when clicked', () => {
-    render(
-      <Select>
-        {options.map(option => (
-          <Option key={option.value} value={option.value}>{option.label}</Option>
-        ))}
-      </Select>
-    );
-    
-    const select = screen.getByRole('combobox');
-    fireEvent.click(select);
-    
-    const option2 = screen.getByText('Option 2');
-    fireEvent.click(option2);
-    
-    // Select should display the selected option
-    expect(select).toHaveTextContent('Option 2');
-    
-    // Options should be hidden after selection
-    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
-    expect(screen.queryByText('Option 3')).not.toBeInTheDocument();
-  });
-
-  it('calls onChange when an option is selected', () => {
+  it('handles selection changes', () => {
     const handleChange = jest.fn();
     render(
-      <Select onChange={handleChange}>
-        {options.map(option => (
-          <Option key={option.value} value={option.value}>{option.label}</Option>
-        ))}
-      </Select>
+      <Select 
+        options={options} 
+        onChange={handleChange}
+      />
     );
     
-    const select = screen.getByRole('combobox');
-    fireEvent.click(select);
-    
-    const option3 = screen.getByText('Option 3');
-    fireEvent.click(option3);
+    const select = screen.getByTestId('select-element');
+    fireEvent.change(select, { target: { value: 'option2' } });
     
     expect(handleChange).toHaveBeenCalledTimes(1);
-    expect(handleChange).toHaveBeenCalledWith(expect.any(Object), 'option3');
+  });
+
+  it('supports helper text with proper ARIA attributes', () => {
+    render(
+      <Select 
+        options={options} 
+        helperText="This is helper text"
+      />
+    );
+    
+    const helperText = screen.getByText('This is helper text');
+    expect(helperText).toBeInTheDocument();
+    expect(helperText).toHaveAttribute('aria-live', 'polite');
+    
+    const select = screen.getByTestId('select-element');
+    const describedBy = select.getAttribute('aria-describedby');
+    expect(describedBy).toContain('helper');
+    expect(describedBy).toContain('instructions');
   });
 
   it('renders with placeholder text', () => {
     render(
-      <Select placeholder="Select an option">
-        {options.map(option => (
-          <Option key={option.value} value={option.value}>{option.label}</Option>
-        ))}
-      </Select>
+      <Select 
+        options={options}
+        placeholder="Select an option"
+      />
     );
     
-    const select = screen.getByRole('combobox');
-    expect(select).toHaveTextContent('Select an option');
+    const placeholderOption = screen.getByText('Select an option');
+    expect(placeholderOption).toBeInTheDocument();
   });
 
   it('renders with default value', () => {
