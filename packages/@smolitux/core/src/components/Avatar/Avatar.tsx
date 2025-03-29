@@ -138,8 +138,43 @@ export const Avatar: React.FC<AvatarProps> = ({
     className
   ].join(' ');
   
+  // Generiere eine eindeutige ID für ARIA-Attribute
+  const avatarId = `avatar-${Math.random().toString(36).substr(2, 9)}`;
+  
+  // Bestimme den richtigen ARIA-Label-Text
+  const getAriaLabel = () => {
+    if (alt && alt !== 'Avatar') return alt;
+    if (name) return `Avatar von ${name}`;
+    return 'Avatar';
+  };
+  
+  // Bestimme den Status-Text für Screenreader
+  const getStatusText = () => {
+    if (!status) return null;
+    
+    const statusMap: Record<string, string> = {
+      online: 'Online',
+      offline: 'Offline',
+      away: 'Abwesend',
+      busy: 'Beschäftigt'
+    };
+    
+    return statusMap[status] || status;
+  };
+  
   return (
-    <div className={avatarClasses} style={groupStyles} {...rest}>
+    <div 
+      className={avatarClasses} 
+      style={groupStyles} 
+      role="img"
+      aria-label={getAriaLabel()}
+      id={avatarId}
+      data-testid="avatar"
+      data-size={size}
+      data-shape={shape}
+      data-status={status}
+      {...rest}
+    >
       {/* Custom Component */}
       {customComponent && (
         <div className="w-full h-full">{customComponent}</div>
@@ -152,14 +187,24 @@ export const Avatar: React.FC<AvatarProps> = ({
           alt={alt} 
           className="h-full w-full object-cover" 
           onError={() => setImgError(true)}
+          aria-hidden="true" // Das Bild ist dekorativ, da wir bereits ein aria-label auf dem Container haben
         />
       )}
       
       {/* Fallback: Initialen oder Platzhalter */}
       {(!src || imgError) && !customComponent && (
-        <div className={`h-full w-full flex items-center justify-center text-white ${getBackgroundColor()}`}>
+        <div 
+          className={`h-full w-full flex items-center justify-center text-white ${getBackgroundColor()}`}
+          aria-hidden="true" // Der Fallback ist dekorativ, da wir bereits ein aria-label auf dem Container haben
+        >
           {name ? getInitials() : (
-            <svg className="h-1/2 w-1/2 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+            <svg 
+              className="h-1/2 w-1/2 text-gray-300 dark:text-gray-500" 
+              fill="currentColor" 
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              role="img"
+            >
               <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
             </svg>
           )}
@@ -168,7 +213,13 @@ export const Avatar: React.FC<AvatarProps> = ({
       
       {/* Status-Indikator */}
       {status && (
-        <span className={`absolute bottom-0 right-0 block h-${size === 'xs' || size === 'sm' ? '2' : '3'} w-${size === 'xs' || size === 'sm' ? '2' : '3'} rounded-full ring-2 ring-white dark:ring-gray-800 ${statusClasses[status]}`} />
+        <>
+          <span 
+            className={`absolute bottom-0 right-0 block h-${size === 'xs' || size === 'sm' ? '2' : '3'} w-${size === 'xs' || size === 'sm' ? '2' : '3'} rounded-full ring-2 ring-white dark:ring-gray-800 ${statusClasses[status]}`}
+            aria-hidden="true"
+          />
+          <span className="sr-only" id={`${avatarId}-status`}>Status: {getStatusText()}</span>
+        </>
       )}
     </div>
   );
