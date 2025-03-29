@@ -45,12 +45,12 @@ const config: Config = {
     },
   },
 
-  // Changed from presets to use separate plugin instances for docs
+  // Modified to use plugins completely instead of presets for docs
   presets: [
     [
       'classic',
       {
-        // Removed docs config from here
+        docs: false, // Disable the default docs plugin
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -83,6 +83,7 @@ const config: Config = {
         routeBasePath: 'docs',
         sidebarPath: './sidebars.ts',
         sidebarCollapsible: true,
+        includeCurrentVersion: true, // Make sure this is true
         // Please change this to your repo.
         // Remove this to remove the "edit this page" links.
         editUrl:
@@ -97,6 +98,7 @@ const config: Config = {
         routeBasePath: 'tutorial',
         sidebarPath: './sidebars.ts',
         sidebarCollapsible: true,
+        includeCurrentVersion: true, // Make sure this is true
         // Please change this to your repo.
         // Remove this to remove the "edit this page" links.
         editUrl:
@@ -120,14 +122,14 @@ const config: Config = {
           sidebarId: 'wikiSidebar',
           position: 'left',
           label: 'Wiki',
-          docsPluginId: 'wiki', // Added this line
+          docsPluginId: 'wiki', 
         },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Tutorial',
-          docsPluginId: 'tutorial', // Added this line
+          docsPluginId: 'tutorial',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -158,7 +160,7 @@ const config: Config = {
           items: [
             {
               label: 'Tutorial',
-              to: '/tutorial/intro', // Updated path to match new routeBasePath
+              to: '/tutorial/intro',
             },
           ],
         },
