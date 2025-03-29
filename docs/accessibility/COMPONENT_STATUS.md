@@ -34,19 +34,16 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 2. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
 3. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
 4. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
-5. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-6. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-7. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-8. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
-9. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-10. **Slide** - Benötigt ARIA-Attribute für Animation
-11. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
-12. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-13. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
-14. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-15. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
-16. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-17. **Zoom** - Benötigt ARIA-Attribute für Animation
+5. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+6. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+7. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
+8. **Slide** - Benötigt ARIA-Attribute für Animation
+9. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
+10. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
+11. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+12. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
+13. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+14. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Aktuelle Fortschritte
 
@@ -127,6 +124,48 @@ In der letzten Entwicklungsphase wurden folgende Komponenten verbessert:
    - ✅ Tastaturunterstützung verbessert
    - ✅ Screenreader-Ankündigungen verbessert
    - ✅ Barrierefreie Validierung implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+12. **Menu**
+   - ✅ ARIA-Attribute hinzugefügt (`role="menu"`, `role="menuitem"`, etc.)
+   - ✅ Tastaturnavigation verbessert
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Barrierefreie Untermenüs implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+13. **List**
+   - ✅ ARIA-Attribute hinzugefügt (`role="list"`, `role="listitem"`, etc.)
+   - ✅ Tastaturnavigation verbessert
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Barrierefreie Icons und Aktionen implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+14. **Pagination**
+   - ✅ ARIA-Attribute hinzugefügt (`role="navigation"`, `aria-current="page"`, etc.)
+   - ✅ Tastaturnavigation verbessert
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Barrierefreie Seitenzähler implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+15. **ProgressBar**
+   - ✅ ARIA-Attribute hinzugefügt (`role="progressbar"`, `aria-valuenow`, etc.)
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Barrierefreie Textformate implementiert
+   - ✅ Live-Regionen für Fortschrittsänderungen implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+16. **Spinner**
+   - ✅ ARIA-Attribute hinzugefügt (`role="status"`, `aria-busy`, etc.)
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Live-Regionen für Statusänderungen implementiert
+   - ✅ Barrierefreie Labels implementiert
+   - ✅ Barrierefreiheitstests erstellt
+
+17. **Skeleton**
+   - ✅ ARIA-Attribute hinzugefügt (`role="status"`, `aria-busy`, etc.)
+   - ✅ Screenreader-Ankündigungen verbessert
+   - ✅ Live-Regionen für Statusänderungen implementiert
+   - ✅ Nahtloser Übergang zu geladenen Inhalten implementiert
    - ✅ Barrierefreiheitstests erstellt
 
 ## Nächste Schritte
