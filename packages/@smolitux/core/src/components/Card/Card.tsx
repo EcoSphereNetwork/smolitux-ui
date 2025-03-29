@@ -77,6 +77,28 @@ export const Card: React.FC<CardProps> = ({
     large: 'rounded-xl'
   };
 
+  // Generiere eine eindeutige ID für ARIA-Attribute
+  const cardId = `card-${Math.random().toString(36).substr(2, 9)}`;
+  const headerId = `${cardId}-header`;
+  const contentId = `${cardId}-content`;
+  const footerId = `${cardId}-footer`;
+  
+  // Bestimme die richtige ARIA-Rolle
+  const getAriaRole = () => {
+    // Wenn die Karte klickbar ist (z.B. durch einen onClick-Handler), sollte sie als Button fungieren
+    if (rest.onClick) {
+      return 'button';
+    }
+    
+    // Standardmäßig verwenden wir 'region', um einen abgegrenzten Bereich zu kennzeichnen
+    return 'region';
+  };
+  
+  // Bestimme, ob die Karte fokussierbar sein sollte
+  const shouldBeFocusable = () => {
+    return !!rest.onClick;
+  };
+  
   return (
     <div 
       className={`
@@ -92,11 +114,21 @@ export const Card: React.FC<CardProps> = ({
         width: width,
         height: height
       }}
-      {...rest}
+      id={cardId}
+      role={getAriaRole()}
+      aria-labelledby={title ? headerId : undefined}
+      tabIndex={shouldBeFocusable() ? 0 : undefined}
       data-testid="card"
+      data-variant={variant}
+      data-hoverable={hoverable ? 'true' : undefined}
+      {...rest}
     >
       {title && (
-        <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3" data-testid="card-header">
+        <div 
+          className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3" 
+          data-testid="card-header"
+          id={headerId}
+        >
           <h3 className="font-medium text-gray-900 dark:text-white">{title}</h3>
           {headerAction && (
             <div>{headerAction}</div>
@@ -104,12 +136,20 @@ export const Card: React.FC<CardProps> = ({
         </div>
       )}
       
-      <div data-testid="card-content">
+      <div 
+        data-testid="card-content"
+        id={contentId}
+        className={noPadding ? '' : paddingClasses[padding]}
+      >
         {children}
       </div>
       
       {footer && (
-        <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3" data-testid="card-footer">
+        <div 
+          className="border-t border-gray-200 dark:border-gray-700 px-4 py-3" 
+          data-testid="card-footer"
+          id={footerId}
+        >
           {footer}
         </div>
       )}
