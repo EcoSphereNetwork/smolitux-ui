@@ -12,53 +12,54 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 4. **Breadcrumb** - Verbesserte ARIA-Attribute, Schema.org strukturierte Daten, Tastaturnavigation
 5. **Button** - Verbesserte ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
 6. **DatePicker** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
-7. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
+5. **Dialog** - Verbesserte ARIA-Attribute, Fokus-Management, Screenreader-Unterstützung
 6. **Modal** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, verschiedene Dialog-Typen
 7. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung
 8. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
 9. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+10. **Badge** - Verbesserte ARIA-Attribute, Screenreader-Unterstützung, Status-Ankündigungen
 
 ## Noch zu verbessernde Komponenten
 
 Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert werden:
 
-1. **Badge** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-2. **Card** - Benötigt ARIA-Attribute, Fokussierbarkeit
-3. **Carousel** - Benötigt ARIA-Attribute, Tastaturnavigation, Pause-Funktion
+
+1. **Card** - Benötigt ARIA-Attribute, Fokussierbarkeit
+2. **Carousel** - Benötigt ARIA-Attribute, Tastaturnavigation, Pause-Funktion
 4. **Checkbox** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
 5. **Collapse** - Benötigt ARIA-Attribute, Tastaturnavigation
 6. **ColorPicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
 6. **Drawer** - Benötigt ARIA-Attribute, Fokus-Management
-7. **Dropdown** - Benötigt ARIA-Attribute, Tastaturnavigation
-8. **Fade** - Benötigt ARIA-Attribute für Animation
-9. **FileUpload** - Benötigt ARIA-Attribute, Tastaturunterstützung
-10. **Flex** - Benötigt semantische Struktur
-11. **Form** - Benötigt ARIA-Attribute, Fehlerbehandlung
-12. **FormControl** - Benötigt ARIA-Attribute, Fehlerbehandlung
-13. **FormField** - Benötigt ARIA-Attribute, Fehlerbehandlung
-12. **Input** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
-12. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
-13. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
-14. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
-15. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
-18. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
-19. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
-20. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-21. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-22. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-23. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
-22. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-23. **Slide** - Benötigt ARIA-Attribute für Animation
-24. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
-25. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
-28. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
-29. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
-30. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
-31. **Table** - Benötigt ARIA-Attribute, Tastaturnavigation
-32. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
-33. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-34. **Tooltip** - Benötigt ARIA-Attribute, Tastaturaktivierung
-35. **Zoom** - Benötigt ARIA-Attribute für Animation
+5. **Dropdown** - Benötigt ARIA-Attribute, Tastaturnavigation
+6. **Fade** - Benötigt ARIA-Attribute für Animation
+7. **FileUpload** - Benötigt ARIA-Attribute, Tastaturunterstützung
+8. **Flex** - Benötigt semantische Struktur
+9. **Form** - Benötigt ARIA-Attribute, Fehlerbehandlung
+10. **FormControl** - Benötigt ARIA-Attribute, Fehlerbehandlung
+11. **FormField** - Benötigt ARIA-Attribute, Fehlerbehandlung
+10. **Input** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
+10. **LanguageSwitcher** - Benötigt ARIA-Attribute, Tastaturnavigation
+11. **List** - Benötigt ARIA-Attribute, Tastaturnavigation
+12. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
+13. **Menu** - Benötigt ARIA-Attribute, Tastaturnavigation
+14. **Pagination** - Benötigt ARIA-Attribute, Tastaturnavigation
+15. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
+18. **ProgressBar** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+19. **Radio** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+20. **RadioGroup** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+21. **Select** - Benötigt ARIA-Attribute, Tastaturnavigation
+20. **Skeleton** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+21. **Slide** - Benötigt ARIA-Attribute für Animation
+22. **Slider** - Benötigt ARIA-Attribute, Tastatursteuerung
+23. **Spinner** - Benötigt ARIA-Attribute, Screenreader-Unterstützung
+24. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
+25. **Switch** - Benötigt verbesserte ARIA-Attribute, Tastaturunterstützung
+28. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
+29. **Table** - Benötigt ARIA-Attribute, Tastaturnavigation
+30. **TextArea/Textarea** - Benötigt verbesserte ARIA-Attribute, Fehlerbehandlung
+31. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+32. **Tooltip** - Benötigt ARIA-Attribute, Tastaturaktivierung
+33. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Prioritäten für die nächsten Verbesserungen
 
@@ -85,9 +86,9 @@ Basierend auf der Häufigkeit der Verwendung und der Wichtigkeit für die Barrie
 
 ## Nächste Schritte
 
-1. Implementierung der Barrierefreiheitsverbesserungen für die Komponenten mit mittlerer Priorität
-2. Implementierung der Barrierefreiheitsverbesserungen für die Komponenten mit niedriger Priorität
-3. Dokumentation der Barrierefreiheitsfunktionen für alle verbesserten Komponenten
+1. Implementierung der Barrierefreiheitsverbesserungen für alle Komponenten 
+2. 
+3. 
 4. Erstellung von Barrierefreiheitstests für alle verbesserten Komponenten
 
 ## Allgemeine Verbesserungen
