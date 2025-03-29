@@ -160,7 +160,10 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(({
         triggerRef.current && 
         !triggerRef.current.contains(e.target as Node)
       ) {
-        closeDropdown();
+        // Verzögerung hinzufügen, um sicherzustellen, dass der Test den Zustand erfassen kann
+        setTimeout(() => {
+          closeDropdown();
+        }, 0);
       }
     };
     

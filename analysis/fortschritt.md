@@ -47,13 +47,17 @@
   - Barrierefreiheits-Attribute hinzugefügt
   - Verzögerungslogik verbessert
   - Tests angepasst und erfolgreich durchgeführt
+- [x] Dropdown-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute korrigiert
+  - Event-Handling verbessert
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Dropdown-Komponente testen und verbessern
 - [ ] Accordion-Komponente testen und verbessern
+- [ ] Pagination-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 
