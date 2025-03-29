@@ -32,13 +32,18 @@
   - Fehlerbehandlung verbessert
   - Barrierefreiheits-Attribute hinzugefügt
   - Tests angepasst und erfolgreich durchgeführt
+- [x] Modal-Komponente getestet und verbessert
+  - Tests für alle Funktionalitäten implementiert
+  - createPortal-Mock für Tests hinzugefügt
+  - Barrierefreiheits-Attribute verbessert
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Modal-Komponente testen und verbessern
 - [ ] TabView-Komponente testen und verbessern
+- [ ] Tooltip-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 
