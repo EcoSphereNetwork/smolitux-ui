@@ -162,6 +162,27 @@ Die folgenden Komponenten wurden hinsichtlich Barrierefreiheit verbessert:
 - ✅ Barrierefreie Wertformatierung implementiert
 - ✅ Barrierefreiheitstests erstellt
 
+### 23. Stepper
+- ✅ ARIA-Attribute hinzugefügt (`role="group"`, `aria-current`, etc.)
+- ✅ Tastaturnavigation verbessert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Barrierefreie Zustände implementiert
+- ✅ Barrierefreiheitstests erstellt
+
+### 24. TabView
+- ✅ ARIA-Attribute hinzugefügt (`role="tablist"`, `role="tab"`, etc.)
+- ✅ Tastaturnavigation verbessert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Fokus-Management implementiert
+- ✅ Barrierefreiheitstests erstellt
+
+### 25. TimePicker
+- ✅ ARIA-Attribute hinzugefügt (`aria-haspopup`, `aria-expanded`, etc.)
+- ✅ Tastaturnavigation verbessert
+- ✅ Screenreader-Ankündigungen verbessert
+- ✅ Barrierefreie Zeitauswahl implementiert
+- ✅ Barrierefreiheitstests erstellt
+
 ## Noch zu verbessern
 
 Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert werden:
@@ -171,10 +192,7 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 3. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
 4. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
 5. **Slide** - Benötigt ARIA-Attribute für Animation
-6. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
-7. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
-8. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-9. **Zoom** - Benötigt ARIA-Attribute für Animation
+6. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Allgemeine Verbesserungen
 

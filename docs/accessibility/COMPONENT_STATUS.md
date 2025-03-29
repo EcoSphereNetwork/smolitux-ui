@@ -25,11 +25,14 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 17. **RadioGroup** - Verbesserte ARIA-Attribute, Tastaturnavigation, Live-Regionen, Screenreader-Unterstützung
 18. **Select** - Verbesserte ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung, Optionsgruppen
 19. **Slider** - Verbesserte ARIA-Attribute, Tastatursteuerung, Wertformatierung, Screenreader-Ankündigungen
-20. **Switch** - Verbesserte ARIA-Attribute, Tastaturunterstützung, Screenreader-Ankündigungen, Zustandsänderungen
-21. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung, Filterung, Suche, Zeilenauswahl
-22. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
-23. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
-24. **Tooltip** - Verbesserte ARIA-Attribute, erweiterte Platzierungsoptionen, Tastaturaktivierung
+20. **Stepper** - Verbesserte ARIA-Attribute, Tastaturnavigation, Screenreader-Ankündigungen, Barrierefreie Zustände
+21. **Switch** - Verbesserte ARIA-Attribute, Tastaturunterstützung, Screenreader-Ankündigungen, Zustandsänderungen
+22. **TabView** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management, Screenreader-Unterstützung
+23. **Table** - Verbesserte ARIA-Attribute, Tastaturnavigation, Sortierung, Paginierung, Filterung, Suche, Zeilenauswahl
+24. **Tabs** - Verbesserte ARIA-Attribute, Tastaturnavigation, Fokus-Management
+25. **TimePicker** - Verbesserte ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung, Barrierefreie Zeitauswahl
+26. **Toast** - Verbesserte ARIA-Attribute, Screenreader-Ankündigungen, Tastaturnavigation
+27. **Tooltip** - Verbesserte ARIA-Attribute, erweiterte Platzierungsoptionen, Tastaturaktivierung
 
 ## Noch zu verbessernde Komponenten
 
@@ -40,10 +43,7 @@ Die folgenden Komponenten müssen noch hinsichtlich Barrierefreiheit verbessert 
 3. **MediaPlayer** - Benötigt ARIA-Attribute, Tastatursteuerung, Untertitel
 4. **Popover** - Benötigt ARIA-Attribute, Fokus-Management
 5. **Slide** - Benötigt ARIA-Attribute für Animation
-6. **Stepper** - Benötigt ARIA-Attribute, Tastaturnavigation
-7. **TabView** - Benötigt ARIA-Attribute, Tastaturnavigation
-8. **TimePicker** - Benötigt ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-9. **Zoom** - Benötigt ARIA-Attribute für Animation
+6. **Zoom** - Benötigt ARIA-Attribute für Animation
 
 ## Aktuelle Fortschritte
 
