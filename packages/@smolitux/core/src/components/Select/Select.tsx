@@ -296,20 +296,25 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
       title={option.description}
       data-icon={showOptionIcons && option.icon ? 'true' : undefined}
       data-description={showOptionDescription && option.description ? option.description : undefined}
+      aria-selected={props.value === option.value}
+      role="option"
     >
       {option.label}
+      {option.disabled && <span className="sr-only"> (nicht verfügbar)</span>}
     </option>
   );
   
   return (
-    <div className={`${fullWidth ? 'w-full' : ''} ${containerClassName}`} title={tooltip}>
+    <div className={`${fullWidth ? 'w-full' : ''} ${containerClassName}`} title={tooltip} data-testid="select-container">
       {label && (
         <label 
+          id={`${uniqueId}-label`}
           htmlFor={uniqueId} 
           className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 ${labelClassName}`}
         >
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
+          {required && <span className="sr-only">(Erforderlich)</span>}
         </label>
       )}
       
@@ -328,18 +333,24 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
           className={selectClasses}
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={
-            error 
-              ? `${uniqueId}-error` 
-              : helperText 
-                ? `${uniqueId}-helper` 
-                : undefined
+            [
+              error ? `${uniqueId}-error` : null,
+              helperText && !error ? `${uniqueId}-helper` : null,
+              `${uniqueId}-instructions`
+            ].filter(Boolean).join(' ') || undefined
           }
           aria-required={required}
           aria-disabled={disabled}
           aria-readonly={readOnly}
+          aria-label={!label ? props['aria-label'] || 'Select' : undefined}
+          aria-labelledby={label ? uniqueId + '-label' : undefined}
+          aria-expanded={isFocused}
+          aria-haspopup="listbox"
+          role="combobox"
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
+          data-testid="select-element"
           {...props}
         >
           {placeholder && (
@@ -374,6 +385,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
               id={`${uniqueId}-error`} 
               className={`text-red-600 dark:text-red-400 ${errorClassName}`}
               role="alert"
+              aria-live="assertive"
             >
               {error}
             </p>
@@ -381,12 +393,18 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
             <p 
               id={`${uniqueId}-helper`} 
               className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
+              aria-live="polite"
             >
               {helperText}
             </p>
           ) : null}
         </div>
       )}
+      
+      {/* Screenreader-Anweisungen für bessere Barrierefreiheit */}
+      <div className="sr-only" aria-live="polite" id={`${uniqueId}-instructions`}>
+        Drücken Sie die Pfeiltasten, um durch die Optionen zu navigieren, und Enter, um eine Option auszuwählen.
+      </div>
     </div>
   );
 });

@@ -8,53 +8,52 @@ describe('Button', () => {
     
     const button = screen.getByRole('button', { name: /click me/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('font-medium');
-    expect(button).toHaveClass('bg-primary-600');
-    expect(button).toHaveClass('text-base');
+    expect(button).toHaveClass('btn');
+    expect(button).toHaveClass('btn-primary');
+    expect(button).toHaveClass('btn-md');
   });
 
   it('renders with different variants', () => {
     const { rerender } = render(<Button variant="primary">Primary</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-primary-600');
+    expect(screen.getByRole('button')).toHaveClass('btn-primary');
     
     rerender(<Button variant="secondary">Secondary</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-secondary-600');
+    expect(screen.getByRole('button')).toHaveClass('btn-secondary');
     
     rerender(<Button variant="danger">Danger</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-red-600');
+    expect(screen.getByRole('button')).toHaveClass('btn-danger');
     
     rerender(<Button variant="warning">Warning</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-yellow-600');
+    expect(screen.getByRole('button')).toHaveClass('btn-warning');
     
     rerender(<Button variant="success">Success</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-green-600');
+    expect(screen.getByRole('button')).toHaveClass('btn-success');
     
     rerender(<Button variant="info">Info</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-blue-600');
+    expect(screen.getByRole('button')).toHaveClass('btn-info');
   });
 
   it('renders with different sizes', () => {
     const { rerender } = render(<Button size="xs">Extra Small</Button>);
-    expect(screen.getByRole('button')).toHaveClass('text-xs');
+    expect(screen.getByRole('button')).toHaveClass('btn-xs');
     
     rerender(<Button size="sm">Small</Button>);
-    expect(screen.getByRole('button')).toHaveClass('text-sm');
+    expect(screen.getByRole('button')).toHaveClass('btn-sm');
     
     rerender(<Button size="md">Medium</Button>);
-    expect(screen.getByRole('button')).toHaveClass('text-base');
+    expect(screen.getByRole('button')).toHaveClass('btn-md');
     
     rerender(<Button size="lg">Large</Button>);
-    expect(screen.getByRole('button')).toHaveClass('text-lg');
+    expect(screen.getByRole('button')).toHaveClass('btn-lg');
     
     rerender(<Button size="xl">Extra Large</Button>);
-    expect(screen.getByRole('button')).toHaveClass('text-xl');
+    expect(screen.getByRole('button')).toHaveClass('btn-xl');
   });
 
   it('renders with outline style', () => {
-    render(<Button variant="outline">Outline Button</Button>);
+    render(<Button outline>Outline Button</Button>);
     
-    expect(screen.getByRole('button')).toHaveClass('border');
-    expect(screen.getByRole('button')).toHaveClass('border-gray-300');
+    expect(screen.getByRole('button')).toHaveClass('btn-outline');
   });
 
   it('renders as disabled', () => {
@@ -62,14 +61,13 @@ describe('Button', () => {
     
     const button = screen.getByRole('button');
     expect(button).toBeDisabled();
-    expect(button).toHaveClass('opacity-50');
-    expect(button).toHaveClass('cursor-not-allowed');
+    expect(button).toHaveClass('btn-disabled');
   });
 
   it('renders with full width', () => {
     render(<Button fullWidth>Full Width Button</Button>);
     
-    expect(screen.getByRole('button')).toHaveClass('w-full');
+    expect(screen.getByRole('button')).toHaveClass('btn-full-width');
   });
 
   it('renders with custom className', () => {
@@ -95,6 +93,8 @@ describe('Button', () => {
     );
     
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('left-icon-container')).toBeInTheDocument();
+    expect(screen.getByTestId('left-icon-container')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByText('Search')).toBeInTheDocument();
   });
 
@@ -106,6 +106,8 @@ describe('Button', () => {
     );
     
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('right-icon-container')).toBeInTheDocument();
+    expect(screen.getByTestId('right-icon-container')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByText('Next')).toBeInTheDocument();
   });
 
@@ -145,9 +147,12 @@ describe('Button', () => {
   it('renders as loading state', () => {
     render(<Button isLoading>Loading Button</Button>);
     
-    expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true');
+    expect(screen.getByRole('button')).toHaveClass('btn-loading');
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
-    expect(screen.getByText('Loading Button')).toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByText('- Bitte warten')).toBeInTheDocument();
+    expect(screen.getByText('- Bitte warten')).toHaveClass('sr-only');
+    expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true');
   });
 
   it('renders with different types', () => {
@@ -186,10 +191,51 @@ describe('Button', () => {
     expect(button).toHaveAttribute('aria-expanded', 'false');
     expect(button).toHaveAttribute('aria-controls', 'dialog-1');
   });
-
-  it('renders as a link when isLink is provided', () => {
+  
+  it('renders with dropdown trigger', () => {
     render(
-      <Button isLink href="https://example.com">
+      <Button 
+        isDropdownTrigger
+        aria-expanded={false}
+        aria-controls="dropdown-menu"
+      >
+        Menu
+      </Button>
+    );
+    
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    expect(button).toHaveAttribute('aria-haspopup', 'true');
+    expect(screen.getByTestId('dropdown-icon')).toBeInTheDocument();
+  });
+  
+  it('renders with success state', () => {
+    render(
+      <Button isSuccess>
+        Success
+      </Button>
+    );
+    
+    expect(screen.getByTestId('success-icon')).toBeInTheDocument();
+    expect(screen.getByText('- Erfolgreich')).toBeInTheDocument();
+    expect(screen.getByText('- Erfolgreich')).toHaveClass('sr-only');
+  });
+  
+  it('renders with error state', () => {
+    render(
+      <Button isError>
+        Error
+      </Button>
+    );
+    
+    expect(screen.getByTestId('error-icon')).toBeInTheDocument();
+    expect(screen.getByText('- Fehler aufgetreten')).toBeInTheDocument();
+    expect(screen.getByText('- Fehler aufgetreten')).toHaveClass('sr-only');
+  });
+
+  it('renders as a link when as="a" is provided', () => {
+    render(
+      <Button as="a" href="https://example.com">
         Link Button
       </Button>
     );
@@ -197,6 +243,6 @@ describe('Button', () => {
     const linkButton = screen.getByRole('link', { name: /link button/i });
     expect(linkButton).toBeInTheDocument();
     expect(linkButton).toHaveAttribute('href', 'https://example.com');
-    expect(linkButton).toHaveClass('font-medium');
+    expect(linkButton).toHaveClass('btn');
   });
 });

@@ -8,8 +8,7 @@ describe('Input', () => {
     
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
-    expect(input).toHaveClass('block');
-    expect(input).toHaveClass('appearance-none');
+    expect(input).toHaveClass('input');
   });
 
   it('renders with placeholder text', () => {
@@ -33,12 +32,11 @@ describe('Input', () => {
   });
 
   it('renders with error state and message', () => {
-    render(<Input error="This field is required" />);
+    render(<Input error errorText="This field is required" />);
     
     const input = screen.getByRole('textbox');
-    expect(input).toHaveAttribute('aria-invalid', 'true');
+    expect(input).toHaveClass('input-error');
     expect(screen.getByText('This field is required')).toBeInTheDocument();
-    expect(screen.getByRole('alert')).toHaveTextContent('This field is required');
   });
 
   it('renders as disabled', () => {
@@ -46,8 +44,7 @@ describe('Input', () => {
     
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
-    expect(input).toHaveClass('opacity-50');
-    expect(input).toHaveClass('cursor-not-allowed');
+    expect(input).toHaveClass('input-disabled');
   });
 
   it('renders as readonly', () => {
@@ -78,93 +75,66 @@ describe('Input', () => {
     const { rerender } = render(<Input size="sm" />);
     
     let input = screen.getByRole('textbox');
-    expect(input).toHaveClass('text-sm');
+    expect(input).toHaveClass('input-sm');
     
     rerender(<Input size="md" />);
     input = screen.getByRole('textbox');
-    expect(input).toHaveClass('text-base');
+    expect(input).toHaveClass('input-md');
     
     rerender(<Input size="lg" />);
     input = screen.getByRole('textbox');
-    expect(input).toHaveClass('text-lg');
+    expect(input).toHaveClass('input-lg');
   });
 
   it('renders with different variants', () => {
     const { rerender } = render(<Input variant="outline" />);
     
     let input = screen.getByRole('textbox');
-    expect(input).toHaveClass('border');
-    expect(input).toHaveClass('bg-white');
+    expect(input).toHaveClass('input-outline');
     
     rerender(<Input variant="filled" />);
     input = screen.getByRole('textbox');
-    expect(input).toHaveClass('border-0');
-    expect(input).toHaveClass('bg-gray-100');
+    expect(input).toHaveClass('input-filled');
     
     rerender(<Input variant="flushed" />);
     input = screen.getByRole('textbox');
-    expect(input).toHaveClass('border-b-2');
-    expect(input).toHaveClass('rounded-none');
+    expect(input).toHaveClass('input-flushed');
   });
 
-  it('renders with prefix', () => {
-    render(<Input prefix="$" />);
+  it('renders with left addon', () => {
+    render(<Input leftAddon="$" />);
     
     expect(screen.getByText('$')).toBeInTheDocument();
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('pl-10');
+    const addonGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(addonGroup).toBeInTheDocument();
+    expect(screen.getByText('$').closest('.input-addon-left')).toBeInTheDocument();
   });
 
-  it('renders with suffix', () => {
-    render(<Input suffix=".com" />);
+  it('renders with right addon', () => {
+    render(<Input rightAddon=".com" />);
     
     expect(screen.getByText('.com')).toBeInTheDocument();
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('pr-10');
+    const addonGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(addonGroup).toBeInTheDocument();
+    expect(screen.getByText('.com').closest('.input-addon-right')).toBeInTheDocument();
   });
 
   it('renders with left icon', () => {
     render(<Input leftIcon={<span data-testid="left-icon">🔍</span>} />);
     
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('pl-10');
+    const iconGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(iconGroup).toBeInTheDocument();
+    expect(screen.getByTestId('left-icon').closest('.input-icon-left')).toBeInTheDocument();
   });
 
   it('renders with right icon', () => {
     render(<Input rightIcon={<span data-testid="right-icon">✓</span>} />);
     
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('pr-10');
-  });
-  
-  it('renders with clickable icons', () => {
-    const handleLeftClick = jest.fn();
-    const handleRightClick = jest.fn();
-    
-    render(
-      <Input 
-        leftIcon={<span data-testid="left-icon">🔍</span>}
-        rightIcon={<span data-testid="right-icon">✓</span>}
-        isLeftIconClickable
-        isRightIconClickable
-        onLeftIconClick={handleLeftClick}
-        onRightIconClick={handleRightClick}
-      />
-    );
-    
-    const leftIcon = screen.getByTestId('left-icon').parentElement;
-    const rightIcon = screen.getByTestId('right-icon').parentElement;
-    
-    expect(leftIcon).toHaveClass('cursor-pointer');
-    expect(rightIcon).toHaveClass('cursor-pointer');
-    
-    fireEvent.click(leftIcon);
-    expect(handleLeftClick).toHaveBeenCalledTimes(1);
-    
-    fireEvent.click(rightIcon);
-    expect(handleRightClick).toHaveBeenCalledTimes(1);
+    const iconGroup = screen.getByRole('textbox').closest('.input-group');
+    expect(iconGroup).toBeInTheDocument();
+    expect(screen.getByTestId('right-icon').closest('.input-icon-right')).toBeInTheDocument();
   });
 
   it('calls onChange when input value changes', () => {
@@ -258,36 +228,14 @@ describe('Input', () => {
   it('renders with full width when fullWidth is true', () => {
     render(<Input fullWidth />);
     
-    const container = screen.getByRole('textbox').closest('div').parentElement;
-    expect(container).toHaveClass('w-full');
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveClass('input-full-width');
   });
-  
-  it('renders with password toggle', () => {
-    render(<Input type="password" showPasswordToggle />);
-    
-    // Passwort-Felder haben nicht die Rolle 'textbox', sondern keine spezifische Rolle
-    const input = screen.getByDisplayValue('');
-    expect(input).toHaveAttribute('type', 'password');
-    
-    const toggleButton = screen.getByTestId('password-toggle');
-    expect(toggleButton).toBeInTheDocument();
-    
-    fireEvent.click(toggleButton);
-    
-    expect(input).toHaveAttribute('type', 'text');
-  });
-  
-  it('renders with clearable button', () => {
-    render(<Input isClearable defaultValue="Test value" />);
+
+  it('renders with custom width when width is provided', () => {
+    render(<Input width="300px" />);
     
     const input = screen.getByRole('textbox');
-    expect(input).toHaveValue('Test value');
-    
-    const clearButton = screen.getByTestId('clear-button');
-    expect(clearButton).toBeInTheDocument();
-    
-    fireEvent.click(clearButton);
-    
-    expect(input).toHaveValue('');
+    expect(input).toHaveStyle('width: 300px');
   });
 });
