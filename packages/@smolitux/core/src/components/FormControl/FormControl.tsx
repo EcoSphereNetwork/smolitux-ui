@@ -362,13 +362,29 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(({
   const renderCounter = () => {
     if (!showCounter) return null;
     
+    const count = counterValue !== undefined ? counterValue : 0;
+    const max = counterMax !== undefined ? counterMax : 0;
     const isOverLimit = counterMax !== undefined && counterValue !== undefined && counterValue > counterMax;
+    const percent = counterMax ? Math.min(100, Math.round((count / max) * 100)) : 0;
+    const counterId = `${uniqueId}-counter`;
     
     return (
       <div className="mt-1 text-xs text-right">
-        <span className={isOverLimit ? 'text-red-500' : 'text-gray-500'}>
-          {counterValue !== undefined ? counterValue : 0}
-          {counterMax !== undefined && `/${counterMax}`}
+        <span 
+          id={counterId}
+          className={isOverLimit ? 'text-red-500' : 'text-gray-500'}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <span className="sr-only">
+            {isOverLimit 
+              ? `Zeichenlimit überschritten: ${count} von maximal ${max} Zeichen eingegeben` 
+              : `${count} von maximal ${max} Zeichen eingegeben (${percent}%)`}
+          </span>
+          <span aria-hidden="true">
+            {count}
+            {counterMax !== undefined && `/${counterMax}`}
+          </span>
         </span>
       </div>
     );
@@ -382,16 +398,36 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(({
       ? Math.min(Math.max(0, (progressValue / (progressMax || 100)) * 100), 100) 
       : 0;
     
+    // Bestimme die Farbe basierend auf dem Prozentsatz
+    let barColor = 'bg-primary-500';
+    if (percent < 30) {
+      barColor = 'bg-red-500';
+    } else if (percent < 70) {
+      barColor = 'bg-yellow-500';
+    } else {
+      barColor = 'bg-green-500';
+    }
+    
+    const progressId = `${uniqueId}-progress`;
+    const progressLabelId = `${uniqueId}-progress-label`;
+    
     return (
-      <div className="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+      <div 
+        className="mt-2 h-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+        id={progressId}
+      >
         <div 
-          className="h-full bg-primary-500 transition-all duration-300 ease-in-out"
+          className={`h-full ${barColor} transition-all duration-300 ease-in-out`}
           style={{ width: `${percent}%` }}
           role="progressbar"
           aria-valuenow={progressValue}
           aria-valuemin={0}
           aria-valuemax={progressMax}
+          aria-labelledby={progressLabelId}
         />
+        <span id={progressLabelId} className="sr-only">
+          {`Fortschritt: ${Math.round(percent)}%`}
+        </span>
       </div>
     );
   };
@@ -404,30 +440,64 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(({
     
     // Bestimme, welcher Indikator angezeigt werden soll
     let indicator = null;
+    let statusText = '';
     
     if (isLoading && showLoadingIndicator) {
+      statusText = 'Lädt...';
       indicator = (
-        <span className="text-primary-500 animate-spin" aria-hidden="true">
-          ⟳
-        </span>
+        <svg 
+          className="animate-spin h-5 w-5 text-primary-500" 
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none" 
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          data-testid="loading-indicator"
+        >
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
       );
     } else if (error && showErrorIndicator) {
+      statusText = 'Fehler';
       indicator = (
-        <span className="text-red-500" aria-hidden="true">
-          ✕
-        </span>
+        <svg 
+          className="h-5 w-5 text-red-500" 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 20 20" 
+          fill="currentColor"
+          aria-hidden="true"
+          data-testid="error-indicator"
+        >
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+        </svg>
       );
     } else if (isSuccess && showSuccessIndicator) {
+      statusText = 'Erfolgreich';
       indicator = (
-        <span className="text-green-500" aria-hidden="true">
-          ✓
-        </span>
+        <svg 
+          className="h-5 w-5 text-green-500" 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 20 20" 
+          fill="currentColor"
+          aria-hidden="true"
+          data-testid="success-indicator"
+        >
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+        </svg>
       );
     } else if (isValid && showValidationIndicator) {
+      statusText = 'Gültig';
       indicator = (
-        <span className="text-green-500" aria-hidden="true">
-          ✓
-        </span>
+        <svg 
+          className="h-5 w-5 text-green-500" 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 20 20" 
+          fill="currentColor"
+          aria-hidden="true"
+          data-testid="valid-indicator"
+        >
+          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+        </svg>
       );
     }
     
@@ -436,6 +506,7 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(({
     return (
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
         {indicator}
+        <span className="sr-only">{statusText}</span>
       </div>
     );
   };
@@ -444,21 +515,47 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(({
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {};
     
+    // Sammle alle IDs für aria-describedby
+    const describedByIds: string[] = [];
+    
     if (description) {
-      attributes['aria-describedby'] = descriptionId;
+      describedByIds.push(descriptionId);
     }
     
+    if (helperText && !error && !hideHelperText) {
+      describedByIds.push(helperId);
+    }
+    
+    if (successMessage && !hideSuccessMessage) {
+      describedByIds.push(successId);
+    }
+    
+    if (showCounter && counterMax !== undefined) {
+      describedByIds.push(`${uniqueId}-counter`);
+    }
+    
+    if (showProgressBar) {
+      describedByIds.push(`${uniqueId}-progress-label`);
+    }
+    
+    // Setze aria-describedby, wenn IDs vorhanden sind
+    if (describedByIds.length > 0) {
+      attributes['aria-describedby'] = describedByIds.join(' ');
+    }
+    
+    // Fehlerbehandlung
     if (error) {
       attributes['aria-errormessage'] = errorId;
       attributes['aria-invalid'] = 'true';
     }
     
-    if (helperText && !error) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${helperId}` : helperId);
+    // Weitere ARIA-Attribute
+    if (isLoading) {
+      attributes['aria-busy'] = 'true';
     }
     
-    if (successMessage) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${successId}` : successId);
+    if (required) {
+      attributes['aria-required'] = 'true';
     }
     
     return attributes;
@@ -485,9 +582,12 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(({
             style={labelStyle}
             title={labelTooltip}
           >
-            {label}
+            <span>{label}</span>
             {required && showRequiredIndicator && (
-              <span className="ml-1 text-red-500" aria-hidden="true">*</span>
+              <>
+                <span className="ml-1 text-red-500" aria-hidden="true">*</span>
+                <span className="sr-only">(erforderlich)</span>
+              </>
             )}
           </label>
         )}

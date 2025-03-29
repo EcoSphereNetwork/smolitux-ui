@@ -79,6 +79,8 @@ describe('FormControl Component', () => {
     );
     
     expect(screen.getByText('*')).toBeInTheDocument();
+    expect(screen.getByText('(erforderlich)')).toBeInTheDocument();
+    expect(screen.getByText('(erforderlich)')).toHaveClass('sr-only');
   });
   
   test('renders with different label positions', () => {
@@ -144,7 +146,13 @@ describe('FormControl Component', () => {
       </FormControl>
     );
     
-    expect(screen.getByText('5/10')).toBeInTheDocument();
+    const counterText = screen.getByText('5/10');
+    expect(counterText).toBeInTheDocument();
+    
+    // Prüfe, ob der Screenreader-Text vorhanden ist
+    const srText = screen.getByText('5 von maximal 10 Zeichen eingegeben (50%)');
+    expect(srText).toBeInTheDocument();
+    expect(srText).toHaveClass('sr-only');
   });
   
   test('renders with progress bar', () => {
@@ -158,6 +166,14 @@ describe('FormControl Component', () => {
     expect(progressBar).toBeInTheDocument();
     expect(progressBar).toHaveAttribute('aria-valuenow', '50');
     expect(progressBar).toHaveAttribute('aria-valuemax', '100');
+    
+    // Prüfe, ob der Screenreader-Text vorhanden ist
+    const srText = screen.getByText('Fortschritt: 50%');
+    expect(srText).toBeInTheDocument();
+    expect(srText).toHaveClass('sr-only');
+    
+    // Prüfe, ob die Farbe basierend auf dem Prozentsatz gesetzt wird
+    expect(progressBar).toHaveClass('bg-yellow-500');
   });
   
   test('renders with loading indicator', () => {
@@ -167,8 +183,10 @@ describe('FormControl Component', () => {
       </FormControl>
     );
     
-    expect(screen.getByText('⟳')).toBeInTheDocument();
-    expect(screen.getByText('⟳')).toHaveClass('animate-spin');
+    expect(screen.getByTestId('loading-indicator')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-indicator')).toHaveClass('animate-spin');
+    expect(screen.getByText('Lädt...')).toBeInTheDocument();
+    expect(screen.getByText('Lädt...')).toHaveClass('sr-only');
   });
   
   test('renders with error indicator', () => {
@@ -178,8 +196,10 @@ describe('FormControl Component', () => {
       </FormControl>
     );
     
-    expect(screen.getByText('✕')).toBeInTheDocument();
-    expect(screen.getByText('✕')).toHaveClass('text-red-500');
+    expect(screen.getByTestId('error-indicator')).toBeInTheDocument();
+    expect(screen.getByTestId('error-indicator')).toHaveClass('text-red-500');
+    expect(screen.getByText('Fehler')).toBeInTheDocument();
+    expect(screen.getByText('Fehler')).toHaveClass('sr-only');
   });
   
   test('renders with success indicator', () => {
@@ -189,8 +209,10 @@ describe('FormControl Component', () => {
       </FormControl>
     );
     
-    expect(screen.getByText('✓')).toBeInTheDocument();
-    expect(screen.getByText('✓')).toHaveClass('text-green-500');
+    expect(screen.getByTestId('success-indicator')).toBeInTheDocument();
+    expect(screen.getByTestId('success-indicator')).toHaveClass('text-green-500');
+    expect(screen.getByText('Erfolgreich')).toBeInTheDocument();
+    expect(screen.getByText('Erfolgreich')).toHaveClass('sr-only');
   });
   
   test('renders with validation indicator', () => {
@@ -200,8 +222,10 @@ describe('FormControl Component', () => {
       </FormControl>
     );
     
-    expect(screen.getByText('✓')).toBeInTheDocument();
-    expect(screen.getByText('✓')).toHaveClass('text-green-500');
+    expect(screen.getByTestId('valid-indicator')).toBeInTheDocument();
+    expect(screen.getByTestId('valid-indicator')).toHaveClass('text-green-500');
+    expect(screen.getByText('Gültig')).toBeInTheDocument();
+    expect(screen.getByText('Gültig')).toHaveClass('sr-only');
   });
   
   test('renders with hidden label', () => {
