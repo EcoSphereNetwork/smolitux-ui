@@ -15,13 +15,19 @@
   - Fehlende Props hinzugefügt (subtitle, header, image, size, shadow, rounded, bgColor)
   - Implementierung für alle Testfälle angepasst
   - Tests korrigiert und erfolgreich durchgeführt
+- [x] Alert-Komponente getestet und verbessert
+  - Event-Handler für onClose korrigiert
+  - Escape-Taste-Handling verbessert
+  - Auto-Close-Funktionalität korrigiert
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] Badge-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute für Dot-Variante hinzugefügt
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Alert-Komponente testen und verbessern
-- [ ] Badge-Komponente testen und verbessern
 - [ ] Input-Komponente testen und verbessern
 - [ ] Select-Komponente testen und verbessern
 - [ ] Modal-Komponente testen und verbessern

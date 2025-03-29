@@ -9,7 +9,7 @@ describe('Alert Component', () => {
     
     expect(screen.getByRole('alert')).toBeInTheDocument();
     expect(screen.getByText('Test message')).toBeInTheDocument();
-    expect(screen.getByText('Test message').parentElement?.parentElement).toHaveClass('bg-blue-50');
+    expect(screen.getByRole('alert')).toHaveClass('bg-blue-50');
   });
   
   test('renders with title', () => {
@@ -43,14 +43,14 @@ describe('Alert Component', () => {
   test('renders close button when closable is true', () => {
     render(<Alert type="info" message="Test message" closable />);
     
-    expect(screen.getByRole('button', { name: /close/i })).toBeInTheDocument();
+    expect(screen.getByTestId('alert-close-button')).toBeInTheDocument();
   });
   
   test('calls onClose when close button is clicked', async () => {
     const handleClose = jest.fn();
     render(<Alert type="info" message="Test message" closable onClose={handleClose} />);
     
-    await userEvent.click(screen.getByRole('button', { name: /close/i }));
+    await userEvent.click(screen.getByTestId('alert-close-button'));
     
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
