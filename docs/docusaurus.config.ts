@@ -27,35 +27,30 @@ const config: Config = {
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
-i18n: {
-  defaultLocale: 'en',
-  locales: ['de', 'en', 'zh', 'hi', 'es', 'ar', 'fr', 'bn', 'ru', 'pt', 'ur'],
-  localeConfigs: {
-    de: { label: 'Deutsch' },
-    en: { label: 'English' },
-    zh: { label: '中文' },
-    hi: { label: 'हिन्दी' },
-    es: { label: 'Español' },
-    ar: { label: 'العربية' },
-    fr: { label: 'Français' },
-    bn: { label: 'বাংলা' },
-    ru: { label: 'Русский' },
-    pt: { label: 'Português' },
-    ur: { label: 'اردو' }
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['de', 'en', 'zh', 'hi', 'es', 'ar', 'fr', 'bn', 'ru', 'pt', 'ur'],
+    localeConfigs: {
+      de: { label: 'Deutsch' },
+      en: { label: 'English' },
+      zh: { label: '中文' },
+      hi: { label: 'हिन्दी' },
+      es: { label: 'Español' },
+      ar: { label: 'العربية' },
+      fr: { label: 'Français' },
+      bn: { label: 'বাংলা' },
+      ru: { label: 'Русский' },
+      pt: { label: 'Português' },
+      ur: { label: 'اردو' }
+    },
   },
-},
 
+  // Changed from presets to use separate plugin instances for docs
   presets: [
     [
       'classic',
       {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
-        },
+        // Removed docs config from here
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -78,6 +73,38 @@ i18n: {
     ],
   ],
 
+  // Added plugins configuration for multi-instance docs
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'wiki',
+        path: 'Wiki',
+        routeBasePath: 'docs',
+        sidebarPath: './sidebars.ts',
+        sidebarCollapsible: true,
+        // Please change this to your repo.
+        // Remove this to remove the "edit this page" links.
+        editUrl:
+          'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tutorial',
+        path: 'docusaurus',
+        routeBasePath: 'tutorial',
+        sidebarPath: './sidebars.ts',
+        sidebarCollapsible: true,
+        // Please change this to your repo.
+        // Remove this to remove the "edit this page" links.
+        editUrl:
+          'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -93,12 +120,14 @@ i18n: {
           sidebarId: 'wikiSidebar',
           position: 'left',
           label: 'Wiki',
+          docsPluginId: 'wiki', // Added this line
         },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Tutorial',
+          docsPluginId: 'tutorial', // Added this line
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -129,7 +158,7 @@ i18n: {
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/docusaurus/intro',
+              to: '/tutorial/intro', // Updated path to match new routeBasePath
             },
           ],
         },
