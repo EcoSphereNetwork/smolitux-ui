@@ -63,6 +63,10 @@ Our component library is organized into functional categories for easy navigatio
 
 - **[Getting Started](guides/quickstart.md)** - Quick start guide to using our components
 - **[Development Guide](development/guide.md)** - Guide for developers working on the project
+- **[Contributing](development/contributing.md)** - How to contribute to the project
+- **[Changelog](development/changelog.md)** - History of changes
+- **[Release Notes](development/releases/v0.2.1.md)** - Latest release notes
+- **[Credits](development/credits.md)** - Contributors and acknowledgements
 - **[Roadmap](development/roadmap.md)** - Current project roadmap and future plans
 - **[Status Reports](development/status-report.md)** - Current project status
 - **[Local Installation](development/local-installation.md)** - How to install locally
@@ -80,7 +84,7 @@ Our component library is organized into functional categories for easy navigatio
 
 ### Guidelines
 
-- **[Accessibility](guidelines/accessibility.md)** - Accessibility standards and practices
+- **[Accessibility](accessibility/README.md)** - Accessibility standards and practices
 - **[Best Practices](guidelines/best-practices.md)** - Development best practices
 - **[Coding Standards](guidelines/coding-standards.md)** - Code style and standards
 - **[Component Structure](guidelines/component-structure.md)** - How to structure components

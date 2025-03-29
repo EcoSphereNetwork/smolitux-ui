@@ -2,8 +2,6 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-> **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](/docs/Wiki/index.md). Die aktuelle Version des Changelogs finden Sie [hier](/docs/Wiki/development/changelog.md).
-
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 

@@ -2,8 +2,6 @@
 
 First off, thank you for considering contributing to this project! It's people like you that make this project such a great tool.
 
-> **Note:** The complete documentation can be found in the [Wiki](/docs/Wiki/index.md). The current version of the contribution guidelines can be found [here](/docs/Wiki/development/contributing.md).
-
 ## Code of Conduct
 
 This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
