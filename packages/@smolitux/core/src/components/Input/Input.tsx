@@ -474,16 +474,65 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     return val;
   }, [formatValue, unformatOnFocus, isFocused]);
   
+  // Validiere den Wert
+  const validateInput = useCallback((val: string): { isValid: boolean; message?: string } => {
+    // Wenn keine Validierung erforderlich ist, ist der Wert gültig
+    if (!validationRule && !validationFunc && !pattern && !required) {
+      return { isValid: true };
+    }
+    
+    // Prüfe, ob der Wert leer ist und ob er erforderlich ist
+    if ((!val || val.trim() === '') && required) {
+      return { isValid: false, message: validationMessage || 'Dieses Feld ist erforderlich' };
+    }
+    
+    // Wenn der Wert leer ist und nicht erforderlich, ist er gültig
+    if (!val || val.trim() === '') {
+      return { isValid: true };
+    }
+    
+    // Prüfe gegen das Muster, wenn vorhanden
+    if (pattern) {
+      const regex = new RegExp(pattern);
+      if (!regex.test(val)) {
+        return { isValid: false, message: validationMessage || 'Ungültiges Format' };
+      }
+    }
+    
+    // Prüfe gegen die Validierungsregel, wenn vorhanden
+    if (validationRule && !validationRule.test(val)) {
+      return { isValid: false, message: validationMessage || 'Ungültige Eingabe' };
+    }
+    
+    // Prüfe mit der Validierungsfunktion, wenn vorhanden
+    if (validationFunc && !validationFunc(val)) {
+      return { isValid: false, message: validationMessage || 'Ungültige Eingabe' };
+    }
+    
+    // Wenn alle Prüfungen bestanden wurden, ist der Wert gültig
+    return { isValid: true };
+  }, [validationRule, validationFunc, pattern, required, validationMessage]);
+  
   // Event-Handler
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setCurrentValue(newValue);
     
+    // Formatiere den Wert, wenn nötig
     if (formatOnType && formatValue) {
       const formattedValue = formatValue(newValue);
       e.target.value = formattedValue;
     }
     
+    // Validiere den Wert
+    const validationResult = validateInput(newValue);
+    
+    // Aktualisiere den Validierungsstatus
+    if (onValidate) {
+      onValidate(validationResult.isValid);
+    }
+    
+    // Rufe den onChange-Handler auf
     onChange?.(e);
   };
   
@@ -505,12 +554,28 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
     
+    // Formatiere den Wert, wenn nötig
     if (formatOnBlur && formatValue && e.target.value) {
       const formattedValue = formatValue(e.target.value);
       e.target.value = formattedValue;
       setCurrentValue(formattedValue);
     }
     
+    // Validiere den Wert
+    const validationResult = validateInput(e.target.value);
+    
+    // Aktualisiere den Validierungsstatus
+    if (onValidate) {
+      onValidate(validationResult.isValid);
+    }
+    
+    // Setze den Fehler, wenn die Validierung fehlschlägt
+    if (!validationResult.isValid && validationResult.message) {
+      // Hier könnten wir den Fehler setzen, aber da wir keinen lokalen Fehlerzustand haben,
+      // müssten wir das über den FormControl-Context oder einen externen Handler tun
+    }
+    
+    // Rufe den onBlur-Handler auf
     onBlur?.(e);
   };
   
@@ -632,11 +697,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   // Bestimme die ARIA-Attribute für das Input
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {};
+    const describedByIds: string[] = [];
 
+    // Beschreibung
     if (description) {
-      attributes['aria-describedby'] = `${_id}-description`;
+      describedByIds.push(`${_id}-description`);
     }
 
+    // Fehlermeldung
     if (_error) {
       attributes['aria-errormessage'] = `${_id}-error`;
       attributes['aria-invalid'] = 'true';
@@ -644,37 +712,72 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
       attributes['aria-invalid'] = 'true';
     }
 
+    // Erfolg
     if (_isValid || _isSuccess) {
-      attributes['aria-valid'] = 'true';
+      // Hinweis: 'aria-valid' ist kein Standard-ARIA-Attribut, wir verwenden stattdessen eine Klasse
+      // und setzen aria-invalid auf 'false'
+      attributes['aria-invalid'] = 'false';
     }
 
+    // Deaktiviert
     if (_disabled) {
       attributes['aria-disabled'] = 'true';
     }
 
+    // Erforderlich
     if (_required) {
       attributes['aria-required'] = 'true';
     }
 
+    // Schreibgeschützt
     if (_readOnly) {
       attributes['aria-readonly'] = 'true';
     }
 
+    // Ladezustand
     if (_isLoading) {
       attributes['aria-busy'] = 'true';
     }
 
-    if (helperText && !_error) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-helper` : `${_id}-helper`);
+    // Hilfetext
+    if (helperText && !_error && !hideHelperText) {
+      describedByIds.push(`${_id}-helper`);
     }
 
-    if (successMessage) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-success` : `${_id}-success`);
+    // Erfolgsmeldung
+    if (successMessage && !hideSuccessMessage) {
+      describedByIds.push(`${_id}-success`);
+    }
+
+    // Tooltip
+    if (tooltip || inputTooltip) {
+      attributes['aria-label'] = tooltip || inputTooltip || '';
+    }
+
+    // Kombiniere alle IDs für aria-describedby
+    if (describedByIds.length > 0) {
+      attributes['aria-describedby'] = describedByIds.join(' ');
+    }
+
+    // Autocomplete
+    if (autocomplete) {
+      attributes['aria-autocomplete'] = autocomplete === 'on' ? 'both' : 'none';
     }
 
     return attributes;
   };
-      )}
+  
+  return (
+    <div className={`w-full ${fullWidth ? 'w-full' : ''} ${containerClassName}`}>
+      {/* Label */}
+      {label && !hideLabel && (
+        <label 
+          htmlFor={_id} 
+          className={`block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 ${_required ? 'required' : ''} ${labelClassName}`}
+          title={labelTooltip}
+        >
+          {label}
+          {_required && <span className="ml-1 text-red-500">*</span>}}
       
       {/* Input-Container */}
       <div className={`relative ${inputContainerClassName}`}>
