@@ -1,5 +1,5 @@
 // packages/@smolitux/core/src/components/Carousel/Carousel.tsx
-import React, { useState, useEffect, useRef, useMemo, forwardRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, forwardRef, useCallback } from 'react';
 import { useTheme } from '@smolitux/theme';
 // Falls der Import fehlschlägt, verwenden wir einen Fallback
 const useThemeLocal = () => ({ themeMode: 'light' });
@@ -51,6 +51,12 @@ export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   onAutoplayStop?: () => void;
   /** Ist das Carousel deaktiviert? */
   disabled?: boolean;
+  /** ARIA-Label für das Carousel */
+  ariaLabel?: string;
+  /** ARIA-Beschreibung für das Carousel */
+  ariaDescription?: string;
+  /** ID für die ARIA-Beschreibung */
+  ariaDescriptionId?: string;
 }
 
 /**
@@ -60,11 +66,13 @@ export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>
  * ```tsx
  * <Carousel
  *   items={[
- *     { id: '1', content: <img src="/image1.jpg" alt="Bild 1" /> },
- *     { id: '2', content: <img src="/image2.jpg" alt="Bild 2" /> },
- *     { id: '3', content: <img src="/image3.jpg" alt="Bild 3" /> }
+ *     { id: '1', content: <img src="/image1.jpg" alt="Bild 1" />, ariaLabel: "Bild 1 Beschreibung" },
+ *     { id: '2', content: <img src="/image2.jpg" alt="Bild 2" />, ariaLabel: "Bild 2 Beschreibung" },
+ *     { id: '3', content: <img src="/image3.jpg" alt="Bild 3" />, ariaLabel: "Bild 3 Beschreibung" }
  *   ]}
  *   autoPlay={5000}
+ *   ariaLabel="Bildergalerie"
+ *   ariaDescription="Galerie mit 3 Bildern. Verwenden Sie die Pfeiltasten, um zu navigieren."
  * />
  * ```
  */
@@ -87,6 +95,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   onAutoplayStop,
   disabled = false,
   className = '',
+  ariaLabel = 'Bildergalerie',
+  ariaDescription,
+  ariaDescriptionId = 'carousel-description',
   ...rest
 }, ref) => {
   const { themeMode } = useTheme ? useTheme() : useThemeLocal();
@@ -110,6 +121,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   // State für Pause bei Hover
   const [isPaused, setIsPaused] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  
+  // Generiere eine eindeutige ID für das Carousel
+  const carouselId = useMemo(() => `carousel-${Math.random().toString(36).substring(2, 11)}`, []);
   
   // Berechnung des Seitenverhältnisses
   const aspectRatioPadding = useMemo(() => {
@@ -139,7 +153,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   }, [activeIndex, animation, isAnimating]);
   
   // Slide-Wechsel-Funktionen
-  const goToSlide = (index: number) => {
+  const goToSlide = useCallback((index: number) => {
     if (disabled || totalItems === 0) return;
     
     let newIndex = index;
@@ -173,21 +187,29 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
       setTimeout(() => {
         setIsAnimating(false);
       }, 350);
+      
+      // Fokus auf das aktive Slide setzen für Screenreader
+      if (carouselRef.current) {
+        const activeSlide = carouselRef.current.querySelector(`[data-slide-index="${newIndex}"]`);
+        if (activeSlide) {
+          (activeSlide as HTMLElement).focus();
+        }
+      }
     }
-  };
+  }, [activeIndex, disabled, infinite, isControlled, onChange, totalItems]);
   
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     if (disabled) return;
     goToSlide(activeIndex + 1);
-  };
+  }, [activeIndex, disabled, goToSlide]);
   
-  const goToPrev = () => {
+  const goToPrev = useCallback(() => {
     if (disabled) return;
     goToSlide(activeIndex - 1);
-  };
+  }, [activeIndex, disabled, goToSlide]);
   
   // Autoplay-Steuerung
-  const startAutoPlay = () => {
+  const startAutoPlay = useCallback(() => {
     if (autoPlay > 0 && !isPaused && !disabled) {
       stopAutoPlay();
       
@@ -199,9 +221,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
         onAutoplayStart();
       }
     }
-  };
+  }, [autoPlay, disabled, goToNext, isPaused, onAutoplayStart]);
   
-  const stopAutoPlay = () => {
+  const stopAutoPlay = useCallback(() => {
     if (autoPlayTimerRef.current) {
       clearTimeout(autoPlayTimerRef.current);
       autoPlayTimerRef.current = null;
@@ -210,29 +232,34 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
         onAutoplayStop();
       }
     }
-  };
+  }, [onAutoplayStop]);
+  
+  // Pause-Funktion für Barrierefreiheit
+  const togglePause = useCallback(() => {
+    setIsPaused(prev => !prev);
+  }, []);
   
   // Mouse-Events für Pause-on-Hover
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     if (pauseOnHover && autoPlay > 0) {
       setIsPaused(true);
     }
-  };
+  }, [autoPlay, pauseOnHover]);
   
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     if (pauseOnHover && autoPlay > 0) {
       setIsPaused(false);
     }
-  };
+  }, [autoPlay, pauseOnHover]);
   
   // Touch-Events für Swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
     if (!enableSwipe || disabled) return;
     
     touchStartXRef.current = e.touches[0].clientX;
-  };
+  }, [disabled, enableSwipe]);
   
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
     if (!enableSwipe || touchStartXRef.current === null || disabled) return;
     
     const touchEndX = e.changedTouches[0].clientX;
@@ -248,7 +275,40 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     }
     
     touchStartXRef.current = null;
-  };
+  }, [disabled, enableSwipe, goToNext, goToPrev]);
+  
+  // Tastatur-Navigation
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (disabled) return;
+    
+    switch (e.key) {
+      case 'ArrowLeft':
+        e.preventDefault();
+        goToPrev();
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        goToNext();
+        break;
+      case 'Home':
+        e.preventDefault();
+        goToSlide(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        goToSlide(totalItems - 1);
+        break;
+      case ' ':
+      case 'Spacebar': // Für ältere Browser
+        e.preventDefault();
+        if (autoPlay > 0) {
+          togglePause();
+        }
+        break;
+      default:
+        break;
+    }
+  }, [autoPlay, disabled, goToNext, goToPrev, goToSlide, togglePause, totalItems]);
   
   // Autoplay starten/stoppen bei Änderungen
   useEffect(() => {
@@ -261,7 +321,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     return () => {
       stopAutoPlay();
     };
-  }, [autoPlay, isPaused, activeIndex, disabled]);
+  }, [autoPlay, isPaused, activeIndex, disabled, startAutoPlay, stopAutoPlay]);
   
   // Komponenten-Stil-Klassen
   const carouselClasses = [
@@ -285,11 +345,14 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               p-2 rounded-full
               bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50
               hover:bg-opacity-75 dark:hover:bg-opacity-75
+              focus:outline-none focus:ring-2 focus:ring-primary-500
               ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
             `}
             aria-label="Vorheriges Bild"
+            aria-controls={carouselId}
             onClick={goToPrev}
             disabled={disabled}
+            tabIndex={0}
           >
             {customArrows?.prev || (
               <svg
@@ -298,6 +361,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -319,11 +383,14 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               p-2 rounded-full
               bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50
               hover:bg-opacity-75 dark:hover:bg-opacity-75
+              focus:outline-none focus:ring-2 focus:ring-primary-500
               ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
             `}
             aria-label="Nächstes Bild"
+            aria-controls={carouselId}
             onClick={goToNext}
             disabled={disabled}
+            tabIndex={0}
           >
             {customArrows?.next || (
               <svg
@@ -332,6 +399,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -352,7 +420,11 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     if (!showIndicators || totalItems <= 1) return null;
     
     return (
-      <div className="absolute bottom-2 left-0 right-0 z-10 flex justify-center">
+      <div 
+        className="absolute bottom-2 left-0 right-0 z-10 flex justify-center"
+        role="tablist"
+        aria-label="Bildauswahl"
+      >
         <div className="flex space-x-2">
           {items.map((item, index) => (
             <button
@@ -369,17 +441,27 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
                     : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                 }
                 transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-primary-500
                 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
               `}
-              aria-label={`Go to slide ${index + 1}`}
-              aria-current={activeIndex === index ? 'true' : 'false'}
+              aria-label={item.ariaLabel || `Bild ${index + 1} anzeigen`}
+              aria-selected={activeIndex === index ? 'true' : 'false'}
+              aria-controls={`${carouselId}-slide-${index}`}
+              role="tab"
+              tabIndex={0}
               onClick={() => !disabled && goToSlide(index)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  !disabled && goToSlide(index);
+                }
+              }}
             >
               {thumbnails && item.content ? (
                 <div className="w-full h-full overflow-hidden object-cover rounded">
                   {/* Thumbnail-Inhalt - hier könnte ein spezifisches Thumbnail-Rendering implementiert werden */}
                   {typeof item.content === 'string' ? (
-                    <img src={item.content} alt={item.ariaLabel || `Slide ${index + 1}`} className="w-full h-full object-cover" />
+                    <img src={item.content} alt={item.ariaLabel || `Bild ${index + 1}`} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       {index + 1}
@@ -394,14 +476,92 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     );
   };
 
+  // Render-Funktion für Pause-Button
+  const renderPauseButton = () => {
+    if (autoPlay <= 0) return null;
+    
+    return (
+      <button
+        type="button"
+        className={`
+          absolute top-2 right-2 z-10
+          p-2 rounded-full
+          bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50
+          hover:bg-opacity-75 dark:hover:bg-opacity-75
+          focus:outline-none focus:ring-2 focus:ring-primary-500
+          ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
+        `}
+        aria-label={isPaused ? "Wiedergabe starten" : "Wiedergabe pausieren"}
+        aria-pressed={isPaused}
+        onClick={togglePause}
+        disabled={disabled}
+        tabIndex={0}
+      >
+        {isPaused ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-gray-800 dark:text-gray-200"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+            />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-gray-800 dark:text-gray-200"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 9v6m4-6v6"
+            />
+          </svg>
+        )}
+      </button>
+    );
+  };
+
+  // Render-Funktion für die Beschreibung
+  const renderDescription = () => {
+    if (!ariaDescription) return null;
+    
+    return (
+      <div id={ariaDescriptionId} className="sr-only">
+        {ariaDescription}
+      </div>
+    );
+  };
+
   return (
     <div
       ref={ref}
+      id={carouselId}
       className={carouselClasses}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onKeyDown={handleKeyDown}
+      role="region"
+      aria-label={ariaLabel}
+      aria-roledescription="carousel"
+      aria-describedby={ariaDescription ? ariaDescriptionId : undefined}
+      tabIndex={0}
       {...rest}
     >
+      {renderDescription()}
+      
       {/* Hauptcontainer mit Aspect Ratio */}
       <div 
         className="relative w-full" 
@@ -420,13 +580,19 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               ref={slideTrackRef}
               className="flex h-full transition-transform duration-300 ease-in-out"
               style={slideTrackStyle}
+              aria-live={isPaused ? "polite" : "off"}
             >
               {items.map((item, index) => (
                 <div 
                   key={item.id}
+                  id={`${carouselId}-slide-${index}`}
                   className="w-full h-full flex-shrink-0" 
                   aria-hidden={activeIndex !== index}
-                  aria-label={item.ariaLabel}
+                  aria-label={item.ariaLabel || `Bild ${index + 1}`}
+                  role="tabpanel"
+                  tabIndex={activeIndex === index ? 0 : -1}
+                  data-slide-index={index}
+                  aria-roledescription="slide"
                 >
                   {item.content}
                 </div>
@@ -434,17 +600,25 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
             </div>
           ) : (
             /* Fade Animation oder keine Animation */
-            <div className="h-full relative">
+            <div 
+              className="h-full relative"
+              aria-live={isPaused ? "polite" : "off"}
+            >
               {items.map((item, index) => (
                 <div 
                   key={item.id}
+                  id={`${carouselId}-slide-${index}`}
                   className={`
                     absolute inset-0 
                     ${animation === 'fade' ? 'transition-opacity duration-300 ease-in-out' : ''}
                     ${activeIndex === index ? 'opacity-100 z-10' : 'opacity-0 z-0'}
                   `} 
                   aria-hidden={activeIndex !== index}
-                  aria-label={item.ariaLabel}
+                  aria-label={item.ariaLabel || `Bild ${index + 1}`}
+                  role="tabpanel"
+                  tabIndex={activeIndex === index ? 0 : -1}
+                  data-slide-index={index}
+                  aria-roledescription="slide"
                 >
                   {item.content}
                 </div>
@@ -457,6 +631,12 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
       {/* Navigation Controls */}
       {renderArrows()}
       {renderIndicators()}
+      {renderPauseButton()}
+      
+      {/* Status-Anzeige für Screenreader */}
+      <div className="sr-only" aria-live="polite">
+        {`Bild ${activeIndex + 1} von ${totalItems}${isPaused ? ', Wiedergabe pausiert' : ''}`}
+      </div>
       
       {/* Animationsstile */}
       <style>{`
