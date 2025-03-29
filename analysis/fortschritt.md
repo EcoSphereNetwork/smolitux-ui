@@ -37,13 +37,18 @@
   - createPortal-Mock für Tests hinzugefügt
   - Barrierefreiheits-Attribute verbessert
   - Tests angepasst und erfolgreich durchgeführt
+- [x] TabView-Komponente getestet und verbessert
+  - Komponente neu implementiert mit Tab und TabPanel Unterkomponenten
+  - Barrierefreiheits-Attribute hinzugefügt
+  - Keyboard-Navigation verbessert
+  - Tests angepasst und erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] TabView-Komponente testen und verbessern
 - [ ] Tooltip-Komponente testen und verbessern
+- [ ] Dropdown-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 
