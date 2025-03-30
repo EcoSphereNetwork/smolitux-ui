@@ -99,7 +99,11 @@
   - Barrierefreiheits-Attribute hinzugefügt (role="status", aria-busy, aria-live)
   - Verbesserte Beschreibungen für Screenreader
   - Tests implementiert und erfolgreich durchgeführt
-- [ ] Stepper-Komponente testen und verbessern
+- [x] Stepper-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute hinzugefügt (aria-label, aria-roledescription, aria-current)
+  - Verbesserte Beschreibungen für Screenreader
+  - Tastaturnavigation verbessert
+  - Tests implementiert und erfolgreich durchgeführt
 
 ### 2. Storybook reparieren
 

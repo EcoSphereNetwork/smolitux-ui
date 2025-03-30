@@ -1,563 +1,310 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Stepper } from '../Stepper';
-import { Step } from '../Step';
-import { StepLabel } from '../StepLabel';
-import { StepContent } from '../StepContent';
-import { StepButton } from '../StepButton';
-import { StepConnector } from '../StepConnector';
-import { StepIcon } from '../StepIcon';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
+import Stepper, { StepperContent, StepperActions } from '../Stepper';
 
 describe('Stepper', () => {
   const steps = [
-    { label: 'Step 1', content: 'Content for Step 1', optional: false },
-    { label: 'Step 2', content: 'Content for Step 2', optional: true },
-    { label: 'Step 3', content: 'Content for Step 3', optional: false }
+    { id: 'step1', title: 'Schritt 1', description: 'Beschreibung 1' },
+    { id: 'step2', title: 'Schritt 2', description: 'Beschreibung 2' },
+    { id: 'step3', title: 'Schritt 3', description: 'Beschreibung 3', optional: true }
   ];
 
   it('renders correctly with default props', () => {
-    render(
-      <Stepper>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
+    render(<Stepper steps={steps} activeStep={0} />);
     
-    expect(screen.getByText('Step 1')).toBeInTheDocument();
-    expect(screen.getByText('Step 2')).toBeInTheDocument();
-    expect(screen.getByText('Step 3')).toBeInTheDocument();
+    // Prüfen, ob der Stepper gerendert wurde
+    const stepper = screen.getByRole('navigation');
+    expect(stepper).toBeInTheDocument();
     
-    // Only the first step content should be visible by default
-    expect(screen.getByText('Content for Step 1')).toBeVisible();
-    expect(screen.queryByText('Content for Step 2')).not.toBeVisible();
-    expect(screen.queryByText('Content for Step 3')).not.toBeVisible();
-  });
-
-  it('renders with activeStep prop', () => {
-    render(
-      <Stepper activeStep={1}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
+    // Prüfen, ob alle Schritte gerendert wurden
+    expect(screen.getByText('Schritt 1')).toBeInTheDocument();
+    expect(screen.getByText('Schritt 2')).toBeInTheDocument();
+    expect(screen.getByText('Schritt 3')).toBeInTheDocument();
     
-    // Second step content should be visible
-    expect(screen.queryByText('Content for Step 1')).not.toBeVisible();
-    expect(screen.getByText('Content for Step 2')).toBeVisible();
-    expect(screen.queryByText('Content for Step 3')).not.toBeVisible();
-  });
-
-  it('calls onChange when step is clicked', () => {
-    const handleChange = jest.fn();
-    render(
-      <Stepper onChange={handleChange}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
+    // Prüfen, ob die Beschreibungen gerendert wurden
+    expect(screen.getByText('Beschreibung 1')).toBeInTheDocument();
+    expect(screen.getByText('Beschreibung 2')).toBeInTheDocument();
+    expect(screen.getByText('Beschreibung 3')).toBeInTheDocument();
     
-    // Click on the second step
-    fireEvent.click(screen.getByText('Step 2'));
-    
-    expect(handleChange).toHaveBeenCalledWith(1);
-  });
-
-  it('renders with orientation prop', () => {
-    const { rerender } = render(
-      <Stepper orientation="horizontal" data-testid="stepper">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    let stepper = screen.getByTestId('stepper');
-    expect(stepper).toHaveClass('stepper-horizontal');
-    
-    rerender(
-      <Stepper orientation="vertical" data-testid="stepper">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    stepper = screen.getByTestId('stepper');
-    expect(stepper).toHaveClass('stepper-vertical');
-  });
-
-  it('renders with custom className', () => {
-    render(
-      <Stepper className="custom-stepper" data-testid="stepper">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const stepper = screen.getByTestId('stepper');
-    expect(stepper).toHaveClass('custom-stepper');
-  });
-
-  it('renders with custom style', () => {
-    render(
-      <Stepper style={{ backgroundColor: 'lightgray' }} data-testid="stepper">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const stepper = screen.getByTestId('stepper');
-    expect(stepper).toHaveStyle('background-color: lightgray');
-  });
-
-  it('renders with alternativeLabel prop', () => {
-    render(
-      <Stepper alternativeLabel data-testid="stepper">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const stepper = screen.getByTestId('stepper');
-    expect(stepper).toHaveClass('alternative-label');
-  });
-
-  it('renders with nonLinear prop', () => {
-    render(
-      <Stepper nonLinear data-testid="stepper">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const stepper = screen.getByTestId('stepper');
-    expect(stepper).toHaveClass('non-linear');
-  });
-
-  it('renders with completed steps', () => {
-    render(
-      <Stepper activeStep={2}>
-        {steps.map((step, index) => (
-          <Step key={index} completed={index < 2}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const stepElements = screen.getAllByTestId('step');
-    expect(stepElements[0]).toHaveClass('completed');
-    expect(stepElements[1]).toHaveClass('completed');
-    expect(stepElements[2]).not.toHaveClass('completed');
-  });
-
-  it('renders with disabled steps', () => {
-    const handleChange = jest.fn();
-    render(
-      <Stepper onChange={handleChange}>
-        {steps.map((step, index) => (
-          <Step key={index} disabled={index === 2}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const stepElements = screen.getAllByTestId('step');
-    expect(stepElements[0]).not.toHaveClass('disabled');
-    expect(stepElements[1]).not.toHaveClass('disabled');
-    expect(stepElements[2]).toHaveClass('disabled');
-    
-    // Click on the disabled step should not trigger onChange
-    fireEvent.click(screen.getByText('Step 3'));
-    expect(handleChange).not.toHaveBeenCalled();
-  });
-
-  it('renders with custom connector', () => {
-    const CustomConnector = () => <div data-testid="custom-connector">Custom Connector</div>;
-    
-    render(
-      <Stepper connector={<CustomConnector />}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    expect(screen.getAllByTestId('custom-connector')).toHaveLength(2); // 2 connectors for 3 steps
-  });
-
-  it('renders with StepConnector component', () => {
-    render(
-      <Stepper connector={<StepConnector />}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const connectors = screen.getAllByTestId('step-connector');
-    expect(connectors).toHaveLength(2); // 2 connectors for 3 steps
-  });
-
-  it('renders with StepButton component', () => {
-    const handleStep = jest.fn();
-    
-    render(
-      <Stepper nonLinear>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepButton onClick={() => handleStep(index)}>
-              {step.label}
-            </StepButton>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(3);
-    
-    fireEvent.click(buttons[1]);
-    expect(handleStep).toHaveBeenCalledWith(1);
-  });
-
-  it('renders with StepIcon component', () => {
-    render(
-      <Stepper>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel icon={<StepIcon icon={index + 1} />}>
-              {step.label}
-            </StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const icons = screen.getAllByTestId('step-icon');
-    expect(icons).toHaveLength(3);
-  });
-
-  it('handles keyboard navigation', () => {
-    const handleChange = jest.fn();
-    
-    render(
-      <Stepper onChange={handleChange}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    const stepLabels = screen.getAllByTestId('step-label');
-    
-    // Focus on the first step
-    fireEvent.focus(stepLabels[0]);
-    
-    // Press Tab to move to the next step
-    fireEvent.keyDown(stepLabels[0], { key: 'Tab' });
-    fireEvent.focus(stepLabels[1]);
-    
-    // Press Enter to select the step
-    fireEvent.keyDown(stepLabels[1], { key: 'Enter' });
-    expect(handleChange).toHaveBeenCalledWith(1);
-  });
-
-  it('renders with optional steps', () => {
-    render(
-      <Stepper>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel optional={step.optional && <span>Optional</span>}>
-              {step.label}
-            </StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
+    // Prüfen, ob der optionale Schritt als solcher gekennzeichnet ist
     expect(screen.getByText('Optional')).toBeInTheDocument();
   });
 
-  it('renders with error state', () => {
+  it('renders with horizontal orientation', () => {
+    render(<Stepper steps={steps} activeStep={0} orientation="horizontal" />);
+    
+    const stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--horizontal');
+  });
+
+  it('renders with vertical orientation', () => {
+    render(<Stepper steps={steps} activeStep={0} orientation="vertical" />);
+    
+    const stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--vertical');
+  });
+
+  it('renders with different variants', () => {
+    const { rerender } = render(<Stepper steps={steps} activeStep={0} variant="default" />);
+    
+    let stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--default');
+    
+    rerender(<Stepper steps={steps} activeStep={0} variant="outlined" />);
+    stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--outlined');
+    
+    rerender(<Stepper steps={steps} activeStep={0} variant="contained" />);
+    stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--contained');
+  });
+
+  it('renders with different sizes', () => {
+    const { rerender } = render(<Stepper steps={steps} activeStep={0} size="sm" />);
+    
+    let stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--sm');
+    
+    rerender(<Stepper steps={steps} activeStep={0} size="md" />);
+    stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--md');
+    
+    rerender(<Stepper steps={steps} activeStep={0} size="lg" />);
+    stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('smolitux-stepper--lg');
+  });
+
+  it('renders with custom className', () => {
+    render(<Stepper steps={steps} activeStep={0} className="custom-class" />);
+    
+    const stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveClass('custom-class');
+  });
+
+  it('renders with custom ariaLabel', () => {
+    render(<Stepper steps={steps} activeStep={0} ariaLabel="Benutzerdefinierter Stepper" />);
+    
+    const stepper = screen.getByRole('navigation');
+    expect(stepper).toHaveAttribute('aria-label', 'Benutzerdefinierter Stepper');
+  });
+
+  it('renders with connector', () => {
+    render(<Stepper steps={steps} activeStep={0} showConnector={true} />);
+    
+    const connectors = document.querySelectorAll('.smolitux-stepper-connector');
+    expect(connectors.length).toBe(2); // 2 Verbindungen für 3 Schritte
+  });
+
+  it('renders without connector', () => {
+    render(<Stepper steps={steps} activeStep={0} showConnector={false} />);
+    
+    const connectors = document.querySelectorAll('.smolitux-stepper-connector');
+    expect(connectors.length).toBe(0);
+  });
+
+  it('handles step click when clickable', () => {
+    const handleStepChange = jest.fn();
     render(
-      <Stepper>
-        {steps.map((step, index) => (
-          <Step key={index} error={index === 1}>
-            <StepLabel error={index === 1}>
-              {step.label}
-            </StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
+      <Stepper 
+        steps={steps} 
+        activeStep={0} 
+        onStepChange={handleStepChange} 
+        clickable={true} 
+      />
     );
     
-    const stepElements = screen.getAllByTestId('step');
-    expect(stepElements[1]).toHaveClass('error');
+    // Klicken auf den zweiten Schritt
+    const stepHeaders = document.querySelectorAll('.smolitux-stepper-step-header');
+    fireEvent.click(stepHeaders[1]);
+    
+    expect(handleStepChange).toHaveBeenCalledWith(1);
   });
 
-  it('handles step transitions correctly', async () => {
-    const handleNext = jest.fn();
-    const handleBack = jest.fn();
-    const handleReset = jest.fn();
-    
-    const { rerender } = render(
-      <div>
-        <Stepper activeStep={0}>
-          {steps.map((step, index) => (
-            <Step key={index}>
-              <StepLabel>{step.label}</StepLabel>
-              <StepContent>{step.content}</StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
-          <button onClick={handleBack} disabled={true}>Back</button>
-          <button onClick={handleNext}>Next</button>
-        </div>
-      </div>
+  it('does not handle step click when not clickable', () => {
+    const handleStepChange = jest.fn();
+    render(
+      <Stepper 
+        steps={steps} 
+        activeStep={0} 
+        onStepChange={handleStepChange} 
+        clickable={false} 
+      />
     );
     
-    // Initial state
-    expect(screen.getByText('Content for Step 1')).toBeVisible();
-    expect(screen.getByText('Back')).toBeDisabled();
+    // Klicken auf den zweiten Schritt
+    const stepHeaders = document.querySelectorAll('.smolitux-stepper-step-header');
+    fireEvent.click(stepHeaders[1]);
     
-    // Click Next
-    fireEvent.click(screen.getByText('Next'));
-    expect(handleNext).toHaveBeenCalled();
-    
-    // Update to step 1
-    rerender(
-      <div>
-        <Stepper activeStep={1}>
-          {steps.map((step, index) => (
-            <Step key={index}>
-              <StepLabel>{step.label}</StepLabel>
-              <StepContent>{step.content}</StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
-          <button onClick={handleBack}>Back</button>
-          <button onClick={handleNext}>Next</button>
-        </div>
-      </div>
-    );
-    
-    // Step 1 content should be visible
-    expect(screen.getByText('Content for Step 2')).toBeVisible();
-    expect(screen.getByText('Back')).not.toBeDisabled();
-    
-    // Click Back
-    fireEvent.click(screen.getByText('Back'));
-    expect(handleBack).toHaveBeenCalled();
-    
-    // Update to final step
-    rerender(
-      <div>
-        <Stepper activeStep={2}>
-          {steps.map((step, index) => (
-            <Step key={index}>
-              <StepLabel>{step.label}</StepLabel>
-              <StepContent>{step.content}</StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
-          <button onClick={handleBack}>Back</button>
-          <button onClick={handleReset}>Reset</button>
-        </div>
-      </div>
-    );
-    
-    // Final step content should be visible
-    expect(screen.getByText('Content for Step 3')).toBeVisible();
-    
-    // Click Reset
-    fireEvent.click(screen.getByText('Reset'));
-    expect(handleReset).toHaveBeenCalled();
+    expect(handleStepChange).not.toHaveBeenCalled();
   });
 
-  it('handles dynamic step addition and removal', () => {
-    // Initial render with 3 steps
-    const { rerender } = render(
-      <Stepper>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    expect(screen.getAllByTestId('step')).toHaveLength(3);
-    
-    // Add a step
-    const extendedSteps = [
-      ...steps,
-      { label: 'Step 4', content: 'Content for Step 4', optional: false }
+  it('does not handle click on disabled step', () => {
+    const handleStepChange = jest.fn();
+    const stepsWithDisabled = [
+      ...steps.slice(0, 2),
+      { ...steps[2], disabled: true }
     ];
     
-    rerender(
-      <Stepper>
-        {extendedSteps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
+    render(
+      <Stepper 
+        steps={stepsWithDisabled} 
+        activeStep={0} 
+        onStepChange={handleStepChange} 
+        clickable={true} 
+      />
     );
     
-    expect(screen.getAllByTestId('step')).toHaveLength(4);
-    expect(screen.getByText('Step 4')).toBeInTheDocument();
+    // Klicken auf den dritten (deaktivierten) Schritt
+    const stepHeaders = document.querySelectorAll('.smolitux-stepper-step-header');
+    fireEvent.click(stepHeaders[2]);
     
-    // Remove a step
-    const reducedSteps = steps.slice(0, 2);
-    
-    rerender(
-      <Stepper>
-        {reducedSteps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    expect(screen.getAllByTestId('step')).toHaveLength(2);
-    expect(screen.queryByText('Step 3')).not.toBeInTheDocument();
+    expect(handleStepChange).not.toHaveBeenCalled();
   });
 
-  it('handles controlled vs uncontrolled behavior correctly', () => {
-    // Uncontrolled
-    const { rerender } = render(
-      <Stepper>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
+  it('renders StepperContent correctly', () => {
+    render(
+      <Stepper steps={steps} activeStep={1}>
+        <StepperContent>
+          <div data-testid="content-1">Inhalt 1</div>
+          <div data-testid="content-2">Inhalt 2</div>
+          <div data-testid="content-3">Inhalt 3</div>
+        </StepperContent>
       </Stepper>
     );
     
-    // First step should be active by default
-    expect(screen.getByText('Content for Step 1')).toBeVisible();
-    
-    // Click on step 2
-    fireEvent.click(screen.getByText('Step 2'));
-    
-    // In uncontrolled mode, step 2 should now be active
-    expect(screen.getByText('Content for Step 2')).toBeVisible();
-    
-    // Controlled
-    const handleChange = jest.fn();
-    
-    rerender(
-      <Stepper activeStep={0} onChange={handleChange}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    );
-    
-    // First step should be active
-    expect(screen.getByText('Content for Step 1')).toBeVisible();
-    
-    // Click on step 2
-    fireEvent.click(screen.getByText('Step 2'));
-    
-    // In controlled mode, step 1 should still be active, but onChange should be called
-    expect(screen.getByText('Content for Step 1')).toBeVisible();
-    expect(handleChange).toHaveBeenCalledWith(1);
+    // Prüfen, ob der richtige Inhalt angezeigt wird (basierend auf activeStep)
+    expect(screen.queryByTestId('content-1')).not.toBeInTheDocument();
+    expect(screen.getByTestId('content-2')).toBeInTheDocument();
+    expect(screen.queryByTestId('content-3')).not.toBeInTheDocument();
   });
 
-  it('handles edge cases with invalid activeStep values', () => {
-    // Negative activeStep
-    const { rerender } = render(
-      <Stepper activeStep={-1}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
+  it('renders StepperActions correctly with default buttons', () => {
+    render(
+      <Stepper steps={steps} activeStep={1}>
+        <StepperActions />
       </Stepper>
     );
     
-    // Should default to first step
-    expect(screen.getByText('Content for Step 1')).toBeVisible();
-    
-    // activeStep beyond the number of steps
-    rerender(
-      <Stepper activeStep={10}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>{step.content}</StepContent>
-          </Step>
-        ))}
+    // Prüfen, ob die Standard-Buttons gerendert wurden
+    expect(screen.getByText('Zurück')).toBeInTheDocument();
+    expect(screen.getByText('Weiter')).toBeInTheDocument();
+  });
+
+  it('renders StepperActions with complete button on last step', () => {
+    render(
+      <Stepper steps={steps} activeStep={2}>
+        <StepperActions />
       </Stepper>
     );
     
-    // Should clamp to the last step
-    expect(screen.getByText('Content for Step 3')).toBeVisible();
+    // Prüfen, ob der Abschließen-Button angezeigt wird
+    expect(screen.getByText('Zurück')).toBeInTheDocument();
+    expect(screen.getByText('Abschließen')).toBeInTheDocument();
+    expect(screen.queryByText('Weiter')).not.toBeInTheDocument();
+  });
+
+  it('handles back button click', () => {
+    const handleStepChange = jest.fn();
+    render(
+      <Stepper steps={steps} activeStep={1} onStepChange={handleStepChange}>
+        <StepperActions />
+      </Stepper>
+    );
+    
+    // Klicken auf den Zurück-Button
+    fireEvent.click(screen.getByText('Zurück'));
+    
+    expect(handleStepChange).toHaveBeenCalledWith(0);
+  });
+
+  it('handles next button click', () => {
+    const handleStepChange = jest.fn();
+    render(
+      <Stepper steps={steps} activeStep={1} onStepChange={handleStepChange}>
+        <StepperActions />
+      </Stepper>
+    );
+    
+    // Klicken auf den Weiter-Button
+    fireEvent.click(screen.getByText('Weiter'));
+    
+    expect(handleStepChange).toHaveBeenCalledWith(2);
+  });
+
+  it('handles complete button click', () => {
+    const handleComplete = jest.fn();
+    render(
+      <Stepper steps={steps} activeStep={2}>
+        <StepperActions onComplete={handleComplete} />
+      </Stepper>
+    );
+    
+    // Klicken auf den Abschließen-Button
+    fireEvent.click(screen.getByText('Abschließen'));
+    
+    expect(handleComplete).toHaveBeenCalled();
+  });
+
+  it('renders StepperActions with custom button labels', () => {
+    render(
+      <Stepper steps={steps} activeStep={1}>
+        <StepperActions 
+          backLabel="Zurück gehen" 
+          nextLabel="Fortfahren" 
+          completeLabel="Fertigstellen" 
+        />
+      </Stepper>
+    );
+    
+    // Prüfen, ob die benutzerdefinierten Button-Labels gerendert wurden
+    expect(screen.getByText('Zurück gehen')).toBeInTheDocument();
+    expect(screen.getByText('Fortfahren')).toBeInTheDocument();
+  });
+
+  it('renders StepperActions with custom className', () => {
+    render(
+      <Stepper steps={steps} activeStep={1}>
+        <StepperActions className="custom-actions-class" />
+      </Stepper>
+    );
+    
+    const actions = document.querySelector('.smolitux-stepper-actions');
+    expect(actions).toHaveClass('custom-actions-class');
+  });
+
+  it('renders StepperActions with custom children', () => {
+    render(
+      <Stepper steps={steps} activeStep={1}>
+        <StepperActions>
+          <button data-testid="custom-button">Benutzerdefinierter Button</button>
+        </StepperActions>
+      </Stepper>
+    );
+    
+    // Prüfen, ob die benutzerdefinierten Kinder gerendert wurden
+    expect(screen.getByTestId('custom-button')).toBeInTheDocument();
+    expect(screen.queryByText('Zurück')).not.toBeInTheDocument();
+    expect(screen.queryByText('Weiter')).not.toBeInTheDocument();
+  });
+
+  it('should not have accessibility violations', async () => {
+    const { container } = render(
+      <Stepper 
+        steps={steps} 
+        activeStep={1}
+        ariaLabel="Prozess-Stepper"
+      >
+        <StepperContent>
+          <div>Inhalt 1</div>
+          <div>Inhalt 2</div>
+          <div>Inhalt 3</div>
+        </StepperContent>
+        <StepperActions />
+      </Stepper>
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

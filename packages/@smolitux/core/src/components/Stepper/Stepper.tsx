@@ -174,11 +174,19 @@ export const Stepper: React.FC<StepperProps> = ({
                 tabIndex={clickable && !step.disabled ? 0 : undefined}
                 aria-current={index === activeStep ? 'step' : undefined}
                 aria-disabled={step.disabled}
+                aria-label={`${step.title}${step.description ? `, ${step.description}` : ''}${step.optional ? ', Optional' : ''}${index < activeStep ? ', Abgeschlossen' : index === activeStep ? ', Aktueller Schritt' : ', Kommender Schritt'}`}
+                aria-roledescription="Schritt"
+                onKeyDown={(e) => {
+                  if (clickable && !step.disabled && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    goToStep(index);
+                  }
+                }}
               >
                 <div className="smolitux-stepper-step-icon">
                   {step.icon || (
                     getStepStatus(index) === 'completed' ? (
-                      <svg className="smolitux-stepper-check-icon" viewBox="0 0 24 24">
+                      <svg className="smolitux-stepper-check-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                       </svg>
                     ) : (
@@ -233,7 +241,11 @@ export const StepperContent: React.FC<StepperContentProps> = ({
   const { activeStep } = useStepperContext();
   
   return (
-    <div className={`smolitux-stepper-content-container ${className}`}>
+    <div 
+      className={`smolitux-stepper-content-container ${className}`}
+      role="region"
+      aria-label={`Inhalt für Schritt ${activeStep + 1}`}
+    >
       {React.Children.toArray(children)[activeStep]}
     </div>
   );
@@ -293,13 +305,18 @@ export const StepperActions: React.FC<StepperActionsProps> = ({
   const isLastStep = activeStep === steps.length - 1;
   
   return (
-    <div className={`smolitux-stepper-actions ${className}`}>
+    <div 
+      className={`smolitux-stepper-actions ${className}`}
+      role="group"
+      aria-label="Stepper-Aktionen"
+    >
       {children || (showDefaultButtons && (
         <>
           <button
             className="smolitux-stepper-back-button"
             onClick={handleBack}
             disabled={activeStep === 0}
+            aria-label={`${backLabel}${activeStep === 0 ? ', deaktiviert' : ''}`}
           >
             {backLabel}
           </button>
@@ -308,6 +325,7 @@ export const StepperActions: React.FC<StepperActionsProps> = ({
             <button
               className="smolitux-stepper-complete-button"
               onClick={handleComplete}
+              aria-label={completeLabel}
             >
               {completeLabel}
             </button>
@@ -315,6 +333,7 @@ export const StepperActions: React.FC<StepperActionsProps> = ({
             <button
               className="smolitux-stepper-next-button"
               onClick={handleNext}
+              aria-label={nextLabel}
             >
               {nextLabel}
             </button>
