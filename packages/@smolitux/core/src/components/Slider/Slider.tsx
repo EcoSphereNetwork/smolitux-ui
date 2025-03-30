@@ -627,29 +627,6 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(({
   };
   
   // Varianten-spezifische Klassen
-  const variantClasses = {
-    solid: {
-      track: 'bg-gray-300 dark:bg-gray-600',
-      filledTrack: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
-      thumb: 'bg-white'
-    },
-    outline: {
-      track: 'bg-transparent border-2 border-gray-300 dark:border-gray-600',
-      filledTrack: `bg-transparent border-2 ${colorClasses[colorScheme].border} ${colorClasses[colorScheme].borderDark}`,
-      thumb: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
-    },
-    filled: {
-      track: 'bg-gray-200 dark:bg-gray-700',
-      filledTrack: `${colorClasses[colorScheme].bgLight} ${colorClasses[colorScheme].bg}`,
-      thumb: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
-    },
-    minimal: {
-      track: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
-      filledTrack: 'bg-gray-400 dark:bg-gray-600',
-      thumb: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
-    }
-  };
-  
   // Farben-spezifische Klassen
   const colorClasses = {
     primary: {
@@ -735,6 +712,30 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(({
       textDark: 'dark:text-gray-500',
       ring: 'ring-gray-600',
       ringDark: 'dark:ring-gray-500'
+    }
+  };
+  
+  // Varianten-spezifische Klassen
+  const variantClasses = {
+    solid: {
+      track: 'bg-gray-300 dark:bg-gray-600',
+      filledTrack: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
+      thumb: 'bg-white'
+    },
+    outline: {
+      track: 'bg-transparent border-2 border-gray-300 dark:border-gray-600',
+      filledTrack: `bg-transparent border-2 ${colorClasses[colorScheme].border} ${colorClasses[colorScheme].borderDark}`,
+      thumb: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
+    },
+    filled: {
+      track: 'bg-gray-200 dark:bg-gray-700',
+      filledTrack: `${colorClasses[colorScheme].bgLight} ${colorClasses[colorScheme].bg}`,
+      thumb: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
+    },
+    minimal: {
+      track: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
+      filledTrack: 'bg-gray-400 dark:bg-gray-600',
+      thumb: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
     }
   };
   
@@ -1375,7 +1376,11 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(({
     if (!description) return null;
     
     return (
-      <div id={`${_id}-description`} className="sr-only">
+      <div 
+        id={`${_id}-description`} 
+        className="sr-only"
+        aria-hidden="false"
+      >
         {description}
       </div>
     );
@@ -1398,7 +1403,8 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(({
           title={labelTooltip}
         >
           {label || formControl.label}
-          {_required && <span className="ml-1 text-red-500">*</span>}
+          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
+          {_required && <span className="sr-only">(Erforderlich)</span>}
         </label>
       </div>
     );
@@ -1415,6 +1421,8 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(({
             id={`${_id}-error`} 
             className={`text-red-600 dark:text-red-400 ${errorClassName}`}
             role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
           >
             {_error}
           </p>
@@ -1422,6 +1430,9 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(({
           <p 
             id={`${_id}-success`} 
             className={`text-green-600 dark:text-green-400 ${successClassName}`}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
           >
             {successMessage}
           </p>
@@ -1429,6 +1440,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(({
           <p 
             id={`${_id}-helper`} 
             className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
+            aria-live="polite"
           >
             {helperText}
           </p>

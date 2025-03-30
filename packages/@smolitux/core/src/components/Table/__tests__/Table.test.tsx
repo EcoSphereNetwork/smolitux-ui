@@ -1,11 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Table } from './Table';
-import { TableHead } from './TableHead';
-import { TableBody } from './TableBody';
-import { TableRow } from './TableRow';
-import { TableCell } from './TableCell';
-import { TableFooter } from './TableFooter';
+import Table from '../Table';
 
 describe('Table', () => {
   const sampleData = [

@@ -938,7 +938,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
     if (!description) return null;
     
     return (
-      <div id={`${_id}-description`} className="sr-only">
+      <div 
+        id={`${_id}-description`} 
+        className="sr-only"
+        aria-hidden="false"
+      >
         {description}
       </div>
     );
@@ -979,7 +983,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           <p 
             id={`${_id}-error`} 
             className={`text-red-600 dark:text-red-400 ${errorClassName}`}
-            role="alert" aria-live="assertive"
+            role="alert" 
+            aria-live="assertive"
+            aria-atomic="true"
           >
             {_error}
           </p>
@@ -989,6 +995,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
             className={`text-green-600 dark:text-green-400 ${successClassName}`}
             role="status"
             aria-live="polite"
+            aria-atomic="true"
           >
             {successMessage}
           </p>
@@ -996,6 +1003,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           <p 
             id={`${_id}-helper`} 
             className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
+            aria-live="polite"
           >
             {helperText}
           </p>

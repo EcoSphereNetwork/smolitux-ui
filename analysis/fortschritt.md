@@ -51,13 +51,52 @@
   - Barrierefreiheits-Attribute korrigiert
   - Event-Handling verbessert
   - Tests angepasst und erfolgreich durchgeführt
+- [x] Accordion-Komponente getestet und verbessert
+  - Inhaltsanzeige korrigiert
+  - Tests angepasst und erfolgreich durchgeführt
+- [x] Pagination-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute hinzugefügt (role="navigation")
+  - Tests neu implementiert und erfolgreich durchgeführt
+- [x] Breadcrumb-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute hinzugefügt (aria-labelledby, role="presentation")
+  - Verbesserte Semantik mit versteckter Überschrift
+  - Tests erfolgreich durchgeführt
+- [x] Checkbox-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
+- [x] Radio-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
+- [x] RadioGroup-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-labelledby, aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
+- [x] Switch-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
+- [x] Slider-Komponente getestet und verbessert
+  - Fehler in der Reihenfolge der Definitionen behoben
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
+  - Tests angepasst und teilweise erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
+- [x] Spinner-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live, aria-busy)
+  - Tests erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
+- [x] Table-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-rowcount, aria-colcount, aria-rowindex, aria-colindex)
+  - Tests angepasst für die tatsächliche Implementierung
+  - Verbesserte Beschreibungen für Screenreader
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Accordion-Komponente testen und verbessern
-- [ ] Pagination-Komponente testen und verbessern
+- [ ] Skeleton-Komponente testen und verbessern
+- [ ] Stepper-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 
