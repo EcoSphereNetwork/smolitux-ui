@@ -57,13 +57,17 @@
 - [x] Pagination-Komponente getestet und verbessert
   - Barrierefreiheits-Attribute hinzugefügt (role="navigation")
   - Tests neu implementiert und erfolgreich durchgeführt
+- [x] Breadcrumb-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute hinzugefügt (aria-labelledby, role="presentation")
+  - Verbesserte Semantik mit versteckter Überschrift
+  - Tests erfolgreich durchgeführt
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Breadcrumb-Komponente testen und verbessern
 - [ ] Checkbox-Komponente testen und verbessern
+- [ ] Radio-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 

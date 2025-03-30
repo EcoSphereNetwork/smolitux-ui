@@ -170,7 +170,9 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
         className={`inline-flex items-center ${spacing ? spacing : 'space-x-1 md:space-x-2'}`}
         itemScope
         itemType="https://schema.org/BreadcrumbList"
+        aria-labelledby="breadcrumb-heading"
       >
+        <h2 id="breadcrumb-heading" className="sr-only">Navigationspfad</h2>
         {displayedItems.map((item, index) => {
           // Letztes Element?
           const isLast = index === displayedItems.length - 1;
@@ -212,6 +214,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
                 <span 
                   className="mx-2 text-gray-400 dark:text-gray-500"
                   aria-hidden="true"
+                  role="presentation"
                 >
                   {separator}
                 </span>
@@ -223,15 +226,20 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
                   href={(item as BreadcrumbItemData).href || ''}
                   className={baseClasses}
                   itemProp="item"
+                  aria-label={`Navigiere zu ${item?.label}`}
                   {...(item as BreadcrumbItemData).linkProps}
                 >
-                  {item?.icon && <span className="mr-1" aria-hidden="true">{item.icon}</span>}
+                  {item?.icon && <span className="mr-1" aria-hidden="true" role="presentation">{item.icon}</span>}
                   <span itemProp="name">{item?.label}</span>
                   <meta itemProp="position" content={`${index + 1}`} />
                 </Link>
               ) : (
-                <span className={baseClasses} itemProp="item">
-                  {item?.icon && <span className="mr-1" aria-hidden="true">{item.icon}</span>}
+                <span 
+                  className={baseClasses} 
+                  itemProp="item"
+                  aria-current={isCurrentPage ? 'page' : undefined}
+                >
+                  {item?.icon && <span className="mr-1" aria-hidden="true" role="presentation">{item.icon}</span>}
                   <span itemProp="name">{item?.label}</span>
                   <meta itemProp="position" content={`${index + 1}`} />
                 </span>
