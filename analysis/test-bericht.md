@@ -128,7 +128,10 @@ Dieser Bericht dokumentiert den aktuellen Stand der Tests in der Smolitux UI Bib
 Wir haben Barrierefreiheitstests mit jest-axe für alle verbesserten Komponenten durchgeführt. Die Tests überprüfen die Einhaltung der WCAG 2.1 AA-Standards.
 
 ### Ergebnisse
-- **Bestanden**: Button, Button.A11y, Card, Alert, Badge, Input, InputA11y, Select, Modal, TabView, Tooltip, Dropdown
+- **Bestanden**: 
+  - **Core-Komponenten**: Button, Button.A11y, Card, Alert, Badge, Input, InputA11y, Select, Modal, TabView, Tooltip, Dropdown
+  - **Chart-Komponenten**: BarChart, LineChart, PieChart, AreaChart, Heatmap, RadarChart, ScatterPlot
+  - **Media-Komponenten**: MediaCarousel, MediaGrid, MediaUploader, VideoPlayer
 - **Fehlgeschlagen**: Keine
 
 ### Neue Barrierefreiheits-Komponenten
@@ -169,7 +172,10 @@ Diese Komponenten bieten:
    - ✅ Unit-Tests für DropdownA11y implementiert
    - ✅ Unit-Tests für FlexA11y implementiert
    - ✅ Unit-Tests für ZoomA11y implementiert
-   - Automatisierte Barrierefreiheitstests implementieren
+   - ✅ Automatisierte Barrierefreiheitstests für Chart-Komponenten implementiert
+   - ✅ Automatisierte Barrierefreiheitstests für Media-Komponenten implementiert
+   - ✅ Standard-Tests für alle Chart-Komponenten implementiert
+   - ✅ Standard-Tests für alle Media-Komponenten implementiert
    - E2E-Tests mit Cypress oder Playwright implementieren
    - Visuelle Regressionstests implementieren
 
@@ -183,6 +189,8 @@ Diese Komponenten bieten:
    - ✅ Allgemeine A11y-Komponenten-Dokumentation erstellt
    - ✅ Komponentenstatus mit A11y-Komponenten aktualisiert
    - ✅ Dropdown-Dokumentation mit DropdownA11y-Informationen aktualisiert
-   - Dokumentation für weitere barrierefreie Komponenten erstellen
+   - ✅ Dokumentation für Tooltip und Slider-Komponenten erstellt
+   - Dokumentation für Chart-Komponenten erstellen
+   - Dokumentation für Media-Komponenten erstellen
    - Testabdeckungsbericht generieren
    - Best Practices für Tests dokumentieren

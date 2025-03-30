@@ -217,12 +217,21 @@
 
 ### 2. Weitere Lint-Fehler beheben
 
-- [ ] Lint-Fehler in @smolitux/ai beheben
-- [ ] Lint-Fehler in @smolitux/blockchain beheben
-- [ ] Lint-Fehler in @smolitux/charts beheben
-- [ ] Lint-Fehler in @smolitux/layout beheben
-- [ ] Lint-Fehler in @smolitux/media beheben
-- [ ] Lint-Fehler in @smolitux/resonance beheben
+- [x] Lint-Fehler in @smolitux/ai beheben
+  - Ungenutzte waitFor-Importe entfernt
+  - Import-Pfade in Test-Dateien korrigiert
+- [x] Lint-Fehler in @smolitux/blockchain beheben
+  - Ungenutzte waitFor-Importe entfernt
+  - Import-Pfade in Test-Dateien korrigiert
+  - Fehlende Typen hinzugefügt
+- [x] Lint-Fehler in @smolitux/charts beheben
+  - Deutsche Kommentare ins Englische übersetzt
+  - Import-Pfade in Test-Dateien korrigiert
+- [x] Lint-Fehler in @smolitux/media beheben
+  - Import-Pfade in Test-Dateien korrigiert
+- [x] Lint-Fehler in @smolitux/resonance beheben
+  - Ungenutzte waitFor-Importe entfernt
+  - Import-Pfade in Test-Dateien korrigiert
 
 ### 3. Dokumentation vervollständigen
 
@@ -233,7 +242,14 @@
 
 ### 4. Tests erweitern
 
-- [ ] Automatisierte Barrierefreiheitstests implementieren
+- [x] Automatisierte Barrierefreiheitstests für @smolitux/charts implementieren
+  - Barrierefreiheitstests für BarChart, LineChart, PieChart, Heatmap, RadarChart und ScatterPlot erstellt
+  - ARIA-Attribute und Farbkontrast getestet
+  - Tastaturnavigation getestet
+- [x] Automatisierte Barrierefreiheitstests für @smolitux/media implementieren
+  - Barrierefreiheitstests für MediaCarousel, MediaGrid, MediaUploader und VideoPlayer erstellt
+  - ARIA-Attribute und Farbkontrast getestet
+  - Tastaturnavigation getestet
 - [ ] E2E-Tests mit Cypress oder Playwright implementieren
 - [ ] Visuelle Regressionstests implementieren
 
