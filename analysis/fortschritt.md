@@ -183,7 +183,14 @@
      - Behobene Probleme mit der Datumsvalidierung
      - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
      - Alle Tests erfolgreich
-   - Dialog
+   - [x] Dialog
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
    - Drawer
    - FileUpload
    - LanguageSwitcher
