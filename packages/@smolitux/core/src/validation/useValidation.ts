@@ -4,7 +4,7 @@ import { ValidationRule, FieldValidationRules } from './types';
 /**
  * Hook für die Validierung von Werten
  */
-export const useValidation = <T = any>(
+export const useValidation = <T = unknown>(
   validationRules: FieldValidationRules<T> = []
 ) => {
   const [errors, setErrors] = useState<string[]>([]);
@@ -15,7 +15,7 @@ export const useValidation = <T = any>(
    * Validiert einen Wert anhand der Validierungsregeln
    */
   const validate = useCallback(
-    async (value: T, formValues?: Record<string, any>): Promise<boolean> => {
+    async (value: T, formValues?: Record<string, unknown>): Promise<boolean> => {
       if (validationRules.length === 0) {
         setErrors([]);
         setIsValid(true);

@@ -149,7 +149,7 @@ export const url = (message = 'Bitte geben Sie eine gültige URL ein'): Validati
     try {
       new URL(value);
       return true;
-    } catch (e) {
+    } catch (_error) {
       return false;
     }
   },
@@ -287,7 +287,7 @@ export const strongPassword = (
  * Erstellt eine benutzerdefinierte Validierungsregel
  */
 export const custom = (
-  validatorFn: (value: any, formValues?: Record<string, any>) => boolean,
+  validatorFn: (value: unknown, formValues?: Record<string, unknown>) => boolean,
   message = 'Ungültiger Wert'
 ): ValidationRule => ({
   validator: validatorFn,
