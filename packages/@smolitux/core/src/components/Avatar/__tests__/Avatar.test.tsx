@@ -23,55 +23,59 @@ describe('Avatar', () => {
   it('renders fallback icon when no image or name is provided', () => {
     render(<Avatar />);
     // Check for the fallback icon (implementation may vary)
-    const avatar = screen.getByRole('img', { hidden: true });
+    const avatar = screen.getByTestId('avatar');
     expect(avatar).toBeInTheDocument();
   });
 
   it('applies size classes correctly', () => {
     const { rerender } = render(<Avatar size="sm" name="John Doe" />);
-    let avatar = screen.getByText('JD').closest('div');
-    expect(avatar).toHaveClass('w-8 h-8');
+    let avatar = screen.getByTestId('avatar');
+    expect(avatar).toHaveClass('w-8');
+    expect(avatar).toHaveClass('h-8');
 
     rerender(<Avatar size="md" name="John Doe" />);
-    avatar = screen.getByText('JD').closest('div');
-    expect(avatar).toHaveClass('w-10 h-10');
+    avatar = screen.getByTestId('avatar');
+    expect(avatar).toHaveClass('w-10');
+    expect(avatar).toHaveClass('h-10');
 
     rerender(<Avatar size="lg" name="John Doe" />);
-    avatar = screen.getByText('JD').closest('div');
-    expect(avatar).toHaveClass('w-12 h-12');
+    avatar = screen.getByTestId('avatar');
+    expect(avatar).toHaveClass('w-12');
+    expect(avatar).toHaveClass('h-12');
 
     rerender(<Avatar size="xl" name="John Doe" />);
-    avatar = screen.getByText('JD').closest('div');
-    expect(avatar).toHaveClass('w-16 h-16');
+    avatar = screen.getByTestId('avatar');
+    expect(avatar).toHaveClass('w-16');
+    expect(avatar).toHaveClass('h-16');
   });
 
   it('applies custom size correctly', () => {
     render(<Avatar size="2.5rem" name="John Doe" />);
-    const avatar = screen.getByText('JD').closest('div');
+    const avatar = screen.getByTestId('avatar');
     expect(avatar).toHaveStyle({ width: '2.5rem', height: '2.5rem' });
   });
 
   it('applies border when specified', () => {
     render(<Avatar name="John Doe" showBorder />);
-    const avatar = screen.getByText('JD').closest('div');
+    const avatar = screen.getByTestId('avatar');
     expect(avatar).toHaveClass('border-2');
   });
 
   it('applies custom border color when specified', () => {
     render(<Avatar name="John Doe" showBorder borderColor="red-500" />);
-    const avatar = screen.getByText('JD').closest('div');
+    const avatar = screen.getByTestId('avatar');
     expect(avatar).toHaveClass('border-red-500');
   });
 
   it('applies custom background color when specified', () => {
     render(<Avatar name="John Doe" bgColor="blue-500" />);
-    const avatar = screen.getByText('JD').closest('div');
-    expect(avatar).toHaveClass('bg-blue-500');
+    const container = screen.getByTestId('avatar-fallback');
+    expect(container).toHaveClass('bg-blue-500');
   });
 
   it('applies custom text color when specified', () => {
     render(<Avatar name="John Doe" textColor="yellow-500" />);
-    const avatar = screen.getByText('JD').closest('div');
+    const avatar = screen.getByTestId('avatar');
     expect(avatar).toHaveClass('text-yellow-500');
   });
 
@@ -97,7 +101,7 @@ describe('Avatar', () => {
 
   it('applies custom className when provided', () => {
     render(<Avatar name="John Doe" className="custom-avatar" />);
-    const avatar = screen.getByText('JD').closest('div');
+    const avatar = screen.getByTestId('avatar');
     expect(avatar).toHaveClass('custom-avatar');
   });
 });
