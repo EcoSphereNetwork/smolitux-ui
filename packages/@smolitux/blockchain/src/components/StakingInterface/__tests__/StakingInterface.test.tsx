@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { StakingInterface } from './StakingInterface';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { StakingInterface } from '../StakingInterface';
 
 describe('StakingInterface', () => {
   const mockStakingData = {

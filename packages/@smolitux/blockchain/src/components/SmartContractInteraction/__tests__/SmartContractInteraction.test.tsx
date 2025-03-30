@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { SmartContractInteraction } from './SmartContractInteraction';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { SmartContractInteraction } from '../SmartContractInteraction';
 
 describe('SmartContractInteraction', () => {
   const mockContractABI = [

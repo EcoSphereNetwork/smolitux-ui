@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { TokenDisplay } from './TokenDisplay';
+import { TokenDisplay } from '../TokenDisplay';
 
 describe('TokenDisplay', () => {
   const mockTokenData = {
