@@ -91,6 +91,26 @@
   - Tests angepasst für die tatsächliche Implementierung
   - Verbesserte Beschreibungen für Screenreader
 
+## Aktuelle Fortschritte
+
+### 1. Lint-Fehler beheben
+
+- [x] Parsing-Fehler in ActivityStream-Komponente behoben
+- [x] Parsing-Fehler in CrossPlatformShare-Komponente behoben
+- [x] Unbenutzte Importe in @smolitux/core entfernt
+- [x] TypeScript-Typisierung in @smolitux/utils verbessert
+- [x] Unbenutzte Importe in @smolitux/federation entfernt
+
+### 2. Barrierefreiheit verbessern
+
+- [x] Button.A11y-Komponente implementiert
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturunterstützung
+  - Automatische ID-Generierung für ARIA-Attribute
+- [x] Barrierefreiheits-Dokumentation für Button-Komponente erstellt
+- [x] Tests für Button.A11y-Komponente implementiert
+- [x] Tests für InputA11y-Komponente implementiert
+
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
@@ -269,5 +289,12 @@
      - Alle Tests erfolgreich
 
 3. Dokumentation für alle Komponenten aktualisieren
+   - [x] Barrierefreiheits-Dokumentation für Button-Komponente erstellt
+   - [ ] Dokumentation für weitere Komponenten aktualisieren
 
 4. Lint-Fehler beheben und CI/CD-Pipeline vollständig aktivieren
+   - [x] Kritische Parsing-Fehler behoben
+   - [x] Unbenutzte Importe in @smolitux/core entfernt
+   - [x] TypeScript-Typisierung in @smolitux/utils verbessert
+   - [x] Unbenutzte Importe in @smolitux/federation entfernt
+   - [ ] Verbleibende Lint-Fehler in anderen Paketen beheben

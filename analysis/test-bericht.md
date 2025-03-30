@@ -34,6 +34,14 @@ Dieser Bericht dokumentiert den aktuellen Stand der Tests in der Smolitux UI Bib
   - Barrierefreiheit
 - **Ergebnis**: Alle Tests bestanden
 
+### 1.1 Button.A11y (Neu)
+- **Testfälle**:
+  - ARIA-Attribute für verschiedene Zustände
+  - Automatische ID-Generierung
+  - Tastaturunterstützung
+  - Screenreader-Unterstützung
+- **Ergebnis**: Alle Tests bestanden
+
 ### 2. Card
 - **Testfälle**:
   - Rendering mit verschiedenen Props
@@ -62,6 +70,17 @@ Dieser Bericht dokumentiert den aktuellen Stand der Tests in der Smolitux UI Bib
   - Validierung
   - Event-Handling
   - Barrierefreiheit
+- **Ergebnis**: Alle Tests bestanden
+
+### 5.1 InputA11y (Neu)
+- **Testfälle**:
+  - ARIA-Attribute für verschiedene Zustände
+  - Automatische ID-Generierung
+  - Tastaturunterstützung
+  - Screenreader-Unterstützung
+  - Passwort-Toggle-Funktionalität
+  - Clear-Button-Funktionalität
+  - Counter und Progressbar
 - **Ergebnis**: Alle Tests bestanden
 
 ### 6. Select
@@ -109,29 +128,50 @@ Dieser Bericht dokumentiert den aktuellen Stand der Tests in der Smolitux UI Bib
 Wir haben Barrierefreiheitstests mit jest-axe für alle verbesserten Komponenten durchgeführt. Die Tests überprüfen die Einhaltung der WCAG 2.1 AA-Standards.
 
 ### Ergebnisse
-- **Bestanden**: Button, Card, Alert, Badge, Input, Select, Modal, TabView, Tooltip, Dropdown
+- **Bestanden**: Button, Button.A11y, Card, Alert, Badge, Input, InputA11y, Select, Modal, TabView, Tooltip, Dropdown
 - **Fehlgeschlagen**: Keine
+
+### Neue Barrierefreiheits-Komponenten
+Wir haben spezielle barrierefreie Versionen für folgende Komponenten implementiert:
+- **Button.A11y**: Verbesserte Button-Komponente mit umfassenden ARIA-Attributen
+- **InputA11y**: Verbesserte Input-Komponente mit umfassenden ARIA-Attributen
+
+Diese Komponenten bieten:
+- Automatische ID-Generierung für ARIA-Attribute
+- Verbesserte Tastaturunterstützung
+- Bessere Screenreader-Unterstützung
+- Erweiterte ARIA-Attribute für verschiedene Zustände
 
 ## Nächste Schritte
 
-1. **Weitere Komponenten testen**:
+1. **Weitere barrierefreie Komponenten implementieren**:
+   - Select.A11y
+   - Checkbox.A11y
+   - Radio.A11y
+   - Modal.A11y
+   - Dropdown.A11y
+
+2. **Weitere Komponenten testen**:
    - Accordion
    - Pagination
    - Breadcrumb
    - Carousel
    - Checkbox
 
-2. **Testabdeckung erhöhen**:
-   - Unit-Tests für alle Komponenten
+3. **Testabdeckung erhöhen**:
+   - ✅ Unit-Tests für Button.A11y implementiert
+   - ✅ Unit-Tests für InputA11y implementiert
+   - Unit-Tests für weitere Komponenten
    - Integration-Tests für komplexe Komponenten
    - Visuelle Regressionstests
 
-3. **Automatisierung verbessern**:
+4. **Automatisierung verbessern**:
    - CI/CD-Pipeline einrichten
    - Automatische Testberichte generieren
    - Performance-Tests integrieren
 
-4. **Dokumentation der Tests**:
+5. **Dokumentation der Tests**:
+   - ✅ Dokumentation für Button.A11y erstellt
    - Testplan für jede Komponente erstellen
    - Testabdeckungsbericht generieren
    - Best Practices für Tests dokumentieren
