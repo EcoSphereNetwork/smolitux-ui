@@ -186,6 +186,16 @@ Basierend auf der Bestandsaufnahme und dem Testplan wird die Weiterentwicklung u
 - [ ] Mehrsprachige Dokumentation erstellen
 - [ ] RTL-Unterstützung implementieren
 
+### 5.6 Finalisierung & Launch
+
+- [ ] Abschließende Tests durchführen
+- [ ] Versionsupdate vorbereiten
+- [ ] Changelog aktualisieren
+- [ ] Release-Paket erstellen
+- [ ] Mit Npm veröffentlichen
+- [ ] Abschlussbericht erstellen
+
+
 ## Zeitplan
 
 - **Phase 1**: KW 10-11 ✅
