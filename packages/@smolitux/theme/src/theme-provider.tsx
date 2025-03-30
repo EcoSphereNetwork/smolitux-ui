@@ -204,8 +204,7 @@ export const shadows = {
  */
 export function getColorByTheme(
   colorName: keyof typeof colors, 
-  shade: keyof typeof colors.primary,
-  themeMode: ThemeMode
+  shade: keyof typeof colors.primary
 ): string {
   const colorScale = colors[colorName];
   if (!colorScale) {

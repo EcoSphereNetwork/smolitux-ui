@@ -1,4 +1,4 @@
-import { Theme, ThemeMode } from './types';
+import { Theme } from './types';
 
 /**
  * Berechnet eine Farbe basierend auf dem aktuellen Theme
@@ -6,8 +6,7 @@ import { Theme, ThemeMode } from './types';
 export function getColorByTheme(
   theme: Theme,
   colorName: keyof Theme['colors'], 
-  shade: keyof Theme['colors']['primary'],
-  themeMode: ThemeMode
+  shade: keyof Theme['colors']['primary']
 ): string {
   const colorScale = theme.colors[colorName];
   if (!colorScale || typeof colorScale === 'string') {
