@@ -15,7 +15,6 @@ jest.mock('../../FormControl/FormControl', () => ({
     isInvalid: false,
     isReadOnly: false,
     isRequired: false,
-    hasError: false,
   }),
 }));
 
@@ -29,8 +28,8 @@ describe('FileUpload', () => {
   it('renders correctly with default props', () => {
     render(<FileUpload />);
     
-    expect(screen.getByText('Dateien hierher ziehen oder klicken zum Auswählen')).toBeInTheDocument();
-    expect(screen.getByTestId('file-upload-input')).toBeInTheDocument();
+    expect(screen.getByText('Drag and drop files here or click to browse')).toBeInTheDocument();
+    expect(screen.getByLabelText('Upload files')).toBeInTheDocument();
   });
 
   it('renders with custom dropzone text', () => {
@@ -60,7 +59,7 @@ describe('FileUpload', () => {
   it('renders in disabled state', () => {
     render(<FileUpload disabled />);
     
-    const input = screen.getByTestId('file-upload-input');
+    const input = screen.getByLabelText('Upload files');
     expect(input).toBeDisabled();
   });
 
@@ -69,7 +68,7 @@ describe('FileUpload', () => {
     render(<FileUpload onChange={handleChange} />);
     
     const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
-    const input = screen.getByTestId('file-upload-input');
+    const input = screen.getByLabelText('Upload files');
     
     Object.defineProperty(input, 'files', {
       value: [file],
@@ -87,19 +86,12 @@ describe('FileUpload', () => {
     });
   });
 
-  it('validates file size', async () => {
+  it('validates file types', async () => {
     const handleChange = jest.fn();
-    const onUploadError = jest.fn();
-    render(
-      <FileUpload 
-        onChange={handleChange} 
-        maxSize={5} // 5 bytes
-        onUploadError={onUploadError}
-      />
-    );
+    render(<FileUpload accept=".jpg,.png" onChange={handleChange} />);
     
     const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
-    const input = screen.getByTestId('file-upload-input');
+    const input = screen.getByLabelText('Upload files');
     
     Object.defineProperty(input, 'files', {
       value: [file],
@@ -108,9 +100,27 @@ describe('FileUpload', () => {
     fireEvent.change(input);
     
     await waitFor(() => {
-      expect(onUploadError).toHaveBeenCalled();
-      // In der verbesserten Version wird onChange auch aufgerufen, aber mit leeren Dateien
-      // expect(handleChange).not.toHaveBeenCalled();
+      expect(screen.getByText('Invalid file type')).toBeInTheDocument();
+      expect(handleChange).not.toHaveBeenCalled();
+    });
+  });
+
+  it('validates file size', async () => {
+    const handleChange = jest.fn();
+    render(<FileUpload maxFileSize={5} onChange={handleChange} />); // 5 bytes
+    
+    const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
+    const input = screen.getByLabelText('Upload files');
+    
+    Object.defineProperty(input, 'files', {
+      value: [file],
+    });
+    
+    fireEvent.change(input);
+    
+    await waitFor(() => {
+      expect(screen.getByText('File size exceeds maximum allowed')).toBeInTheDocument();
+      expect(handleChange).not.toHaveBeenCalled();
     });
   });
 
@@ -120,7 +130,7 @@ describe('FileUpload', () => {
     
     const file1 = new File(['test content 1'], 'test1.txt', { type: 'text/plain' });
     const file2 = new File(['test content 2'], 'test2.txt', { type: 'text/plain' });
-    const input = screen.getByTestId('file-upload-input');
+    const input = screen.getByLabelText('Upload files');
     
     Object.defineProperty(input, 'files', {
       value: [file1, file2],
@@ -139,19 +149,11 @@ describe('FileUpload', () => {
 
   it('limits the number of files when maxFiles is set', async () => {
     const handleChange = jest.fn();
-    const onUploadError = jest.fn();
-    render(
-      <FileUpload 
-        multiple 
-        maxFiles={1} 
-        onChange={handleChange}
-        onUploadError={onUploadError}
-      />
-    );
+    render(<FileUpload multiple maxFiles={1} onChange={handleChange} />);
     
     const file1 = new File(['test content 1'], 'test1.txt', { type: 'text/plain' });
     const file2 = new File(['test content 2'], 'test2.txt', { type: 'text/plain' });
-    const input = screen.getByTestId('file-upload-input');
+    const input = screen.getByLabelText('Upload files');
     
     Object.defineProperty(input, 'files', {
       value: [file1, file2],
@@ -160,7 +162,7 @@ describe('FileUpload', () => {
     fireEvent.change(input);
     
     await waitFor(() => {
-      expect(onUploadError).toHaveBeenCalled();
+      expect(screen.getByText('Too many files selected')).toBeInTheDocument();
       expect(handleChange).not.toHaveBeenCalled();
     });
   });
@@ -169,7 +171,7 @@ describe('FileUpload', () => {
     const handleChange = jest.fn();
     render(<FileUpload onChange={handleChange} />);
     
-    const dropzone = screen.getByTestId('file-upload-dropzone');
+    const dropzone = screen.getByText('Drag and drop files here or click to browse').closest('div');
     const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
     
     // Mock dataTransfer
@@ -186,28 +188,29 @@ describe('FileUpload', () => {
     };
     
     // Trigger drag events
-    fireEvent.dragEnter(dropzone, { dataTransfer });
-    expect(dropzone).toHaveClass('border-primary-500');
-    
-    fireEvent.dragOver(dropzone, { dataTransfer });
-    
-    fireEvent.drop(dropzone, { dataTransfer });
-    
-    await waitFor(() => {
-      expect(handleChange).toHaveBeenCalled();
-      const fileInfo = handleChange.mock.calls[0][0][0];
-      expect(fileInfo.name).toBe('test.txt');
-    });
-    
-    expect(dropzone).not.toHaveClass('border-primary-500');
+    if (dropzone) {
+      fireEvent.dragEnter(dropzone, { dataTransfer });
+      expect(dropzone).toHaveClass('border-primary-500');
+      
+      fireEvent.dragOver(dropzone, { dataTransfer });
+      
+      fireEvent.drop(dropzone, { dataTransfer });
+      
+      await waitFor(() => {
+        expect(handleChange).toHaveBeenCalled();
+        const fileInfo = handleChange.mock.calls[0][0][0];
+        expect(fileInfo.name).toBe('test.txt');
+      });
+      
+      expect(dropzone).not.toHaveClass('border-primary-500');
+    }
   });
 
   it('displays file preview for images', async () => {
-    const handleChange = jest.fn();
-    render(<FileUpload showPreview={true} onChange={handleChange} />);
+    render(<FileUpload showPreviews />);
     
     const file = new File(['test content'], 'test.jpg', { type: 'image/jpeg' });
-    const input = screen.getByTestId('file-upload-input');
+    const input = screen.getByLabelText('Upload files');
     
     Object.defineProperty(input, 'files', {
       value: [file],
@@ -216,8 +219,37 @@ describe('FileUpload', () => {
     fireEvent.change(input);
     
     await waitFor(() => {
-      expect(handleChange).toHaveBeenCalled();
+      expect(screen.getByAltText('test.jpg')).toBeInTheDocument();
       expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
+    });
+  });
+
+  it('allows file removal', async () => {
+    const handleChange = jest.fn();
+    render(<FileUpload onChange={handleChange} />);
+    
+    const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
+    const input = screen.getByLabelText('Upload files');
+    
+    Object.defineProperty(input, 'files', {
+      value: [file],
+    });
+    
+    fireEvent.change(input);
+    
+    await waitFor(() => {
+      expect(screen.getByText('test.txt')).toBeInTheDocument();
+    });
+    
+    // Click remove button
+    const removeButton = screen.getByLabelText('Remove file');
+    fireEvent.click(removeButton);
+    
+    await waitFor(() => {
+      expect(screen.queryByText('test.txt')).not.toBeInTheDocument();
+      // Second call should be with empty array
+      expect(handleChange).toHaveBeenCalledTimes(2);
+      expect(handleChange).toHaveBeenLastCalledWith([]);
     });
   });
 
