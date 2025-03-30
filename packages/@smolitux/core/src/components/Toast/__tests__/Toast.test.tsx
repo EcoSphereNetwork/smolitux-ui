@@ -8,28 +8,33 @@ describe('Toast Component', () => {
   });
 
   afterEach(() => {
+    jest.runOnlyPendingTimers();
     jest.useRealTimers();
   });
 
   test('renders correctly with default props', () => {
     render(<Toast message="Test message" />);
     
-    expect(screen.getByText('Test message')).toBeInTheDocument();
-    expect(screen.getByTestId('toast')).toHaveClass('bg-white');
+    expect(screen.getByTestId('toast-message')).toHaveTextContent('Test message');
+    expect(screen.getByTestId('toast')).toHaveAttribute('data-type', 'info');
   });
   
-  test('renders with different variants', () => {
-    const { rerender } = render(<Toast message="Info toast" variant="info" />);
+  test('renders with different types', () => {
+    const { rerender } = render(<Toast message="Info toast" type="info" />);
     expect(screen.getByTestId('toast')).toHaveClass('bg-blue-50');
+    expect(screen.getByTestId('toast-info-icon')).toBeInTheDocument();
     
-    rerender(<Toast message="Success toast" variant="success" />);
+    rerender(<Toast message="Success toast" type="success" />);
     expect(screen.getByTestId('toast')).toHaveClass('bg-green-50');
+    expect(screen.getByTestId('toast-success-icon')).toBeInTheDocument();
     
-    rerender(<Toast message="Warning toast" variant="warning" />);
+    rerender(<Toast message="Warning toast" type="warning" />);
     expect(screen.getByTestId('toast')).toHaveClass('bg-yellow-50');
+    expect(screen.getByTestId('toast-warning-icon')).toBeInTheDocument();
     
-    rerender(<Toast message="Error toast" variant="error" />);
+    rerender(<Toast message="Error toast" type="error" />);
     expect(screen.getByTestId('toast')).toHaveClass('bg-red-50');
+    expect(screen.getByTestId('toast-error-icon')).toBeInTheDocument();
   });
   
   test('renders with custom className', () => {
@@ -39,10 +44,10 @@ describe('Toast Component', () => {
   
   test('renders with title', () => {
     render(<Toast message="Message" title="Toast Title" />);
-    expect(screen.getByText('Toast Title')).toBeInTheDocument();
+    expect(screen.getByTestId('toast-title')).toHaveTextContent('Toast Title');
   });
   
-  test('renders with icon', () => {
+  test('renders with custom icon', () => {
     render(<Toast message="Message with icon" icon={<span data-testid="custom-icon">🔔</span>} />);
     expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
   });
@@ -51,8 +56,13 @@ describe('Toast Component', () => {
     const onClose = jest.fn();
     render(<Toast message="Closable toast" onClose={onClose} />);
     
-    const closeButton = screen.getByRole('button');
+    const closeButton = screen.getByTestId('toast-close-button');
     fireEvent.click(closeButton);
+    
+    // Warten auf die Animation
+    act(() => {
+      jest.advanceTimersByTime(300);
+    });
     
     expect(onClose).toHaveBeenCalledTimes(1);
   });
@@ -63,6 +73,11 @@ describe('Toast Component', () => {
     
     act(() => {
       jest.advanceTimersByTime(3000);
+    });
+    
+    // Warten auf die Animation
+    act(() => {
+      jest.advanceTimersByTime(300);
     });
     
     expect(onClose).toHaveBeenCalledTimes(1);
@@ -90,6 +105,7 @@ describe('Toast Component', () => {
       />
     );
     
+    expect(screen.getByTestId('toast-actions')).toBeInTheDocument();
     const actionButton = screen.getByTestId('action-button');
     fireEvent.click(actionButton);
     
@@ -108,5 +124,54 @@ describe('Toast Component', () => {
     
     rerender(<Toast message="Bottom-left toast" position="bottom-left" />);
     expect(screen.getByTestId('toast')).toHaveClass('bottom-4 left-4');
+    
+    rerender(<Toast message="Top-center toast" position="top-center" />);
+    expect(screen.getByTestId('toast')).toHaveClass('top-4 left-1/2');
+    
+    rerender(<Toast message="Bottom-center toast" position="bottom-center" />);
+    expect(screen.getByTestId('toast')).toHaveClass('bottom-4 left-1/2');
+  });
+  
+  test('renders progress bar when duration is set', () => {
+    render(<Toast message="Toast with progress" duration={5000} />);
+    
+    expect(screen.getByTestId('toast-progress')).toBeInTheDocument();
+    expect(screen.getByTestId('toast-progress')).toHaveAttribute('role', 'progressbar');
+  });
+  
+  test('does not render progress bar when duration is 0', () => {
+    render(<Toast message="Toast without progress" duration={0} />);
+    
+    expect(screen.queryByTestId('toast-progress')).not.toBeInTheDocument();
+  });
+  
+  test('renders with custom data-testid', () => {
+    render(<Toast message="Custom testid" data-testid="custom-toast" />);
+    
+    expect(screen.getByTestId('custom-toast')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-toast-message')).toHaveTextContent('Custom testid');
+  });
+  
+  test('does not render icon when showIcon is false', () => {
+    render(<Toast message="No icon" showIcon={false} />);
+    
+    expect(screen.queryByTestId('toast-icon-container')).not.toBeInTheDocument();
+  });
+  
+  test('does not render close button when showCloseButton is false', () => {
+    render(<Toast message="No close button" showCloseButton={false} />);
+    
+    expect(screen.queryByTestId('toast-close-button')).not.toBeInTheDocument();
+  });
+  
+  test('closes immediately when animateOut is false', () => {
+    const onClose = jest.fn();
+    render(<Toast message="No animation" animateOut={false} onClose={onClose} />);
+    
+    const closeButton = screen.getByTestId('toast-close-button');
+    fireEvent.click(closeButton);
+    
+    // Sollte sofort geschlossen werden, ohne auf Animation zu warten
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 });

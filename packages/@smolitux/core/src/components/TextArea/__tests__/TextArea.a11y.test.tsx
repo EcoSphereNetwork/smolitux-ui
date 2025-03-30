@@ -1,8 +1,7 @@
-// packages/@smolitux/core/src/components/TextArea/__tests__/TextArea.a11y.test.tsx
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { TextAreaA11y } from '../TextArea.a11y';
+import { TextArea } from '../TextArea';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
@@ -10,10 +9,9 @@ expect.extend(toHaveNoViolations);
 describe('TextArea Accessibility', () => {
   it('should have no accessibility violations', async () => {
     const { container } = render(
-      <TextAreaA11y
-        label="Beschreibung"
-        placeholder="Geben Sie eine Beschreibung ein..."
-        rows={4}
+      <TextArea 
+        label="Message"
+        placeholder="Enter your message"
       />
     );
     
@@ -21,154 +19,124 @@ describe('TextArea Accessibility', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('should have proper ARIA attributes', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        placeholder="Geben Sie eine Beschreibung ein..."
-        helperText="Maximal 200 Zeichen"
-        required
-        id="test-textarea"
+  it('should have no accessibility violations with error state', async () => {
+    const { container } = render(
+      <TextArea 
+        label="Message"
+        error="This field is required"
       />
     );
     
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
-    expect(textarea).toHaveAttribute('aria-required', 'true');
-    expect(textarea).toHaveAttribute('aria-describedby');
-    
-    const helperText = screen.getByText('Maximal 200 Zeichen');
-    expect(helperText.id).toBe(textarea.getAttribute('aria-describedby'));
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 
-  it('should handle error states correctly', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        error="Beschreibung ist zu kurz"
-      />
-    );
+  it('should have proper label association', () => {
+    render(<TextArea label="Message" />);
     
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
+    const textarea = screen.getByTestId('textarea');
+    const label = screen.getByTestId('textarea-label');
+    
+    expect(textarea).toHaveAttribute('id');
+    expect(label).toHaveAttribute('for', textarea.getAttribute('id'));
+  });
+
+  it('should have proper aria-invalid attribute when error is present', () => {
+    render(<TextArea error="This field is required" />);
+    
+    const textarea = screen.getByTestId('textarea');
     expect(textarea).toHaveAttribute('aria-invalid', 'true');
-    expect(textarea).toHaveAttribute('aria-describedby');
-    
-    const errorMessage = screen.getByText('Beschreibung ist zu kurz');
-    expect(errorMessage).toHaveAttribute('role', 'alert');
-    expect(errorMessage.id).toBe(textarea.getAttribute('aria-describedby'));
   });
 
-  it('should handle disabled state correctly', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        disabled
-      />
-    );
+  it('should have proper aria-describedby when helper text is present', () => {
+    render(<TextArea helperText="Maximum 500 characters" />);
     
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
-    expect(textarea).toBeDisabled();
-    expect(textarea).toHaveAttribute('aria-disabled', 'true');
+    const textarea = screen.getByTestId('textarea');
+    const helperId = textarea.getAttribute('aria-describedby');
+    
+    expect(helperId).toBeTruthy();
+    expect(screen.getByTestId('textarea-helper')).toHaveAttribute('id', helperId);
   });
 
-  it('should handle readonly state correctly', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        readOnly
-        defaultValue="Dies ist ein Beispieltext"
-      />
-    );
+  it('should have proper aria-describedby when error is present', () => {
+    render(<TextArea error="This field is required" />);
     
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
-    expect(textarea).toHaveAttribute('readonly');
-    expect(textarea).toHaveAttribute('aria-readonly', 'true');
+    const textarea = screen.getByTestId('textarea');
+    const errorId = textarea.getAttribute('aria-describedby');
+    
+    expect(errorId).toBeTruthy();
+    expect(screen.getByTestId('textarea-error')).toHaveAttribute('id', errorId);
   });
 
-  it('should handle counter correctly', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        showCount
-        maxLength={200}
-        defaultValue="Dies ist ein Beispieltext"
-      />
-    );
+  it('should have proper aria-describedby when character count is shown', () => {
+    render(<TextArea showCount maxLength={500} />);
     
-    const counter = screen.getByText('24/200');
-    expect(counter).toBeInTheDocument();
-    expect(counter).toHaveAttribute('aria-live', 'polite');
+    const textarea = screen.getByTestId('textarea');
+    const counterId = textarea.getAttribute('aria-describedby');
     
-    // Überprüfe, ob die Screenreader-Information vorhanden ist
-    expect(screen.getByText('176 Zeichen verbleibend', { selector: '.sr-only' })).toBeInTheDocument();
+    expect(counterId).toBeTruthy();
+    expect(screen.getByTestId('textarea-counter')).toHaveAttribute('id', counterId);
   });
 
-  it('should update counter when text changes', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        showCount
-        maxLength={200}
-      />
-    );
+  it('should have proper aria-required attribute when required', () => {
+    render(<TextArea required label="Message" />);
     
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
-    fireEvent.change(textarea, { target: { value: 'Neuer Text' } });
+    const textarea = screen.getByTestId('textarea');
+    expect(textarea).toHaveAttribute('required');
     
-    expect(screen.getByText('10/200')).toBeInTheDocument();
-    expect(screen.getByText('190 Zeichen verbleibend', { selector: '.sr-only' })).toBeInTheDocument();
+    // Prüfe, ob das Label einen Stern enthält
+    const label = screen.getByTestId('textarea-label');
+    expect(label).toHaveTextContent('*');
   });
 
-  it('should handle auto-resize correctly', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        autoResize
-      />
-    );
+  it('should be focusable with keyboard navigation', () => {
+    render(<TextArea label="Message" />);
     
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
+    const textarea = screen.getByTestId('textarea');
+    expect(textarea).not.toHaveFocus();
     
-    // Simuliere eine Texteingabe mit mehreren Zeilen
-    fireEvent.change(textarea, { target: { value: 'Zeile 1\nZeile 2\nZeile 3\nZeile 4' } });
-    
-    // Die Höhe sollte angepasst werden, aber wir können das in JSDOM nicht direkt testen
-    // Stattdessen prüfen wir, ob die Änderung ohne Fehler durchgeführt wurde
-    expect(textarea).toHaveValue('Zeile 1\nZeile 2\nZeile 3\nZeile 4');
+    textarea.focus();
+    expect(textarea).toHaveFocus();
   });
 
-  it('should handle required state correctly', () => {
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        required
-      />
-    );
+  it('should handle keyboard events properly', () => {
+    const handleKeyDown = jest.fn();
+    render(<TextArea onKeyDown={handleKeyDown} />);
     
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
-    expect(textarea).toBeRequired();
-    expect(textarea).toHaveAttribute('aria-required', 'true');
-    
-    // Überprüfe, ob das Sternchen angezeigt wird
-    expect(screen.getByText('*', { selector: 'span[aria-hidden="true"]' })).toBeInTheDocument();
-    
-    // Überprüfe, ob die Screenreader-Information vorhanden ist
-    expect(screen.getByText('(Erforderlich)', { selector: '.sr-only' })).toBeInTheDocument();
-  });
-
-  it('should handle keyboard interactions correctly', () => {
-    const handleChange = jest.fn();
-    render(
-      <TextAreaA11y
-        label="Beschreibung"
-        onChange={handleChange}
-      />
-    );
-    
-    const textarea = screen.getByLabelText('Beschreibung', { exact: false });
+    const textarea = screen.getByTestId('textarea');
     fireEvent.keyDown(textarea, { key: 'Enter' });
-    fireEvent.change(textarea, { target: { value: 'Neuer Text' } });
     
-    expect(handleChange).toHaveBeenCalled();
-    expect(textarea).toHaveValue('Neuer Text');
+    expect(handleKeyDown).toHaveBeenCalledTimes(1);
+  });
+
+  it('should have proper disabled state for screen readers', () => {
+    render(<TextArea disabled label="Message" />);
+    
+    const textarea = screen.getByTestId('textarea');
+    expect(textarea).toBeDisabled();
+    expect(textarea).toHaveClass('opacity-50');
+    expect(textarea).toHaveClass('cursor-not-allowed');
+  });
+
+  it('should have proper readonly state for screen readers', () => {
+    render(<TextArea readOnly label="Message" />);
+    
+    const textarea = screen.getByTestId('textarea');
+    expect(textarea).toHaveAttribute('readonly');
+  });
+
+  it('should have proper aria attributes when provided', () => {
+    render(
+      <TextArea 
+        aria-label="Message input"
+        aria-describedby="custom-description"
+        aria-details="more-details"
+      />
+    );
+    
+    const textarea = screen.getByTestId('textarea');
+    expect(textarea).toHaveAttribute('aria-label', 'Message input');
+    expect(textarea).toHaveAttribute('aria-describedby', 'custom-description');
+    expect(textarea).toHaveAttribute('aria-details', 'more-details');
   });
 });

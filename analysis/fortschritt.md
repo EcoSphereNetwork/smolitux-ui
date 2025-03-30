@@ -215,12 +215,58 @@
      - Verbesserte Typisierung und Dokumentation
      - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
      - Alle Tests erfolgreich
-   - MediaPlayer
-   - Menu
-   - Popover
-   - TextArea/Textarea (Duplizierung bereinigen)
-   - TimePicker
-   - Toast
+   - [x] MediaPlayer
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen und SVG-Icons
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
+   - [x] Menu
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
+   - [x] Popover
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
+   - [x] TextArea/Textarea (Duplizierung bereinigt)
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Duplizierung zwischen TextArea und Textarea durch Kompatibilitätsschicht bereinigt
+     - Alle Tests erfolgreich
+   - [x] TimePicker
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Entfernte nicht-konforme ARIA-Attribute (aria-expanded, aria-haspopup)
+     - Alle Tests erfolgreich
+   - [x] Toast
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Verwendung von useId für eindeutige IDs statt zufälliger Strings
+     - Verbesserte Fortschrittsbalken-Animation
+     - Alle Tests erfolgreich
 
 3. Dokumentation für alle Komponenten aktualisieren
 

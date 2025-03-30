@@ -1,15 +1,6 @@
-// packages/@smolitux/core/src/components/TextArea/TextArea.improved.tsx
-import React, { forwardRef, useCallback, useEffect, useRef, useState, useId } from 'react';
+// packages/@smolitux/core/src/components/TextArea/TextArea.tsx
+import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { useFormControl } from '../FormControl/FormControl';
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
 
 export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** Text-Label (alternativ zu label im FormControl) */
@@ -21,15 +12,13 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   /** Größe des TextAreas */
   size?: 'sm' | 'md' | 'lg';
   /** Visuelle Variante */
-  variant?: 'outline' | 'filled' | 'unstyled' | 'flushed';
+  variant?: 'outline' | 'filled' | 'unstyled';
   /** Volle Breite */
   fullWidth?: boolean;
   /** Auto-Resize bei Eingabe */
   autoResize?: boolean;
   /** Zeilen */
   rows?: number;
-  /** Spalten */
-  cols?: number;
   /** Maximale Zeichen */
   maxLength?: number;
   /** Zähle Zeichen */
@@ -38,14 +27,6 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   placeholder?: string;
   /** Zusätzliche CSS-Klassen */
   className?: string;
-  /** Benutzerdefinierte Breite */
-  width?: string | number;
-  /** Benutzerdefinierte Höhe */
-  height?: string | number;
-  /** Resize-Verhalten */
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical';
-  /** Daten-Testid für Tests */
-  'data-testid'?: string;
 }
 
 /**
@@ -71,32 +52,16 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   fullWidth = false,
   autoResize = false,
   rows = 3,
-  cols,
   maxLength,
   showCount = false,
   placeholder,
   className = '',
-  width,
-  height,
-  resize,
   onChange,
   onInput,
   value,
   defaultValue,
-  'data-testid': dataTestId = 'textarea',
   ...rest
 }, ref) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
-  // Generiere eindeutige IDs für ARIA-Attribute
-  const uniqueId = useId();
-  const textareaId = rest.id || `textarea-${uniqueId}`;
-  const helperId = `${textareaId}-helper`;
-  const errorId = `${textareaId}-error`;
-  const counterId = `${textareaId}-counter`;
-  
   // Aus dem FormControl-Context importierte Werte
   const formControl = useFormControl();
   
@@ -115,15 +80,11 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   
   // Kombinierte Props aus eigenem und FormControl
   const combinedProps = {
-    id: textareaId,
+    id: rest.id || formControl.id,
     disabled: rest.disabled || formControl.disabled,
     required: rest.required || formControl.required,
-    'aria-invalid': error || formControl.hasError ? true : undefined,
-    'aria-describedby': [
-      error || formControl.hasError ? errorId : undefined,
-      helperText && !error && !formControl.hasError ? helperId : undefined,
-      showCount ? counterId : undefined
-    ].filter(Boolean).join(' ') || undefined,
+    'aria-invalid': error ? true : formControl.hasError || undefined,
+    'aria-describedby': error || formControl.hasError ? `${formControl.id}-error` : undefined,
   };
   
   // Klassen für verschiedene Größen
@@ -137,8 +98,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   const variantClasses = {
     outline: 'border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700',
     filled: 'border-0 bg-gray-100 dark:bg-gray-800',
-    unstyled: 'border-0 bg-transparent px-0 py-0',
-    flushed: 'border-0 border-b border-gray-300 dark:border-gray-600 rounded-none px-0 focus:border-b-2'
+    unstyled: 'border-0 bg-transparent px-0 py-0'
   };
   
   // Zustandsabhängige Klassen
@@ -151,22 +111,15 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
     'block rounded-md focus:outline-none focus:ring-2',
     'transition duration-150 ease-in-out',
     'appearance-none',
-    fullWidth ? 'w-full' : '',
+    'w-full',
     'text-gray-900 dark:text-white',
     'placeholder-gray-400 dark:placeholder-gray-500',
     sizeClasses[size],
-    variantClasses[variant as keyof typeof variantClasses],
+    variantClasses[variant],
     stateClasses,
     combinedProps.disabled ? 'opacity-50 cursor-not-allowed' : '',
     className
   ].join(' ');
-  
-  // Inline-Styles für benutzerdefinierte Dimensionen und Resize
-  const inlineStyles: React.CSSProperties = {
-    ...(width ? { width: typeof width === 'number' ? `${width}px` : width } : {}),
-    ...(height ? { height: typeof height === 'number' ? `${height}px` : height } : {}),
-    ...(resize ? { resize } : {})
-  };
   
   // Auto-Resize-Funktion
   const adjustHeight = useCallback(() => {
@@ -233,18 +186,14 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
       ref.current = element;
     }
   };
-
-  // Prüfe, ob die Zeichenanzahl das Maximum überschreitet
-  const isExceeded = maxLength !== undefined && textLength > maxLength;
   
   return (
-    <div className={`${fullWidth ? 'w-full' : ''}`} data-testid={`${dataTestId}-container`}>
+    <div className={`${fullWidth ? 'w-full' : ''}`} data-testid="textarea-container">
       {/* Label (falls außerhalb eines FormControl) */}
       {label && !formControl.label && (
         <label 
           htmlFor={combinedProps.id} 
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          data-testid={`${dataTestId}-label`}
         >
           {label}
           {combinedProps.required && <span className="ml-1 text-red-500">*</span>}
@@ -255,7 +204,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
       <textarea
         ref={assignRefs}
         rows={rows}
-        cols={cols}
         maxLength={maxLength}
         placeholder={placeholder}
         onChange={handleChange}
@@ -263,8 +211,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
         value={value}
         defaultValue={defaultValue}
         className={inputClasses}
-        style={inlineStyles}
-        data-testid={dataTestId}
+        data-testid="textarea"
         {...combinedProps}
         {...rest}
       />
@@ -275,9 +222,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
           {/* Hilfetexzt oder Fehlermeldung */}
           {(helperText || error) && !formControl.hasError && (
             <p 
-              id={error ? errorId : helperId}
               className={error ? 'text-red-600 dark:text-red-400' : 'text-gray-500 dark:text-gray-400'}
-              data-testid={error ? `${dataTestId}-error` : `${dataTestId}-helper`}
+              data-testid={error ? 'textarea-error' : 'textarea-helper'}
             >
               {error || helperText}
             </p>
@@ -285,11 +231,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
           
           {/* Zeichenzähler */}
           {showCount && (
-            <p 
-              id={counterId}
-              className={`text-gray-500 dark:text-gray-400 ${!helperText && !error ? 'ml-auto' : ''} ${isExceeded ? 'text-red-600 dark:text-red-400' : ''}`} 
-              data-testid={`${dataTestId}-counter`}
-            >
+            <p className={`text-gray-500 dark:text-gray-400 ${!helperText && !error ? 'ml-auto' : ''}`} data-testid="textarea-counter">
               {textLength}{maxLength ? `/${maxLength}` : ''}
             </p>
           )}

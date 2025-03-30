@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import MediaPlayer from './MediaPlayer';
 
 const meta: Meta<typeof MediaPlayer> = {

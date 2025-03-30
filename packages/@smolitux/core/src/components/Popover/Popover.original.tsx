@@ -1,14 +1,5 @@
-// packages/@smolitux/core/src/components/Popover/Popover.improved.tsx
-import React, { useState, useRef, useEffect, useId } from 'react';
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
+// packages/@smolitux/core/src/components/Popover/Popover.tsx
+import React, { useState, useRef, useEffect } from 'react';
 
 export type PopoverPlacement = 'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end';
 
@@ -47,12 +38,6 @@ export interface PopoverProps {
   className?: string;
   /** z-Index für den Popover */
   zIndex?: number;
-  /** ARIA-Label für den Popover */
-  ariaLabel?: string;
-  /** Beschreibung für den Popover (für Screenreader) */
-  description?: string;
-  /** Daten-Testid für Tests */
-  'data-testid'?: string;
 }
 
 /**
@@ -83,20 +68,7 @@ export const Popover: React.FC<PopoverProps> = ({
   title,
   className = '',
   zIndex = 50,
-  ariaLabel,
-  description,
-  'data-testid': dataTestId = 'popover',
 }) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
-  // Generiere eindeutige IDs für ARIA-Attribute
-  const uniqueId = useId();
-  const popoverId = `popover-${uniqueId}`;
-  const titleId = title ? `popover-title-${uniqueId}` : undefined;
-  const descriptionId = description ? `popover-description-${uniqueId}` : undefined;
-
   // State für unkontrollierten Modus
   const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(defaultOpen);
   
@@ -370,11 +342,7 @@ export const Popover: React.FC<PopoverProps> = ({
         if (triggerRef) {
           (triggerRef as React.MutableRefObject<HTMLElement | null>).current = el as HTMLElement;
         }
-      },
-      'aria-haspopup': 'true',
-      'aria-expanded': isOpen,
-      'aria-controls': isOpen ? popoverId : undefined,
-      'data-testid': `${dataTestId}-trigger`
+      }
     };
     
     if (trigger === 'manual') {
@@ -485,17 +453,6 @@ export const Popover: React.FC<PopoverProps> = ({
     
     return baseStyles;
   };
-
-  // Rendere die versteckte Beschreibung
-  const renderDescription = () => {
-    if (!description) return null;
-
-    return (
-      <div id={descriptionId} className="sr-only" data-testid={`${dataTestId}-description`}>
-        {description}
-      </div>
-    );
-  };
   
   // Trigger Element mit neuen Props klonen
   const triggerElement = React.cloneElement(
@@ -505,13 +462,11 @@ export const Popover: React.FC<PopoverProps> = ({
   
   return (
     <>
-      {renderDescription()}
       {triggerElement}
       
       {isOpen && (
         <div
           ref={popoverRef}
-          id={popoverId}
           role="tooltip"
           className={`
             absolute z-${zIndex} bg-white dark:bg-gray-800 
@@ -524,25 +479,16 @@ export const Popover: React.FC<PopoverProps> = ({
             left: popoverPosition.left,
             maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth
           }}
-          aria-label={ariaLabel}
-          aria-labelledby={titleId}
-          aria-describedby={descriptionId}
-          data-testid={dataTestId}
-          data-placement={placement}
         >
           {/* Title */}
           {title && (
-            <div 
-              id={titleId} 
-              className="mb-2 font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
-              data-testid={`${dataTestId}-title`}
-            >
+            <div className="mb-2 font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
               {title}
             </div>
           )}
           
           {/* Content */}
-          <div data-testid={`${dataTestId}-content`}>{content}</div>
+          <div>{content}</div>
           
           {/* Arrow */}
           {showArrow && (
@@ -552,8 +498,6 @@ export const Popover: React.FC<PopoverProps> = ({
                 top: arrowPosition.top === 0 ? undefined : arrowPosition.top,
                 left: arrowPosition.left === 0 ? undefined : arrowPosition.left
               }}
-              data-testid={`${dataTestId}-arrow`}
-              aria-hidden="true"
             />
           )}
         </div>
