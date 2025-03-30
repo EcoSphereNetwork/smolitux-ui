@@ -23,10 +23,12 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 | Komponente | Status | Tests | Dokumentation |
 |------------|--------|-------|---------------|
 | Button | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
+| Button.A11y | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | Card | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | Alert | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | Modal | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | Input | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
+| InputA11y | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Select | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | TabView | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Badge | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
@@ -121,6 +123,8 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 4. **Unvollständige Dokumentation**: Viele Komponenten haben keine oder unvollständige Dokumentation
 5. **Fehlende Tests**: Einige Komponenten haben keine Tests
 6. **Storybook-Probleme**: Storybook kann nicht gestartet werden
+7. **Lint-Fehler**: ⚠️ Teilweise behoben - Kritische Parsing-Fehler und Probleme in @smolitux/core und @smolitux/utils wurden behoben
+8. **Barrierefreiheitsprobleme**: ⚠️ Teilweise behoben - Button.A11y und InputA11y wurden implementiert und getestet
 
 ## 6. Fortschritte
 
@@ -128,26 +132,45 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 2. **Duplizierte Mocks**: ✅ Behoben - Mocks wurden in ein zentrales Paket verschoben
 3. **Komponententests**: ✅ Teilweise behoben - Folgende Komponenten wurden verbessert und ihre Tests laufen erfolgreich:
    - Button
+   - Button.A11y (neu implementiert)
    - Card
    - Alert
    - Badge
    - Input
+   - InputA11y (Tests hinzugefügt)
    - Select
    - Modal
    - TabView
    - Tooltip
    - Dropdown
+4. **Lint-Fehler**: ✅ Teilweise behoben - Folgende Verbesserungen wurden vorgenommen:
+   - Kritische Parsing-Fehler in ActivityStream und CrossPlatformShare behoben
+   - Unbenutzte Importe in @smolitux/core entfernt
+   - TypeScript-Typisierung in @smolitux/utils verbessert
+   - Unbenutzte Importe in @smolitux/federation entfernt
+5. **Barrierefreiheit**: ✅ Teilweise verbessert - Folgende Komponenten wurden barrierefrei gemacht:
+   - Button.A11y-Komponente implementiert mit umfassenden ARIA-Attributen
+   - Tests für Button.A11y implementiert
+   - Tests für InputA11y implementiert
+   - Barrierefreiheits-Dokumentation für Button-Komponente erstellt
 
 ## 7. Nächste Schritte
 
 1. **Abhängigkeiten bereinigen**: Lösen der Abhängigkeitskonflikte
-2. **Weitere Komponenten verbessern**: Fortfahren mit der Verbesserung der restlichen Komponenten
+2. **Weitere barrierefreie Komponenten implementieren**:
+   - Select.A11y
+   - Checkbox.A11y
+   - Radio.A11y
+   - Modal.A11y
+   - Dropdown.A11y
+3. **Weitere Komponenten verbessern**: Fortfahren mit der Verbesserung der restlichen Komponenten
    - Accordion
    - Pagination
    - Breadcrumb
    - Carousel
    - Checkbox
-3. **Tests vervollständigen**: Fehlende Tests hinzufügen und bestehende reparieren
-4. **Dokumentation verbessern**: Fehlende Dokumentation hinzufügen und bestehende aktualisieren
-5. **Storybook reparieren**: Storybook zum Laufen bringen für visuelle Tests und Dokumentation
-6. **CI/CD-Pipeline einrichten**: Automatisierte Tests und Builds konfigurieren
+4. **Tests vervollständigen**: Fehlende Tests hinzufügen und bestehende reparieren
+5. **Dokumentation verbessern**: Fehlende Dokumentation hinzufügen und bestehende aktualisieren
+6. **Storybook reparieren**: Storybook zum Laufen bringen für visuelle Tests und Dokumentation
+7. **CI/CD-Pipeline einrichten**: Automatisierte Tests und Builds konfigurieren
+8. **Lint-Fehler beheben**: Verbleibende Lint-Fehler in anderen Paketen beheben
