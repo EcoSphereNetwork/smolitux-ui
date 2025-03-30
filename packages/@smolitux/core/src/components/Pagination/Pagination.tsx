@@ -192,6 +192,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(({
     <div
       ref={ref}
       className={`flex items-center space-x-1 ${className}`}
+      role="navigation"
+      aria-label="Pagination"
       {...rest}
     >
       {/* Erste Seite */}
