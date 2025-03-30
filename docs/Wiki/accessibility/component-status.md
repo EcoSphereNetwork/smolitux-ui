@@ -54,23 +54,41 @@ Die folgenden Komponenten wurden bereits hinsichtlich Barrierefreiheit verbesser
 46. **Tooltip** - Verbesserte ARIA-Attribute, erweiterte Platzierungsoptionen, Tastaturaktivierung
 47. **Zoom** - Verbesserte ARIA-Attribute für Animation, reduzierte Bewegung, Epilepsie-Sicherheit
 
+## Barrierefreie Komponenten (A11y)
+
+Die folgenden Komponenten haben spezielle barrierefreie Versionen mit dem Suffix `A11y`:
+
+1. **Button.A11y** - ✅ Erweiterte ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+2. **CheckboxA11y** - ✅ Erweiterte ARIA-Attribute, Tastaturunterstützung, Live-Regionen
+3. **DropdownA11y** - ✅ Erweiterte ARIA-Attribute, Tastaturnavigation, Fokus-Management, Live-Regionen
+4. **InputA11y** - ✅ Erweiterte ARIA-Attribute, Fehlerbehandlung, Live-Regionen
+5. **ModalA11y** - ✅ Erweiterte ARIA-Attribute, Fokus-Management, Live-Regionen
+6. **SelectA11y** - ✅ Erweiterte ARIA-Attribute, Tastaturnavigation, Live-Regionen
+7. **FlexA11y** - ✅ Semantische Struktur, erweiterte ARIA-Attribute, anpassbare HTML-Elemente
+8. **ZoomA11y** - ✅ Erweiterte ARIA-Attribute für Animation, reduzierte Bewegung, Epilepsie-Sicherheit
+
 ## Kürzlich verbesserte Komponenten
 
 Die folgenden Komponenten wurden kürzlich hinsichtlich Barrierefreiheit verbessert:
 
-1. **Flex** - ✅ Semantische Struktur, ARIA-Attribute, anpassbare HTML-Elemente
-2. **LanguageSwitcher** - ✅ ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
-3. **MediaPlayer** - ✅ ARIA-Attribute, Tastatursteuerung, Untertitel, Transkript
-4. **Popover** - ✅ ARIA-Attribute, Fokus-Management, Tastaturnavigation
-5. **Slide** - ✅ ARIA-Attribute für Animation, reduzierte Bewegung
-6. **Zoom** - ✅ ARIA-Attribute für Animation, reduzierte Bewegung, Epilepsie-Sicherheit
+1. **LanguageSwitcher** - ✅ ARIA-Attribute, Tastaturnavigation, Screenreader-Unterstützung
+2. **MediaPlayer** - ✅ ARIA-Attribute, Tastatursteuerung, Untertitel, Transkript
+3. **Popover** - ✅ ARIA-Attribute, Fokus-Management, Tastaturnavigation
+4. **Slide** - ✅ ARIA-Attribute für Animation, reduzierte Bewegung
 
 ## Nächste Schritte
 
-1. Erstellung von Barrierefreiheitstests für alle verbesserten Komponenten
-2. Dokumentation der Barrierefreiheitsfunktionen für Entwickler
-3. Kontinuierliche Verbesserung der bestehenden Komponenten
-4. Implementierung von automatisierten Barrierefreiheitstests in der CI/CD-Pipeline
+1. Erstellung weiterer barrierefreier Komponenten (A11y-Versionen)
+   - TabsA11y
+   - AccordionA11y
+   - ToastA11y
+   - TooltipA11y
+   - RadioA11y
+   - SliderA11y
+2. Erstellung von Barrierefreiheitstests für alle verbesserten Komponenten
+3. Dokumentation der Barrierefreiheitsfunktionen für Entwickler
+4. Kontinuierliche Verbesserung der bestehenden Komponenten
+5. Implementierung von automatisierten Barrierefreiheitstests in der CI/CD-Pipeline
 
 ## Allgemeine Verbesserungen
 
@@ -83,3 +101,20 @@ Neben den komponentenspezifischen Verbesserungen wurden folgende allgemeine Verb
 5. **Reduzierte Bewegung** - Unterstützung für `prefers-reduced-motion` bei Animationskomponenten
 6. **Epilepsie-Sicherheit** - Begrenzung der Animationsgeschwindigkeit für Benutzer mit Epilepsie
 7. **Dokumentation** - Erstellung von Barrierefreiheitsrichtlinien und Implementierungsbeispielen
+8. **Live-Regionen** - Implementierung von Live-Regionen für dynamische Inhalte
+9. **Automatische ID-Generierung** - Automatische Generierung von IDs für ARIA-Attribute
+10. **Fokus-Fallen** - Implementierung von Fokus-Fallen für modale Dialoge
+
+## Vorteile der A11y-Komponenten
+
+Die speziellen barrierefreien Komponenten (A11y) bieten folgende Vorteile gegenüber den Standard-Komponenten:
+
+1. **Umfassendere ARIA-Unterstützung** - Erweiterte ARIA-Attribute für bessere Screenreader-Unterstützung
+2. **Automatische ID-Generierung** - Keine manuellen IDs mehr nötig für ARIA-Attribute
+3. **Live-Regionen** - Automatische Ankündigungen von Statusänderungen für Screenreader
+4. **Verbessertes Fokus-Management** - Konfigurierbare Fokus-Optionen wie autoFocus, returnFocus, trapFocus
+5. **Erweiterte Tastaturunterstützung** - Umfassendere Tastaturnavigation und -interaktion
+6. **Bessere Screenreader-Unterstützung** - Mehr Kontext und Beschreibungen für Screenreader-Benutzer
+7. **Höhere WCAG-Konformität** - Erfüllung von WCAG 2.1 AA und AAA Kriterien
+
+Weitere Informationen zu den barrierefreien Komponenten finden Sie in der [A11y-Komponenten-Dokumentation](/Wiki/accessibility/a11y-components.md).
