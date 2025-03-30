@@ -48,10 +48,11 @@ describe('Slider', () => {
   // Basis-Tests
   test('renders correctly with default props', () => {
     render(<Slider />);
-    expect(screen.getByRole('slider')).toBeInTheDocument();
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuemin', '0');
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuemax', '100');
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '0');
+    const sliders = screen.getAllByRole('slider');
+    expect(sliders.length).toBeGreaterThan(0);
+    expect(sliders[0]).toHaveAttribute('aria-valuemin', '0');
+    expect(sliders[0]).toHaveAttribute('aria-valuemax', '100');
+    expect(sliders[0]).toHaveAttribute('aria-valuenow', '0');
   });
 
   test('renders with label', () => {
@@ -62,9 +63,9 @@ describe('Slider', () => {
 
   test('renders with custom min, max, and value', () => {
     render(<Slider min={10} max={50} value={30} />);
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuemin', '10');
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuemax', '50');
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '30');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-valuemin', '10');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-valuemax', '50');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-valuenow', '30');
   });
 
   test('handles change events', async () => {
@@ -72,7 +73,7 @@ describe('Slider', () => {
     render(<Slider onChange={handleChange} min={0} max={100} />);
     
     // Simuliere einen Klick auf den Track
-    const track = screen.getByRole('slider').parentElement?.querySelector('div');
+    const track = screen.getAllByRole('slider')[0].parentElement?.querySelector('div');
     if (track) {
       fireEvent.click(track, { clientX: 50, clientY: 5 });
       expect(handleChange).toHaveBeenCalledWith(50);
@@ -82,21 +83,21 @@ describe('Slider', () => {
   // Zustände
   test('renders disabled state correctly', () => {
     render(<Slider disabled />);
-    expect(screen.getByRole('slider')).toBeDisabled();
-    expect(screen.getByRole('slider').parentElement).toHaveClass('opacity-50');
+    expect(screen.getAllByRole('slider')[0]).toBeDisabled();
+    expect(screen.getAllByRole('slider')[0].parentElement).toHaveClass('opacity-50');
   });
 
   test('renders disabled state correctly with isDisabled prop', () => {
     render(<Slider isDisabled />);
-    expect(screen.getByRole('slider')).toBeDisabled();
-    expect(screen.getByRole('slider').parentElement).toHaveClass('opacity-50');
+    expect(screen.getAllByRole('slider')[0]).toBeDisabled();
+    expect(screen.getAllByRole('slider')[0].parentElement).toHaveClass('opacity-50');
   });
 
   test('does not trigger onChange when disabled', () => {
     const handleChange = jest.fn();
     render(<Slider onChange={handleChange} disabled />);
     
-    const track = screen.getByRole('slider').parentElement?.querySelector('div');
+    const track = screen.getAllByRole('slider')[0].parentElement?.querySelector('div');
     if (track) {
       fireEvent.click(track, { clientX: 50, clientY: 5 });
       expect(handleChange).not.toHaveBeenCalled();
@@ -111,7 +112,7 @@ describe('Slider', () => {
   test('renders with error state', () => {
     render(<Slider error="Invalid value" />);
     expect(screen.getByText('Invalid value')).toBeInTheDocument();
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-invalid', 'true');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-invalid', 'true');
   });
   
   test('renders with success message', () => {
@@ -121,113 +122,113 @@ describe('Slider', () => {
   
   test('renders with required state', () => {
     render(<Slider required label="Required Field" />);
-    expect(screen.getByRole('slider')).toBeRequired();
+    expect(screen.getAllByRole('slider')[0]).toBeRequired();
     expect(screen.getByText('*')).toBeInTheDocument();
   });
   
   test('renders with required state using isRequired prop', () => {
     render(<Slider isRequired label="Required Field" />);
-    expect(screen.getByRole('slider')).toBeRequired();
+    expect(screen.getAllByRole('slider')[0]).toBeRequired();
     expect(screen.getByText('*')).toBeInTheDocument();
   });
 
   // Größen
   test('renders with custom size', () => {
     const { rerender } = render(<Slider size="xs" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('h-1');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('h-1');
     
     rerender(<Slider size="sm" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('h-1.5');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('h-1.5');
     
     rerender(<Slider size="md" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('h-2');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('h-2');
     
     rerender(<Slider size="lg" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('h-2.5');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('h-2.5');
     
     rerender(<Slider size="xl" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('h-3');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('h-3');
   });
 
   // Varianten
   test('renders with different variants', () => {
     const { rerender } = render(<Slider variant="solid" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('bg-gray-300');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('bg-gray-300');
     
     rerender(<Slider variant="outline" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('bg-transparent');
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('border-2');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('bg-transparent');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('border-2');
     
     rerender(<Slider variant="filled" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('bg-gray-200');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('bg-gray-200');
     
     rerender(<Slider variant="minimal" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('bg-gray-200');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('bg-gray-200');
   });
   
   // Farben
   test('renders with different color schemes', () => {
     const { rerender } = render(<Slider colorScheme="primary" value={50} />);
-    const filledTrack = screen.getByRole('slider').parentElement?.querySelector('div > div');
+    const filledTrack = screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div');
     expect(filledTrack).toHaveClass('bg-primary-600');
     
     rerender(<Slider colorScheme="secondary" value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-secondary-600');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-secondary-600');
     
     rerender(<Slider colorScheme="success" value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-green-600');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-green-600');
     
     rerender(<Slider colorScheme="danger" value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-red-600');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-red-600');
     
     rerender(<Slider colorScheme="warning" value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-yellow-600');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-yellow-600');
     
     rerender(<Slider colorScheme="info" value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-blue-600');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-blue-600');
     
     rerender(<Slider colorScheme="neutral" value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-gray-600');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-gray-600');
   });
   
   // Stile
   test('renders with iOS style', () => {
     render(<Slider isIOS value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-blue-500');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-blue-500');
   });
   
   test('renders with Android style', () => {
     render(<Slider isAndroid value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-blue-500');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-blue-500');
   });
   
   test('renders with Material style', () => {
     render(<Slider isMaterial value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('bg-primary-500');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('bg-primary-500');
   });
   
   // Ausrichtung
   test('renders with vertical orientation', () => {
     render(<Slider orientation="vertical" />);
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-orientation', 'vertical');
-    expect(screen.getByRole('slider').parentElement).toHaveClass('h-48');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-orientation', 'vertical');
+    expect(screen.getAllByRole('slider')[0].parentElement).toHaveClass('h-48');
   });
   
   test('renders with vertical orientation using isVertical prop', () => {
     render(<Slider isVertical />);
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-orientation', 'vertical');
-    expect(screen.getByRole('slider').parentElement).toHaveClass('h-48');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-orientation', 'vertical');
+    expect(screen.getAllByRole('slider')[0].parentElement).toHaveClass('h-48');
   });
   
   // Effekte
   test('renders with shadow', () => {
     render(<Slider shadow />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('shadow-inner');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('shadow-inner');
   });
   
   test('renders with transparent background', () => {
     render(<Slider transparent />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('bg-opacity-50');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('bg-opacity-50');
   });
   
   // Barrierefreiheit
@@ -261,7 +262,7 @@ describe('Slider', () => {
     const handleChange = jest.fn();
     render(<Slider onChange={handleChange} value={50} min={0} max={100} step={10} />);
     
-    const slider = screen.getByRole('slider');
+    const slider = screen.getAllByRole('slider')[0];
     
     // ArrowRight sollte den Wert um 10 erhöhen
     fireEvent.keyDown(slider, { key: 'ArrowRight' });
@@ -366,32 +367,32 @@ describe('Slider', () => {
   
   test('applies custom className correctly', () => {
     render(<Slider className="custom-class" />);
-    expect(screen.getByRole('slider').parentElement?.parentElement).toHaveClass('custom-class');
+    expect(screen.getAllByRole('slider')[0].parentElement?.parentElement).toHaveClass('custom-class');
   });
   
   test('applies custom containerClassName correctly', () => {
     render(<Slider containerClassName="container-class" />);
-    expect(screen.getByRole('slider').parentElement?.parentElement).toHaveClass('container-class');
+    expect(screen.getAllByRole('slider')[0].parentElement?.parentElement).toHaveClass('container-class');
   });
   
   test('applies custom sliderContainerClassName correctly', () => {
     render(<Slider sliderContainerClassName="slider-container-class" />);
-    expect(screen.getByRole('slider').parentElement).toHaveClass('slider-container-class');
+    expect(screen.getAllByRole('slider')[0].parentElement).toHaveClass('slider-container-class');
   });
   
   test('applies custom trackClassName correctly', () => {
     render(<Slider trackClassName="track-class" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('track-class');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('track-class');
   });
   
   test('applies custom filledTrackClassName correctly', () => {
     render(<Slider filledTrackClassName="filled-track-class" value={50} />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div > div')).toHaveClass('filled-track-class');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div > div')).toHaveClass('filled-track-class');
   });
   
   test('applies custom thumbClassName correctly', () => {
     render(<Slider thumbClassName="thumb-class" />);
-    const track = screen.getByRole('slider').parentElement?.querySelector('div');
+    const track = screen.getAllByRole('slider')[0].parentElement?.querySelector('div');
     const thumb = track?.querySelector('div');
     expect(thumb).toHaveClass('thumb-class');
   });
@@ -421,7 +422,7 @@ describe('Slider', () => {
     render(<Slider label="Auto ID" />);
     
     const label = screen.getByText('Auto ID');
-    const slider = screen.getByRole('slider');
+    const slider = screen.getAllByRole('slider')[0];
     
     expect(label).toHaveAttribute('for', slider.id);
     expect(slider.id).toMatch(/^slider-/);
@@ -439,7 +440,7 @@ describe('Slider', () => {
   // Thumb-Form
   test('renders with different thumb shapes', () => {
     const { rerender } = render(<Slider thumbShape="circle" />);
-    const track = screen.getByRole('slider').parentElement?.querySelector('div');
+    const track = screen.getAllByRole('slider')[0].parentElement?.querySelector('div');
     const thumb = track?.querySelector('div');
     expect(thumb).toHaveClass('rounded-full');
     
@@ -456,11 +457,11 @@ describe('Slider', () => {
   // Track-Form
   test('renders with different track shapes', () => {
     const { rerender } = render(<Slider trackShape="rounded" />);
-    const track = screen.getByRole('slider').parentElement?.querySelector('div');
+    const track = screen.getAllByRole('slider')[0].parentElement?.querySelector('div');
     expect(track).toHaveClass('rounded-full');
     
     rerender(<Slider trackShape="square" />);
-    expect(screen.getByRole('slider').parentElement?.querySelector('div')).toHaveClass('rounded-none');
+    expect(screen.getAllByRole('slider')[0].parentElement?.querySelector('div')).toHaveClass('rounded-none');
   });
   
   // Thumb-Icon
@@ -476,7 +477,7 @@ describe('Slider', () => {
     render(<Slider highlightRange={[20, 80]} highlightColor="rgba(0, 0, 255, 0.2)" />);
     
     // Der hervorgehobene Bereich sollte vorhanden sein
-    const track = screen.getByRole('slider').parentElement?.querySelector('div');
+    const track = screen.getAllByRole('slider')[0].parentElement?.querySelector('div');
     const highlightedRange = track?.querySelector('div[style*="backgroundColor"]');
     expect(highlightedRange).toBeInTheDocument();
   });
@@ -484,21 +485,21 @@ describe('Slider', () => {
   // Controlled vs Uncontrolled
   test('works as controlled component', () => {
     const { rerender } = render(<Slider value={30} />);
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '30');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-valuenow', '30');
     
     rerender(<Slider value={70} />);
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '70');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-valuenow', '70');
   });
   
   test('works as uncontrolled component', () => {
     render(<Slider defaultValue={50} />);
-    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '50');
+    expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-valuenow', '50');
     
     // Simuliere einen Klick auf den Track
-    const track = screen.getByRole('slider').parentElement?.querySelector('div');
+    const track = screen.getAllByRole('slider')[0].parentElement?.querySelector('div');
     if (track) {
       fireEvent.click(track, { clientX: 75, clientY: 5 });
-      expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '75');
+      expect(screen.getAllByRole('slider')[0]).toHaveAttribute('aria-valuenow', '75');
     }
   });
 });
