@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Textarea } from './Textarea';
+import { Textarea } from '../Textarea';
 
 describe('Textarea', () => {
   it('renders correctly with default props', () => {
