@@ -1316,7 +1316,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
     if (!description) return null;
     
     return (
-      <div id={`${_id}-description`} className="sr-only">
+      <div 
+        id={`${_id}-description`} 
+        className="sr-only"
+        aria-hidden="false"
+      >
         {description}
       </div>
     );
@@ -1333,6 +1337,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
             id={`${_id}-error`} 
             className={`text-red-600 dark:text-red-400 ${errorClassName}`}
             role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
           >
             {_error}
           </p>
@@ -1340,6 +1346,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
           <p 
             id={`${_id}-success`} 
             className={`text-green-600 dark:text-green-400 ${successClassName}`}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
           >
             {successMessage}
           </p>
@@ -1347,6 +1356,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
           <p 
             id={`${_id}-helper`} 
             className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
+            aria-live="polite"
           >
             {helperText}
           </p>
@@ -1372,7 +1382,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
           title={labelTooltip}
         >
           {label || formControl.label}
-          {_required && <span className="ml-1 text-red-500">*</span>}
+          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
+          {_required && <span className="sr-only">(Erforderlich)</span>}
         </label>
       </div>
     );

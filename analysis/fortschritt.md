@@ -73,13 +73,17 @@
   - Barrierefreiheits-Attribute verbessert (aria-labelledby, aria-atomic, aria-live)
   - Tests korrigiert und erfolgreich durchgeführt
   - Verbesserte Beschreibungen für Screenreader
+- [x] Switch-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Switch-Komponente testen und verbessern
 - [ ] Toggle-Komponente testen und verbessern
+- [ ] Slider-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 
