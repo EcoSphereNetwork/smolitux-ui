@@ -65,7 +65,8 @@ Die folgenden Komponenten haben spezielle barrierefreie Versionen mit dem Suffix
 5. **ModalA11y** - ✅ Erweiterte ARIA-Attribute, Fokus-Management, Live-Regionen
 6. **SelectA11y** - ✅ Erweiterte ARIA-Attribute, Tastaturnavigation, Live-Regionen
 7. **FlexA11y** - ✅ Semantische Struktur, erweiterte ARIA-Attribute, anpassbare HTML-Elemente
-8. **ZoomA11y** - ✅ Erweiterte ARIA-Attribute für Animation, reduzierte Bewegung, Epilepsie-Sicherheit
+8. **TabViewA11y** - ✅ Erweiterte ARIA-Attribute, Tastaturnavigation, Fokus-Management, Live-Regionen
+9. **ZoomA11y** - ✅ Erweiterte ARIA-Attribute für Animation, reduzierte Bewegung, Epilepsie-Sicherheit
 
 ## Kürzlich verbesserte Komponenten
 
@@ -79,7 +80,6 @@ Die folgenden Komponenten wurden kürzlich hinsichtlich Barrierefreiheit verbess
 ## Nächste Schritte
 
 1. Erstellung weiterer barrierefreier Komponenten (A11y-Versionen)
-   - TabsA11y
    - AccordionA11y
    - ToastA11y
    - TooltipA11y

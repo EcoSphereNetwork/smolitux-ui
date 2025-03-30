@@ -15,8 +15,8 @@ Die folgenden Komponenten sind in barrierefreien Versionen verfügbar:
 | `Modal` | `ModalA11y` | ✅ Implementiert |
 | `Select` | `SelectA11y` | ✅ Implementiert |
 | `Flex` | `FlexA11y` | ✅ Implementiert |
+| `TabView` | `TabViewA11y` | ✅ Implementiert |
 | `Zoom` | `ZoomA11y` | ✅ Implementiert |
-| `Tabs` | `TabsA11y` | 🚧 In Entwicklung |
 | `Accordion` | `AccordionA11y` | 🚧 In Entwicklung |
 | `Toast` | `ToastA11y` | 🚧 In Entwicklung |
 | `Tooltip` | `TooltipA11y` | 🚧 In Entwicklung |
