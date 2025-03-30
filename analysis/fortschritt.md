@@ -231,7 +231,14 @@
      - Verbesserte Typisierung und Dokumentation
      - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
      - Alle Tests erfolgreich
-   - Popover
+   - [x] Popover
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
    - TextArea/Textarea (Duplizierung bereinigen)
    - TimePicker
    - Toast
