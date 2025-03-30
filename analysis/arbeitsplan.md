@@ -1,15 +1,15 @@
 # Smolitux UI Bibliothek - Arbeitsplan
 
-Basierend auf der Bestandsaufnahme und dem Testplan wird die Weiterentwicklung und Testdurchfuhrung in folgenden Phasen umgesetzt:
+Basierend auf der Bestandsaufnahme und dem Testplan wird die Weiterentwicklung und Testdurchführung in folgenden Phasen umgesetzt:
 
 ## Phase 1: Infrastruktur und Grundlagen (Woche 1-2)
 
-### 1.1 Abhangigkeiten und Testinfrastruktur reparieren
+### 1.1 Abhängigkeiten und Testinfrastruktur reparieren
 
 - [x] Jest-axe-Integration korrigieren
 - [x] Duplizierte Mocks bereinigen
-- [x] Storybook-Abhangigkeiten aktualisieren
-- [x] Testinfrastruktur vollstandig einrichten
+- [x] Storybook-Abhängigkeiten aktualisieren
+- [x] Testinfrastruktur vollständig einrichten
 - [x] CI/CD-Pipeline konfigurieren (GitHub Actions)
 
 ### 1.2 Kernkomponenten testen und verbessern
@@ -27,78 +27,97 @@ Basierend auf der Bestandsaufnahme und dem Testplan wird die Weiterentwicklung u
 
 ### 2.1 Formular-Komponenten
 
-- [x] Form-Komponente vervollstandigen und testen
-- [x] FormControl-Komponente vervollstandigen und testen
-- [x] FormField-Komponente vervollstandigen und testen
-- [x] Checkbox-Komponente vervollstandigen und testen
-- [x] Radio-Komponente vervollstandigen und testen
-- [x] RadioGroup-Komponente vervollstandigen und testen
-- [x] Switch-Komponente vervollstandigen und testen
-- [x] TextArea-Komponente vervollstandigen und testen
+- [x] Form-Komponente vervollständigen und testen
+- [x] FormControl-Komponente vervollständigen und testen
+- [x] FormField-Komponente vervollständigen und testen
+- [x] Checkbox-Komponente vervollständigen und testen
+- [x] Radio-Komponente vervollständigen und testen
+- [x] RadioGroup-Komponente vervollständigen und testen
+- [x] Switch-Komponente vervollständigen und testen
+- [x] TextArea-Komponente vervollständigen und testen
 
 ### 2.2 Layout-Komponenten
 
-- [x] Container-Komponente vervollstandigen und testen
-- [x] Grid-Komponente vervollstandigen und testen
-- [x] Flex-Komponente vervollstandigen und testen
-- [x] Sidebar-Komponente vervollstandigen und testen
-- [x] DashboardLayout-Komponente vervollstandigen und testen
-- [x] Header-Komponente vervollstandigen und testen
-- [x] Footer-Komponente vervollstandigen und testen
+- [x] Container-Komponente vervollständigen und testen
+- [x] Grid-Komponente vervollständigen und testen
+- [x] Flex-Komponente vervollständigen und testen
+- [x] Sidebar-Komponente vervollständigen und testen
+- [x] DashboardLayout-Komponente vervollständigen und testen
+- [x] Header-Komponente vervollständigen und testen
+- [x] Footer-Komponente vervollständigen und testen
 
 ### 2.3 Interaktive Komponenten
 
-- [x] Dropdown-Komponente vervollstandigen und testen
-- [x] Menu-Komponente vervollstandigen und testen
-- [x] Tabs-Komponente vervollstandigen und testen
-- [x] Accordion-Komponente vervollstandigen und testen
-- [x] Collapse-Komponente vervollstandigen und testen
-- [x] Drawer-Komponente vervollstandigen und testen
-- [x] Dialog-Komponente vervollstandigen und testen
-- [x] Popover-Komponente vervollstandigen und testen
-- [x] Tooltip-Komponente vervollstandigen und testen
-- [x] Toast-Komponente vervollstandigen und testen
+- [x] Dropdown-Komponente vervollständigen und testen
+- [x] Accordion-Komponente vervollständigen und testen
+- [x] Breadcrumb-Komponente vervollständigen und testen
+- [x] Carousel-Komponente vervollständigen und testen
+- [x] Collapse-Komponente vervollständigen und testen
+- [x] ColorPicker-Komponente vervollständigen und testen
+- [x] DatePicker-Komponente vervollständigen und testen
+- [x] Dialog-Komponente vervollständigen und testen
+- [x] Drawer-Komponente vervollständigen und testen
+- [x] FileUpload-Komponente vervollständigen und testen
+- [x] LanguageSwitcher-Komponente vervollständigen und testen
+- [x] List-Komponente vervollständigen und testen
+- [x] MediaPlayer-Komponente vervollständigen und testen
+- [x] Menu-Komponente vervollständigen und testen
+- [x] Pagination-Komponente vervollständigen und testen
+- [x] Popover-Komponente vervollständigen und testen
+- [x] ProgressBar-Komponente vervollständigen und testen
+- [x] Skeleton-Komponente vervollständigen und testen
+- [x] Slide-Komponente vervollständigen und testen
+- [x] Slider-Komponente vervollständigen und testen
+- [x] Spinner-Komponente vervollständigen und testen
+- [x] Stepper-Komponente vervollständigen und testen
+- [x] Table-Komponente vervollständigen und testen
+- [x] Tabs-Komponente vervollständigen und testen
+- [x] TimePicker-Komponente vervollständigen und testen
+- [x] Toast-Komponente vervollständigen und testen
+- [x] Tooltip-Komponente vervollständigen und testen
+- [x] Zoom-Komponente vervollständigen und testen
 
-## Phase 3: Spezialisierte Komponenten (Woche 6-8)
+## Phase 3: Spezifische Komponenten (Woche 6-8)
 
-### 3.1 Datum/Zeit und Daten-Komponenten
+### 3.1 Chart-Komponenten
 
-- [x] DatePicker-Komponente vervollstandigen und testen
-- [x] TimePicker-Komponente vervollstandigen und testen
-- [x] Table-Komponente vervollstandigen und testen
-- [x] Pagination-Komponente vervollstandigen und testen
-- [x] List-Komponente vervollstandigen und testen
-- [x] FileUpload-Komponente vervollstandigen und testen
-- [x] ColorPicker-Komponente vervollstandigen und testen
+- [x] LineChart-Komponente vervollständigen und testen
+- [x] BarChart-Komponente vervollständigen und testen
+- [x] PieChart-Komponente vervollständigen und testen
+- [x] AreaChart-Komponente vervollständigen und testen
+- [x] Heatmap-Komponente vervollständigen und testen
+- [x] RadarChart-Komponente vervollständigen und testen
+- [x] ScatterPlot-Komponente vervollständigen und testen
 
-### 3.2 Diagramm-Komponenten
+### 3.2 Media-Komponenten
 
-- [x] LineChart-Komponente vervollstandigen und testen
-- [x] BarChart-Komponente vervollstandigen und testen
-- [x] PieChart-Komponente vervollstandigen und testen
-- [x] AreaChart-Komponente vervollstandigen und testen
-- [x] Heatmap-Komponente vervollstandigen und testen
-- [x] RadarChart-Komponente vervollstandigen und testen
-- [x] ScatterPlot-Komponente vervollstandigen und testen
+- [x] VideoPlayer-Komponente vervollständigen und testen
+- [x] AudioPlayer-Komponente vervollständigen und testen
+- [x] MediaGrid-Komponente vervollständigen und testen
+- [x] MediaUploader-Komponente vervollständigen und testen
+- [x] MediaCarousel-Komponente vervollständigen und testen
 
-### 3.3 Medien-Komponenten
+### 3.3 Blockchain-Komponenten
 
-- [x] MediaPlayer-Komponente vervollstandigen und testen
-- [x] Carousel-Komponente vervollstandigen und testen
-- [x] Avatar-Komponente vervollstandigen und testen
-- [x] Skeleton-Komponente vervollstandigen und testen
+- [x] WalletConnect-Komponente vervollständigen und testen
+- [x] TokenDisplay-Komponente vervollständigen und testen
+- [x] TransactionHistory-Komponente vervollständigen und testen
+- [x] StakingInterface-Komponente vervollständigen und testen
+- [x] TokenEconomy-Komponente vervollständigen und testen
+- [x] TokenDistributionChart-Komponente vervollständigen und testen
+- [x] SmartContractInteraction-Komponente vervollständigen und testen
 
-## Phase 4: Dokumentation und Finalisierung (Woche 9-10)
+## Phase 4: Abschluss und Dokumentation (Woche 9-10)
 
 ### 4.1 Dokumentation
 
-- [x] Storybook-Dokumentation fur alle Komponenten vervollstandigen
-- [x] Wiki-Dokumentation aktualisieren
-- [x] Barrierefreiheits-Dokumentation aktualisieren
-- [x] API-Dokumentation vervollstandigen
-- [x] Beispiel-App erweitern
+- [x] Komponenten-Dokumentation vervollständigen
+- [x] Storybook-Beispiele für alle Komponenten erstellen
+- [x] Barrierefreiheits-Dokumentation erstellen
+- [x] Nutzungsanleitungen erstellen
+- [x] API-Referenz aktualisieren
 
-### 4.2 Qualitatsverbesserungen
+### 4.2 Qualitätsverbesserungen
 
 - [x] Barrierefreiheit aller Komponenten verbessern
   - [x] Button.A11y-Komponente implementiert
@@ -107,14 +126,14 @@ Basierend auf der Bestandsaufnahme und dem Testplan wird die Weiterentwicklung u
   - [x] DropdownA11y-Komponente implementiert
   - [x] FlexA11y-Komponente implementiert
   - [x] ZoomA11y-Komponente implementiert
-- [x] Performance-Optimierungen durchfuhren
-- [x] Browserkompatibilitat testen und verbessern
+- [x] Performance-Optimierungen durchführen
+- [x] Browserkompatibilität testen und verbessern
 - [x] Responsive Design verbessern
-- [x] Testabdeckung erhohen (Ziel: >80%)
+- [x] Testabdeckung erhöhen (Ziel: >80%)
 
 ### 4.3 Finalisierung
 
-- [x] Abschliessende Tests durchfuhren
+- [x] Abschließende Tests durchführen
 - [x] Versionsupdate vorbereiten
 - [x] Changelog aktualisieren
 - [x] Release-Paket erstellen
@@ -139,32 +158,38 @@ Basierend auf der Bestandsaufnahme und dem Testplan wird die Weiterentwicklung u
 - [x] Lint-Fehler in @smolitux/federation behoben
 - [x] Lint-Fehler in @smolitux/layout behoben
 - [x] Lint-Fehler in @smolitux/ai behoben
-- [ ] Lint-Fehler in @smolitux/blockchain beheben
-- [ ] Lint-Fehler in @smolitux/charts beheben
-- [ ] Lint-Fehler in @smolitux/media beheben
-- [ ] Lint-Fehler in @smolitux/resonance beheben
+- [x] Lint-Fehler in @smolitux/blockchain behoben
+- [x] Lint-Fehler in @smolitux/charts behoben
+- [x] Lint-Fehler in @smolitux/media behoben
+- [x] Lint-Fehler in @smolitux/resonance behoben
 
 ### 5.3 Erweiterte Tests
 
-- [ ] Automatisierte Barrierefreiheitstests implementieren
+- [x] Automatisierte Barrierefreiheitstests für Chart-Komponenten implementiert
+- [x] Automatisierte Barrierefreiheitstests für Media-Komponenten implementiert
+- [x] Standard-Tests für alle Chart-Komponenten implementiert
+- [x] Standard-Tests für alle Media-Komponenten implementiert
 - [ ] E2E-Tests mit Cypress oder Playwright implementieren
 - [ ] Visuelle Regressionstests implementieren
 
-## Priorisierung der Komponenten
+### 5.4 Dokumentation erweitern
 
-### Hohe Prioritat
-- Button, Card, Alert, Input, Select, Modal, Form, Table
+- [x] Dokumentation für Tooltip und Slider-Komponenten erstellt
+- [ ] Dokumentation für Chart-Komponenten erstellen
+- [ ] Dokumentation für Media-Komponenten erstellen
+- [ ] Testabdeckungsbericht generieren
+- [ ] Best Practices für Tests dokumentieren
 
-### Mittlere Prioritat
-- Tabs, Menu, Dropdown, DatePicker, TimePicker, Grid, Flex, Container
+### 5.5 Internationalisierung
 
-### Niedrige Prioritat
-- Spezialkomponenten wie FileUpload, MediaPlayer, Charts, etc.
+- [ ] i18n-Unterstützung für alle Komponenten implementieren
+- [ ] Mehrsprachige Dokumentation erstellen
+- [ ] RTL-Unterstützung implementieren
 
-## Testabdeckungsziele
+## Zeitplan
 
-- **Unit Tests**: 90% Codeabdeckung fur alle Komponenten
-- **Integrationstests**: Abdeckung aller komplexen Komponenten und deren Interaktionen
-- **Visuelle Tests**: Snapshots fur alle visuellen Zustande (normal, hover, focus, disabled)
-- **Browserkompatibilitatstests**: Uberprufung in Chrome, Firefox, Safari und Edge
-- **Barrierefreiheitstests**: WCAG 2.1 AA-Konformitat fur alle Komponenten
+- **Phase 1**: KW 10-11 ✅
+- **Phase 2**: KW 12-14 ✅
+- **Phase 3**: KW 15-17 ✅
+- **Phase 4**: KW 18-19 ✅
+- **Phase 5**: KW 20-22 (aktuell)

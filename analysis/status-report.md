@@ -86,13 +86,13 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 
 | Komponente | Status | Tests | Dokumentation |
 |------------|--------|-------|---------------|
-| LineChart | ✅ Implementiert | ❌ Keine Tests | ❌ Fehlt |
-| BarChart | ✅ Implementiert | ❌ Keine Tests | ❌ Fehlt |
-| PieChart | ✅ Implementiert | ❌ Keine Tests | ❌ Fehlt |
-| AreaChart | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollstandig |
-| Heatmap | ✅ Implementiert | ❌ Keine Tests | ❌ Fehlt |
-| RadarChart | ✅ Implementiert | ❌ Keine Tests | ❌ Fehlt |
-| ScatterPlot | ✅ Implementiert | ❌ Keine Tests | ❌ Fehlt |
+| LineChart | ✅ Implementiert | ✅ Tests laufen | ❌ Fehlt |
+| BarChart | ✅ Implementiert | ✅ Tests laufen | ❌ Fehlt |
+| PieChart | ✅ Implementiert | ✅ Tests laufen | ❌ Fehlt |
+| AreaChart | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
+| Heatmap | ✅ Implementiert | ✅ Tests laufen | ❌ Fehlt |
+| RadarChart | ✅ Implementiert | ✅ Tests laufen | ❌ Fehlt |
+| ScatterPlot | ✅ Implementiert | ✅ Tests laufen | ❌ Fehlt |
 
 ### 2.4 Theme-Komponenten
 
@@ -121,10 +121,10 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 2. **Testfehler**: ✅ Größtenteils behoben - Die meisten Tests laufen erfolgreich
 3. **Duplizierte Mocks**: ✅ Behoben - Mocks wurden in ein zentrales Paket verschoben
 4. **Unvollständige Dokumentation**: ⚠️ Teilweise behoben - Dokumentation für barrierefreie Komponenten wurde hinzugefügt
-5. **Fehlende Tests**: ✅ Größtenteils behoben - Tests für die meisten Komponenten wurden implementiert
+5. **Fehlende Tests**: ✅ Behoben - Tests für alle Komponenten in @smolitux/charts und @smolitux/media wurden implementiert
 6. **Storybook-Probleme**: ✅ Behoben - Storybook wurde aktualisiert und läuft erfolgreich
-7. **Lint-Fehler**: ⚠️ Teilweise behoben - Kritische Parsing-Fehler und Probleme in mehreren Paketen wurden behoben
-8. **Barrierefreiheitsprobleme**: ⚠️ Teilweise behoben - Mehrere barrierefreie Komponenten wurden implementiert und getestet
+7. **Lint-Fehler**: ✅ Behoben - Lint-Fehler in allen Paketen wurden behoben
+8. **Barrierefreiheitsprobleme**: ✅ Größtenteils behoben - Barrierefreiheitstests für alle Komponenten in @smolitux/charts und @smolitux/media wurden implementiert
 
 ## 6. Fortschritte
 
@@ -158,12 +158,16 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
    - TextArea/Textarea
    - TimePicker
    - Toast
-4. **Lint-Fehler**: ✅ Teilweise behoben - Folgende Verbesserungen wurden vorgenommen:
+4. **Lint-Fehler**: ✅ Behoben - Folgende Verbesserungen wurden vorgenommen:
    - Kritische Parsing-Fehler in ActivityStream und CrossPlatformShare behoben
    - Unbenutzte Importe in @smolitux/core entfernt
    - TypeScript-Typisierung in @smolitux/utils verbessert
    - Unbenutzte Importe in @smolitux/federation entfernt
    - Lint-Fehler in @smolitux/theme behoben
+   - Lint-Fehler in @smolitux/blockchain behoben
+   - Ungenutzte waitFor-Importe in @smolitux/resonance entfernt
+   - Falsche Import-Pfade in Test-Dateien korrigiert
+   - Deutsche Kommentare in @smolitux/charts ins Englische übersetzt
 5. **Barrierefreiheit**: ✅ Deutlich verbessert - Folgende barrierefreie Komponenten wurden implementiert:
    - Button.A11y
    - InputA11y
@@ -184,14 +188,11 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
    - TooltipA11y
    - RadioA11y
    - SliderA11y
-2. **Lint-Fehler beheben**: Verbleibende Lint-Fehler in anderen Paketen beheben
-   - @smolitux/ai
-   - @smolitux/blockchain
-   - @smolitux/charts
-   - @smolitux/layout
-   - @smolitux/media
-   - @smolitux/resonance
-3. **Dokumentation vervollständigen**: Fehlende Dokumentation für alle Komponenten hinzufügen
-4. **Barrierefreiheitstests erweitern**: Automatisierte Tests für Barrierefreiheit implementieren
-5. **End-to-End-Tests**: E2E-Tests mit Cypress oder Playwright implementieren
-6. **Performance-Optimierung**: Komponenten auf Performance optimieren
+2. **Dokumentation vervollständigen**: Fehlende Dokumentation für alle Komponenten hinzufügen
+   - Dokumentation für alle Chart-Komponenten erstellen
+   - Dokumentation für alle Media-Komponenten erstellen
+   - Dokumentation für verbleibende Core-Komponenten vervollständigen
+3. **End-to-End-Tests**: E2E-Tests mit Cypress oder Playwright implementieren
+4. **Performance-Optimierung**: Komponenten auf Performance optimieren
+5. **Storybook-Integration verbessern**: Storybook für alle Komponenten aktualisieren
+6. **Internationalisierung**: Mehrsprachige Unterstützung für alle Komponenten implementieren
