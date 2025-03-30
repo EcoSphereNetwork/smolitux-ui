@@ -118,10 +118,17 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(({
   };
 
   return (
-    <div ref={ref} className={containerClasses} role="status" {...rest}>
+    <div 
+      ref={ref} 
+      className={containerClasses} 
+      role="status" 
+      aria-live="polite"
+      aria-busy="true"
+      {...rest}
+    >
       {renderSpinner()}
-      {text && <div className="smolitux-spinner-text">{text}</div>}
-      <span className="smolitux-spinner-sr-only">{label}</span>
+      {text && <div className="smolitux-spinner-text" aria-hidden="true">{text}</div>}
+      <span className="smolitux-spinner-sr-only" aria-atomic="true">{label}</span>
     </div>
   );
 });

@@ -82,13 +82,17 @@
   - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
   - Tests angepasst und teilweise erfolgreich durchgeführt
   - Verbesserte Beschreibungen für Screenreader
+- [x] Spinner-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live, aria-busy)
+  - Tests erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Spinner-Komponente testen und verbessern
 - [ ] Table-Komponente testen und verbessern
+- [ ] Skeleton-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 

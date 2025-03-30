@@ -57,7 +57,7 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 | Skeleton | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Slide | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Slider | ✅ Implementiert | ⚠️ Tests teilweise erfolgreich | ✅ Vorhanden |
-| Spinner | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Spinner | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | Stepper | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | Switch | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | Table | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
