@@ -248,7 +248,15 @@
      - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
      - Duplizierung zwischen TextArea und Textarea durch Kompatibilitätsschicht bereinigt
      - Alle Tests erfolgreich
-   - TimePicker
+   - [x] TimePicker
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit ARIA-Attributen
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Entfernte nicht-konforme ARIA-Attribute (aria-expanded, aria-haspopup)
+     - Alle Tests erfolgreich
    - Toast
 
 3. Dokumentation für alle Komponenten aktualisieren
