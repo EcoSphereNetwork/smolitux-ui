@@ -33,7 +33,7 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 | Accordion | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Breadcrumb | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Carousel | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
-| Checkbox | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Checkbox | ✅ Implementiert | ✅ Tests laufen | ⚠️ Unvollständig |
 | Collapse | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | ColorPicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
 | DatePicker | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |

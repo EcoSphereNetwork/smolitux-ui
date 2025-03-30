@@ -61,13 +61,17 @@
   - Barrierefreiheits-Attribute hinzugefügt (aria-labelledby, role="presentation")
   - Verbesserte Semantik mit versteckter Überschrift
   - Tests erfolgreich durchgeführt
+- [x] Checkbox-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Checkbox-Komponente testen und verbessern
 - [ ] Radio-Komponente testen und verbessern
+- [ ] RadioGroup-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 
