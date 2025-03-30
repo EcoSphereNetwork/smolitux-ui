@@ -6,7 +6,7 @@ import { useFormContext } from './Form';
 /**
  * Hook für die Verwaltung eines Formularfelds
  */
-export const useField = <T = any>(options: FieldOptions<T> = {}) => {
+export const useField = <T = unknown>(options: FieldOptions<T> = {}) => {
   const {
     initialValue,
     validationRules = [],
@@ -213,7 +213,7 @@ export const useField = <T = any>(options: FieldOptions<T> = {}) => {
     if (isInForm) {
       const formValues = formContext.formState.values;
       const formTouched = formContext.formState.touched;
-      const formErrors = formContext.formState.errors;
+      // const formErrors = formContext.formState.errors;
       
       // Synchronisiere den Wert
       if (name in formValues && formValues[name] !== value) {

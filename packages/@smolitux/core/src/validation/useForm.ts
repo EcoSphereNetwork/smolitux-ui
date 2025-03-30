@@ -19,7 +19,7 @@ export const useForm = (options: FormOptions = {}) => {
   } = options;
 
   // Formularstatus
-  const [values, setValues] = useState<Record<string, any>>(initialValues);
+  const [values, setValues] = useState<Record<string, unknown>>(initialValues);
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [dirty, setDirty] = useState<Record<string, boolean>>({});
@@ -78,7 +78,7 @@ export const useForm = (options: FormOptions = {}) => {
 
   // Feldwert setzen
   const setFieldValue = useCallback(
-    (name: string, value: any) => {
+    (name: string, value: unknown) => {
       setValues((prev) => ({
         ...prev,
         [name]: value,
@@ -218,7 +218,7 @@ export const useForm = (options: FormOptions = {}) => {
 
   // Formular zurücksetzen
   const resetForm = useCallback(
-    (newValues?: Record<string, any>) => {
+    (newValues?: Record<string, unknown>) => {
       const resetValues = newValues || initialValuesRef.current;
       
       setValues(resetValues);
@@ -277,7 +277,7 @@ export const useForm = (options: FormOptions = {}) => {
     if (validateOnMount) {
       validateForm();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
   return {

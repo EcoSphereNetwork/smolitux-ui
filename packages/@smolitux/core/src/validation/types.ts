@@ -2,11 +2,11 @@
  * Typen für das Formularvalidierungssystem
  */
 
-export type ValidationRule<T = any> = {
+export type ValidationRule<T = unknown> = {
   /**
    * Die Validierungsfunktion, die den Wert überprüft
    */
-  validator: (value: T, formValues?: Record<string, any>) => boolean;
+  validator: (value: T, formValues?: Record<string, unknown>) => boolean;
   
   /**
    * Die Fehlermeldung, die angezeigt wird, wenn die Validierung fehlschlägt
@@ -19,7 +19,7 @@ export type ValidationRule<T = any> = {
   validateEmpty?: boolean;
 };
 
-export type FieldValidationRules<T = any> = ValidationRule<T>[];
+export type FieldValidationRules<T = unknown> = ValidationRule<T>[];
 
 export type ValidationOptions = {
   /**
@@ -53,7 +53,7 @@ export type ValidationOptions = {
   validateOnlyDirty?: boolean;
 };
 
-export type FieldState<T = any> = {
+export type FieldState<T = unknown> = {
   /**
    * Der aktuelle Wert des Felds
    */
@@ -109,7 +109,7 @@ export type FormState = {
   /**
    * Die Werte aller Felder
    */
-  values: Record<string, any>;
+  values: Record<string, unknown>;
   
   /**
    * Die Fehlermeldungen aller Felder
@@ -131,12 +131,12 @@ export type FormOptions = ValidationOptions & {
   /**
    * Die initialen Werte des Formulars
    */
-  initialValues?: Record<string, any>;
+  initialValues?: Record<string, unknown>;
   
   /**
    * Callback, der aufgerufen wird, wenn das Formular abgesendet wird
    */
-  onSubmit?: (values: Record<string, any>, formState: FormState) => void | Promise<void>;
+  onSubmit?: (values: Record<string, unknown>, formState: FormState) => void | Promise<void>;
   
   /**
    * Callback, der aufgerufen wird, wenn sich der Formularstatus ändert
@@ -149,7 +149,7 @@ export type FormOptions = ValidationOptions & {
   onError?: (errors: Record<string, string[]>, formState: FormState) => void;
 };
 
-export type FieldOptions<T = any> = ValidationOptions & {
+export type FieldOptions<T = unknown> = ValidationOptions & {
   /**
    * Der initiale Wert des Felds
    */
@@ -196,7 +196,7 @@ export type FieldOptions<T = any> = ValidationOptions & {
   name?: string;
 };
 
-export type FieldProps<T = any> = FieldOptions<T> & {
+export type FieldProps<T = unknown> = FieldOptions<T> & {
   /**
    * Der aktuelle Wert des Felds
    */
@@ -267,7 +267,7 @@ export type FormContextValue = {
   /**
    * Setzt den Wert eines Felds
    */
-  setFieldValue: (name: string, value: any) => void;
+  setFieldValue: (name: string, value: unknown) => void;
   
   /**
    * Markiert ein Feld als berührt
@@ -287,7 +287,7 @@ export type FormContextValue = {
   /**
    * Setzt das Formular zurück
    */
-  resetForm: (values?: Record<string, any>) => void;
+  resetForm: (values?: Record<string, unknown>) => void;
   
   /**
    * Sendet das Formular ab

@@ -183,7 +183,7 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
               {isSharing ? "Wird geteilt..." : "Teilen"}
             </Button>
           </div>
-        </Card>
+        </div>
       </Card>
     </Card>
   );
