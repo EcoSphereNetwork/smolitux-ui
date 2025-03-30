@@ -149,7 +149,7 @@ export const url = (message = 'Bitte geben Sie eine gültige URL ein'): Validati
     try {
       new URL(value);
       return true;
-    } catch (_error) {
+    } catch {
       return false;
     }
   },

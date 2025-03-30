@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ValidationRule, FieldValidationRules } from './types';
+import { FieldValidationRules } from './types';
 
 /**
  * Hook für die Validierung von Werten

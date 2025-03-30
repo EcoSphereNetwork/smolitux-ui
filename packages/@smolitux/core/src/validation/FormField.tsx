@@ -2,11 +2,11 @@ import React from 'react';
 import { FieldOptions } from './types';
 import { useField } from './useField';
 
-export type FormFieldProps<T = any> = FieldOptions<T> & {
+export type FormFieldProps<T = unknown> = FieldOptions<T> & {
   /**
    * Die Komponente, die gerendert werden soll
    */
-  component: React.ComponentType<any>;
+  component: React.ComponentType<Record<string, unknown>>;
   
   /**
    * Die Kinder der Komponente
@@ -16,13 +16,13 @@ export type FormFieldProps<T = any> = FieldOptions<T> & {
   /**
    * Zusätzliche Props für die Komponente
    */
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 /**
  * Komponente für die Verbindung eines Formularfelds mit einer Eingabekomponente
  */
-export const FormField = <T extends any>({
+export const FormField = <T>({
   component: Component,
   children,
   name,

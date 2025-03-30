@@ -78,7 +78,7 @@ export const useForm = (options: FormOptions = {}) => {
 
   // Feldwert setzen
   const setFieldValue = useCallback(
-    (name: string, value: any) => {
+    (name: string, value: unknown) => {
       setValues((prev) => ({
         ...prev,
         [name]: value,
@@ -277,7 +277,7 @@ export const useForm = (options: FormOptions = {}) => {
     if (validateOnMount) {
       validateForm();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
   return {
