@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { PostCreator } from './PostCreator';
+import { PostCreator } from '../PostCreator';
 
 describe('PostCreator', () => {
   const mockOnSubmit = jest.fn();

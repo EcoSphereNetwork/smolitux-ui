@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { FeedSidebar } from './FeedSidebar';
+import { FeedSidebar } from '../FeedSidebar';
 
 describe('FeedSidebar', () => {
   const mockTrendingTopics = [

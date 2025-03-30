@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { PostInteractions } from './PostInteractions';
+import { PostInteractions } from '../PostInteractions';
 
 describe('PostInteractions', () => {
   const mockPost = {

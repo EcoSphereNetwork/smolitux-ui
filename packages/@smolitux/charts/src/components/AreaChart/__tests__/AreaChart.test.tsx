@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { AreaChart } from '../AreaChart';
 
-// Mock für useTheme hook
+// Mock for useTheme hook
 jest.mock('@smolitux/theme', () => ({
   useTheme: () => ({ themeMode: 'light' })
 }));
@@ -23,11 +23,11 @@ describe('AreaChart', () => {
   test('renders chart with placeholder text', () => {
     render(<AreaChart data={mockData} />);
     
-    // SVG sollte gerendert werden
+    // SVG should be rendered
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
     
-    // Platzhaltertext sollte angezeigt werden
+    // Placeholder text should be displayed
     expect(screen.getByText('AreaChart Platzhalter')).toBeInTheDocument();
   });
 
@@ -63,14 +63,14 @@ describe('AreaChart', () => {
     
     render(<AreaChart data={multiSeriesData} />);
     
-    // Chart sollte ohne Fehler gerendert werden
+    // Chart should be rendered without errors
     expect(document.querySelector('svg')).toBeInTheDocument();
   });
 
   test('renders with title when provided', () => {
     render(<AreaChart data={mockData} title="Test Chart Title" />);
     
-    // SVG sollte gerendert werden
+    // SVG should be rendered
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
   });

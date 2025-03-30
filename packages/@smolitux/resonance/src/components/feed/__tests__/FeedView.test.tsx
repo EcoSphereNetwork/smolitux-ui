@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { FeedView } from './FeedView';
+import { FeedView } from '../FeedView';
 
 describe('FeedView', () => {
   const mockPosts = [

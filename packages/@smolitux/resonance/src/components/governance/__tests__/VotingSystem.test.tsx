@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { VotingSystem } from './VotingSystem';
+import { VotingSystem } from '../VotingSystem';
 
 describe('VotingSystem', () => {
   const mockProposal = {

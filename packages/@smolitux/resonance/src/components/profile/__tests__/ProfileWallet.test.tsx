@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { ProfileWallet } from './ProfileWallet';
+import { ProfileWallet } from '../ProfileWallet';
 
 describe('ProfileWallet', () => {
   const mockWallet = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ProfileEditor } from './ProfileEditor';
+import { ProfileEditor } from '../ProfileEditor';
 
 describe('ProfileEditor', () => {
   const mockProfile = {
