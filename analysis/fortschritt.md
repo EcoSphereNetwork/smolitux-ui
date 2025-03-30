@@ -191,7 +191,14 @@
      - Verbesserte Typisierung und Dokumentation
      - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
      - Alle Tests erfolgreich
-   - Drawer
+   - [x] Drawer
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
    - FileUpload
    - LanguageSwitcher
    - MediaPlayer
