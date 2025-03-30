@@ -1,14 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-// import { a11y } from '@smolitux/testing';
+import { a11y } from '@smolitux/testing';
 import { Dialog } from '../Dialog';
-
-// Mock für a11y, da es Probleme mit jest-axe gibt
-const a11y = {
-  testA11y: async () => ({ violations: [] }),
-  isFocusable: () => true,
-  hasVisibleFocusIndicator: () => true
-};
 
 describe('Dialog Accessibility', () => {
   it('should not have accessibility violations in basic state', async () => {
@@ -154,7 +147,7 @@ describe('Dialog Accessibility', () => {
     const tabOrder = [closeButton, nameInput, emailInput, cancelButton, confirmButton];
     tabOrder.forEach((element, index) => {
       if (index < tabOrder.length - 1) {
-        expect(element.tabIndex || 0).toBeLessThanOrEqual(tabOrder[index + 1].tabIndex || 0);
+        expect(element.tabIndex).toBeLessThanOrEqual(tabOrder[index + 1].tabIndex || 0);
       }
     });
   });
@@ -164,16 +157,14 @@ describe('Dialog Accessibility', () => {
       <Dialog 
         isOpen={true} 
         onClose={() => {}} 
-        title="Dialog Title"
       >
         <p>Dialog Content</p>
       </Dialog>
     );
     
-    // Verwende data-testid statt Rollen-Selektoren
-    const closeButton = screen.getByTestId('dialog-close-button');
-    const cancelButton = screen.getByTestId('dialog-cancel-button');
-    const confirmButton = screen.getByTestId('dialog-confirm-button');
+    const closeButton = screen.getByRole('button', { name: /schließen/i });
+    const cancelButton = screen.getByRole('button', { name: /abbrechen/i });
+    const confirmButton = screen.getByRole('button', { name: /bestätigen/i });
     
     // Focus each element and check for visible focus indicator
     closeButton.focus();

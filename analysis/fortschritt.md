@@ -157,12 +157,56 @@
      - Verbesserte Barrierefreiheit mit zusätzlichen ARIA-Attributen
      - Unterstützung für benutzerdefinierte Größen und Farben
      - Alle Tests erfolgreich
-   - Carousel
-   - ColorPicker
-   - DatePicker
-   - Dialog
-   - Drawer
-   - FileUpload
+   - [x] Carousel
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible
+     - Optimierte Komponenten-Struktur und Performance
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Unterstützung für benutzerdefinierte Klassen
+     - Alle Tests erfolgreich
+   - [x] ColorPicker
+     - Implementiertes Texteingabefeld für manuelle Farbeingabe
+     - Unterstützung für verschiedene Farbformate (hex, rgb, hsl)
+     - Implementierte Größenunterstützung (xs, sm, md, lg, xl)
+     - Verbesserte Barrierefreiheit mit focus-visible
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Korrigierte Ref-Weiterleitung an das Eingabefeld
+     - Optimierte Komponenten-Struktur und Performance
+     - Alle Tests erfolgreich
+   - [x] DatePicker
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible
+     - Korrigierte Ref-Weiterleitung an das Eingabefeld
+     - Optimierte Komponenten-Struktur und Performance
+     - Behobene Probleme mit der Datumsvalidierung
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
+   - [x] Dialog
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
+   - [x] Drawer
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
+   - [x] FileUpload
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
+     - Optimierte Komponenten-Struktur und Performance
+     - Verbesserte Typisierung und Dokumentation
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
    - LanguageSwitcher
    - MediaPlayer
    - Menu

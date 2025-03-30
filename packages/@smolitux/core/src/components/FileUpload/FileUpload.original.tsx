@@ -1,15 +1,6 @@
-// packages/@smolitux/core/src/components/FileUpload/FileUpload.improved.tsx
+// packages/@smolitux/core/src/components/FileUpload/FileUpload.tsx
 import React, { forwardRef, useState, useRef, useEffect } from 'react';
 import { useFormControl } from '../FormControl/FormControl';
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
 
 export interface FileInfo {
   /** Eindeutige ID des Files */
@@ -81,8 +72,6 @@ export interface FileUploadProps extends Omit<React.InputHTMLAttributes<HTMLInpu
   uploadUrl?: string;
   /** Name des Formularfelds für den Upload */
   fieldName?: string;
-  /** Daten-Testid für Tests */
-  'data-testid'?: string;
 }
 
 /**
@@ -125,13 +114,8 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   uploadUrl,
   fieldName = 'file',
   className = '',
-  'data-testid': dataTestId = 'file-upload',
   ...rest
 }, ref) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
   // FormControl-Context
   const formControl = useFormControl();
   
@@ -477,7 +461,7 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   
   // Icon-Komponenten
   const UploadIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={sizeClasses[size].icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" className={sizeClasses[size].icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
       <polyline points="17 8 12 3 7 8"/>
       <line x1="12" y1="3" x2="12" y2="15"/>
@@ -487,13 +471,10 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   // Button-Variante rendern
   if (variant === 'button') {
     return (
-      <div className={`${className}`} data-testid={`${dataTestId}-container`}>
+      <div className={`${className}`} data-testid="file-upload-container">
         {/* Label */}
         {(label || formControl.label) && (
-          <label 
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            htmlFor={`${dataTestId}-input`}
-          >
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             {label || formControl.label}
             {formControl.required && <span className="ml-1 text-red-500">*</span>}
           </label>
@@ -512,10 +493,8 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
               ${rest.disabled ? 'opacity-50 cursor-not-allowed' : ''}
             `}
             disabled={rest.disabled}
-            data-testid={`${dataTestId}-button`}
-            aria-label={buttonText}
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"/>
             </svg>
             {buttonText}
@@ -533,27 +512,23 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
                 (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
               }
             }}
-            id={`${dataTestId}-input`}
             type="file"
             className="hidden"
             onChange={handleInputChange}
             accept={accept}
             multiple={multiple}
             disabled={rest.disabled}
-            aria-label={buttonText}
-            data-testid={`${dataTestId}-input`}
             {...rest}
           />
           
           {/* Dateiliste */}
           {files.length > 0 && (
-            <div className="mt-2" data-testid={`${dataTestId}-file-list`}>
+            <div className="mt-2">
               <ul className="space-y-2">
                 {files.map(file => (
                   <li 
                     key={file.id} 
                     className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 rounded p-2"
-                    data-testid={`${dataTestId}-file-item`}
                   >
                     <div className="flex items-center">
                       {/* Vorschau, falls verfügbar */}
@@ -568,45 +543,37 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
                       )}
                       
                       {/* Dateiinfo */}
-                      <div>
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">{file.name}</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">{formatFileSize(file.size)}</div>
-                        
-                        {/* Fehler */}
-                        {file.status === 'error' && file.error && (
-                          <div className="text-xs text-red-500">{file.error}</div>
-                        )}
-                        
-                        {/* Fortschritt */}
-                        {showProgress && file.status === 'uploading' && (
-                          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mt-1">
-                            <div 
-                              className="bg-primary-600 h-1.5 rounded-full" 
-                              style={{ width: `${file.progress || 0}%` }}
-                            ></div>
-                          </div>
-                        )}
+                      <div className="overflow-hidden">
+                        <div className="text-sm font-medium truncate">{file.name}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                          {formatFileSize(file.size)}
+                          {file.status === 'uploading' && ' - Uploading...'}
+                          {file.status === 'success' && ' - Upload Complete'}
+                          {file.status === 'error' && ` - Error: ${file.error}`}
+                        </div>
                       </div>
                     </div>
                     
                     {/* Aktionen */}
                     <div className="flex items-center">
-                      {/* Status-Icon */}
-                      {file.status === 'success' && (
-                        <svg className="w-5 h-5 text-green-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                        </svg>
+                      {/* Fortschrittsanzeige */}
+                      {showProgress && file.status === 'uploading' && (
+                        <div className="w-16 bg-gray-200 dark:bg-gray-700 rounded-full mr-2 h-2">
+                          <div 
+                            className="bg-primary-500 rounded-full h-2" 
+                            style={{ width: `${file.progress || 0}%` }}
+                          />
+                        </div>
                       )}
                       
                       {/* Löschen-Button */}
                       <button
                         type="button"
                         onClick={() => removeFile(file.id)}
-                        className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
-                        aria-label="Datei entfernen"
-                        data-testid={`${dataTestId}-remove-button`}
+                        className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"
+                        title="Remove file"
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                       </button>
@@ -615,13 +582,12 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
                 ))}
               </ul>
               
-              {/* Upload-Button, wenn nicht automatisch */}
+              {/* Upload-Button wenn nicht autoUpload */}
               {!autoUpload && files.some(file => file.status === 'idle') && (
                 <button
                   type="button"
                   onClick={uploadAllFiles}
-                  className="mt-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded px-4 py-2 text-sm transition duration-150 ease-in-out"
-                  data-testid={`${dataTestId}-upload-button`}
+                  className="mt-3 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium py-1 px-3 rounded"
                 >
                   Dateien hochladen
                 </button>
@@ -629,188 +595,164 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
             </div>
           )}
           
-          {/* Hilfetext oder Fehler */}
-          {(helperText || formControl.helperText) && !error && !formControl.error && (
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              {helperText || formControl.helperText}
-            </p>
-          )}
-          
-          {(error || formControl.error) && (
-            <p className="mt-1 text-xs text-red-500">
-              {error || formControl.error}
-            </p>
+          {/* Hilfetexzt oder Fehlermeldung */}
+          {((helperText && !formControl.hasError) || (error || formControl.hasError)) && (
+            <div className="mt-1 text-sm">
+              {error || formControl.hasError ? (
+                <p className="text-red-600 dark:text-red-400">
+                  {error}
+                </p>
+              ) : helperText ? (
+                <p className="text-gray-500 dark:text-gray-400">
+                  {helperText}
+                </p>
+              ) : null}
+            </div>
           )}
         </div>
       </div>
     );
   }
-  
-  // Simple-Variante rendern
+
+  // Simple Variante rendern (nur Input und Dateiliste, ohne Dropzone)
   if (variant === 'simple') {
     return (
-      <div className={`${className}`} data-testid={`${dataTestId}-container`}>
+      <div className={`${className}`} data-testid="file-upload-container">
         {/* Label */}
         {(label || formControl.label) && (
-          <label 
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            htmlFor={`${dataTestId}-input`}
-          >
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             {label || formControl.label}
             {formControl.required && <span className="ml-1 text-red-500">*</span>}
           </label>
         )}
         
-        {/* Input */}
-        <div className="flex items-center">
-          <input
-            ref={(el) => {
-              // Combine refs
-              if (typeof ref === 'function') {
-                ref(el);
-              } else if (ref) {
-                (ref as React.MutableRefObject<HTMLInputElement | null>).current = el;
-              }
-              if (inputRef) {
-                (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
-              }
-            }}
-            id={`${dataTestId}-input`}
-            type="file"
-            className="block w-full text-sm text-gray-500 dark:text-gray-400
-              file:mr-4 file:py-2 file:px-4
-              file:rounded file:border-0
-              file:text-sm file:font-medium
-              file:bg-primary-50 file:text-primary-700
-              dark:file:bg-primary-900 dark:file:text-primary-300
-              hover:file:bg-primary-100 dark:hover:file:bg-primary-800
-              focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500
-            "
-            onChange={handleInputChange}
-            accept={accept}
-            multiple={multiple}
-            disabled={rest.disabled}
-            aria-label={buttonText}
-            data-testid={`${dataTestId}-input`}
-            {...rest}
-          />
-        </div>
-        
-        {/* Dateiliste */}
-        {files.length > 0 && (
-          <div className="mt-2" data-testid={`${dataTestId}-file-list`}>
-            <ul className="space-y-2">
-              {files.map(file => (
-                <li 
-                  key={file.id} 
-                  className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 rounded p-2"
-                  data-testid={`${dataTestId}-file-item`}
-                >
-                  <div className="flex items-center">
-                    {/* Vorschau, falls verfügbar */}
-                    {showPreview && file.previewUrl && (
-                      <div className="mr-2 w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded overflow-hidden">
-                        {previewRenderer ? (
-                          previewRenderer(file)
-                        ) : (
-                          <img src={file.previewUrl} alt={file.name} className="w-full h-full object-cover"/>
-                        )}
+        {/* Simple Input */}
+        <div className="flex flex-col gap-2">
+          <div className="flex">
+            <input
+              ref={(el) => {
+                // Combine refs
+                if (typeof ref === 'function') {
+                  ref(el);
+                } else if (ref) {
+                  (ref as React.MutableRefObject<HTMLInputElement | null>).current = el;
+                }
+                if (inputRef) {
+                  (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
+                }
+              }}
+              type="file"
+              className="
+                block w-full text-sm text-gray-500 dark:text-gray-400
+                file:mr-4 file:py-2 file:px-4
+                file:rounded file:border-0
+                file:text-sm file:font-medium
+                file:bg-primary-50 file:text-primary-700
+                dark:file:bg-primary-900/20 dark:file:text-primary-300
+                hover:file:bg-primary-100 dark:hover:file:bg-primary-800/30
+              "
+              onChange={handleInputChange}
+              accept={accept}
+              multiple={multiple}
+              disabled={rest.disabled}
+              {...rest}
+            />
+          </div>
+          
+          {/* Dateiliste */}
+          {files.length > 0 && (
+            <div className="mt-2">
+              <ul className="space-y-2">
+                {files.map(file => (
+                  <li 
+                    key={file.id} 
+                    className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 rounded p-2"
+                  >
+                    <div className="flex items-center">
+                      {/* Dateiinfo */}
+                      <div className="overflow-hidden">
+                        <div className="text-sm font-medium truncate">{file.name}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                          {formatFileSize(file.size)}
+                          {file.status === 'uploading' && ' - Uploading...'}
+                          {file.status === 'success' && ' - Upload Complete'}
+                          {file.status === 'error' && ` - Error: ${file.error}`}
+                        </div>
                       </div>
-                    )}
+                    </div>
                     
-                    {/* Dateiinfo */}
-                    <div>
-                      <div className="text-sm font-medium text-gray-900 dark:text-white">{file.name}</div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">{formatFileSize(file.size)}</div>
-                      
-                      {/* Fehler */}
-                      {file.status === 'error' && file.error && (
-                        <div className="text-xs text-red-500">{file.error}</div>
-                      )}
-                      
-                      {/* Fortschritt */}
+                    {/* Aktionen */}
+                    <div className="flex items-center">
+                      {/* Fortschrittsanzeige */}
                       {showProgress && file.status === 'uploading' && (
-                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mt-1">
+                        <div className="w-16 bg-gray-200 dark:bg-gray-700 rounded-full mr-2 h-2">
                           <div 
-                            className="bg-primary-600 h-1.5 rounded-full" 
+                            className="bg-primary-500 rounded-full h-2" 
                             style={{ width: `${file.progress || 0}%` }}
-                          ></div>
+                          />
                         </div>
                       )}
+                      
+                      {/* Löschen-Button */}
+                      <button
+                        type="button"
+                        onClick={() => removeFile(file.id)}
+                        className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"
+                        title="Remove file"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                      </button>
                     </div>
-                  </div>
-                  
-                  {/* Aktionen */}
-                  <div className="flex items-center">
-                    {/* Status-Icon */}
-                    {file.status === 'success' && (
-                      <svg className="w-5 h-5 text-green-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                      </svg>
-                    )}
-                    
-                    {/* Löschen-Button */}
-                    <button
-                      type="button"
-                      onClick={() => removeFile(file.id)}
-                      className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
-                      aria-label="Datei entfernen"
-                      data-testid={`${dataTestId}-remove-button`}
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            
-            {/* Upload-Button, wenn nicht automatisch */}
-            {!autoUpload && files.some(file => file.status === 'idle') && (
-              <button
-                type="button"
-                onClick={uploadAllFiles}
-                className="mt-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded px-4 py-2 text-sm transition duration-150 ease-in-out"
-                data-testid={`${dataTestId}-upload-button`}
-              >
-                Dateien hochladen
-              </button>
-            )}
-          </div>
-        )}
-        
-        {/* Hilfetext oder Fehler */}
-        {(helperText || formControl.helperText) && !error && !formControl.error && (
-          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            {helperText || formControl.helperText}
-          </p>
-        )}
-        
-        {(error || formControl.error) && (
-          <p className="mt-1 text-xs text-red-500">
-            {error || formControl.error}
-          </p>
-        )}
+                  </li>
+                ))}
+              </ul>
+              
+              {/* Upload-Button wenn nicht autoUpload */}
+              {!autoUpload && files.some(file => file.status === 'idle') && (
+                <button
+                  type="button"
+                  onClick={uploadAllFiles}
+                  className="mt-3 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium py-1 px-3 rounded"
+                >
+                  Dateien hochladen
+                </button>
+              )}
+            </div>
+          )}
+          
+          {/* Hilfetexzt oder Fehlermeldung */}
+          {((helperText && !formControl.hasError) || (error || formControl.hasError)) && (
+            <div className="mt-1 text-sm">
+              {error || formControl.hasError ? (
+                <p className="text-red-600 dark:text-red-400">
+                  {error}
+                </p>
+              ) : helperText ? (
+                <p className="text-gray-500 dark:text-gray-400">
+                  {helperText}
+                </p>
+              ) : null}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
   
-  // Standard-Variante (Dropzone)
+  // Default Variante mit Dropzone rendern
   return (
-    <div className={`${className}`} data-testid={`${dataTestId}-container`}>
+    <div className={`${className}`} data-testid="file-upload-container">
       {/* Label */}
       {(label || formControl.label) && (
-        <label 
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          htmlFor={`${dataTestId}-input`}
-        >
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           {label || formControl.label}
           {formControl.required && <span className="ml-1 text-red-500">*</span>}
         </label>
       )}
       
-      {/* Dropzone */}
+      {/* Dropzone und Input */}
       <div
         ref={dropzoneRef}
         className={`
@@ -818,16 +760,16 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
           flex flex-col items-center justify-center
           transition-colors duration-150
           ${sizeClasses[size].dropzone}
-          ${isDragging ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500'}
+          ${isDragging 
+            ? 'border-primary-500 bg-primary-50 dark:border-primary-400 dark:bg-primary-900/20' 
+            : 'border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500'}
           ${rest.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
         `}
-        onClick={!rest.disabled ? triggerFileInput : undefined}
-        onDragEnter={!rest.disabled ? handleDragEnter : undefined}
-        onDragOver={!rest.disabled ? handleDragOver : undefined}
-        onDragLeave={!rest.disabled ? handleDragLeave : undefined}
-        onDrop={!rest.disabled ? handleDrop : undefined}
-        data-testid={`${dataTestId}-dropzone`}
-        aria-labelledby={`${dataTestId}-dropzone-text`}
+        onClick={rest.disabled ? undefined : triggerFileInput}
+        onDragEnter={rest.disabled ? undefined : handleDragEnter}
+        onDragOver={rest.disabled ? undefined : handleDragOver}
+        onDragLeave={rest.disabled ? undefined : handleDragLeave}
+        onDrop={rest.disabled ? undefined : handleDrop}
       >
         <input
           ref={(el) => {
@@ -841,51 +783,40 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
               (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
             }
           }}
-          id={`${dataTestId}-input`}
           type="file"
           className="hidden"
           onChange={handleInputChange}
           accept={accept}
           multiple={multiple}
           disabled={rest.disabled}
-          aria-label={buttonText}
-          data-testid={`${dataTestId}-input`}
           {...rest}
         />
         
         <UploadIcon />
         
-        <p id={`${dataTestId}-dropzone-text`} className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          {dropzoneText}
-        </p>
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">{dropzoneText}</p>
         
         {accept && (
           <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            Erlaubte Dateitypen:
-            {' '}{accept}
+            Erlaubte Dateitypen: {accept}
           </p>
         )}
         
         {maxSize && (
           <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            Maximale Dateigröße: {formatFileSize(maxSize)}
+            Max. Größe: {formatFileSize(maxSize)}
           </p>
         )}
       </div>
       
       {/* Dateiliste */}
       {files.length > 0 && (
-        <div className="mt-4" data-testid={`${dataTestId}-file-list`}>
-          <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Ausgewählte Dateien ({files.length})
-          </h4>
-          
+        <div className="mt-3">
           <ul className="space-y-2">
             {files.map(file => (
               <li 
                 key={file.id} 
                 className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 rounded p-2"
-                data-testid={`${dataTestId}-file-item`}
               >
                 <div className="flex items-center">
                   {/* Vorschau, falls verfügbar */}
@@ -900,45 +831,54 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
                   )}
                   
                   {/* Dateiinfo */}
-                  <div>
-                    <div className="text-sm font-medium text-gray-900 dark:text-white">{file.name}</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">{formatFileSize(file.size)}</div>
-                    
-                    {/* Fehler */}
-                    {file.status === 'error' && file.error && (
-                      <div className="text-xs text-red-500">{file.error}</div>
-                    )}
-                    
-                    {/* Fortschritt */}
-                    {showProgress && file.status === 'uploading' && (
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mt-1">
-                        <div 
-                          className="bg-primary-600 h-1.5 rounded-full" 
-                          style={{ width: `${file.progress || 0}%` }}
-                        ></div>
-                      </div>
-                    )}
+                  <div className="overflow-hidden">
+                    <div className="text-sm font-medium truncate">{file.name}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                      {formatFileSize(file.size)}
+                      {file.status === 'uploading' && ' - Uploading...'}
+                      {file.status === 'success' && ' - Upload Complete'}
+                      {file.status === 'error' && ` - Error: ${file.error}`}
+                    </div>
                   </div>
                 </div>
                 
                 {/* Aktionen */}
                 <div className="flex items-center">
+                  {/* Fortschrittsanzeige */}
+                  {showProgress && file.status === 'uploading' && (
+                    <div className="w-20 bg-gray-200 dark:bg-gray-700 rounded-full mr-2 h-2">
+                      <div 
+                        className="bg-primary-500 rounded-full h-2" 
+                        style={{ width: `${file.progress || 0}%` }}
+                      />
+                    </div>
+                  )}
+                  
                   {/* Status-Icon */}
                   {file.status === 'success' && (
-                    <svg className="w-5 h-5 text-green-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
-                    </svg>
+                    <span className="mr-2 text-green-500">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                    </span>
+                  )}
+                  
+                  {file.status === 'error' && (
+                    <span className="mr-2 text-red-500">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                    </span>
                   )}
                   
                   {/* Löschen-Button */}
                   <button
                     type="button"
                     onClick={() => removeFile(file.id)}
-                    className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
-                    aria-label="Datei entfernen"
-                    data-testid={`${dataTestId}-remove-button`}
+                    className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"
+                    title="Remove file"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                   </button>
@@ -947,13 +887,12 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
             ))}
           </ul>
           
-          {/* Upload-Button, wenn nicht automatisch */}
+          {/* Upload-Button wenn nicht autoUpload */}
           {!autoUpload && files.some(file => file.status === 'idle') && (
             <button
               type="button"
               onClick={uploadAllFiles}
-              className="mt-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded px-4 py-2 text-sm transition duration-150 ease-in-out"
-              data-testid={`${dataTestId}-upload-button`}
+              className="mt-3 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium py-2 px-4 rounded"
             >
               Dateien hochladen
             </button>
@@ -961,20 +900,24 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
         </div>
       )}
       
-      {/* Hilfetext oder Fehler */}
-      {(helperText || formControl.helperText) && !error && !formControl.error && (
-        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-          {helperText || formControl.helperText}
-        </p>
-      )}
-      
-      {(error || formControl.error) && (
-        <p className="mt-1 text-xs text-red-500">
-          {error || formControl.error}
-        </p>
+      {/* Hilfetexzt oder Fehlermeldung */}
+      {((helperText && !formControl.hasError) || (error || formControl.hasError)) && (
+        <div className="mt-1 text-sm">
+          {error || formControl.hasError ? (
+            <p className="text-red-600 dark:text-red-400">
+              {error}
+            </p>
+          ) : helperText ? (
+            <p className="text-gray-500 dark:text-gray-400">
+              {helperText}
+            </p>
+          ) : null}
+        </div>
       )}
     </div>
   );
 });
+
+FileUpload.displayName = 'FileUpload';
 
 export default FileUpload;

@@ -11,24 +11,27 @@ jest.mock('@smolitux/theme', () => ({
 jest.mock('../../FormControl/FormControl', () => ({
   useFormControl: () => ({
     id: 'test-id',
-    disabled: false,
-    hasError: false,
-    required: false,
-    readOnly: false,
+    isDisabled: false,
+    isInvalid: false,
+    isReadOnly: false,
+    isRequired: false,
   }),
 }));
 
 describe('DatePicker', () => {
-  // Verwende eine feste Datum-Instanz für Tests
-  const fixedDate = new Date(2023, 0, 15); // 15. Januar 2023
-  
   beforeEach(() => {
-    // Setze das aktuelle Datum auf einen festen Wert
-    jest.useFakeTimers().setSystemTime(fixedDate);
+    // Mock für Date
+    const mockDate = new Date(2023, 0, 15); // 15. Januar 2023
+    jest.spyOn(global, 'Date').mockImplementation((args) => {
+      if (args) {
+        return new Date(args);
+      }
+      return mockDate;
+    });
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    jest.restoreAllMocks();
   });
 
   it('renders correctly with default props', () => {
@@ -108,7 +111,7 @@ describe('DatePicker', () => {
     const input = screen.getByRole('textbox');
     fireEvent.click(input);
     
-    expect(screen.getByText('Januar 2023')).toBeInTheDocument();
+    expect(screen.getByText('January 2023')).toBeInTheDocument();
   });
 
   it('navigates to previous month when clicking previous button', () => {
@@ -117,10 +120,10 @@ describe('DatePicker', () => {
     const input = screen.getByRole('textbox');
     fireEvent.click(input);
     
-    const prevButton = screen.getByLabelText('Vorheriger Monat');
+    const prevButton = screen.getByLabelText('Previous month');
     fireEvent.click(prevButton);
     
-    expect(screen.getByText('Dezember 2022')).toBeInTheDocument();
+    expect(screen.getByText('December 2022')).toBeInTheDocument();
   });
 
   it('navigates to next month when clicking next button', () => {
@@ -129,10 +132,10 @@ describe('DatePicker', () => {
     const input = screen.getByRole('textbox');
     fireEvent.click(input);
     
-    const nextButton = screen.getByLabelText('Nächster Monat');
+    const nextButton = screen.getByLabelText('Next month');
     fireEvent.click(nextButton);
     
-    expect(screen.getByText('Februar 2023')).toBeInTheDocument();
+    expect(screen.getByText('February 2023')).toBeInTheDocument();
   });
 
   it('selects a date when clicking on a day', () => {
@@ -183,8 +186,8 @@ describe('DatePicker', () => {
     fireEvent.change(input, { target: { value: 'invalid-date' } });
     fireEvent.blur(input);
     
-    // Prüfen, ob der onChange-Handler nicht mit einem ungültigen Datum aufgerufen wurde
     expect(handleChange).not.toHaveBeenCalled();
+    expect(screen.getByText('Invalid date format')).toBeInTheDocument();
   });
 
   it('respects min date constraint', () => {

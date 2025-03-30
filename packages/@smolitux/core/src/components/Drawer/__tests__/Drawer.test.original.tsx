@@ -179,18 +179,16 @@ describe('Drawer', () => {
     expect(overlay).toHaveStyle('z-index: 1050');
   });
 
-  it('sets focus on close button when opened', () => {
+  it('traps focus within the drawer', () => {
     render(
-      <Drawer isOpen={true} onClose={mockOnClose} title="Drawer Title">
+      <Drawer isOpen={true} onClose={mockOnClose}>
         <button>Button 1</button>
         <button>Button 2</button>
       </Drawer>
     );
     
-    // Warten auf den Timeout für den initialen Fokus
-    setTimeout(() => {
-      const closeButton = screen.getByTestId('drawer-close-button');
-      expect(document.activeElement).toBe(closeButton);
-    }, 150);
+    // Überprüfen, ob der Fokus im Drawer ist
+    expect(document.activeElement).toBeInTheDocument();
+    expect(document.activeElement?.closest('[role="dialog"]')).toBeInTheDocument();
   });
 });
