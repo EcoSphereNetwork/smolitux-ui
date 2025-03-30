@@ -142,7 +142,27 @@
 
 ## Plan für die nächste Woche
 
-1. Weitere Kernkomponenten testen und verbessern (Alert, Badge, Input, Select, Modal, TabView)
-2. Storybook reparieren und zum Laufen bringen
-3. CI/CD-Pipeline einrichten
-4. Dokumentation für die verbesserten Komponenten aktualisieren
+1. Storybook-Probleme beheben und zum Laufen bringen
+   - TypeScript-Konfiguration für Storybook anpassen
+   - Story-Dateien aktualisieren, um mit Storybook 7 kompatibel zu sein
+   - Storybook-Dokumentation verbessern
+
+2. Weitere Komponenten testen und verbessern:
+   - Avatar
+   - Carousel
+   - ColorPicker
+   - DatePicker
+   - Dialog
+   - Drawer
+   - FileUpload
+   - LanguageSwitcher
+   - MediaPlayer
+   - Menu
+   - Popover
+   - TextArea/Textarea (Duplizierung bereinigen)
+   - TimePicker
+   - Toast
+
+3. Dokumentation für alle Komponenten aktualisieren
+
+4. Lint-Fehler beheben und CI/CD-Pipeline vollständig aktivieren
