@@ -1,33 +1,6 @@
-// packages/@smolitux/core/src/components/Dialog/Dialog.improved.tsx
-import React, { useEffect, useRef, useCallback } from 'react';
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
-
-// Versuche den Button-Import, mit Fallback für Tests und Entwicklung
-let Button: React.FC<any>;
-try {
-  Button = require('../Button/Button').Button;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  Button = ({ children, variant, onClick, disabled, isLoading, ref, ...rest }) => (
-    <button
-      ref={ref}
-      onClick={onClick}
-      disabled={disabled || isLoading}
-      className={`px-4 py-2 rounded ${variant === 'primary' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
-      {...rest}
-    >
-      {isLoading ? 'Loading...' : children}
-    </button>
-  );
-}
+// packages/@smolitux/core/src/components/Dialog/Dialog.tsx
+import React, { useEffect, useRef } from 'react';
+import { Button } from '../Button/Button';
 
 export interface DialogProps {
   /** Ist der Dialog geöffnet? */
@@ -88,8 +61,6 @@ export interface DialogProps {
   width?: string;
   /** Benutzerdefinierte Höhe des Dialogs */
   height?: string;
-  /** Daten-Testid für Tests */
-  'data-testid'?: string;
 }
 
 /**
@@ -137,12 +108,7 @@ export const Dialog: React.FC<DialogProps> = ({
   isFullscreenDialog = false,
   width,
   height,
-  'data-testid': dataTestId = 'dialog',
 }) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
   const dialogRef = useRef<HTMLDivElement>(null);
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -235,7 +201,7 @@ export const Dialog: React.FC<DialogProps> = ({
   }, [isOpen]);
   
   // Cancel-Handler
-  const handleCancel = useCallback(() => {
+  const handleCancel = () => {
     if (requiresAction || blocking) {
       return;
     }
@@ -244,10 +210,10 @@ export const Dialog: React.FC<DialogProps> = ({
       onCancel();
     }
     onClose();
-  }, [blocking, onCancel, onClose, requiresAction]);
+  };
   
   // Confirm-Handler
-  const handleConfirm = useCallback(() => {
+  const handleConfirm = () => {
     if (confirmDisabled) {
       return;
     }
@@ -259,7 +225,7 @@ export const Dialog: React.FC<DialogProps> = ({
     if (!confirmLoading) {
       onClose();
     }
-  }, [confirmDisabled, confirmLoading, onClose, onConfirm]);
+  };
   
   // Wenn nicht offen, nicht rendern
   if (!isOpen) {
@@ -282,7 +248,7 @@ export const Dialog: React.FC<DialogProps> = ({
         return {
           iconColor: 'text-green-500 dark:text-green-400',
           icon: icon || (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )
@@ -291,7 +257,7 @@ export const Dialog: React.FC<DialogProps> = ({
         return {
           iconColor: 'text-red-500 dark:text-red-400',
           icon: icon || (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )
@@ -300,7 +266,7 @@ export const Dialog: React.FC<DialogProps> = ({
         return {
           iconColor: 'text-yellow-500 dark:text-yellow-400',
           icon: icon || (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )
@@ -309,7 +275,7 @@ export const Dialog: React.FC<DialogProps> = ({
         return {
           iconColor: 'text-blue-500 dark:text-blue-400',
           icon: icon || (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )
@@ -319,7 +285,7 @@ export const Dialog: React.FC<DialogProps> = ({
         return {
           iconColor: 'text-blue-500 dark:text-blue-400',
           icon: icon || (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )
@@ -343,7 +309,6 @@ export const Dialog: React.FC<DialogProps> = ({
       role={isAlertDialog ? "alertdialog" : "dialog"}
       aria-modal="true"
       id={dialogId}
-      data-testid={dataTestId}
     >
       {/* Overlay */}
       <div 
@@ -373,13 +338,12 @@ export const Dialog: React.FC<DialogProps> = ({
             ...(width ? { width } : {}),
             ...(height ? { height } : {})
           }}
-          data-testid="dialog-content"
         >
           {/* Dialog Header */}
           {title && (
             <div className="bg-gray-50 dark:bg-gray-800 px-4 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center">
               {variantIcon && (
-                <div className={`mr-3 flex-shrink-0 ${iconColor}`} aria-hidden="true">
+                <div className={`mr-3 flex-shrink-0 ${iconColor}`}>
                   {variantIcon}
                 </div>
               )}
@@ -389,11 +353,10 @@ export const Dialog: React.FC<DialogProps> = ({
               {!requiresAction && !blocking && (
                 <button
                   type="button"
-                  className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
+                  className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                   onClick={handleCancel}
                   aria-label="Schließen"
                   disabled={requiresAction || blocking}
-                  data-testid="dialog-close-button"
                 >
                 <svg 
                   className="h-6 w-6" 
@@ -401,7 +364,6 @@ export const Dialog: React.FC<DialogProps> = ({
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
                   xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
                 >
                   <path 
                     strokeLinecap="round" 
@@ -423,7 +385,7 @@ export const Dialog: React.FC<DialogProps> = ({
               </div>
             )}
             {variantIcon && !title && (
-              <div className={`mb-4 flex-shrink-0 ${iconColor} flex justify-center`} aria-hidden="true">
+              <div className={`mb-4 flex-shrink-0 ${iconColor} flex justify-center`}>
                 {variantIcon}
               </div>
             )}
@@ -443,7 +405,6 @@ export const Dialog: React.FC<DialogProps> = ({
                     variant="outline" 
                     onClick={handleCancel}
                     disabled={blocking || requiresAction}
-                    data-testid="dialog-cancel-button"
                   >
                     {cancelLabel}
                   </Button>
@@ -454,7 +415,6 @@ export const Dialog: React.FC<DialogProps> = ({
                   onClick={handleConfirm}
                   disabled={confirmDisabled}
                   isLoading={confirmLoading}
-                  data-testid="dialog-confirm-button"
                 >
                   {confirmLabel}
                 </Button>
