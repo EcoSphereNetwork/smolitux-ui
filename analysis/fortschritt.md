@@ -65,13 +65,21 @@
   - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
   - Tests korrigiert und erfolgreich durchgeführt
   - Verbesserte Beschreibungen für Screenreader
+- [x] Radio-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
+- [x] RadioGroup-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-labelledby, aria-atomic, aria-live)
+  - Tests korrigiert und erfolgreich durchgeführt
+  - Verbesserte Beschreibungen für Screenreader
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Radio-Komponente testen und verbessern
-- [ ] RadioGroup-Komponente testen und verbessern
+- [ ] Switch-Komponente testen und verbessern
+- [ ] Toggle-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 

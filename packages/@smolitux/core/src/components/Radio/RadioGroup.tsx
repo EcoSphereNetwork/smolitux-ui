@@ -210,11 +210,13 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
     return (
       <div className={`${hideLabel ? 'sr-only' : ''} mb-2`}>
         <div 
+          id={`${_id}-label`}
           className={`text-base font-medium text-gray-700 dark:text-gray-300 ${labelClassName}`}
           title={labelTooltip}
         >
           {label}
           {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
+          {_required && <span className="sr-only">(Erforderlich)</span>}
         </div>
       </div>
     );
@@ -231,6 +233,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
             id={`${_id}-error`} 
             className={`text-red-600 dark:text-red-400 ${errorClassName}`}
             role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
           >
             {_error}
           </p>
@@ -238,6 +242,9 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
           <p 
             id={`${_id}-success`} 
             className={`text-green-600 dark:text-green-400 ${successClassName}`}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
           >
             {successMessage}
           </p>
@@ -245,6 +252,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
           <p 
             id={`${_id}-helper`} 
             className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
+            aria-live="polite"
           >
             {helperText}
           </p>
@@ -258,7 +266,11 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
     if (!description) return null;
     
     return (
-      <div id={`${_id}-description`} className="sr-only">
+      <div 
+        id={`${_id}-description`} 
+        className="sr-only"
+        aria-hidden="false"
+      >
         {description}
       </div>
     );
@@ -270,6 +282,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
       className={`${containerClassName} ${className}`}
       role="radiogroup"
       id={_id}
+      aria-labelledby={label ? `${_id}-label` : undefined}
       {...getAriaAttributes()}
     >
       {renderDescription()}
