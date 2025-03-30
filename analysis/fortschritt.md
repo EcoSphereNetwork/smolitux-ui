@@ -174,7 +174,15 @@
      - Korrigierte Ref-Weiterleitung an das Eingabefeld
      - Optimierte Komponenten-Struktur und Performance
      - Alle Tests erfolgreich
-   - DatePicker
+   - [x] DatePicker
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible
+     - Korrigierte Ref-Weiterleitung an das Eingabefeld
+     - Optimierte Komponenten-Struktur und Performance
+     - Behobene Probleme mit der Datumsvalidierung
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Alle Tests erfolgreich
    - Dialog
    - Drawer
    - FileUpload
