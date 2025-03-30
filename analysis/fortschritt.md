@@ -86,13 +86,17 @@
   - Barrierefreiheits-Attribute verbessert (aria-atomic, aria-live, aria-busy)
   - Tests erfolgreich durchgeführt
   - Verbesserte Beschreibungen für Screenreader
+- [x] Table-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute verbessert (aria-rowcount, aria-colcount, aria-rowindex, aria-colindex)
+  - Tests angepasst für die tatsächliche Implementierung
+  - Verbesserte Beschreibungen für Screenreader
 
 ## Nächste Schritte
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Table-Komponente testen und verbessern
 - [ ] Skeleton-Komponente testen und verbessern
+- [ ] Stepper-Komponente testen und verbessern
 
 ### 2. Storybook reparieren
 

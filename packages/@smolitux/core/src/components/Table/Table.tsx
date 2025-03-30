@@ -706,6 +706,8 @@ const Table = <T extends Record<string, any>>({
             aria-label={ariaLabel}
             summary={summary}
             role="grid"
+            aria-rowcount={displayData.length + 1} // +1 für Header-Zeile
+            aria-colcount={columns.length}
           >
             {caption && captionPosition === 'bottom' && (
               <caption className="px-6 py-3 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-medium">
@@ -715,7 +717,7 @@ const Table = <T extends Record<string, any>>({
             
             {showHeader && (
               <thead className="bg-gray-50 dark:bg-gray-800">
-                <tr role="row">
+                <tr role="row" aria-rowindex="1">
                   {/* Checkbox für "Alle auswählen" */}
                   {selectable && multiSelect && (
                     <th
@@ -747,6 +749,7 @@ const Table = <T extends Record<string, any>>({
                         style={{ width: column.width }}
                         onClick={() => column.sortable && sortable && handleSort(column.id)}
                         role="columnheader"
+                        aria-colindex={columnIndex + 1}
                         aria-sort={
                           sortColumn === column.id 
                             ? sortDirection === 'asc' 
@@ -876,6 +879,7 @@ const Table = <T extends Record<string, any>>({
                       }
                     }}
                     aria-selected={isSelected}
+                    aria-rowindex={rowIndex + 2} // +2 weil wir mit 1 beginnen und der Header die erste Zeile ist
                   >
                     {/* Checkbox für Zeilenauswahl */}
                     {selectable && (
@@ -899,7 +903,7 @@ const Table = <T extends Record<string, any>>({
                         <td
                           key={column.id}
                           className={getCellClasses(column)}
-                          role="gridcell"
+                          role="gridcell" aria-colindex={columnIndex + 1}
                         >
                           {column.cell(row, rowIndex)}
                         </td>
@@ -918,7 +922,7 @@ const Table = <T extends Record<string, any>>({
                       <td
                         key={column.id}
                         className={getCellClasses(column)}
-                        role="gridcell"
+                        role="gridcell" aria-colindex={columnIndex + 1}
                       >
                         {/* Footer-Inhalt hier */}
                       </td>
