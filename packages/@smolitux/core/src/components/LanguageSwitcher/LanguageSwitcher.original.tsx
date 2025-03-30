@@ -1,87 +1,7 @@
-// packages/@smolitux/core/src/components/LanguageSwitcher/LanguageSwitcher.improved.tsx
 import React, { useState, useEffect } from 'react';
-
-// Versuche den I18n-Import, mit Fallback für Tests und Entwicklung
-let useI18n: () => {
-  locale: string;
-  supportedLocales: string[];
-  changeLocale: (locale: string) => void;
-};
-
-try {
-  useI18n = require('../../i18n/I18nProvider').useI18n;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useI18n = () => ({
-    locale: 'de',
-    supportedLocales: ['de', 'en', 'fr', 'es'],
-    changeLocale: () => {},
-  });
-}
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
-
-// Konstanten für Lokalisierungen
-const LOCALE_NAMES: Record<string, string> = {
-  de: 'Deutsch',
-  en: 'English',
-  fr: 'Français',
-  es: 'Español',
-  it: 'Italiano',
-  nl: 'Nederlands',
-  pl: 'Polski',
-  pt: 'Português',
-  ru: 'Русский',
-  tr: 'Türkçe',
-  zh: '中文',
-  ja: '日本語',
-  ko: '한국어',
-};
-
-const LOCALE_CODES: Record<string, string> = {
-  de: 'DE',
-  en: 'EN',
-  fr: 'FR',
-  es: 'ES',
-  it: 'IT',
-  nl: 'NL',
-  pl: 'PL',
-  pt: 'PT',
-  ru: 'RU',
-  tr: 'TR',
-  zh: 'ZH',
-  ja: 'JA',
-  ko: 'KO',
-};
-
-const LOCALE_DIRECTIONS: Record<string, 'ltr' | 'rtl'> = {
-  de: 'ltr',
-  en: 'ltr',
-  fr: 'ltr',
-  es: 'ltr',
-  it: 'ltr',
-  nl: 'ltr',
-  pl: 'ltr',
-  pt: 'ltr',
-  ru: 'ltr',
-  tr: 'ltr',
-  zh: 'ltr',
-  ja: 'ltr',
-  ko: 'ltr',
-  ar: 'rtl',
-  he: 'rtl',
-  fa: 'rtl',
-  ur: 'rtl',
-};
-
-export type Locale = string;
+import { useI18n } from '../../i18n/I18nProvider';
+import { LOCALE_NAMES, LOCALE_CODES, LOCALE_DIRECTIONS } from '../../i18n/constants';
+import { Locale } from '../../i18n/types';
 
 export type LanguageSwitcherProps = {
   /**
@@ -138,35 +58,10 @@ export type LanguageSwitcherProps = {
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
-
-  /**
-   * Position des Dropdowns
-   */
-  dropdownPosition?: 'left' | 'right';
-
-  /**
-   * Daten-Testid für Tests
-   */
-  'data-testid'?: string;
-
-  /**
-   * ARIA-Label für Barrierefreiheit
-   */
-  'aria-label'?: string;
 };
 
 /**
  * Sprachumschalter-Komponente
- * 
- * @example
- * ```tsx
- * <LanguageSwitcher 
- *   variant="dropdown" 
- *   showName={true} 
- *   showFlag={true} 
- *   onChange={(locale) => console.log(`Sprache geändert zu ${locale}`)} 
- * />
- * ```
  */
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   variant = 'dropdown',
@@ -180,14 +75,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   onChange,
   className = '',
   style,
-  dropdownPosition = 'left',
-  'data-testid': dataTestId = 'language-switcher',
-  'aria-label': ariaLabel = 'Sprache wählen',
 }) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
   const { locale: currentLocale, supportedLocales, changeLocale } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   
@@ -206,7 +94,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   // Schließe das Dropdown, wenn außerhalb geklickt wird
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isOpen && !(event.target as Element).closest(`[data-testid="${dataTestId}"]`)) {
+      if (isOpen && !(event.target as Element).closest('.language-switcher')) {
         setIsOpen(false);
       }
     };
@@ -216,7 +104,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isOpen, dataTestId]);
+  }, [isOpen]);
   
   // Größenklassen
   const sizeClasses = {
@@ -230,7 +118,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   // Flaggen-Komponente
   const Flag = ({ locale }: { locale: Locale }) => {
     return (
-      <span className="language-switcher-flag mr-2" aria-hidden="true">
+      <span className="language-switcher-flag mr-2">
         {locale.toUpperCase()}
       </span>
     );
@@ -248,10 +136,6 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
               } ${sizeClasses[size]}`}
               onClick={() => !disabled && setIsOpen(!isOpen)}
               disabled={disabled}
-              aria-label={ariaLabel}
-              aria-haspopup="listbox"
-              aria-expanded={isOpen}
-              data-testid={`${dataTestId}-button`}
             >
               {showFlag && <Flag locale={currentLocale} />}
               {showName && <span className="language-switcher-name">{LOCALE_NAMES[currentLocale]}</span>}
@@ -263,7 +147,6 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -271,14 +154,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             </button>
             
             {isOpen && (
-              <div 
-                className={`language-switcher-dropdown-menu absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg ${
-                  dropdownPosition === 'right' ? 'dropdown-right right-0' : 'dropdown-left left-0'
-                }`}
-                role="listbox"
-                aria-labelledby={`${dataTestId}-button`}
-                data-testid={`${dataTestId}-dropdown`}
-              >
+              <div className="language-switcher-dropdown-menu absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg">
                 {availableLocales.map((locale) => (
                   <button
                     key={locale}
@@ -288,9 +164,6 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                         : 'hover:bg-gray-100 dark:hover:bg-gray-600'
                     } ${sizeClasses[size]}`}
                     onClick={() => handleLocaleChange(locale)}
-                    role="option"
-                    aria-selected={locale === currentLocale}
-                    data-testid={`${dataTestId}-option-${locale}`}
                   >
                     {showFlag && <Flag locale={locale} />}
                     {showName && <span className="language-switcher-name">{LOCALE_NAMES[locale]}</span>}
@@ -311,15 +184,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             value={currentLocale}
             onChange={(e) => handleLocaleChange(e.target.value as Locale)}
             disabled={disabled}
-            aria-label={ariaLabel}
-            data-testid={`${dataTestId}-select`}
           >
             {availableLocales.map((locale) => (
-              <option 
-                key={locale} 
-                value={locale}
-                data-testid={`${dataTestId}-option-${locale}`}
-              >
+              <option key={locale} value={locale}>
                 {showFlag && `${locale.toUpperCase()} `}
                 {showName && LOCALE_NAMES[locale]}
                 {showCode && ` (${LOCALE_CODES[locale]})`}
@@ -330,12 +197,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         
       case 'buttons':
         return (
-          <div 
-            className="language-switcher-buttons flex space-x-2"
-            role="group"
-            aria-label={ariaLabel}
-            data-testid={`${dataTestId}-buttons`}
-          >
+          <div className="language-switcher-buttons flex space-x-2">
             {availableLocales.map((locale) => (
               <button
                 key={locale}
@@ -346,8 +208,6 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                 } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${sizeClasses[size]}`}
                 onClick={() => handleLocaleChange(locale)}
                 disabled={disabled}
-                aria-pressed={locale === currentLocale}
-                data-testid={`${dataTestId}-button-${locale}`}
               >
                 {showFlag && <Flag locale={locale} />}
                 {showName && <span className="language-switcher-name">{LOCALE_NAMES[locale]}</span>}
@@ -359,12 +219,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         
       case 'flags':
         return (
-          <div 
-            className="language-switcher-flags flex space-x-2"
-            role="group"
-            aria-label={ariaLabel}
-            data-testid={`${dataTestId}-flags`}
-          >
+          <div className="language-switcher-flags flex space-x-2">
             {availableLocales.map((locale) => (
               <button
                 key={locale}
@@ -376,9 +231,6 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                 onClick={() => handleLocaleChange(locale)}
                 disabled={disabled}
                 title={LOCALE_NAMES[locale]}
-                aria-label={LOCALE_NAMES[locale]}
-                aria-pressed={locale === currentLocale}
-                data-testid={`${dataTestId}-flag-${locale}`}
               >
                 <Flag locale={locale} />
               </button>
@@ -388,12 +240,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         
       case 'minimal':
         return (
-          <div 
-            className="language-switcher-minimal flex"
-            role="group"
-            aria-label={ariaLabel}
-            data-testid={`${dataTestId}-minimal`}
-          >
+          <div className="language-switcher-minimal flex">
             {availableLocales.map((locale) => (
               <button
                 key={locale}
@@ -404,9 +251,6 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                 } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${sizeClasses[size]}`}
                 onClick={() => handleLocaleChange(locale)}
                 disabled={disabled}
-                aria-label={LOCALE_NAMES[locale]}
-                aria-pressed={locale === currentLocale}
-                data-testid={`${dataTestId}-minimal-${locale}`}
               >
                 {locale.toUpperCase()}
               </button>
@@ -421,9 +265,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   
   return (
     <div
-      className={`language-switcher language-switcher-${variant} size-${size} ${className}`}
+      className={`language-switcher language-switcher-${variant} ${className}`}
       style={{ ...style, direction: LOCALE_DIRECTIONS[currentLocale] }}
-      data-testid={dataTestId}
     >
       {renderSwitcher()}
     </div>
