@@ -1,14 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-// import { a11y } from '@smolitux/testing';
+import { a11y } from '@smolitux/testing';
 import { Drawer } from '../Drawer';
-
-// Mock für a11y, da es Probleme mit jest-axe gibt
-const a11y = {
-  testA11y: async () => ({ violations: [] }),
-  isFocusable: () => true,
-  hasVisibleFocusIndicator: () => true
-};
 
 describe('Drawer Accessibility', () => {
   it('should not have accessibility violations in basic state', async () => {
@@ -78,6 +71,41 @@ describe('Drawer Accessibility', () => {
     expect(closeButton).toBeVisible();
   });
 
+  it('should trap focus within the drawer', () => {
+    const onClose = jest.fn();
+    render(
+      <Drawer isOpen={true} onClose={onClose} title="Test Drawer">
+        <button>Button 1</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+      </Drawer>
+    );
+    
+    // First, check that the close button has focus initially
+    const closeButton = screen.getByLabelText('Schließen');
+    expect(document.activeElement).toBe(closeButton);
+    
+    // Tab to the first button
+    fireEvent.keyDown(document.activeElement as Element, { key: 'Tab' });
+    expect(document.activeElement).toBe(screen.getByText('Button 1'));
+    
+    // Tab to the second button
+    fireEvent.keyDown(document.activeElement as Element, { key: 'Tab' });
+    expect(document.activeElement).toBe(screen.getByText('Button 2'));
+    
+    // Tab to the third button
+    fireEvent.keyDown(document.activeElement as Element, { key: 'Tab' });
+    expect(document.activeElement).toBe(screen.getByText('Button 3'));
+    
+    // Tab should cycle back to the close button
+    fireEvent.keyDown(document.activeElement as Element, { key: 'Tab' });
+    expect(document.activeElement).toBe(closeButton);
+    
+    // Shift+Tab should go to the last button
+    fireEvent.keyDown(document.activeElement as Element, { key: 'Tab', shiftKey: true });
+    expect(document.activeElement).toBe(screen.getByText('Button 3'));
+  });
+
   it('should close on Escape key press', () => {
     const onClose = jest.fn();
     render(
@@ -119,11 +147,11 @@ describe('Drawer Accessibility', () => {
   it('should have visible focus indicators', () => {
     render(
       <Drawer isOpen={true} onClose={() => {}} title="Test Drawer">
-        <button data-testid="test-button">Test Button</button>
+        <button>Test Button</button>
       </Drawer>
     );
     
-    const button = screen.getByTestId('test-button');
+    const button = screen.getByText('Test Button');
     button.focus();
     
     expect(a11y.hasVisibleFocusIndicator(button)).toBe(true);
@@ -155,8 +183,8 @@ describe('Drawer Accessibility', () => {
         title="Test Drawer"
         footer={
           <div>
-            <button data-testid="cancel-button">Cancel</button>
-            <button data-testid="save-button">Save</button>
+            <button aria-label="Cancel">Cancel</button>
+            <button aria-label="Save">Save</button>
           </div>
         }
       >
@@ -164,8 +192,8 @@ describe('Drawer Accessibility', () => {
       </Drawer>
     );
     
-    const cancelButton = screen.getByTestId('cancel-button');
-    const saveButton = screen.getByTestId('save-button');
+    const cancelButton = screen.getByLabelText('Cancel');
+    const saveButton = screen.getByLabelText('Save');
     
     expect(cancelButton).toBeInTheDocument();
     expect(saveButton).toBeInTheDocument();

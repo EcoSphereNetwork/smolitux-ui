@@ -1,14 +1,5 @@
-// packages/@smolitux/core/src/components/Drawer/Drawer.improved.tsx
+// packages/@smolitux/core/src/components/Drawer/Drawer.tsx
 import React, { useEffect, useRef, useCallback, useState } from 'react';
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
 
 export type DrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
 
@@ -51,8 +42,6 @@ export interface DrawerProps {
   initialFocus?: boolean;
   /** Ob der Drawer automatisch geschlossen werden soll, wenn der Benutzer außerhalb klickt */
   autoFocus?: boolean;
-  /** Daten-Testid für Tests */
-  'data-testid'?: string;
 }
 
 /**
@@ -90,12 +79,7 @@ export const Drawer: React.FC<DrawerProps> = ({
   returnFocusToElement,
   initialFocus = true,
   autoFocus = true,
-  'data-testid': dataTestId = 'drawer',
 }) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
   // Generiere eine eindeutige ID für den Drawer
   const uniqueId = id || `drawer-${Math.random().toString(36).substring(2, 11)}`;
   const titleId = `${uniqueId}-title`;
@@ -322,7 +306,6 @@ export const Drawer: React.FC<DrawerProps> = ({
         `}
         style={getPositionStyles()}
         tabIndex={-1} // Ermöglicht Fokussierung, aber nicht in der Tab-Reihenfolge
-        data-testid={dataTestId}
       >
         {/* Screenreader-Beschreibung */}
         {ariaDescription && (
@@ -340,10 +323,9 @@ export const Drawer: React.FC<DrawerProps> = ({
             <button
               ref={closeButtonRef}
               type="button"
-              className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
+              className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
               onClick={onClose}
               aria-label="Schließen"
-              data-testid="drawer-close-button"
             >
               <svg 
                 className="h-6 w-6" 
@@ -365,13 +347,13 @@ export const Drawer: React.FC<DrawerProps> = ({
         )}
         
         {/* Content */}
-        <div className="flex-grow overflow-y-auto p-4" data-testid="drawer-content">
+        <div className="flex-grow overflow-y-auto p-4">
           {children}
         </div>
         
         {/* Footer */}
         {footer && (
-          <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3" data-testid="drawer-footer">
+          <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3">
             {footer}
           </div>
         )}
