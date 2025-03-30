@@ -1,16 +1,6 @@
-// packages/@smolitux/core/src/components/TimePicker/TimePicker.improved.tsx
-import React, { forwardRef, useState, useRef, useEffect, useId } from 'react';
-import ReactDOM from 'react-dom';
+// packages/@smolitux/core/src/components/TimePicker/TimePicker.tsx
+import React, { forwardRef, useState, useRef, useEffect } from 'react';
 import { useFormControl } from '../FormControl/FormControl';
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
 
 type TimeFormat = '12h' | '24h';
 type TimeValue = {
@@ -63,8 +53,6 @@ export interface TimePickerProps extends Omit<React.InputHTMLAttributes<HTMLInpu
   disabled?: boolean;
   /** Ist TimePicker schreibgeschützt? */
   readOnly?: boolean;
-  /** Daten-Testid für Tests */
-  'data-testid'?: string;
 }
 
 /**
@@ -104,20 +92,8 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
   readOnly = false,
   className = '',
   id,
-  'data-testid': dataTestId = 'time-picker',
   ...rest
 }, ref) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
-  // Generiere eindeutige IDs für ARIA-Attribute
-  const uniqueId = useId();
-  const timePickerId = id || `time-picker-${uniqueId}`;
-  const helperId = `${timePickerId}-helper`;
-  const errorId = `${timePickerId}-error`;
-  const dropdownId = `${timePickerId}-dropdown`;
-  
   // FormControl context
   const formControl = useFormControl();
   
@@ -206,15 +182,15 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
   
   // Combine props from component and FormControl
   const combinedProps = {
-    id: timePickerId,
+    id: id || formControl.id,
     disabled: disabled || formControl.disabled,
     required: rest.required || formControl.required,
-    'aria-invalid': error || formControl.hasError ? true : undefined,
-    'aria-describedby': [
-      error || formControl.hasError ? errorId : undefined,
-      helperText && !error && !formControl.hasError ? helperId : undefined
-    ].filter(Boolean).join(' ') || undefined,
-    'aria-controls': isOpen ? dropdownId : undefined
+    'aria-invalid': error ? true : formControl.hasError || undefined,
+    'aria-describedby': error || formControl.hasError 
+      ? `${id || formControl.id}-error` 
+      : helperText 
+        ? `${id || formControl.id}-helper` 
+        : undefined,
   };
   
   // Format time value to string
@@ -386,26 +362,6 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
     return timeValue[type] === value;
   };
   
-  // Clock icon component
-  const ClockIcon = () => (
-    <svg
-      className="w-5 h-5 text-gray-400 dark:text-gray-500"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      data-testid={`${dataTestId}-clock-icon`}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-  );
-  
   // Render time picker dropdown
   const renderTimePicker = () => {
     const options = generateTimeOptions();
@@ -414,16 +370,12 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
     return (
       <div
         ref={popupRef}
-        id={dropdownId}
-        role="listbox"
-        aria-labelledby={timePickerId}
         className="absolute z-50 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 w-64"
         style={{
           top: popupPosition.top,
           left: popupPosition.left,
           zIndex
         }}
-        data-testid={`${dataTestId}-dropdown`}
       >
         <div className="p-4 flex flex-col">
           {/* Time selection grid */}
@@ -431,19 +383,16 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
             {/* Hours column */}
             <div className="flex-1 overflow-y-auto max-h-48 border-r border-gray-200 dark:border-gray-700 pr-2">
               <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium">Hours</div>
-              <div className="space-y-1" role="group" aria-label="Hours">
+              <div className="space-y-1">
                 {options.hours.map((hour) => (
                   <div
                     key={`hour-${hour}`}
-                    role="option"
-                    aria-selected={isSelected('hours', hour)}
                     className={`px-2 py-1 text-sm rounded cursor-pointer ${
                       isSelected('hours', hour)
                         ? 'bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-300'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                     }`}
                     onClick={() => updateTime('hours', hour)}
-                    data-testid={`${dataTestId}-hour-${hour}`}
                   >
                     {hour.toString().padStart(2, '0')}
                   </div>
@@ -454,19 +403,16 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
             {/* Minutes column */}
             <div className={`flex-1 overflow-y-auto max-h-48 ${!hideSeconds ? 'border-r border-gray-200 dark:border-gray-700 pr-2' : ''}`}>
               <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium">Minutes</div>
-              <div className="space-y-1" role="group" aria-label="Minutes">
+              <div className="space-y-1">
                 {options.minutes.map((minute) => (
                   <div
                     key={`minute-${minute}`}
-                    role="option"
-                    aria-selected={isSelected('minutes', minute)}
                     className={`px-2 py-1 text-sm rounded cursor-pointer ${
                       isSelected('minutes', minute)
                         ? 'bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-300'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                     }`}
                     onClick={() => updateTime('minutes', minute)}
-                    data-testid={`${dataTestId}-minute-${minute}`}
                   >
                     {minute.toString().padStart(2, '0')}
                   </div>
@@ -478,19 +424,16 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
             {!hideSeconds && (
               <div className="flex-1 overflow-y-auto max-h-48">
                 <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium">Seconds</div>
-                <div className="space-y-1" role="group" aria-label="Seconds">
+                <div className="space-y-1">
                   {options.seconds.map((second) => (
                     <div
                       key={`second-${second}`}
-                      role="option"
-                      aria-selected={isSelected('seconds', second)}
                       className={`px-2 py-1 text-sm rounded cursor-pointer ${
                         isSelected('seconds', second)
                           ? 'bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-300'
                           : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
                       onClick={() => updateTime('seconds', second)}
-                      data-testid={`${dataTestId}-second-${second}`}
                     >
                       {second.toString().padStart(2, '0')}
                     </div>
@@ -504,61 +447,63 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
           {format === '12h' && (
             <div className="flex mt-4 border-t border-gray-200 dark:border-gray-700 pt-2">
               <div
-                role="option"
-                aria-selected={isSelected('period', 'AM')}
                 className={`flex-1 text-center py-2 rounded cursor-pointer ${
                   isSelected('period', 'AM')
                     ? 'bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-300'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
                 onClick={() => updateTime('period', 'AM')}
-                data-testid={`${dataTestId}-period-am`}
               >
                 AM
               </div>
               <div
-                role="option"
-                aria-selected={isSelected('period', 'PM')}
                 className={`flex-1 text-center py-2 rounded cursor-pointer ${
                   isSelected('period', 'PM')
                     ? 'bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-300'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
                 onClick={() => updateTime('period', 'PM')}
-                data-testid={`${dataTestId}-period-pm`}
               >
                 PM
               </div>
             </div>
           )}
           
-          {/* Footer with buttons */}
-          <div className="flex justify-between mt-4 border-t border-gray-200 dark:border-gray-700 pt-3">
+          {/* Footer with current time */}
+          <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-2 flex justify-between">
             <button
-              type="button"
-              className="px-3 py-1 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-              onClick={() => setIsOpen(false)}
-              data-testid={`${dataTestId}-cancel-btn`}
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              className="px-3 py-1 text-sm bg-primary-500 text-white hover:bg-primary-600 dark:bg-primary-600 dark:hover:bg-primary-700 rounded"
+              className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
               onClick={() => {
-                // Apply current selection and close
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
+                let period: 'AM' | 'PM' = hours >= 12 ? 'PM' : 'AM';
+                
+                if (format === '12h') {
+                  hours = hours % 12 || 12;
+                }
+                
+                const newTime = { hours, minutes, seconds, period };
                 if (!isControlled) {
-                  setTimeValue(timeValue);
+                  setTimeValue(newTime);
                 }
-                setInputValue(formatTimeValue(timeValue));
+                setInputValue(formatTimeValue(newTime));
+                
                 if (onChange) {
-                  onChange(timeValue);
+                  onChange(newTime);
                 }
+                
                 setIsOpen(false);
               }}
-              data-testid={`${dataTestId}-apply-btn`}
             >
-              Apply
+              Now
+            </button>
+            <button
+              className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
+              onClick={() => setIsOpen(false)}
+            >
+              Close
             </button>
           </div>
         </div>
@@ -566,14 +511,31 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
     );
   };
   
+  // Clock icon
+  const ClockIcon = () => (
+    <svg
+      className="w-5 h-5 text-gray-400 dark:text-gray-500"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  );
+  
   return (
-    <div className={`${fullWidth ? 'w-full' : ''}`} data-testid={`${dataTestId}-container`}>
+    <div className={`${fullWidth ? 'w-full' : ''}`}>
       {/* Label (if not in a FormControl) */}
       {label && !formControl.label && (
         <label 
           htmlFor={combinedProps.id} 
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          data-testid={`${dataTestId}-label`}
         >
           {label}
           {combinedProps.required && <span className="ml-1 text-red-500">*</span>}
@@ -623,7 +585,6 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
           placeholder={placeholder}
           readOnly={readOnly}
           className={inputClasses}
-          data-testid={dataTestId}
           {...combinedProps}
           {...rest}
         />
@@ -641,19 +602,11 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
       {((helperText && !formControl.hasError) || (error && !formControl.hasError)) && (
         <div className="mt-1 text-sm">
           {error ? (
-            <p 
-              id={errorId}
-              className="text-red-600 dark:text-red-400"
-              data-testid={`${dataTestId}-error`}
-            >
+            <p className="text-red-600 dark:text-red-400">
               {error}
             </p>
           ) : helperText ? (
-            <p 
-              id={helperId}
-              className="text-gray-500 dark:text-gray-400"
-              data-testid={`${dataTestId}-helper`}
-            >
+            <p className="text-gray-500 dark:text-gray-400">
               {helperText}
             </p>
           ) : null}
