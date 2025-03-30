@@ -2,11 +2,15 @@
 
 ## Verbesserte Komponenten
 
-### 1. Button
+### 1. Button und Button.A11y
 - **Verbesserungen**: 
   - Barrierefreiheits-Attribute hinzugefügt
   - Event-Handler korrigiert
   - Tests angepasst und erfolgreich durchgeführt
+  - Button.A11y-Komponente implementiert mit:
+    - Erweiterten ARIA-Attributen
+    - Verbesserter Tastaturunterstützung
+    - Automatischer ID-Generierung
 
 ### 2. Card
 - **Verbesserungen**:
@@ -26,18 +30,26 @@
   - Barrierefreiheits-Attribute für Dot-Variante hinzugefügt
   - Tests angepasst und erfolgreich durchgeführt
 
-### 5. Input
+### 5. Input und InputA11y
 - **Verbesserungen**:
   - Validierungsfunktionalität korrigiert
   - Event-Handler für onValidate korrigiert
   - Tests angepasst und erfolgreich durchgeführt
+  - InputA11y-Komponente implementiert mit:
+    - Erweiterten ARIA-Attributen
+    - Verbesserter Fehlerbehandlung und Validierung
+    - Live-Regionen für Screenreader-Ankündigungen
 
-### 6. Select
+### 6. Select und SelectA11y
 - **Verbesserungen**:
   - Option-Komponente implementiert
   - Fehlerbehandlung verbessert
   - Barrierefreiheits-Attribute hinzugefügt
   - Tests angepasst und erfolgreich durchgeführt
+  - SelectA11y-Komponente implementiert mit:
+    - Erweiterten ARIA-Attributen
+    - Verbesserter Tastaturnavigation
+    - Live-Regionen für Screenreader-Ankündigungen
 
 ### 7. Modal
 - **Verbesserungen**:
@@ -60,11 +72,30 @@
   - Verzögerungslogik verbessert
   - Tests angepasst und erfolgreich durchgeführt
 
-### 10. Dropdown
+### 10. Dropdown und DropdownA11y
 - **Verbesserungen**:
   - Barrierefreiheits-Attribute korrigiert
   - Event-Handling verbessert
   - Tests angepasst und erfolgreich durchgeführt
+  - DropdownA11y-Komponente implementiert mit:
+    - Erweiterten ARIA-Attributen
+    - Verbesserter Tastaturnavigation
+    - Fokus-Management und Fokus-Falle
+    - Live-Regionen für Screenreader-Ankündigungen
+
+### 11. FlexA11y
+- **Verbesserungen**:
+  - Semantische Struktur
+  - Erweiterte ARIA-Attribute
+  - Anpassbare HTML-Elemente
+  - Tests implementiert und erfolgreich durchgeführt
+
+### 12. ZoomA11y
+- **Verbesserungen**:
+  - Erweiterte ARIA-Attribute für Animation
+  - Reduzierte Bewegung für Benutzer mit Bewegungsempfindlichkeit
+  - Epilepsie-Sicherheit
+  - Tests implementiert und erfolgreich durchgeführt
 
 ## Häufige Probleme und Lösungen
 
