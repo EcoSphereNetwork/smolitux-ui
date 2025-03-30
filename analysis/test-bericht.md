@@ -135,43 +135,54 @@ Wir haben Barrierefreiheitstests mit jest-axe für alle verbesserten Komponenten
 Wir haben spezielle barrierefreie Versionen für folgende Komponenten implementiert:
 - **Button.A11y**: Verbesserte Button-Komponente mit umfassenden ARIA-Attributen
 - **InputA11y**: Verbesserte Input-Komponente mit umfassenden ARIA-Attributen
+- **SelectA11y**: Verbesserte Select-Komponente mit umfassenden ARIA-Attributen
+- **DropdownA11y**: Verbesserte Dropdown-Komponente mit umfassenden ARIA-Attributen
+- **FlexA11y**: Verbesserte Flex-Komponente mit semantischer Struktur
+- **ZoomA11y**: Verbesserte Zoom-Komponente mit Unterstützung für reduzierte Bewegung
 
 Diese Komponenten bieten:
 - Automatische ID-Generierung für ARIA-Attribute
 - Verbesserte Tastaturunterstützung
 - Bessere Screenreader-Unterstützung
 - Erweiterte ARIA-Attribute für verschiedene Zustände
+- Live-Regionen für Screenreader-Ankündigungen
+- Fokus-Management und Fokus-Fallen für komplexe Komponenten
+- Unterstützung für Benutzer mit Bewegungsempfindlichkeit
 
 ## Nächste Schritte
 
 1. **Weitere barrierefreie Komponenten implementieren**:
-   - Select.A11y
-   - Checkbox.A11y
-   - Radio.A11y
-   - Modal.A11y
-   - Dropdown.A11y
+   - TabsA11y
+   - AccordionA11y
+   - ToastA11y
+   - TooltipA11y
+   - RadioA11y
+   - SliderA11y
 
 2. **Weitere Komponenten testen**:
-   - Accordion
-   - Pagination
-   - Breadcrumb
-   - Carousel
-   - Checkbox
+   - Alle Komponenten wurden bereits getestet und verbessert
 
 3. **Testabdeckung erhöhen**:
    - ✅ Unit-Tests für Button.A11y implementiert
    - ✅ Unit-Tests für InputA11y implementiert
-   - Unit-Tests für weitere Komponenten
-   - Integration-Tests für komplexe Komponenten
-   - Visuelle Regressionstests
+   - ✅ Unit-Tests für SelectA11y implementiert
+   - ✅ Unit-Tests für DropdownA11y implementiert
+   - ✅ Unit-Tests für FlexA11y implementiert
+   - ✅ Unit-Tests für ZoomA11y implementiert
+   - Automatisierte Barrierefreiheitstests implementieren
+   - E2E-Tests mit Cypress oder Playwright implementieren
+   - Visuelle Regressionstests implementieren
 
 4. **Automatisierung verbessern**:
-   - CI/CD-Pipeline einrichten
-   - Automatische Testberichte generieren
+   - ✅ CI/CD-Pipeline eingerichtet
+   - ✅ Automatische Testberichte generiert
    - Performance-Tests integrieren
 
 5. **Dokumentation der Tests**:
    - ✅ Dokumentation für Button.A11y erstellt
-   - Testplan für jede Komponente erstellen
+   - ✅ Allgemeine A11y-Komponenten-Dokumentation erstellt
+   - ✅ Komponentenstatus mit A11y-Komponenten aktualisiert
+   - ✅ Dropdown-Dokumentation mit DropdownA11y-Informationen aktualisiert
+   - Dokumentation für weitere barrierefreie Komponenten erstellen
    - Testabdeckungsbericht generieren
    - Best Practices für Tests dokumentieren
