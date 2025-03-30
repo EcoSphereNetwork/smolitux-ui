@@ -2,7 +2,7 @@
  * Provider für die Internationalisierung
  */
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import i18n, { initI18n } from './i18n';
 import { I18nOptions, I18nContextValue, Locale, TranslationNamespace, TranslationKey } from './types';
