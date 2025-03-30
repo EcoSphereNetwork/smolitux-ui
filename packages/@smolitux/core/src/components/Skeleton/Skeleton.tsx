@@ -96,6 +96,10 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(({
       }}
       {...(index === 0 ? rest : {})}
       ref={index === 0 ? ref : undefined}
+      role="status"
+      aria-busy="true"
+      aria-live="polite"
+      aria-label={rest['aria-label'] || `Lädt Inhalt ${index + 1}${count > 1 ? ` von ${count}` : ''}`}
     />
   );
 

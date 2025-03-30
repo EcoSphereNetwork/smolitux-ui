@@ -95,7 +95,10 @@
 
 ### 1. Weitere Kernkomponenten testen und verbessern
 
-- [ ] Skeleton-Komponente testen und verbessern
+- [x] Skeleton-Komponente getestet und verbessert
+  - Barrierefreiheits-Attribute hinzugefügt (role="status", aria-busy, aria-live)
+  - Verbesserte Beschreibungen für Screenreader
+  - Tests implementiert und erfolgreich durchgeführt
 - [ ] Stepper-Komponente testen und verbessern
 
 ### 2. Storybook reparieren

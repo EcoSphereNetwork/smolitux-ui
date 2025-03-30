@@ -54,7 +54,7 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 | ProgressBar | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Radio | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | RadioGroup | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
-| Skeleton | ✅ Implementiert | ⚠️ Tests fehlschlagen | ⚠️ Unvollständig |
+| Skeleton | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
 | Slide | ✅ Implementiert | ⚠️ Tests fehlschlagen | ❌ Fehlt |
 | Slider | ✅ Implementiert | ⚠️ Tests teilweise erfolgreich | ✅ Vorhanden |
 | Spinner | ✅ Implementiert | ✅ Tests laufen | ✅ Vorhanden |
