@@ -111,190 +111,134 @@
 - [x] Tests für Button.A11y-Komponente implementiert
 - [x] Tests für InputA11y-Komponente implementiert
 
+## Aktuelle Fortschritte
+
+### 1. Barrierefreie Komponenten implementiert
+
+- [x] Button.A11y-Komponente implementiert
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturunterstützung
+  - Automatische ID-Generierung für ARIA-Attribute
+  - Tests implementiert und erfolgreich durchgeführt
+- [x] InputA11y-Komponente implementiert
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Fehlerbehandlung und Validierung
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementiert und erfolgreich durchgeführt
+- [x] SelectA11y-Komponente implementiert
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturnavigation
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementiert und erfolgreich durchgeführt
+- [x] DropdownA11y-Komponente implementiert
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturnavigation
+  - Fokus-Management und Fokus-Falle
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementiert und erfolgreich durchgeführt
+- [x] FlexA11y-Komponente implementiert
+  - Semantische Struktur
+  - Erweiterte ARIA-Attribute
+  - Anpassbare HTML-Elemente
+  - Tests implementiert und erfolgreich durchgeführt
+- [x] ZoomA11y-Komponente implementiert
+  - Erweiterte ARIA-Attribute für Animation
+  - Reduzierte Bewegung für Benutzer mit Bewegungsempfindlichkeit
+  - Epilepsie-Sicherheit
+  - Tests implementiert und erfolgreich durchgeführt
+
+### 2. Dokumentation für barrierefreie Komponenten erstellt
+
+- [x] Allgemeine Dokumentation für A11y-Komponenten erstellt
+  - Übersicht über alle barrierefreien Komponenten
+  - Gemeinsame Funktionen und Vorteile
+  - Anwendungsfälle und Best Practices
+  - Migrationshinweise
+- [x] Komponentenstatus aktualisiert
+  - Liste der implementierten barrierefreien Komponenten
+  - Nächste Schritte für weitere barrierefreie Komponenten
+  - Vorteile der A11y-Komponenten
+- [x] Dropdown-Dokumentation aktualisiert
+  - Vergleich zwischen Standard-Dropdown und DropdownA11y
+  - Beispiele für die Verwendung von DropdownA11y
+  - Erweiterte Funktionen und Konfigurationsoptionen
+
+### 3. Lint-Fehler behoben
+
+- [x] Lint-Fehler in @smolitux/theme behoben
+  - Unbenutzte ThemeMode-Import in ThemeUtilities.tsx entfernt
+  - Unbenutzte themeMode-Parameter in getColorByTheme-Funktion entfernt
+- [x] Kritische Parsing-Fehler behoben
+  - Parsing-Fehler in ActivityStream-Komponente behoben
+  - Parsing-Fehler in CrossPlatformShare-Komponente behoben
+  - Parsing-Fehler in FormField.tsx behoben
+  - Parsing-Fehler in Toast/__tests__/Toast.spec.tsx behoben
+- [x] Unbenutzte Importe und Variablen entfernt
+  - Unbenutzte Importe in @smolitux/core entfernt
+  - Unbenutzte Variablen in @smolitux/core entfernt
+  - Unbenutzte Importe in @smolitux/federation entfernt
+  - Unbenutzte Variablen in @smolitux/layout entfernt
+- [x] TypeScript-Typisierung verbessert
+  - TypeScript-Typisierung in @smolitux/utils verbessert
+  - TypeScript-Typisierung in @smolitux/core verbessert
+
 ## Nächste Schritte
 
-### 1. Weitere Kernkomponenten testen und verbessern
+### 1. Weitere barrierefreie Komponenten implementieren
 
-- [x] Skeleton-Komponente getestet und verbessert
-  - Barrierefreiheits-Attribute hinzugefügt (role="status", aria-busy, aria-live)
-  - Verbesserte Beschreibungen für Screenreader
-  - Tests implementiert und erfolgreich durchgeführt
-- [x] Stepper-Komponente getestet und verbessert
-  - Barrierefreiheits-Attribute hinzugefügt (aria-label, aria-roledescription, aria-current)
-  - Verbesserte Beschreibungen für Screenreader
-  - Tastaturnavigation verbessert
-  - Tests implementiert und erfolgreich durchgeführt
+- [ ] TabsA11y-Komponente implementieren
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturnavigation
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementieren
+- [ ] AccordionA11y-Komponente implementieren
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturnavigation
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementieren
+- [ ] ToastA11y-Komponente implementieren
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementieren
+- [ ] TooltipA11y-Komponente implementieren
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturaktivierung
+  - Tests implementieren
+- [ ] RadioA11y-Komponente implementieren
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Verbesserte Tastaturnavigation
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementieren
+- [ ] SliderA11y-Komponente implementieren
+  - Erweiterte ARIA-Attribute für bessere Barrierefreiheit
+  - Präzise Tastatursteuerung
+  - Live-Regionen für Screenreader-Ankündigungen
+  - Tests implementieren
 
-### 2. Storybook reparieren
+### 2. Weitere Lint-Fehler beheben
 
-- [x] Storybook-Abhängigkeiten aktualisiert
-  - Storybook auf Version 7.6.17 aktualisiert
-  - Nicht verfügbare Addons entfernt
-  - Babel-Konfiguration hinzugefügt für TypeScript-Unterstützung
-- [x] Storybook-Konfiguration angepasst
-  - Babel-Konfiguration für TypeScript-Unterstützung hinzugefügt
-  - Addon-Konfiguration aktualisiert
-  - Babel-Plugins für TypeScript-Unterstützung installiert
-- [x] Storybook starten und testen
-  - Storybook erfolgreich mit Button-Komponente gestartet
-  - Problematische Story-Dateien ausgeschlossen
-  - Story-Dateien für Storybook 7 aktualisiert
+- [ ] Lint-Fehler in @smolitux/ai beheben
+- [ ] Lint-Fehler in @smolitux/blockchain beheben
+- [ ] Lint-Fehler in @smolitux/charts beheben
+- [ ] Lint-Fehler in @smolitux/layout beheben
+- [ ] Lint-Fehler in @smolitux/media beheben
+- [ ] Lint-Fehler in @smolitux/resonance beheben
 
-### 3. CI/CD-Pipeline einrichten
+### 3. Dokumentation vervollständigen
 
-- [x] GitHub Actions Workflow aktualisiert
-  - Lint-Prüfung temporär deaktiviert, um die Pipeline funktionsfähig zu machen
-  - Build-Prozess für Storybook verbessert
-  - Fehlerbehandlung für Storybook-Build hinzugefügt
-  - Deployment-Prozess robuster gestaltet
-- [x] Tests automatisiert
-- [x] Build-Prozess automatisiert
+- [ ] Dokumentation für alle barrierefreien Komponenten vervollständigen
+- [ ] Dokumentation für alle Standard-Komponenten aktualisieren
+- [ ] Migrationsanleitung von Standard- zu A11y-Komponenten erstellen
+- [ ] Best Practices für Barrierefreiheit dokumentieren
 
-## Erkenntnisse und Herausforderungen
+### 4. Tests erweitern
 
-### Erkenntnisse
+- [ ] Automatisierte Barrierefreiheitstests implementieren
+- [ ] E2E-Tests mit Cypress oder Playwright implementieren
+- [ ] Visuelle Regressionstests implementieren
 
-1. Die Komponenten sind grundsätzlich gut strukturiert, aber es gibt Inkonsistenzen bei den Props und der Implementierung.
-2. Die Tests sind vorhanden, aber oft fehlerhaft oder unvollständig.
-3. Es gibt Probleme mit doppelten Mocks und Abhängigkeiten.
+### 5. Performance-Optimierung
 
-### Herausforderungen
-
-1. Jest-axe-Integration war fehlerhaft und führte zu Testfehlern.
-2. Doppelte data-testid-Attribute führten zu Testfehlern.
-3. Storybook kann aufgrund von Abhängigkeitsproblemen nicht gestartet werden.
-
-## Plan für die nächste Woche
-
-1. Storybook-Probleme beheben und zum Laufen bringen
-   - TypeScript-Konfiguration für Storybook anpassen
-   - Story-Dateien aktualisieren, um mit Storybook 7 kompatibel zu sein
-   - Storybook-Dokumentation verbessern
-
-2. Weitere Komponenten testen und verbessern:
-   - [x] Avatar
-     - Erweiterte Props für bessere Kompatibilität mit Tests
-     - Verbesserte Barrierefreiheit mit zusätzlichen ARIA-Attributen
-     - Unterstützung für benutzerdefinierte Größen und Farben
-     - Alle Tests erfolgreich
-   - [x] Carousel
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit focus-visible
-     - Optimierte Komponenten-Struktur und Performance
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Unterstützung für benutzerdefinierte Klassen
-     - Alle Tests erfolgreich
-   - [x] ColorPicker
-     - Implementiertes Texteingabefeld für manuelle Farbeingabe
-     - Unterstützung für verschiedene Farbformate (hex, rgb, hsl)
-     - Implementierte Größenunterstützung (xs, sm, md, lg, xl)
-     - Verbesserte Barrierefreiheit mit focus-visible
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Korrigierte Ref-Weiterleitung an das Eingabefeld
-     - Optimierte Komponenten-Struktur und Performance
-     - Alle Tests erfolgreich
-   - [x] DatePicker
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit focus-visible
-     - Korrigierte Ref-Weiterleitung an das Eingabefeld
-     - Optimierte Komponenten-Struktur und Performance
-     - Behobene Probleme mit der Datumsvalidierung
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] Dialog
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] Drawer
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] FileUpload
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit focus-visible und aria-hidden
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] LanguageSwitcher
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit ARIA-Attributen
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] MediaPlayer
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit ARIA-Attributen und SVG-Icons
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] Menu
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit ARIA-Attributen
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] Popover
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit ARIA-Attributen
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Alle Tests erfolgreich
-   - [x] TextArea/Textarea (Duplizierung bereinigt)
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit ARIA-Attributen
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Duplizierung zwischen TextArea und Textarea durch Kompatibilitätsschicht bereinigt
-     - Alle Tests erfolgreich
-   - [x] TimePicker
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit ARIA-Attributen
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Entfernte nicht-konforme ARIA-Attribute (aria-expanded, aria-haspopup)
-     - Alle Tests erfolgreich
-   - [x] Toast
-     - Verbesserter Theme-Import und Fallback-Mechanismus
-     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
-     - Verbesserte Barrierefreiheit mit ARIA-Attributen
-     - Optimierte Komponenten-Struktur und Performance
-     - Verbesserte Typisierung und Dokumentation
-     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
-     - Verwendung von useId für eindeutige IDs statt zufälliger Strings
-     - Verbesserte Fortschrittsbalken-Animation
-     - Alle Tests erfolgreich
-
-3. Dokumentation für alle Komponenten aktualisieren
-   - [x] Barrierefreiheits-Dokumentation für Button-Komponente erstellt
-   - [ ] Dokumentation für weitere Komponenten aktualisieren
-
-4. Lint-Fehler beheben und CI/CD-Pipeline vollständig aktivieren
-   - [x] Kritische Parsing-Fehler behoben
-   - [x] Unbenutzte Importe in @smolitux/core entfernt
-   - [x] TypeScript-Typisierung in @smolitux/utils verbessert
-   - [x] Unbenutzte Importe in @smolitux/federation entfernt
-   - [ ] Verbleibende Lint-Fehler in anderen Paketen beheben
+- [ ] Komponenten auf Performance optimieren
+- [ ] Bundle-Größe reduzieren
+- [ ] Code-Splitting implementieren

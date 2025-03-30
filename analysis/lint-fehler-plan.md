@@ -94,31 +94,74 @@ Der Fortschritt wird in diesem Dokument verfolgt:
 - [x] Phase 1: Kritische Fehler beheben
   - [x] Parsing-Fehler in ActivityStream-Komponente behoben
   - [x] Parsing-Fehler in CrossPlatformShare-Komponente behoben
+  - [x] Parsing-Fehler in FormField.tsx behoben
+  - [x] Parsing-Fehler in Toast/__tests__/Toast.spec.tsx behoben
 
 - [x] Phase 2: Kernpakete bereinigen
   - [x] @smolitux/core: Unbenutzte Importe entfernt
   - [x] @smolitux/core: TypeScript-Typisierung verbessert
   - [x] @smolitux/core: Validierungsfunktionen korrigiert
-  - [ ] @smolitux/theme: Unbenutzte Variablen entfernen
-  - [ ] @smolitux/theme: Theme-Provider optimieren
+  - [x] @smolitux/theme: Unbenutzte Variablen entfernt
+  - [x] @smolitux/theme: ThemeMode-Import entfernt
+  - [x] @smolitux/theme: Unbenutzte themeMode-Parameter entfernt
   - [x] @smolitux/utils: Typisierungsprobleme behoben
   - [x] @smolitux/utils: Responsive-Funktionen verbessert
 
 - [ ] Phase 3: Komponenten-Pakete bereinigen
   - [x] @smolitux/federation: Unbenutzte Importe entfernt
-  - [ ] Weitere Pakete bereinigen
+  - [x] @smolitux/layout: Unbenutzte Variablen entfernt
+  - [ ] @smolitux/ai: Lint-Fehler beheben
+  - [ ] @smolitux/blockchain: Lint-Fehler beheben
+  - [ ] @smolitux/charts: Lint-Fehler beheben
+  - [ ] @smolitux/media: Lint-Fehler beheben
+  - [ ] @smolitux/resonance: Lint-Fehler beheben
 
 - [ ] Phase 4: ESLint-Konfiguration anpassen
+  - [ ] Regeln für verbleibende Warnungen anpassen
+  - [ ] Inline-Kommentare für spezifische Ausnahmen hinzufügen
 
 ## Nächste Schritte
 
 1. ✅ Phase 1 abgeschlossen: Kritische Parsing-Fehler behoben
-2. ✅ @smolitux/core und @smolitux/utils bereinigt
-3. ✅ @smolitux/federation teilweise bereinigt
+2. ✅ Phase 2 abgeschlossen: Kernpakete bereinigt (@smolitux/core, @smolitux/theme, @smolitux/utils)
+3. ✅ Teilweise Phase 3 abgeschlossen: @smolitux/federation und @smolitux/layout bereinigt
 4. Verbleibende Pakete systematisch bereinigen:
-   - @smolitux/theme
-   - @smolitux/ai
-   - @smolitux/blockchain
-   - @smolitux/community
-   - @smolitux/media
+   - @smolitux/ai (Priorität 1)
+   - @smolitux/blockchain (Priorität 1)
+   - @smolitux/charts (Priorität 2)
+   - @smolitux/media (Priorität 2)
+   - @smolitux/resonance (Priorität 2)
 5. ESLint-Konfiguration für verbleibende Warnungen anpassen
+
+## Detaillierter Plan für die nächsten Pakete
+
+### @smolitux/ai
+
+1. Unbenutzte Importe entfernen:
+   - `useEffect` in ContentAnalytics.tsx, EngagementScore.tsx, SentimentDisplay.tsx, TrendingTopics.tsx
+   - `waitFor` in ContentAnalytics.test.tsx
+   - `TabView` in ContentModerator.tsx, TrendingTopics.tsx
+   - Weitere unbenutzte Komponenten in EngagementScore.tsx
+
+2. Unbenutzte Variablen entfernen:
+   - `content` und `options` in ContentModerator.test.tsx
+   - `threshold` in EngagementScore.tsx
+   - `getImpactColor` in FakeNewsDetector.tsx
+   - `text` und `options` in FakeNewsDetector.test.tsx, TrollFilter.test.tsx
+
+3. TypeScript-Typisierung verbessern:
+   - `any` durch spezifische Typen in ContentAnalytics.tsx, RecommendationCarousel.tsx, TrendingTopics.tsx ersetzen
+
+### @smolitux/blockchain
+
+1. Unbenutzte Importe entfernen:
+   - `waitFor` in SmartContractInteraction.test.tsx, TokenEconomy.test.tsx
+   - `useEffect` in TokenDistributionChart.tsx
+   - `TabView` in TokenEconomy.tsx
+
+2. Unbenutzte Variablen entfernen:
+   - `e` in SmartContractInteraction.tsx
+   - `segment` in TokenDistributionChart.tsx
+
+3. TypeScript-Typisierung verbessern:
+   - `any` durch spezifische Typen in SmartContractInteraction.tsx, TokenDistributionChart.tsx, TokenEconomy.tsx, WalletConnect.tsx ersetzen
