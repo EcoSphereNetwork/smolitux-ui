@@ -3,10 +3,10 @@ import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { AreaChart } from '../AreaChart';
 
-// Erweitere Jest-Matcher um Barrierefreiheitsprüfungen
+// Extend Jest matchers with accessibility checks
 expect.extend(toHaveNoViolations);
 
-// Mock für useTheme hook
+// Mock for useTheme hook
 jest.mock('@smolitux/theme', () => ({
   useTheme: () => ({ themeMode: 'light' })
 }));
@@ -28,8 +28,8 @@ describe('AreaChart Accessibility', () => {
     const { container } = render(
       <AreaChart 
         data={mockData}
-        title="Monatliche Besucher"
-        aria-label="Diagramm: Monatliche Besucher"
+        title="Monthly Visitors"
+        aria-label="Chart: Monthly Visitors"
       />
     );
     
@@ -41,13 +41,13 @@ describe('AreaChart Accessibility', () => {
     const { container } = render(
       <AreaChart 
         data={mockData}
-        title="Monatliche Besucher"
-        aria-label="Diagramm: Monatliche Besucher"
+        title="Monthly Visitors"
+        aria-label="Chart: Monthly Visitors"
       />
     );
     
     const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('aria-label', 'Diagramm: Monatliche Besucher');
+    expect(svg).toHaveAttribute('aria-label', 'Chart: Monthly Visitors');
   });
 
   test('should be keyboard navigable when interactive elements are present', () => {
@@ -56,11 +56,11 @@ describe('AreaChart Accessibility', () => {
         data={mockData}
         showPoints={true}
         showTooltips={true}
-        aria-label="Interaktives Diagramm: Monatliche Besucher"
+        aria-label="Interactive Chart: Monthly Visitors"
       />
     );
     
-    // Prüfen, ob das SVG-Element fokussierbar ist, wenn es interaktive Elemente enthält
+    // Check if the SVG element is focusable when it contains interactive elements
     const svg = container.querySelector('svg');
     expect(svg).toHaveAttribute('tabIndex', '0');
   });

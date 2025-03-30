@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { SentimentDisplay } from './SentimentDisplay';
+import { SentimentDisplay } from '../SentimentDisplay';
 
 describe('SentimentDisplay', () => {
   const mockSentimentData = {

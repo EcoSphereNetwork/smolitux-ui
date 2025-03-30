@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { PostMetrics } from './PostMetrics';
+import { PostMetrics } from '../PostMetrics';
 
 describe('PostMetrics', () => {
   const mockMetrics = {

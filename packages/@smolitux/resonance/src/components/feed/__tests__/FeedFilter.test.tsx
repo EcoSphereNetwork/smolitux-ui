@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { FeedFilter } from './FeedFilter';
+import { FeedFilter } from '../FeedFilter';
 
 describe('FeedFilter', () => {
   const mockOnFilterChange = jest.fn();

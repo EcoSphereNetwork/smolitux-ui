@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { RevenueModel } from './RevenueModel';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { RevenueModel } from '../RevenueModel';
 
 describe('RevenueModel', () => {
   const mockRevenueData = {

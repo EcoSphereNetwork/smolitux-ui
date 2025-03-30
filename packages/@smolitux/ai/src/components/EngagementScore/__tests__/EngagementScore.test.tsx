@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { EngagementScore } from './EngagementScore';
+import { EngagementScore } from '../EngagementScore';
 
 describe('EngagementScore', () => {
   const mockEngagementData = {

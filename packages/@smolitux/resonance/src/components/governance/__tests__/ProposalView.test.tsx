@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ProposalView } from './ProposalView';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { ProposalView } from '../ProposalView';
 
 describe('ProposalView', () => {
   const mockProposal = {

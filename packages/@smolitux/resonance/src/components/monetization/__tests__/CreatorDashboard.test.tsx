@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { CreatorDashboard } from './CreatorDashboard';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { CreatorDashboard } from '../CreatorDashboard';
 
 describe('CreatorDashboard', () => {
   const mockCreatorData = {

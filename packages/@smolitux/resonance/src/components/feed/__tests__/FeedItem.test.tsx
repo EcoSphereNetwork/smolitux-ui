@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { FeedItem } from './FeedItem';
+import { FeedItem } from '../FeedItem';
 
 describe('FeedItem', () => {
   const mockPost = {

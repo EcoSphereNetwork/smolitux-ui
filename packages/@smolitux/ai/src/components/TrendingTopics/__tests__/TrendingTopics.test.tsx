@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { TrendingTopics } from './TrendingTopics';
+import { TrendingTopics } from '../TrendingTopics';
 
 describe('TrendingTopics', () => {
   const mockTopicsData = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { ProfileContent } from './ProfileContent';
+import { ProfileContent } from '../ProfileContent';
 
 describe('ProfileContent', () => {
   const mockPosts = [

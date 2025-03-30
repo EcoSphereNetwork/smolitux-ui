@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { GovernanceDashboard } from './GovernanceDashboard';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { GovernanceDashboard } from '../GovernanceDashboard';
 
 describe('GovernanceDashboard', () => {
   const mockProposals = [

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { RewardSystem } from './RewardSystem';
+import { RewardSystem } from '../RewardSystem';
 
 describe('RewardSystem', () => {
   const mockRewards = [
