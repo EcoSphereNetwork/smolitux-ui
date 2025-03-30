@@ -107,7 +107,10 @@
 
 ### 2. Storybook reparieren
 
-- [ ] Storybook-Abhängigkeiten aktualisieren
+- [x] Storybook-Abhängigkeiten aktualisiert
+  - Storybook auf Version 7.6.17 aktualisiert
+  - Nicht verfügbare Addons entfernt
+  - Babel-Konfiguration hinzugefügt für TypeScript-Unterstützung
 - [ ] Storybook-Konfiguration anpassen
 - [ ] Storybook starten und testen
 
