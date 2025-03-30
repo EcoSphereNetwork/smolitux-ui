@@ -152,7 +152,11 @@
    - Storybook-Dokumentation verbessern
 
 2. Weitere Komponenten testen und verbessern:
-   - Avatar
+   - [x] Avatar
+     - Erweiterte Props für bessere Kompatibilität mit Tests
+     - Verbesserte Barrierefreiheit mit zusätzlichen ARIA-Attributen
+     - Unterstützung für benutzerdefinierte Größen und Farben
+     - Alle Tests erfolgreich
    - Carousel
    - ColorPicker
    - DatePicker
