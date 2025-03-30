@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ContentModerator } from './ContentModerator';
+import { ContentModerator } from '../ContentModerator';
 
 describe('ContentModerator', () => {
   const mockOnModerate = jest.fn();

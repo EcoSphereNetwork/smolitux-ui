@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ContentAnalytics } from './ContentAnalytics';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { ContentAnalytics } from '../ContentAnalytics';
 
 describe('ContentAnalytics', () => {
   const mockAnalyticsData = {

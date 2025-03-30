@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Button, TabView } from '@smolitux/core';
+import React, { useState } from 'react';
+import { Card, Button } from '@smolitux/core';
 
 export interface TrendingTopic {
   /** Eindeutige ID des Themas */
@@ -32,7 +32,7 @@ export interface TrendingTopic {
     thumbnail?: string;
   }[];
   /** Zusätzliche Metadaten zum Thema */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface TrendingTopicsProps {

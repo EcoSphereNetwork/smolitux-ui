@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { FakeNewsDetector } from './FakeNewsDetector';
+import { FakeNewsDetector } from '../FakeNewsDetector';
 
 describe('FakeNewsDetector', () => {
   const mockOnAnalyze = jest.fn();
