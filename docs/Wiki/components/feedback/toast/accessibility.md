@@ -12,24 +12,35 @@ Die Toast-Komponente verwendet folgende ARIA-Attribute und Rollen, um die Barrie
   - `polite`: Für Info- und Success-Toasts (wartet, bis der Screenreader fertig ist)
   - `assertive`: Für Error- und Warning-Toasts (unterbricht den Screenreader)
 - `aria-atomic="true"`: Gibt an, dass der gesamte Inhalt als eine Einheit gelesen werden soll
+- `aria-labelledby="ID"`: Verweist auf die ID des Toast-Titels (falls vorhanden)
+- `aria-describedby="ID"`: Verweist auf die ID der Toast-Nachricht
 - `data-type="info|success|warning|error"`: Gibt den Typ des Toasts an
+- `data-testid="toast"`: Für Testbarkeit
 
 ### Titel und Nachricht
-- Eindeutige IDs für Titel und Nachricht für bessere Screenreader-Unterstützung
+- Eindeutige IDs für Titel und Nachricht durch Verwendung von `useId()`
+- `id="toast-title-[uniqueId]"`: Eindeutige ID für den Titel
+- `id="toast-message-[uniqueId]"`: Eindeutige ID für die Nachricht
+- `data-testid="toast-title"`: Für Testbarkeit des Titels
+- `data-testid="toast-message"`: Für Testbarkeit der Nachricht
 
 ### Fortschrittsbalken
 - `role="progressbar"`: Identifiziert den Fortschrittsbalken
 - `aria-valuemin="0"`: Minimaler Wert
 - `aria-valuemax="100"`: Maximaler Wert
-- `aria-valuenow="0"`: Aktueller Wert
+- `aria-valuenow="[value]"`: Aktueller Wert (dynamisch aktualisiert)
 - `aria-label="Automatisches Schließen"`: Beschreibt den Zweck des Fortschrittsbalkens
+- `data-testid="toast-progress"`: Für Testbarkeit
 
 ### Schließen-Button
 - `aria-label="Schließen"`: Beschreibt den Zweck des Buttons
 - `type="button"`: Definiert den Button-Typ
+- `data-testid="toast-close-button"`: Für Testbarkeit
 
 ### Icons
 - `aria-hidden="true"`: Versteckt die Icons vor Screenreadern
+- `data-testid="toast-icon-container"`: Für Testbarkeit des Icon-Containers
+- `data-testid="toast-[type]-icon"`: Für Testbarkeit des spezifischen Icons
 
 ## Tastaturnavigation
 
@@ -43,7 +54,10 @@ Die Toast-Komponente unterstützt folgende Tastaturinteraktionen:
 
 Die Toast-Komponente implementiert folgende Fokus-Management-Strategien:
 
-- **Fokus-Indikatoren**: Deutliche visuelle Anzeige des Fokus für den Schließen-Button und Aktions-Buttons
+- **Fokus-Indikatoren**: Deutliche visuelle Anzeige des Fokus durch einen Ring um Buttons
+- **Fokus-Reihenfolge**: Logische Tab-Reihenfolge durch die native Button-Funktionalität
+- **Kein Fokus-Stealing**: Toasts stehlen nicht automatisch den Fokus vom aktuellen Element
+- **Fokus-Trap**: Bei modalen Toasts (falls implementiert) wird der Fokus innerhalb des Toasts gehalten
 
 ## Beispiele für barrierefreie Verwendung
 

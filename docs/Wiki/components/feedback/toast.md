@@ -377,7 +377,7 @@ function StandaloneToastExample() {
 | `type` | `'success' \| 'error' \| 'warning' \| 'info'` | `'info'` | Typ des Toasts |
 | `duration` | `number` | `5000` | Anzeigedauer in Millisekunden (0 für kein automatisches Schließen) |
 | `onClose` | `() => void` | - | Callback zum Schließen des Toasts |
-| `isOpen` | `boolean` | - | Ist der Toast gerade offen? |
+| `isOpen` | `boolean` | `true` | Ist der Toast gerade offen? |
 | `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left' \| 'top-center' \| 'bottom-center'` | `'top-right'` | Position des Toasts |
 | `showIcon` | `boolean` | `true` | Icon anzeigen |
 | `showCloseButton` | `boolean` | `true` | Schließen-Button anzeigen |
@@ -385,6 +385,7 @@ function StandaloneToastExample() {
 | `icon` | `ReactNode` | - | Benutzerdefiniertes Icon |
 | `actions` | `ReactNode` | - | Aktionen am Toast (z.B. Buttons) |
 | `className` | `string` | - | Zusätzliche CSS-Klassen |
+| `data-testid` | `string` | `'toast'` | Test-ID für automatisierte Tests |
 
 ### ToastProvider Props
 
@@ -393,6 +394,7 @@ function StandaloneToastExample() {
 | `limit` | `number` | `5` | Limit für gleichzeitig angezeigte Toasts |
 | `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left' \| 'top-center' \| 'bottom-center'` | `'top-right'` | Position aller Toasts |
 | `children` | `ReactNode` | - | Kinder-Elemente |
+| `data-testid` | `string` | `'toast-provider'` | Test-ID für automatisierte Tests |
 
 ### useToast Hook
 
@@ -404,18 +406,26 @@ Der `useToast` Hook gibt ein Objekt mit folgenden Methoden zurück:
 | `error(message: string \| ToastOptions)` | Zeigt einen Fehler-Toast an |
 | `warning(message: string \| ToastOptions)` | Zeigt einen Warnungs-Toast an |
 | `info(message: string \| ToastOptions)` | Zeigt einen Info-Toast an |
-| `custom(options: ToastOptions)` | Zeigt einen benutzerdefinierten Toast an |
-| `remove(id: string)` | Entfernt einen Toast anhand seiner ID |
-| `removeAll()` | Entfernt alle Toasts |
+| `show(options: ToastOptions)` | Zeigt einen benutzerdefinierten Toast an |
+| `close(id: string)` | Entfernt einen Toast anhand seiner ID |
+| `closeAll()` | Entfernt alle Toasts |
+| `toasts` | Array mit allen aktuell angezeigten Toasts |
 
 ## Barrierefreiheit
 
 Die Toast-Komponente ist für Barrierefreiheit optimiert:
 
-- Verwendet ARIA-Attribute für bessere Screenreader-Unterstützung
-- Toasts können mit der Tastatur geschlossen werden
-- Farbkontraste erfüllen die WCAG-Richtlinien
+- Verwendet ARIA-Attribute für bessere Screenreader-Unterstützung:
+  - `role="alert"` für die Ankündigung neuer Toasts
+  - `aria-live="polite"` oder `aria-live="assertive"` je nach Toast-Typ
+  - `aria-atomic="true"` damit der gesamte Inhalt als eine Einheit gelesen wird
+  - `aria-labelledby` und `aria-describedby` für die Verknüpfung von Titel und Nachricht
+- Eindeutige IDs für alle Elemente durch Verwendung von `useId()`
+- Fortschrittsbalken mit `role="progressbar"` und entsprechenden ARIA-Attributen
+- Toasts können mit der Tastatur geschlossen werden (Enter oder Space auf dem Schließen-Button)
+- Farbkontraste erfüllen die WCAG-Richtlinien (AA-Standard)
 - Toasts werden automatisch nach einer bestimmten Zeit geschlossen, können aber auch manuell geschlossen werden
+- Icons sind mit `aria-hidden="true"` für Screenreader ausgeblendet, wenn sie nur dekorativ sind
 
 ## Beispiele
 
