@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Popover } from '../Popover';
+import { PopoverA11y } from '../Popover.a11y';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
@@ -9,12 +9,12 @@ expect.extend(toHaveNoViolations);
 describe('Popover Accessibility', () => {
   it('should have no accessibility violations', async () => {
     const { container } = render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
       >
         <button>Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
     const results = await axe(container);
@@ -23,30 +23,30 @@ describe('Popover Accessibility', () => {
 
   it('should render with correct ARIA attributes on trigger', () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     expect(trigger).toHaveAttribute('aria-haspopup', 'true');
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('should open popover on click and set correct ARIA attributes', async () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.click(trigger);
     
     await waitFor(() => {
@@ -61,15 +61,15 @@ describe('Popover Accessibility', () => {
 
   it('should close popover on Escape key', async () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.click(trigger);
     
     await waitFor(() => {
@@ -87,17 +87,17 @@ describe('Popover Accessibility', () => {
   it('should close popover on click outside', async () => {
     render(
       <div>
-        <Popover 
+        <PopoverA11y 
           content="Popover content"
           ariaLabel="Test popover"
         >
           <button data-testid="trigger">Trigger</button>
-        </Popover>
+        </PopoverA11y>
         <div data-testid="outside">Outside</div>
       </div>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.click(trigger);
     
     await waitFor(() => {
@@ -113,15 +113,15 @@ describe('Popover Accessibility', () => {
 
   it('should render with title and set correct ARIA attributes', async () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         title="Popover Title"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.click(trigger);
     
     await waitFor(() => {
@@ -137,16 +137,16 @@ describe('Popover Accessibility', () => {
 
   it('should render with description for screen readers', async () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
         description="This is a description for screen readers"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.click(trigger);
     
     await waitFor(() => {
@@ -161,18 +161,36 @@ describe('Popover Accessibility', () => {
     });
   });
 
+  it('should render with live region for announcements', async () => {
+    render(
+      <PopoverA11y 
+        content="Popover content"
+        ariaLabel="Test popover"
+        liveRegion
+        announce
+      >
+        <button data-testid="trigger">Trigger</button>
+      </PopoverA11y>
+    );
+    
+    const liveRegion = screen.getByRole('button').parentElement?.querySelector('[aria-live="polite"]');
+    expect(liveRegion).toBeInTheDocument();
+    expect(liveRegion).toHaveClass('sr-only');
+    expect(liveRegion).toHaveAttribute('aria-atomic', 'true');
+  });
+
   it('should handle hover trigger correctly', async () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
         trigger="hover"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.mouseEnter(trigger);
     
     await waitFor(() => {
@@ -188,16 +206,16 @@ describe('Popover Accessibility', () => {
 
   it('should handle focus trigger correctly', async () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
         trigger="focus"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.focus(trigger);
     
     await waitFor(() => {
@@ -215,27 +233,27 @@ describe('Popover Accessibility', () => {
     const handleOpenChange = jest.fn();
     
     const { rerender } = render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
         isOpen={false}
         onOpenChange={handleOpenChange}
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
     
     rerender(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
         isOpen={true}
         onOpenChange={handleOpenChange}
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
     await waitFor(() => {
@@ -243,49 +261,73 @@ describe('Popover Accessibility', () => {
     });
   });
 
-  it('should render with arrow correctly', async () => {
+  it('should handle custom role correctly', async () => {
     render(
-      <Popover 
+      <PopoverA11y 
         content="Popover content"
         ariaLabel="Test popover"
-        showArrow={true}
+        role="dialog"
       >
         <button data-testid="trigger">Trigger</button>
-      </Popover>
+      </PopoverA11y>
     );
     
-    const trigger = screen.getByTestId('popover-trigger');
+    const trigger = screen.getByTestId('trigger');
     fireEvent.click(trigger);
     
     await waitFor(() => {
-      const arrow = screen.getByTestId('popover-arrow');
-      expect(arrow).toBeInTheDocument();
-      expect(arrow).toHaveAttribute('aria-hidden', 'true');
+      const popover = screen.getByRole('dialog');
+      expect(popover).toBeInTheDocument();
     });
   });
 
-  it('should render with different placements and maintain accessibility', async () => {
-    const placements: Array<'top' | 'right' | 'bottom' | 'left'> = ['top', 'right', 'bottom', 'left'];
+  it('should handle aria-modal correctly', async () => {
+    render(
+      <PopoverA11y 
+        content="Popover content"
+        ariaLabel="Test popover"
+        ariaModal={true}
+      >
+        <button data-testid="trigger">Trigger</button>
+      </PopoverA11y>
+    );
     
-    for (const placement of placements) {
-      const { unmount } = render(
-        <Popover 
-          content="Popover content"
-          ariaLabel={`${placement} popover`}
-          placement={placement}
-          isOpen={true}
-        >
-          <button data-testid="trigger">Trigger</button>
-        </Popover>
-      );
-      
-      await waitFor(() => {
-        const popover = screen.getByRole('tooltip');
-        expect(popover).toBeInTheDocument();
-        expect(popover).toHaveAttribute('data-placement', placement);
-      });
-      
-      unmount();
-    }
+    const trigger = screen.getByTestId('trigger');
+    fireEvent.click(trigger);
+    
+    await waitFor(() => {
+      const popover = screen.getByRole('tooltip');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveAttribute('aria-modal', 'true');
+    });
+  });
+
+  it('should handle custom aria attributes correctly', async () => {
+    render(
+      <PopoverA11y 
+        content="Popover content"
+        ariaLabel="Test popover"
+        ariaLive="assertive"
+        ariaAtomic={true}
+        ariaRelevant="additions text"
+        ariaBusy={true}
+        ariaRoledescription="custom popover"
+      >
+        <button data-testid="trigger">Trigger</button>
+      </PopoverA11y>
+    );
+    
+    const trigger = screen.getByTestId('trigger');
+    fireEvent.click(trigger);
+    
+    await waitFor(() => {
+      const popover = screen.getByRole('tooltip');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveAttribute('aria-live', 'assertive');
+      expect(popover).toHaveAttribute('aria-atomic', 'true');
+      expect(popover).toHaveAttribute('aria-relevant', 'additions text');
+      expect(popover).toHaveAttribute('aria-busy', 'true');
+      expect(popover).toHaveAttribute('aria-roledescription', 'custom popover');
+    });
   });
 });
