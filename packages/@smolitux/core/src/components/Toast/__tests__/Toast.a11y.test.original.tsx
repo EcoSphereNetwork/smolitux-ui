@@ -1,30 +1,14 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { a11y } from '@smolitux/testing';
 import { Toast } from '../Toast';
 
-// Erweitere Jest-Matcher um axe-Prüfungen
-expect.extend(toHaveNoViolations);
-
 describe('Toast Accessibility', () => {
-  it('should have no accessibility violations in basic state', async () => {
-    const { container } = render(<Toast message="Test message" />);
-    
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
-  });
-
-  it('should have no accessibility violations with title and actions', async () => {
-    const { container } = render(
-      <Toast 
-        title="Test Title" 
-        message="Test message" 
-        actions={<button>Action</button>}
-      />
+  it('should not have accessibility violations in basic state', async () => {
+    const { violations } = await a11y.testA11y(
+      <Toast message="Test message" />
     );
-    
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    expect(violations).toHaveLength(0);
   });
 
   it('should have correct ARIA attributes for info toast', () => {
@@ -63,12 +47,11 @@ describe('Toast Accessibility', () => {
   it('should have accessible title and message', () => {
     render(<Toast title="Test Title" message="Test message" />);
     
-    const toast = screen.getByRole('alert');
-    const title = screen.getByTestId('toast-title');
-    const message = screen.getByTestId('toast-message');
+    const title = screen.getByText('Test Title');
+    expect(title).toHaveAttribute('id', expect.stringMatching(/toast-title-/));
     
-    expect(toast).toHaveAttribute('aria-labelledby', title.id);
-    expect(toast).toHaveAttribute('aria-describedby', message.id);
+    const message = screen.getByText('Test message');
+    expect(message.parentElement).toHaveAttribute('id', expect.stringMatching(/toast-message-/));
   });
 
   it('should have accessible close button', () => {
@@ -86,23 +69,23 @@ describe('Toast Accessibility', () => {
   it('should have accessible progress bar', () => {
     render(<Toast message="Test message" duration={5000} />);
     
-    const progressBar = screen.getByTestId('toast-progress');
-    expect(progressBar).toHaveAttribute('role', 'progressbar');
+    const progressBar = screen.getByRole('progressbar');
     expect(progressBar).toHaveAttribute('aria-valuemin', '0');
     expect(progressBar).toHaveAttribute('aria-valuemax', '100');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '100');
+    expect(progressBar).toHaveAttribute('aria-valuenow', '0');
     expect(progressBar).toHaveAttribute('aria-label', 'Automatisches Schließen');
   });
 
   it('should hide icons from screen readers', () => {
     render(<Toast message="Test message" showIcon />);
     
-    const iconContainer = screen.getByTestId('toast-icon-container');
+    const iconContainer = screen.getByText('Test message').parentElement?.previousSibling;
     expect(iconContainer).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should support keyboard navigation to close button', () => {
-    render(<Toast message="Test message" showCloseButton />);
+  it('should support keyboard interaction for close button', () => {
+    const onClose = jest.fn();
+    render(<Toast message="Test message" showCloseButton onClose={onClose} />);
     
     const closeButton = screen.getByTestId('toast-close-button');
     
@@ -110,17 +93,29 @@ describe('Toast Accessibility', () => {
     closeButton.focus();
     expect(document.activeElement).toBe(closeButton);
     
-    // Verify it has the correct attributes
-    expect(closeButton).toHaveAttribute('type', 'button');
-    expect(closeButton).toHaveAttribute('aria-label', 'Schließen');
+    // Press Enter to close
+    fireEvent.keyDown(closeButton, { key: 'Enter' });
+    fireEvent.keyUp(closeButton, { key: 'Enter' });
+    expect(onClose).toHaveBeenCalled();
   });
 
-  it('should support keyboard navigation to action buttons', () => {
+  it('should have visible focus indicators', () => {
+    render(<Toast message="Test message" showCloseButton />);
+    
+    const closeButton = screen.getByTestId('toast-close-button');
+    closeButton.focus();
+    
+    expect(a11y.hasVisibleFocusIndicator(closeButton)).toBe(true);
+  });
+
+  it('should support actions with keyboard navigation', () => {
+    const actionHandler = jest.fn();
     render(
       <Toast 
         message="Test message" 
         actions={
           <button 
+            onClick={actionHandler}
             data-testid="toast-action-button"
           >
             Action
@@ -134,18 +129,10 @@ describe('Toast Accessibility', () => {
     // Focus the button
     actionButton.focus();
     expect(document.activeElement).toBe(actionButton);
-  });
-
-  it('should have proper focus management', () => {
-    render(<Toast message="Test message" showCloseButton />);
     
-    const closeButton = screen.getByTestId('toast-close-button');
-    
-    // Tab should focus the close button
-    closeButton.focus();
-    expect(document.activeElement).toBe(closeButton);
-    
-    // Should have visible focus indicator
-    expect(closeButton).toHaveClass('focus:ring-2');
+    // Press Enter to activate
+    fireEvent.keyDown(actionButton, { key: 'Enter' });
+    fireEvent.keyUp(actionButton, { key: 'Enter' });
+    expect(actionHandler).toHaveBeenCalled();
   });
 });

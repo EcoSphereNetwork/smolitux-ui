@@ -1,14 +1,5 @@
-// packages/@smolitux/core/src/components/Toast/Toast.improved.tsx
-import React, { forwardRef, useState, useEffect, useId } from 'react';
-
-// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
-try {
-  useTheme = require('@smolitux/theme').useTheme;
-} catch (e) {
-  // Fallback für Tests und Entwicklung
-  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
-}
+// packages/@smolitux/core/src/components/Toast/Toast.tsx
+import React, { forwardRef, useState, useEffect } from 'react';
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info';
 
@@ -37,8 +28,6 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactNode;
   /** Aktionen am Toast (z.B. Buttons) */
   actions?: React.ReactNode;
-  /** Daten-Testid für Tests */
-  'data-testid'?: string;
 }
 
 /**
@@ -69,54 +58,22 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
   icon,
   actions,
   className = '',
-  'data-testid': dataTestId = 'toast',
   ...rest
 }, ref) => {
-  // Theme-Werte
-  const { themeMode } = useTheme();
-  const isDarkMode = themeMode === 'dark';
-
-  // Generiere eindeutige IDs für ARIA-Attribute
-  const uniqueId = useId();
-  const titleId = `toast-title-${uniqueId}`;
-  const messageId = `toast-message-${uniqueId}`;
-  const progressId = `toast-progress-${uniqueId}`;
-
   const [isVisible, setIsVisible] = useState(isOpen);
   const [isExiting, setIsExiting] = useState(false);
-  const [progressValue, setProgressValue] = useState(100);
   
   // Timer für automatisches Schließen
   useEffect(() => {
     setIsVisible(isOpen);
     setIsExiting(false);
-    setProgressValue(100);
     
     if (isOpen && duration > 0) {
-      const startTime = Date.now();
-      const endTime = startTime + duration;
-      
-      const updateProgress = () => {
-        const now = Date.now();
-        const remaining = Math.max(0, endTime - now);
-        const percentage = (remaining / duration) * 100;
-        setProgressValue(percentage);
-        
-        if (remaining > 0) {
-          requestAnimationFrame(updateProgress);
-        }
-      };
-      
-      const animationFrame = requestAnimationFrame(updateProgress);
-      
       const timer = setTimeout(() => {
         close();
       }, duration);
       
-      return () => {
-        clearTimeout(timer);
-        cancelAnimationFrame(animationFrame);
-      };
+      return () => clearTimeout(timer);
     }
   }, [isOpen, duration]);
   
@@ -148,26 +105,26 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
     switch (type) {
       case 'success':
         return (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-testid={`${dataTestId}-success-icon`}>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         );
       case 'error':
         return (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-testid={`${dataTestId}-error-icon`}>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         );
       case 'warning':
         return (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-testid={`${dataTestId}-warning-icon`}>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
         );
       case 'info':
       default:
         return (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-testid={`${dataTestId}-info-icon`}>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         );
@@ -278,21 +235,6 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
         return 'animate-slide-in-right';
     }
   };
-
-  // Fortschrittsbalken-Farbe basierend auf Typ
-  const getProgressColor = () => {
-    switch (type) {
-      case 'success':
-        return 'bg-green-500 dark:bg-green-400';
-      case 'error':
-        return 'bg-red-500 dark:bg-red-400';
-      case 'warning':
-        return 'bg-yellow-500 dark:bg-yellow-400';
-      case 'info':
-      default:
-        return 'bg-blue-500 dark:bg-blue-400';
-    }
-  };
   
   return (
     <div
@@ -300,9 +242,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
       role="alert"
       aria-live={getAriaLive()}
       aria-atomic="true"
-      aria-labelledby={title ? titleId : undefined}
-      aria-describedby={messageId}
-      data-testid={dataTestId}
+      data-testid="toast"
       data-type={type}
       className={`
         ${getPositionStyles()}
@@ -316,20 +256,18 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
       {/* Fortschrittsbalken für automatisches Schließen */}
       {duration > 0 && (
         <div 
-          id={progressId}
           className="absolute top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-t-lg overflow-hidden"
           role="progressbar"
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-valuenow={Math.round(progressValue)}
+          aria-valuenow={0}
           aria-label="Automatisches Schließen"
-          data-testid={`${dataTestId}-progress`}
         >
           <div
-            className={`h-1 ${getProgressColor()}`}
+            className={`h-1 ${type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'}`}
             style={{
-              width: `${progressValue}%`,
-              transition: 'width 0.1s linear'
+              width: '100%',
+              animation: `shrink ${duration / 1000}s linear forwards`
             }}
           />
         </div>
@@ -338,11 +276,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
       <div className="flex p-4">
         {/* Icon */}
         {showIcon && (
-          <div 
-            className={`flex-shrink-0 mr-3 ${getIconColor()}`} 
-            aria-hidden="true"
-            data-testid={`${dataTestId}-icon-container`}
-          >
+          <div className={`flex-shrink-0 mr-3 ${getIconColor()}`} aria-hidden="true">
             {getIcon()}
           </div>
         )}
@@ -350,25 +284,15 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
         {/* Inhalt */}
         <div className="flex-grow">
           {title && (
-            <h3 
-              id={titleId} 
-              className="text-sm font-medium mb-1"
-              data-testid={`${dataTestId}-title`}
-            >
-              {title}
-            </h3>
+            <h3 className="text-sm font-medium mb-1" id={`toast-title-${Math.random().toString(36).substr(2, 9)}`}>{title}</h3>
           )}
-          <div 
-            id={messageId} 
-            className="text-sm"
-            data-testid={`${dataTestId}-message`}
-          >
+          <div className="text-sm" id={`toast-message-${Math.random().toString(36).substr(2, 9)}`}>
             {message}
           </div>
           
           {/* Aktionen */}
           {actions && (
-            <div className="mt-2" data-testid={`${dataTestId}-actions`}>
+            <div className="mt-2" data-testid="toast-actions">
               {actions}
             </div>
           )}
@@ -381,7 +305,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
             className="ml-3 flex-shrink-0 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             onClick={close}
             aria-label="Schließen"
-            data-testid={`${dataTestId}-close-button`}
+            data-testid="toast-close-button"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -391,7 +315,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(({
       </div>
       
       {/* Animationsstile */}
-      <style>{`
+      <style jsx>{`
         @keyframes shrink {
           0% { width: 100%; }
           100% { width: 0%; }
