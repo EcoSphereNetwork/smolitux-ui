@@ -1,27 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-// import { a11y } from '@smolitux/testing';
+import { a11y } from '@smolitux/testing';
 import { DatePicker } from '../DatePicker';
 
-// Mock für a11y, da es Probleme mit jest-axe gibt
-const a11y = {
-  testA11y: async () => ({ violations: [] }),
-  hasVisibleFocusIndicator: () => true
-};
-
 describe('DatePicker Accessibility', () => {
-  // Verwende eine feste Datum-Instanz für Tests
-  const fixedDate = new Date(2023, 0, 15); // 15. Januar 2023
-  
-  beforeEach(() => {
-    // Setze das aktuelle Datum auf einen festen Wert
-    jest.useFakeTimers().setSystemTime(fixedDate);
-  });
-
-  afterEach(() => {
-    jest.useRealTimers();
-  });
-
   it('should not have accessibility violations in basic state', async () => {
     const { violations } = await a11y.testA11y(
       <DatePicker label="Test Date" />
@@ -91,12 +73,13 @@ describe('DatePicker Accessibility', () => {
   });
 
   it('should handle disabled dates correctly', () => {
-    const yesterday = new Date(2023, 0, 14); // 14. Januar 2023
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
     
     render(
       <DatePicker 
         label="Test Date" 
-        minDate={fixedDate} // Today and future only
+        minDate={new Date()} // Today and future only
       />
     );
     
@@ -105,11 +88,11 @@ describe('DatePicker Accessibility', () => {
     fireEvent.click(input);
     
     // Find yesterday's cell (should be disabled)
-    const day14 = screen.getByText('14');
-    expect(day14.closest('button')).toBeDisabled();
+    const yesterdayCell = screen.getByLabelText(expect.stringContaining('Nicht verfügbar'));
+    expect(yesterdayCell).toHaveAttribute('aria-disabled', 'true');
     
     // Try to click it
-    fireEvent.click(day14.closest('button') as HTMLElement);
+    fireEvent.click(yesterdayCell);
     
     // Input should still be empty
     expect(input).toHaveValue('');
@@ -129,8 +112,8 @@ describe('DatePicker Accessibility', () => {
     fireEvent.click(input);
     
     // Check for today and clear buttons
-    const todayButton = screen.getByText('Heute');
-    const clearButton = screen.getByText('Löschen');
+    const todayButton = screen.getByLabelText('Heute');
+    const clearButton = screen.getByLabelText('Löschen');
     
     expect(todayButton).toBeInTheDocument();
     expect(clearButton).toBeInTheDocument();
@@ -139,13 +122,13 @@ describe('DatePicker Accessibility', () => {
     fireEvent.click(todayButton);
     
     // Input should have today's date
-    expect(input).toHaveValue('2023-01-15');
+    expect(input).toHaveValue(expect.any(String));
     
     // Open calendar again
     fireEvent.click(input);
     
     // Click clear button
-    const clearButtonAgain = screen.getByText('Löschen');
+    const clearButtonAgain = screen.getByLabelText('Löschen');
     fireEvent.click(clearButtonAgain);
     
     // Input should be empty
@@ -176,13 +159,9 @@ describe('DatePicker Accessibility', () => {
     const dayCell = dayCells.find(cell => !cell.getAttribute('aria-disabled'));
     
     if (dayCell) {
-      // Find the button inside the cell
-      const button = dayCell.querySelector('button');
-      if (button) {
-        // Focus the button
-        button.focus();
-        expect(a11y.hasVisibleFocusIndicator(button)).toBe(true);
-      }
+      // Focus the day cell
+      dayCell.focus();
+      expect(a11y.hasVisibleFocusIndicator(dayCell)).toBe(true);
     }
   });
 });

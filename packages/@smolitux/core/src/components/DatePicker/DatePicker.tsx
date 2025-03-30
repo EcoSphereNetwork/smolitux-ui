@@ -1,7 +1,36 @@
-// packages/@smolitux/core/src/components/DatePicker/DatePicker.tsx
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
+// packages/@smolitux/core/src/components/DatePicker/DatePicker.improved.tsx
+import React, { forwardRef, useState, useRef, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import { useFormControl } from '../FormControl/FormControl';
+
+// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
+let useTheme: () => { themeMode: string; colors?: Record<string, any> };
+try {
+  useTheme = require('@smolitux/theme').useTheme;
+} catch (e) {
+  // Fallback für Tests und Entwicklung
+  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
+}
+
+// Versuche den FormControl-Import, mit Fallback für Tests und Entwicklung
+let useFormControl: () => {
+  id?: string;
+  disabled?: boolean;
+  hasError?: boolean;
+  required?: boolean;
+  readOnly?: boolean;
+};
+try {
+  useFormControl = require('../FormControl/FormControl').useFormControl;
+} catch (e) {
+  // Fallback für Tests und Entwicklung
+  useFormControl = () => ({
+    id: undefined,
+    disabled: false,
+    hasError: false,
+    required: false,
+    readOnly: false
+  });
+}
 
 // Typen für Datum und Datumsformatierung
 type DateValue = Date | null;
@@ -204,56 +233,61 @@ export interface DatePickerProps extends Omit<React.InputHTMLAttributes<HTMLInpu
  * />
  * ```
  */
-export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
-  value,
-  defaultValue,
-  onChange,
-  selectionMode = 'single',
-  label,
-  helperText,
-  error,
-  format = 'yyyy-MM-dd',
-  minDate,
-  maxDate,
-  placeholder = selectionMode === 'single' ? 'YYYY-MM-DD' : 'YYYY-MM-DD - YYYY-MM-DD',
-  weekDayLabels = weekdayNames,
-  monthLabels = monthNames,
-  size = 'md',
-  fullWidth = false,
-  allowKeyboardInput = true,
-  allowManualInput = true,
-  leftIcon,
-  portalTarget = null,
-  closeOnSelect = selectionMode === 'single',
-  zIndex = 50,
-  firstDayOfWeek = 1,
-  popupPosition = 'bottom',
-  className = '',
-  disabled = false,
-  readOnly = false,
-  id,
-  i18n = {
-    prevMonth: 'Vorheriger Monat',
-    nextMonth: 'Nächster Monat',
-    today: 'Heute',
-    clear: 'Löschen',
-    dateSelected: 'Datum ausgewählt',
-    dateDisabled: 'Datum nicht verfügbar',
-    calendarOpened: 'Kalender geöffnet',
-    calendarClosed: 'Kalender geschlossen'
-  },
-  showTodayButton = false,
-  showClearButton = false,
-  autoFocus = true,
-  onOpen,
-  onClose,
-  calendarClassName = '',
-  headerClassName = '',
-  weekdayClassName = '',
-  dayClassName = '',
-  footerClassName = '',
-  ...rest
-}, ref) => {
+export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>((props, ref) => {
+  const {
+    value,
+    defaultValue,
+    onChange,
+    selectionMode = 'single',
+    label,
+    helperText,
+    error,
+    format = 'yyyy-MM-dd',
+    minDate,
+    maxDate,
+    placeholder = selectionMode === 'single' ? 'YYYY-MM-DD' : 'YYYY-MM-DD - YYYY-MM-DD',
+    weekDayLabels = weekdayNames,
+    monthLabels = monthNames,
+    size = 'md',
+    fullWidth = false,
+    allowKeyboardInput = true,
+    allowManualInput = true,
+    leftIcon,
+    portalTarget = null,
+    closeOnSelect = selectionMode === 'single',
+    zIndex = 50,
+    firstDayOfWeek = 1,
+    popupPosition = 'bottom',
+    className = '',
+    disabled = false,
+    readOnly = false,
+    id,
+    i18n = {
+      prevMonth: 'Vorheriger Monat',
+      nextMonth: 'Nächster Monat',
+      today: 'Heute',
+      clear: 'Löschen',
+      dateSelected: 'Datum ausgewählt',
+      dateDisabled: 'Datum nicht verfügbar',
+      calendarOpened: 'Kalender geöffnet',
+      calendarClosed: 'Kalender geschlossen'
+    },
+    showTodayButton = false,
+    showClearButton = false,
+    autoFocus = true,
+    onOpen,
+    onClose,
+    calendarClassName = '',
+    headerClassName = '',
+    weekdayClassName = '',
+    dayClassName = '',
+    footerClassName = '',
+    ...rest
+  } = props;
+
+  // Theme-Werte
+  const { themeMode } = useTheme();
+  
   // Aus dem FormControl-Context importierte Werte
   const formControl = useFormControl();
   
@@ -276,6 +310,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   });
   
   const [inputValue, setInputValue] = useState<string>('');
+  const [inputError, setInputError] = useState<string | null>(null);
   
   // Aktuelles Datum oder Datumsbereich
   const currentDate = isControlled ? value : internalValue;
@@ -308,7 +343,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   const combinedProps = {
     id: uniqueId,
     disabled: disabled || formControl.disabled,
-    required: rest.required,
+    required: rest.required || formControl.required,
     'aria-invalid': error ? true : formControl.hasError || undefined,
     'aria-describedby': error || formControl.hasError 
       ? `${uniqueId}-error` 
@@ -340,23 +375,27 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
     if (isControlled) {
       if (isRangeMode && Array.isArray(value)) {
         setInputValue(formatDateRange(value[0], value[1], format));
-        setViewDate(value[0] || value[1] || new Date());
+        if (value[0] || value[1]) {
+          setViewDate(value[0] || value[1] || new Date());
+        }
       } else if (!isRangeMode && !Array.isArray(value)) {
         setInputValue(formatDate(value, format));
-        setViewDate(value || new Date());
+        if (value) {
+          setViewDate(value);
+        }
       }
     }
   }, [value, format, isControlled, isRangeMode]);
   
   // Klassen für verschiedene Größen
   const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-5 py-3 text-lg'
+    sm: 'h-8 px-3 py-1.5 text-sm',
+    md: 'h-10 px-4 py-2 text-base',
+    lg: 'h-12 px-5 py-3 text-lg'
   };
   
   // Zustandsabhängige Klassen
-  const stateClasses = (error || formControl.hasError)
+  const stateClasses = (error || formControl.hasError || inputError)
     ? 'border-red-500 dark:border-red-400 focus:ring-red-500 focus:border-red-500'
     : 'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400';
   
@@ -365,7 +404,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   
   // Basis-Klassen für den Input
   const inputClasses = [
-    'block rounded-md focus:outline-none focus:ring-2',
+    'block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2',
     'transition duration-150 ease-in-out',
     'appearance-none',
     'w-full',
@@ -387,7 +426,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   const daysMatrix = getMonthMatrix(currentYear, currentMonth);
   
   // Position des Popups berechnen
-  const calculatePopupPosition = () => {
+  const calculatePopupPosition = useCallback(() => {
     if (!inputRef.current) return { top: 0, left: 0 };
     
     const rect = inputRef.current.getBoundingClientRect();
@@ -409,10 +448,10 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
     }
     
     return { top, left };
-  };
+  }, [popupPosition]);
   
   // Popup öffnen/schließen
-  const togglePicker = () => {
+  const togglePicker = useCallback(() => {
     if (!disabled && !readOnly) {
       const newIsOpen = !isOpen;
       setIsOpen(newIsOpen);
@@ -426,34 +465,34 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
       
       // Screenreader-Ankündigung
       if (newIsOpen) {
-        announceToScreenReader(i18n.calendarOpened);
+        announceToScreenReader(i18n.calendarOpened || 'Kalender geöffnet');
       } else {
-        announceToScreenReader(i18n.calendarClosed);
+        announceToScreenReader(i18n.calendarClosed || 'Kalender geschlossen');
       }
     }
-  };
+  }, [disabled, i18n.calendarClosed, i18n.calendarOpened, isOpen, onClose, onOpen, readOnly]);
   
   // Ankündigung für Screenreader
   const [announcement, setAnnouncement] = useState<string | null>(null);
   
-  const announceToScreenReader = (message: string) => {
+  const announceToScreenReader = useCallback((message: string) => {
     setAnnouncement(message);
     setTimeout(() => setAnnouncement(null), 1000);
-  };
+  }, []);
   
   // Datum auswählen
-  const selectDate = (day: number) => {
+  const selectDate = useCallback((day: number) => {
     if (day === 0) return; // Skip padding days
     
     const newDate = new Date(currentYear, currentMonth, day);
     
     // Prüfen, ob das Datum im gültigen Bereich liegt
     if (minDate && newDate < minDate) {
-      announceToScreenReader(i18n.dateDisabled);
+      announceToScreenReader(i18n.dateDisabled || 'Datum nicht verfügbar');
       return;
     }
     if (maxDate && newDate > maxDate) {
-      announceToScreenReader(i18n.dateDisabled);
+      announceToScreenReader(i18n.dateDisabled || 'Datum nicht verfügbar');
       return;
     }
     
@@ -527,25 +566,107 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
         if (onClose) onClose();
       }
     }
-  };
+  }, [announceToScreenReader, closeOnSelect, currentDate, currentMonth, currentYear, format, i18n.dateDisabled, i18n.dateSelected, isControlled, isRangeMode, maxDate, minDate, onChange, onClose, selectionPhase]);
   
-  // Heute-Datum auswählen
-  const selectToday = () => {
+  // Zum vorherigen Monat wechseln
+  const goToPreviousMonth = useCallback(() => {
+    setViewDate(prevDate => {
+      const newDate = new Date(prevDate);
+      newDate.setMonth(newDate.getMonth() - 1);
+      return newDate;
+    });
+  }, []);
+  
+  // Zum nächsten Monat wechseln
+  const goToNextMonth = useCallback(() => {
+    setViewDate(prevDate => {
+      const newDate = new Date(prevDate);
+      newDate.setMonth(newDate.getMonth() + 1);
+      return newDate;
+    });
+  }, []);
+  
+  // Zum heutigen Datum wechseln
+  const goToToday = useCallback(() => {
     const today = new Date();
     setViewDate(today);
-    selectDate(today.getDate());
-  };
+    
+    // Wenn heute im gültigen Bereich liegt, auswählen
+    if ((!minDate || today >= minDate) && (!maxDate || today <= maxDate)) {
+      if (isRangeMode) {
+        if (selectionPhase === 0) {
+          // Startdatum setzen
+          const newRange: DateRangeValue = [today, null];
+          
+          // Internes Datum aktualisieren (wenn nicht kontrolliert)
+          if (!isControlled) {
+            setInternalValue(newRange);
+          }
+          
+          // Input-Wert aktualisieren
+          setInputValue(formatDateRange(newRange[0], newRange[1], format));
+          
+          // Callback aufrufen
+          if (onChange) {
+            onChange(newRange);
+          }
+          
+          setSelectionPhase(1);
+        } else {
+          // Enddatum setzen
+          const startDate = Array.isArray(currentDate) ? currentDate[0] : null;
+          const newRange: DateRangeValue = [startDate, today];
+          
+          // Internes Datum aktualisieren (wenn nicht kontrolliert)
+          if (!isControlled) {
+            setInternalValue(newRange);
+          }
+          
+          // Input-Wert aktualisieren
+          setInputValue(formatDateRange(newRange[0], newRange[1], format));
+          
+          // Callback aufrufen
+          if (onChange) {
+            onChange(newRange);
+          }
+          
+          setSelectionPhase(0);
+          
+          // Popup schließen, wenn closeOnSelect
+          if (closeOnSelect) {
+            setIsOpen(false);
+            if (onClose) onClose();
+          }
+        }
+      } else {
+        // Einzelauswahl
+        // Internes Datum aktualisieren (wenn nicht kontrolliert)
+        if (!isControlled) {
+          setInternalValue(today);
+        }
+        
+        // Input-Wert aktualisieren
+        setInputValue(formatDate(today, format));
+        
+        // Callback aufrufen
+        if (onChange) {
+          onChange(today);
+        }
+        
+        // Popup schließen, wenn closeOnSelect
+        if (closeOnSelect) {
+          setIsOpen(false);
+          if (onClose) onClose();
+        }
+      }
+    }
+  }, [closeOnSelect, currentDate, format, isControlled, isRangeMode, maxDate, minDate, onChange, onClose, selectionPhase]);
   
-  // Datum löschen
-  const clearDate = () => {
+  // Auswahl löschen
+  const clearSelection = useCallback(() => {
     // Internes Datum aktualisieren (wenn nicht kontrolliert)
     if (!isControlled) {
-      if (isRangeMode) {
-        setInternalValue([null, null]);
-        setSelectionPhase(0);
-      } else {
-        setInternalValue(null);
-      }
+      setInternalValue(isRangeMode ? [null, null] : null);
     }
     
     // Input-Wert aktualisieren
@@ -553,443 +674,397 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
     
     // Callback aufrufen
     if (onChange) {
-      if (isRangeMode) {
-        onChange([null, null]);
-      } else {
-        onChange(null);
-      }
+      onChange(isRangeMode ? [null, null] : null);
     }
     
     // Popup schließen
     setIsOpen(false);
     if (onClose) onClose();
-  };
+  }, [isControlled, isRangeMode, onChange, onClose]);
   
-  // Monat ändern
-  const changeMonth = (increment: number) => {
-    const newDate = new Date(currentYear, currentMonth + increment, 1);
-    setViewDate(newDate);
-  };
-  
-  // Input-Änderungen behandeln
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Manuelle Eingabe verarbeiten
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!allowManualInput) return;
     
     const newValue = e.target.value;
     setInputValue(newValue);
+    setInputError(null);
+  }, [allowManualInput]);
+  
+  // Manuelle Eingabe validieren
+  const validateInput = useCallback(() => {
+    if (!allowManualInput || !inputValue) return;
     
     if (isRangeMode) {
-      // Versuchen, den Datumsbereich zu parsen
-      const parsedRange = parseDateRange(newValue, format);
+      // Bereichseingabe validieren
+      const range = parseDateRange(inputValue, format);
+      
+      if (!range[0] && !range[1]) {
+        // Leere Eingabe oder ungültiges Format
+        if (inputValue.trim() !== '') {
+          setInputError('Invalid date format');
+          return;
+        }
+      }
+      
+      // Prüfen, ob die Daten im gültigen Bereich liegen
+      if (range[0] && minDate && range[0] < minDate) {
+        setInputError('Date before minimum date');
+        return;
+      }
+      
+      if (range[1] && maxDate && range[1] > maxDate) {
+        setInputError('Date after maximum date');
+        return;
+      }
       
       // Internes Datum aktualisieren (wenn nicht kontrolliert)
       if (!isControlled) {
-        setInternalValue(parsedRange);
-      }
-      
-      // Ansichtsdatum aktualisieren
-      if (parsedRange[0]) {
-        setViewDate(parsedRange[0]);
-      } else if (parsedRange[1]) {
-        setViewDate(parsedRange[1]);
+        setInternalValue(range);
       }
       
       // Callback aufrufen
       if (onChange) {
-        onChange(parsedRange);
-      }
-      
-      // Auswahlphase zurücksetzen, wenn beide Daten vorhanden sind
-      if (parsedRange[0] && parsedRange[1]) {
-        setSelectionPhase(0);
-      } else if (parsedRange[0]) {
-        setSelectionPhase(1);
-      } else {
-        setSelectionPhase(0);
+        onChange(range);
       }
     } else {
-      // Versuchen, das Datum zu parsen
-      const parsedDate = parseDate(newValue, format);
+      // Einzeleingabe validieren
+      const date = parseDate(inputValue, format);
       
-      if (parsedDate) {
-        // Internes Datum aktualisieren (wenn nicht kontrolliert)
-        if (!isControlled) {
-          setInternalValue(parsedDate);
-        }
-        
-        // Ansichtsdatum aktualisieren
-        setViewDate(parsedDate);
-        
-        // Callback aufrufen
-        if (onChange) {
-          onChange(parsedDate);
+      if (!date || isNaN(date.getTime())) {
+        // Leere Eingabe oder ungültiges Format
+        if (inputValue.trim() !== '') {
+          setInputError('Invalid date format');
+          return;
         }
       } else {
-        // Wenn kein gültiges Datum, internes Datum auf null setzen
+        // Prüfen, ob das Datum im gültigen Bereich liegt
+        if (minDate && date < minDate) {
+          setInputError('Date before minimum date');
+          return;
+        }
+        
+        if (maxDate && date > maxDate) {
+          setInputError('Date after maximum date');
+          return;
+        }
+        
+        // Internes Datum aktualisieren (wenn nicht kontrolliert)
         if (!isControlled) {
-          setInternalValue(null);
+          setInternalValue(date);
         }
         
         // Callback aufrufen
         if (onChange) {
-          onChange(null);
+          onChange(date);
         }
       }
     }
-  };
+  }, [allowManualInput, format, inputValue, isControlled, isRangeMode, maxDate, minDate, onChange]);
   
-  // Keybord-Navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!allowKeyboardInput || !isOpen) return;
+  // Tastatureingaben verarbeiten
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!allowKeyboardInput) return;
     
     switch (e.key) {
-      case 'ArrowLeft':
-        // Einen Tag zurück
-        if (currentDate) {
-          const newDate = new Date(currentDate);
-          newDate.setDate(newDate.getDate() - 1);
-          if (!isControlled) setInternalValue(newDate);
-          setViewDate(newDate);
-          setInputValue(formatDate(newDate, format));
-          if (onChange) onChange(newDate);
-        }
-        break;
-      case 'ArrowRight':
-        // Einen Tag vor
-        if (currentDate) {
-          const newDate = new Date(currentDate);
-          newDate.setDate(newDate.getDate() + 1);
-          if (!isControlled) setInternalValue(newDate);
-          setViewDate(newDate);
-          setInputValue(formatDate(newDate, format));
-          if (onChange) onChange(newDate);
-        }
-        break;
-      case 'ArrowUp':
-        // Eine Woche zurück
-        if (currentDate) {
-          const newDate = new Date(currentDate);
-          newDate.setDate(newDate.getDate() - 7);
-          if (!isControlled) setInternalValue(newDate);
-          setViewDate(newDate);
-          setInputValue(formatDate(newDate, format));
-          if (onChange) onChange(newDate);
-        }
-        break;
-      case 'ArrowDown':
-        // Eine Woche vor
-        if (currentDate) {
-          const newDate = new Date(currentDate);
-          newDate.setDate(newDate.getDate() + 7);
-          if (!isControlled) setInternalValue(newDate);
-          setViewDate(newDate);
-          setInputValue(formatDate(newDate, format));
-          if (onChange) onChange(newDate);
+      case 'Enter':
+        if (isOpen) {
+          // Wenn der Kalender geöffnet ist, schließen
+          setIsOpen(false);
+          if (onClose) onClose();
+        } else {
+          // Wenn der Kalender geschlossen ist, öffnen
+          setIsOpen(true);
+          if (onOpen) onOpen();
         }
         break;
       case 'Escape':
-        // Schließen
-        setIsOpen(false);
+        if (isOpen) {
+          // Kalender schließen
+          setIsOpen(false);
+          if (onClose) onClose();
+        }
         break;
-      case 'Enter':
-      case ' ':
-        // Auswählen/Bestätigen
-        if (currentDate) {
-          selectDate(currentDate.getDate());
+      case 'ArrowDown':
+        if (!isOpen) {
+          // Kalender öffnen
+          setIsOpen(true);
+          if (onOpen) onOpen();
         }
         break;
       default:
         break;
     }
-  };
+  }, [allowKeyboardInput, isOpen, onClose, onOpen]);
   
-  // Klick außerhalb schließt das Popup
+  // Außerhalb-Klick-Handler
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
         isOpen &&
-        pickerRef.current &&
         inputRef.current &&
-        !pickerRef.current.contains(e.target as Node) &&
-        !inputRef.current.contains(e.target as Node)
+        pickerRef.current &&
+        !inputRef.current.contains(e.target as Node) &&
+        !pickerRef.current.contains(e.target as Node)
       ) {
         setIsOpen(false);
+        if (onClose) onClose();
       }
     };
     
     document.addEventListener('mousedown', handleClickOutside);
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
   
-  // Picker-Element generieren
-  const calculatedPosition = calculatePopupPosition();
+  // Validiere Input beim Blur
+  const handleInputBlur = useCallback(() => {
+    validateInput();
+  }, [validateInput]);
   
-  // Kalender-Icon für den Input
-  const CalendarIcon = () => (
-    <svg
-      className="w-5 h-5 text-gray-400 dark:text-gray-500"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-      />
-    </svg>
-  );
+  // Prüfen, ob ein Tag deaktiviert ist
+  const isDayDisabled = useCallback((day: number): boolean => {
+    if (day === 0) return true; // Padding days are always disabled
+    
+    const date = new Date(currentYear, currentMonth, day);
+    
+    if (minDate && date < minDate) return true;
+    if (maxDate && date > maxDate) return true;
+    
+    return false;
+  }, [currentMonth, currentYear, maxDate, minDate]);
   
-  // Render-Funktion für das DatePicker-Dropdown
-  const renderPicker = () => {
-    return (
+  // Prüfen, ob ein Tag ausgewählt ist
+  const isDaySelected = useCallback((day: number): boolean => {
+    if (day === 0) return false;
+    
+    const date = new Date(currentYear, currentMonth, day);
+    
+    if (isRangeMode && Array.isArray(currentDate)) {
+      // Bereichsauswahl
+      const [start, end] = currentDate;
+      
+      if (!start && !end) return false;
+      
+      if (start && !end) {
+        // Nur Startdatum ausgewählt
+        return (
+          date.getDate() === start.getDate() &&
+          date.getMonth() === start.getMonth() &&
+          date.getFullYear() === start.getFullYear()
+        );
+      }
+      
+      if (!start && end) {
+        // Nur Enddatum ausgewählt
+        return (
+          date.getDate() === end.getDate() &&
+          date.getMonth() === end.getMonth() &&
+          date.getFullYear() === end.getFullYear()
+        );
+      }
+      
+      // Beide Daten ausgewählt
+      return (
+        (start && 
+          date.getDate() === start.getDate() &&
+          date.getMonth() === start.getMonth() &&
+          date.getFullYear() === start.getFullYear()) ||
+        (end && 
+          date.getDate() === end.getDate() &&
+          date.getMonth() === end.getMonth() &&
+          date.getFullYear() === end.getFullYear())
+      );
+    } else if (!isRangeMode && !Array.isArray(currentDate) && currentDate) {
+      // Einzelauswahl
+      return (
+        date.getDate() === currentDate.getDate() &&
+        date.getMonth() === currentDate.getMonth() &&
+        date.getFullYear() === currentDate.getFullYear()
+      );
+    }
+    
+    return false;
+  }, [currentDate, currentMonth, currentYear, isRangeMode]);
+  
+  // Prüfen, ob ein Tag im ausgewählten Bereich liegt
+  const isDayInRange = useCallback((day: number): boolean => {
+    if (day === 0 || !isRangeMode || !Array.isArray(currentDate)) return false;
+    
+    const [start, end] = currentDate;
+    
+    if (!start || !end) return false;
+    
+    const date = new Date(currentYear, currentMonth, day);
+    
+    return date > start && date < end;
+  }, [currentDate, currentMonth, currentYear, isRangeMode]);
+  
+  // Kalender-Popup rendern
+  const renderCalendarPopup = () => {
+    if (!isOpen) return null;
+    
+    const { top, left } = calculatePopupPosition();
+    
+    const calendarContent = (
       <div
         ref={pickerRef}
-        className={`absolute z-${zIndex} bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 w-64 ${calendarClassName}`}
-        data-testid="date-picker-calendar"
+        className={`absolute z-${zIndex} bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 p-4 w-72 ${calendarClassName}`}
+        style={{ top, left }}
         role="dialog"
         aria-modal="true"
         aria-label="Datumsauswahl"
-        style={{
-          top: calculatedPosition.top,
-          left: calculatedPosition.left,
-        }}
-        tabIndex={-1}
+        data-testid="date-picker-calendar"
       >
-        {/* Header mit Monat/Jahr und Navigation */}
-        <div className={`flex justify-between items-center p-3 border-b border-gray-200 dark:border-gray-700 ${headerClassName}`}>
+        {/* Kalender-Header */}
+        <div className={`flex justify-between items-center mb-4 ${headerClassName}`}>
           <button
             type="button"
-            className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
-            onClick={() => changeMonth(-1)}
-            aria-label={i18n.prevMonth}
+            onClick={goToPreviousMonth}
+            className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
+            aria-label={i18n.prevMonth || 'Vorheriger Monat'}
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              />
+            <svg className="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
-          <div className="text-gray-800 dark:text-gray-200 font-medium" role="heading" aria-level={2}>
+          <div className="font-semibold text-gray-800 dark:text-gray-200">
             {monthLabels[currentMonth]} {currentYear}
           </div>
           
           <button
             type="button"
-            className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
-            onClick={() => changeMonth(1)}
-            aria-label={i18n.nextMonth}
+            onClick={goToNextMonth}
+            className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
+            aria-label={i18n.nextMonth || 'Nächster Monat'}
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
+            <svg className="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
         
         {/* Wochentage */}
-        <div className={`grid grid-cols-7 gap-0 text-center text-xs text-gray-500 dark:text-gray-400 p-2 ${weekdayClassName}`} role="row">
-          {weekDayLabels.map((day, i) => (
-            <div key={i} className="p-1" role="columnheader" aria-label={day}>
+        <div className="grid grid-cols-7 gap-1 mb-2">
+          {weekDayLabels.map((day, index) => (
+            <div
+              key={index}
+              className={`text-center text-sm font-medium text-gray-600 dark:text-gray-400 ${weekdayClassName}`}
+              role="columnheader"
+              aria-label={day}
+            >
               {day}
             </div>
           ))}
         </div>
         
         {/* Kalendertage */}
-        <div className="p-2">
+        <div className="grid grid-cols-7 gap-1" role="grid">
           {daysMatrix.map((week, weekIndex) => (
-            <div key={weekIndex} className="grid grid-cols-7 gap-0">
+            <React.Fragment key={weekIndex}>
               {week.map((day, dayIndex) => {
-                // Bestimme, ob dieser Tag selektiert ist
-                let isSelected = false;
-                let isRangeStart = false;
-                let isRangeEnd = false;
-                let isInRange = false;
-                
-                if (isRangeMode && Array.isArray(currentDate)) {
-                  const [start, end] = currentDate;
-                  const cellDate = day !== 0 ? new Date(currentYear, currentMonth, day) : null;
-                  
-                  if (cellDate && start) {
-                    isRangeStart = start.getDate() === day && 
-                                  start.getMonth() === currentMonth && 
-                                  start.getFullYear() === currentYear;
-                  }
-                  
-                  if (cellDate && end) {
-                    isRangeEnd = end.getDate() === day && 
-                                end.getMonth() === currentMonth && 
-                                end.getFullYear() === currentYear;
-                  }
-                  
-                  // Prüfe, ob der Tag im Bereich liegt
-                  if (cellDate && start && end) {
-                    isInRange = cellDate >= start && cellDate <= end && !isRangeStart && !isRangeEnd;
-                  }
-                  
-                  isSelected = isRangeStart || isRangeEnd;
-                } else if (!isRangeMode && !Array.isArray(currentDate)) {
-                  isSelected = currentDate && 
-                    currentDate.getDate() === day && 
-                    currentDate.getMonth() === currentMonth && 
-                    currentDate.getFullYear() === currentYear;
-                }
-                
-                // Bestimme, ob dieser Tag im gültigen Bereich liegt
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                
-                const cellDate = day !== 0 ? new Date(currentYear, currentMonth, day) : null;
-                const isDisabled = (minDate && cellDate && cellDate < minDate) || 
-                                   (maxDate && cellDate && cellDate > maxDate);
-                
-                const isToday = cellDate && cellDate.getTime() === today.getTime();
+                const isDisabled = isDayDisabled(day);
+                const isSelected = isDaySelected(day);
+                const isInRange = isDayInRange(day);
                 
                 return (
                   <div
                     key={dayIndex}
-                    className={`
-                      p-1 text-center text-sm
-                      ${day === 0 ? 'invisible' : 'cursor-pointer'}
-                      ${isSelected ? 'bg-primary-600 text-white rounded' : ''}
-                      ${isRangeStart ? 'bg-primary-600 text-white rounded-l' : ''}
-                      ${isRangeEnd ? 'bg-primary-600 text-white rounded-r' : ''}
-                      ${isInRange ? 'bg-primary-100 dark:bg-primary-900' : ''}
-                      ${isToday && !isSelected && !isInRange && !isRangeStart && !isRangeEnd ? 'border border-primary-500 rounded' : ''}
-                      ${isDisabled ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-gray-700'}
-                    `}
-                    onClick={() => !isDisabled && day !== 0 && selectDate(day)}
-                    aria-selected={isSelected || isRangeStart || isRangeEnd}
-                    aria-current={isToday ? 'date' : undefined}
                     role="gridcell"
-                    tabIndex={day !== 0 ? 0 : -1}
                     aria-disabled={isDisabled}
-                    title={isRangeStart ? 'Startdatum' : isRangeEnd ? 'Enddatum' : undefined}
+                    aria-selected={isSelected}
                   >
-                    {day !== 0 ? day : ''}
+                    {day !== 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => selectDate(day)}
+                        disabled={isDisabled}
+                        className={`
+                          w-8 h-8 rounded-full flex items-center justify-center text-sm
+                          focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+                          ${isDisabled ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed' : 'cursor-pointer'}
+                          ${isSelected 
+                            ? 'bg-primary-500 text-white' 
+                            : isInRange 
+                              ? 'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300' 
+                              : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200'}
+                          ${dayClassName}
+                        `}
+                        aria-label={
+                          isDisabled 
+                            ? `${day}. ${monthLabels[currentMonth]}, ${currentYear} - ${i18n.dateDisabled || 'Nicht verfügbar'}`
+                            : `${day}. ${monthLabels[currentMonth]}, ${currentYear}`
+                        }
+                        tabIndex={isDisabled ? -1 : 0}
+                      >
+                        {day}
+                      </button>
+                    ) : (
+                      <div className="w-8 h-8" />
+                    )}
                   </div>
                 );
               })}
-            </div>
+            </React.Fragment>
           ))}
         </div>
         
-        {/* Footer mit Buttons */}
-        <div className="border-t border-gray-200 dark:border-gray-700 p-2 flex justify-between">
-          {/* Heute-Button */}
-          <button
-            type="button"
-            className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-            onClick={() => {
-              const today = new Date();
-              if (!isControlled) {
-                if (isRangeMode) {
-                  if (selectionPhase === 0) {
-                    setInternalValue([today, null]);
-                    setSelectionPhase(1);
-                    setInputValue(formatDate(today, format));
-                    if (onChange) onChange([today, null]);
-                  } else {
-                    const startDate = Array.isArray(currentDate) ? currentDate[0] : null;
-                    const newRange: DateRangeValue = startDate && today < startDate 
-                      ? [today, startDate] 
-                      : [startDate, today];
-                    setInternalValue(newRange);
-                    setSelectionPhase(0);
-                    setInputValue(formatDateRange(newRange[0], newRange[1], format));
-                    if (onChange) onChange(newRange);
-                    if (closeOnSelect) setIsOpen(false);
-                  }
-                } else {
-                  setInternalValue(today);
-                  setInputValue(formatDate(today, format));
-                  if (onChange) onChange(today);
-                  if (closeOnSelect) setIsOpen(false);
-                }
-              } else {
-                if (isRangeMode) {
-                  if (selectionPhase === 0) {
-                    if (onChange) onChange([today, null]);
-                    setSelectionPhase(1);
-                  } else {
-                    const startDate = Array.isArray(currentDate) ? currentDate[0] : null;
-                    const newRange: DateRangeValue = startDate && today < startDate 
-                      ? [today, startDate] 
-                      : [startDate, today];
-                    if (onChange) onChange(newRange);
-                    setSelectionPhase(0);
-                    if (closeOnSelect) setIsOpen(false);
-                  }
-                } else {
-                  if (onChange) onChange(today);
-                  if (closeOnSelect) setIsOpen(false);
-                }
-              }
-              setViewDate(today);
-            }}
-          >
-            {i18n.today}
-          </button>
-          
-          {/* Löschen-Button */}
-          {showClearButton && (
-            <button
-              type="button"
-              className="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
-              onClick={clearDate}
-            >
-              {i18n.clear}
-            </button>
-          )}
-          
-          {/* Auswahlphase-Anzeige im Range-Modus */}
-          {isRangeMode && (
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              {selectionPhase === 0 ? 'Startdatum wählen' : 'Enddatum wählen'}
-            </div>
-          )}
-        </div>
+        {/* Footer mit Heute/Löschen-Buttons */}
+        {(showTodayButton || showClearButton) && (
+          <div className={`mt-4 flex justify-between ${footerClassName}`}>
+            {showTodayButton && (
+              <button
+                type="button"
+                onClick={goToToday}
+                className="px-3 py-1 text-sm rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
+                aria-label={i18n.today || 'Heute'}
+              >
+                {i18n.today || 'Heute'}
+              </button>
+            )}
+            
+            {showClearButton && (
+              <button
+                type="button"
+                onClick={clearSelection}
+                className="px-3 py-1 text-sm rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
+                aria-label={i18n.clear || 'Löschen'}
+              >
+                {i18n.clear || 'Löschen'}
+              </button>
+            )}
+          </div>
+        )}
       </div>
     );
+    
+    // Wenn ein Portal-Target angegeben ist, rendern wir den Kalender dort
+    if (portalTarget) {
+      return ReactDOM.createPortal(calendarContent, portalTarget);
+    }
+    
+    // Ansonsten rendern wir den Kalender direkt
+    return calendarContent;
   };
   
   return (
-    <div className={`${fullWidth ? 'w-full' : ''}`}>
-      {/* Label (falls außerhalb eines FormControl) */}
-      {label && !formControl.label && (
-        <label 
-          htmlFor={uniqueId} 
+    <div className={`relative ${fullWidth ? 'w-full' : ''} ${className}`} data-testid="date-picker-container">
+      {/* Label */}
+      {label && (
+        <label
+          htmlFor={uniqueId}
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
         >
           {label}
-          {combinedProps.required && <span className="ml-1 text-red-500">*</span>}
+          {combinedProps.required && (
+            <>
+              <span className="text-red-500 ml-1" aria-hidden="true">*</span>
+              <span className="sr-only">(Erforderlich)</span>
+            </>
+          )}
         </label>
       )}
       
@@ -1002,65 +1077,81 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
           </div>
         )}
         
-        {/* Input-Feld */}
+        {/* Input */}
         <input
-          ref={(el) => {
-            // Ref kombinieren
+          ref={(node) => {
+            // Setze die Referenz für das Input-Element
+            inputRef.current = node;
+            // Leite die Referenz an die übergebene Ref weiter
             if (typeof ref === 'function') {
-              ref(el);
+              ref(node);
             } else if (ref) {
-              (ref as React.MutableRefObject<HTMLInputElement | null>).current = el;
-            }
-            if (inputRef) {
-              (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
+              ref.current = node;
             }
           }}
           type="text"
           value={inputValue}
           onChange={handleInputChange}
+          onBlur={handleInputBlur}
           onClick={togglePicker}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
-          readOnly={!allowManualInput || readOnly}
           className={inputClasses}
+          placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly || !allowManualInput}
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
           {...combinedProps}
           {...rest}
         />
         
-        {/* Kalender-Icon rechts */}
-        <div 
-          className={`absolute inset-y-0 right-0 pr-3 flex items-center ${disabled || readOnly ? '' : 'cursor-pointer'}`}
-          onClick={togglePicker}
-        >
-          <CalendarIcon />
+        {/* Kalender-Icon */}
+        <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+          <button
+            type="button"
+            onClick={togglePicker}
+            className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+            disabled={disabled || readOnly}
+            aria-label="Kalender öffnen"
+            tabIndex={-1}
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </button>
         </div>
       </div>
       
-      {/* Hilfetexzt oder Fehlermeldung (falls außerhalb eines FormControl) */}
-      {((helperText && !formControl.hasError) || (error && !formControl.hasError)) && (
-        <div className="mt-1 text-sm">
-          {error ? (
-            <p className="text-red-600 dark:text-red-400">
-              {error}
-            </p>
-          ) : helperText ? (
-            <p className="text-gray-500 dark:text-gray-400">
-              {helperText}
-            </p>
-          ) : null}
+      {/* Fehlermeldung */}
+      {(error || inputError) && (
+        <p
+          id={`${uniqueId}-error`}
+          className="mt-1 text-sm text-red-600 dark:text-red-400"
+          role="alert"
+        >
+          {error || (inputError === 'Invalid date format' ? 'Invalid date format' : inputError)}
+        </p>
+      )}
+      
+      {/* Hilfetext */}
+      {helperText && !error && !inputError && (
+        <p
+          id={`${uniqueId}-helper`}
+          className="mt-1 text-sm text-gray-500 dark:text-gray-400"
+        >
+          {helperText}
+        </p>
+      )}
+      
+      {/* Screenreader-Ankündigung */}
+      {announcement && (
+        <div className="sr-only" role="status" aria-live="polite">
+          {announcement}
         </div>
       )}
       
-      {/* Popup-Kalender */}
-      {isOpen && (
-        portalTarget ? (
-          // Mit Portal für besseres Stacking
-          ReactDOM.createPortal(renderPicker(), portalTarget)
-        ) : (
-          // Direkt ohne Portal
-          renderPicker()
-        )
-      )}
+      {/* Kalender-Popup */}
+      {renderCalendarPopup()}
     </div>
   );
 });
