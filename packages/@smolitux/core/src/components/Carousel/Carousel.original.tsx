@@ -1,4 +1,4 @@
-// packages/@smolitux/core/src/components/Carousel/Carousel.improved.tsx
+// packages/@smolitux/core/src/components/Carousel/Carousel.tsx
 import React, { useState, useEffect, useRef, useMemo, forwardRef, useCallback } from 'react';
 
 // Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
@@ -17,8 +17,6 @@ export interface CarouselItem {
   content: React.ReactNode;
   /** Beschreibungstext für Barrierefreiheit */
   ariaLabel?: string;
-  /** Thumbnail für Indikator (optional) */
-  thumbnail?: string;
 }
 
 export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -65,12 +63,6 @@ export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   ariaDescription?: string;
   /** ID für die ARIA-Beschreibung */
   ariaDescriptionId?: string;
-  /** Benutzerdefinierte Klassen für Navigationspfeile */
-  arrowClassName?: string;
-  /** Benutzerdefinierte Klassen für Indikatoren */
-  indicatorClassName?: string;
-  /** Benutzerdefinierte Klassen für aktiven Indikator */
-  activeIndicatorClassName?: string;
 }
 
 /**
@@ -112,9 +104,6 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   ariaLabel = 'Bildergalerie',
   ariaDescription,
   ariaDescriptionId = 'carousel-description',
-  arrowClassName = '',
-  indicatorClassName = '',
-  activeIndicatorClassName = '',
   ...rest
 }, ref) => {
   const { themeMode, colors } = useTheme();
@@ -347,21 +336,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     className
   ].filter(Boolean).join(' ');
   
-  // Gemeinsame Klassen für Fokus-Zustände
-  const focusClasses = 'focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500';
-  
   // Renderfunktion für vorherigen/nächsten Button
   const renderArrows = () => {
     if (!showArrows || totalItems <= 1) return null;
-    
-    const baseArrowClasses = `
-      p-2 rounded-full
-      bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50
-      hover:bg-opacity-75 dark:hover:bg-opacity-75
-      ${focusClasses}
-      ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
-      ${arrowClassName}
-    `;
     
     return (
       <>
@@ -371,14 +348,17 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
             type="button"
             className={`
               absolute top-1/2 left-2 z-10 -translate-y-1/2
-              ${baseArrowClasses}
+              p-2 rounded-full
+              bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50
+              hover:bg-opacity-75 dark:hover:bg-opacity-75
+              focus:outline-none focus:ring-2 focus:ring-primary-500
+              ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
             `}
             aria-label="Vorheriges Bild"
             aria-controls={carouselId}
             onClick={goToPrev}
             disabled={disabled}
             tabIndex={0}
-            data-testid="carousel-prev-button"
           >
             {customArrows?.prev || (
               <svg
@@ -406,14 +386,17 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
             type="button"
             className={`
               absolute top-1/2 right-2 z-10 -translate-y-1/2
-              ${baseArrowClasses}
+              p-2 rounded-full
+              bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50
+              hover:bg-opacity-75 dark:hover:bg-opacity-75
+              focus:outline-none focus:ring-2 focus:ring-primary-500
+              ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
             `}
             aria-label="Nächstes Bild"
             aria-controls={carouselId}
             onClick={goToNext}
             disabled={disabled}
             tabIndex={0}
-            data-testid="carousel-next-button"
           >
             {customArrows?.next || (
               <svg
@@ -442,90 +425,63 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   const renderIndicators = () => {
     if (!showIndicators || totalItems <= 1) return null;
     
-    const baseIndicatorClasses = `
-      transition-all duration-200
-      ${focusClasses}
-      ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
-      ${indicatorClassName}
-    `;
-    
     return (
       <div 
         className="absolute bottom-2 left-0 right-0 z-10 flex justify-center"
         role="tablist"
         aria-label="Bildauswahl"
-        data-testid="carousel-indicators"
       >
         <div className="flex space-x-2">
-          {items.map((item, index) => {
-            const isActive = activeIndex === index;
-            const indicatorLabel = item.ariaLabel || `Bild ${index + 1} anzeigen`;
-            
-            return (
-              <button
-                key={item.id}
-                type="button"
-                className={`
-                  ${baseIndicatorClasses}
-                  ${thumbnails 
-                    ? 'w-10 h-10 border-2' 
-                    : 'w-3 h-3 rounded-full'
-                  }
-                  ${isActive
-                    ? thumbnails
-                      ? `border-primary-500 dark:border-primary-400 opacity-100 ${activeIndicatorClassName}`
-                      : `bg-primary-500 dark:bg-primary-400 ${activeIndicatorClassName}`
-                    : thumbnails
-                      ? 'border-transparent opacity-60 hover:opacity-100'
-                      : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                  }
-                `}
-                aria-label={indicatorLabel}
-                aria-selected={isActive ? 'true' : 'false'}
-                aria-controls={`${carouselId}-slide-${index}`}
-                role="tab"
-                tabIndex={0}
-                onClick={() => !disabled && goToSlide(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    !disabled && goToSlide(index);
-                  }
-                }}
-                data-testid={`carousel-indicator-${index}`}
-              >
-                {thumbnails && (
-                  <div className="w-full h-full overflow-hidden object-cover rounded">
-                    {/* Thumbnail-Inhalt */}
-                    {item.thumbnail ? (
-                      <img 
-                        src={item.thumbnail} 
-                        alt={`Thumbnail für ${indicatorLabel}`} 
-                        className="w-full h-full object-cover"
-                        aria-hidden="true"
-                      />
-                    ) : typeof item.content === 'string' ? (
-                      <img 
-                        src={item.content} 
-                        alt={`Thumbnail für ${indicatorLabel}`} 
-                        className="w-full h-full object-cover"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        {index + 1}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </button>
-            );
-          })}
+          {items.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`
+                ${thumbnails ? 'w-10 h-10 border-2' : 'w-3 h-3 rounded-full'}
+                ${activeIndex === index
+                  ? thumbnails
+                    ? 'border-primary-500 dark:border-primary-400 opacity-100'
+                    : 'bg-primary-500 dark:bg-primary-400'
+                  : thumbnails
+                    ? 'border-transparent opacity-60 hover:opacity-100'
+                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                }
+                transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-primary-500
+                ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
+              `}
+              aria-label={item.ariaLabel || `Bild ${index + 1} anzeigen`}
+              aria-selected={activeIndex === index ? 'true' : 'false'}
+              aria-controls={`${carouselId}-slide-${index}`}
+              role="tab"
+              tabIndex={0}
+              onClick={() => !disabled && goToSlide(index)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  !disabled && goToSlide(index);
+                }
+              }}
+            >
+              {thumbnails && item.content ? (
+                <div className="w-full h-full overflow-hidden object-cover rounded">
+                  {/* Thumbnail-Inhalt - hier könnte ein spezifisches Thumbnail-Rendering implementiert werden */}
+                  {typeof item.content === 'string' ? (
+                    <img src={item.content} alt={item.ariaLabel || `Bild ${index + 1}`} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      {index + 1}
+                    </div>
+                  )}
+                </div>
+              ) : null}
+            </button>
+          ))}
         </div>
       </div>
     );
   };
-  
+
   // Render-Funktion für Pause-Button
   const renderPauseButton = () => {
     if (autoPlay <= 0) return null;
@@ -538,7 +494,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
           p-2 rounded-full
           bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50
           hover:bg-opacity-75 dark:hover:bg-opacity-75
-          ${focusClasses}
+          focus:outline-none focus:ring-2 focus:ring-primary-500
           ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
         `}
         aria-label={isPaused ? "Wiedergabe starten" : "Wiedergabe pausieren"}
@@ -546,7 +502,6 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
         onClick={togglePause}
         disabled={disabled}
         tabIndex={0}
-        data-testid="carousel-pause-button"
       >
         {isPaused ? (
           <svg
@@ -563,12 +518,6 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               strokeWidth={2}
               d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
             />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
           </svg>
         ) : (
           <svg
@@ -583,15 +532,15 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              d="M10 9v6m4-6v6"
             />
           </svg>
         )}
       </button>
     );
   };
-  
-  // Render-Funktion für ARIA-Beschreibung
+
+  // Render-Funktion für die Beschreibung
   const renderDescription = () => {
     if (!ariaDescription) return null;
     
@@ -615,7 +564,6 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
       aria-roledescription="carousel"
       aria-describedby={ariaDescription ? ariaDescriptionId : undefined}
       tabIndex={0}
-      data-testid="carousel"
       {...rest}
     >
       {renderDescription()}
@@ -639,20 +587,18 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               className="flex h-full transition-transform duration-300 ease-in-out"
               style={slideTrackStyle}
               aria-live={isPaused ? "polite" : "off"}
-              data-testid="carousel-slide-track"
             >
               {items.map((item, index) => (
                 <div 
                   key={item.id}
                   id={`${carouselId}-slide-${index}`}
                   className="w-full h-full flex-shrink-0" 
-                  aria-hidden={activeIndex !== index ? 'true' : 'false'}
+                  aria-hidden={activeIndex !== index}
                   aria-label={item.ariaLabel || `Bild ${index + 1}`}
                   role="tabpanel"
                   tabIndex={activeIndex === index ? 0 : -1}
                   data-slide-index={index}
                   aria-roledescription="slide"
-                  data-testid={`carousel-slide-${index}`}
                 >
                   {item.content}
                 </div>
@@ -663,7 +609,6 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
             <div 
               className="h-full relative"
               aria-live={isPaused ? "polite" : "off"}
-              data-testid="carousel-fade-container"
             >
               {items.map((item, index) => (
                 <div 
@@ -674,13 +619,12 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
                     ${animation === 'fade' ? 'transition-opacity duration-300 ease-in-out' : ''}
                     ${activeIndex === index ? 'opacity-100 z-10' : 'opacity-0 z-0'}
                   `} 
-                  aria-hidden={activeIndex !== index ? 'true' : 'false'}
+                  aria-hidden={activeIndex !== index}
                   aria-label={item.ariaLabel || `Bild ${index + 1}`}
                   role="tabpanel"
                   tabIndex={activeIndex === index ? 0 : -1}
                   data-slide-index={index}
                   aria-roledescription="slide"
-                  data-testid={`carousel-slide-${index}`}
                 >
                   {item.content}
                 </div>
@@ -696,7 +640,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
       {renderPauseButton()}
       
       {/* Status-Anzeige für Screenreader */}
-      <div className="sr-only" aria-live="polite" data-testid="carousel-status">
+      <div className="sr-only" aria-live="polite">
         {`Bild ${activeIndex + 1} von ${totalItems}${isPaused ? ', Wiedergabe pausiert' : ''}`}
       </div>
       
