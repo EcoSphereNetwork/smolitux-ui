@@ -114,7 +114,11 @@
 - [x] Storybook-Konfiguration angepasst
   - Babel-Konfiguration für TypeScript-Unterstützung hinzugefügt
   - Addon-Konfiguration aktualisiert
-- [ ] Storybook starten und testen
+  - Babel-Plugins für TypeScript-Unterstützung installiert
+- [x] Storybook starten und testen
+  - Storybook erfolgreich mit Button-Komponente gestartet
+  - Problematische Story-Dateien ausgeschlossen
+  - Story-Dateien für Storybook 7 aktualisiert
 
 ### 3. CI/CD-Pipeline einrichten
 

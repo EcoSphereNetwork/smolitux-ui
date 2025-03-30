@@ -18,8 +18,7 @@ function getAbsolutePath(value) {
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {
   "stories": [
-    "../packages/@smolitux/*/src/**/*.mdx",
-    "../packages/@smolitux/*/src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    "../packages/@smolitux/core/src/components/Button/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   "addons": [
     getAbsolutePath('@storybook/addon-links'),
@@ -45,12 +44,8 @@ const config = {
       "propFilter": (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-typescript",
-      "@babel/preset-react"
-    ]
+  "babel": (config) => {
+    return { ...config, ...require('./babel.config.js') };
   },
   "docs": {
     "autodocs": "tag",
