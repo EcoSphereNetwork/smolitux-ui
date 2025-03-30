@@ -35,11 +35,11 @@ export interface SmartContractInteractionProps {
   /** Callback für Methodenauswahl */
   onSelectMethod?: (methodName: string) => void;
   /** Callback für Methodenaufruf */
-  onCallMethod?: (methodName: string, params: any[]) => void;
+  onCallMethod?: (methodName: string, params: unknown[]) => void;
   /** Ob ein Methodenaufruf läuft */
   isLoading?: boolean;
   /** Ergebnis des letzten Methodenaufrufs */
-  result?: any;
+  result?: unknown;
   /** Fehler des letzten Methodenaufrufs */
   error?: string;
   /** Zusätzliche CSS-Klassen */
@@ -64,7 +64,7 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
   className = '',
   style,
 }) => {
-  const [methodParams, setMethodParams] = useState<Record<string, any>>({});
+  const [methodParams, setMethodParams] = useState<Record<string, Record<string, unknown>>>({});
   const [activeTab, setActiveTab] = useState<string>('methods');
 
   const handleParamChange = (methodName: string, paramName: string, value: string) => {
@@ -105,7 +105,7 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
     }
   };
 
-  const formatResult = (result: any) => {
+  const formatResult = (result: unknown) => {
     if (result === null || result === undefined) {
       return 'No result';
     }
@@ -118,7 +118,7 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
       }
     }
 
-    return result.toString();
+    return String(result);
   };
 
   const renderMethodsList = () => (

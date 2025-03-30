@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { TokenDistributionChart } from './TokenDistributionChart';
+import { TokenDistributionChart } from '../TokenDistributionChart';
 
 describe('TokenDistributionChart', () => {
   const mockDistributionData = [

@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { TransactionHistory } from './TransactionHistory';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { TransactionHistory } from '../TransactionHistory';
 
 describe('TransactionHistory', () => {
   const mockTransactions = [
