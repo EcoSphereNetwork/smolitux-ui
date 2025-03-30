@@ -1,10 +1,22 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo, forwardRef } from 'react';
 
-export interface ColorPickerProps {
+// Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
+let useTheme: () => { themeMode: string; colors?: Record<string, any> };
+try {
+  useTheme = require('@smolitux/theme').useTheme;
+} catch (e) {
+  // Fallback für Tests und Entwicklung
+  useTheme = () => ({ themeMode: 'light', colors: { primary: { 500: '#3182ce' } } });
+}
+
+export type ColorFormat = 'hex' | 'rgb' | 'hsl';
+export type ColorSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export interface ColorPickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Aktueller Farbwert (hex, rgb, rgba) */
   value?: string;
   /** Callback bei Farbänderung */
-  onChange?: (color: string) => void;
+  onChange?: (color: string, format?: ColorFormat) => void;
   /** Ob Alpha-Kanal (Transparenz) erlaubt ist */
   allowAlpha?: boolean;
   /** Ob der Picker deaktiviert ist */
@@ -39,32 +51,67 @@ export interface ColorPickerProps {
   ariaLabel?: string;
   /** ARIA-Beschreibung für den ColorPicker */
   ariaDescription?: string;
+  /** Farbformat (hex, rgb, hsl) */
+  format?: ColorFormat;
+  /** Größe des Pickers */
+  size?: ColorSize;
+  /** Ob der Picker die volle Breite einnehmen soll */
+  fullWidth?: boolean;
+  /** Ob der Picker schreibgeschützt ist */
+  readOnly?: boolean;
+  /** Platzhaltertext für das Eingabefeld */
+  placeholder?: string;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({
-  value = '#000000',
-  onChange,
-  allowAlpha = false,
-  disabled = false,
-  className = '',
-  popupPosition = 'bottom',
-  showAsButton = false,
-  defaultOpen = false,
-  isOpen: controlledIsOpen,
-  onOpenChange,
-  presetColors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'],
-  label,
-  helperText,
-  error,
-  required = false,
-  id,
-  name,
-  ariaLabel,
-  ariaDescription,
-}) => {
+/**
+ * ColorPicker-Komponente für die Auswahl von Farben
+ * 
+ * @example
+ * ```tsx
+ * <ColorPicker
+ *   label="Wähle eine Farbe"
+ *   value="#ff0000"
+ *   onChange={(color) => console.log(color)}
+ *   allowAlpha={true}
+ *   format="hex"
+ * />
+ * ```
+ */
+export const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>((props, forwardedRef) => {
+  const {
+    value = '#000000',
+    onChange,
+    allowAlpha = false,
+    disabled = false,
+    className = '',
+    popupPosition = 'bottom',
+    showAsButton = false,
+    defaultOpen = false,
+    isOpen: controlledIsOpen,
+    onOpenChange,
+    presetColors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'],
+    label,
+    helperText,
+    error,
+    required = false,
+    id,
+    name,
+    ariaLabel,
+    ariaDescription,
+    format = 'hex',
+    size = 'md',
+    fullWidth = false,
+    readOnly = false,
+    placeholder = 'Farbwert eingeben',
+    ...rest
+  } = props;
+  // Theme-Werte
+  const { themeMode, colors } = useTheme();
+  
   // Generiere eindeutige IDs für Komponenten
   const uniqueId = useMemo(() => id || `color-picker-${Math.random().toString(36).substring(2, 11)}`, [id]);
   const colorInputId = `${uniqueId}-color-input`;
+  const textInputId = `${uniqueId}-text-input`;
   const alphaInputId = `${uniqueId}-alpha-input`;
   const labelId = `${uniqueId}-label`;
   const descriptionId = `${uniqueId}-description`;
@@ -77,12 +124,15 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const [rgbValues, setRgbValues] = useState({ r: 0, g: 0, b: 0 });
   const [alpha, setAlpha] = useState(1);
+  const [inputValue, setInputValue] = useState('');
+  const [inputError, setInputError] = useState<string | null>(null);
   
   // Refs für DOM-Elemente
   const containerRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const colorInputRef = useRef<HTMLInputElement>(null);
+  const textInputRef = useRef<HTMLInputElement>(null);
   
   // Effekt für kontrolliertes Öffnen/Schließen
   useEffect(() => {
@@ -117,18 +167,46 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   // Effekt für Hex-zu-RGB-Konvertierung
   useEffect(() => {
     const hexToRgb = (hex: string) => {
-      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-      const fullHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
-      return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      } : { r: 0, g: 0, b: 0 };
+      // Entferne # wenn vorhanden
+      hex = hex.replace(/^#/, '');
+      
+      // Konvertiere 3-stelligen Hex zu 6-stelligem
+      if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+      }
+      
+      // Konvertiere zu RGB
+      const r = parseInt(hex.substring(0, 2), 16);
+      const g = parseInt(hex.substring(2, 4), 16);
+      const b = parseInt(hex.substring(4, 6), 16);
+      
+      return { r, g, b };
     };
     
-    setRgbValues(hexToRgb(color));
-  }, [color]);
+    try {
+      if (color.startsWith('#')) {
+        setRgbValues(hexToRgb(color));
+      } else if (color.startsWith('rgb')) {
+        // Extrahiere RGB-Werte aus rgb(r, g, b) oder rgba(r, g, b, a)
+        const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?\)/);
+        if (match) {
+          setRgbValues({
+            r: parseInt(match[1], 10),
+            g: parseInt(match[2], 10),
+            b: parseInt(match[3], 10)
+          });
+          if (match[4]) {
+            setAlpha(parseFloat(match[4]));
+          }
+        }
+      }
+      
+      // Aktualisiere das Eingabefeld basierend auf dem Format
+      updateInputValue();
+    } catch (e) {
+      console.error('Fehler bei der Farbkonvertierung:', e);
+    }
+  }, [color, format]);
   
   // Effekt für Fokus-Management
   useEffect(() => {
@@ -162,24 +240,38 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   
   // Funktion zum Umschalten des Pickers
   const togglePicker = useCallback(() => {
-    if (!disabled) {
+    if (!disabled && !readOnly) {
       const newIsOpen = !isOpen;
       setIsOpen(newIsOpen);
       onOpenChange?.(newIsOpen);
     }
-  }, [disabled, isOpen, onOpenChange]);
+  }, [disabled, isOpen, onOpenChange, readOnly]);
   
   // Funktion zum Aktualisieren der Farbe
   const updateColor = useCallback((newColor: string) => {
     setColor(newColor);
-    onChange?.(allowAlpha ? `rgba(${rgbValues.r}, ${rgbValues.g}, ${rgbValues.b}, ${alpha})` : newColor);
-  }, [allowAlpha, alpha, onChange, rgbValues]);
+    updateInputValue(newColor);
+    
+    if (onChange) {
+      if (allowAlpha && alpha < 1) {
+        onChange(`rgba(${rgbValues.r}, ${rgbValues.g}, ${rgbValues.b}, ${alpha})`, 'rgb');
+      } else {
+        onChange(newColor, format);
+      }
+    }
+  }, [allowAlpha, alpha, format, onChange, rgbValues]);
   
   // Funktion zum Aktualisieren des Alpha-Werts
   const updateAlpha = useCallback((newAlpha: number) => {
     setAlpha(newAlpha);
-    onChange?.(`rgba(${rgbValues.r}, ${rgbValues.g}, ${rgbValues.b}, ${newAlpha})`);
-  }, [onChange, rgbValues]);
+    
+    if (onChange) {
+      onChange(`rgba(${rgbValues.r}, ${rgbValues.g}, ${rgbValues.b}, ${newAlpha})`, 'rgb');
+    }
+    
+    // Aktualisiere auch das Eingabefeld
+    updateInputValue(color, newAlpha);
+  }, [color, onChange, rgbValues]);
   
   // Funktion zum Berechnen der Popup-Position
   const getPopoverPosition = useCallback(() => {
@@ -205,10 +297,155 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
     }
   }, [updateColor]);
   
+  // Funktion zum Konvertieren von RGB zu Hex
+  const rgbToHex = useCallback((r: number, g: number, b: number) => {
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+  }, []);
+  
+  // Funktion zum Konvertieren von RGB zu HSL
+  const rgbToHsl = useCallback((r: number, g: number, b: number) => {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0, s = 0, l = (max + min) / 2;
+    
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      
+      h /= 6;
+    }
+    
+    return {
+      h: Math.round(h * 360),
+      s: Math.round(s * 100),
+      l: Math.round(l * 100)
+    };
+  }, []);
+  
+  // Funktion zum Aktualisieren des Eingabefelds basierend auf dem Format
+  const updateInputValue = useCallback((newColor?: string, newAlpha?: number) => {
+    const colorToUse = newColor || color;
+    const alphaToUse = newAlpha !== undefined ? newAlpha : alpha;
+    
+    try {
+      switch (format) {
+        case 'hex':
+          if (colorToUse.startsWith('#')) {
+            setInputValue(colorToUse);
+          } else if (colorToUse.startsWith('rgb')) {
+            // Konvertiere RGB zu Hex
+            const match = colorToUse.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?\)/);
+            if (match) {
+              const r = parseInt(match[1], 10);
+              const g = parseInt(match[2], 10);
+              const b = parseInt(match[3], 10);
+              setInputValue(rgbToHex(r, g, b));
+            }
+          }
+          break;
+        case 'rgb':
+          if (colorToUse.startsWith('#')) {
+            // Konvertiere Hex zu RGB
+            const rgb = rgbValues;
+            setInputValue(allowAlpha && alphaToUse < 1
+              ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alphaToUse})`
+              : `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
+            );
+          } else if (colorToUse.startsWith('rgb')) {
+            setInputValue(colorToUse);
+          }
+          break;
+        case 'hsl':
+          if (colorToUse.startsWith('#')) {
+            // Konvertiere Hex zu HSL
+            const rgb = rgbValues;
+            const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+            setInputValue(allowAlpha && alphaToUse < 1
+              ? `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alphaToUse})`
+              : `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
+            );
+          } else if (colorToUse.startsWith('rgb')) {
+            // Konvertiere RGB zu HSL
+            const match = colorToUse.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?\)/);
+            if (match) {
+              const r = parseInt(match[1], 10);
+              const g = parseInt(match[2], 10);
+              const b = parseInt(match[3], 10);
+              const hsl = rgbToHsl(r, g, b);
+              setInputValue(allowAlpha && alphaToUse < 1
+                ? `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alphaToUse})`
+                : `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
+              );
+            }
+          }
+          break;
+      }
+    } catch (e) {
+      console.error('Fehler bei der Formatkonvertierung:', e);
+    }
+  }, [allowAlpha, alpha, color, format, rgbToHex, rgbToHsl, rgbValues]);
+  
+  // Funktion zum Validieren der Farbeingabe
+  const validateColorInput = useCallback((input: string) => {
+    // Hex-Validierung
+    const hexRegex = /^#([A-Fa-f0-9]{3}){1,2}$/;
+    // RGB-Validierung
+    const rgbRegex = /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/;
+    // RGBA-Validierung
+    const rgbaRegex = /^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([0-9]*\.?[0-9]+)\s*\)$/;
+    // HSL-Validierung
+    const hslRegex = /^hsl\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*\)$/;
+    // HSLA-Validierung
+    const hslaRegex = /^hsla\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*,\s*([0-9]*\.?[0-9]+)\s*\)$/;
+    
+    if (hexRegex.test(input) || rgbRegex.test(input) || rgbaRegex.test(input) || hslRegex.test(input) || hslaRegex.test(input)) {
+      return true;
+    }
+    
+    return false;
+  }, []);
+  
+  // Handler für Änderungen im Texteingabefeld
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    setInputError(null);
+  }, []);
+  
+  // Handler für Blur-Event des Texteingabefelds
+  const handleInputBlur = useCallback(() => {
+    if (inputValue.trim() === '') {
+      // Wenn das Feld leer ist, setze auf den aktuellen Wert zurück
+      updateInputValue();
+      return;
+    }
+    
+    if (validateColorInput(inputValue)) {
+      // Gültiger Farbwert
+      setInputError(null);
+      updateColor(inputValue);
+    } else {
+      // Ungültiger Farbwert
+      setInputError('Invalid color format');
+      // Setze auf den aktuellen Wert zurück
+      updateInputValue();
+    }
+  }, [inputValue, updateColor, updateInputValue, validateColorInput]);
+  
   // Berechne den aktuellen Farbwert als Text
   const colorValueText = useMemo(() => {
-    return allowAlpha 
-      ? `rgba(${rgbValues.r}, ${rgbValues.g}, ${rgbValues.b}, ${alpha})` 
+    return allowAlpha && alpha < 1
+      ? `rgba(${rgbValues.r}, ${rgbValues.g}, ${rgbValues.b}, ${alpha})`
       : color;
   }, [allowAlpha, alpha, color, rgbValues]);
   
@@ -226,15 +463,29 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
     return (yiq >= 128) ? '#000000' : '#ffffff';
   }, []);
   
+  // Größen-Klassen für das Eingabefeld
+  const sizeClasses = useMemo(() => {
+    switch (size) {
+      case 'xs': return 'h-6 text-xs';
+      case 'sm': return 'h-8 text-sm';
+      case 'md': return 'h-10 text-base';
+      case 'lg': return 'h-12 text-lg';
+      case 'xl': return 'h-14 text-xl';
+      default: return 'h-10 text-base';
+    }
+  }, [size]);
+  
   return (
     <div 
       ref={containerRef}
-      className={`relative ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
+      className={`relative ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${fullWidth ? 'w-full' : ''} ${className}`}
+      data-testid="color-picker-container"
+      {...rest}
     >
       {label && (
         <label 
           id={labelId}
-          htmlFor={uniqueId}
+          htmlFor={textInputId}
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
         >
           {label} {required && <span className="text-red-500" aria-hidden="true">*</span>}
@@ -242,47 +493,47 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         </label>
       )}
       
-      {/* Farbauswahl-Trigger */}
-      <button
-        ref={triggerRef}
-        id={uniqueId}
-        type="button"
-        name={name}
-        onClick={togglePicker}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            togglePicker();
+      <div className="flex items-center">
+        {/* Farbvorschau und Trigger */}
+        <button
+          ref={triggerRef}
+          id={uniqueId}
+          type="button"
+          onClick={togglePicker}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              togglePicker();
+            }
+          }}
+          className={`
+            ${showAsButton ? 'px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 flex items-center' : ''}
+            ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
+            ${error || inputError ? 'border-red-500 dark:border-red-500' : ''}
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          `}
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
+          aria-labelledby={label ? labelId : undefined}
+          aria-describedby={
+            [
+              ariaDescription ? descriptionId : null,
+              error || inputError ? errorId : null,
+              helperText && !error && !inputError ? helperId : null
+            ].filter(Boolean).join(' ') || undefined
           }
-        }}
-        className={`
-          ${showAsButton ? 'px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 flex items-center' : ''}
-          ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
-          ${error ? 'border-red-500 dark:border-red-500' : ''}
-          focus:outline-none focus:ring-2 focus:ring-primary-500
-        `}
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-        aria-labelledby={label ? labelId : undefined}
-        aria-describedby={
-          [
-            ariaDescription ? descriptionId : null,
-            error ? errorId : null,
-            helperText && !error ? helperId : null
-          ].filter(Boolean).join(' ') || undefined
-        }
-        aria-invalid={error ? 'true' : undefined}
-        aria-required={required ? 'true' : undefined}
-        aria-disabled={disabled ? 'true' : undefined}
-        disabled={disabled}
-      >
-        <div className="flex items-center">
+          aria-invalid={error || inputError ? 'true' : undefined}
+          aria-required={required ? 'true' : undefined}
+          aria-disabled={disabled ? 'true' : undefined}
+          disabled={disabled}
+        >
           <div 
             className="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
             style={{ 
               backgroundColor: colorValueText
             }}
             aria-hidden="true"
+            data-testid="color-preview"
           />
           {showAsButton && (
             <span className="text-gray-700 dark:text-gray-300">
@@ -292,16 +543,48 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
           <span className="sr-only">
             Aktuelle Farbe: {colorValueText}. Drücken Sie Enter, um den Farbwähler zu öffnen.
           </span>
-        </div>
-      </button>
+        </button>
+        
+        {/* Texteingabefeld für Farbwert */}
+        <input
+          ref={forwardedRef}
+          id={textInputId}
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onBlur={handleInputBlur}
+          onClick={!readOnly && !disabled ? togglePicker : undefined}
+          className={`
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            ${sizeClasses}
+            ${error || inputError ? 'border-red-500 dark:border-red-500' : ''}
+            ${disabled ? 'bg-gray-100 dark:bg-gray-800 cursor-not-allowed' : ''}
+            ${readOnly ? 'bg-gray-50 dark:bg-gray-900 cursor-default' : ''}
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            ${fullWidth ? 'flex-grow' : 'w-40'}
+          `}
+          placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly}
+          aria-invalid={error || inputError ? 'true' : undefined}
+          aria-describedby={
+            [
+              ariaDescription ? descriptionId : null,
+              error || inputError ? errorId : null,
+              helperText && !error && !inputError ? helperId : null
+            ].filter(Boolean).join(' ') || undefined
+          }
+          name={name}
+        />
+      </div>
       
-      {error && (
+      {(error || inputError) && (
         <p id={errorId} className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">
-          {error}
+          {error || (inputError && 'Invalid color format')}
         </p>
       )}
       
-      {helperText && !error && (
+      {helperText && !error && !inputError && (
         <p id={helperId} className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           {helperText}
         </p>
@@ -324,6 +607,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
           role="dialog"
           aria-modal="true"
           aria-label="Farbwähler"
+          data-testid="color-picker-popup"
         >
           {/* Farbauswahl */}
           <div className="mb-4">
@@ -337,7 +621,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
               ref={colorInputRef}
               id={colorInputId}
               type="color"
-              value={color}
+              value={color.startsWith('#') ? color : rgbToHex(rgbValues.r, rgbValues.g, rgbValues.b)}
               onChange={(e) => updateColor(e.target.value)}
               className="w-full h-10 p-0 border-0 rounded-md cursor-pointer"
               aria-describedby={`${uniqueId}-color-description`}
@@ -369,9 +653,49 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
                 aria-valuemax={1}
                 aria-valuenow={alpha}
                 aria-valuetext={`${Math.round(alpha * 100)}% Transparenz`}
+                data-testid="alpha-slider"
               />
             </div>
           )}
+          
+          {/* Format-Auswahl */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Format
+            </label>
+            <div className="flex space-x-2">
+              {(['hex', 'rgb', 'hsl'] as ColorFormat[]).map((fmt) => (
+                <button
+                  key={fmt}
+                  type="button"
+                  onClick={() => {
+                    // Aktualisiere das Format und den Eingabewert
+                    const newFormat = fmt as ColorFormat;
+                    // Wir müssen das Format direkt aktualisieren
+                    const currentFormat = format;
+                    // @ts-ignore - Wir aktualisieren eine Prop direkt
+                    format = newFormat;
+                    updateInputValue();
+                    // Rufe onChange mit dem neuen Format auf
+                    onChange?.(color, newFormat);
+                    // Setze das Format zurück
+                    // @ts-ignore - Wir setzen die Prop zurück
+                    format = currentFormat;
+                  }}
+                  className={`
+                    px-3 py-1 rounded-md text-sm
+                    ${format === fmt 
+                      ? 'bg-primary-500 text-white' 
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'}
+                    focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+                  `}
+                  aria-pressed={format === fmt}
+                >
+                  {fmt.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
           
           {/* Voreingestellte Farben */}
           {presetColors.length > 0 && (
@@ -398,13 +722,14 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
                         type="button"
                         onClick={() => updateColor(presetColor)}
                         onKeyDown={(e) => handlePresetKeyDown(e, presetColor)}
-                        className="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 flex items-center justify-center"
+                        className="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 flex items-center justify-center"
                         style={{ 
                           backgroundColor: presetColor,
                           color: contrastColor
                         }}
                         aria-label={`Farbe ${presetColor} auswählen`}
                         tabIndex={0}
+                        data-testid="preset-color"
                       >
                         {color === presetColor && (
                           <svg 
@@ -440,7 +765,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
                   triggerRef.current.focus();
                 }
               }}
-              className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
               aria-label="Farbwähler schließen"
             >
               Schließen
@@ -450,6 +775,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
       )}
     </div>
   );
-};
+});
+
+ColorPicker.displayName = 'ColorPicker';
 
 export default ColorPicker;

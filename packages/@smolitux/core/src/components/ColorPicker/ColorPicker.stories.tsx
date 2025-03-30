@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import ColorPicker from './ColorPicker';
 
 const meta: Meta<typeof ColorPicker> = {
