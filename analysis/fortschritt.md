@@ -165,7 +165,15 @@
      - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
      - Unterstützung für benutzerdefinierte Klassen
      - Alle Tests erfolgreich
-   - ColorPicker
+   - [x] ColorPicker
+     - Implementiertes Texteingabefeld für manuelle Farbeingabe
+     - Unterstützung für verschiedene Farbformate (hex, rgb, hsl)
+     - Implementierte Größenunterstützung (xs, sm, md, lg, xl)
+     - Verbesserte Barrierefreiheit mit focus-visible
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Korrigierte Ref-Weiterleitung an das Eingabefeld
+     - Optimierte Komponenten-Struktur und Performance
+     - Alle Tests erfolgreich
    - DatePicker
    - Dialog
    - Drawer
