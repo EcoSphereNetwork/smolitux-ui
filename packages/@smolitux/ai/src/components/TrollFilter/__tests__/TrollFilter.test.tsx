@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { TrollFilter } from './TrollFilter';
+import { TrollFilter } from '../TrollFilter';
 
 describe('TrollFilter', () => {
   const mockOnFilter = jest.fn();

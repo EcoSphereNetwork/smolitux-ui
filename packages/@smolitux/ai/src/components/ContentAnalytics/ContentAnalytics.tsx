@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Button, TabView } from '@smolitux/core';
 
 export interface AnalyticsMetric {
@@ -15,7 +15,7 @@ export interface AnalyticsMetric {
   /** Beschreibung der Metrik */
   description?: string;
   /** Zusätzliche Metadaten zur Metrik */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface AnalyticsTimeSeries {
@@ -35,7 +35,7 @@ export interface AnalyticsTimeSeries {
   /** Beschreibung der Zeitreihe */
   description?: string;
   /** Zusätzliche Metadaten zur Zeitreihe */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface AnalyticsSegment {
@@ -48,7 +48,7 @@ export interface AnalyticsSegment {
   /** Beschreibung des Segments */
   description?: string;
   /** Zusätzliche Metadaten zum Segment */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface AnalyticsInsight {
@@ -61,7 +61,7 @@ export interface AnalyticsInsight {
   /** Zeitpunkt des Insights */
   timestamp: Date;
   /** Zusätzliche Metadaten zum Insight */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface ContentAnalyticsProps {
@@ -479,7 +479,7 @@ export const ContentAnalytics: React.FC<ContentAnalyticsProps> = ({
             { id: 'insights', label: 'Insights' },
           ]}
           activeTab={activeTab}
-          onChange={tab => setActiveTab(tab as any)}
+          onChange={tab => setActiveTab(tab as string)}
         />
       </div>
       

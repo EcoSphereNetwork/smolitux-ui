@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Button, ProgressBar, Tooltip } from '@smolitux/core';
 
 export interface EngagementMetric {
@@ -140,7 +140,6 @@ export const EngagementScore: React.FC<EngagementScoreProps> = ({
     }
     
     const ratio = metric.value / metric.benchmark;
-    const threshold = metric.higherIsBetter !== false ? 1 : 1;
     
     if (metric.higherIsBetter !== false) {
       if (ratio >= 1.5) return 'text-green-500 dark:text-green-400';
