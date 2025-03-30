@@ -157,7 +157,14 @@
      - Verbesserte Barrierefreiheit mit zusätzlichen ARIA-Attributen
      - Unterstützung für benutzerdefinierte Größen und Farben
      - Alle Tests erfolgreich
-   - Carousel
+   - [x] Carousel
+     - Verbesserter Theme-Import und Fallback-Mechanismus
+     - Hinzugefügte data-testid-Attribute für bessere Testbarkeit
+     - Verbesserte Barrierefreiheit mit focus-visible
+     - Optimierte Komponenten-Struktur und Performance
+     - Korrigierte Tests für Kompatibilität mit der verbesserten Komponente
+     - Unterstützung für benutzerdefinierte Klassen
+     - Alle Tests erfolgreich
    - ColorPicker
    - DatePicker
    - Dialog
