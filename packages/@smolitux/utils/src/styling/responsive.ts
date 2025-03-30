@@ -14,7 +14,7 @@ export const createMediaQuery = (breakpoint: keyof typeof breakpoints | string) 
 };
 
 // Responsive style creator
-export const responsive = <T extends Record<string, any>>(
+export const responsive = <T extends Record<string, unknown>>(
   styles: T,
   breakpoint: keyof typeof breakpoints | string
 ) => {
@@ -23,18 +23,18 @@ export const responsive = <T extends Record<string, any>>(
 };
 
 // Responsive utilities
-export const sm = <T extends Record<string, any>>(styles: T) => responsive(styles, 'sm');
-export const md = <T extends Record<string, any>>(styles: T) => responsive(styles, 'md');
-export const lg = <T extends Record<string, any>>(styles: T) => responsive(styles, 'lg');
-export const xl = <T extends Record<string, any>>(styles: T) => responsive(styles, 'xl');
-export const xxl = <T extends Record<string, any>>(styles: T) => responsive(styles, '2xl');
+export const sm = <T extends Record<string, unknown>>(styles: T) => responsive(styles, 'sm');
+export const md = <T extends Record<string, unknown>>(styles: T) => responsive(styles, 'md');
+export const lg = <T extends Record<string, unknown>>(styles: T) => responsive(styles, 'lg');
+export const xl = <T extends Record<string, unknown>>(styles: T) => responsive(styles, 'xl');
+export const xxl = <T extends Record<string, unknown>>(styles: T) => responsive(styles, '2xl');
 
 // Create responsive object with all breakpoints
 export const createResponsiveStyles = <T>(
   property: string,
   values: { base?: T; sm?: T; md?: T; lg?: T; xl?: T; '2xl'?: T }
 ) => {
-  const styles: Record<string, any> = {};
+  const styles: Record<string, unknown> = {};
   
   if (values.base !== undefined) {
     styles[property] = values.base;
