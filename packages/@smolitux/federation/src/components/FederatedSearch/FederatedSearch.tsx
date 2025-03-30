@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Input, Button, Card } from '@smolitux/core';
-import { FederatedPlatform, SearchResult, FederatedSearchProps } from '../../types';
+import { SearchResult, FederatedSearchProps } from '../../types';
 
 /**
  * FederatedSearch-Komponente für die Suche über mehrere föderierte Plattformen
