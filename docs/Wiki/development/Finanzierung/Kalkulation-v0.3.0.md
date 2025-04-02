@@ -41,6 +41,12 @@ Basierend auf der aktualisierten Roadmap und dem aktuellen Entwicklungsstand kon
 - Implementierung neuer Komponenten für das ResonanceLink-Ökosystem
 - Integration mit dem ResonanceLink-Backend
 
+### 5. Implementierung der Sprachsteuerungsfunktionalität
+- Entwicklung der Grundinfrastruktur für Sprachsteuerung (@smolitux/voice-control)
+- Integration in ausgewählte Kernkomponenten
+- Unterstützung für Web Speech API und TensorFlow.js
+- Barrierefreiheitsverbesserungen durch Sprachsteuerung
+
 ## Detaillierte Arbeitsaufwandsschätzung
 
 ### 1. Verbesserung der Testabdeckung
@@ -89,6 +95,16 @@ Basierend auf der aktualisierten Roadmap und dem aktuellen Entwicklungsstand kon
 | Governance-Komponenten | 5 | 22 | 11 | 6 | 44 |
 | **Gesamt für Resonance** | **16** | **76** | **38** | **22** | **152** |
 
+### 5. Implementierung der Sprachsteuerungsfunktionalität
+
+| Komponente | Design & Planung | Implementierung | Tests | Dokumentation | Gesamt |
+|------------|------------------|----------------|-------|---------------|--------|
+| Grundinfrastruktur | 10 | 40 | 20 | 10 | 80 |
+| Web Speech API Integration | 5 | 20 | 10 | 5 | 40 |
+| TensorFlow.js Integration | 8 | 30 | 15 | 7 | 60 |
+| Komponenten-Integration | 7 | 35 | 18 | 10 | 70 |
+| **Gesamt für Sprachsteuerung** | **30** | **125** | **63** | **32** | **250** |
+
 ### Gesamtaufwand für Version 0.3.0
 
 | Bereich | Stunden |
@@ -97,78 +113,92 @@ Basierend auf der aktualisierten Roadmap und dem aktuellen Entwicklungsstand kon
 | Verbesserung der Barrierefreiheit | 180 |
 | Verbesserung der Dokumentation | 230 |
 | Erweiterung der @smolitux/resonance-Komponenten | 152 |
-| **Gesamtstunden** | **982** |
+| Implementierung der Sprachsteuerungsfunktionalität | 250 |
+| **Gesamtstunden** | **1.232** |
 
 ## Zeitplanung
 
 Basierend auf der bisherigen Entwicklungsgeschwindigkeit und dem aktuellen Entwicklungsstand:
 
-- **Gesamtstunden**: 982 Stunden
+- **Gesamtstunden**: 1.232 Stunden
 - **Entwicklungsgeschwindigkeit**: 40 Stunden pro Woche pro Entwickler
-- **Entwicklungsdauer mit 1 Entwickler**: 982 Stunden / 40 Stunden pro Woche = **24,55 Wochen**
+- **Entwicklungsdauer mit 1 Entwickler**: 1.232 Stunden / 40 Stunden pro Woche = **30,8 Wochen**
 
 Unter Berücksichtigung von:
 - Unvorhergesehenen Problemen und Verzögerungen (+15%)
 - Integration und Kompatibilitätstests
 - Code-Reviews und Qualitätssicherung
 
-Realistische Gesamtentwicklungszeit mit 1 Entwickler: **28 Wochen** (ca. 7 Monate)
+Realistische Gesamtentwicklungszeit mit 1 Entwickler: **35 Wochen** (ca. 8-9 Monate)
 
 ### Optimierte Zeitplanung mit erweitertem Entwicklerteam
 
 #### Phase 1: Wochen 1-4 (2 Entwickler)
-- **Fokus**: A11y-Tests für Kernkomponenten und Layout-Komponenten
+- **Fokus**: 
+  - A11y-Tests für Kernkomponenten und Layout-Komponenten
+  - Grundinfrastruktur für Sprachsteuerung (@smolitux/voice-control)
 - **Arbeitsstunden**: 320 Stunden (40 Stunden/Woche × 4 Wochen × 2 Entwickler)
 
-#### Phase 2: Wochen 5-8 (3 Entwickler)
-- **Fokus**: Snapshot-Tests, Integrationstests, Performance-Tests und Barrierefreiheitsverbesserungen
-- **Arbeitsstunden**: 480 Stunden (40 Stunden/Woche × 4 Wochen × 3 Entwickler)
+#### Phase 2: Wochen 5-9 (3 Entwickler)
+- **Fokus**: 
+  - Snapshot-Tests, Integrationstests, Performance-Tests
+  - Barrierefreiheitsverbesserungen
+  - Web Speech API Integration und Komponenten-Integration für Sprachsteuerung
+- **Arbeitsstunden**: 600 Stunden (40 Stunden/Woche × 5 Wochen × 3 Entwickler)
 
-#### Phase 3: Wochen 9-12 (2 Entwickler)
-- **Fokus**: Dokumentation und @smolitux/resonance-Komponenten
-- **Arbeitsstunden**: 320 Stunden (40 Stunden/Woche × 4 Wochen × 2 Entwickler)
+#### Phase 3: Wochen 10-14 (2 Entwickler)
+- **Fokus**: 
+  - Dokumentation und @smolitux/resonance-Komponenten
+  - TensorFlow.js Integration für Sprachsteuerung
+- **Arbeitsstunden**: 400 Stunden (40 Stunden/Woche × 5 Wochen × 2 Entwickler)
 
-**Gesamtdauer mit erweitertem Team**: 12 Wochen (3 Monate)
-**Zeitersparnis**: 16 Wochen (57%)
+**Gesamtdauer mit erweitertem Team**: 14 Wochen (3,5 Monate)
+**Zeitersparnis**: 21 Wochen (60%)
 
 ## Kostenvoranschlag
 
 ### KI-Tool-Kosten
 - **Kosten pro Stunde**: 15€/Stunde
-- **Gesamtkosten für KI-Tools**: 982 Stunden × 15€/Stunde = **14.730€**
+- **Gesamtkosten für KI-Tools**: 1.232 Stunden × 15€/Stunde = **18.480€**
 
 ### Entwicklerkosten (zusätzlich zu KI-Tools)
 - **Phase 1 (1 zusätzlicher Entwickler)**: 160 Stunden × 60€/Stunde = 9.600€
-- **Phase 2 (2 zusätzliche Entwickler)**: 320 Stunden × 60€/Stunde = 19.200€
-- **Phase 3 (1 zusätzlicher Entwickler)**: 160 Stunden × 60€/Stunde = 9.600€
-- **Gesamt Entwicklerkosten**: 38.400€
+- **Phase 2 (2 zusätzliche Entwickler)**: 400 Stunden × 60€/Stunde = 24.000€
+- **Phase 3 (1 zusätzlicher Entwickler)**: 200 Stunden × 60€/Stunde = 12.000€
+- **Gesamt Entwicklerkosten**: 45.600€
 
 ### Weitere Kosten
-- **Externe APIs und Services**: 1.000€
-- **Infrastruktur und Tools**: 800€
+- **Externe APIs und Services**: 1.500€ (inkl. Speech Recognition APIs)
+- **Infrastruktur und Tools**: 1.000€
+- **TensorFlow.js Modelltraining**: 800€
 
 ### Gesamtkostenaufstellung
 
 | Kostenfaktor | Betrag (€) |
 |--------------|------------|
-| KI-Tools | 14.730 |
-| Zusätzliche Entwickler | 38.400 |
-| Externe APIs und Services | 1.000 |
-| Infrastruktur und Tools | 800 |
-| **Gesamtkosten** | **54.930€** |
+| KI-Tools | 18.480 |
+| Zusätzliche Entwickler | 45.600 |
+| Externe APIs und Services | 1.500 |
+| Infrastruktur und Tools | 1.000 |
+| TensorFlow.js Modelltraining | 800 |
+| **Gesamtkosten** | **67.380€** |
 
 ## Meilensteinplanung
 
 | Meilenstein | Beschreibung | Zeitraum |
 |-------------|--------------|----------|
 | A11y-Tests (Kern) | A11y-Tests für Kernkomponenten | Ende Woche 2 |
+| Voice-Control Grundinfrastruktur | Basisarchitektur für Sprachsteuerung | Ende Woche 3 |
 | A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten | Ende Woche 4 |
 | Snapshot-Tests | Snapshot-Tests für alle Komponenten | Ende Woche 6 |
+| Voice-Control Web Speech API | Integration der Web Speech API | Ende Woche 7 |
 | Integrationstests | Integrationstests für komplexe Komponenten | Ende Woche 8 |
-| Barrierefreiheit | Verbesserung der Barrierefreiheit für alle Komponenten | Ende Woche 8 |
-| Dokumentation | Vollständige Dokumentation für alle Komponenten | Ende Woche 10 |
-| Resonance-Komponenten | Implementierung der @smolitux/resonance-Komponenten | Ende Woche 12 |
-| Release 0.3.0 | Finalisierung und Release | Ende Woche 12 |
+| Barrierefreiheit | Verbesserung der Barrierefreiheit für alle Komponenten | Ende Woche 9 |
+| Voice-Control Komponenten-Integration | Integration in ausgewählte Kernkomponenten | Ende Woche 9 |
+| Dokumentation | Vollständige Dokumentation für alle Komponenten | Ende Woche 11 |
+| Resonance-Komponenten | Implementierung der @smolitux/resonance-Komponenten | Ende Woche 13 |
+| Voice-Control TensorFlow.js | Integration von TensorFlow.js | Ende Woche 13 |
+| Release 0.3.0 | Finalisierung und Release | Ende Woche 14 |
 
 ## Vorteile der Investition in Version 0.3.0
 
@@ -176,7 +206,9 @@ Realistische Gesamtentwicklungszeit mit 1 Entwickler: **28 Wochen** (ca. 7 Monat
 2. **Höhere Codequalität**: Umfassende Testabdeckung sorgt für stabilere und zuverlässigere Komponenten
 3. **Bessere Dokumentation**: Erleichtert die Nutzung und Integration der Bibliothek für Entwickler
 4. **Erweiterte Funktionalität**: Neue Komponenten für das ResonanceLink-Ökosystem
-5. **Schnellere Markteinführung**: Durch parallele Entwicklung mit erweitertem Team
+5. **Innovative Sprachsteuerung**: Differenzierungsmerkmal gegenüber anderen UI-Bibliotheken
+6. **Verbesserte Benutzererfahrung**: Alternative Eingabemethoden für verschiedene Anwendungsfälle
+7. **Schnellere Markteinführung**: Durch parallele Entwicklung mit erweitertem Team
 
 ## Risiken und Herausforderungen
 
@@ -192,10 +224,17 @@ Realistische Gesamtentwicklungszeit mit 1 Entwickler: **28 Wochen** (ca. 7 Monat
    - Mehr Entwickler erfordern mehr Koordination und Kommunikation
    - Mögliche Einarbeitungszeit für neue Teammitglieder
 
+4. **Technische Herausforderungen bei der Sprachsteuerung**:
+   - Browserkompatibilität der Web Speech API
+   - Leistungsoptimierung für TensorFlow.js
+   - Genauigkeit der Spracherkennung in verschiedenen Umgebungen
+
 ## Fazit
 
-Die Entwicklung von Smolitux-UI Version 0.3.0 ist ein umfangreiches Projekt mit Fokus auf Qualität, Barrierefreiheit und erweiterte Funktionalität. Mit einem erweiterten Entwicklerteam kann die Entwicklungszeit von 7 Monaten auf 3 Monate reduziert werden, was eine schnellere Markteinführung ermöglicht.
+Die Entwicklung von Smolitux-UI Version 0.3.0 ist ein umfangreiches Projekt mit Fokus auf Qualität, Barrierefreiheit und erweiterte Funktionalität. Mit einem erweiterten Entwicklerteam kann die Entwicklungszeit von 8-9 Monaten auf 3,5 Monate reduziert werden, was eine schnellere Markteinführung ermöglicht.
 
-Die Gesamtkosten von ca. 55.000€ stellen eine signifikante Investition dar, die sich jedoch durch verbesserte Qualität, Zugänglichkeit und Funktionalität der Bibliothek rechtfertigt. Die Erweiterung um @smolitux/resonance-Komponenten schafft zudem einen direkten Mehrwert für das ResonanceLink-Ökosystem.
+Die Gesamtkosten von ca. 67.380€ stellen eine signifikante Investition dar, die sich jedoch durch verbesserte Qualität, Zugänglichkeit und innovative Funktionalität der Bibliothek rechtfertigt. Die Erweiterung um @smolitux/resonance-Komponenten schafft einen direkten Mehrwert für das ResonanceLink-Ökosystem, während die Implementierung der Sprachsteuerungsfunktionalität ein wichtiges Differenzierungsmerkmal gegenüber anderen UI-Bibliotheken darstellt.
+
+Die stufenweise Implementierung der Sprachsteuerung parallel zu den Barrierefreiheitsverbesserungen schafft Synergien und ermöglicht eine natürlichere Integration in die Komponentenarchitektur. Durch die frühzeitige Berücksichtigung der Sprachsteuerungsanforderungen im Komponentendesign wird eine konsistente Benutzererfahrung über alle Komponenten hinweg gewährleistet.
 
 Durch die phasenweise Entwicklung und klare Meilensteine kann der Fortschritt kontinuierlich überwacht und bei Bedarf angepasst werden, um sicherzustellen, dass die Ziele der Version 0.3.0 erreicht werden.
