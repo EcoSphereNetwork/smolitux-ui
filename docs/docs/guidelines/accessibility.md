@@ -1,140 +1,161 @@
----
-sidebar_position: 1
----
+# Barrierefreiheit-Richtlinien für Smolitux UI
 
-# Zugänglichkeitsrichtlinien
+## Einführung
 
-Diese Richtlinien beschreiben, wie Smolitux-UI-Komponenten entwickelt werden, um Zugänglichkeit (Accessibility) zu gewährleisten.
+Barrierefreiheit ist ein wesentlicher Bestandteil der Smolitux UI Bibliothek. Wir streben danach, alle Komponenten gemäß den WCAG 2.1 AA-Standards zu entwickeln, um sicherzustellen, dass unsere Benutzeroberflächen für alle Menschen zugänglich sind, unabhängig von ihren Fähigkeiten oder der Art, wie sie mit digitalen Inhalten interagieren.
 
-## Übersicht
-
-Smolitux-UI strebt die Einhaltung der WCAG 2.1 AA-Richtlinien an. Alle Komponenten werden entwickelt, um für alle Benutzer zugänglich zu sein, unabhängig von ihren Fähigkeiten oder der Art, wie sie mit der Anwendung interagieren.
+Diese Richtlinien sollen Entwicklern helfen, barrierefreie Komponenten zu erstellen und zu verwenden.
 
 ## Grundprinzipien
 
-### 1. Wahrnehmbarkeit
+Wir folgen den vier Grundprinzipien der WCAG:
 
-- **Textuelle Alternativen**: Alle nicht-textlichen Inhalte haben textuelle Alternativen
-- **Anpassbare Darstellung**: Inhalte können ohne Informationsverlust angepasst werden
-- **Unterscheidbarkeit**: Inhalte sind leicht zu sehen und zu hören
+1. **Wahrnehmbar**: Informationen und Benutzeroberflächen müssen für die Benutzer wahrnehmbar sein.
+2. **Bedienbar**: Benutzeroberflächen und Navigation müssen bedienbar sein.
+3. **Verständlich**: Informationen und die Bedienung der Benutzeroberfläche müssen verständlich sein.
+4. **Robust**: Inhalte müssen robust genug sein, um von einer Vielzahl von Benutzeragenten, einschließlich assistiver Technologien, zuverlässig interpretiert werden zu können.
 
-### 2. Bedienbarkeit
+## Checkliste für Komponenten
 
-- **Tastaturzugänglichkeit**: Alle Funktionen sind über die Tastatur verfügbar
-- **Ausreichend Zeit**: Benutzer haben ausreichend Zeit, Inhalte zu lesen und zu verwenden
-- **Navigationshilfen**: Benutzer können leicht navigieren und finden, was sie suchen
+Jede Komponente in der Smolitux UI Bibliothek sollte die folgenden Kriterien erfüllen:
 
-### 3. Verständlichkeit
+### Semantische Struktur
 
-- **Lesbarkeit**: Inhalte sind lesbar und verständlich
-- **Vorhersehbarkeit**: Webseiten erscheinen und funktionieren auf vorhersehbare Weise
-- **Eingabehilfe**: Benutzer werden bei der Vermeidung und Korrektur von Fehlern unterstützt
+- Verwende semantisch korrekte HTML-Elemente (z.B. `<button>` für Schaltflächen, `<a>` für Links).
+- Stelle sicher, dass die Komponentenhierarchie logisch ist und der natürlichen Dokumentstruktur folgt.
+- Verwende ARIA-Attribute nur dann, wenn native HTML-Semantik nicht ausreicht.
 
-### 4. Robustheit
+### Tastaturzugänglichkeit
 
-- **Kompatibilität**: Inhalte sind mit aktuellen und zukünftigen Benutzeragenten kompatibel
-
-## Implementierungsrichtlinien
-
-### Semantisches HTML
-
-- Verwenden Sie semantische HTML-Elemente (`button`, `a`, `nav`, `header`, etc.)
-- Vermeiden Sie div-Soup und verwenden Sie stattdessen bedeutungsvolle Elemente
-
-```jsx
-// Gut
-<button onClick={handleClick}>Klick mich</button>
-
-// Schlecht
-<div onClick={handleClick}>Klick mich</div>
-```
-
-### ARIA-Attribute
-
-- Verwenden Sie ARIA-Attribute, wenn semantisches HTML nicht ausreicht
-- Folgen Sie dem ARIA-Authoring-Practices-Guide
-
-```jsx
-<div 
-  role="button" 
-  aria-pressed={isPressed} 
-  tabIndex={0}
-  onClick={handleClick}
-  onKeyDown={handleKeyDown}
->
-  Klick mich
-</div>
-```
-
-### Fokus-Management
-
-- Stellen Sie sicher, dass der Fokus sichtbar ist
-- Implementieren Sie eine logische Fokus-Reihenfolge
-- Verwalten Sie den Fokus bei modalen Dialogen und anderen interaktiven Elementen
-
-```jsx
-// Fokus-Styles
-const Button = styled.button`
-  &:focus {
-    outline: 2px solid #0066cc;
-    outline-offset: 2px;
-  }
-`;
-```
+- Alle interaktiven Elemente müssen mit der Tastatur bedienbar sein.
+- Die Tabulatorreihenfolge muss logisch und vorhersehbar sein.
+- Fokusindikatoren müssen deutlich sichtbar sein.
+- Tastaturkurzbefehle sollten dokumentiert und anpassbar sein.
 
 ### Farbe und Kontrast
 
-- Verwenden Sie nicht nur Farbe, um Informationen zu vermitteln
-- Stellen Sie sicher, dass Text einen Kontrastverhältnis von mindestens 4,5:1 hat
-- Stellen Sie sicher, dass UI-Komponenten einen Kontrastverhältnis von mindestens 3:1 haben
+- Texte müssen einen Kontrastverhältnis von mindestens 4,5:1 haben (für normale Texte) und 3:1 (für große Texte).
+- Informationen dürfen nicht ausschließlich durch Farbe vermittelt werden.
+- Interaktive Elemente müssen einen Kontrastverhältnis von mindestens 3:1 zum Hintergrund haben.
 
-### Responsive Design
+### Textgrößen und Abstände
 
-- Stellen Sie sicher, dass die Komponenten bei verschiedenen Viewport-Größen funktionieren
-- Unterstützen Sie Zoom bis zu 200% ohne Verlust von Inhalt oder Funktionalität
+- Text sollte auf 200% vergrößert werden können, ohne dass Funktionalität verloren geht.
+- Interaktive Elemente sollten ausreichend Abstand haben, um versehentliche Aktivierungen zu vermeiden.
+- Zeilenabstände sollten mindestens 1,5-fach sein, Absatzabstände mindestens 2-fach.
 
-### Screenreader-Unterstützung
+### Formulare und Eingaben
 
-- Testen Sie mit Screenreadern (NVDA, JAWS, VoiceOver)
-- Verwenden Sie `aria-live` für dynamische Inhalte
-- Stellen Sie sicher, dass Formulare korrekt beschriftet sind
+- Alle Formularelemente müssen korrekt beschriftet sein.
+- Fehlermeldungen müssen klar, präzise und leicht zu finden sein.
+- Eingabefelder sollten Hinweise und Validierungsfeedback bieten.
+- Autofill und Autocomplete sollten unterstützt werden, wo angemessen.
 
-## Komponenten-spezifische Richtlinien
+### Bilder und Medien
 
-### Buttons
+- Alle Bilder müssen alternative Texte haben.
+- Dekorative Bilder sollten mit `alt=""` markiert werden.
+- Videos sollten Untertitel und Audiobeschreibungen haben.
+- Animationen sollten pausierbar sein und keine Anfälle auslösen.
 
-- Verwenden Sie das `<button>`-Element für Aktionen
-- Stellen Sie sicher, dass Buttons einen zugänglichen Namen haben
-- Implementieren Sie Tastaturunterstützung (Enter, Space)
+### Dynamischer Inhalt
 
-### Formulare
+- Änderungen im Inhalt sollten für Screenreader angekündigt werden.
+- Modals und Dialoge sollten den Fokus korrekt verwalten.
+- Automatische Aktualisierungen sollten kontrollierbar sein.
 
-- Verbinden Sie Labels mit Eingabefeldern
-- Stellen Sie Fehlermeldungen programmatisch bereit
-- Gruppieren Sie verwandte Formularelemente
+## Testverfahren
 
-### Modals und Dialoge
+Jede Komponente in der Smolitux UI Bibliothek wird mit den folgenden Methoden auf Barrierefreiheit getestet:
 
-- Fangen Sie den Fokus innerhalb des Dialogs
-- Stellen Sie sicher, dass der Dialog mit ESC geschlossen werden kann
-- Verwenden Sie `aria-modal="true"` und `role="dialog"`
+1. **Automatisierte Tests**: Wir verwenden jest-axe für Unit-Tests und cypress-axe für E2E-Tests.
+   - Alle Komponenten haben dedizierte A11y-Testdateien (`*.a11y.test.tsx`)
+   - Tests prüfen auf WCAG 2.1 AA-Konformität
+   - Tests werden in der CI/CD-Pipeline automatisch ausgeführt
 
-### Tabs
+2. **Manuelle Tests**: Wir testen mit verschiedenen Screenreadern und ausschließlich mit der Tastatur.
+   - NVDA mit Firefox unter Windows
+   - VoiceOver mit Safari unter macOS
+   - TalkBack mit Chrome unter Android
+   - Tastaturnavigation mit Tab, Pfeiltasten, Enter und Escape
 
-- Verwenden Sie die richtige ARIA-Rollenstruktur
-- Implementieren Sie Tastaturnavigation (Links/Rechts)
-- Stellen Sie sicher, dass aktive Tabs visuell und programmatisch hervorgehoben werden
+3. **Visuelle Tests**: Wir überprüfen Kontrastverhältnisse und Farbkombinationen.
+   - Kontrastverhältnisse werden mit dem Storybook A11y-Addon geprüft
+   - Farbkombinationen werden im Light und Dark Mode getestet
+   - Wir testen mit verschiedenen Farbblindheits-Simulationen
 
-## Testen
+4. **Dokumentation**: Jede Komponente hat eine dedizierte A11y-Dokumentation.
+   - Beschreibung der ARIA-Attribute
+   - Tastaturnavigation
+   - Screenreader-Ankündigungen
+   - Best Practices für die Verwendung
 
-- Automatisierte Tests mit Tools wie axe-core
-- Manuelle Tests mit Screenreadern
-- Tastatur-Navigation-Tests
-- Kontrast- und Farbprüfungen
+## Implementierung von Barrierefreiheit
+
+### Beispiel: Barrierefreier Button
+
+```tsx
+// Schlechtes Beispiel
+<div className="button" onClick={handleClick}>
+  Klick mich
+</div>
+
+// Gutes Beispiel
+<button 
+  className="button" 
+  onClick={handleClick} 
+  aria-pressed={isPressed} 
+  disabled={isDisabled}
+>
+  Klick mich
+</button>
+```
+
+### Beispiel: Barrierefreies Modal
+
+```tsx
+<Modal
+  isOpen={isOpen}
+  onClose={handleClose}
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+  returnFocus={true}
+>
+  <h2 id="modal-title">Modal Titel</h2>
+  <p id="modal-description">Modal Beschreibung</p>
+  <button onClick={handleClose}>Schließen</button>
+</Modal>
+```
 
 ## Ressourcen
 
 - [WCAG 2.1 Richtlinien](https://www.w3.org/TR/WCAG21/)
-- [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/)
-- [Inclusive Components](https://inclusive-components.design/)
-- [A11y Project Checklist](https://www.a11yproject.com/checklist/)
+- [A11Y Project Checkliste](https://www.a11yproject.com/checklist/)
+- [MDN Barrierefreiheit](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+- [Axe-core Regeln](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
+
+## Kontinuierliche Verbesserung
+
+Barrierefreiheit ist ein fortlaufender Prozess. Wir ermutigen alle Mitwirkenden, Probleme zu melden und Verbesserungsvorschläge einzureichen. Unser Ziel ist es, die Smolitux UI Bibliothek kontinuierlich zu verbessern und sie für alle Benutzer zugänglicher zu machen.
+
+## Aktueller Status (Version 0.2.2)
+
+In Version 0.2.2 haben wir folgende Fortschritte bei der Barrierefreiheit erzielt:
+
+- 25% aller Komponenten haben umfassende A11y-Tests
+- Alle Kernkomponenten (Button, Card, Input, Checkbox, Alert) sind WCAG 2.1 AA-konform
+- Wir haben eine dedizierte A11y-Testinfrastruktur mit jest-axe implementiert
+- Wir haben einen umfassenden A11y-Testplan für alle Komponenten erstellt
+- Wir haben die Storybook-Integration mit dem A11y-Addon verbessert
+
+## Nächste Schritte (Version 0.3.0)
+
+Für Version 0.3.0 planen wir folgende Verbesserungen:
+
+- Erhöhung der A11y-Testabdeckung auf mindestens 75% aller Komponenten
+- Implementierung von A11y-Tests für alle komplexen Komponenten (Modal, Dialog, Drawer, etc.)
+- Verbesserung der Tastaturnavigation für alle Komponenten
+- Erweiterung der A11y-Dokumentation für alle Komponenten
+- Integration von automatisierten A11y-Tests in die CI/CD-Pipeline
+
+Siehe auch unseren [A11y-Testplan](../testing/a11y-test-plan.md) für weitere Details.

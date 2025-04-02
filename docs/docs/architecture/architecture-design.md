@@ -1,94 +1,216 @@
----
-sidebar_position: 1
----
+# Architekturdesign der Resonance UI Bibliothek
 
-# Architektur-Design
+## 1. Systemarchitektur
 
-Dieses Dokument beschreibt die Architektur und das Design von Smolitux-UI.
-
-## Übersicht
-
-Smolitux-UI ist als Monorepo mit mehreren Paketen organisiert, die zusammen eine umfassende UI-Komponenten-Bibliothek bilden. Die Architektur ist modular und erweiterbar gestaltet, um Flexibilität und Wartbarkeit zu gewährleisten.
-
-## Kernprinzipien
-
-- **Modularität**: Jede Komponente ist unabhängig und kann einzeln verwendet werden
-- **Komposition**: Komplexe Komponenten werden aus einfacheren Komponenten zusammengesetzt
-- **Konsistenz**: Einheitliches Design und Verhalten über alle Komponenten hinweg
-- **Zugänglichkeit**: Alle Komponenten sind nach WCAG-Richtlinien entwickelt
-- **Erweiterbarkeit**: Einfache Anpassung und Erweiterung der Komponenten
-
-## Architektur-Übersicht
-
+### 1.1 Monorepo-Struktur
 ```
-+-------------------+
-|   Anwendungen     |
-+-------------------+
-          |
-+-------------------+
-|  Komponenten-API  |
-+-------------------+
-          |
-+-------------------+     +-------------------+
-|  Kern-Komponenten |---->|  Theming-System   |
-+-------------------+     +-------------------+
-          |                        |
-+-------------------+     +-------------------+
-|  Basis-Primitives |---->|  Design-Tokens    |
-+-------------------+     +-------------------+
+/resonance-ui
+│
+├── /packages
+│   ├── @resonance/core
+│   │   ├── /src
+│   │   │   ├── /components
+│   │   │   ├── /hooks
+│   │   │   ├── /contexts
+│   │   │   └── /utils
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── @resonance/theme
+│   │   ├── /src
+│   │   │   ├── /light
+│   │   │   ├── /dark
+│   │   │   └── theme-generator.ts
+│   │   └── package.json
+│   │
+│   ├── @resonance/icons
+│   │   └── /svg-icons
+│   │
+│   └── @resonance/types
+│       └── global-types.ts
+│
+├── /docs
+│   └── /storybook
+│
+├── /examples
+│   ├── /music-platform
+│   ├── /agent-dashboard
+│   └── /playground
+│
+├── /scripts
+│   ├── build.js
+│   └── publish.js
+│
+├── lerna.json
+├── package.json
+└── tsconfig.json
 ```
 
-## Paketstruktur
+### 1.2 Architektur-Prinzipien
+- Komponentenbasierte Mikroarchitektur
+- Unidirektionaler Datenfluss
+- Lose Kopplung
+- Hohe Kohäsion
+- Dependency Injection
 
-Smolitux-UI ist in mehrere Pakete unterteilt:
+## 2. Komponenten-Architektur
 
-- **@smolitux/core**: Grundlegende UI-Komponenten
-- **@smolitux/theme**: Theming-System und Design-Tokens
-- **@smolitux/utils**: Hilfsfunktionen und Utilities
-- **@smolitux/hooks**: React-Hooks für häufige UI-Muster
-- **@smolitux/icons**: Icon-Bibliothek
-- **@smolitux/charts**: Datenvisualisierungskomponenten
+### 2.1 Komponentenklassifikation
+1. **Primitive Komponenten**
+   - Atomare, wiederverwendbare UI-Elemente
+   - Minimale Logik
+   - Maximale Konfigurierbarkeit
 
-## Komponenten-Design
+2. **Zusammengesetzte Komponenten**
+   - Kombinieren primitive Komponenten
+   - Komplexere Geschäftslogik
+   - Kontextbezogene Implementierung
 
-Jede Komponente in Smolitux-UI folgt einem konsistenten Design-Muster:
+3. **Layout-Komponenten**
+   - Responsive Grid-Systeme
+   - Flexbox-basierte Layouts
+   - Adaptives Design
 
-1. **Props-Interface**: Klar definierte Schnittstelle für Komponenten-Props
-2. **Komposition**: Verwendung von Compound-Komponenten für komplexe UI-Elemente
-3. **Styling**: Theming-Integration über das Styling-System
-4. **Zugänglichkeit**: ARIA-Attribute und Keyboard-Navigation
-5. **Dokumentation**: JSDoc-Kommentare und Beispiele
+### 2.2 Komponentenstruktur
+```typescript
+interface ComponentProps {
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  size?: 'small' | 'medium' | 'large';
+  className?: string;
+  disabled?: boolean;
+}
 
-## Theming-System
+const ResButton: React.FC<ComponentProps> = ({
+  variant = 'primary', 
+  size = 'medium', 
+  ...props
+}) => {
+  // Implementierung
+}
+```
 
-Das Theming-System basiert auf Design-Tokens und ermöglicht die Anpassung von:
+## 3. State Management
 
-- Farben
-- Typografie
-- Abständen
-- Schatten
-- Rundungen
-- Animationen
+### 3.1 Zustand-Konfiguration
+- Globaler Store mit Zustand
+- Modulare Store-Struktur
+- Middleware-Unterstützung
 
-## Rendering-Prozess
+```typescript
+// Beispiel-Store
+const useGlobalStore = create((set) => ({
+  theme: 'light',
+  user: null,
+  setTheme: (theme) => set({ theme }),
+  setUser: (user) => set({ user }),
+}));
+```
 
-1. **Komponenten-Initialisierung**: Props werden validiert und Standardwerte angewendet
-2. **Theme-Integration**: Theme-Werte werden auf die Komponente angewendet
-3. **Rendering**: Die Komponente wird gerendert
-4. **Interaktionshandling**: Event-Handler werden registriert
+### 3.2 State-Management-Strategien
+- Lokaler Komponentenstate
+- Kontextbasierter State
+- Globaler Application-State
 
-## Performance-Optimierungen
+## 4. Styling-Architektur
 
-- Memoization für rechenintensive Operationen
-- Lazy-Loading für große Komponenten
-- Tree-Shaking-Unterstützung
-- Bundle-Größenoptimierung
+### 4.1 Tailwind CSS Konfiguration
+- Benutzerdefinierte Design-Tokens
+- Responsive Utility-Klassen
+- Theme-Variablen
 
-## Erweiterbarkeit
+```javascript
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'resonance-primary': '#3B82F6',
+        'resonance-secondary': '#10B981',
+      },
+      spacing: {
+        'resonance-sm': '0.5rem',
+        'resonance-md': '1rem',
+      }
+    }
+  }
+}
+```
 
-Smolitux-UI kann auf verschiedene Weise erweitert werden:
+## 5. Hook-Architektur
 
-- **Theming**: Anpassung des Erscheinungsbilds über das Theming-System
-- **Komposition**: Erstellung neuer Komponenten durch Kombination bestehender Komponenten
-- **HOCs**: Higher-Order Components für zusätzliche Funktionalität
-- **Plugins**: Erweiterung der Funktionalität durch Plugins
+### 5.1 Eigene Hook-Kategorien
+- **Data Hooks**: Datenmanagement
+- **UI Hooks**: Interaktionslogik
+- **Utility Hooks**: Allgemeine Helfer
+
+```typescript
+// Beispiel-Hook
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+  
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+    
+    const listener = () => setMatches(media.matches);
+    media.addListener(listener);
+    
+    return () => media.removeListener(listener);
+  }, [query]);
+
+  return matches;
+}
+```
+
+## 6. Performance-Optimierungen
+
+### 6.1 Rendering-Strategien
+- React.memo für Pure Components
+- useMemo für berechnete Werte
+- useCallback für Funktionsstabilität
+
+### 6.2 Code-Splitting
+- Dynamische Imports
+- Lazy Loading von Komponenten
+
+```typescript
+const LazyModal = lazy(() => import('./Modal'));
+
+function App() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <LazyModal />
+    </Suspense>
+  );
+}
+```
+
+## 7. Erweiterbarkeits-Konzepte
+
+### 7.1 Plugin-System
+- Middleware-Konzept
+- Komponentenerweiterung
+- Dependency Injection
+
+### 7.2 Konfigurationsmanagement
+- Globale Standardeinstellungen
+- Kontextbasierte Überschreibungen
+
+## 8. Sicherheitsarchitektur
+
+### 8.1 Sicherheitsmaßnahmen
+- Input-Sanitization
+- XSS-Schutz
+- Rollenbasierte Zugriffskontrollen
+
+### 8.2 Validierungsschicht
+- JSON-Schema-Validierung
+- TypeScript-Typprüfungen
+- Runtime-Typechecking
+
+## 9. Interoperabilität
+
+### 9.1 Kompatibilitätsschichten
+- Wrapper für Fremdbibliotheken
+- Adapter-Muster
+- Standardisierte Schnittstellen
