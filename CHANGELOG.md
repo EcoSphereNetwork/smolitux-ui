@@ -7,7 +7,22 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.2] - 2023-03-26
+## [0.2.2] - 2025-04-02
+
+### Hinzugefügt
+- Umfassender Komponenten-Teststatus-Bericht in der Dokumentation
+- Detaillierte Release Notes für Version 0.2.2
+
+### Geändert
+- Verbesserte Codeformatierung in allen Dateien
+- Aktualisierte Versionsnummer in package.json und lerna.json
+
+### Behoben
+- Syntaxfehler in FormField.tsx behoben
+- Syntaxfehler in ActivityStream.tsx behoben
+- HTML-Dateien mit .tsx-Erweiterung in .html umbenannt, um TypeScript-Kompilierungsfehler zu vermeiden
+
+## [0.2.1] - 2023-03-26
 
 ### Hinzugefügt
 - Button-Komponente: Unterstützung für `solid`-Variante als Alias für `primary`

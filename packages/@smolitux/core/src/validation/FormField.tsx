@@ -7,12 +7,12 @@ export type FormFieldProps<T = unknown> = FieldOptions<T> & {
    * Die Komponente, die gerendert werden soll
    */
   component: React.ComponentType<Record<string, unknown>>;
-  
+
   /**
    * Die Kinder der Komponente
    */
   children?: React.ReactNode;
-  
+
   /**
    * Zusätzliche Props für die Komponente
    */
@@ -22,7 +22,7 @@ export type FormFieldProps<T = unknown> = FieldOptions<T> & {
 /**
  * Komponente für die Verbindung eines Formularfelds mit einer Eingabekomponente
  */
-export const FormField = <T>({
+export const FormField = <T extends unknown>({
   component: Component,
   children,
   name,
@@ -41,14 +41,7 @@ export const FormField = <T>({
   required,
   ...props
 }: FormFieldProps<T>) => {
-  const {
-    value,
-    handleChange,
-    handleBlur,
-    errors,
-    touched,
-    dirty,
-  } = useField<T>({
+  const { value, handleChange, handleBlur, errors, touched, dirty } = useField<T>({
     name,
     initialValue,
     validationRules,
@@ -64,10 +57,10 @@ export const FormField = <T>({
     readOnly,
     required,
   });
-  
+
   // Bestimme, ob Fehler angezeigt werden sollen
   const showError = touched && errors.length > 0;
-  
+
   return (
     <Component
       name={name}
