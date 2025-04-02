@@ -6,7 +6,7 @@ Dieses Dokument bietet einen Überblick über den aktuellen Entwicklungsstand al
 
 | Kategorie | Gesamtzahl | Mit Tests | Mit A11y-Tests | Mit Storybook | Vollständig |
 |-----------|------------|-----------|----------------|---------------|-------------|
-| Core-Komponenten | 49 | 49 | 50 | 41 | 41 |
+| Core-Komponenten | 49 | 49 | 50 | 47 | 47 |
 | AI-Komponenten | - | - | - | - | - |
 | Blockchain-Komponenten | - | - | - | - | - |
 | Andere Pakete | - | - | - | - | - |
@@ -24,25 +24,25 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | Breadcrumb | ✅ | ✅ | ✅ | Vollständig | - |
 | Button | ✅ | ✅ | ✅ | Vollständig | - |
 | Card | ✅ | ✅ | ✅ | Vollständig | - |
-| Carousel | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| Carousel | ✅ | ✅ | ✅ | Vollständig | - |
 | Checkbox | ✅ | ✅ | ✅ | Vollständig | - |
-| Collapse | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| ColorPicker | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| DatePicker | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| Collapse | ✅ | ✅ | ✅ | Vollständig | - |
+| ColorPicker | ✅ | ✅ | ✅ | Vollständig | - |
+| DatePicker | ✅ | ✅ | ✅ | Vollständig | - |
 | Dialog | ✅ | ✅ | ✅ | Vollständig | - |
-| Drawer | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| Drawer | ✅ | ✅ | ✅ | Vollständig | - |
 | Dropdown | ✅ | ✅ | ✅ | Vollständig | - |
-| Fade | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
-| FileUpload | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| Fade | ✅ | ✅ | ✅ | Vollständig | - |
+| FileUpload | ✅ | ✅ | ✅ | Vollständig | - |
 | Flex | ✅ | ✅ | ✅ | Vollständig | - |
 | Form | ✅ | ✅ | ✅ | Vollständig | - |
 | FormControl | ✅ | ✅ | ✅ | Vollständig | - |
 | FormField | ✅ | ✅ | ✅ | Vollständig | - |
 | Grid | ✅ | ✅ | ✅ | Vollständig | - |
 | Input | ✅ | ✅ | ✅ | Vollständig | - |
-| LanguageSwitcher | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
+| LanguageSwitcher | ✅ | ✅ | ✅ | Vollständig | - |
 | List | ✅ | ✅ | ✅ | Vollständig | - |
-| MediaPlayer | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
+| MediaPlayer | ✅ | ✅ | ✅ | Vollständig | - |
 | Menu | ✅ | ✅ | ✅ | Vollständig | - |
 | Modal | ✅ | ✅ | ✅ | Vollständig | - |
 | Pagination | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
@@ -78,29 +78,20 @@ Alle Komponenten mit hoher Priorität haben nun Storybook-Implementierungen.
 
 Die folgenden Komponenten sollten Storybook-Implementierungen erhalten:
 
-1. Carousel
-2. Collapse
-3. ColorPicker
-4. DatePicker
-5. Drawer
-6. FileUpload
-7. Pagination
-8. Popover
-9. ProgressBar
-10. Slider
-11. Stepper
-12. TimePicker
+1. Pagination
+2. Popover
+3. ProgressBar
+4. Slider
+5. Stepper
+6. TimePicker
 
 ### Niedrige Priorität
 
 Die folgenden Komponenten können später Storybook-Implementierungen erhalten:
 
-1. Fade
-2. LanguageSwitcher
-3. MediaPlayer
-4. Skeleton
-5. Slide
-6. Zoom
+1. Skeleton
+2. Slide
+3. Zoom
 
 ## Testabdeckung
 
