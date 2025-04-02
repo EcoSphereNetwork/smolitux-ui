@@ -25,6 +25,7 @@
     "test:e2e": "playwright test",
     "test:a11y": "jest --testMatch=\"**/*.a11y.test.{ts,tsx}\"",
     "test:a11y:report": "jest --testMatch=\"**/*.a11y.test.{ts,tsx}\" --json --outputFile=a11y-report/results.json",
+    "test:coverage-report": "node scripts/generate-coverage-report.js",
     "lint": "eslint --config eslint.config.js \"packages/**/*.{ts,tsx}\"",
     "lint:fix": "eslint --config eslint.config.js \"packages/**/*.{ts,tsx}\" --fix",
     "format": "prettier --write \"packages/**/*.{ts,tsx,json,md}\"",
