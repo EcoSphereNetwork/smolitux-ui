@@ -10,6 +10,7 @@ Diese Seite enthält Beispiele für die Verwendung von Smolitux-UI-Formularkompo
 
 Ein einfaches Anmeldeformular mit E-Mail und Passwort.
 
+{% raw %}
 ```jsx
 import React from 'react';
 import { Form, FormField, Input, Button, Stack } from '@smolitux/ui';
@@ -63,11 +64,13 @@ function LoginForm() {
 
 export default LoginForm;
 ```
+{% endraw %}
 
 ## Registrierungsformular
 
 Ein umfassenderes Registrierungsformular mit mehreren Feldern und Validierungen.
 
+{% raw %}
 ```jsx
 import React from 'react';
 import { 
@@ -191,11 +194,13 @@ function RegistrationForm() {
 
 export default RegistrationForm;
 ```
+{% endraw %}
 
 ## Mehrstufiges Formular
 
 Ein mehrstufiges Formular mit Fortschrittsanzeige.
 
+{% raw %}
 ```jsx
 import React, { useState } from 'react';
 import { 
@@ -369,6 +374,7 @@ function MultiStepForm() {
 
 export default MultiStepForm;
 ```
+{% endraw %}
 
 ## Dynamisches Formular
 
