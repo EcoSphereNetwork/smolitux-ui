@@ -1,293 +1,427 @@
-# Teststrategie für Resonance UI Bibliothek
+# Teststrategie für Smolitux UI
 
-## 1. Testarten und -umfang
+## Einführung
 
-### 1.1 Testpyramide
-```
-                 [E2E-Tests]
-               /             \
-      [Integrationstest]   [UI-Tests]
-        /         \         /       \
-[Komponententests][API-Tests][Visueller Test][Accessibility-Test]
-```
+Diese Teststrategie definiert den Ansatz für das Testen der Smolitux UI Komponentenbibliothek. Unser Ziel ist es, eine hohe Qualität und Zuverlässigkeit der Komponenten sicherzustellen, indem wir verschiedene Testebenen und -methoden kombinieren.
 
-## 2. Komponententests
+## Testebenen
 
-### 2.1 Unit-Test-Beispiel
-```typescript
+### 1. Unit-Tests
+
+Unit-Tests prüfen die Funktionalität einzelner Komponenten in Isolation.
+
+**Werkzeuge:**
+- Jest als Test-Runner
+- React Testing Library für komponentenbasierte Tests
+- jest-axe für Barrierefreiheitstests
+
+**Testumfang:**
+- Rendering mit verschiedenen Props
+- Interaktionen (Klicks, Eingaben, etc.)
+- Zustandsänderungen
+- Callback-Aufrufe
+- Styling und Klassennamen
+- Barrierefreiheit
+
+**Beispiel:**
+
+```tsx
 // Button.test.tsx
-import { render, fireEvent } from '@testing-library/react';
-import { Button } from './Button';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from '../Button';
 
-describe('Button Component', () => {
-  it('renders correctly', () => {
-    const { getByText } = render(<Button>Click me</Button>);
-    expect(getByText('Click me')).toBeInTheDocument();
+describe('Button', () => {
+  test('renders correctly with default props', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByRole('button')).toHaveTextContent('Click me');
   });
 
-  it('handles click events', () => {
-    const mockOnClick = jest.fn();
-    const { getByText } = render(
-      <Button onClick={mockOnClick}>Click me</Button>
-    );
-    
-    fireEvent.click(getByText('Click me'));
-    expect(mockOnClick).toHaveBeenCalledTimes(1);
+  test('calls onClick when clicked', () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    fireEvent.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it('disables button when prop is true', () => {
-    const { getByText } = render(<Button disabled>Click me</Button>);
-    const button = getByText('Click me');
-    
-    expect(button).toBeDisabled();
+  test('is disabled when disabled prop is true', () => {
+    render(<Button disabled>Click me</Button>);
+    expect(screen.getByRole('button')).toBeDisabled();
   });
 });
 ```
 
-### 2.2 Test-Coverage-Konfiguration
-```javascript
-// jest.config.js
-module.exports = {
-  collectCoverage: true,
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov'],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
-    }
-  }
-};
-```
+### 2. Barrierefreiheitstests
 
-## 3. Integrationstest-Strategie
+Spezielle Tests zur Überprüfung der Barrierefreiheit von Komponenten.
 
-### 3.1 Integrationstests mit React Testing Library
-```typescript
-// ComplexComponent.test.tsx
-import { render, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { ComplexComponent } from './ComplexComponent';
-import { QueryClient, QueryClientProvider } from 'react-query';
+**Werkzeuge:**
+- jest-axe für automatisierte Barrierefreiheitstests
+- cypress-axe für E2E-Barrierefreiheitstests
 
-const queryClient = new QueryClient();
+**Testumfang:**
+- ARIA-Attribute
+- Semantische HTML-Struktur
+- Tastaturnavigation
+- Farbkontrast
+- Screenreader-Kompatibilität
 
-describe('ComplexComponent Integration', () => {
-  it('fetches and renders data correctly', async () => {
-    const { getByText, findByTestId } = render(
-      <QueryClientProvider client={queryClient}>
-        <ComplexComponent />
-      </QueryClientProvider>
-    );
+**Beispiel:**
 
-    // Warte auf Datenladung
-    const dataElement = await findByTestId('data-container');
-    expect(dataElement).toBeInTheDocument();
-  });
-
-  it('handles user interactions', async () => {
-    const { getByRole, getByTestId } = render(
-      <QueryClientProvider client={queryClient}>
-        <ComplexComponent />
-      </QueryClientProvider>
-    );
-
-    // Simuliere Benutzerinteraktion
-    const submitButton = getByRole('button', { name: /submit/i });
-    userEvent.click(submitButton);
-
-    // Überprüfe Ergebnis
-    await waitFor(() => {
-      const successMessage = getByTestId('success-message');
-      expect(successMessage).toBeInTheDocument();
-    });
-  });
-});
-```
-
-## 4. E2E-Test-Strategie
-
-### 4.1 Cypress E2E-Tests
-```typescript
-// dashboard.spec.ts
-describe('Dashboard Integration', () => {
-  beforeEach(() => {
-    cy.login('testuser', 'password');
-  });
-
-  it('loads dashboard correctly', () => {
-    cy.visit('/dashboard');
-    
-    // Prüfe Hauptelemente
-    cy.get('[data-testid=dashboard-container]').should('be.visible');
-    cy.get('[data-testid=user-profile]').should('contain', 'Test User');
-  });
-
-  it('navigates between dashboard sections', () => {
-    cy.visit('/dashboard');
-    
-    // Navigiere zu Analytics
-    cy.get('[data-testid=analytics-nav]').click();
-    cy.url().should('include', '/dashboard/analytics');
-    
-    // Überprüfe Ladezustand
-    cy.get('[data-testid=analytics-loader]').should('not.exist');
-    cy.get('[data-testid=analytics-chart]').should('be.visible');
-  });
-});
-```
-
-## 5. Visueller Regressionstest
-
-### 5.1 Storybook Visual Tests
-```typescript
-// Button.stories.tsx
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
-
-const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
-  component: Button,
-  argTypes: {
-    variant: {
-      control: { type: 'select' },
-      options: ['primary', 'secondary', 'tertiary']
-    }
-  }
-};
-
-export default meta;
-type Story = StoryObj<typeof Button>;
-
-export const Primary: Story = {
-  args: {
-    children: 'Primary Button',
-    variant: 'primary'
-  }
-};
-
-export const Secondary: Story = {
-  args: {
-    children: 'Secondary Button',
-    variant: 'secondary'
-  }
-};
-
-export const Disabled: Story = {
-  args: {
-    children: 'Disabled Button',
-    disabled: true
-  }
-};
-```
-
-## 6. Accessibility-Testing
-
-### 6.1 Accessibility-Test-Konfiguration
-```typescript
-// a11y.test.tsx
+```tsx
+// Button.a11y.test.tsx
+import React from 'react';
 import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Button } from './Button';
+import { Button } from '../Button';
 
 expect.extend(toHaveNoViolations);
 
-describe('Accessibility Tests', () => {
-  it('Button should have no accessibility violations', async () => {
+describe('Button Accessibility', () => {
+  test('should not have accessibility violations', async () => {
     const { container } = render(<Button>Click me</Button>);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  test('should not have accessibility violations when disabled', async () => {
+    const { container } = render(<Button disabled>Click me</Button>);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 });
 ```
 
-## 7. Performance-Testing
+### 3. Integrationstests
 
-### 7.1 Lighthouse Performance-Tests
-```javascript
-// lighthouse.test.js
-const lighthouse = require('lighthouse');
-const { prepareAudit } = require('./test-utils');
+Integrationstests prüfen das Zusammenspiel mehrerer Komponenten.
 
-describe('Performance Audit', () => {
-  it('meets performance budget', async () => {
-    const { lhr } = await lighthouse('http://localhost:3000', {
-      onlyCategories: ['performance']
-    });
+**Werkzeuge:**
+- Jest und React Testing Library
+- Storybook für visuelle Tests
 
-    const performanceScore = lhr.categories.performance.score * 100;
+**Testumfang:**
+- Komponentenkomposition
+- Datenaustausch zwischen Komponenten
+- Komplexe Interaktionen
+- Zustandsmanagement
+
+**Beispiel:**
+
+```tsx
+// Form.test.tsx
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Form, Input, Button } from '../index';
+
+describe('Form Integration', () => {
+  test('submits form data when button is clicked', () => {
+    const handleSubmit = jest.fn();
+    render(
+      <Form onSubmit={handleSubmit}>
+        <Input name="username" defaultValue="testuser" />
+        <Button type="submit">Submit</Button>
+      </Form>
+    );
     
-    expect(performanceScore).toBeGreaterThanOrEqual(90);
+    fireEvent.click(screen.getByRole('button'));
+    expect(handleSubmit).toHaveBeenCalledWith({ username: 'testuser' });
   });
 });
 ```
 
-## 8. Test-Infrastruktur
+### 4. Visuelle Regressionstests
 
-### 8.1 Kontinuierliche Integration
+Visuelle Tests prüfen das Erscheinungsbild der Komponenten.
+
+**Werkzeuge:**
+- Storybook
+- Playwright oder Cypress für Screenshots
+- Reg-suit oder Percy für visuelle Vergleiche
+
+**Testumfang:**
+- Layout und Styling
+- Responsives Design
+- Themes und Farbschemata
+- Animationen und Übergänge
+
+**Beispiel:**
+
+```js
+// visual.test.js
+const { test, expect } = require('@playwright/test');
+
+test('Button visual regression', async ({ page }) => {
+  await page.goto('http://localhost:6006/iframe.html?id=core-inputs-button--primary');
+  
+  // Vergleiche Screenshot mit Referenz
+  await expect(page).toHaveScreenshot('button-primary.png');
+});
+```
+
+### 5. End-to-End-Tests
+
+E2E-Tests prüfen die Komponenten in einer realistischen Umgebung.
+
+**Werkzeuge:**
+- Cypress oder Playwright
+- Storybook als Testumgebung
+
+**Testumfang:**
+- Benutzerflüsse
+- Browserkompatibilität
+- Leistung und Ladezeiten
+- Netzwerkinteraktionen
+
+**Beispiel:**
+
+```js
+// button.cy.js
+describe('Button Component', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:6006/iframe.html?id=core-inputs-button--primary');
+  });
+
+  it('should handle click events', () => {
+    cy.get('button').click();
+    // Prüfe Ergebnis des Klicks
+  });
+
+  it('should be accessible', () => {
+    cy.injectAxe();
+    cy.checkA11y();
+  });
+});
+```
+
+## Testabdeckung
+
+Wir streben folgende Testabdeckung an:
+
+- **Unit-Tests**: >90% Codeabdeckung
+- **Barrierefreiheitstests**: 100% der Komponenten
+- **Integrationstests**: Alle wichtigen Komponentenkombinationen
+- **Visuelle Tests**: Alle Komponenten in allen Varianten
+- **E2E-Tests**: Kritische Benutzerflüsse
+
+## Testautomatisierung
+
+### Continuous Integration
+
+Tests werden automatisch bei jedem Pull Request ausgeführt:
+
 ```yaml
-# .github/workflows/test.yml
-name: Component Library Tests
+# .github/workflows/ci.yml
+name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: '18'
-      
       - name: Install dependencies
         run: npm ci
-      
-      - name: Run Unit Tests
-        run: npm run test:unit
-      
-      - name: Run Integration Tests
-        run: npm run test:integration
-      
-      - name: Run E2E Tests
-        run: npm run test:e2e
-      
-      - name: Run Accessibility Tests
+      - name: Run tests
+        run: npm test
+      - name: Run accessibility tests
         run: npm run test:a11y
-      
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v3
 ```
 
-## 9. Testdaten-Management
+### Pre-commit Hooks
 
-### 9.1 Mock-Daten-Strategie
-```typescript
-// mockData.ts
-export const mockUserData = {
-  id: '123',
+Lokale Tests vor dem Commit:
+
+```json
+// package.json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "jest --findRelatedTests"
+    ]
+  }
+}
+```
+
+## Testdaten
+
+### Mock-Daten
+
+Für konsistente Tests verwenden wir Mock-Daten:
+
+```tsx
+// mocks/data.ts
+export const mockUser = {
+  id: '1',
   name: 'Test User',
-  email: 'test@example.com',
-  role: 'admin'
+  email: 'test@example.com'
 };
 
-export const createMockApiResponse = (data, status = 200) => ({
-  status,
-  data,
-  headers: {},
-  config: {}
+export const mockProducts = [
+  { id: '1', name: 'Product 1', price: 10 },
+  { id: '2', name: 'Product 2', price: 20 }
+];
+```
+
+### Test-Utilities
+
+Wiederverwendbare Test-Utilities:
+
+```tsx
+// test-utils.tsx
+import React, { ReactElement } from 'react';
+import { render, RenderOptions } from '@testing-library/react';
+import { ThemeProvider } from '../ThemeProvider';
+
+const AllProviders = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <ThemeProvider>
+      {children}
+    </ThemeProvider>
+  );
+};
+
+const customRender = (
+  ui: ReactElement,
+  options?: Omit<RenderOptions, 'wrapper'>
+) => render(ui, { wrapper: AllProviders, ...options });
+
+export * from '@testing-library/react';
+export { customRender as render };
+```
+
+## Testumgebung
+
+### Setup
+
+```js
+// jest.setup.js
+import '@testing-library/jest-dom';
+import 'jest-axe/extend-expect';
+
+// Mock für window.matchMedia
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
 });
 ```
 
-## 10. Testabdeckungs-Ziele
+### Konfiguration
 
-### 10.1 Coverage-Kriterien
-- Komponententests: 90%
-- Integrationstests: 80%
-- E2E-Tests: Kritische Pfade
-- Accessibility: 100% Konformität
-- Performance: Lighthouse-Score > 90
+```js
+// jest.config.js
+module.exports = {
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testMatch: [
+    '**/__tests__/**/*.test.[jt]s?(x)',
+    '**/?(*.)+(spec|test).[jt]s?(x)'
+  ],
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+  },
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/*.stories.{js,jsx,ts,tsx}'
+  ],
+};
+```
 
-Diese umfassende Teststrategie bietet einen ganzheitlichen Ansatz zur Qualitätssicherung der React-Bibliothek.
+## Testdokumentation
+
+### Testplan
+
+Für jede Komponente wird ein Testplan erstellt:
+
+```md
+# Testplan für Button-Komponente
+
+## Unit-Tests
+- [ ] Rendering mit verschiedenen Varianten (primary, secondary, etc.)
+- [ ] Rendering mit verschiedenen Größen
+- [ ] Klick-Event-Handling
+- [ ] Disabled-Zustand
+
+## Barrierefreiheitstests
+- [ ] ARIA-Attribute
+- [ ] Tastaturnavigation
+- [ ] Farbkontrast
+
+## Visuelle Tests
+- [ ] Alle Varianten und Größen
+- [ ] Hover- und Fokus-Zustände
+- [ ] Dark Mode
+
+## E2E-Tests
+- [ ] Klick-Interaktionen
+- [ ] Formular-Submission
+```
+
+### Testberichte
+
+Nach jedem Testlauf werden Berichte generiert:
+
+- Jest Coverage Report
+- Axe Accessibility Report
+- Visual Regression Report
+- E2E Test Report
+
+## Best Practices
+
+1. **Testpyramide**: Mehr Unit-Tests als Integrationstests, mehr Integrationstests als E2E-Tests.
+2. **Testbare Komponenten**: Komponenten so gestalten, dass sie leicht zu testen sind.
+3. **Deterministische Tests**: Tests sollten immer die gleichen Ergebnisse liefern.
+4. **Isolierte Tests**: Tests sollten unabhängig voneinander sein.
+5. **Aussagekräftige Tests**: Tests sollten klar dokumentieren, was getestet wird.
+6. **Schnelle Tests**: Tests sollten schnell ausgeführt werden können.
+7. **Wartbare Tests**: Tests sollten einfach zu warten sein.
+
+## Fehlerbehebung
+
+### Häufige Probleme
+
+1. **Flaky Tests**: Tests, die manchmal fehlschlagen
+   - Lösung: Deterministische Mocks, stabile Selektoren, Wartezeiten
+
+2. **Langsame Tests**: Tests, die zu lange dauern
+   - Lösung: Parallelisierung, Mocking, Fokus auf Unit-Tests
+
+3. **Schwer zu wartende Tests**: Tests, die bei kleinen Änderungen brechen
+   - Lösung: Testen von Verhalten statt Implementierung, stabile Selektoren
+
+## Ressourcen
+
+- [Jest Dokumentation](https://jestjs.io/docs/getting-started)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Cypress Dokumentation](https://docs.cypress.io/)
+- [Storybook Testing](https://storybook.js.org/docs/react/writing-tests/introduction)
+- [Axe-core Regeln](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)

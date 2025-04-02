@@ -1,109 +1,165 @@
-# Komponenten-Struktur
+# Komponenten-Struktur Richtlinien
 
-Diese Dokumentation beschreibt die Struktur und Organisation von Komponenten in der Smolitux-UI-Bibliothek.
+## Einführung
+
+Diese Richtlinien definieren die Struktur und Organisation von Komponenten in der Smolitux UI Bibliothek. Eine konsistente Struktur erleichtert die Wartung, Erweiterung und Nutzung der Komponenten.
 
 ## Verzeichnisstruktur
 
-Jede Komponente sollte in einem eigenen Verzeichnis mit folgendem Aufbau organisiert sein:
+Jede Komponente sollte in einem eigenen Verzeichnis innerhalb von `packages/@smolitux/core/src/components/` organisiert sein:
 
 ```
-ComponentName/
-├── ComponentName.tsx       # Hauptkomponente
-├── ComponentName.stories.tsx  # Storybook-Geschichten
-├── ComponentName.test.tsx  # Tests
-├── ComponentName.styles.ts # Styles (optional)
-└── index.ts                # Export
+packages/@smolitux/core/src/components/ComponentName/
+├── ComponentName.tsx         # Hauptkomponentendatei
+├── ComponentName.css         # Komponentenspezifische Styles (optional)
+├── index.ts                  # Export der Komponente
+├── __tests__/                # Testverzeichnis
+│   ├── ComponentName.test.tsx       # Funktionale Tests
+│   └── ComponentName.a11y.test.tsx  # Barrierefreiheitstests
+└── stories/                  # Storybook-Geschichten
+    └── ComponentName.stories.tsx
 ```
 
-## Komponenten-Datei
+## Komponenten-Datei-Struktur
 
-Die Hauptkomponente sollte folgende Struktur haben:
+Jede Komponenten-Datei (`ComponentName.tsx`) sollte folgende Struktur haben:
 
 ```tsx
-import React from 'react';
-import { Box, Flex, Text } from '@smolitux/utils/src/components/primitives';
+import React, { forwardRef } from 'react';
+import { classNames } from '../../utils/classNames';
 
-export interface ComponentNameProps {
-  /** Beschreibung der Prop */
-  propName: PropType;
-  /** Optionale Prop mit Standardwert */
-  optionalProp?: OptionalPropType;
-  /** Callback-Funktion */
-  onSomething?: (param: ParamType) => void;
-  /** Zusätzliche CSS-Klassen */
-  className?: string;
-  /** Inline-Styles */
-  style?: React.CSSProperties;
+// 1. Typdefinitionen
+export interface ComponentNameProps extends React.HTMLAttributes<HTMLElement> {
+  /** Dokumentation der Prop */
+  propName?: PropType;
+  // Weitere Props...
 }
 
+// 2. Komponente
 /**
- * ComponentName-Komponente für [Beschreibung der Komponente].
+ * Beschreibung der Komponente und ihrer Verwendung
+ * 
+ * @example
+ * ```tsx
+ * <ComponentName propName={value}>Inhalt</ComponentName>
+ * ```
  */
-export const ComponentName: React.FC<ComponentNameProps> = ({
-  propName,
-  optionalProp = defaultValue,
-  onSomething,
-  className = '',
-  style,
-}) => {
-  // State und Hooks
-  const [state, setState] = React.useState(initialState);
+export const ComponentName = forwardRef<HTMLElement, ComponentNameProps>(({
+  propName = defaultValue,
+  className,
+  children,
+  ...rest
+}, ref) => {
+  // 3. Hooks und State
 
-  // Event-Handler
-  const handleEvent = () => {
-    // Logik
-    if (onSomething) {
-      onSomething(param);
-    }
-  };
-
-  // Render-Hilfsfunktionen
-  const renderSomething = () => {
-    return (
-      <Box>
-        {/* ... */}
-      </Box>
-    );
-  };
-
-  // Hauptrender
+  // 4. Berechnete Werte und Effekte
+  
+  // 5. Event Handler
+  
+  // 6. Render
   return (
-    <Box
-      className={`component-name ${className}`}
-      style={{
-        ...style,
-      }}
+    <div
+      ref={ref}
+      className={classNames(
+        'base-class',
+        propName && 'conditional-class',
+        className
+      )}
+      data-testid="component-name"
+      {...rest}
     >
-      {/* Komponenten-Inhalt */}
-    </Box>
+      {children}
+    </div>
   );
-};
+});
+
+// 7. Display Name
+ComponentName.displayName = 'ComponentName';
+
+// 8. Default Export
+export default ComponentName;
 ```
 
 ## Index-Datei
 
-Die Index-Datei sollte die Komponente und ihre Typen exportieren:
+Die `index.ts`-Datei sollte die Komponente und ihre Typen exportieren:
 
 ```tsx
-export * from './ComponentName';
+export { default, ComponentName, type ComponentNameProps } from './ComponentName';
 ```
 
-## Storybook-Datei
+## Tests
 
-Die Storybook-Datei sollte verschiedene Varianten der Komponente zeigen:
+### Funktionale Tests
+
+Funktionale Tests (`ComponentName.test.tsx`) sollten die Komponente auf korrekte Funktionalität testen:
+
+```tsx
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { ComponentName } from '../ComponentName';
+
+describe('ComponentName', () => {
+  test('renders correctly with default props', () => {
+    render(<ComponentName>Content</ComponentName>);
+    expect(screen.getByTestId('component-name')).toBeInTheDocument();
+  });
+
+  test('applies custom className', () => {
+    render(<ComponentName className="custom-class">Content</ComponentName>);
+    expect(screen.getByTestId('component-name')).toHaveClass('custom-class');
+  });
+
+  // Weitere Tests...
+});
+```
+
+### Barrierefreiheitstests
+
+Barrierefreiheitstests (`ComponentName.a11y.test.tsx`) sollten die Komponente auf Barrierefreiheit testen:
+
+```tsx
+import React from 'react';
+import { render } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { ComponentName } from '../ComponentName';
+
+expect.extend(toHaveNoViolations);
+
+describe('ComponentName Accessibility', () => {
+  test('should not have accessibility violations', async () => {
+    const { container } = render(<ComponentName>Content</ComponentName>);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  // Weitere Tests...
+});
+```
+
+## Storybook-Geschichten
+
+Storybook-Geschichten (`ComponentName.stories.tsx`) sollten die Komponente in verschiedenen Zuständen und Konfigurationen demonstrieren:
 
 ```tsx
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { ComponentName } from './ComponentName';
+import { ComponentName } from '../ComponentName';
 
 const meta: Meta<typeof ComponentName> = {
-  title: 'Components/Category/ComponentName',
+  title: 'Core/Category/ComponentName',
   component: ComponentName,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    propName: {
+      control: 'text',
+      description: 'Beschreibung der Prop',
+    },
+    // Weitere Props...
+  },
 };
 
 export default meta;
@@ -111,107 +167,69 @@ type Story = StoryObj<typeof ComponentName>;
 
 export const Default: Story = {
   args: {
-    propName: 'value',
-    optionalProp: 'optionalValue',
+    children: 'Content',
   },
 };
 
-export const Variant: Story = {
+export const WithCustomProp: Story = {
   args: {
-    propName: 'variantValue',
-    optionalProp: 'differentValue',
+    propName: 'value',
+    children: 'Content',
   },
 };
+
+// Weitere Geschichten...
 ```
 
-## Test-Datei
+## Dokumentation
 
-Die Test-Datei sollte die Komponente testen:
+Jede Komponente sollte gut dokumentiert sein:
 
-```tsx
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { ComponentName } from './ComponentName';
+1. **JSDoc-Kommentare** für die Komponente und ihre Props
+2. **Beispiele** für die Verwendung der Komponente
+3. **Storybook-Dokumentation** mit Beschreibungen und Beispielen
 
-describe('ComponentName', () => {
-  it('renders correctly with default props', () => {
-    render(<ComponentName propName="value" />);
-    expect(screen.getByText('expected text')).toBeInTheDocument();
-  });
+## Richtlinien für Props
 
-  it('calls onSomething when event occurs', () => {
-    const onSomething = jest.fn();
-    render(<ComponentName propName="value" onSomething={onSomething} />);
-    
-    fireEvent.click(screen.getByText('trigger'));
-    expect(onSomething).toHaveBeenCalledTimes(1);
-    expect(onSomething).toHaveBeenCalledWith(expectedParam);
-  });
-});
-```
+1. **Konsistente Benennung**: Verwende konsistente Namen für ähnliche Props in verschiedenen Komponenten (z.B. `size`, `variant`, `color`).
+2. **Sinnvolle Defaults**: Setze sinnvolle Standardwerte für Props.
+3. **Typsicherheit**: Verwende TypeScript für strikte Typisierung.
+4. **Prop Spreading**: Verwende `...rest` für HTML-Attribute, die an das Root-Element weitergegeben werden.
+5. **Ref Forwarding**: Verwende `forwardRef` für alle Komponenten.
 
-## Styles-Datei (optional)
+## Styling-Richtlinien
 
-Wenn die Komponente komplexe Styles hat, können diese in einer separaten Datei definiert werden:
+1. **Tailwind CSS**: Verwende Tailwind-Klassen für Styling.
+2. **Konsistente Varianten**: Verwende konsistente Varianten (`primary`, `secondary`, etc.) für alle Komponenten.
+3. **Responsive Design**: Stelle sicher, dass alle Komponenten responsiv sind.
+4. **Dark Mode**: Unterstütze Dark Mode mit `dark:` Präfix-Klassen.
+5. **Barrierefreiheit**: Stelle sicher, dass alle Komponenten die Barrierefreiheitsrichtlinien erfüllen.
 
-```tsx
-import { css } from '@emotion/react';
+## Komponentenkategorien
 
-export const containerStyles = css`
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
+Organisiere Komponenten in logische Kategorien:
 
-export const headerStyles = css`
-  margin-bottom: 16px;
-  font-weight: bold;
-`;
+1. **Layout**: Komponenten für Layoutstruktur (Box, Flex, Grid, Container)
+2. **Inputs**: Formularelemente (Button, Input, Select, Checkbox)
+3. **Data Display**: Komponenten zur Datenanzeige (Table, List, Card, Avatar)
+4. **Feedback**: Komponenten für Benutzerfeedback (Alert, Toast, Progress, Spinner)
+5. **Overlay**: Komponenten, die über anderen angezeigt werden (Modal, Tooltip, Popover)
+6. **Navigation**: Navigationskomponenten (Menu, Tabs, Breadcrumb)
+7. **Disclosure**: Komponenten zum Ein-/Ausblenden von Inhalten (Accordion, Collapse)
 
-// ...
-```
+## Versionierung und Änderungen
 
-## Richtlinien für Komponenten
+1. **Semantic Versioning**: Folge Semantic Versioning für Änderungen.
+2. **Breaking Changes**: Dokumentiere Breaking Changes deutlich.
+3. **Deprecation**: Markiere veraltete Komponenten oder Props mit `@deprecated`-Tags.
+4. **Changelog**: Führe ein Changelog für alle Änderungen.
 
-### Allgemeine Richtlinien
+## Qualitätssicherung
 
-1. **Funktionale Komponenten**: Verwenden Sie funktionale Komponenten mit React Hooks.
-2. **TypeScript**: Verwenden Sie TypeScript für alle Komponenten.
-3. **JSDoc-Kommentare**: Dokumentieren Sie alle Props und die Komponente selbst.
-4. **Einheitliche Benennung**: Verwenden Sie PascalCase für Komponenten und camelCase für Props und Funktionen.
-5. **Konsistente Struktur**: Folgen Sie der oben beschriebenen Struktur für alle Komponenten.
+Jede Komponente sollte folgende Qualitätskriterien erfüllen:
 
-### Props
-
-1. **Minimale Props**: Halten Sie die Anzahl der Props minimal und fokussiert.
-2. **Standardwerte**: Geben Sie Standardwerte für optionale Props an.
-3. **Callback-Benennung**: Verwenden Sie `on`-Präfix für Callback-Props (z.B. `onClick`, `onSubmit`).
-4. **Konsistente Props**: Verwenden Sie konsistente Props über alle Komponenten hinweg.
-5. **Dokumentation**: Dokumentieren Sie alle Props mit JSDoc-Kommentaren.
-
-### Styling
-
-1. **Primitive Komponenten**: Verwenden Sie primitive Komponenten aus `@smolitux/utils` für das Layout.
-2. **Konsistente Abstände**: Verwenden Sie konsistente Abstände und Größen.
-3. **Responsive Design**: Stellen Sie sicher, dass alle Komponenten responsiv sind.
-4. **Theming**: Verwenden Sie das Theme-System für Farben, Abstände und Typografie.
-5. **Barrierefreiheit**: Stellen Sie sicher, dass alle Komponenten barrierefrei sind.
-
-### Testen
-
-1. **Einheitstests**: Schreiben Sie Tests für alle Komponenten.
-2. **Interaktionstests**: Testen Sie Benutzerinteraktionen mit `fireEvent`.
-3. **Snapshot-Tests**: Verwenden Sie Snapshot-Tests für UI-Konsistenz.
-4. **Mocking**: Mocken Sie externe Abhängigkeiten und Callbacks.
-5. **Testabdeckung**: Streben Sie eine hohe Testabdeckung an.
-
-### Dokumentation
-
-1. **Storybook**: Erstellen Sie Storybook-Geschichten für alle Komponenten.
-2. **Varianten**: Zeigen Sie verschiedene Varianten und Zustände der Komponente.
-3. **Interaktive Beispiele**: Erstellen Sie interaktive Beispiele für komplexe Komponenten.
-4. **Dokumentation**: Dokumentieren Sie die Verwendung und Einschränkungen der Komponente.
-5. **Beispiele**: Geben Sie Beispiele für häufige Anwendungsfälle.
+1. **Vollständige Tests**: Unit-Tests und Barrierefreiheitstests
+2. **Storybook-Dokumentation**: Vollständige Storybook-Geschichten
+3. **TypeScript**: Vollständige Typisierung
+4. **Barrierefreiheit**: WCAG 2.1 AA-konform
+5. **Performance**: Optimiert für Leistung und Bündelgröße
