@@ -1,0 +1,15 @@
+{
+  "id": "architecture/package-structure",
+  "title": "Paketstruktur",
+  "description": "Diese Dokumentation beschreibt die Struktur und Organisation der Pakete in der Smolitux-UI-Bibliothek.",
+  "source": "@site/Wiki/architecture/package-structure.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/package-structure",
+  "permalink": "/smolitux-ui/docs/architecture/package-structure",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/architecture/package-structure.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

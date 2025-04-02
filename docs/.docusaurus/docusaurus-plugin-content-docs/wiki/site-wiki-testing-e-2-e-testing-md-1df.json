@@ -1,0 +1,15 @@
+{
+  "id": "testing/e2e-testing",
+  "title": "End-to-End-Tests in Smolitux UI",
+  "description": "Diese Dokumentation beschreibt die End-to-End-Testinfrastruktur der Smolitux UI Bibliothek und gibt Anleitungen zur Durchführung und Erweiterung der Tests.",
+  "source": "@site/Wiki/testing/e2e-testing.md",
+  "sourceDirName": "testing",
+  "slug": "/testing/e2e-testing",
+  "permalink": "/smolitux-ui/docs/testing/e2e-testing",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/e2e-testing.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

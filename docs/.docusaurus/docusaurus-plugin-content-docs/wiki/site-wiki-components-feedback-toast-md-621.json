@@ -1,0 +1,15 @@
+{
+  "id": "components/feedback/toast",
+  "title": "Toast",
+  "description": "Die Toast-Komponente zeigt kurze Benachrichtigungen an, die automatisch nach einer bestimmten Zeit verschwinden.",
+  "source": "@site/Wiki/components/feedback/toast.md",
+  "sourceDirName": "components/feedback",
+  "slug": "/components/feedback/toast",
+  "permalink": "/smolitux-ui/docs/components/feedback/toast",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/feedback/toast.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

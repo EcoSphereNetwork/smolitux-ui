@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/CI-CD-Integration",
+  "title": "CI/CD-Integration",
+  "description": "Dieses Dokument beschreibt die Integration der Teststrategie in eine Continuous Integration/Continuous Deployment (CI/CD) Pipeline für die smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/testing/testplan/08-CI-CD-Integration.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/CI-CD-Integration",
+  "permalink": "/smolitux-ui/docs/testing/testplan/CI-CD-Integration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/08-CI-CD-Integration.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {}
+}

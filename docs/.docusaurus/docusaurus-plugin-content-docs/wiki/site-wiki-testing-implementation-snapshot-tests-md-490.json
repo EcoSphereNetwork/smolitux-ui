@@ -1,0 +1,15 @@
+{
+  "id": "testing/implementation/snapshot-tests",
+  "title": "Snapshot-Tests für Smolitux UI",
+  "description": "Dieses Dokument beschreibt die Implementierung von Snapshot-Tests für die Smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/testing/implementation/snapshot-tests.md",
+  "sourceDirName": "testing/implementation",
+  "slug": "/testing/implementation/snapshot-tests",
+  "permalink": "/smolitux-ui/docs/testing/implementation/snapshot-tests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/implementation/snapshot-tests.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

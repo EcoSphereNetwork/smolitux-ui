@@ -2,7 +2,7 @@
 
 Diese Seite enthält Richtlinien und Best Practices für die Erstellung barrierefreier Benutzeroberflächen mit Smolitux UI.
 
-> **Hinweis:** Die vollständige Dokumentation zur Barrierefreiheit finden Sie unter [Barrierefreiheit in der Smolitux UI Bibliothek](/docs/Wiki/accessibility/README.md).
+> **Hinweis:** Die vollständige Dokumentation zur Barrierefreiheit finden Sie unter [Barrierefreiheit in der Smolitux UI Bibliothek](../accessibility/README.md).
 
 ## Warum Barrierefreiheit wichtig ist
 

@@ -1,0 +1,15 @@
+{
+  "id": "guides/mvp-development",
+  "title": "Konkrete Schritte für die erste MVP-Entwicklung mit Resonance UI",
+  "description": "1. Vorbereitungsphase",
+  "source": "@site/Wiki/guides/mvp-development.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/mvp-development",
+  "permalink": "/smolitux-ui/docs/guides/mvp-development",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guides/mvp-development.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

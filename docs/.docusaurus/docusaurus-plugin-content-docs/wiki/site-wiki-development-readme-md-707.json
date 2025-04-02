@@ -1,0 +1,15 @@
+{
+  "id": "development/README",
+  "title": "Smolitux-UI Entwicklungsdokumentation",
+  "description": "Diese Dokumentation enthält wichtige Informationen für Entwickler, die an der Smolitux-UI-Bibliothek arbeiten oder sie verwenden möchten.",
+  "source": "@site/Wiki/development/README.md",
+  "sourceDirName": "development",
+  "slug": "/development/",
+  "permalink": "/smolitux-ui/docs/development/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

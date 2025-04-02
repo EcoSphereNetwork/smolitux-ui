@@ -1,0 +1,15 @@
+{
+  "id": "development/documentation-strategy",
+  "title": "Dokumentationsstrategie für Resonance UI Bibliothek",
+  "description": "1. Dokumentationsziele",
+  "source": "@site/Wiki/development/documentation-strategy.md",
+  "sourceDirName": "development",
+  "slug": "/development/documentation-strategy",
+  "permalink": "/smolitux-ui/docs/development/documentation-strategy",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/documentation-strategy.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

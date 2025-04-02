@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/colorpicker",
+  "title": "ColorPicker",
+  "description": "Die ColorPicker-Komponente ermöglicht es Benutzern, eine Farbe aus einem visuellen Farbspektrum auszuwählen oder direkt als Hex-, RGB- oder HSL-Wert einzugeben.",
+  "source": "@site/Wiki/components/forms/colorpicker.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/colorpicker",
+  "permalink": "/smolitux-ui/docs/components/forms/colorpicker",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/colorpicker.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

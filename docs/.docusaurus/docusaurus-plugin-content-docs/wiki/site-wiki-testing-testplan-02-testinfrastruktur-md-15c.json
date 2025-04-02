@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Testinfrastruktur",
+  "title": "Testinfrastruktur für smolitux UI",
+  "description": "Dieses Dokument beschreibt die technische Infrastruktur, die für die Durchführung der Tests der smolitux UI-Komponenten erforderlich ist.",
+  "source": "@site/Wiki/testing/testplan/02-Testinfrastruktur.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Testinfrastruktur",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Testinfrastruktur",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/02-Testinfrastruktur.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {}
+}

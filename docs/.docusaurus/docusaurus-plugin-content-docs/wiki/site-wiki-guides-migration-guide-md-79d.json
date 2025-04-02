@@ -1,0 +1,15 @@
+{
+  "id": "guides/migration-guide",
+  "title": "Migrationsstrategie für bestehende Projekte",
+  "description": "1. Analyse der aktuellen Projekte",
+  "source": "@site/Wiki/guides/migration-guide.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/migration-guide",
+  "permalink": "/smolitux-ui/docs/guides/migration-guide",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guides/migration-guide.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

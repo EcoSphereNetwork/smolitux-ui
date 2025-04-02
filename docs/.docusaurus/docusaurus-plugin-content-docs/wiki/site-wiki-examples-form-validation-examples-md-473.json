@@ -1,0 +1,15 @@
+{
+  "id": "examples/form-validation-examples",
+  "title": "Formularvalidierung Beispiele",
+  "description": "Diese Seite enthält praktische Beispiele für die Verwendung des Formularvalidierungssystems der Smolitux UI Bibliothek.",
+  "source": "@site/Wiki/examples/form-validation-examples.md",
+  "sourceDirName": "examples",
+  "slug": "/examples/form-validation-examples",
+  "permalink": "/smolitux-ui/docs/examples/form-validation-examples",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/examples/form-validation-examples.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

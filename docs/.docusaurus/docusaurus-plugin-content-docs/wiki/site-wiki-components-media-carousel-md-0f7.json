@@ -1,0 +1,15 @@
+{
+  "id": "components/media/carousel",
+  "title": "Carousel",
+  "description": "Die Carousel-Komponente ermöglicht das Anzeigen von Inhalten in einer interaktiven Slideshow. Sie unterstützt verschiedene Animationen, automatisches Abspielen und Swipe-Gesten.",
+  "source": "@site/Wiki/components/media/carousel.md",
+  "sourceDirName": "components/media",
+  "slug": "/components/media/carousel",
+  "permalink": "/smolitux-ui/docs/components/media/carousel",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/media/carousel.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

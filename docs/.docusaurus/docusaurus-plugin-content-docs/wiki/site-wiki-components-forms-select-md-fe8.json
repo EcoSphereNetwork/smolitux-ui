@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/select",
+  "title": "Select",
+  "description": "Die Select-Komponente ermöglicht Benutzern, eine Option aus einer Liste auszuwählen. Sie unterstützt verschiedene Größen, Varianten und Zustände und kann mit Icons und Beschreibungen angepasst werden.",
+  "source": "@site/Wiki/components/forms/select.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/select",
+  "permalink": "/smolitux-ui/docs/components/forms/select",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/select.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "development/performance-optimization",
+  "title": "Performance-Optimierungsstrategie für Resonance UI Bibliothek",
+  "description": "1. Rendering-Optimierungen",
+  "source": "@site/Wiki/development/performance-optimization.md",
+  "sourceDirName": "development",
+  "slug": "/development/performance-optimization",
+  "permalink": "/smolitux-ui/docs/development/performance-optimization",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/performance-optimization.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

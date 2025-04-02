@@ -1,0 +1,15 @@
+{
+  "id": "development/changelog",
+  "title": "Changelog",
+  "description": "Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert.",
+  "source": "@site/Wiki/development/changelog.md",
+  "sourceDirName": "development",
+  "slug": "/development/changelog",
+  "permalink": "/smolitux-ui/docs/development/changelog",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/changelog.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "components/overlay/tooltip",
+  "title": "Tooltip",
+  "description": "Die Tooltip-Komponente zeigt zusätzliche Informationen an, wenn Benutzer mit einem Element interagieren. Sie ist ideal für kurze Hilfetexte, Erklärungen oder Hinweise.",
+  "source": "@site/Wiki/components/overlay/tooltip.md",
+  "sourceDirName": "components/overlay",
+  "slug": "/components/overlay/tooltip",
+  "permalink": "/smolitux-ui/docs/components/overlay/tooltip",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/overlay/tooltip.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

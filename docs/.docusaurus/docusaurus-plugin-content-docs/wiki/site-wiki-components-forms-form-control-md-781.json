@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/form-control",
+  "title": "FormControl",
+  "description": "Die FormControl-Komponente dient als Container für Formularelemente und bietet eine konsistente Struktur für Labels, Hilfetexte und Fehlermeldungen. Sie stellt einen Context bereit, der von untergeordneten Komponenten wie Input, Select und Checkbox genutzt werden kann.",
+  "source": "@site/Wiki/components/forms/form-control.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/form-control",
+  "permalink": "/smolitux-ui/docs/components/forms/form-control",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/form-control.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

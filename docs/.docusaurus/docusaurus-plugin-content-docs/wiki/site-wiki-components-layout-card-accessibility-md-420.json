@@ -1,0 +1,15 @@
+{
+  "id": "components/layout/card/accessibility",
+  "title": "Card-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Card-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/layout/card/accessibility.md",
+  "sourceDirName": "components/layout/card",
+  "slug": "/components/layout/card/accessibility",
+  "permalink": "/smolitux-ui/docs/components/layout/card/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/layout/card/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

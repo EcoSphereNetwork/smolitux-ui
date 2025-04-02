@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Spezielle-Komponententests",
+  "title": "Spezielle Komponententests",
+  "description": "Dieses Dokument beschreibt die speziellen Testverfahren für komplexe Komponenten in der Smolitux UI Bibliothek.",
+  "source": "@site/Wiki/testing/testplan/05-Spezielle-Komponententests.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Spezielle-Komponententests",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Spezielle-Komponententests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/05-Spezielle-Komponententests.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {}
+}

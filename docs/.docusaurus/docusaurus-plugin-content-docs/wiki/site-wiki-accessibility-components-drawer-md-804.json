@@ -1,0 +1,15 @@
+{
+  "id": "accessibility/components/drawer",
+  "title": "Drawer Barrierefreiheit",
+  "description": "Implementierte Verbesserungen",
+  "source": "@site/Wiki/accessibility/components/drawer.md",
+  "sourceDirName": "accessibility/components",
+  "slug": "/accessibility/components/drawer",
+  "permalink": "/smolitux-ui/docs/accessibility/components/drawer",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/accessibility/components/drawer.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/switch",
+  "title": "Switch",
+  "description": "Die Switch-Komponente ist eine Alternative zur Checkbox und wird verwendet, um zwischen zwei Zuständen umzuschalten.",
+  "source": "@site/Wiki/components/forms/switch.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/switch",
+  "permalink": "/smolitux-ui/docs/components/forms/switch",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/switch.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

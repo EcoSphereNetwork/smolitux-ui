@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Visuelle-Tests",
+  "title": "Visuelle Regressionstests",
+  "description": "Dieses Dokument beschreibt die Strategie und Implementierung von visuellen Regressionstests für die Komponenten der smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/testing/testplan/06-Visuelle-Tests.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Visuelle-Tests",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Visuelle-Tests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/06-Visuelle-Tests.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {}
+}

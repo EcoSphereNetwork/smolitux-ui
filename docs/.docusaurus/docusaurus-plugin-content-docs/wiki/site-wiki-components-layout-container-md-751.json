@@ -1,0 +1,15 @@
+{
+  "id": "components/layout/container",
+  "title": "Container",
+  "description": "Der Container ist eine Layout-Komponente, die dazu dient, den Inhalt horizontal zu zentrieren und eine maximale Breite festzulegen. Er passt sich automatisch an verschiedene Bildschirmgrößen an und sorgt für konsistente Ränder.",
+  "source": "@site/Wiki/components/layout/container.md",
+  "sourceDirName": "components/layout",
+  "slug": "/components/layout/container",
+  "permalink": "/smolitux-ui/docs/components/layout/container",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/layout/container.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

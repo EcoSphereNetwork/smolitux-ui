@@ -1,0 +1,15 @@
+{
+  "id": "components/feedback/spinner",
+  "title": "Spinner",
+  "description": "Die Spinner-Komponente wird verwendet, um Ladezustände anzuzeigen und dem Benutzer zu signalisieren, dass ein Prozess im Hintergrund ausgeführt wird.",
+  "source": "@site/Wiki/components/feedback/spinner.md",
+  "sourceDirName": "components/feedback",
+  "slug": "/components/feedback/spinner",
+  "permalink": "/smolitux-ui/docs/components/feedback/spinner",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/feedback/spinner.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

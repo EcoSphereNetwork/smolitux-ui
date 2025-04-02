@@ -1,0 +1,15 @@
+{
+  "id": "testing/implementation/component-tests",
+  "title": "Komponententests für Smolitux UI",
+  "description": "Dieses Dokument beschreibt die implementierten Unit-Tests und Integrationstests für die Smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/testing/implementation/component-tests.md",
+  "sourceDirName": "testing/implementation",
+  "slug": "/testing/implementation/component-tests",
+  "permalink": "/smolitux-ui/docs/testing/implementation/component-tests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/implementation/component-tests.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "components/inputs/button",
+  "title": "Button",
+  "description": "Die Button-Komponente wird verwendet, um Aktionen auszulösen. Sie unterstützt verschiedene Varianten, Größen und Zustände.",
+  "source": "@site/Wiki/components/inputs/button.md",
+  "sourceDirName": "components/inputs",
+  "slug": "/components/inputs/button",
+  "permalink": "/smolitux-ui/docs/components/inputs/button",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/inputs/button.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

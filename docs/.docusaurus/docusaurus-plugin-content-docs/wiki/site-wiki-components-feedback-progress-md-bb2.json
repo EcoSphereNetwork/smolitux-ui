@@ -1,0 +1,15 @@
+{
+  "id": "components/feedback/progress",
+  "title": "ProgressBar",
+  "description": "Die ProgressBar-Komponente zeigt den Fortschritt eines Vorgangs an und gibt dem Benutzer visuelles Feedback über den Status.",
+  "source": "@site/Wiki/components/feedback/progress.md",
+  "sourceDirName": "components/feedback",
+  "slug": "/components/feedback/progress",
+  "permalink": "/smolitux-ui/docs/components/feedback/progress",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/feedback/progress.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "testing/implementation/accessibility-tests",
+  "title": "Barrierefreiheitstests für Smolitux UI Komponenten",
+  "description": "Dieser Leitfaden beschreibt die Implementierung von Barrierefreiheitstests (Accessibility Tests) für die Smolitux UI Komponenten, um sicherzustellen, dass alle Komponenten den WCAG 2.1 AA-Standards entsprechen.",
+  "source": "@site/Wiki/testing/implementation/accessibility-tests.md",
+  "sourceDirName": "testing/implementation",
+  "slug": "/testing/implementation/accessibility-tests",
+  "permalink": "/smolitux-ui/docs/testing/implementation/accessibility-tests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/implementation/accessibility-tests.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "development/implementation-roadmap",
+  "title": "Smolitux UI Bibliothek - Konsolidierte Entwicklungs-Roadmap",
+  "description": "Diese Roadmap beschreibt den umfassenden Plan zur Weiterentwicklung und Fertigstellung der Smolitux UI Bibliothek. Sie basiert auf einer gründlichen Analyse des aktuellen Zustands und enthält eine priorisierte Liste von Aufgaben sowie einen detaillierten Zeitplan für die Umsetzung.",
+  "source": "@site/Wiki/development/implementation-roadmap.md",
+  "sourceDirName": "development",
+  "slug": "/development/implementation-roadmap",
+  "permalink": "/smolitux-ui/docs/development/implementation-roadmap",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/implementation-roadmap.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

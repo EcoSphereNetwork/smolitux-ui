@@ -1,0 +1,15 @@
+{
+  "id": "accessibility/README",
+  "title": "Barrierefreiheit in der Smolitux UI Bibliothek",
+  "description": "Übersicht",
+  "source": "@site/Wiki/accessibility/README.md",
+  "sourceDirName": "accessibility",
+  "slug": "/accessibility/",
+  "permalink": "/smolitux-ui/docs/accessibility/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/accessibility/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

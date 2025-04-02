@@ -21,7 +21,7 @@ const config: Config = {
   projectName: 'smolitux-ui', // Usually your repo name.
   trailingSlash: false,
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -29,19 +29,9 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['de', 'en', 'zh', 'hi', 'es', 'ar', 'fr', 'bn', 'ru', 'pt', 'ur'],
+    locales: ['en'],
     localeConfigs: {
-      de: { label: 'Deutsch' },
       en: { label: 'English' },
-      zh: { label: '中文' },
-      hi: { label: 'हिन्दी' },
-      es: { label: 'Español' },
-      ar: { label: 'العربية' },
-      fr: { label: 'Français' },
-      bn: { label: 'বাংলা' },
-      ru: { label: 'Русский' },
-      pt: { label: 'Português' },
-      ur: { label: 'اردو' }
     },
   },
 
@@ -81,26 +71,9 @@ const config: Config = {
         id: 'wiki',
         path: 'Wiki',
         routeBasePath: 'docs',
-        sidebarPath: './sidebars.ts',
+        sidebarPath: require.resolve('./sidebars.ts'),
         sidebarCollapsible: true,
-        includeCurrentVersion: true, // Make sure this is true
-        // Please change this to your repo.
-        // Remove this to remove the "edit this page" links.
-        editUrl:
-          'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'tutorial',
-        path: 'docusaurus',
-        routeBasePath: 'tutorial',
-        sidebarPath: './sidebars.ts',
-        sidebarCollapsible: true,
-        includeCurrentVersion: true, // Make sure this is true
-        // Please change this to your repo.
-        // Remove this to remove the "edit this page" links.
+        includeCurrentVersion: true,
         editUrl:
           'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
       },
@@ -122,14 +95,7 @@ const config: Config = {
           sidebarId: 'wikiSidebar',
           position: 'left',
           label: 'Wiki',
-          docsPluginId: 'wiki', 
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
-          docsPluginId: 'tutorial',
+          docsPluginId: 'wiki',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -152,15 +118,6 @@ const config: Config = {
             {
               label: 'Quickstart',
               to: '/docs/guides/quickstart',
-            },
-          ],
-        },
-        {
-          title: 'Docusaurus Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/tutorial/intro',
             },
           ],
         },

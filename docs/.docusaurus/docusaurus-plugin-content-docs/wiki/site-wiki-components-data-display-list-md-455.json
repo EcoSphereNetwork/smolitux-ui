@@ -1,0 +1,15 @@
+{
+  "id": "components/data-display/list",
+  "title": "List",
+  "description": "Die List-Komponente ermöglicht die Darstellung von Daten in Form von Listen mit verschiedenen Stilen und Funktionen.",
+  "source": "@site/Wiki/components/data-display/list.md",
+  "sourceDirName": "components/data-display",
+  "slug": "/components/data-display/list",
+  "permalink": "/smolitux-ui/docs/components/data-display/list",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/data-display/list.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

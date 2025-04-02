@@ -1,0 +1,15 @@
+{
+  "id": "development/Entwickler-Prompt",
+  "title": "Entwickler-Prompt",
+  "description": "Entwickler-Prompt: Smolitux UI Bibliothek - Weiterentwicklung und Testdurchführung",
+  "source": "@site/Wiki/development/Entwickler-Prompt.md",
+  "sourceDirName": "development",
+  "slug": "/development/Entwickler-Prompt",
+  "permalink": "/smolitux-ui/docs/development/Entwickler-Prompt",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/Entwickler-Prompt.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

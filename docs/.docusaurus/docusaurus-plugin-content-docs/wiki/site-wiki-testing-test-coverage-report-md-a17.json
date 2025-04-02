@@ -1,0 +1,15 @@
+{
+  "id": "testing/test-coverage-report",
+  "title": "Test Coverage Report",
+  "description": "Diese Dokumentation bietet einen Überblick über die aktuelle Testabdeckung der Smolitux-UI-Bibliothek und Strategien zur weiteren Verbesserung.",
+  "source": "@site/Wiki/testing/test-coverage-report.md",
+  "sourceDirName": "testing",
+  "slug": "/testing/test-coverage-report",
+  "permalink": "/smolitux-ui/docs/testing/test-coverage-report",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/test-coverage-report.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

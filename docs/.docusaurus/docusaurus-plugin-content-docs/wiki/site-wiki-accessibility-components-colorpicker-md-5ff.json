@@ -1,0 +1,15 @@
+{
+  "id": "accessibility/components/colorpicker",
+  "title": "ColorPicker Barrierefreiheit",
+  "description": "Implementierte Verbesserungen",
+  "source": "@site/Wiki/accessibility/components/colorpicker.md",
+  "sourceDirName": "accessibility/components",
+  "slug": "/accessibility/components/colorpicker",
+  "permalink": "/smolitux-ui/docs/accessibility/components/colorpicker",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/accessibility/components/colorpicker.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

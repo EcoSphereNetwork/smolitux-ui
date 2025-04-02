@@ -1,0 +1,15 @@
+{
+  "id": "testing/presentation/testplan-implementation",
+  "title": "Präsentation: Implementierung des Testplans für Smolitux UI",
+  "description": "Agenda",
+  "source": "@site/Wiki/testing/presentation/testplan-implementation.md",
+  "sourceDirName": "testing/presentation",
+  "slug": "/testing/presentation/testplan-implementation",
+  "permalink": "/smolitux-ui/docs/testing/presentation/testplan-implementation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/presentation/testplan-implementation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

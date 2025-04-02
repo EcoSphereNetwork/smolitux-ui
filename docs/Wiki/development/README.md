@@ -53,8 +53,8 @@ Derzeit gibt es einige bekannte Probleme mit dem Build-Prozess. Siehe [Build-Ana
 
 ## Beitragen
 
-Wir freuen uns über Beiträge zur Verbesserung der Smolitux-UI-Bibliothek. Bitte lesen Sie die [Beitragsrichtlinien](../contributing.md) für weitere Informationen.
+Wir freuen uns über Beiträge zur Verbesserung der Smolitux-UI-Bibliothek. Bitte lesen Sie die [Beitragsrichtlinien](contributing.md) für weitere Informationen.
 
 ## Lizenz
 
-Smolitux-UI ist unter der [MIT-Lizenz](../../LICENSE) lizenziert.
+Smolitux-UI ist unter der MIT-Lizenz lizenziert.

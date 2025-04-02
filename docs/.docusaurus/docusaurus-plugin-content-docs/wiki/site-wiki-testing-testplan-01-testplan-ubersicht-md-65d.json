@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Testplan-Übersicht",
+  "title": "Testplan für Smolitux UI Komponenten",
+  "description": "Übersicht",
+  "source": "@site/Wiki/testing/testplan/01-Testplan-Übersicht.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Testplan-Übersicht",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Testplan-Übersicht",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/01-Testplan-Übersicht.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {}
+}

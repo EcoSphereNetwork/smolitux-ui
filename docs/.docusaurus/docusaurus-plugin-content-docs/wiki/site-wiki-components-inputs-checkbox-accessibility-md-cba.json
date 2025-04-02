@@ -1,0 +1,15 @@
+{
+  "id": "components/inputs/checkbox/accessibility",
+  "title": "Checkbox-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Checkbox-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/inputs/checkbox/accessibility.md",
+  "sourceDirName": "components/inputs/checkbox",
+  "slug": "/components/inputs/checkbox/accessibility",
+  "permalink": "/smolitux-ui/docs/components/inputs/checkbox/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/inputs/checkbox/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "components/data-display/badge",
+  "title": "Badge",
+  "description": "Die Badge-Komponente wird verwendet, um Status, Kennzeichnungen oder Zähler anzuzeigen. Sie ist ideal für Benachrichtigungen, Tags oder Labels.",
+  "source": "@site/Wiki/components/data-display/badge.md",
+  "sourceDirName": "components/data-display",
+  "slug": "/components/data-display/badge",
+  "permalink": "/smolitux-ui/docs/components/data-display/badge",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/data-display/badge.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

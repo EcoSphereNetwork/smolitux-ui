@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/radio",
+  "title": "Radio",
+  "description": "Die Radio-Komponente ermöglicht Benutzern, eine Option aus einer Gruppe auszuwählen. Sie unterstützt verschiedene Größen, Varianten und Zustände und kann als Button oder Karte dargestellt werden.",
+  "source": "@site/Wiki/components/forms/radio.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/radio",
+  "permalink": "/smolitux-ui/docs/components/forms/radio",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/radio.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

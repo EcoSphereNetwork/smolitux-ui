@@ -25,8 +25,8 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/docusaurus/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            to="/docs">
+            Smolitux UI Dokumentation
           </Link>
         </div>
       </div>

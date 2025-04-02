@@ -1,0 +1,15 @@
+{
+  "id": "components/navigation/tabs",
+  "title": "Tabs",
+  "description": "Die Tabs-Komponente ermöglicht es, Inhalte in verschiedenen Panels zu organisieren, zwischen denen Benutzer wechseln können.",
+  "source": "@site/Wiki/components/navigation/tabs.md",
+  "sourceDirName": "components/navigation",
+  "slug": "/components/navigation/tabs",
+  "permalink": "/smolitux-ui/docs/components/navigation/tabs",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/navigation/tabs.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "styling/README",
+  "title": "Smolitux UI Styling-Dokumentation",
+  "description": "Diese Dokumentation beschreibt die verfügbaren Styling-Utilities in der Smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/styling/README.md",
+  "sourceDirName": "styling",
+  "slug": "/styling/",
+  "permalink": "/smolitux-ui/docs/styling/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/styling/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

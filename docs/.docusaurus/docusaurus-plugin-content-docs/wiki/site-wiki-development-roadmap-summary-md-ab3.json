@@ -1,0 +1,15 @@
+{
+  "id": "development/roadmap/summary",
+  "title": "Smolitux UI Bibliothek - Zusammenfassung und nächste Schritte",
+  "description": "Zusammenfassung der Analyse",
+  "source": "@site/Wiki/development/roadmap/summary.md",
+  "sourceDirName": "development/roadmap",
+  "slug": "/development/roadmap/summary",
+  "permalink": "/smolitux-ui/docs/development/roadmap/summary",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/roadmap/summary.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

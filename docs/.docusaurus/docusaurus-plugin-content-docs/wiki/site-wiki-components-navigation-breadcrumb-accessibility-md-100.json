@@ -1,0 +1,15 @@
+{
+  "id": "components/navigation/breadcrumb/accessibility",
+  "title": "Breadcrumb-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Breadcrumb-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/navigation/breadcrumb/accessibility.md",
+  "sourceDirName": "components/navigation/breadcrumb",
+  "slug": "/components/navigation/breadcrumb/accessibility",
+  "permalink": "/smolitux-ui/docs/components/navigation/breadcrumb/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/navigation/breadcrumb/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

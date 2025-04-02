@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Integrationstests",
+  "title": "Integrationstests für komplexe Komponenten",
+  "description": "Dieses Dokument beschreibt die Strategie und Implementierung von Integrationstests für komplexere Komponenten der smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/testing/testplan/04-Integrationstests.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Integrationstests",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Integrationstests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/04-Integrationstests.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {}
+}

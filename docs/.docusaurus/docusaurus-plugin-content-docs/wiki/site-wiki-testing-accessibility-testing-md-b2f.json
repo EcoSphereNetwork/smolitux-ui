@@ -1,0 +1,15 @@
+{
+  "id": "testing/accessibility-testing",
+  "title": "Barrierefreiheitstests in Smolitux UI",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitstestinfrastruktur der Smolitux UI Bibliothek und gibt Anleitungen zur Durchführung und Erweiterung der Tests.",
+  "source": "@site/Wiki/testing/accessibility-testing.md",
+  "sourceDirName": "testing",
+  "slug": "/testing/accessibility-testing",
+  "permalink": "/smolitux-ui/docs/testing/accessibility-testing",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/accessibility-testing.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

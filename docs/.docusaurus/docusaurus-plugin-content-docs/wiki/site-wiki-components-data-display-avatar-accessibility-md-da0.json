@@ -1,0 +1,15 @@
+{
+  "id": "components/data-display/avatar/accessibility",
+  "title": "Avatar-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Avatar-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/data-display/avatar/accessibility.md",
+  "sourceDirName": "components/data-display/avatar",
+  "slug": "/components/data-display/avatar/accessibility",
+  "permalink": "/smolitux-ui/docs/components/data-display/avatar/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/data-display/avatar/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

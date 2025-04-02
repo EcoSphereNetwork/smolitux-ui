@@ -1,0 +1,15 @@
+{
+  "id": "development/roadmap/implementation-plan",
+  "title": "Smolitux UI Bibliothek - Implementierungsplan",
+  "description": "Dieser Plan beschreibt die schrittweise Umsetzung zur Weiterentwicklung und Fertigstellung der Smolitux UI Bibliothek. Der Plan basiert auf einer gründlichen Analyse des aktuellen Zustands und priorisiert die Aufgaben entsprechend der Anforderungen.",
+  "source": "@site/Wiki/development/roadmap/implementation-plan.md",
+  "sourceDirName": "development/roadmap",
+  "slug": "/development/roadmap/implementation-plan",
+  "permalink": "/smolitux-ui/docs/development/roadmap/implementation-plan",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/roadmap/implementation-plan.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

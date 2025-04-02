@@ -1,0 +1,15 @@
+{
+  "id": "development/archive/roadmap",
+  "title": "Entwicklungs-Roadmap",
+  "description": "Diese Roadmap beschreibt die geplanten Entwicklungsschritte für die Smolitux UI Bibliothek.",
+  "source": "@site/Wiki/development/archive/roadmap.md",
+  "sourceDirName": "development/archive",
+  "slug": "/development/archive/roadmap",
+  "permalink": "/smolitux-ui/docs/development/archive/roadmap",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/archive/roadmap.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

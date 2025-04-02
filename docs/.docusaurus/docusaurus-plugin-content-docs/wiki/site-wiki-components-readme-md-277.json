@@ -1,0 +1,15 @@
+{
+  "id": "components/README",
+  "title": "Smolitux UI Komponenten-Dokumentation",
+  "description": "Diese Dokumentation beschreibt die verfügbaren Komponenten in der Smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/components/README.md",
+  "sourceDirName": "components",
+  "slug": "/components/",
+  "permalink": "/smolitux-ui/docs/components/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "architecture/technical-requirements",
+  "title": "Technische Anforderungsanalyse für React-Komponentenbibliothek",
+  "description": "1. Architektonische Grundanforderungen",
+  "source": "@site/Wiki/architecture/technical-requirements.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/technical-requirements",
+  "permalink": "/smolitux-ui/docs/architecture/technical-requirements",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/architecture/technical-requirements.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

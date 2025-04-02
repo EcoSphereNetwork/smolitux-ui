@@ -1,0 +1,15 @@
+{
+  "id": "components/inputs/Select",
+  "title": "Select Komponente",
+  "description": "Die Select-Komponente ist ein Dropdown-Menü für die Auswahl aus einer Liste von Optionen mit umfangreichen Anpassungsmöglichkeiten und Barrierefreiheitsfunktionen.",
+  "source": "@site/Wiki/components/inputs/Select.md",
+  "sourceDirName": "components/inputs",
+  "slug": "/components/inputs/Select",
+  "permalink": "/smolitux-ui/docs/components/inputs/Select",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/inputs/Select.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

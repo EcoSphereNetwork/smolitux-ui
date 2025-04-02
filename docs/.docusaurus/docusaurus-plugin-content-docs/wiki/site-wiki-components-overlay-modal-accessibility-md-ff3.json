@@ -1,0 +1,15 @@
+{
+  "id": "components/overlay/modal/accessibility",
+  "title": "Modal-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Modal-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/overlay/modal/accessibility.md",
+  "sourceDirName": "components/overlay/modal",
+  "slug": "/components/overlay/modal/accessibility",
+  "permalink": "/smolitux-ui/docs/components/overlay/modal/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/overlay/modal/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

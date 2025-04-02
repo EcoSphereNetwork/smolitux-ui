@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/radiogroup",
+  "title": "RadioGroup",
+  "description": "Die RadioGroup-Komponente ermöglicht es Benutzern, eine Option aus einer Liste von Optionen auszuwählen.",
+  "source": "@site/Wiki/components/forms/radiogroup.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/radiogroup",
+  "permalink": "/smolitux-ui/docs/components/forms/radiogroup",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/radiogroup.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

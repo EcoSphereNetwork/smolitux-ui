@@ -1,0 +1,15 @@
+{
+  "id": "guides/reorganize",
+  "title": "reorganize",
+  "description": "**ESNRepo-Template_",
+  "source": "@site/Wiki/guides/reorganize.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/reorganize",
+  "permalink": "/smolitux-ui/docs/guides/reorganize",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guides/reorganize.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

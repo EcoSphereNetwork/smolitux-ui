@@ -1,0 +1,15 @@
+{
+  "id": "development/project-guide",
+  "title": "Projektleitfaden für Resonance UI Bibliothek",
+  "description": "1. Projektziele",
+  "source": "@site/Wiki/development/project-guide.md",
+  "sourceDirName": "development",
+  "slug": "/development/project-guide",
+  "permalink": "/smolitux-ui/docs/development/project-guide",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/project-guide.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

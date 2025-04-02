@@ -1,0 +1,15 @@
+{
+  "id": "development/build-analysis",
+  "title": "Analyse der Build-Probleme in Smolitux-UI v0.2.1",
+  "description": "Identifizierte Probleme",
+  "source": "@site/Wiki/development/build-analysis.md",
+  "sourceDirName": "development",
+  "slug": "/development/build-analysis",
+  "permalink": "/smolitux-ui/docs/development/build-analysis",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/build-analysis.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}
