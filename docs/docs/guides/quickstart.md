@@ -1,79 +1,150 @@
----
-sidebar_position: 1
----
-
 # Schnellstart-Anleitung
 
-Diese Anleitung hilft Ihnen, schnell mit Smolitux-UI zu beginnen.
+Diese Anleitung hilft Ihnen, schnell mit Smolitux UI zu beginnen und die Komponenten in Ihrem React-Projekt zu verwenden.
 
 ## Installation
 
-Sie können Smolitux-UI über npm oder yarn installieren:
+Installieren Sie die Smolitux UI Pakete über npm oder yarn:
 
 ```bash
 # Mit npm
-npm install @smolitux/ui
+npm install @smolitux/core @smolitux/layout @smolitux/charts
 
 # Mit yarn
-yarn add @smolitux/ui
+yarn add @smolitux/core @smolitux/layout @smolitux/charts
 ```
 
-## Grundlegende Verwendung
+## Einrichtung
 
-Hier ist ein einfaches Beispiel, wie Sie Smolitux-UI in Ihrer Anwendung verwenden können:
+Smolitux UI verwendet ein Theming-System, das über den `ThemeProvider` bereitgestellt wird. Wickeln Sie Ihre Anwendung in den `ThemeProvider` ein, um das Standard-Theme zu verwenden:
 
 ```jsx
 import React from 'react';
-import { Button, Container, Card } from '@smolitux/ui';
+import ReactDOM from 'react-dom';
+import { ThemeProvider } from '@smolitux/theme';
+import App from './App';
 
-function App() {
+ReactDOM.render(
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root')
+);
+```
+
+## Verwendung der Komponenten
+
+Nach der Installation können Sie die Komponenten direkt in Ihren React-Komponenten importieren und verwenden:
+
+```jsx
+import React, { useState } from 'react';
+import { Button, Input, Card } from '@smolitux/core';
+import { Container, Grid } from '@smolitux/layout';
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Anmeldung verarbeiten
+    console.log('Anmeldung mit:', email, password);
+  };
+
   return (
     <Container>
-      <Card title="Willkommen bei Smolitux-UI">
-        <p>Dies ist ein einfaches Beispiel für die Verwendung von Smolitux-UI-Komponenten.</p>
-        <Button variant="primary">Klick mich</Button>
+      <Card title="Anmelden">
+        <form onSubmit={handleSubmit}>
+          <Grid spacing="md">
+            <Input
+              label="E-Mail"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <Input
+              label="Passwort"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <Button type="submit" variant="primary">
+              Anmelden
+            </Button>
+          </Grid>
+        </form>
       </Card>
     </Container>
   );
 }
 
-export default App;
+export default LoginForm;
 ```
 
-## Theming
+## Anpassung des Themes
 
-Smolitux-UI unterstützt Theming, um das Erscheinungsbild an Ihre Marke anzupassen:
+Sie können das Standard-Theme anpassen, indem Sie ein benutzerdefiniertes Theme an den `ThemeProvider` übergeben:
 
 ```jsx
 import React from 'react';
-import { ThemeProvider, createTheme } from '@smolitux/ui';
+import ReactDOM from 'react-dom';
+import { ThemeProvider, createTheme } from '@smolitux/theme';
+import App from './App';
 
-// Erstellen Sie ein benutzerdefiniertes Theme
-const theme = createTheme({
+// Benutzerdefiniertes Theme erstellen
+const customTheme = createTheme({
   colors: {
-    primary: '#0066cc',
-    secondary: '#6c757d',
-    success: '#28a745',
-    danger: '#dc3545',
-    warning: '#ffc107',
-    info: '#17a2b8',
+    primary: '#3498db',
+    secondary: '#2ecc71',
+    error: '#e74c3c',
+    warning: '#f39c12',
+    info: '#1abc9c',
+    success: '#27ae60',
   },
-  // Weitere Theme-Optionen...
+  fonts: {
+    body: '"Open Sans", sans-serif',
+    heading: '"Montserrat", sans-serif',
+  },
+  // Weitere Theme-Anpassungen...
 });
 
-function App() {
+ReactDOM.render(
+  <ThemeProvider theme={customTheme}>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root')
+);
+```
+
+## Responsive Design
+
+Smolitux UI Komponenten sind standardmäßig responsiv. Das Grid-System unterstützt verschiedene Breakpoints:
+
+```jsx
+import { Grid } from '@smolitux/layout';
+
+function ResponsiveLayout() {
   return (
-    <ThemeProvider theme={theme}>
-      {/* Ihre Anwendung hier */}
-    </ThemeProvider>
+    <Grid>
+      {/* Diese Spalte nimmt 12/12 auf mobilen Geräten, 6/12 auf Tablets und 4/12 auf Desktop-Geräten ein */}
+      <Grid.Item xs={12} md={6} lg={4}>
+        Inhalt 1
+      </Grid.Item>
+      <Grid.Item xs={12} md={6} lg={4}>
+        Inhalt 2
+      </Grid.Item>
+      <Grid.Item xs={12} md={12} lg={4}>
+        Inhalt 3
+      </Grid.Item>
+    </Grid>
   );
 }
-
-export default App;
 ```
 
 ## Nächste Schritte
 
-- Erkunden Sie die [Komponenten-Dokumentation](../components/overview) für detaillierte Informationen zu jeder Komponente
-- Sehen Sie sich die [Beispiele](../examples/form-examples) für Formulare an
-- Lesen Sie die [Entwicklungsanleitung](../development/guide) für weitere Informationen
+- Erkunden Sie die [Komponenten-Übersicht](../components/overview.md), um alle verfügbaren Komponenten kennenzulernen
+- Lesen Sie die detaillierte Dokumentation für jede Komponente
+- Sehen Sie sich die [API-Referenz](../api/reference.md) für fortgeschrittene Anpassungen an
