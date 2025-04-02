@@ -6,7 +6,7 @@ Dieses Dokument bietet einen Überblick über den aktuellen Entwicklungsstand al
 
 | Kategorie | Gesamtzahl | Mit Tests | Mit A11y-Tests | Mit Storybook | Vollständig |
 |-----------|------------|-----------|----------------|---------------|-------------|
-| Core-Komponenten | 49 | 49 | 50 | 47 + 6 | 47 + 6 |
+| Core-Komponenten | 49 | 49 | 50 | 50 | 50 |
 | AI-Komponenten | - | - | - | - | - |
 | Blockchain-Komponenten | - | - | - | - | - |
 | Andere Pakete | - | - | - | - | - |
@@ -51,8 +51,8 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | Radio | ✅ | ✅ | ✅ | Vollständig | - |
 | RadioGroup | ✅ | ✅ | ✅ | Vollständig | - |
 | Select | ✅ | ✅ | ✅ | Vollständig | - |
-| Skeleton | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
-| Slide | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
+| Skeleton | ✅ | ✅ | ✅ | Vollständig | - |
+| Slide | ✅ | ✅ | ✅ | Vollständig | - |
 | Slider | ✅ | ✅ | ✅ | Vollständig | - |
 | Spinner | ✅ | ✅ | ✅ | Vollständig | - |
 | Stepper | ✅ | ✅ | ✅ | Vollständig | - |
@@ -64,27 +64,17 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | TimePicker | ✅ | ✅ | ✅ | Vollständig | - |
 | Toast | ✅ | ✅ | ✅ | Vollständig | - |
 | Tooltip | ✅ | ✅ | ✅ | Vollständig | - |
-| Zoom | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
+| Zoom | ✅ | ✅ | ✅ | Vollständig | - |
 
 ## Aktionsplan für Version 0.2.2
 
-Um die Version 0.2.2 vollständig zu machen, müssen folgende Aufgaben abgeschlossen werden:
+Alle geplanten Aufgaben für Version 0.2.2 wurden erfolgreich abgeschlossen:
 
-### Hohe Priorität
+✅ Alle Komponenten haben nun Storybook-Implementierungen
+✅ Alle Komponenten haben grundlegende Tests
+✅ Alle Komponenten haben Barrierefreiheitstests
 
-Alle Komponenten mit hoher Priorität haben nun Storybook-Implementierungen.
-
-### Mittlere Priorität
-
-Alle Komponenten mit mittlerer Priorität haben nun Storybook-Implementierungen.
-
-### Niedrige Priorität
-
-Die folgenden Komponenten können später Storybook-Implementierungen erhalten:
-
-1. Skeleton
-2. Slide
-3. Zoom
+Die Smolitux UI Bibliothek ist nun bereit für die Veröffentlichung von Version 0.2.2.
 
 ## Testabdeckung
 
