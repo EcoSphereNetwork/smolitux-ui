@@ -356,7 +356,7 @@ export const setTestDate = (year, month, day) => {
     
     render(
       <Table 
-        data={testData.slice(0, 20)} // Nur 20 Zeilen für diesen Test
+        data={testData.slice(0, 20)}
         columns={columns}
         selectable={true}
         itemsPerPage={10}
