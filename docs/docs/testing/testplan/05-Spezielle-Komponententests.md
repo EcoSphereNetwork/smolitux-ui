@@ -277,25 +277,29 @@ export const setTestDate = (year, month, day) => {
   };
 };
 ```
-  const [errors, setErrors] = React.useState({
-    name: '',
-    email: ''
-  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const newErrors = {
-      name: values.name ? '' : 'Name is required',
-      email: values.email ? '' : 'Email is required'
-    };
-    
-    setErrors(newErrors);
-    
-    if (Object.values(newErrors).every(error => !error)) {
-      // Form is valid
-      console.log('Form submitted:', values);
-  });
+```tsx
+const [errors, setErrors] = React.useState({
+  name: '',
+  email: ''
+});
+
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const newErrors = {
+    name: values.name ? '' : 'Name is required',
+    email: values.email ? '' : 'Email is required'
+  };
+
+  setErrors(newErrors);
+
+  if (Object.values(newErrors).every(error => !error)) {
+    console.log('Form submitted:', values);
+  }
+};
+```
+
 
   test('combines filtering and sorting correctly', async () => {
     render(
