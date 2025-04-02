@@ -157,7 +157,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         'development/guide',
-        'development/roadmap',
+        'development/roadmap-main',
         'development/Entwickler-Prompt',
         'development/build-analysis',
         'development/build-fix-guide',

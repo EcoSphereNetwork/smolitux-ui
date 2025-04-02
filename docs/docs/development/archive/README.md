@@ -4,7 +4,7 @@ Dieses Verzeichnis enthält archivierte Entwicklungsdokumente aus früheren Vers
 
 ## Versionen
 
-- [v0.1](./v0.1/) - Archivierte Dokumente aus der Alpha-Phase (v0.1.x)
+- [v0.1](./v0.1/roadmap.md) - Archivierte Dokumente aus der Alpha-Phase (v0.1.x)
 
 ## Hinweis
 
