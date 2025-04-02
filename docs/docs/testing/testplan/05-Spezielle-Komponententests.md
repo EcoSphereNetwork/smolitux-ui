@@ -304,7 +304,7 @@ export const setTestDate = (year, month, day) => {
         columns={columns} 
         showSearch={true}
         showPagination={true}
-        itemsPerPage={50} /* Alle auf einer Seite für einfachere Tests */
+        itemsPerPage={50}
       />
     );
     
