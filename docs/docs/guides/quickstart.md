@@ -75,5 +75,5 @@ export default App;
 ## Nächste Schritte
 
 - Erkunden Sie die [Komponenten-Dokumentation](../components/overview) für detaillierte Informationen zu jeder Komponente
-- Lernen Sie mehr über [Formularvalidierung](form-validation)
-- Entdecken Sie fortgeschrittene [Anpassungsoptionen](customization)
+- Sehen Sie sich die [Beispiele](../examples/form-examples) für Formulare an
+- Lesen Sie die [Entwicklungsanleitung](../development/guide) für weitere Informationen
