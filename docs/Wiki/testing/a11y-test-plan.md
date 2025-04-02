@@ -143,10 +143,42 @@ Die A11y-Tests werden in die CI/CD-Pipeline integriert, um sicherzustellen, dass
 
 ## Zeitplan
 
-- **Phase 1**: KW 18-19 (2025)
-- **Phase 2**: KW 20-21 (2025)
-- **Phase 3**: KW 22-23 (2025)
-- **Phase 4**: KW 24-25 (2025)
+- **Phase 1**: KW 14-15 (2025) - Abgeschlossen
+- **Phase 2**: KW 16-17 (2025) - In Bearbeitung
+- **Phase 3**: KW 18-19 (2025) - Geplant
+- **Phase 4**: KW 20-21 (2025) - Geplant
+
+## Aktueller Status (Version 0.2.2)
+
+- **Abgeschlossen**: 25% aller Komponenten haben A11y-Tests
+- **In Bearbeitung**: 15% aller Komponenten sind in der Testphase
+- **Geplant**: 60% aller Komponenten müssen noch getestet werden
+
+### Abgeschlossene Komponenten
+- Button
+- Card
+- Input
+- Checkbox
+- Alert
+- Badge
+- Accordion
+- Avatar
+- Breadcrumb
+- Carousel
+- TextArea
+- Container
+- Flex
+- AreaChart
+- BarChart
+- LineChart
+- PieChart
+- RadarChart
+- ScatterPlot
+- Heatmap
+- MediaCarousel
+- MediaGrid
+- MediaUploader
+- VideoPlayer
 
 ## Erfolgskriterien
 

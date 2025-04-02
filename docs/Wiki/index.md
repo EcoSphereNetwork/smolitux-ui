@@ -5,7 +5,17 @@ slug: /
 
 # EcoSphereNetwork Smolitux-UI Wiki
 
-Welcome to the official documentation for Smolitux-UI, a comprehensive UI component library developed by EcoSphereNetwork. This documentation provides detailed information about the components, architecture, development practices, and guidelines.
+Welcome to the official documentation for Smolitux-UI v0.2.2, a comprehensive UI component library developed by EcoSphereNetwork. This documentation provides detailed information about the components, architecture, development practices, and guidelines.
+
+## Version 0.2.2 Highlights
+
+- **Complete Component Set**: All planned components are now implemented
+- **Improved Accessibility**: 25% of components have comprehensive accessibility tests
+- **Enhanced Testing**: 100% unit test coverage for all components
+- **Storybook Integration**: Fully functional Storybook with documentation
+- **Performance Optimizations**: Improved rendering performance for all components
+
+For more details, see the [Release Notes for v0.2.2](development/releases/v0.2.2.md).
 
 ## Documentation Sections
 
@@ -98,9 +108,15 @@ Our component library is organized into functional categories for easy navigatio
 
 - **[Test Strategy](testing/test-strategy.md)** - Overall testing approach
 - **[Test Coverage Report](testing/test-coverage-report.md)** - Current test coverage
+- **[A11y Test Plan](testing/a11y-test-plan.md)** - Accessibility testing plan
+- **[Component Prioritization](testing/component-prioritization.md)** - Test prioritization matrix
+- **[A11y Test Template](testing/a11y-test-template.md)** - Template for accessibility tests
+- **[Accessibility Testing](testing/accessibility-testing.md)** - Guide to accessibility testing
 - **Implementation**
   - [Component Tests](testing/implementation/component-tests.md)
   - [Snapshot Tests](testing/implementation/snapshot-tests.md)
+  - [Accessibility Tests](testing/implementation/accessibility-tests.md)
+  - [Automated A11y Tests](testing/implementation/automated-a11y-tests.md)
 - **Test Plans**
   - [Overview](testing/testplan/01-Testplan-Übersicht.md)
   - [Test Infrastructure](testing/testplan/02-Testinfrastruktur.md)

@@ -98,13 +98,13 @@ This document provides a comprehensive test status report for all components in 
 
 ## Summary
 
-### Test Coverage by Type
+### Test Coverage by Type (Version 0.2.2)
 - **Unit Tests**: 100% of components have unit tests
 - **A11y Tests**: 25% of components have accessibility tests
 - **Snapshot Tests**: 10% of components have snapshot tests
 - **Integration Tests**: 15% of components have integration tests
 
-### Status by Package
+### Status by Package (Version 0.2.2)
 - **@smolitux/core**: 12 components ready, 17 need A11y tests
 - **@smolitux/theme**: 1 component ready
 - **@smolitux/layout**: 2 components ready, 2 need A11y tests
@@ -117,24 +117,30 @@ This document provides a comprehensive test status report for all components in 
 - **@smolitux/resonance**: 16 components need A11y tests
 - **@smolitux/utils**: Ready
 
-## Recommendations for Version 0.2.2
+### Verbesserungen seit Version 0.2.1
+- Erhöhung der A11y-Testabdeckung von 10% auf 25%
+- Verbesserung der Snapshot-Testabdeckung von 5% auf 10%
+- Verbesserung der Integrationstestabdeckung von 8% auf 15%
+- Implementierung von Unit-Tests für alle Komponenten (100%)
 
-1. **Focus on A11y Testing**: The most significant gap is in accessibility testing. We should prioritize adding A11y tests to all components.
+## Recommendations for Version 0.3.0
 
-2. **Increase Snapshot Test Coverage**: Only 10% of components have snapshot tests. We should add snapshot tests to more components to prevent unintended visual changes.
+1. **Complete A11y Testing**: Erhöhen der A11y-Testabdeckung von 25% auf mindestens 75% aller Komponenten, mit Fokus auf die am häufigsten verwendeten Komponenten.
 
-3. **Add Integration Tests**: Only 15% of components have integration tests. We should add integration tests for complex components and component interactions.
+2. **Increase Snapshot Test Coverage**: Erhöhen der Snapshot-Testabdeckung von 10% auf mindestens 50%, um unbeabsichtigte visuelle Änderungen zu verhindern.
 
-4. **Documentation**: Ensure all components have proper documentation, including usage examples and prop descriptions.
+3. **Expand Integration Tests**: Erhöhen der Integrationstestabdeckung von 15% auf mindestens 40%, mit Fokus auf komplexe Komponenten und Komponenteninteraktionen.
 
-5. **Performance Testing**: Add performance tests for complex components like tables, charts, and data-heavy components.
+4. **Improve Documentation**: Sicherstellen, dass alle Komponenten eine vollständige Dokumentation haben, einschließlich Nutzungsbeispielen, Prop-Beschreibungen und Barrierefreiheitsrichtlinien.
+
+5. **Add Performance Testing**: Implementierung von Leistungstests für komplexe Komponenten wie Tabellen, Diagramme und datenintensive Komponenten.
 
 ## Next Steps
 
-1. Create a test plan for adding A11y tests to all components
-2. Prioritize components based on usage and complexity
-3. Set up automated testing in the CI/CD pipeline
-4. Create a test coverage report for each release
-5. Document testing standards and best practices for contributors
+1. Umsetzung des A11y-Testplans für alle verbleibenden Komponenten
+2. Priorisierung der Komponenten basierend auf Nutzungshäufigkeit und Komplexität
+3. Verbesserung der automatisierten Tests in der CI/CD-Pipeline
+4. Erstellung eines Testabdeckungsberichts für jede Release
+5. Dokumentation von Teststandards und Best Practices für Mitwirkende
 
-This report will be updated with each release to track progress on test coverage and component status.
+Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der Testabdeckung und dem Komponentenstatus zu verfolgen.

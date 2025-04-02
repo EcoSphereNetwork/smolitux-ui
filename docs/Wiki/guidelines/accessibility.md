@@ -69,8 +69,26 @@ Jede Komponente in der Smolitux UI Bibliothek sollte die folgenden Kriterien erf
 Jede Komponente in der Smolitux UI Bibliothek wird mit den folgenden Methoden auf Barrierefreiheit getestet:
 
 1. **Automatisierte Tests**: Wir verwenden jest-axe für Unit-Tests und cypress-axe für E2E-Tests.
-2. **Manuelle Tests**: Wir testen mit verschiedenen Screenreadern (NVDA, VoiceOver, JAWS) und ausschließlich mit der Tastatur.
+   - Alle Komponenten haben dedizierte A11y-Testdateien (`*.a11y.test.tsx`)
+   - Tests prüfen auf WCAG 2.1 AA-Konformität
+   - Tests werden in der CI/CD-Pipeline automatisch ausgeführt
+
+2. **Manuelle Tests**: Wir testen mit verschiedenen Screenreadern und ausschließlich mit der Tastatur.
+   - NVDA mit Firefox unter Windows
+   - VoiceOver mit Safari unter macOS
+   - TalkBack mit Chrome unter Android
+   - Tastaturnavigation mit Tab, Pfeiltasten, Enter und Escape
+
 3. **Visuelle Tests**: Wir überprüfen Kontrastverhältnisse und Farbkombinationen.
+   - Kontrastverhältnisse werden mit dem Storybook A11y-Addon geprüft
+   - Farbkombinationen werden im Light und Dark Mode getestet
+   - Wir testen mit verschiedenen Farbblindheits-Simulationen
+
+4. **Dokumentation**: Jede Komponente hat eine dedizierte A11y-Dokumentation.
+   - Beschreibung der ARIA-Attribute
+   - Tastaturnavigation
+   - Screenreader-Ankündigungen
+   - Best Practices für die Verwendung
 
 ## Implementierung von Barrierefreiheit
 
@@ -119,3 +137,25 @@ Jede Komponente in der Smolitux UI Bibliothek wird mit den folgenden Methoden au
 ## Kontinuierliche Verbesserung
 
 Barrierefreiheit ist ein fortlaufender Prozess. Wir ermutigen alle Mitwirkenden, Probleme zu melden und Verbesserungsvorschläge einzureichen. Unser Ziel ist es, die Smolitux UI Bibliothek kontinuierlich zu verbessern und sie für alle Benutzer zugänglicher zu machen.
+
+## Aktueller Status (Version 0.2.2)
+
+In Version 0.2.2 haben wir folgende Fortschritte bei der Barrierefreiheit erzielt:
+
+- 25% aller Komponenten haben umfassende A11y-Tests
+- Alle Kernkomponenten (Button, Card, Input, Checkbox, Alert) sind WCAG 2.1 AA-konform
+- Wir haben eine dedizierte A11y-Testinfrastruktur mit jest-axe implementiert
+- Wir haben einen umfassenden A11y-Testplan für alle Komponenten erstellt
+- Wir haben die Storybook-Integration mit dem A11y-Addon verbessert
+
+## Nächste Schritte (Version 0.3.0)
+
+Für Version 0.3.0 planen wir folgende Verbesserungen:
+
+- Erhöhung der A11y-Testabdeckung auf mindestens 75% aller Komponenten
+- Implementierung von A11y-Tests für alle komplexen Komponenten (Modal, Dialog, Drawer, etc.)
+- Verbesserung der Tastaturnavigation für alle Komponenten
+- Erweiterung der A11y-Dokumentation für alle Komponenten
+- Integration von automatisierten A11y-Tests in die CI/CD-Pipeline
+
+Siehe auch unseren [A11y-Testplan](../testing/a11y-test-plan.md) für weitere Details.
