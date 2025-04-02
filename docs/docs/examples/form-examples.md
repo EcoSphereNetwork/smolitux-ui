@@ -10,7 +10,6 @@ Diese Seite enthält Beispiele für die Verwendung von Smolitux-UI-Formularkompo
 
 Ein einfaches Anmeldeformular mit E-Mail und Passwort.
 
-{% raw %}
 ```jsx
 import React from 'react';
 import { Form, FormField, Input, Button, Stack } from '@smolitux/ui';
@@ -28,7 +27,7 @@ function LoginForm() {
           label="E-Mail"
           name="email"
           required
-          validations={{ 
+          validations={{
             required: 'E-Mail ist erforderlich',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -64,13 +63,11 @@ function LoginForm() {
 
 export default LoginForm;
 ```
-{% endraw %}
 
 ## Registrierungsformular
 
 Ein umfassenderes Registrierungsformular mit mehreren Feldern und Validierungen.
 
-{% raw %}
 ```jsx
 import React from 'react';
 import { 
@@ -117,7 +114,7 @@ function RegistrationForm() {
           label="E-Mail"
           name="email"
           required
-          validations={{ 
+          validations={{
             required: 'E-Mail ist erforderlich',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -194,13 +191,11 @@ function RegistrationForm() {
 
 export default RegistrationForm;
 ```
-{% endraw %}
 
 ## Mehrstufiges Formular
 
 Ein mehrstufiges Formular mit Fortschrittsanzeige.
 
-{% raw %}
 ```jsx
 import React, { useState } from 'react';
 import { 
@@ -267,7 +262,7 @@ function MultiStepForm() {
                 label="E-Mail"
                 name="email"
                 required
-                validations={{ 
+                validations={{
                   required: 'E-Mail ist erforderlich',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -373,186 +368,4 @@ function MultiStepForm() {
 }
 
 export default MultiStepForm;
-```
-{% endraw %}
-
-## Dynamisches Formular
-
-Ein Formular mit dynamisch hinzufügbaren Feldern.
-
-```jsx
-import React from 'react';
-import { 
-  Form, 
-  FormField, 
-  Input, 
-  Button, 
-  Stack, 
-  Flex,
-  IconButton
-} from '@smolitux/ui';
-import { PlusIcon, TrashIcon } from '@smolitux/icons';
-
-function DynamicForm() {
-  const handleSubmit = (values) => {
-    console.log('Form submitted:', values);
-    // Hier würde die Verarbeitung stattfinden
-  };
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      {({ control, register, getValues, setValue }) => (
-        <Stack spacing="lg">
-          <FormField
-            label="Projektname"
-            name="projectName"
-            required
-            validations={{ required: 'Projektname ist erforderlich' }}
-          >
-            <Input placeholder="Projektname eingeben" />
-          </FormField>
-
-          <Stack spacing="md">
-            <Flex justifyContent="space-between" alignItems="center">
-              <h3>Teammitglieder</h3>
-              <IconButton
-                icon={<PlusIcon />}
-                aria-label="Teammitglied hinzufügen"
-                onClick={() => {
-                  const members = getValues('members') || [];
-                  setValue('members', [
-                    ...members,
-                    { name: '', email: '', role: '' }
-                  ]);
-                }}
-              />
-            </Flex>
-
-            {control.fields.members?.map((member, index) => (
-              <Stack key={index} spacing="sm" padding="md" border="1px solid" borderColor="gray.200" borderRadius="md">
-                <Flex justifyContent="space-between" alignItems="center">
-                  <h4>Teammitglied {index + 1}</h4>
-                  <IconButton
-                    icon={<TrashIcon />}
-                    aria-label="Teammitglied entfernen"
-                    variant="danger"
-                    onClick={() => {
-                      const members = getValues('members');
-                      setValue('members', members.filter((_, i) => i !== index));
-                    }}
-                  />
-                </Flex>
-
-                <FormField
-                  label="Name"
-                  name={`members[${index}].name`}
-                  required
-                  validations={{ required: 'Name ist erforderlich' }}
-                >
-                  <Input placeholder="Name" />
-                </FormField>
-
-                <FormField
-                  label="E-Mail"
-                  name={`members[${index}].email`}
-                  required
-                  validations={{ 
-                    required: 'E-Mail ist erforderlich',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Ungültige E-Mail-Adresse'
-                    }
-                  }}
-                >
-                  <Input type="email" placeholder="E-Mail" />
-                </FormField>
-
-                <FormField
-                  label="Rolle"
-                  name={`members[${index}].role`}
-                  required
-                  validations={{ required: 'Rolle ist erforderlich' }}
-                >
-                  <Input placeholder="Rolle" />
-                </FormField>
-              </Stack>
-            ))}
-          </Stack>
-
-          <Button type="submit" variant="primary">
-            Projekt erstellen
-          </Button>
-        </Stack>
-      )}
-    </Form>
-  );
-}
-
-export default DynamicForm;
-```
-
-## Formular mit Datei-Upload
-
-Ein Formular mit Datei-Upload-Funktionalität.
-
-```jsx
-import React from 'react';
-import { 
-  Form, 
-  FormField, 
-  Input, 
-  FileUpload, 
-  Button, 
-  Stack 
-} from '@smolitux/ui';
-
-function FileUploadForm() {
-  const handleSubmit = (values) => {
-    console.log('Form submitted:', values);
-    // Hier würde die Verarbeitung mit Datei-Upload stattfinden
-  };
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Stack spacing="lg">
-        <FormField
-          label="Dokumenttitel"
-          name="title"
-          required
-          validations={{ required: 'Dokumenttitel ist erforderlich' }}
-        >
-          <Input placeholder="Titel eingeben" />
-        </FormField>
-
-        <FormField
-          label="Beschreibung"
-          name="description"
-        >
-          <Input as="textarea" rows={4} placeholder="Beschreibung eingeben" />
-        </FormField>
-
-        <FormField
-          label="Dokument hochladen"
-          name="document"
-          required
-          validations={{ required: 'Dokument ist erforderlich' }}
-        >
-          <FileUpload
-            accept=".pdf,.doc,.docx"
-            maxSize={5 * 1024 * 1024} // 5MB
-            maxFiles={1}
-            onDrop={(files) => console.log('Files dropped:', files)}
-            onError={(error) => console.error('Upload error:', error)}
-          />
-        </FormField>
-
-        <Button type="submit" variant="primary">
-          Dokument hochladen
-        </Button>
-      </Stack>
-    </Form>
-  );
-}
-
-export default FileUploadForm;
 ```
