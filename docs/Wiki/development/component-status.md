@@ -6,7 +6,7 @@ Dieses Dokument bietet einen Überblick über den aktuellen Entwicklungsstand al
 
 | Kategorie | Gesamtzahl | Mit Tests | Mit A11y-Tests | Mit Storybook | Vollständig |
 |-----------|------------|-----------|----------------|---------------|-------------|
-| Core-Komponenten | 49 | 49 | 50 | 26 | 26 |
+| Core-Komponenten | 49 | 49 | 50 | 36 | 36 |
 | AI-Komponenten | - | - | - | - | - |
 | Blockchain-Komponenten | - | - | - | - | - |
 | Andere Pakete | - | - | - | - | - |
@@ -20,16 +20,16 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | Accordion | ✅ | ✅ | ✅ | Vollständig | - |
 | Alert | ✅ | ✅ | ✅ | Vollständig | - |
 | Avatar | ✅ | ✅ | ✅ | Vollständig | - |
-| Badge | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Badge | ✅ | ✅ | ✅ | Vollständig | - |
 | Breadcrumb | ✅ | ✅ | ✅ | Vollständig | - |
 | Button | ✅ | ✅ | ✅ | Vollständig | - |
 | Card | ✅ | ✅ | ✅ | Vollständig | - |
 | Carousel | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| Checkbox | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Checkbox | ✅ | ✅ | ✅ | Vollständig | - |
 | Collapse | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | ColorPicker | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | DatePicker | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| Dialog | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Dialog | ✅ | ✅ | ✅ | Vollständig | - |
 | Drawer | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Dropdown | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
 | Fade | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
@@ -39,7 +39,7 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | FormControl | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
 | FormField | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
 | Grid | ✅ | ✅ | ✅ | Vollständig | - |
-| Input | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Input | ✅ | ✅ | ✅ | Vollständig | - |
 | LanguageSwitcher | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 | List | ✅ | ✅ | ✅ | Vollständig | - |
 | MediaPlayer | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
@@ -48,21 +48,21 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | Pagination | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Popover | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | ProgressBar | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| Radio | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Radio | ✅ | ✅ | ✅ | Vollständig | - |
 | RadioGroup | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
-| Select | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Select | ✅ | ✅ | ✅ | Vollständig | - |
 | Skeleton | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 | Slide | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 | Slider | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Spinner | ✅ | ✅ | ✅ | Vollständig | - |
 | Stepper | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| Switch | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Switch | ✅ | ✅ | ✅ | Vollständig | - |
 | TabView | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
 | Table | ✅ | ✅ | ✅ | Vollständig | - |
-| Tabs | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
-| TextArea/Textarea | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Tabs | ✅ | ✅ | ✅ | Vollständig | - |
+| TextArea/Textarea | ✅ | ✅ | ✅ | Vollständig | - |
 | TimePicker | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| Toast | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Toast | ✅ | ✅ | ✅ | Vollständig | - |
 | Tooltip | ✅ | ✅ | ✅ | Vollständig | - |
 | Zoom | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 
@@ -74,19 +74,11 @@ Um die Version 0.2.2 vollständig zu machen, müssen folgende Aufgaben abgeschlo
 
 Die folgenden Komponenten benötigen dringend Storybook-Implementierungen:
 
-1. Badge
-2. Checkbox
-3. Dialog
-4. Dropdown
-5. Form, FormControl, FormField
-6. Input
-7. Menu
-8. Radio, RadioGroup
-9. Select
-10. Switch
-11. TabView, Tabs
-12. TextArea/Textarea
-13. Toast
+1. Dropdown
+2. Form, FormControl, FormField
+3. Menu
+4. RadioGroup
+5. TabView
 
 ### Mittlere Priorität
 
