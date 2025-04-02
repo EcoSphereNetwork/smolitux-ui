@@ -300,8 +300,8 @@ const handleSubmit = (e: React.FormEvent) => {
 };
 ```
 
-
-  test('combines filtering and sorting correctly', async () => {
+```tsx
+test('combines filtering and sorting correctly', async () => {
     render(
       <Table 
         data={testData} 
@@ -354,8 +354,10 @@ const handleSubmit = (e: React.FormEvent) => {
     // Erster Wert sollte kleiner sein als der letzte
     expect(firstValue).toBeLessThan(lastValue);
   });
+```
 
-  test('row selection works correctly with select all', async () => {
+```tsx
+test('row selection works correctly with select all', async () => {
     const onRowSelect = jest.fn();
     
     render(
@@ -735,3 +737,6 @@ describe('Table Advanced Tests', () => {
         expect(screen.getByText('Item 50')).toBeInTheDocument();
       });
     }
+  });
+});
+```
