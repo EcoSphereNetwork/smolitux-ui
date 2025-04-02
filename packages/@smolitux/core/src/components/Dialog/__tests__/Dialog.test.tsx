@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Dialog } from '../Dialog';
+import { Button } from '../../Button/Button';
 
 describe('Dialog', () => {
   const mockOnClose = jest.fn();
@@ -9,6 +11,13 @@ describe('Dialog', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    
+    // Mock IntersectionObserver
+    global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    }));
   });
 
   it('renders correctly when isOpen is true', () => {
@@ -172,6 +181,104 @@ describe('Dialog', () => {
     );
     
     // Verify that the dialog still renders after variant change
+    expect(screen.getByText('Dialog Content')).toBeInTheDocument();
+  });
+
+  it('focuses the initialFocusRef element when opened', async () => {
+    const TestComponent = () => {
+      const initialRef = React.useRef<HTMLButtonElement>(null);
+      const [isOpen, setIsOpen] = React.useState(false);
+      
+      return (
+        <>
+          <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+          <Dialog 
+            isOpen={isOpen} 
+            onClose={() => setIsOpen(false)} 
+            initialFocusRef={initialRef}
+          >
+            <div>
+              <button>First Button</button>
+              <button ref={initialRef}>Focus Me</button>
+            </div>
+          </Dialog>
+        </>
+      );
+    };
+    
+    render(<TestComponent />);
+    
+    // Open the dialog
+    await userEvent.click(screen.getByText('Open Dialog'));
+    
+    // Wait for the focus to be set
+    await waitFor(() => {
+      expect(document.activeElement?.textContent).toBe('Focus Me');
+    });
+  });
+
+  it('returns focus to the trigger element when closed', async () => {
+    const TestComponent = () => {
+      const triggerRef = React.useRef<HTMLButtonElement>(null);
+      const [isOpen, setIsOpen] = React.useState(false);
+      
+      return (
+        <>
+          <Button ref={triggerRef} onClick={() => setIsOpen(true)}>Open Dialog</Button>
+          <Dialog 
+            isOpen={isOpen} 
+            onClose={() => setIsOpen(false)}
+            returnFocusOnClose={true}
+          >
+            <div>Dialog Content</div>
+          </Dialog>
+        </>
+      );
+    };
+    
+    render(<TestComponent />);
+    
+    const openButton = screen.getByText('Open Dialog');
+    
+    // Open the dialog
+    await userEvent.click(openButton);
+    
+    // Close the dialog
+    const cancelButton = screen.getByText('Abbrechen');
+    await userEvent.click(cancelButton);
+    
+    // Wait for the focus to return to the trigger
+    await waitFor(() => {
+      expect(document.activeElement).toBe(openButton);
+    });
+  });
+
+  it('renders with different motion presets', () => {
+    const { rerender } = render(
+      <Dialog isOpen={true} onClose={mockOnClose} motionPreset="fade">
+        Dialog Content
+      </Dialog>
+    );
+
+    // Verify that the dialog renders with the fade motion preset
+    expect(screen.getByText('Dialog Content')).toBeInTheDocument();
+
+    rerender(
+      <Dialog isOpen={true} onClose={mockOnClose} motionPreset="scale">
+        Dialog Content
+      </Dialog>
+    );
+
+    // Verify that the dialog still renders after motion preset change
+    expect(screen.getByText('Dialog Content')).toBeInTheDocument();
+
+    rerender(
+      <Dialog isOpen={true} onClose={mockOnClose} motionPreset="slide-from-top">
+        Dialog Content
+      </Dialog>
+    );
+
+    // Verify that the dialog still renders after motion preset change
     expect(screen.getByText('Dialog Content')).toBeInTheDocument();
   });
 });

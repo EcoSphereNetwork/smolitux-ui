@@ -1,16 +1,30 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-// import { a11y } from '@smolitux/testing';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import { Dialog } from '../Dialog';
 
-// Mock für a11y, da es Probleme mit jest-axe gibt
+expect.extend(toHaveNoViolations);
+
+// Fallback für erweiterte a11y-Tests
 const a11y = {
-  testA11y: async () => ({ violations: [] }),
+  testA11y: async (ui: React.ReactElement) => {
+    const { container } = render(ui);
+    const results = await axe(container);
+    return { violations: results.violations };
+  },
   isFocusable: () => true,
   hasVisibleFocusIndicator: () => true
 };
 
 describe('Dialog Accessibility', () => {
+  beforeEach(() => {
+    // Mock IntersectionObserver
+    global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    }));
+  });
   it('should not have accessibility violations in basic state', async () => {
     const { violations } = await a11y.testA11y(
       <Dialog isOpen={true} onClose={() => {}}>
@@ -170,10 +184,10 @@ describe('Dialog Accessibility', () => {
       </Dialog>
     );
     
-    // Verwende data-testid statt Rollen-Selektoren
-    const closeButton = screen.getByTestId('dialog-close-button');
-    const cancelButton = screen.getByTestId('dialog-cancel-button');
-    const confirmButton = screen.getByTestId('dialog-confirm-button');
+    // Find buttons by role instead of testid
+    const closeButton = screen.getByRole('button', { name: /schließen/i });
+    const cancelButton = screen.getByRole('button', { name: /abbrechen/i });
+    const confirmButton = screen.getByRole('button', { name: /bestätigen/i });
     
     // Focus each element and check for visible focus indicator
     closeButton.focus();
@@ -184,5 +198,32 @@ describe('Dialog Accessibility', () => {
     
     confirmButton.focus();
     expect(a11y.hasVisibleFocusIndicator(confirmButton)).toBe(true);
+  });
+  
+  it('should directly test with axe', async () => {
+    const { container } = render(
+      <Dialog 
+        isOpen={true} 
+        onClose={() => {}} 
+        title="Accessibility Test Dialog"
+      >
+        <div>
+          <h3>Important Information</h3>
+          <p>This dialog contains important information that should be accessible to all users.</p>
+          <form>
+            <div>
+              <label htmlFor="test-input">Enter information:</label>
+              <input id="test-input" type="text" />
+            </div>
+            <div>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </Dialog>
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });
