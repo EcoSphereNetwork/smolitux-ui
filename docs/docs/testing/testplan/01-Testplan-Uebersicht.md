@@ -1,6 +1,6 @@
 # Testplan für Smolitux UI Komponenten
 
-## Übersicht
+## Uebersicht
 
 Dieser Testplan beschreibt die umfassende Strategie zur Qualitätssicherung der smolitux UI Komponenten-Bibliothek. Der Plan umfasst Unit-Tests, Integrationstests, visuelle Regressionstests und Browserkompatibilitätstests, um eine hohe Qualität und Zuverlässigkeit der Komponenten zu gewährleisten.
 

@@ -1,4 +1,4 @@
-# Browserkompatibilitätstests
+# Browserkompatibilitaetstests
 
 Dieses Dokument beschreibt die Strategie und Implementierung von Browserkompatibilitätstests für die Komponenten der smolitux UI-Bibliothek.
 
