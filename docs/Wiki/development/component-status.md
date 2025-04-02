@@ -6,7 +6,7 @@ Dieses Dokument bietet einen Überblick über den aktuellen Entwicklungsstand al
 
 | Kategorie | Gesamtzahl | Mit Tests | Mit A11y-Tests | Mit Storybook | Vollständig |
 |-----------|------------|-----------|----------------|---------------|-------------|
-| Core-Komponenten | 49 | 49 | 50 | 47 | 47 |
+| Core-Komponenten | 49 | 49 | 50 | 47 + 6 | 47 + 6 |
 | AI-Komponenten | - | - | - | - | - |
 | Blockchain-Komponenten | - | - | - | - | - |
 | Andere Pakete | - | - | - | - | - |
@@ -45,23 +45,23 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | MediaPlayer | ✅ | ✅ | ✅ | Vollständig | - |
 | Menu | ✅ | ✅ | ✅ | Vollständig | - |
 | Modal | ✅ | ✅ | ✅ | Vollständig | - |
-| Pagination | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| Popover | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| ProgressBar | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| Pagination | ✅ | ✅ | ✅ | Vollständig | - |
+| Popover | ✅ | ✅ | ✅ | Vollständig | - |
+| ProgressBar | ✅ | ✅ | ✅ | Vollständig | - |
 | Radio | ✅ | ✅ | ✅ | Vollständig | - |
 | RadioGroup | ✅ | ✅ | ✅ | Vollständig | - |
 | Select | ✅ | ✅ | ✅ | Vollständig | - |
 | Skeleton | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 | Slide | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
-| Slider | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| Slider | ✅ | ✅ | ✅ | Vollständig | - |
 | Spinner | ✅ | ✅ | ✅ | Vollständig | - |
-| Stepper | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| Stepper | ✅ | ✅ | ✅ | Vollständig | - |
 | Switch | ✅ | ✅ | ✅ | Vollständig | - |
 | TabView | ✅ | ✅ | ✅ | Vollständig | - |
 | Table | ✅ | ✅ | ✅ | Vollständig | - |
 | Tabs | ✅ | ✅ | ✅ | Vollständig | - |
 | TextArea/Textarea | ✅ | ✅ | ✅ | Vollständig | - |
-| TimePicker | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
+| TimePicker | ✅ | ✅ | ✅ | Vollständig | - |
 | Toast | ✅ | ✅ | ✅ | Vollständig | - |
 | Tooltip | ✅ | ✅ | ✅ | Vollständig | - |
 | Zoom | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
@@ -76,14 +76,7 @@ Alle Komponenten mit hoher Priorität haben nun Storybook-Implementierungen.
 
 ### Mittlere Priorität
 
-Die folgenden Komponenten sollten Storybook-Implementierungen erhalten:
-
-1. Pagination
-2. Popover
-3. ProgressBar
-4. Slider
-5. Stepper
-6. TimePicker
+Alle Komponenten mit mittlerer Priorität haben nun Storybook-Implementierungen.
 
 ### Niedrige Priorität
 
