@@ -29,6 +29,7 @@
     "test:visual": "./scripts/run-visual-tests.sh",
     "test:visual:update": "./scripts/update-visual-snapshots.sh",
     "test:storybook:a11y": "test-storybook --config-dir .storybook/test-runner",
+    "test:coverage-report": "node scripts/generate-coverage-report.js",
     "lint": "eslint --config eslint.config.js \"packages/**/*.{ts,tsx}\"",
     "lint:fix": "eslint --config eslint.config.js \"packages/**/*.{ts,tsx}\" --fix",
     "format": "prettier --write \"packages/**/*.{ts,tsx,json,md}\"",
