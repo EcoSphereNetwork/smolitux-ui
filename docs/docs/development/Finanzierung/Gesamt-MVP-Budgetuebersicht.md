@@ -1,6 +1,6 @@
-Hier ist die Gesamt-MVP-Budgetübersicht für alle EcoSphereNetwork-Produkte:
+Hier ist die Gesamt-MVP-Budgetuebersicht für alle EcoSphereNetwork-Produkte:
 
-# Gesamt-MVP-Budgetübersicht für alle EcoSphereNetwork-Produkte
+# Gesamt-MVP-Budgetuebersicht für alle EcoSphereNetwork-Produkte
 
 | Produkt | Personal­ressourcen | Technische Ressourcen | Unvorher­gesehenes | MVP Gesamt­budget | Zeitraum |
 |---------|---------------------|----------------------|---------------------|------------------|----------|
