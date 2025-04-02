@@ -118,13 +118,13 @@ Our component library is organized into functional categories for easy navigatio
   - [Accessibility Tests](testing/implementation/accessibility-tests.md)
   - [Automated A11y Tests](testing/implementation/automated-a11y-tests.md)
 - **Test Plans**
-  - [Overview](testing/testplan/01-Testplan-Übersicht.md)
+  - [Overview](testing/testplan/01-Testplan-Uebersicht.md)
   - [Test Infrastructure](testing/testplan/02-Testinfrastruktur.md)
   - [Unit Tests](testing/testplan/03-Unit-Tests.md)
   - [Integration Tests](testing/testplan/04-Integrationstests.md)
   - [Component Tests](testing/testplan/05-Spezielle-Komponententests.md)
   - [Visual Tests](testing/testplan/06-Visuelle-Tests.md)
-  - [Browser Compatibility](testing/testplan/07-Browserkompatibilitätstests.md)
+  - [Browser Compatibility](testing/testplan/07-Browserkompatibilitaetstests.md)
   - [CI/CD Integration](testing/testplan/08-CI-CD-Integration.md)
   - [Implementation Plan](testing/testplan/09-Implementierungsplan.md)
 

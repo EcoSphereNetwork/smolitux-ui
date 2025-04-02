@@ -46,6 +46,10 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
+          routeBasePath: 'docs',
+          path: 'docs',
+          sidebarCollapsible: true,
+          sidebarCollapsed: false,
         },
         blog: {
           showReadingTime: true,
