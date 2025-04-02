@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/timepicker",
+  "title": "TimePicker",
+  "description": "Die TimePicker-Komponente ermöglicht es Benutzern, eine Uhrzeit auszuwählen oder direkt einzugeben.",
+  "source": "@site/Wiki/components/forms/timepicker.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/timepicker",
+  "permalink": "/smolitux-ui/docs/components/forms/timepicker",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/timepicker.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

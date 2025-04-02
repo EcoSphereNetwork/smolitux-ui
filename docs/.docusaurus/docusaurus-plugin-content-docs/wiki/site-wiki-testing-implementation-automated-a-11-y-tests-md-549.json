@@ -1,0 +1,15 @@
+{
+  "id": "testing/implementation/automated-a11y-tests",
+  "title": "Automatisierte Barrierefreiheitstests",
+  "description": "Diese Dokumentation beschreibt die Implementierung und Verwendung der automatisierten Barrierefreiheitstests für die Smolitux UI Komponenten.",
+  "source": "@site/Wiki/testing/implementation/automated-a11y-tests.md",
+  "sourceDirName": "testing/implementation",
+  "slug": "/testing/implementation/automated-a11y-tests",
+  "permalink": "/smolitux-ui/docs/testing/implementation/automated-a11y-tests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/implementation/automated-a11y-tests.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

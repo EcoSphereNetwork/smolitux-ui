@@ -1,0 +1,15 @@
+{
+  "id": "guidelines/testing-strategy",
+  "title": "Testing-Strategie",
+  "description": "Diese Dokumentation beschreibt die Testing-Strategie für die Smolitux-UI-Bibliothek.",
+  "source": "@site/Wiki/guidelines/testing-strategy.md",
+  "sourceDirName": "guidelines",
+  "slug": "/guidelines/testing-strategy",
+  "permalink": "/smolitux-ui/docs/guidelines/testing-strategy",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guidelines/testing-strategy.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

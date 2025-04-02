@@ -1,0 +1,15 @@
+{
+  "id": "architecture/dependencies",
+  "title": "Abhängigkeiten",
+  "description": "Diese Dokumentation beschreibt die Abhängigkeiten der Smolitux-UI-Bibliothek und wie sie verwaltet werden.",
+  "source": "@site/Wiki/architecture/dependencies.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/dependencies",
+  "permalink": "/smolitux-ui/docs/architecture/dependencies",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/architecture/dependencies.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

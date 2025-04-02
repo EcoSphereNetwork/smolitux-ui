@@ -1,0 +1,15 @@
+{
+  "id": "guidelines/coding-standards",
+  "title": "Coding Standards",
+  "description": "Diese Dokumentation beschreibt die Coding Standards für die Smolitux-UI-Bibliothek.",
+  "source": "@site/Wiki/guidelines/coding-standards.md",
+  "sourceDirName": "guidelines",
+  "slug": "/guidelines/coding-standards",
+  "permalink": "/smolitux-ui/docs/guidelines/coding-standards",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guidelines/coding-standards.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

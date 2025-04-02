@@ -1,0 +1,15 @@
+{
+  "id": "architecture/architecture-design",
+  "title": "Architekturdesign der Resonance UI Bibliothek",
+  "description": "1. Systemarchitektur",
+  "source": "@site/Wiki/architecture/architecture-design.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/architecture-design",
+  "permalink": "/smolitux-ui/docs/architecture/architecture-design",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/architecture/architecture-design.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

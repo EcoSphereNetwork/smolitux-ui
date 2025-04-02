@@ -1,0 +1,15 @@
+{
+  "id": "development/archive/implementation-roadmap",
+  "title": "Implementierungsroadmap für Resonance UI",
+  "description": "Quartal 1: Projekt-Initialisierung und Grundarchitektur",
+  "source": "@site/Wiki/development/archive/implementation-roadmap.md",
+  "sourceDirName": "development/archive",
+  "slug": "/development/archive/implementation-roadmap",
+  "permalink": "/smolitux-ui/docs/development/archive/implementation-roadmap",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/archive/implementation-roadmap.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

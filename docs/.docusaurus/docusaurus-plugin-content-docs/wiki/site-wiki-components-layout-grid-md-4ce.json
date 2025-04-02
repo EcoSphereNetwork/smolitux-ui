@@ -1,0 +1,15 @@
+{
+  "id": "components/layout/grid",
+  "title": "Grid",
+  "description": "Das Grid-System ist eine flexible Layout-Komponente, die auf CSS Grid basiert und die einfache Erstellung von responsiven Layouts ermöglicht. Es verwendet ein 12-Spalten-System, das sich automatisch an verschiedene Bildschirmgrößen anpasst.",
+  "source": "@site/Wiki/components/layout/grid.md",
+  "sourceDirName": "components/layout",
+  "slug": "/components/layout/grid",
+  "permalink": "/smolitux-ui/docs/components/layout/grid",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/layout/grid.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

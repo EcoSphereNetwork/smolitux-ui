@@ -1,0 +1,15 @@
+{
+  "id": "api/reference",
+  "title": "API-Referenz",
+  "description": "Diese Seite bietet eine detaillierte API-Referenz für alle Komponenten der Smolitux UI Bibliothek.",
+  "source": "@site/Wiki/api/reference.md",
+  "sourceDirName": "api",
+  "slug": "/api/reference",
+  "permalink": "/smolitux-ui/docs/api/reference",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/api/reference.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

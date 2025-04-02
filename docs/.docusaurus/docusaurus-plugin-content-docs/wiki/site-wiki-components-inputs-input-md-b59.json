@@ -1,0 +1,15 @@
+{
+  "id": "components/inputs/Input",
+  "title": "Input Komponente",
+  "description": "Die Input-Komponente ist ein grundlegendes Formular-Element für die Texteingabe mit umfangreichen Anpassungsmöglichkeiten und Barrierefreiheitsfunktionen.",
+  "source": "@site/Wiki/components/inputs/Input.md",
+  "sourceDirName": "components/inputs",
+  "slug": "/components/inputs/Input",
+  "permalink": "/smolitux-ui/docs/components/inputs/Input",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/inputs/Input.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

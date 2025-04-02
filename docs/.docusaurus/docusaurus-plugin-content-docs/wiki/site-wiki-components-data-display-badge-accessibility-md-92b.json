@@ -1,0 +1,15 @@
+{
+  "id": "components/data-display/badge/accessibility",
+  "title": "Badge-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Badge-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/data-display/badge/accessibility.md",
+  "sourceDirName": "components/data-display/badge",
+  "slug": "/components/data-display/badge/accessibility",
+  "permalink": "/smolitux-ui/docs/components/data-display/badge/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/data-display/badge/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

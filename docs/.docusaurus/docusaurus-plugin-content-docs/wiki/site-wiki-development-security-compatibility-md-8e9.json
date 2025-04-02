@@ -1,0 +1,15 @@
+{
+  "id": "development/security-compatibility",
+  "title": "Sicherheits- und Kompatibilitätsstrategie für Resonance UI Bibliothek",
+  "description": "1. Sicherheitsarchitektur",
+  "source": "@site/Wiki/development/security-compatibility.md",
+  "sourceDirName": "development",
+  "slug": "/development/security-compatibility",
+  "permalink": "/smolitux-ui/docs/development/security-compatibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/security-compatibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

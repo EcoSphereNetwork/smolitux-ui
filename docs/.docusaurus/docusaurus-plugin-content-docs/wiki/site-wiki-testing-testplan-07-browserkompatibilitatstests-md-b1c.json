@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Browserkompatibilitätstests",
+  "title": "Browserkompatibilitätstests",
+  "description": "Dieses Dokument beschreibt die Strategie und Implementierung von Browserkompatibilitätstests für die Komponenten der smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/testing/testplan/07-Browserkompatibilitätstests.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Browserkompatibilitätstests",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Browserkompatibilitätstests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/07-Browserkompatibilitätstests.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {}
+}

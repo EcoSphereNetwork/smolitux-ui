@@ -1,0 +1,15 @@
+{
+  "id": "development/roadmap/step-by-step-guide",
+  "title": "Smolitux UI Bibliothek - Schritt-für-Schritt-Anleitung",
+  "description": "Diese Anleitung bietet eine detaillierte Schritt-für-Schritt-Anweisung zur Umsetzung des Implementierungsplans für die Smolitux UI Bibliothek. Jeder Schritt enthält konkrete Aufgaben, die ausgeführt werden müssen, um die Bibliothek zu vervollständigen und zu testen.",
+  "source": "@site/Wiki/development/roadmap/step-by-step-guide.md",
+  "sourceDirName": "development/roadmap",
+  "slug": "/development/roadmap/step-by-step-guide",
+  "permalink": "/smolitux-ui/docs/development/roadmap/step-by-step-guide",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/roadmap/step-by-step-guide.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

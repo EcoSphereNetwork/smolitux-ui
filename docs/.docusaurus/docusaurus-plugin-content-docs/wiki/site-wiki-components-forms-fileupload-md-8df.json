@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/fileupload",
+  "title": "FileUpload",
+  "description": "Die FileUpload-Komponente ermöglicht es Benutzern, Dateien hochzuladen, entweder durch Auswahl über einen Datei-Dialog oder per Drag & Drop.",
+  "source": "@site/Wiki/components/forms/fileupload.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/fileupload",
+  "permalink": "/smolitux-ui/docs/components/forms/fileupload",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/fileupload.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

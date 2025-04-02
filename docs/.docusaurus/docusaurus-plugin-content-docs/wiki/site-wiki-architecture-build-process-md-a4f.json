@@ -1,0 +1,15 @@
+{
+  "id": "architecture/build-process",
+  "title": "Build-Prozess",
+  "description": "Diese Dokumentation beschreibt den Build-Prozess der Smolitux-UI-Bibliothek.",
+  "source": "@site/Wiki/architecture/build-process.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/build-process",
+  "permalink": "/smolitux-ui/docs/architecture/build-process",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/architecture/build-process.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

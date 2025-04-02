@@ -1,0 +1,15 @@
+{
+  "id": "components/data-display/avatar",
+  "title": "Avatar",
+  "description": "Die Avatar-Komponente wird verwendet, um Benutzer oder Entitäten visuell darzustellen. Sie unterstützt Bilder, Initialen und Status-Indikatoren.",
+  "source": "@site/Wiki/components/data-display/avatar.md",
+  "sourceDirName": "components/data-display",
+  "slug": "/components/data-display/avatar",
+  "permalink": "/smolitux-ui/docs/components/data-display/avatar",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/data-display/avatar.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

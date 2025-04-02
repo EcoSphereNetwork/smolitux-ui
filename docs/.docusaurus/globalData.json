@@ -1,98 +1,691 @@
 {
   "docusaurus-plugin-content-docs": {
-    "default": {
-      "path": "/docs",
+    "wiki": {
+      "path": "/smolitux-ui/docs",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/docs",
-          "mainDocId": "guides/quickstart",
+          "path": "/smolitux-ui/docs",
+          "mainDocId": "index",
           "docs": [
             {
+              "id": "accessibility/a11y-components",
+              "path": "/smolitux-ui/docs/accessibility/a11y-components"
+            },
+            {
+              "id": "accessibility/component-status",
+              "path": "/smolitux-ui/docs/accessibility/component-status"
+            },
+            {
+              "id": "accessibility/components/carousel",
+              "path": "/smolitux-ui/docs/accessibility/components/carousel"
+            },
+            {
+              "id": "accessibility/components/colorpicker",
+              "path": "/smolitux-ui/docs/accessibility/components/colorpicker"
+            },
+            {
+              "id": "accessibility/components/drawer",
+              "path": "/smolitux-ui/docs/accessibility/components/drawer"
+            },
+            {
+              "id": "accessibility/components/dropdown",
+              "path": "/smolitux-ui/docs/accessibility/components/dropdown"
+            },
+            {
+              "id": "accessibility/components/fade",
+              "path": "/smolitux-ui/docs/accessibility/components/fade"
+            },
+            {
+              "id": "accessibility/components/fileupload",
+              "path": "/smolitux-ui/docs/accessibility/components/fileupload"
+            },
+            {
+              "id": "accessibility/components/flex",
+              "path": "/smolitux-ui/docs/accessibility/components/flex"
+            },
+            {
+              "id": "accessibility/components/form",
+              "path": "/smolitux-ui/docs/accessibility/components/form"
+            },
+            {
+              "id": "accessibility/components/formcontrol",
+              "path": "/smolitux-ui/docs/accessibility/components/formcontrol"
+            },
+            {
+              "id": "accessibility/components/formfield",
+              "path": "/smolitux-ui/docs/accessibility/components/formfield"
+            },
+            {
+              "id": "accessibility/components/input",
+              "path": "/smolitux-ui/docs/accessibility/components/input"
+            },
+            {
+              "id": "accessibility/components/languageswitcher",
+              "path": "/smolitux-ui/docs/accessibility/components/languageswitcher"
+            },
+            {
+              "id": "accessibility/components/list",
+              "path": "/smolitux-ui/docs/accessibility/components/list"
+            },
+            {
+              "id": "accessibility/components/mediaplayer",
+              "path": "/smolitux-ui/docs/accessibility/components/mediaplayer"
+            },
+            {
+              "id": "accessibility/components/menu",
+              "path": "/smolitux-ui/docs/accessibility/components/menu"
+            },
+            {
+              "id": "accessibility/components/pagination",
+              "path": "/smolitux-ui/docs/accessibility/components/pagination"
+            },
+            {
+              "id": "accessibility/components/popover",
+              "path": "/smolitux-ui/docs/accessibility/components/popover"
+            },
+            {
+              "id": "accessibility/components/progressbar",
+              "path": "/smolitux-ui/docs/accessibility/components/progressbar"
+            },
+            {
+              "id": "accessibility/components/radio",
+              "path": "/smolitux-ui/docs/accessibility/components/radio"
+            },
+            {
+              "id": "accessibility/components/select",
+              "path": "/smolitux-ui/docs/accessibility/components/select"
+            },
+            {
+              "id": "accessibility/components/skeleton",
+              "path": "/smolitux-ui/docs/accessibility/components/skeleton"
+            },
+            {
+              "id": "accessibility/components/slide",
+              "path": "/smolitux-ui/docs/accessibility/components/slide"
+            },
+            {
+              "id": "accessibility/components/slider",
+              "path": "/smolitux-ui/docs/accessibility/components/slider"
+            },
+            {
+              "id": "accessibility/components/spinner",
+              "path": "/smolitux-ui/docs/accessibility/components/spinner"
+            },
+            {
+              "id": "accessibility/components/stepper",
+              "path": "/smolitux-ui/docs/accessibility/components/stepper"
+            },
+            {
+              "id": "accessibility/components/switch",
+              "path": "/smolitux-ui/docs/accessibility/components/switch"
+            },
+            {
+              "id": "accessibility/components/tabview",
+              "path": "/smolitux-ui/docs/accessibility/components/tabview"
+            },
+            {
+              "id": "accessibility/components/textarea",
+              "path": "/smolitux-ui/docs/accessibility/components/textarea"
+            },
+            {
+              "id": "accessibility/components/timepicker",
+              "path": "/smolitux-ui/docs/accessibility/components/timepicker"
+            },
+            {
+              "id": "accessibility/components/zoom",
+              "path": "/smolitux-ui/docs/accessibility/components/zoom"
+            },
+            {
+              "id": "accessibility/README",
+              "path": "/smolitux-ui/docs/accessibility/"
+            },
+            {
               "id": "api/reference",
-              "path": "/docs/api/reference",
-              "sidebar": "wikiSidebar"
+              "path": "/smolitux-ui/docs/api/reference"
+            },
+            {
+              "id": "architecture/architecture-design",
+              "path": "/smolitux-ui/docs/architecture/architecture-design"
+            },
+            {
+              "id": "architecture/build-process",
+              "path": "/smolitux-ui/docs/architecture/build-process"
+            },
+            {
+              "id": "architecture/component-specification",
+              "path": "/smolitux-ui/docs/architecture/component-specification"
+            },
+            {
+              "id": "architecture/dependencies",
+              "path": "/smolitux-ui/docs/architecture/dependencies"
+            },
+            {
+              "id": "architecture/package-structure",
+              "path": "/smolitux-ui/docs/architecture/package-structure"
+            },
+            {
+              "id": "architecture/requirements-analysis",
+              "path": "/smolitux-ui/docs/architecture/requirements-analysis"
+            },
+            {
+              "id": "architecture/technical-requirements",
+              "path": "/smolitux-ui/docs/architecture/technical-requirements"
+            },
+            {
+              "id": "components/charts/line-chart",
+              "path": "/smolitux-ui/docs/components/charts/line-chart"
+            },
+            {
+              "id": "components/data-display/avatar",
+              "path": "/smolitux-ui/docs/components/data-display/avatar"
+            },
+            {
+              "id": "components/data-display/avatar/accessibility",
+              "path": "/smolitux-ui/docs/components/data-display/avatar/accessibility"
+            },
+            {
+              "id": "components/data-display/badge",
+              "path": "/smolitux-ui/docs/components/data-display/badge"
+            },
+            {
+              "id": "components/data-display/badge/accessibility",
+              "path": "/smolitux-ui/docs/components/data-display/badge/accessibility"
+            },
+            {
+              "id": "components/data-display/list",
+              "path": "/smolitux-ui/docs/components/data-display/list"
+            },
+            {
+              "id": "components/data-display/table",
+              "path": "/smolitux-ui/docs/components/data-display/table"
+            },
+            {
+              "id": "components/data/table/accessibility",
+              "path": "/smolitux-ui/docs/components/data/table/accessibility"
+            },
+            {
+              "id": "components/disclosure/accordion",
+              "path": "/smolitux-ui/docs/components/disclosure/accordion"
+            },
+            {
+              "id": "components/disclosure/accordion/accessibility",
+              "path": "/smolitux-ui/docs/components/disclosure/accordion/accessibility"
+            },
+            {
+              "id": "components/feedback/alert",
+              "path": "/smolitux-ui/docs/components/feedback/alert"
+            },
+            {
+              "id": "components/feedback/alert/accessibility",
+              "path": "/smolitux-ui/docs/components/feedback/alert/accessibility"
+            },
+            {
+              "id": "components/feedback/progress",
+              "path": "/smolitux-ui/docs/components/feedback/progress"
+            },
+            {
+              "id": "components/feedback/spinner",
+              "path": "/smolitux-ui/docs/components/feedback/spinner"
+            },
+            {
+              "id": "components/feedback/toast",
+              "path": "/smolitux-ui/docs/components/feedback/toast"
+            },
+            {
+              "id": "components/feedback/toast/accessibility",
+              "path": "/smolitux-ui/docs/components/feedback/toast/accessibility"
+            },
+            {
+              "id": "components/forms/checkbox",
+              "path": "/smolitux-ui/docs/components/forms/checkbox"
+            },
+            {
+              "id": "components/forms/colorpicker",
+              "path": "/smolitux-ui/docs/components/forms/colorpicker"
+            },
+            {
+              "id": "components/forms/datepicker/accessibility",
+              "path": "/smolitux-ui/docs/components/forms/datepicker/accessibility"
+            },
+            {
+              "id": "components/forms/fileupload",
+              "path": "/smolitux-ui/docs/components/forms/fileupload"
+            },
+            {
+              "id": "components/forms/form-control",
+              "path": "/smolitux-ui/docs/components/forms/form-control"
+            },
+            {
+              "id": "components/forms/radio",
+              "path": "/smolitux-ui/docs/components/forms/radio"
+            },
+            {
+              "id": "components/forms/radiogroup",
+              "path": "/smolitux-ui/docs/components/forms/radiogroup"
+            },
+            {
+              "id": "components/forms/select",
+              "path": "/smolitux-ui/docs/components/forms/select"
+            },
+            {
+              "id": "components/forms/slider",
+              "path": "/smolitux-ui/docs/components/forms/slider"
+            },
+            {
+              "id": "components/forms/switch",
+              "path": "/smolitux-ui/docs/components/forms/switch"
+            },
+            {
+              "id": "components/forms/textarea",
+              "path": "/smolitux-ui/docs/components/forms/textarea"
+            },
+            {
+              "id": "components/forms/timepicker",
+              "path": "/smolitux-ui/docs/components/forms/timepicker"
+            },
+            {
+              "id": "components/inputs/button",
+              "path": "/smolitux-ui/docs/components/inputs/button"
+            },
+            {
+              "id": "components/inputs/Button",
+              "path": "/smolitux-ui/docs/components/inputs/Button"
+            },
+            {
+              "id": "components/inputs/button/accessibility",
+              "path": "/smolitux-ui/docs/components/inputs/button/accessibility"
+            },
+            {
+              "id": "components/inputs/Checkbox",
+              "path": "/smolitux-ui/docs/components/inputs/Checkbox"
+            },
+            {
+              "id": "components/inputs/checkbox/accessibility",
+              "path": "/smolitux-ui/docs/components/inputs/checkbox/accessibility"
+            },
+            {
+              "id": "components/inputs/Input",
+              "path": "/smolitux-ui/docs/components/inputs/Input"
+            },
+            {
+              "id": "components/inputs/Select",
+              "path": "/smolitux-ui/docs/components/inputs/Select"
+            },
+            {
+              "id": "components/layout/card",
+              "path": "/smolitux-ui/docs/components/layout/card"
+            },
+            {
+              "id": "components/layout/card/accessibility",
+              "path": "/smolitux-ui/docs/components/layout/card/accessibility"
+            },
+            {
+              "id": "components/layout/collapse/accessibility",
+              "path": "/smolitux-ui/docs/components/layout/collapse/accessibility"
+            },
+            {
+              "id": "components/layout/container",
+              "path": "/smolitux-ui/docs/components/layout/container"
+            },
+            {
+              "id": "components/layout/grid",
+              "path": "/smolitux-ui/docs/components/layout/grid"
+            },
+            {
+              "id": "components/media/carousel",
+              "path": "/smolitux-ui/docs/components/media/carousel"
+            },
+            {
+              "id": "components/media/mediaplayer",
+              "path": "/smolitux-ui/docs/components/media/mediaplayer"
+            },
+            {
+              "id": "components/navigation/breadcrumb",
+              "path": "/smolitux-ui/docs/components/navigation/breadcrumb"
+            },
+            {
+              "id": "components/navigation/breadcrumb/accessibility",
+              "path": "/smolitux-ui/docs/components/navigation/breadcrumb/accessibility"
+            },
+            {
+              "id": "components/navigation/menu",
+              "path": "/smolitux-ui/docs/components/navigation/menu"
+            },
+            {
+              "id": "components/navigation/pagination",
+              "path": "/smolitux-ui/docs/components/navigation/pagination"
+            },
+            {
+              "id": "components/navigation/stepper",
+              "path": "/smolitux-ui/docs/components/navigation/stepper"
+            },
+            {
+              "id": "components/navigation/tabs",
+              "path": "/smolitux-ui/docs/components/navigation/tabs"
+            },
+            {
+              "id": "components/navigation/tabs/accessibility",
+              "path": "/smolitux-ui/docs/components/navigation/tabs/accessibility"
+            },
+            {
+              "id": "components/navigation/tabview",
+              "path": "/smolitux-ui/docs/components/navigation/tabview"
+            },
+            {
+              "id": "components/overlay/dialog",
+              "path": "/smolitux-ui/docs/components/overlay/dialog"
+            },
+            {
+              "id": "components/overlay/dialog/accessibility",
+              "path": "/smolitux-ui/docs/components/overlay/dialog/accessibility"
+            },
+            {
+              "id": "components/overlay/drawer",
+              "path": "/smolitux-ui/docs/components/overlay/drawer"
+            },
+            {
+              "id": "components/overlay/modal",
+              "path": "/smolitux-ui/docs/components/overlay/modal"
+            },
+            {
+              "id": "components/overlay/modal/accessibility",
+              "path": "/smolitux-ui/docs/components/overlay/modal/accessibility"
+            },
+            {
+              "id": "components/overlay/popover",
+              "path": "/smolitux-ui/docs/components/overlay/popover"
+            },
+            {
+              "id": "components/overlay/tooltip",
+              "path": "/smolitux-ui/docs/components/overlay/tooltip"
+            },
+            {
+              "id": "components/overview",
+              "path": "/smolitux-ui/docs/components/overview"
+            },
+            {
+              "id": "components/README",
+              "path": "/smolitux-ui/docs/components/"
+            },
+            {
+              "id": "development/archive/implementation-roadmap",
+              "path": "/smolitux-ui/docs/development/archive/implementation-roadmap"
+            },
+            {
+              "id": "development/archive/improvement-plan",
+              "path": "/smolitux-ui/docs/development/archive/improvement-plan"
+            },
+            {
+              "id": "development/archive/roadmap",
+              "path": "/smolitux-ui/docs/development/archive/roadmap"
+            },
+            {
+              "id": "development/build-analysis",
+              "path": "/smolitux-ui/docs/development/build-analysis"
+            },
+            {
+              "id": "development/build-fix-guide",
+              "path": "/smolitux-ui/docs/development/build-fix-guide"
+            },
+            {
+              "id": "development/build-troubleshooting",
+              "path": "/smolitux-ui/docs/development/build-troubleshooting"
+            },
+            {
+              "id": "development/changelog",
+              "path": "/smolitux-ui/docs/development/changelog"
+            },
+            {
+              "id": "development/contributing",
+              "path": "/smolitux-ui/docs/development/contributing"
+            },
+            {
+              "id": "development/credits",
+              "path": "/smolitux-ui/docs/development/credits"
+            },
+            {
+              "id": "development/development-strategy",
+              "path": "/smolitux-ui/docs/development/development-strategy"
+            },
+            {
+              "id": "development/documentation-strategy",
+              "path": "/smolitux-ui/docs/development/documentation-strategy"
+            },
+            {
+              "id": "development/Entwickler-Prompt",
+              "path": "/smolitux-ui/docs/development/Entwickler-Prompt"
             },
             {
               "id": "development/guide",
-              "path": "/docs/development/guide",
-              "sidebar": "wikiSidebar"
+              "path": "/smolitux-ui/docs/development/guide"
+            },
+            {
+              "id": "development/implementation-report",
+              "path": "/smolitux-ui/docs/development/implementation-report"
+            },
+            {
+              "id": "development/implementation-roadmap",
+              "path": "/smolitux-ui/docs/development/implementation-roadmap"
+            },
+            {
+              "id": "development/improvement-plan",
+              "path": "/smolitux-ui/docs/development/improvement-plan"
+            },
+            {
+              "id": "development/local-installation",
+              "path": "/smolitux-ui/docs/development/local-installation"
+            },
+            {
+              "id": "development/performance-optimization",
+              "path": "/smolitux-ui/docs/development/performance-optimization"
+            },
+            {
+              "id": "development/project-guide",
+              "path": "/smolitux-ui/docs/development/project-guide"
+            },
+            {
+              "id": "development/README",
+              "path": "/smolitux-ui/docs/development/"
+            },
+            {
+              "id": "development/releases/v0.2.1",
+              "path": "/smolitux-ui/docs/development/releases/v0.2.1"
             },
             {
               "id": "development/roadmap",
-              "path": "/docs/development/roadmap",
-              "sidebar": "wikiSidebar"
+              "path": "/smolitux-ui/docs/development/roadmap"
             },
             {
-              "id": "docusaurus/intro",
-              "path": "/docs/docusaurus/intro",
-              "sidebar": "tutorialSidebar"
+              "id": "development/roadmap/implementation-plan",
+              "path": "/smolitux-ui/docs/development/roadmap/implementation-plan"
             },
             {
-              "id": "docusaurus/tutorial-basics/congratulations",
-              "path": "/docs/docusaurus/tutorial-basics/congratulations",
-              "sidebar": "tutorialSidebar"
+              "id": "development/roadmap/index",
+              "path": "/smolitux-ui/docs/development/roadmap/"
             },
             {
-              "id": "docusaurus/tutorial-basics/create-a-blog-post",
-              "path": "/docs/docusaurus/tutorial-basics/create-a-blog-post",
-              "sidebar": "tutorialSidebar"
+              "id": "development/roadmap/step-by-step-guide",
+              "path": "/smolitux-ui/docs/development/roadmap/step-by-step-guide"
             },
             {
-              "id": "docusaurus/tutorial-basics/create-a-document",
-              "path": "/docs/docusaurus/tutorial-basics/create-a-document",
-              "sidebar": "tutorialSidebar"
+              "id": "development/roadmap/summary",
+              "path": "/smolitux-ui/docs/development/roadmap/summary"
             },
             {
-              "id": "docusaurus/tutorial-basics/create-a-page",
-              "path": "/docs/docusaurus/tutorial-basics/create-a-page",
-              "sidebar": "tutorialSidebar"
+              "id": "development/security-compatibility",
+              "path": "/smolitux-ui/docs/development/security-compatibility"
             },
             {
-              "id": "docusaurus/tutorial-basics/deploy-your-site",
-              "path": "/docs/docusaurus/tutorial-basics/deploy-your-site",
-              "sidebar": "tutorialSidebar"
+              "id": "development/status-report",
+              "path": "/smolitux-ui/docs/development/status-report"
             },
             {
-              "id": "docusaurus/tutorial-basics/markdown-features",
-              "path": "/docs/docusaurus/tutorial-basics/markdown-features",
-              "sidebar": "tutorialSidebar"
+              "id": "development/v0.2.1-release-notes",
+              "path": "/smolitux-ui/docs/development/v0.2.1-release-notes"
             },
             {
-              "id": "docusaurus/tutorial-extras/manage-docs-versions",
-              "path": "/docs/docusaurus/tutorial-extras/manage-docs-versions",
-              "sidebar": "tutorialSidebar"
+              "id": "examples/form-examples",
+              "path": "/smolitux-ui/docs/examples/form-examples"
             },
             {
-              "id": "docusaurus/tutorial-extras/translate-your-site",
-              "path": "/docs/docusaurus/tutorial-extras/translate-your-site",
-              "sidebar": "tutorialSidebar"
+              "id": "examples/form-validation-examples",
+              "path": "/smolitux-ui/docs/examples/form-validation-examples"
+            },
+            {
+              "id": "examples/layout-examples",
+              "path": "/smolitux-ui/docs/examples/layout-examples"
+            },
+            {
+              "id": "guidelines/accessibility",
+              "path": "/smolitux-ui/docs/guidelines/accessibility"
+            },
+            {
+              "id": "guidelines/best-practices",
+              "path": "/smolitux-ui/docs/guidelines/best-practices"
+            },
+            {
+              "id": "guidelines/coding-standards",
+              "path": "/smolitux-ui/docs/guidelines/coding-standards"
+            },
+            {
+              "id": "guidelines/component-structure",
+              "path": "/smolitux-ui/docs/guidelines/component-structure"
+            },
+            {
+              "id": "guidelines/testing-strategy",
+              "path": "/smolitux-ui/docs/guidelines/testing-strategy"
+            },
+            {
+              "id": "guides/animations",
+              "path": "/smolitux-ui/docs/guides/animations"
+            },
+            {
+              "id": "guides/form-validation",
+              "path": "/smolitux-ui/docs/guides/form-validation"
+            },
+            {
+              "id": "guides/internationalization",
+              "path": "/smolitux-ui/docs/guides/internationalization"
+            },
+            {
+              "id": "guides/migration-guide",
+              "path": "/smolitux-ui/docs/guides/migration-guide"
+            },
+            {
+              "id": "guides/mvp-development",
+              "path": "/smolitux-ui/docs/guides/mvp-development"
             },
             {
               "id": "guides/quickstart",
-              "path": "/docs/guides/quickstart",
-              "sidebar": "wikiSidebar"
+              "path": "/smolitux-ui/docs/guides/quickstart"
             },
             {
               "id": "guides/reorganize",
-              "path": "/docs/guides/reorganize",
+              "path": "/smolitux-ui/docs/guides/reorganize"
+            },
+            {
+              "id": "improvement-plan/button-component",
+              "path": "/smolitux-ui/docs/improvement-plan/button-component"
+            },
+            {
+              "id": "improvement-plan/phase2-accessibility",
+              "path": "/smolitux-ui/docs/improvement-plan/phase2-accessibility"
+            },
+            {
+              "id": "improvement-plan/README",
+              "path": "/smolitux-ui/docs/improvement-plan/"
+            },
+            {
+              "id": "index",
+              "path": "/smolitux-ui/docs/",
               "sidebar": "wikiSidebar"
+            },
+            {
+              "id": "styling/README",
+              "path": "/smolitux-ui/docs/styling/"
+            },
+            {
+              "id": "testing/accessibility-testing",
+              "path": "/smolitux-ui/docs/testing/accessibility-testing"
+            },
+            {
+              "id": "testing/e2e-testing",
+              "path": "/smolitux-ui/docs/testing/e2e-testing"
+            },
+            {
+              "id": "testing/implementation/accessibility-tests",
+              "path": "/smolitux-ui/docs/testing/implementation/accessibility-tests"
+            },
+            {
+              "id": "testing/implementation/automated-a11y-tests",
+              "path": "/smolitux-ui/docs/testing/implementation/automated-a11y-tests"
+            },
+            {
+              "id": "testing/implementation/component-tests",
+              "path": "/smolitux-ui/docs/testing/implementation/component-tests"
+            },
+            {
+              "id": "testing/implementation/snapshot-tests",
+              "path": "/smolitux-ui/docs/testing/implementation/snapshot-tests"
+            },
+            {
+              "id": "testing/presentation/testplan-implementation",
+              "path": "/smolitux-ui/docs/testing/presentation/testplan-implementation"
+            },
+            {
+              "id": "testing/test-coverage-report",
+              "path": "/smolitux-ui/docs/testing/test-coverage-report"
+            },
+            {
+              "id": "testing/test-strategy",
+              "path": "/smolitux-ui/docs/testing/test-strategy"
+            },
+            {
+              "id": "testing/testplan/Browserkompatibilitätstests",
+              "path": "/smolitux-ui/docs/testing/testplan/Browserkompatibilitätstests"
+            },
+            {
+              "id": "testing/testplan/CI-CD-Integration",
+              "path": "/smolitux-ui/docs/testing/testplan/CI-CD-Integration"
+            },
+            {
+              "id": "testing/testplan/Implementierungsplan",
+              "path": "/smolitux-ui/docs/testing/testplan/Implementierungsplan"
+            },
+            {
+              "id": "testing/testplan/Integrationstests",
+              "path": "/smolitux-ui/docs/testing/testplan/Integrationstests"
+            },
+            {
+              "id": "testing/testplan/Spezielle-Komponententests",
+              "path": "/smolitux-ui/docs/testing/testplan/Spezielle-Komponententests"
+            },
+            {
+              "id": "testing/testplan/Testinfrastruktur",
+              "path": "/smolitux-ui/docs/testing/testplan/Testinfrastruktur"
+            },
+            {
+              "id": "testing/testplan/Testplan-Übersicht",
+              "path": "/smolitux-ui/docs/testing/testplan/Testplan-Übersicht"
+            },
+            {
+              "id": "testing/testplan/Unit-Tests",
+              "path": "/smolitux-ui/docs/testing/testplan/Unit-Tests"
+            },
+            {
+              "id": "testing/testplan/Visuelle-Tests",
+              "path": "/smolitux-ui/docs/testing/testplan/Visuelle-Tests"
             }
           ],
           "draftIds": [],
           "sidebars": {
             "wikiSidebar": {
               "link": {
-                "path": "/docs/guides/quickstart",
-                "label": "guides/quickstart"
-              }
-            },
-            "tutorialSidebar": {
-              "link": {
-                "path": "/docs/docusaurus/intro",
-                "label": "docusaurus/intro"
+                "path": "/smolitux-ui/docs/",
+                "label": "index"
               }
             }
           }

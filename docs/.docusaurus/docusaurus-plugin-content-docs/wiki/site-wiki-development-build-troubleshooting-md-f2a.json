@@ -1,0 +1,15 @@
+{
+  "id": "development/build-troubleshooting",
+  "title": "Build-Probleme beheben",
+  "description": "Diese Dokumentation beschreibt häufige Build-Probleme in der Smolitux-UI-Bibliothek und wie sie behoben werden können.",
+  "source": "@site/Wiki/development/build-troubleshooting.md",
+  "sourceDirName": "development",
+  "slug": "/development/build-troubleshooting",
+  "permalink": "/smolitux-ui/docs/development/build-troubleshooting",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/build-troubleshooting.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

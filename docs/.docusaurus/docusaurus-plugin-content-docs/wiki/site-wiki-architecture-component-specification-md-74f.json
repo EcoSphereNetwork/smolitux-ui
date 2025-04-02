@@ -1,0 +1,15 @@
+{
+  "id": "architecture/component-specification",
+  "title": "Komponenten-Spezifikation der Resonance UI Bibliothek",
+  "description": "1. Komponentenklassifikation",
+  "source": "@site/Wiki/architecture/component-specification.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/component-specification",
+  "permalink": "/smolitux-ui/docs/architecture/component-specification",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/architecture/component-specification.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Implementierungsplan",
+  "title": "Implementierungsplan",
+  "description": "Dieses Dokument beschreibt den schrittweisen Implementierungsplan für die Einrichtung und Umsetzung der Teststrategie für die smolitux UI-Komponentenbibliothek.",
+  "source": "@site/Wiki/testing/testplan/09-Implementierungsplan.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Implementierungsplan",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Implementierungsplan",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/09-Implementierungsplan.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {}
+}

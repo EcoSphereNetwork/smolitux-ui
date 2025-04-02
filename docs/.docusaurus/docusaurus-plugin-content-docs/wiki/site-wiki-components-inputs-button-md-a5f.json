@@ -1,0 +1,15 @@
+{
+  "id": "components/inputs/Button",
+  "title": "Button Komponente",
+  "description": "Die Button-Komponente ist ein grundlegendes Interaktionselement, das für verschiedene Aktionen in der Benutzeroberfläche verwendet wird. Sie wurde für optimale Barrierefreiheit und Benutzerfreundlichkeit entwickelt.",
+  "source": "@site/Wiki/components/inputs/Button.md",
+  "sourceDirName": "components/inputs",
+  "slug": "/components/inputs/Button",
+  "permalink": "/smolitux-ui/docs/components/inputs/Button",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/inputs/Button.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

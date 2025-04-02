@@ -1,0 +1,15 @@
+{
+  "id": "examples/layout-examples",
+  "title": "Layout-Beispiele",
+  "description": "Diese Seite enthält interaktive Beispiele für die Verwendung der Layout-Komponenten von Smolitux UI in realen Anwendungsfällen.",
+  "source": "@site/Wiki/examples/layout-examples.md",
+  "sourceDirName": "examples",
+  "slug": "/examples/layout-examples",
+  "permalink": "/smolitux-ui/docs/examples/layout-examples",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/examples/layout-examples.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

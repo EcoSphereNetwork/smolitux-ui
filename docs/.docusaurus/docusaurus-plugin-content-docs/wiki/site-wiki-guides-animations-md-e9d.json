@@ -1,0 +1,15 @@
+{
+  "id": "guides/animations",
+  "title": "Animationen und Übergänge",
+  "description": "Die Smolitux UI Bibliothek bietet ein leistungsstarkes Animationssystem, das die Erstellung von flüssigen und ansprechenden Benutzeroberflächen erleichtert.",
+  "source": "@site/Wiki/guides/animations.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/animations",
+  "permalink": "/smolitux-ui/docs/guides/animations",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guides/animations.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

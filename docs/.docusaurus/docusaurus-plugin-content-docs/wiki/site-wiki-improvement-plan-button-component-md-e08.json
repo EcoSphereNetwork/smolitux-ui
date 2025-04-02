@@ -1,0 +1,15 @@
+{
+  "id": "improvement-plan/button-component",
+  "title": "Verbesserungsplan: Button-Komponente",
+  "description": "Dieser Verbesserungsplan dokumentiert die durchgeführten und geplanten Verbesserungen an der Button-Komponente der Smolitux UI Bibliothek.",
+  "source": "@site/Wiki/improvement-plan/button-component.md",
+  "sourceDirName": "improvement-plan",
+  "slug": "/improvement-plan/button-component",
+  "permalink": "/smolitux-ui/docs/improvement-plan/button-component",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/improvement-plan/button-component.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

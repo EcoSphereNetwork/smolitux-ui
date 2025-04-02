@@ -1,0 +1,20 @@
+{
+  "id": "index",
+  "title": "EcoSphereNetwork Smolitux-UI Wiki",
+  "description": "Welcome to the official documentation for Smolitux-UI, a comprehensive UI component library developed by EcoSphereNetwork. This documentation provides detailed information about the components, architecture, development practices, and guidelines.",
+  "source": "@site/Wiki/index.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/smolitux-ui/docs/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/index.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/"
+  },
+  "sidebar": "wikiSidebar"
+}

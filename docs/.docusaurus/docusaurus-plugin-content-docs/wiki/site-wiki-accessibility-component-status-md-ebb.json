@@ -1,0 +1,15 @@
+{
+  "id": "accessibility/component-status",
+  "title": "Barrierefreiheit: Komponentenstatus",
+  "description": "Diese Dokumentation gibt einen Überblick über den aktuellen Status der Barrierefreiheitsverbesserungen für die Smolitux UI Komponenten.",
+  "source": "@site/Wiki/accessibility/component-status.md",
+  "sourceDirName": "accessibility",
+  "slug": "/accessibility/component-status",
+  "permalink": "/smolitux-ui/docs/accessibility/component-status",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/accessibility/component-status.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

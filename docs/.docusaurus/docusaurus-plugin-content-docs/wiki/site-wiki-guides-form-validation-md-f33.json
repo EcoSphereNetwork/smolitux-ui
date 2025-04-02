@@ -1,0 +1,15 @@
+{
+  "id": "guides/form-validation",
+  "title": "Formularvalidierung",
+  "description": "Die Smolitux UI Bibliothek bietet ein umfassendes System zur Formularvalidierung, das einfach zu verwenden und flexibel ist.",
+  "source": "@site/Wiki/guides/form-validation.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/form-validation",
+  "permalink": "/smolitux-ui/docs/guides/form-validation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guides/form-validation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

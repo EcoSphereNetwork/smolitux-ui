@@ -1,0 +1,19 @@
+{
+  "id": "components/overview",
+  "title": "Components Overview",
+  "description": "This page provides an overview of all available components.",
+  "source": "@site/Wiki/components/overview.md",
+  "sourceDirName": "components",
+  "slug": "/components/overview",
+  "permalink": "/smolitux-ui/docs/components/overview",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/overview.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Components Overview",
+    "sidebar_position": 1
+  }
+}

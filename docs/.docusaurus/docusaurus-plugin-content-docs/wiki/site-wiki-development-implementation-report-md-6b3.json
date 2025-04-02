@@ -1,0 +1,15 @@
+{
+  "id": "development/implementation-report",
+  "title": "Implementierungsbericht: Smolitux UI Bibliothek",
+  "description": "Übersicht",
+  "source": "@site/Wiki/development/implementation-report.md",
+  "sourceDirName": "development",
+  "slug": "/development/implementation-report",
+  "permalink": "/smolitux-ui/docs/development/implementation-report",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/implementation-report.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

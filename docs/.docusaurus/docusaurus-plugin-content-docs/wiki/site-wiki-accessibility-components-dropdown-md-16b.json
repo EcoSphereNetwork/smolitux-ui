@@ -1,0 +1,15 @@
+{
+  "id": "accessibility/components/dropdown",
+  "title": "Dropdown Barrierefreiheit",
+  "description": "Die Smolitux UI Bibliothek bietet zwei Versionen der Dropdown-Komponente:",
+  "source": "@site/Wiki/accessibility/components/dropdown.md",
+  "sourceDirName": "accessibility/components",
+  "slug": "/accessibility/components/dropdown",
+  "permalink": "/smolitux-ui/docs/accessibility/components/dropdown",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/accessibility/components/dropdown.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

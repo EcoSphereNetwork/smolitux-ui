@@ -1,0 +1,15 @@
+{
+  "id": "development/v0.2.1-release-notes",
+  "title": "Smolitux-UI v0.2.1 Release Notes",
+  "description": "Übersicht",
+  "source": "@site/Wiki/development/v0.2.1-release-notes.md",
+  "sourceDirName": "development",
+  "slug": "/development/v0.2.1-release-notes",
+  "permalink": "/smolitux-ui/docs/development/v0.2.1-release-notes",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/v0.2.1-release-notes.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

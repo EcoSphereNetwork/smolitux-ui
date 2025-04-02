@@ -1,0 +1,15 @@
+{
+  "id": "components/disclosure/accordion",
+  "title": "Accordion",
+  "description": "Die Accordion-Komponente ermöglicht es, Inhalte in ausklappbaren Panels zu organisieren, um Platz zu sparen und die Benutzeroberfläche übersichtlicher zu gestalten.",
+  "source": "@site/Wiki/components/disclosure/accordion.md",
+  "sourceDirName": "components/disclosure",
+  "slug": "/components/disclosure/accordion",
+  "permalink": "/smolitux-ui/docs/components/disclosure/accordion",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/disclosure/accordion.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

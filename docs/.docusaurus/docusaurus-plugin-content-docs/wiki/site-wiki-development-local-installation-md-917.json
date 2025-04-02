@@ -1,0 +1,15 @@
+{
+  "id": "development/local-installation",
+  "title": "Lokale Installation von Smolitux-UI",
+  "description": "Diese Anleitung beschreibt, wie Sie Smolitux-UI lokal installieren und entwickeln können.",
+  "source": "@site/Wiki/development/local-installation.md",
+  "sourceDirName": "development",
+  "slug": "/development/local-installation",
+  "permalink": "/smolitux-ui/docs/development/local-installation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/local-installation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

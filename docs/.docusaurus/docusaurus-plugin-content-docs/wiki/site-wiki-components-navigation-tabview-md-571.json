@@ -1,0 +1,15 @@
+{
+  "id": "components/navigation/tabview",
+  "title": "TabView",
+  "description": "Die TabView-Komponente ermöglicht die Organisation von Inhalten in Registerkarten, zwischen denen Benutzer wechseln können. Sie ist ideal für die Darstellung von verwandten Inhalten in einem begrenzten Raum.",
+  "source": "@site/Wiki/components/navigation/tabview.md",
+  "sourceDirName": "components/navigation",
+  "slug": "/components/navigation/tabview",
+  "permalink": "/smolitux-ui/docs/components/navigation/tabview",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/navigation/tabview.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

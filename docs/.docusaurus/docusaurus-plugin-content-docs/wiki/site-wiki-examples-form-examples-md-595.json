@@ -1,0 +1,15 @@
+{
+  "id": "examples/form-examples",
+  "title": "Formular-Beispiele",
+  "description": "Diese Seite enthält interaktive Beispiele für die Verwendung der Formular-Komponenten von Smolitux UI in realen Anwendungsfällen.",
+  "source": "@site/Wiki/examples/form-examples.md",
+  "sourceDirName": "examples",
+  "slug": "/examples/form-examples",
+  "permalink": "/smolitux-ui/docs/examples/form-examples",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/examples/form-examples.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

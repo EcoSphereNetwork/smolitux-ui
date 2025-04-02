@@ -1,0 +1,15 @@
+{
+  "id": "development/status-report",
+  "title": "Smolitux UI Bibliothek - Status und Entwicklungsplan",
+  "description": "1. Bestandsaufnahme und Analyse",
+  "source": "@site/Wiki/development/status-report.md",
+  "sourceDirName": "development",
+  "slug": "/development/status-report",
+  "permalink": "/smolitux-ui/docs/development/status-report",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/status-report.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

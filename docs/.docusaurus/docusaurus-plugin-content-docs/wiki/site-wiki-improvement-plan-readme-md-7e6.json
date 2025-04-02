@@ -1,0 +1,15 @@
+{
+  "id": "improvement-plan/README",
+  "title": "Verbesserungsplan für smolitux-ui",
+  "description": "Hauptprobleme",
+  "source": "@site/Wiki/improvement-plan/README.md",
+  "sourceDirName": "improvement-plan",
+  "slug": "/improvement-plan/",
+  "permalink": "/smolitux-ui/docs/improvement-plan/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/improvement-plan/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

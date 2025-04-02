@@ -1,0 +1,15 @@
+{
+  "id": "development/archive/improvement-plan",
+  "title": "Verbesserungsplan für Smolitux-UI",
+  "description": "1. Build-Prozess optimieren",
+  "source": "@site/Wiki/development/archive/improvement-plan.md",
+  "sourceDirName": "development/archive",
+  "slug": "/development/archive/improvement-plan",
+  "permalink": "/smolitux-ui/docs/development/archive/improvement-plan",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/archive/improvement-plan.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

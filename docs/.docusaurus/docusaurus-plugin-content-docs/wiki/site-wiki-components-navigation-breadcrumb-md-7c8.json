@@ -1,0 +1,15 @@
+{
+  "id": "components/navigation/breadcrumb",
+  "title": "Breadcrumb",
+  "description": "Die Breadcrumb-Komponente zeigt den Navigationspfad an und ermöglicht es Benutzern, zu übergeordneten Seiten zurückzukehren.",
+  "source": "@site/Wiki/components/navigation/breadcrumb.md",
+  "sourceDirName": "components/navigation",
+  "slug": "/components/navigation/breadcrumb",
+  "permalink": "/smolitux-ui/docs/components/navigation/breadcrumb",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/navigation/breadcrumb.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

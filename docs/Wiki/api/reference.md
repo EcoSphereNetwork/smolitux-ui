@@ -23,8 +23,8 @@ import { Button } from '@smolitux/core';
 
 | Prop | Typ | Standard | Beschreibung |
 |------|-----|----------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'link' \| 'danger'` | `'primary'` | Die Variante des Buttons |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Die Größe des Buttons |
+| `variant` | `'primary', 'secondary', 'outline', 'ghost', 'link', 'danger'` | `'primary'` | Die Variante des Buttons |
+| `size` | `'xs', 'sm', 'md', 'lg', 'xl'` | `'md'` | Die Größe des Buttons |
 | `disabled` | `boolean` | `false` | Deaktiviert den Button |
 | `fullWidth` | `boolean` | `false` | Button nimmt die volle Breite ein |
 | `leftIcon` | `ReactNode` | - | Icon links vom Text |
@@ -53,7 +53,7 @@ import { Input } from '@smolitux/core';
 | Prop | Typ | Standard | Beschreibung |
 |------|-----|----------|-------------|
 | `label` | `string` | - | Label für das Eingabefeld |
-| `type` | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'` | Typ des Eingabefelds |
+| `type` | `'text', 'password', 'email', 'number', 'tel', 'url', 'search'` | `'text'` | Typ des Eingabefelds |
 | `placeholder` | `string` | - | Platzhaltertext |
 | `value` | `string` | - | Wert des Eingabefelds |
 | `defaultValue` | `string` | - | Standardwert des Eingabefelds |
@@ -64,7 +64,7 @@ import { Input } from '@smolitux/core';
 | `disabled` | `boolean` | `false` | Deaktiviert das Eingabefeld |
 | `readOnly` | `boolean` | `false` | Schreibgeschützt |
 | `required` | `boolean` | `false` | Pflichtfeld |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Größe des Eingabefelds |
+| `size` | `'sm', 'md', 'lg'` | `'md'` | Größe des Eingabefelds |
 | `leftElement` | `ReactNode` | - | Element links im Eingabefeld |
 | `rightElement` | `ReactNode` | - | Element rechts im Eingabefeld |
 
@@ -98,7 +98,7 @@ import { Select } from '@smolitux/core';
 | `disabled` | `boolean` | `false` | Deaktiviert das Auswahlfeld |
 | `error` | `string` | - | Fehlermeldung |
 | `required` | `boolean` | `false` | Pflichtfeld |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Größe des Auswahlfelds |
+| `size` | `'sm', 'md', 'lg'` | `'md'` | Größe des Auswahlfelds |
 | `isSearchable` | `boolean` | `false` | Ermöglicht die Suche |
 | `isMulti` | `boolean` | `false` | Ermöglicht Mehrfachauswahl |
 
@@ -119,7 +119,7 @@ import { Container } from '@smolitux/layout';
 
 | Prop | Typ | Standard | Beschreibung |
 |------|-----|----------|-------------|
-| `maxWidth` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full' \| 'none'` | `'lg'` | Maximale Breite des Containers |
+| `maxWidth` | `'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full', 'none'` | `'lg'` | Maximale Breite des Containers |
 | `disableGutters` | `boolean` | `false` | Horizontales Padding deaktivieren |
 | `fullHeight` | `boolean` | `false` | Container auf Bildschirmhöhe setzen |
 | `centerContent` | `boolean` | `false` | Content innerhalb des Containers zentrieren |
@@ -145,19 +145,19 @@ import { Grid } from '@smolitux/layout';
 |------|-----|----------|-------------|
 | `container` | `boolean` | `false` | Container-Modus aktivieren (für Grid-Container) |
 | `item` | `boolean` | `false` | Item-Modus aktivieren (für Grid-Items) |
-| `spacing` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 8 \| 10 \| 12` | `0` | Abstand zwischen Grid-Items |
+| `spacing` | `0, 1, 2, 3, 4, 5, 6, 8, 10, 12` | `0` | Abstand zwischen Grid-Items |
 | `columnSpacing` | `Grid['spacing']` | - | Horizontaler Abstand zwischen Grid-Items |
 | `rowSpacing` | `Grid['spacing']` | - | Vertikaler Abstand zwischen Grid-Items |
-| `justifyContent` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | - | Ausrichtung der Items entlang der Hauptachse |
-| `alignItems` | `'flex-start' \| 'center' \| 'flex-end' \| 'stretch' \| 'baseline'` | - | Ausrichtung der Items entlang der Kreuzachse |
-| `direction` | `'row' \| 'row-reverse' \| 'column' \| 'column-reverse'` | - | Flex-Direction der Items |
-| `wrap` | `'nowrap' \| 'wrap' \| 'wrap-reverse'` | `'wrap'` | Flex-Wrap-Verhalten |
-| `xs` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für xs-Bildschirme (0px+) |
-| `sm` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für sm-Bildschirme (640px+) |
-| `md` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für md-Bildschirme (768px+) |
-| `lg` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für lg-Bildschirme (1024px+) |
-| `xl` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für xl-Bildschirme (1280px+) |
-| `xxl` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für 2xl-Bildschirme (1536px+) |
+| `justifyContent` | `'flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly'` | - | Ausrichtung der Items entlang der Hauptachse |
+| `alignItems` | `'flex-start', 'center', 'flex-end', 'stretch', 'baseline'` | - | Ausrichtung der Items entlang der Kreuzachse |
+| `direction` | `'row', 'row-reverse', 'column', 'column-reverse'` | - | Flex-Direction der Items |
+| `wrap` | `'nowrap', 'wrap', 'wrap-reverse'` | `'wrap'` | Flex-Wrap-Verhalten |
+| `xs` | `number, 'auto', boolean` | - | Anzahl der Spalten für xs-Bildschirme (0px+) |
+| `sm` | `number, 'auto', boolean` | - | Anzahl der Spalten für sm-Bildschirme (640px+) |
+| `md` | `number, 'auto', boolean` | - | Anzahl der Spalten für md-Bildschirme (768px+) |
+| `lg` | `number, 'auto', boolean` | - | Anzahl der Spalten für lg-Bildschirme (1024px+) |
+| `xl` | `number, 'auto', boolean` | - | Anzahl der Spalten für xl-Bildschirme (1280px+) |
+| `xxl` | `number, 'auto', boolean` | - | Anzahl der Spalten für 2xl-Bildschirme (1536px+) |
 
 ## Chart-Komponenten
 
@@ -188,9 +188,9 @@ import { LineChart } from '@smolitux/charts';
 
 | Prop | Typ | Standard | Beschreibung |
 |------|-----|----------|-------------|
-| `data` | `LineChartSeries \| LineChartSeries[]` | - | Einzelne Datenserie oder Array von Serien |
+| `data` | `LineChartSeries, LineChartSeries[]` | - | Einzelne Datenserie oder Array von Serien |
 | `height` | `number` | `300` | Höhe des Charts |
-| `width` | `number \| string` | `'100%'` | Breite des Charts |
+| `width` | `number, string` | `'100%'` | Breite des Charts |
 | `padding` | `{ top?: number; right?: number; bottom?: number; left?: number }` | `{ top: 30, right: 30, bottom: 40, left: 50 }` | Padding innerhalb des Charts |
 | `axisLabels` | `{ x?: string; y?: string }` | - | Achsentitel |
 | `units` | `{ x?: string; y?: string }` | - | Einheiten für Achsenbeschriftungen |
@@ -198,12 +198,12 @@ import { LineChart } from '@smolitux/charts';
 | `showPoints` | `boolean` | `true` | Datenpunkte anzeigen |
 | `showTooltips` | `boolean` | `true` | Tooltips anzeigen |
 | `showLegend` | `boolean` | `true` | Legende anzeigen |
-| `legendPosition` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | Position der Legende |
+| `legendPosition` | `'top', 'right', 'bottom', 'left'` | `'top'` | Position der Legende |
 | `animated` | `boolean` | `true` | Animation aktivieren |
 | `startYAxisAtZero` | `boolean` | `false` | Y-Achse bei Null beginnen |
 | `colors` | `string[]` | - | Angepasste Farben für mehrere Serien |
-| `formatYLabel` | `(value: number) => string` | `(value) => \`${value}\`` | Angepasste Formatierung für Y-Achsenbeschriftungen |
-| `formatXLabel` | `(value: string \| number) => string` | `(value) => \`${value}\`` | Angepasste Formatierung für X-Achsenbeschriftungen |
+| `formatYLabel` | `(value: number) => string` | `(value) => "${value}"` | Angepasste Formatierung für Y-Achsenbeschriftungen |
+| `formatXLabel` | `(value: string, number) => string` | `(value) => "${value}"` | Angepasste Formatierung für X-Achsenbeschriftungen |
 | `aspectRatio` | `number` | `16 / 9` | Für responsive SVG (viewBox) |
 
 #### LineChartSeries Typ
@@ -213,13 +213,13 @@ interface LineChartSeries {
   id: string;
   name: string;
   color?: string;
-  lineType?: 'solid' | 'dashed' | 'dotted';
+  lineType?: 'solid', 'dashed', 'dotted';
   lineWidth?: number;
   data: LineChartDataPoint[];
 }
 
 interface LineChartDataPoint {
-  x: string | number;
+  x: string, number;
   y: number;
   category?: string;
   metadata?: Record<string, any>;
@@ -282,6 +282,6 @@ function MyComponent() {
 | Wert | Typ | Beschreibung |
 |------|-----|-------------|
 | `theme` | `Theme` | Das aktuelle Theme-Objekt |
-| `themeMode` | `'light' \| 'dark'` | Der aktuelle Theme-Modus |
-| `setThemeMode` | `(mode: 'light' \| 'dark') => void` | Funktion zum Ändern des Theme-Modus |
+| `themeMode` | `'light', 'dark'` | Der aktuelle Theme-Modus |
+| `setThemeMode` | `(mode: 'light', 'dark') => void` | Funktion zum Ändern des Theme-Modus |
 | `toggleThemeMode` | `() => void` | Funktion zum Umschalten des Theme-Modus |

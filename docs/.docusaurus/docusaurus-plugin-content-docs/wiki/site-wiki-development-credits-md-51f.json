@@ -1,0 +1,15 @@
+{
+  "id": "development/credits",
+  "title": "Acknowledgements",
+  "description": "A big thank you and praise to JoGa90!!!",
+  "source": "@site/Wiki/development/credits.md",
+  "sourceDirName": "development",
+  "slug": "/development/credits",
+  "permalink": "/smolitux-ui/docs/development/credits",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/credits.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

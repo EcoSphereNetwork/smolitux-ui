@@ -1,0 +1,15 @@
+{
+  "id": "components/navigation/tabs/accessibility",
+  "title": "Tabs-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Tabs-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/navigation/tabs/accessibility.md",
+  "sourceDirName": "components/navigation/tabs",
+  "slug": "/components/navigation/tabs/accessibility",
+  "permalink": "/smolitux-ui/docs/components/navigation/tabs/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/navigation/tabs/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

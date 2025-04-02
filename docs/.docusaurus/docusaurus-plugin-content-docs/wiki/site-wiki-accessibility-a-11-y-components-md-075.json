@@ -1,0 +1,15 @@
+{
+  "id": "accessibility/a11y-components",
+  "title": "Barrierefreie Komponenten (A11y)",
+  "description": "Die Smolitux UI Bibliothek bietet spezielle barrierefreie Versionen vieler Komponenten, die mit dem Suffix A11y gekennzeichnet sind. Diese Komponenten wurden speziell entwickelt, um höchste Barrierefreiheitsstandards zu erfüllen und sind ideal für Anwendungen, die WCAG 2.1 AA oder AAA Konformität anstreben.",
+  "source": "@site/Wiki/accessibility/a11y-components.md",
+  "sourceDirName": "accessibility",
+  "slug": "/accessibility/a11y-components",
+  "permalink": "/smolitux-ui/docs/accessibility/a11y-components",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/accessibility/a11y-components.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

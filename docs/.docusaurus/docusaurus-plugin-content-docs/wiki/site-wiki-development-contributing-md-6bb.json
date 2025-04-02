@@ -1,0 +1,15 @@
+{
+  "id": "development/contributing",
+  "title": "Contributing to the Project",
+  "description": "First off, thank you for considering contributing to this project! It's people like you that make this project such a great tool.",
+  "source": "@site/Wiki/development/contributing.md",
+  "sourceDirName": "development",
+  "slug": "/development/contributing",
+  "permalink": "/smolitux-ui/docs/development/contributing",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/contributing.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

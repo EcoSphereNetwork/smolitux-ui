@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/slider",
+  "title": "Slider",
+  "description": "Die Slider-Komponente ermöglicht es Benutzern, einen Wert innerhalb eines bestimmten Bereichs auszuwählen, indem sie einen Schieberegler entlang einer Leiste bewegen.",
+  "source": "@site/Wiki/components/forms/slider.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/slider",
+  "permalink": "/smolitux-ui/docs/components/forms/slider",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/slider.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

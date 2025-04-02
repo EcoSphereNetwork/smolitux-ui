@@ -1,0 +1,15 @@
+{
+  "id": "components/forms/textarea",
+  "title": "TextArea",
+  "description": "Die TextArea-Komponente ermöglicht die Eingabe von mehrzeiligem Text und ist ideal für längere Textinhalte wie Beschreibungen, Kommentare oder Nachrichten.",
+  "source": "@site/Wiki/components/forms/textarea.md",
+  "sourceDirName": "components/forms",
+  "slug": "/components/forms/textarea",
+  "permalink": "/smolitux-ui/docs/components/forms/textarea",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/forms/textarea.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

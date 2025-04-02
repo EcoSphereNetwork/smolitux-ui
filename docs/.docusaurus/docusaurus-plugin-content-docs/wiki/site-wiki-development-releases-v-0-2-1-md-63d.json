@@ -1,0 +1,15 @@
+{
+  "id": "development/releases/v0.2.1",
+  "title": "Release v0.2.1",
+  "description": "Zusammenfassung",
+  "source": "@site/Wiki/development/releases/v0.2.1.md",
+  "sourceDirName": "development/releases",
+  "slug": "/development/releases/v0.2.1",
+  "permalink": "/smolitux-ui/docs/development/releases/v0.2.1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/development/releases/v0.2.1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

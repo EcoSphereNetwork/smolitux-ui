@@ -1,0 +1,15 @@
+{
+  "id": "components/inputs/Checkbox",
+  "title": "Checkbox Komponente",
+  "description": "Die Checkbox-Komponente ist ein Formular-Element für Ja/Nein-Auswahlen mit umfangreichen Anpassungsmöglichkeiten und Barrierefreiheitsfunktionen. Sie kann auch als Switch, Toggle, Radio oder Button dargestellt werden.",
+  "source": "@site/Wiki/components/inputs/Checkbox.md",
+  "sourceDirName": "components/inputs",
+  "slug": "/components/inputs/Checkbox",
+  "permalink": "/smolitux-ui/docs/components/inputs/Checkbox",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/inputs/Checkbox.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

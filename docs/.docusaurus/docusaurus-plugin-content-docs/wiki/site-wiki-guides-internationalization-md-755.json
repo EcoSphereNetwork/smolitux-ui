@@ -1,0 +1,15 @@
+{
+  "id": "guides/internationalization",
+  "title": "Internationalisierung (i18n)",
+  "description": "Die Smolitux UI Bibliothek bietet ein umfassendes Internationalisierungssystem, das die Erstellung mehrsprachiger Anwendungen erleichtert.",
+  "source": "@site/Wiki/guides/internationalization.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/internationalization",
+  "permalink": "/smolitux-ui/docs/guides/internationalization",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guides/internationalization.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

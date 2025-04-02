@@ -1,0 +1,15 @@
+{
+  "id": "components/layout/collapse/accessibility",
+  "title": "Collapse-Komponente: Barrierefreiheit",
+  "description": "Diese Dokumentation beschreibt die Barrierefreiheitsfunktionen der Collapse-Komponente und gibt Hinweise zur korrekten Verwendung für eine optimale Zugänglichkeit.",
+  "source": "@site/Wiki/components/layout/collapse/accessibility.md",
+  "sourceDirName": "components/layout/collapse",
+  "slug": "/components/layout/collapse/accessibility",
+  "permalink": "/smolitux-ui/docs/components/layout/collapse/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/components/layout/collapse/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

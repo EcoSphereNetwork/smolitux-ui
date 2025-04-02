@@ -1,0 +1,15 @@
+{
+  "id": "architecture/requirements-analysis",
+  "title": "Anforderungsanalyse für die React Bibliothek",
+  "description": "1. Zielstellung",
+  "source": "@site/Wiki/architecture/requirements-analysis.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/requirements-analysis",
+  "permalink": "/smolitux-ui/docs/architecture/requirements-analysis",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/architecture/requirements-analysis.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

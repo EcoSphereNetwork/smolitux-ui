@@ -1,0 +1,16 @@
+{
+  "id": "testing/testplan/Unit-Tests",
+  "title": "Unit-Tests für smolitux UI Komponenten",
+  "description": "Dieses Dokument beschreibt die Strategie und Implementierung von Unit-Tests für die Komponenten der smolitux UI-Bibliothek.",
+  "source": "@site/Wiki/testing/testplan/03-Unit-Tests.md",
+  "sourceDirName": "testing/testplan",
+  "slug": "/testing/testplan/Unit-Tests",
+  "permalink": "/smolitux-ui/docs/testing/testplan/Unit-Tests",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/testing/testplan/03-Unit-Tests.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {}
+}

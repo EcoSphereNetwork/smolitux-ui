@@ -1,0 +1,15 @@
+{
+  "id": "guidelines/best-practices",
+  "title": "Best Practices",
+  "description": "Diese Seite enthält Richtlinien und Best Practices für die Verwendung der Smolitux UI Komponenten in Ihren Projekten.",
+  "source": "@site/Wiki/guidelines/best-practices.md",
+  "sourceDirName": "guidelines",
+  "slug": "/guidelines/best-practices",
+  "permalink": "/smolitux-ui/docs/guidelines/best-practices",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/Wiki/guidelines/best-practices.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

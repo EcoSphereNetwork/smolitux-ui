@@ -4,73 +4,24 @@
  * Modify the docusaurus.config.js file at your site's root instead.
  */
 export default {
-  "title": "EcoSphereNetwork",
-  "tagline": "Repository Template",
+  "title": "Smolitux-UI",
+  "tagline": "EcoSphereNetwork",
   "favicon": "img/favicon.ico",
-  "url": "https://your-docusaurus-site.example.com",
-  "baseUrl": "/",
+  "url": "https://ecospherenetwork.github.io",
+  "baseUrl": "/smolitux-ui/",
   "organizationName": "EcoSphereNetwork",
-  "projectName": "ESN_Repo-Template",
-  "onBrokenLinks": "throw",
+  "projectName": "smolitux-ui",
+  "trailingSlash": false,
+  "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
   "i18n": {
     "defaultLocale": "en",
     "locales": [
-      "de",
-      "en",
-      "zh",
-      "hi",
-      "es",
-      "ar",
-      "fr",
-      "bn",
-      "ru",
-      "pt",
-      "ur"
+      "en"
     ],
     "localeConfigs": {
-      "de": {
-        "label": "Deutsch",
-        "direction": "ltr"
-      },
       "en": {
         "label": "English",
-        "direction": "ltr"
-      },
-      "zh": {
-        "label": "中文",
-        "direction": "ltr"
-      },
-      "hi": {
-        "label": "हिन्दी",
-        "direction": "ltr"
-      },
-      "es": {
-        "label": "Español",
-        "direction": "ltr"
-      },
-      "ar": {
-        "label": "العربية",
-        "direction": "ltr"
-      },
-      "fr": {
-        "label": "Français",
-        "direction": "ltr"
-      },
-      "bn": {
-        "label": "বাংলা",
-        "direction": "ltr"
-      },
-      "ru": {
-        "label": "Русский",
-        "direction": "ltr"
-      },
-      "pt": {
-        "label": "Português",
-        "direction": "ltr"
-      },
-      "ur": {
-        "label": "اردو",
         "direction": "ltr"
       }
     },
@@ -80,10 +31,7 @@ export default {
     [
       "classic",
       {
-        "docs": {
-          "sidebarPath": "./sidebars.ts",
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
-        },
+        "docs": false,
         "blog": {
           "showReadingTime": true,
           "feedOptions": {
@@ -93,7 +41,7 @@ export default {
             ],
             "xslt": true
           },
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/",
           "onInlineTags": "warn",
           "onInlineAuthors": "warn",
           "onUntruncatedBlogPosts": "warn"
@@ -101,6 +49,20 @@ export default {
         "theme": {
           "customCss": "./src/css/custom.css"
         }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        "id": "wiki",
+        "path": "Wiki",
+        "routeBasePath": "docs",
+        "sidebarPath": "/workspace/smolitux-ui/docs/sidebars.ts",
+        "sidebarCollapsible": true,
+        "includeCurrentVersion": true,
+        "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/"
       }
     ]
   ],
@@ -117,13 +79,8 @@ export default {
           "type": "docSidebar",
           "sidebarId": "wikiSidebar",
           "position": "left",
-          "label": "Wiki"
-        },
-        {
-          "type": "docSidebar",
-          "sidebarId": "tutorialSidebar",
-          "position": "left",
-          "label": "Tutorial"
+          "label": "Wiki",
+          "docsPluginId": "wiki"
         },
         {
           "to": "/blog",
@@ -131,7 +88,7 @@ export default {
           "position": "left"
         },
         {
-          "href": "https://github.com/EcoSphereNetwork/ESN_Repo-Template",
+          "href": "https://github.com/EcoSphereNetwork/smolitux-ui",
           "label": "GitHub",
           "position": "right"
         },
@@ -153,15 +110,6 @@ export default {
             {
               "label": "Quickstart",
               "to": "/docs/guides/quickstart"
-            }
-          ]
-        },
-        {
-          "title": "Docusaurus Docs",
-          "items": [
-            {
-              "label": "Tutorial",
-              "to": "/docs/docusaurus/intro"
             }
           ]
         },
@@ -191,12 +139,12 @@ export default {
             },
             {
               "label": "GitHub",
-              "href": "https://github.com/EcoSphereNetwork"
+              "href": "https://github.com/EcoSphereNetwork/smolitux-ui"
             }
           ]
         }
       ],
-      "copyright": "Copyright © 2025 My Project, Inc. Built with Docusaurus."
+      "copyright": "Copyright © 2025 EcoSphereNetwork. Built with Docusaurus."
     },
     "prism": {
       "theme": {
@@ -447,7 +395,6 @@ export default {
     "static"
   ],
   "customFields": {},
-  "plugins": [],
   "themes": [],
   "scripts": [],
   "headTags": [],
