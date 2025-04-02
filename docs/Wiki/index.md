@@ -65,7 +65,9 @@ Our component library is organized into functional categories for easy navigatio
 - **[Development Guide](development/guide.md)** - Guide for developers working on the project
 - **[Contributing](development/contributing.md)** - How to contribute to the project
 - **[Changelog](development/changelog.md)** - History of changes
-- **[Release Notes](development/releases/v0.2.1.md)** - Latest release notes
+- **[Release Notes](development/releases/v0.2.2.md)** - Latest release notes
+- **[Release Plan](development/release-plan-0.2.2.md)** - Plan for version 0.2.2
+- **[Component Status](development/component-status.md)** - Status of all components
 - **[Credits](development/credits.md)** - Contributors and acknowledgements
 - **[Roadmap](development/roadmap.md)** - Current project roadmap and future plans
 - **[Status Reports](development/status-report.md)** - Current project status
