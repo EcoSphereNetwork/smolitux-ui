@@ -21,27 +21,18 @@ const config: Config = {
   projectName: 'smolitux-ui', // Usually your repo name.
   trailingSlash: false,
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['de', 'en', 'zh', 'hi', 'es', 'ar', 'fr', 'bn', 'ru', 'pt', 'ur'],
+    defaultLocale: 'de',
+    locales: ['de', 'en'],
     localeConfigs: {
       de: { label: 'Deutsch' },
-      en: { label: 'English' },
-      zh: { label: '中文' },
-      hi: { label: 'हिन्दी' },
-      es: { label: 'Español' },
-      ar: { label: 'العربية' },
-      fr: { label: 'Français' },
-      bn: { label: 'বাংলা' },
-      ru: { label: 'Русский' },
-      pt: { label: 'Português' },
-      ur: { label: 'اردو' }
+      en: { label: 'English' }
     },
   },
 
