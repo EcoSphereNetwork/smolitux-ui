@@ -26,7 +26,7 @@ const sidebars: SidebarsConfig = {
           label: 'Inputs',
           collapsed: true,
           items: [
-            'components/inputs/button',
+            'components/inputs/Button',
             'components/inputs/button/accessibility',
             'components/inputs/Checkbox',
             'components/inputs/checkbox/accessibility',
