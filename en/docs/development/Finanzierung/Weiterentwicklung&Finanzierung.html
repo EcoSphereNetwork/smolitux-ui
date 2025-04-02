@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-development/Finanzierung/Weiterentwicklung&Finanzierung" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Aktualisierte Analyse und Kalkulation für die Weiterentwicklung der Smolitux-UI Bibliothek | Smolitux-UI</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ecospherenetwork.github.io/smolitux-ui/en/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ecospherenetwork.github.io/smolitux-ui/en/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ecospherenetwork.github.io/smolitux-ui/en/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="de"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Aktualisierte Analyse und Kalkulation für die Weiterentwicklung der Smolitux-UI Bibliothek | Smolitux-UI"><meta data-rh="true" name="description" content="Zusammenfassung der bisherigen Entwicklung"><meta data-rh="true" property="og:description" content="Zusammenfassung der bisherigen Entwicklung"><link data-rh="true" rel="icon" href="/smolitux-ui/en/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ecospherenetwork.github.io/smolitux-ui/en/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung"><link data-rh="true" rel="alternate" href="https://ecospherenetwork.github.io/smolitux-ui/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung" hreflang="de"><link data-rh="true" rel="alternate" href="https://ecospherenetwork.github.io/smolitux-ui/en/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung" hreflang="en"><link data-rh="true" rel="alternate" href="https://ecospherenetwork.github.io/smolitux-ui/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/smolitux-ui/en/blog/rss.xml" title="Smolitux-UI RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/smolitux-ui/en/blog/atom.xml" title="Smolitux-UI Atom Feed"><link rel="stylesheet" href="/smolitux-ui/en/assets/css/styles.1724a0b2.css">
+<script src="/smolitux-ui/en/assets/js/runtime~main.08eec8ce.js" defer="defer"></script>
+<script src="/smolitux-ui/en/assets/js/main.01fdf338.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/smolitux-ui/en/"><div class="navbar__logo"><img src="/smolitux-ui/en/img/logo.svg" alt="Smolitux-UI Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/smolitux-ui/en/img/logo.svg" alt="Smolitux-UI Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Smolitux-UI</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/smolitux-ui/en/docs">Wiki</a><a class="navbar__item navbar__link" href="/smolitux-ui/en/docs/intro">Tutorial</a><a class="navbar__item navbar__link" href="/smolitux-ui/en/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/EcoSphereNetwork/smolitux-ui" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/smolitux-ui/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="de">Deutsch</a></li><li><a href="/smolitux-ui/en/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smolitux-ui/en/docs">EcoSphereNetwork Smolitux-UI Wiki</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/components/overview">Components</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/guides/quickstart">Guides</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/smolitux-ui/en/docs/development/guide">Development</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/guide">Entwicklungsanleitung</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/roadmap-main">Smolitux UI Bibliothek - Konsolidierte Entwicklungs-Roadmap</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Entwickler-Prompt">Entwickler-Prompt</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/build-analysis">Analyse der Build-Probleme in Smolitux-UI v0.2.1</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/build-fix-guide">Anleitung zur Behebung der Build-Probleme in Smolitux-UI</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/build-troubleshooting">Build-Probleme beheben</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/changelog">Changelog</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/component-status">Smolitux UI Component Test Status Report</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/contributing">Contributing to the Project</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/credits">Acknowledgements</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/development-strategy">Entwicklungsstrategie für Resonance UI Bibliothek</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/documentation-strategy">Dokumentationsstrategie für Resonance UI Bibliothek</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/implementation-report">Implementierungsbericht: Smolitux UI Bibliothek</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/local-installation">Lokale Installation von Smolitux-UI</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/performance-optimization">Performance-Optimierungsstrategie für Resonance UI Bibliothek</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/project-guide">Projektleitfaden für Resonance UI Bibliothek</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/release-plan-0.2.2">Release-Plan für Version 0.2.2</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/security-compatibility">Sicherheits- und Kompatibilitätsstrategie für Resonance UI Bibliothek</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/status-report">Smolitux UI Bibliothek - Status und Entwicklungsplan</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/v0.2.1-release-notes">Smolitux-UI v0.2.1 Release Notes</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/v0.2.2-release-notes">Smolitux UI v0.2.2 Release Notes</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/smolitux-ui/en/docs/development/releases/v0.2.1">Releases</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/smolitux-ui/en/docs/development/roadmap-details">Roadmap</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Budget&amp;Ressourcen">Finanzierung</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Budget&amp;Ressourcen">Smolitux-UI: Budget und Ressourcen</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Budgetplanung&amp;Meilensteinen">Smolitux-UI: Aktualisierte Budgetplanung mit Meilensteinen</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Detailanalyse">Detailanalyse</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Gesamt-MVP-Budgetuebersicht">Gesamt-MVP-Budgetuebersicht</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Kalkulation-v0.2.2-0.3.0">Detaillierte Analyse und Kalkulation für die Fertigstellung von Smolitux-UI Version 0.2.2-0.3.0</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Kalkulation-v0.2.2">Detaillierte Analyse und Kalkulation für die Fertigstellung von Smolitux-UI Version 0.2.2</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Kalkulation-v0.3.0">Aktualisierte Kalkulation für Smolitux-UI Version 0.3.0</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung">Aktualisierte Analyse und Kalkulation für die Weiterentwicklung der Smolitux-UI Bibliothek</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/smolitux-ui/en/docs/development/Finanzierung/Zusammenfassung-Zeit&amp;Kosten">Aktualisierte Zusammenfassung der Kosten und Zeitaufwand für Smolitux-UI Version 0.2.2 bis 0.3.0</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/smolitux-ui/en/docs/development/archive/v0.1/implementation-roadmap">Archive</a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/architecture/architecture-design">Architecture</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/guidelines/accessibility">Guidelines</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/testing/test-strategy">Testing</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/examples/form-examples">Examples</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/api/reference">API</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/accessibility/a11y-components">Accessibility</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/features/voice-control/component-integration">Features</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/smolitux-ui/en/docs/improvement-plan/button-component">Improvement Plan</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/smolitux-ui/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Development</span><meta itemprop="position" content="1"></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Finanzierung</span><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Aktualisierte Analyse und Kalkulation für die Weiterentwicklung der Smolitux-UI Bibliothek</span><meta itemprop="position" content="3"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Aktualisierte Analyse und Kalkulation für die Weiterentwicklung der Smolitux-UI Bibliothek</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="zusammenfassung-der-bisherigen-entwicklung">Zusammenfassung der bisherigen Entwicklung<a href="#zusammenfassung-der-bisherigen-entwicklung" class="hash-link" aria-label="Direct link to Zusammenfassung der bisherigen Entwicklung" title="Direct link to Zusammenfassung der bisherigen Entwicklung">​</a></h2>
+<ul>
+<li><strong>Bisherige Kosten:</strong> 810€ (KI-Tools für Version 0.2.1 und 0.2.2)</li>
+<li><strong>Bisherige Entwicklungszeit:</strong> 1,5 Wochen</li>
+<li><strong>Entwickleranzahl:</strong> 1 Person</li>
+<li><strong>Aktueller Stand:</strong> Version 0.2.2 (abgeschlossen)</li>
+<li><strong>Ziel:</strong> Version 0.3.0 mit Fokus auf Testabdeckung, Barrierefreiheit und Integration mit ResonanceLink</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="analyse-des-aktuellen-entwicklungsstands-version-022">Analyse des aktuellen Entwicklungsstands (Version 0.2.2)<a href="#analyse-des-aktuellen-entwicklungsstands-version-022" class="hash-link" aria-label="Direct link to Analyse des aktuellen Entwicklungsstands (Version 0.2.2)" title="Direct link to Analyse des aktuellen Entwicklungsstands (Version 0.2.2)">​</a></h2>
+<p>Basierend auf den aktuellen Dokumenten und dem Entwicklungsstand:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vorhandene-komponenten">Vorhandene Komponenten<a href="#vorhandene-komponenten" class="hash-link" aria-label="Direct link to Vorhandene Komponenten" title="Direct link to Vorhandene Komponenten">​</a></h3>
+<ul>
+<li>Core-Komponenten (Button, Card, Alert, Badge, Input, Select, Modal, TabView, etc.)</li>
+<li>Layout-Komponenten (Container, Grid, Flexbox, Sidebar)</li>
+<li>Chart-Komponenten (LineChart, BarChart, PieChart, AreaChart)</li>
+<li>Spezial-Komponenten für ResonanceLink, KI und Blockchain</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="testabdeckung">Testabdeckung<a href="#testabdeckung" class="hash-link" aria-label="Direct link to Testabdeckung" title="Direct link to Testabdeckung">​</a></h3>
+<ul>
+<li><strong>Unit-Tests</strong>: 100% der Komponenten haben Unit-Tests</li>
+<li><strong>A11y-Tests</strong>: 25% der Komponenten haben Barrierefreiheitstests</li>
+<li><strong>Snapshot-Tests</strong>: 10% der Komponenten haben Snapshot-Tests</li>
+<li><strong>Integrationstests</strong>: 15% der Komponenten haben Integrationstests</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="barrierefreiheit">Barrierefreiheit<a href="#barrierefreiheit" class="hash-link" aria-label="Direct link to Barrierefreiheit" title="Direct link to Barrierefreiheit">​</a></h3>
+<ul>
+<li>25% der Komponenten haben umfassende Barrierefreiheitstests und -verbesserungen</li>
+<li>Dokumentation für barrierefreie Komponenten wurde erstellt</li>
+<li>Storybook-Integration mit A11y-Addon wurde implementiert</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fehlende-funktionalitäten-für-version-030">Fehlende Funktionalitäten für Version 0.3.0<a href="#fehlende-funktionalitäten-für-version-030" class="hash-link" aria-label="Direct link to Fehlende Funktionalitäten für Version 0.3.0" title="Direct link to Fehlende Funktionalitäten für Version 0.3.0">​</a></h3>
+<ol>
+<li><strong>A11y-Tests</strong>: Erhöhung der Barrierefreiheits-Test-Abdeckung von 25% auf 75%</li>
+<li><strong>Snapshot-Tests</strong>: Erhöhung der Snapshot-Test-Abdeckung von 10% auf 50%</li>
+<li><strong>Integrationstests</strong>: Erhöhung der Integrations-Test-Abdeckung von 15% auf 40%</li>
+<li><strong>Performance-Tests</strong>: Implementierung von Performance-Tests für komplexe Komponenten</li>
+<li><strong>Barrierefreiheits-Verbesserungen</strong>: Verbesserung der ARIA-Attribute, Tastaturnavigation und Screenreader-Unterstützung</li>
+<li><strong>Dokumentations-Vervollständigung</strong>: Vollständige API-Dokumentation und Nutzungsbeispiele</li>
+<li><strong>@smolitux/resonance-Komponenten</strong>: Erweiterung der Komponenten für das ResonanceLink-Ökosystem</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="aktualisierte-arbeitsaufwandsschätzung-für-version-030">Aktualisierte Arbeitsaufwandsschätzung für Version 0.3.0<a href="#aktualisierte-arbeitsaufwandsschätzung-für-version-030" class="hash-link" aria-label="Direct link to Aktualisierte Arbeitsaufwandsschätzung für Version 0.3.0" title="Direct link to Aktualisierte Arbeitsaufwandsschätzung für Version 0.3.0">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-a11y-tests-und-barrierefreiheitsverbesserungen">1. A11y-Tests und Barrierefreiheitsverbesserungen<a href="#1-a11y-tests-und-barrierefreiheitsverbesserungen" class="hash-link" aria-label="Direct link to 1. A11y-Tests und Barrierefreiheitsverbesserungen" title="Direct link to 1. A11y-Tests und Barrierefreiheitsverbesserungen">​</a></h3>
+<ul>
+<li>
+<p><strong>A11y-Tests für Kernkomponenten:</strong></p>
+<ul>
+<li>ColorPicker, Dialog, Drawer, FileUpload, FormControl, Menu, Modal, Pagination</li>
+<li>8 Komponenten × 10 Stunden = 80 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>A11y-Tests für Layout-Komponenten:</strong></p>
+<ul>
+<li>Popover, ProgressBar, RadioGroup, Select, Skeleton, Switch, TabView, Toast</li>
+<li>8 Komponenten × 10 Stunden = 80 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>A11y-Tests für spezielle Komponenten:</strong></p>
+<ul>
+<li>Tooltip, Grid, Sidebar, AI-Komponenten, Blockchain-Komponenten</li>
+<li>5 Komponenten × 12 Stunden = 60 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Barrierefreiheitsverbesserungen:</strong></p>
+<ul>
+<li>ARIA-Attribute, Tastaturnavigation, Screenreader-Optimierung</li>
+<li>21 Komponenten × 3 Stunden = 63 Stunden</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-snapshot-tests-und-integrationstests">2. Snapshot-Tests und Integrationstests<a href="#2-snapshot-tests-und-integrationstests" class="hash-link" aria-label="Direct link to 2. Snapshot-Tests und Integrationstests" title="Direct link to 2. Snapshot-Tests und Integrationstests">​</a></h3>
+<ul>
+<li>
+<p><strong>Snapshot-Tests für Kernkomponenten:</strong></p>
+<ul>
+<li>Button, Card, Input, Checkbox, Alert, Badge, Accordion, Avatar</li>
+<li>8 Komponenten × 5 Stunden = 40 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Snapshot-Tests für Layout- und Diagramm-Komponenten:</strong></p>
+<ul>
+<li>Container, Grid, Flex, Sidebar, LineChart, BarChart, PieChart, AreaChart</li>
+<li>8 Komponenten × 5 Stunden = 40 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Integrationstests für Formular-Komponenten:</strong></p>
+<ul>
+<li>Input, Select, Checkbox, Button und deren Interaktionen</li>
+<li>4 Komponenten × 7,5 Stunden = 30 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Integrationstests für Layout- und Dialog-Komponenten:</strong></p>
+<ul>
+<li>Container, Grid, Flex, Modal, Dialog, Drawer</li>
+<li>6 Komponenten × 8,3 Stunden = 50 Stunden</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-performance-tests">3. Performance-Tests<a href="#3-performance-tests" class="hash-link" aria-label="Direct link to 3. Performance-Tests" title="Direct link to 3. Performance-Tests">​</a></h3>
+<ul>
+<li>
+<p><strong>Performance-Tests für Tabellen und Listen:</strong></p>
+<ul>
+<li>Implementierung von Tests für Rendering-Leistung und virtualisiertes Scrolling</li>
+<li>20 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Performance-Tests für Diagramme:</strong></p>
+<ul>
+<li>Implementierung von Tests für Rendering-Leistung und Datenverarbeitung</li>
+<li>20 Stunden</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-dokumentation">4. Dokumentation<a href="#4-dokumentation" class="hash-link" aria-label="Direct link to 4. Dokumentation" title="Direct link to 4. Dokumentation">​</a></h3>
+<ul>
+<li>
+<p><strong>API-Dokumentation:</strong></p>
+<ul>
+<li>Vervollständigung der API-Dokumentation für alle Komponenten</li>
+<li>40 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Storybook-Integration:</strong></p>
+<ul>
+<li>Erweiterung der Storybook-Beispiele und A11y-Addons</li>
+<li>30 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Barrierefreiheits-Richtlinien:</strong></p>
+<ul>
+<li>Erstellung von Richtlinien und Best Practices für Barrierefreiheit</li>
+<li>20 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Nutzungsbeispiele:</strong></p>
+<ul>
+<li>Erstellung von Beispielen für komplexe Komponenten und Integrationen</li>
+<li>30 Stunden</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-smolituxresonance-komponenten">5. @smolitux/resonance-Komponenten<a href="#5-smolituxresonance-komponenten" class="hash-link" aria-label="Direct link to 5. @smolitux/resonance-Komponenten" title="Direct link to 5. @smolitux/resonance-Komponenten">​</a></h3>
+<ul>
+<li>
+<p><strong>Feed-Komponenten:</strong></p>
+<ul>
+<li>FeedView, FeedFilter, FeedItem</li>
+<li>3 Komponenten × 13,3 Stunden = 40 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Post-Komponenten:</strong></p>
+<ul>
+<li>PostView, PostInteractions</li>
+<li>2 Komponenten × 16 Stunden = 32 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Profil-Komponenten:</strong></p>
+<ul>
+<li>ProfileHeader, ProfileContent</li>
+<li>2 Komponenten × 18 Stunden = 36 Stunden</li>
+</ul>
+</li>
+<li>
+<p><strong>Governance-Komponenten:</strong></p>
+<ul>
+<li>GovernanceDashboard, ProposalView</li>
+<li>2 Komponenten × 22 Stunden = 44 Stunden</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gesamtarbeitsaufwand-für-version-030">Gesamtarbeitsaufwand für Version 0.3.0<a href="#gesamtarbeitsaufwand-für-version-030" class="hash-link" aria-label="Direct link to Gesamtarbeitsaufwand für Version 0.3.0" title="Direct link to Gesamtarbeitsaufwand für Version 0.3.0">​</a></h3>
+<table><thead><tr><th>Aufgabe</th><th>Stunden</th></tr></thead><tbody><tr><td>A11y-Tests und Barrierefreiheitsverbesserungen</td><td>283</td></tr><tr><td>Snapshot-Tests und Integrationstests</td><td>160</td></tr><tr><td>Performance-Tests</td><td>40</td></tr><tr><td>Dokumentation</td><td>120</td></tr><tr><td>@smolitux/resonance-Komponenten</td><td>152</td></tr><tr><td><strong>Gesamt</strong></td><td><strong>755</strong></td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="zusätzliche-stunden-für-qualitätssicherung-und-integration">Zusätzliche Stunden für Qualitätssicherung und Integration<a href="#zusätzliche-stunden-für-qualitätssicherung-und-integration" class="hash-link" aria-label="Direct link to Zusätzliche Stunden für Qualitätssicherung und Integration" title="Direct link to Zusätzliche Stunden für Qualitätssicherung und Integration">​</a></h3>
+<ul>
+<li><strong>Code-Reviews und Qualitätssicherung:</strong> 120 Stunden</li>
+<li><strong>CI/CD-Integration und Automatisierung:</strong> 60 Stunden</li>
+<li><strong>Unvorhergesehene Probleme und Anpassungen:</strong> 47 Stunden</li>
+</ul>
+<p><strong>Gesamtstunden mit Qualitätssicherung:</strong> 982 Stunden</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="aktualisierte-zeitplanung-für-version-030">Aktualisierte Zeitplanung für Version 0.3.0<a href="#aktualisierte-zeitplanung-für-version-030" class="hash-link" aria-label="Direct link to Aktualisierte Zeitplanung für Version 0.3.0" title="Direct link to Aktualisierte Zeitplanung für Version 0.3.0">​</a></h2>
+<p>Basierend auf dem geschätzten Gesamtarbeitsaufwand von 982 Stunden und der bisherigen Entwicklungsgeschwindigkeit:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="zeitplanung-mit-1-entwickler">Zeitplanung mit 1 Entwickler<a href="#zeitplanung-mit-1-entwickler" class="hash-link" aria-label="Direct link to Zeitplanung mit 1 Entwickler" title="Direct link to Zeitplanung mit 1 Entwickler">​</a></h3>
+<ul>
+<li><strong>Arbeitsleistung:</strong> 40 Stunden pro Woche</li>
+<li><strong>Geschätzte Entwicklungszeit:</strong> 982 Stunden / 40 Stunden pro Woche = <strong>24,55 Wochen</strong></li>
+<li><strong>Realistische Entwicklungszeit:</strong> 28 Wochen (ca. 7 Monate)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="optimierte-zeitplanung-mit-erweitertem-entwicklerteam">Optimierte Zeitplanung mit erweitertem Entwicklerteam<a href="#optimierte-zeitplanung-mit-erweitertem-entwicklerteam" class="hash-link" aria-label="Direct link to Optimierte Zeitplanung mit erweitertem Entwicklerteam" title="Direct link to Optimierte Zeitplanung mit erweitertem Entwicklerteam">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="phase-1-wochen-1-4-2-entwickler">Phase 1: Wochen 1-4 (2 Entwickler)<a href="#phase-1-wochen-1-4-2-entwickler" class="hash-link" aria-label="Direct link to Phase 1: Wochen 1-4 (2 Entwickler)" title="Direct link to Phase 1: Wochen 1-4 (2 Entwickler)">​</a></h4>
+<ul>
+<li><strong>Fokus:</strong> A11y-Tests für Kernkomponenten und Layout-Komponenten</li>
+<li><strong>Arbeitsstunden:</strong> 320 Stunden (40 Stunden/Woche × 4 Wochen × 2 Entwickler)</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="phase-2-wochen-5-8-3-entwickler">Phase 2: Wochen 5-8 (3 Entwickler)<a href="#phase-2-wochen-5-8-3-entwickler" class="hash-link" aria-label="Direct link to Phase 2: Wochen 5-8 (3 Entwickler)" title="Direct link to Phase 2: Wochen 5-8 (3 Entwickler)">​</a></h4>
+<ul>
+<li><strong>Fokus:</strong> Snapshot-Tests, Integrationstests, Performance-Tests und Barrierefreiheitsverbesserungen</li>
+<li><strong>Arbeitsstunden:</strong> 480 Stunden (40 Stunden/Woche × 4 Wochen × 3 Entwickler)</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="phase-3-wochen-9-12-2-entwickler">Phase 3: Wochen 9-12 (2 Entwickler)<a href="#phase-3-wochen-9-12-2-entwickler" class="hash-link" aria-label="Direct link to Phase 3: Wochen 9-12 (2 Entwickler)" title="Direct link to Phase 3: Wochen 9-12 (2 Entwickler)">​</a></h4>
+<ul>
+<li><strong>Fokus:</strong> Dokumentation und @smolitux/resonance-Komponenten</li>
+<li><strong>Arbeitsstunden:</strong> 320 Stunden (40 Stunden/Woche × 4 Wochen × 2 Entwickler)</li>
+</ul>
+<p><strong>Gesamtdauer mit erweitertem Team:</strong> 12 Wochen (3 Monate)
+<strong>Zeitersparnis:</strong> 16 Wochen (57%)</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="aktualisierter-kostenvoranschlag">Aktualisierter Kostenvoranschlag<a href="#aktualisierter-kostenvoranschlag" class="hash-link" aria-label="Direct link to Aktualisierter Kostenvoranschlag" title="Direct link to Aktualisierter Kostenvoranschlag">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ki-tool-kosten">KI-Tool-Kosten<a href="#ki-tool-kosten" class="hash-link" aria-label="Direct link to KI-Tool-Kosten" title="Direct link to KI-Tool-Kosten">​</a></h3>
+<ul>
+<li><strong>Kosten pro Stunde:</strong> 15€/Stunde</li>
+<li><strong>Gesamtkosten für KI-Tools:</strong> 982 Stunden × 15€/Stunde = <strong>14.730€</strong></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="entwicklerkosten-zusätzlich-zu-ki-tools">Entwicklerkosten (zusätzlich zu KI-Tools)<a href="#entwicklerkosten-zusätzlich-zu-ki-tools" class="hash-link" aria-label="Direct link to Entwicklerkosten (zusätzlich zu KI-Tools)" title="Direct link to Entwicklerkosten (zusätzlich zu KI-Tools)">​</a></h3>
+<ul>
+<li><strong>Phase 1 (1 zusätzlicher Entwickler):</strong> 160 Stunden × 60€/Stunde = 9.600€</li>
+<li><strong>Phase 2 (2 zusätzliche Entwickler):</strong> 320 Stunden × 60€/Stunde = 19.200€</li>
+<li><strong>Phase 3 (1 zusätzlicher Entwickler):</strong> 160 Stunden × 60€/Stunde = 9.600€</li>
+<li><strong>Gesamt Entwicklerkosten:</strong> 38.400€</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="weitere-kosten">Weitere Kosten<a href="#weitere-kosten" class="hash-link" aria-label="Direct link to Weitere Kosten" title="Direct link to Weitere Kosten">​</a></h3>
+<ul>
+<li><strong>Externe APIs und Services:</strong> 1.000€</li>
+<li><strong>Infrastruktur und Tools:</strong> 800€</li>
+<li><strong>Unvorhergesehene Kosten:</strong> 210€</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="aktualisierter-gesamtkostenvoranschlag">Aktualisierter Gesamtkostenvoranschlag<a href="#aktualisierter-gesamtkostenvoranschlag" class="hash-link" aria-label="Direct link to Aktualisierter Gesamtkostenvoranschlag" title="Direct link to Aktualisierter Gesamtkostenvoranschlag">​</a></h3>
+<table><thead><tr><th>Kostenfaktor</th><th>Betrag (€)</th></tr></thead><tbody><tr><td>KI-Tools</td><td>14.730</td></tr><tr><td>Zusätzliche Entwickler</td><td>38.400</td></tr><tr><td>Externe APIs und Services</td><td>1.000</td></tr><tr><td>Infrastruktur und Tools</td><td>800</td></tr><tr><td>Unvorhergesehene Kosten</td><td>210</td></tr><tr><td><strong>Gesamtkosten</strong></td><td><strong>55.140€</strong></td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="aktualisierte-risiken-und-herausforderungen">Aktualisierte Risiken und Herausforderungen<a href="#aktualisierte-risiken-und-herausforderungen" class="hash-link" aria-label="Direct link to Aktualisierte Risiken und Herausforderungen" title="Direct link to Aktualisierte Risiken und Herausforderungen">​</a></h2>
+<ol>
+<li>
+<p><strong>Komplexität der Barrierefreiheitsanforderungen</strong></p>
+<ul>
+<li>Einige Komponenten könnten komplexe Barrierefreiheitsanforderungen haben</li>
+<li>Möglicherweise höherer Aufwand als geschätzt</li>
+</ul>
+</li>
+<li>
+<p><strong>Integration mit ResonanceLink</strong></p>
+<ul>
+<li>Die Integration mit dem ResonanceLink-Backend könnte Anpassungen erfordern</li>
+<li>Schnittstellen müssen sorgfältig definiert werden</li>
+</ul>
+</li>
+<li>
+<p><strong>Koordination des erweiterten Teams</strong></p>
+<ul>
+<li>Mehr Entwickler erfordern mehr Koordination und Kommunikation</li>
+<li>Mögliche Einarbeitungszeit für neue Teammitglieder</li>
+</ul>
+</li>
+<li>
+<p><strong>Snapshot-Test-Instabilität</strong></p>
+<ul>
+<li>Snapshot-Tests können instabil sein, besonders bei visuellen Änderungen</li>
+<li>Erfordert sorgfältige Implementierung und Wartung</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="optimierungsmöglichkeiten">Optimierungsmöglichkeiten<a href="#optimierungsmöglichkeiten" class="hash-link" aria-label="Direct link to Optimierungsmöglichkeiten" title="Direct link to Optimierungsmöglichkeiten">​</a></h2>
+<ol>
+<li>
+<p><strong>Priorisierung von Komponenten</strong></p>
+<ul>
+<li>Fokus auf die wichtigsten Komponenten für das ResonanceLink-Ökosystem</li>
+<li>Weniger kritische Komponenten könnten in späteren Versionen verbessert werden</li>
+</ul>
+</li>
+<li>
+<p><strong>Wiederverwendung von Testcode</strong></p>
+<ul>
+<li>Entwicklung von Test-Utilities und -Helpers für verschiedene Komponenten</li>
+<li>Reduziert Redundanz und beschleunigt die Testentwicklung</li>
+</ul>
+</li>
+<li>
+<p><strong>Parallele Entwicklung</strong></p>
+<ul>
+<li>Verschiedene Entwickler können gleichzeitig an verschiedenen Komponenten arbeiten</li>
+<li>Klare Aufteilung der Verantwortlichkeiten nach Komponententypen</li>
+</ul>
+</li>
+<li>
+<p><strong>Automatisierung der CI/CD-Pipeline</strong></p>
+<ul>
+<li>Verbesserung der Automatisierung für Tests und Builds</li>
+<li>Schnelleres Feedback bei Änderungen</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="aktualisiertes-fazit">Aktualisiertes Fazit<a href="#aktualisiertes-fazit" class="hash-link" aria-label="Direct link to Aktualisiertes Fazit" title="Direct link to Aktualisiertes Fazit">​</a></h2>
+<p>Die Weiterentwicklung der Smolitux-UI Bibliothek zu Version 0.3.0 mit Fokus auf Testabdeckung, Barrierefreiheit und Integration mit ResonanceLink ist ein umfangreiches Projekt, das mit einem erweiterten Entwicklerteam in 3 Monaten abgeschlossen werden kann.</p>
+<ul>
+<li><strong>Entwicklungszeit mit 1 Entwickler:</strong> 28 Wochen (ca. 7 Monate)</li>
+<li><strong>Entwicklungszeit mit erweitertem Team:</strong> 12 Wochen (3 Monate)</li>
+<li><strong>Entwicklungskosten:</strong> ca. 55.140€</li>
+</ul>
+<p>Die Hauptvorteile der Investition in Version 0.3.0 sind:</p>
+<ol>
+<li><strong>Verbesserte Barrierefreiheit:</strong> Erhöhung der Zugänglichkeit für alle Benutzer</li>
+<li><strong>Höhere Codequalität:</strong> Umfassende Testabdeckung sorgt für stabilere Komponenten</li>
+<li><strong>Bessere Dokumentation:</strong> Erleichtert die Nutzung und Integration der Bibliothek</li>
+<li><strong>Erweiterte Funktionalität:</strong> Neue Komponenten für das ResonanceLink-Ökosystem</li>
+<li><strong>Schnellere Markteinführung:</strong> Durch parallele Entwicklung mit erweitertem Team</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/development/Finanzierung/Weiterentwicklung&amp;Finanzierung.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/smolitux-ui/en/docs/development/Finanzierung/Kalkulation-v0.3.0"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Aktualisierte Kalkulation für Smolitux-UI Version 0.3.0</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/smolitux-ui/en/docs/development/Finanzierung/Zusammenfassung-Zeit&amp;Kosten"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Aktualisierte Zusammenfassung der Kosten und Zeitaufwand für Smolitux-UI Version 0.2.2 bis 0.3.0</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#zusammenfassung-der-bisherigen-entwicklung" class="table-of-contents__link toc-highlight">Zusammenfassung der bisherigen Entwicklung</a></li><li><a href="#analyse-des-aktuellen-entwicklungsstands-version-022" class="table-of-contents__link toc-highlight">Analyse des aktuellen Entwicklungsstands (Version 0.2.2)</a><ul><li><a href="#vorhandene-komponenten" class="table-of-contents__link toc-highlight">Vorhandene Komponenten</a></li><li><a href="#testabdeckung" class="table-of-contents__link toc-highlight">Testabdeckung</a></li><li><a href="#barrierefreiheit" class="table-of-contents__link toc-highlight">Barrierefreiheit</a></li><li><a href="#fehlende-funktionalitäten-für-version-030" class="table-of-contents__link toc-highlight">Fehlende Funktionalitäten für Version 0.3.0</a></li></ul></li><li><a href="#aktualisierte-arbeitsaufwandsschätzung-für-version-030" class="table-of-contents__link toc-highlight">Aktualisierte Arbeitsaufwandsschätzung für Version 0.3.0</a><ul><li><a href="#1-a11y-tests-und-barrierefreiheitsverbesserungen" class="table-of-contents__link toc-highlight">1. A11y-Tests und Barrierefreiheitsverbesserungen</a></li><li><a href="#2-snapshot-tests-und-integrationstests" class="table-of-contents__link toc-highlight">2. Snapshot-Tests und Integrationstests</a></li><li><a href="#3-performance-tests" class="table-of-contents__link toc-highlight">3. Performance-Tests</a></li><li><a href="#4-dokumentation" class="table-of-contents__link toc-highlight">4. Dokumentation</a></li><li><a href="#5-smolituxresonance-komponenten" class="table-of-contents__link toc-highlight">5. @smolitux/resonance-Komponenten</a></li><li><a href="#gesamtarbeitsaufwand-für-version-030" class="table-of-contents__link toc-highlight">Gesamtarbeitsaufwand für Version 0.3.0</a></li><li><a href="#zusätzliche-stunden-für-qualitätssicherung-und-integration" class="table-of-contents__link toc-highlight">Zusätzliche Stunden für Qualitätssicherung und Integration</a></li></ul></li><li><a href="#aktualisierte-zeitplanung-für-version-030" class="table-of-contents__link toc-highlight">Aktualisierte Zeitplanung für Version 0.3.0</a><ul><li><a href="#zeitplanung-mit-1-entwickler" class="table-of-contents__link toc-highlight">Zeitplanung mit 1 Entwickler</a></li><li><a href="#optimierte-zeitplanung-mit-erweitertem-entwicklerteam" class="table-of-contents__link toc-highlight">Optimierte Zeitplanung mit erweitertem Entwicklerteam</a></li></ul></li><li><a href="#aktualisierter-kostenvoranschlag" class="table-of-contents__link toc-highlight">Aktualisierter Kostenvoranschlag</a><ul><li><a href="#ki-tool-kosten" class="table-of-contents__link toc-highlight">KI-Tool-Kosten</a></li><li><a href="#entwicklerkosten-zusätzlich-zu-ki-tools" class="table-of-contents__link toc-highlight">Entwicklerkosten (zusätzlich zu KI-Tools)</a></li><li><a href="#weitere-kosten" class="table-of-contents__link toc-highlight">Weitere Kosten</a></li><li><a href="#aktualisierter-gesamtkostenvoranschlag" class="table-of-contents__link toc-highlight">Aktualisierter Gesamtkostenvoranschlag</a></li></ul></li><li><a href="#aktualisierte-risiken-und-herausforderungen" class="table-of-contents__link toc-highlight">Aktualisierte Risiken und Herausforderungen</a></li><li><a href="#optimierungsmöglichkeiten" class="table-of-contents__link toc-highlight">Optimierungsmöglichkeiten</a></li><li><a href="#aktualisiertes-fazit" class="table-of-contents__link toc-highlight">Aktualisiertes Fazit</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/smolitux-ui/en/docs/intro">Wiki</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/smolitux-ui" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/smolitux-ui" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://x.com/smolitux" target="_blank" rel="noopener noreferrer" class="footer__link-item">X<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/smolitux-ui/en/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/EcoSphereNetwork/smolitux-ui" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 EcoSphereNetwork. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
