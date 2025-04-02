@@ -1,64 +1,96 @@
-# Zusammenfassung der Kosten und Zeitaufwand für Smolitux-UI Version 0.2.2 bis 0.3.0
+# Aktualisierte Zusammenfassung der Kosten und Zeitaufwand für Smolitux-UI Version 0.2.2 bis 0.3.0
 
-## Versionsspezifischer Aufwand
+## Aktueller Entwicklungsstand
 
-### Version 0.2.2
+### Version 0.2.2 (abgeschlossen)
 - **Zeitaufwand**: 14 Stunden
 - **Entwicklungsdauer**: 2-3 Arbeitstage (0,35 Wochen)
 - **Kosten**: 210€ (bei 15€/Stunde für KI-Tools)
+- **Status**: Vollständig implementiert und veröffentlicht
 
-### Versionen 0.2.3 bis 0.3.0 (Gesamtprojekt)
-- **Gesamtstunden**: 857 Stunden
-- **Ursprüngliche Entwicklungsdauer**: 25 Wochen (ca. 6 Monate) mit 1 Entwickler
+### Version 0.3.0 (geplant)
+- **Gesamtstunden**: 982 Stunden
+- **Ursprüngliche Entwicklungsdauer**: 28 Wochen (ca. 7 Monate) mit 1 Entwickler
+- **Fokus**: 
+  - Erhöhung der Testabdeckung (A11y, Snapshot, Integration, Performance)
+  - Verbesserung der Barrierefreiheit
+  - Verbesserung der Dokumentation
+  - Erweiterung der @smolitux/resonance-Komponenten
 
-## Angepasste Zeitplanung mit erweitertem Entwicklerteam
+## Aktualisierte Zeitplanung mit erweitertem Entwicklerteam
 
-### Phase 1: Wochen 1-5 (1 Entwickler)
-- **Arbeitsstunden**: 200 Stunden (40 Stunden/Woche × 5 Wochen)
-- **Lieferumfang**: Version 0.2.2 + Basis @smolitux/resonance-Komponenten
+### Phase 1: Wochen 1-4 (2 Entwickler)
+- **Fokus**: A11y-Tests für Kernkomponenten und Layout-Komponenten
+- **Arbeitsstunden**: 320 Stunden (40 Stunden/Woche × 4 Wochen × 2 Entwickler)
 
-### Phase 2: Wochen 6-16 (2-3 Entwickler)
-- **Arbeitsstunden**: 660 Stunden (220 Stunden pro Entwickler bei 3 Entwicklern)
-- **Produktivitätssteigerung**: ca. 2,5× verglichen mit 1 Entwickler
-- **Reduzierte Entwicklungsdauer**: 11 Wochen statt ursprünglich 20 Wochen
-- **Lieferumfang**: Restliche Komponenten aller Pakete + übergreifende Verbesserungen
+### Phase 2: Wochen 5-8 (3 Entwickler)
+- **Fokus**: Snapshot-Tests, Integrationstests, Performance-Tests und Barrierefreiheitsverbesserungen
+- **Arbeitsstunden**: 480 Stunden (40 Stunden/Woche × 4 Wochen × 3 Entwickler)
+
+### Phase 3: Wochen 9-12 (2 Entwickler)
+- **Fokus**: Dokumentation und @smolitux/resonance-Komponenten
+- **Arbeitsstunden**: 320 Stunden (40 Stunden/Woche × 4 Wochen × 2 Entwickler)
 
 ## Gesamtdauer nach Anpassung
-- **Ursprüngliche Schätzung**: 25 Wochen
-- **Neue Schätzung mit Team-Erweiterung**: 16 Wochen (4 Monate)
-- **Zeitersparnis**: 9 Wochen (36%)
+- **Ursprüngliche Schätzung**: 28 Wochen
+- **Neue Schätzung mit Team-Erweiterung**: 12 Wochen (3 Monate)
+- **Zeitersparnis**: 16 Wochen (57%)
 
-## Kostenaufstellung
+## Aktualisierte Kostenaufstellung
 
 ### KI-Tool-Kosten
-- **Version 0.2.2**: 210€
-- **Weitere Versionen (0.2.3-0.3.0)**: 12.645€ (843 Stunden × 15€/Stunde)
-- **Gesamt KI-Tool-Kosten**: 12.855€
+- **Version 0.2.2**: 210€ (abgeschlossen)
+- **Version 0.3.0**: 14.730€ (982 Stunden × 15€/Stunde)
+- **Gesamt KI-Tool-Kosten**: 14.940€
 
 ### Entwicklerkosten (zusätzlich zu KI-Tools)
-- **Phase 1 (1 Entwickler)**: Bereits in KI-Tool-Kosten enthalten
-- **Phase 2 (2 zusätzliche Entwickler)**: Kosten variieren je nach Vergütungsmodell
-  - Bei durchschnittlich 60€/Stunde: 2 Entwickler × 220 Stunden × 60€ = 26.400€
+- **Phase 1 (1 zusätzlicher Entwickler)**: 160 Stunden × 60€/Stunde = 9.600€
+- **Phase 2 (2 zusätzliche Entwickler)**: 320 Stunden × 60€/Stunde = 19.200€
+- **Phase 3 (1 zusätzlicher Entwickler)**: 160 Stunden × 60€/Stunde = 9.600€
+- **Gesamt Entwicklerkosten**: 38.400€
 
 ### Weitere Kosten
-- **Externe APIs und Services**: 1.500€
-- **Infrastruktur und Tools**: 1.000€
+- **Externe APIs und Services**: 1.000€
+- **Infrastruktur und Tools**: 800€
 
-## Gesamtkostenaufstellung
+## Aktualisierte Gesamtkostenaufstellung
 
 | Kostenfaktor | Betrag (€) |
 |--------------|------------|
-| KI-Tools | 12.855 |
-| Zusätzliche Entwickler | 26.400 |
-| Externe APIs und Services | 1.500 |
-| Infrastruktur und Tools | 1.000 |
-| **Gesamtkosten** | **41.755€** |
+| KI-Tools | 14.940 |
+| Zusätzliche Entwickler | 38.400 |
+| Externe APIs und Services | 1.000 |
+| Infrastruktur und Tools | 800 |
+| **Gesamtkosten** | **55.140€** |
+
+## Meilensteinplanung für Version 0.3.0
+
+| Meilenstein | Beschreibung | Zeitraum |
+|-------------|--------------|----------|
+| A11y-Tests (Kern) | A11y-Tests für Kernkomponenten | Ende Woche 2 |
+| A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten | Ende Woche 4 |
+| Snapshot-Tests | Snapshot-Tests für alle Komponenten | Ende Woche 6 |
+| Integrationstests | Integrationstests für komplexe Komponenten | Ende Woche 8 |
+| Barrierefreiheit | Verbesserung der Barrierefreiheit für alle Komponenten | Ende Woche 8 |
+| Dokumentation | Vollständige Dokumentation für alle Komponenten | Ende Woche 10 |
+| Resonance-Komponenten | Implementierung der @smolitux/resonance-Komponenten | Ende Woche 12 |
+| Release 0.3.0 | Finalisierung und Release | Ende Woche 12 |
 
 ## Vorteile des erweiterten Teams
 
-1. **Beschleunigte Entwicklung**: Reduktion der Gesamtentwicklungszeit um 36%
-2. **Parallele Entwicklung**: Gleichzeitige Arbeit an verschiedenen Paketen
-3. **Spezialisierung**: Einzelne Entwickler können sich auf bestimmte Komponenten konzentrieren
+1. **Beschleunigte Entwicklung**: Reduktion der Gesamtentwicklungszeit um 57%
+2. **Parallele Entwicklung**: Gleichzeitige Arbeit an verschiedenen Testtypen und Komponenten
+3. **Spezialisierung**: Entwickler können sich auf bestimmte Bereiche (Tests, Barrierefreiheit, Dokumentation) konzentrieren
 4. **Bessere Codequalität**: Mehr Kapazität für Code-Reviews und Qualitätssicherung
+5. **Schnellere Markteinführung**: Version 0.3.0 kann in 3 Monaten statt 7 Monaten veröffentlicht werden
 
-Trotz höherer Gesamtkosten ermöglicht die Erweiterung des Entwicklerteams eine deutlich schnellere Markteinführung, was zu einem früheren Return on Investment führen kann.
+## Anpassungen basierend auf dem aktuellen Entwicklungsstand
+
+Basierend auf dem erfolgreichen Abschluss von Version 0.2.2 und den gewonnenen Erkenntnissen wurden folgende Anpassungen vorgenommen:
+
+1. **Fokussierung auf Qualität**: Stärkerer Fokus auf Testabdeckung und Barrierefreiheit
+2. **Priorisierung von @smolitux/resonance**: Konzentration auf die wichtigsten Komponenten für das ResonanceLink-Ökosystem
+3. **Realistische Zeitplanung**: Berücksichtigung der tatsächlichen Entwicklungsgeschwindigkeit bei Version 0.2.2
+4. **Optimierte Teamstruktur**: Anpassung der Teamgröße je nach Phase und Anforderungen
+
+Diese Anpassungen ermöglichen eine effizientere Entwicklung von Version 0.3.0 mit klarem Fokus auf Qualität, Barrierefreiheit und Integration mit dem ResonanceLink-Ökosystem.

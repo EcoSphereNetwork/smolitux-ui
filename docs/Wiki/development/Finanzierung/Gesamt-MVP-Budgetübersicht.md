@@ -8,7 +8,7 @@ Hier ist die Gesamt-MVP-Budgetübersicht für alle EcoSphereNetwork-Produkte:
 | **DeFiSure** | 215.000 € | 25.000 € | 36.000 € (15%) | **276.000 €** | 4 Monate |
 | **Smolit-NavigationApp** | 180.000 € | 28.000 € | 24.960 € (12%) | **232.960 €** | 4 Monate |
 | **OceanData** | 310.000 € | 55.000 € | 54.750 € (15%) | **419.750 €** | 6 Monate |
-| **Smolitux-UI** | 145.000 € | 8.000 € | 15.300 € (10%) | **168.300 €** | 3 Monate |
+| **Smolitux-UI** | 47.340 € | 2.800 € | 5.000 € (10%) | **55.140 €** | 3 Monate |
 | **Smolit-Assistant** | 160.000 € | 18.000 € | 17.800 € (10%) | **195.800 €** | 3 Monate |
 | **Agent-NN** | 195.000 € | 20.000 € | 25.800 € (12%) | **240.800 €** | 4 Monate |
 | **Resonance** | 240.000 € | 35.000 € | 41.250 € (15%) | **316.250 €** | 5 Monate |
@@ -18,14 +18,14 @@ Hier ist die Gesamt-MVP-Budgetübersicht für alle EcoSphereNetwork-Produkte:
 | **SmoliTradeOS** | 280.000 € | 35.000 € | 47.250 € (15%) | **362.250 €** | 6 Monate |
 | **SmoliTrade-App** | 195.000 € | 20.000 € | 25.800 € (12%) | **240.800 €** | 5 Monate |
 | **TrandingBot** | 165.000 € | 22.000 € | 22.425 € (12%) | **209.425 €** | 4 Monate |
-| **GESAMT** | **3.105.000 €** | **388.000 €** | **446.285 €** | **3.939.285 €** | |
+| **GESAMT** | **3.007.340 €** | **382.800 €** | **435.985 €** | **3.826.125 €** | |
 
 ## Kurzübersicht der MVP-Fokusbereiche
 
 ### Kerninfrastruktur
 - **SmolituxOS**: Grundlegendes Betriebssystem mit KI-Optimierungen und Container-Support
 - **Smolitux-Suite**: Zentrale Verwaltungsoberfläche (GUI/CLI) mit App-Builder-Basisfunktionalität
-- **Smolitux-UI**: Kernkomponenten-Bibliothek und grundlegendes Design-System
+- **Smolitux-UI**: Komponenten-Bibliothek mit Fokus auf Barrierefreiheit, Testabdeckung und Integration mit ResonanceLink
 
 ### AI und Agent-Systeme
 - **Smolit-Assistant**: Grundlegende KI-Assistenten-Funktionalität und Chat-Interface
