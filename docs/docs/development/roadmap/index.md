@@ -1,3 +1,7 @@
+---
+slug: /development/roadmap-details
+---
+
 # Smolitux UI Bibliothek - Entwicklungs-Roadmap
 
 Diese Roadmap beschreibt den Plan zur Weiterentwicklung und Fertigstellung der Smolitux UI Bibliothek. Sie enthält eine detaillierte Analyse des aktuellen Zustands, eine priorisierte Liste von Aufgaben und einen Schritt-für-Schritt-Plan zur Umsetzung.
