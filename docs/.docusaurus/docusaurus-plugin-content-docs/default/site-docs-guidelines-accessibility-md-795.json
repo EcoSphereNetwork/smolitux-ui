@@ -1,0 +1,27 @@
+{
+  "id": "guidelines/accessibility",
+  "title": "Zugänglichkeitsrichtlinien",
+  "description": "Diese Richtlinien beschreiben, wie Smolitux-UI-Komponenten entwickelt werden, um Zugänglichkeit (Accessibility) zu gewährleisten.",
+  "source": "@site/docs/guidelines/accessibility.md",
+  "sourceDirName": "guidelines",
+  "slug": "/guidelines/accessibility",
+  "permalink": "/smolitux-ui/en/docs/guidelines/accessibility",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/guidelines/accessibility.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "wikiSidebar",
+  "previous": {
+    "title": "Architektur-Design",
+    "permalink": "/smolitux-ui/en/docs/architecture/architecture-design"
+  },
+  "next": {
+    "title": "Teststrategie",
+    "permalink": "/smolitux-ui/en/docs/testing/test-strategy"
+  }
+}

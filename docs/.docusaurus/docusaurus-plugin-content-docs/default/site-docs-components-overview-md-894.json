@@ -1,0 +1,23 @@
+{
+  "id": "components/overview",
+  "title": "Komponenten-Übersicht",
+  "description": "Smolitux-UI bietet eine umfangreiche Sammlung von Komponenten für verschiedene Anwendungsfälle. Hier finden Sie eine Übersicht aller verfügbaren Komponenten, kategorisiert nach ihrem Verwendungszweck.",
+  "source": "@site/docs/components/overview.md",
+  "sourceDirName": "components",
+  "slug": "/components/overview",
+  "permalink": "/smolitux-ui/en/docs/components/overview",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/components/overview.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "wikiSidebar",
+  "next": {
+    "title": "Schnellstart-Anleitung",
+    "permalink": "/smolitux-ui/en/docs/guides/quickstart"
+  }
+}

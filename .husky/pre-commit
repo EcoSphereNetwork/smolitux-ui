@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-# Deaktiviert für die Entwicklung
-# npx lint-staged

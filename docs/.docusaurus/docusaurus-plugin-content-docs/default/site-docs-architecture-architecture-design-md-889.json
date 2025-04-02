@@ -1,0 +1,27 @@
+{
+  "id": "architecture/architecture-design",
+  "title": "Architektur-Design",
+  "description": "Dieses Dokument beschreibt die Architektur und das Design von Smolitux-UI.",
+  "source": "@site/docs/architecture/architecture-design.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/architecture-design",
+  "permalink": "/smolitux-ui/en/docs/architecture/architecture-design",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/architecture/architecture-design.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "wikiSidebar",
+  "previous": {
+    "title": "Roadmap",
+    "permalink": "/smolitux-ui/en/docs/development/roadmap"
+  },
+  "next": {
+    "title": "Zugänglichkeitsrichtlinien",
+    "permalink": "/smolitux-ui/en/docs/guidelines/accessibility"
+  }
+}

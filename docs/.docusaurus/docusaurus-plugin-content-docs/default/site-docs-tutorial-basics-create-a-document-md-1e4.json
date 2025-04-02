@@ -1,0 +1,23 @@
+{
+  "id": "tutorial-basics/create-a-document",
+  "title": "Dokument erstellen",
+  "description": "Dokumente sind Gruppen von Seiten, die mit einer Seitenleiste verbunden sind und können optional in Kategorien gruppiert werden.",
+  "source": "@site/docs/tutorial-basics/create-a-document.md",
+  "sourceDirName": "tutorial-basics",
+  "slug": "/tutorial-basics/create-a-document",
+  "permalink": "/smolitux-ui/en/docs/tutorial-basics/create-a-document",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/docs/tutorial-basics/create-a-document.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Smolitux-UI Dokumentation",
+    "permalink": "/smolitux-ui/en/docs/intro"
+  }
+}
