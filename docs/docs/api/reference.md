@@ -37,6 +37,10 @@ import { Button } from '@smolitux/core';
 
 ```tsx
 import { Input } from '@smolitux/core';
+import { useState } from 'react';
+
+// In einer Komponente:
+const [email, setEmail] = useState('');
 
 <Input
   label="E-Mail"
@@ -72,6 +76,10 @@ import { Input } from '@smolitux/core';
 
 ```tsx
 import { Select } from '@smolitux/core';
+import { useState } from 'react';
+
+// In einer Komponente:
+const [selectedCountry, setSelectedCountry] = useState('de');
 
 <Select
   label="Land"
@@ -202,8 +210,8 @@ import { LineChart } from '@smolitux/charts';
 | `animated` | `boolean` | `true` | Animation aktivieren |
 | `startYAxisAtZero` | `boolean` | `false` | Y-Achse bei Null beginnen |
 | `colors` | `string[]` | - | Angepasste Farben für mehrere Serien |
-| `formatYLabel` | `(value: number) => string` | `(value) => \`${value}\`` | Angepasste Formatierung für Y-Achsenbeschriftungen |
-| `formatXLabel` | `(value: string \| number) => string` | `(value) => \`${value}\`` | Angepasste Formatierung für X-Achsenbeschriftungen |
+| `formatYLabel` | `(value: number) => string` | `(val) => \`${val}\`` | Angepasste Formatierung für Y-Achsenbeschriftungen |
+| `formatXLabel` | `(value: string \| number) => string` | `(val) => \`${val}\`` | Angepasste Formatierung für X-Achsenbeschriftungen |
 | `aspectRatio` | `number` | `16 / 9` | Für responsive SVG (viewBox) |
 
 #### LineChartSeries Typ
