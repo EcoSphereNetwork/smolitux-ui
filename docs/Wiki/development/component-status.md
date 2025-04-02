@@ -6,7 +6,7 @@ Dieses Dokument bietet einen Überblick über den aktuellen Entwicklungsstand al
 
 | Kategorie | Gesamtzahl | Mit Tests | Mit A11y-Tests | Mit Storybook | Vollständig |
 |-----------|------------|-----------|----------------|---------------|-------------|
-| Core-Komponenten | 49 | 49 | 50 | 36 | 36 |
+| Core-Komponenten | 49 | 49 | 50 | 41 | 41 |
 | AI-Komponenten | - | - | - | - | - |
 | Blockchain-Komponenten | - | - | - | - | - |
 | Andere Pakete | - | - | - | - | - |
@@ -31,25 +31,25 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | DatePicker | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Dialog | ✅ | ✅ | ✅ | Vollständig | - |
 | Drawer | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
-| Dropdown | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Dropdown | ✅ | ✅ | ✅ | Vollständig | - |
 | Fade | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 | FileUpload | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Flex | ✅ | ✅ | ✅ | Vollständig | - |
-| Form | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
-| FormControl | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
-| FormField | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Form | ✅ | ✅ | ✅ | Vollständig | - |
+| FormControl | ✅ | ✅ | ✅ | Vollständig | - |
+| FormField | ✅ | ✅ | ✅ | Vollständig | - |
 | Grid | ✅ | ✅ | ✅ | Vollständig | - |
 | Input | ✅ | ✅ | ✅ | Vollständig | - |
 | LanguageSwitcher | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 | List | ✅ | ✅ | ✅ | Vollständig | - |
 | MediaPlayer | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
-| Menu | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| Menu | ✅ | ✅ | ✅ | Vollständig | - |
 | Modal | ✅ | ✅ | ✅ | Vollständig | - |
 | Pagination | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Popover | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | ProgressBar | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Radio | ✅ | ✅ | ✅ | Vollständig | - |
-| RadioGroup | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| RadioGroup | ✅ | ✅ | ✅ | Vollständig | - |
 | Select | ✅ | ✅ | ✅ | Vollständig | - |
 | Skeleton | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
 | Slide | ✅ | ✅ | ❌ | Storybook fehlt | Niedrig |
@@ -57,7 +57,7 @@ Die folgende Tabelle zeigt den Status jeder Komponente im `@smolitux/core` Paket
 | Spinner | ✅ | ✅ | ✅ | Vollständig | - |
 | Stepper | ✅ | ✅ | ❌ | Storybook fehlt | Mittel |
 | Switch | ✅ | ✅ | ✅ | Vollständig | - |
-| TabView | ✅ | ✅ | ❌ | Storybook fehlt | Hoch |
+| TabView | ✅ | ✅ | ✅ | Vollständig | - |
 | Table | ✅ | ✅ | ✅ | Vollständig | - |
 | Tabs | ✅ | ✅ | ✅ | Vollständig | - |
 | TextArea/Textarea | ✅ | ✅ | ✅ | Vollständig | - |
@@ -72,13 +72,7 @@ Um die Version 0.2.2 vollständig zu machen, müssen folgende Aufgaben abgeschlo
 
 ### Hohe Priorität
 
-Die folgenden Komponenten benötigen dringend Storybook-Implementierungen:
-
-1. Dropdown
-2. Form, FormControl, FormField
-3. Menu
-4. RadioGroup
-5. TabView
+Alle Komponenten mit hoher Priorität haben nun Storybook-Implementierungen.
 
 ### Mittlere Priorität
 
