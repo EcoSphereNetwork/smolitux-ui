@@ -117,4 +117,4 @@ Die speziellen barrierefreien Komponenten (A11y) bieten folgende Vorteile gegen�
 6. **Bessere Screenreader-Unterstützung** - Mehr Kontext und Beschreibungen für Screenreader-Benutzer
 7. **Höhere WCAG-Konformität** - Erfüllung von WCAG 2.1 AA und AAA Kriterien
 
-Weitere Informationen zu den barrierefreien Komponenten finden Sie in der [A11y-Komponenten-Dokumentation](/Wiki/accessibility/a11y-components.md).
+Weitere Informationen zu den barrierefreien Komponenten finden Sie in der [A11y-Komponenten-Dokumentation](./a11y-components.md).

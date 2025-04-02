@@ -170,4 +170,4 @@ Wenn Sie von Standard-Komponenten zu barrierefreien Komponenten migrieren möcht
 
 - [WCAG 2.1 Richtlinien](https://www.w3.org/TR/WCAG21/)
 - [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.2/)
-- [Smolitux UI Barrierefreiheits-Testplan](/Wiki/testing/testplan/accessibility.md)
+- [Smolitux UI Barrierefreiheits-Testplan](../testing/a11y-test-plan.md)
