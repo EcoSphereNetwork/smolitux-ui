@@ -1,16 +1,20 @@
 name: Deploy Docusaurus to GitHub Pages
 
 on:
+  # Automatische Ausfuehrung bei jedem Push auf den main-Branch
   push:
-    paths:
-      - 'docs/**'
     branches:
       - main
+  # Automatische Ausfuehrung bei jedem Pull Request auf den main-Branch
+  pull_request:
+    branches:
+      - main
+  # Automatische woechentliche Ausfuehrung
   schedule:
     # Jeden Montag um 2:00 Uhr UTC
     - cron: '0 2 * * 1'
+  # Ermoeglicht auch manuelle Ausfuehrung
   workflow_dispatch:
-    # Ermoeglicht manuelles Ausloesen des Workflows
     inputs:
       reason:
         description: 'Grund fuer die manuelle Ausfuehrung'
@@ -79,6 +83,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    # Nur bei Push auf main oder manueller Auslösung deployen
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

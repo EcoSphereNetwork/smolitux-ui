@@ -1,6 +1,14 @@
 name: Reset GitHub Pages Settings
 
 on:
+  # Automatische Ausfuehrung bei Fehlern im Docusaurus-Deploy-Workflow
+  workflow_run:
+    workflows: ["Deploy Docusaurus to GitHub Pages"]
+    types:
+      - failed
+    branches:
+      - main
+  # Ermoeglicht auch manuelle Ausfuehrung
   workflow_dispatch:
     inputs:
       reason:
