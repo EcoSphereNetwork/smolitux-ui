@@ -12,4 +12,4 @@ Diese Dokumente werden nur zu Referenzzwecken aufbewahrt und spiegeln nicht den 
 
 - [Roadmap](../roadmap.md) - Aktuelle Entwicklungs-Roadmap
 - [Komponenten-Status](../component-status.md) - Aktueller Status aller Komponenten
-- [Release-Notes](../releases/) - Release-Notes für alle Versionen
+- [Release-Notes](../releases/v0.2.2.md) - Release-Notes für alle Versionen

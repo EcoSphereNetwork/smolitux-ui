@@ -24,7 +24,7 @@ For more details, see the [Release Notes for v0.2.2](development/releases/v0.2.2
 Our component library is organized into functional categories for easy navigation:
 
 - **[Overview](components/overview.md)** - Introduction to our component system
-- **[Inputs](components/inputs/button.md)** - Button and other input controls
+- **[Inputs](components/inputs/Button.md)** - Button and other input controls
 - **[Forms](components/forms/form-control.md)** - Form-related components including:
   - [Checkbox](components/forms/checkbox.md)
   - [Color Picker](components/forms/colorpicker.md)

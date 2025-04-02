@@ -2,6 +2,12 @@
 
 Die Button-Komponente ist ein grundlegendes Interaktionselement, das für verschiedene Aktionen in der Benutzeroberfläche verwendet wird. Sie wurde für optimale Barrierefreiheit und Benutzerfreundlichkeit entwickelt.
 
+## Import
+
+```jsx
+import { Button } from '@smolitux/core';
+```
+
 ## Eigenschaften
 
 | Eigenschaft | Typ | Standard | Beschreibung |
@@ -144,3 +150,143 @@ Die Button-Komponente verwendet intern:
 - Animation für Zustandsübergänge
 - Gruppierte Button-Unterstützung (ButtonGroup-Komponente)
 - Erweiterte Tooltip-Integration
+
+## Erweiterte Beispiele
+
+### Button-Gruppe
+
+```jsx
+function ButtonGroup({ options, value, onChange }) {
+  return (
+    <div className="flex">
+      {options.map((option) => (
+        <Button
+          key={option.value}
+          variant={value === option.value ? 'primary' : 'outline'}
+          onClick={() => onChange(option.value)}
+          className={`
+            ${value === option.value ? 'z-10' : ''}
+            ${option.value === options[0].value ? 'rounded-r-none' : ''}
+            ${option.value === options[options.length - 1].value ? 'rounded-l-none' : ''}
+            ${option.value !== options[0].value && option.value !== options[options.length - 1].value ? 'rounded-none' : ''}
+            ${option.value !== options[0].value ? '-ml-px' : ''}
+          `}
+        >
+          {option.label}
+        </Button>
+      ))}
+    </div>
+  );
+}
+
+// Verwendung
+function Example() {
+  const [view, setView] = useState('day');
+  
+  const options = [
+    { value: 'day', label: 'Tag' },
+    { value: 'week', label: 'Woche' },
+    { value: 'month', label: 'Monat' },
+  ];
+  
+  return (
+    <ButtonGroup 
+      options={options} 
+      value={view} 
+      onChange={setView} 
+    />
+  );
+}
+```
+
+### Button mit Bestätigungsdialog
+
+```jsx
+function ConfirmButton({ children, onConfirm, confirmText = 'Sind Sie sicher?' }) {
+  const [showConfirm, setShowConfirm] = useState(false);
+  
+  const handleClick = () => {
+    if (showConfirm) {
+      onConfirm();
+      setShowConfirm(false);
+    } else {
+      setShowConfirm(true);
+    }
+  };
+  
+  const handleCancel = (e) => {
+    e.stopPropagation();
+    setShowConfirm(false);
+  };
+  
+  return (
+    <div className="relative inline-block">
+      <Button 
+        variant={showConfirm ? 'danger' : 'primary'} 
+        onClick={handleClick}
+      >
+        {showConfirm ? confirmText : children}
+      </Button>
+      
+      {showConfirm && (
+        <Button 
+          variant="outline" 
+          size="sm" 
+          onClick={handleCancel}
+          className="absolute -top-2 -right-2 rounded-full w-6 h-6 p-0 flex items-center justify-center"
+        >
+          ✕
+        </Button>
+      )}
+    </div>
+  );
+}
+
+// Verwendung
+<ConfirmButton onConfirm={() => console.log('Bestätigt!')}>
+  Löschen
+</ConfirmButton>
+```
+
+### Button mit Ladeindikator und Timeout
+
+```jsx
+function LoadingButton({ children, onClick, timeout = 2000 }) {
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const handleClick = async () => {
+    setIsLoading(true);
+    
+    try {
+      await onClick();
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      // Mindestens 'timeout' ms anzeigen, damit der Benutzer den Ladeindikator sieht
+      setTimeout(() => {
+        setIsLoading(false);
+      }, timeout);
+    }
+  };
+  
+  return (
+    <Button 
+      onClick={handleClick} 
+      loading={isLoading} 
+      disabled={isLoading}
+    >
+      {children}
+    </Button>
+  );
+}
+
+// Verwendung
+<LoadingButton 
+  onClick={async () => {
+    // Simuliere API-Aufruf
+    return new Promise(resolve => setTimeout(resolve, 1000));
+  }}
+>
+  Speichern
+</LoadingButton>
+```

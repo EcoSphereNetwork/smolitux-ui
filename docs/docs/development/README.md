@@ -57,4 +57,4 @@ Wir freuen uns über Beiträge zur Verbesserung der Smolitux-UI-Bibliothek. Bitt
 
 ## Lizenz
 
-Smolitux-UI ist unter der [MIT-Lizenz](../../LICENSE) lizenziert.
+Smolitux-UI ist unter der [MIT-Lizenz](https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/LICENSE) lizenziert.
