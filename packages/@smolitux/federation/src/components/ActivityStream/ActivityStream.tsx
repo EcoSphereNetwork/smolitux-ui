@@ -2,41 +2,41 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, Input } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
 
-export type ActivityType = 
-  | 'Create' 
-  | 'Update' 
-  | 'Delete' 
-  | 'Follow' 
-  | 'Add' 
-  | 'Remove' 
-  | 'Like' 
-  | 'Announce' 
-  | 'Block' 
-  | 'Undo' 
-  | 'Accept' 
-  | 'Reject' 
-  | 'Offer' 
-  | 'Invite' 
-  | 'View' 
-  | 'Listen' 
-  | 'Read' 
-  | 'Move' 
-  | 'Travel' 
+export type ActivityType =
+  | 'Create'
+  | 'Update'
+  | 'Delete'
+  | 'Follow'
+  | 'Add'
+  | 'Remove'
+  | 'Like'
+  | 'Announce'
+  | 'Block'
+  | 'Undo'
+  | 'Accept'
+  | 'Reject'
+  | 'Offer'
+  | 'Invite'
+  | 'View'
+  | 'Listen'
+  | 'Read'
+  | 'Move'
+  | 'Travel'
   | 'Question';
 
-export type ObjectType = 
-  | 'Note' 
-  | 'Article' 
-  | 'Video' 
-  | 'Audio' 
-  | 'Image' 
-  | 'Page' 
-  | 'Event' 
-  | 'Place' 
-  | 'Profile' 
-  | 'Relationship' 
-  | 'Tombstone' 
-  | 'Collection' 
+export type ObjectType =
+  | 'Note'
+  | 'Article'
+  | 'Video'
+  | 'Audio'
+  | 'Image'
+  | 'Page'
+  | 'Event'
+  | 'Place'
+  | 'Profile'
+  | 'Relationship'
+  | 'Tombstone'
+  | 'Collection'
   | 'OrderedCollection';
 
 export interface ActivityObject {
@@ -162,13 +162,13 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const streamRef = useRef<HTMLDivElement>(null);
-  
+
   // Weitere Aktivitäten laden
   const handleLoadMore = async () => {
     if (!onLoadMore || loadingMore) return;
-    
+
     setLoadingMore(true);
-    
+
     try {
       await onLoadMore();
     } catch (error) {
@@ -177,13 +177,13 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
       setLoadingMore(false);
     }
   };
-  
+
   // Aktivitäten aktualisieren
   const handleRefresh = async () => {
     if (!onRefresh || isRefreshing) return;
-    
+
     setIsRefreshing(true);
-    
+
     try {
       await onRefresh();
     } catch (error) {
@@ -192,11 +192,11 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
       setIsRefreshing(false);
     }
   };
-  
+
   // Filter anwenden
   const applyFilters = async () => {
     if (!onFilter) return;
-    
+
     try {
       await onFilter({
         ...filters,
@@ -206,70 +206,70 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
       console.error('Fehler beim Filtern der Aktivitäten:', error);
     }
   };
-  
+
   // Filter zurücksetzen
   const resetFilters = () => {
     setFilters(defaultFilters);
     setSearchQuery('');
-    
+
     if (onFilter) {
       onFilter(defaultFilters);
     }
   };
-  
+
   // Auf Aktivität klicken
   const handleActivityClick = (activity: ActivityStreamItem) => {
     if (onActivityClick) {
       onActivityClick(activity);
     }
   };
-  
+
   // Auf Akteur klicken
   const handleActorClick = (actor: ActivityActor, event: React.MouseEvent) => {
     event.stopPropagation();
-    
+
     if (onActorClick) {
       onActorClick(actor);
     }
   };
-  
+
   // Auf Objekt klicken
   const handleObjectClick = (object: ActivityObject, event: React.MouseEvent) => {
     event.stopPropagation();
-    
+
     if (onObjectClick) {
       onObjectClick(object);
     }
   };
-  
+
   // Zeitpunkt formatieren
   const formatTimestamp = (timestamp: Date): string => {
     const now = new Date();
     const diff = now.getTime() - timestamp.getTime();
-    
+
     // Weniger als eine Minute
     if (diff < 60 * 1000) {
       return 'Gerade eben';
     }
-    
+
     // Weniger als eine Stunde
     if (diff < 60 * 60 * 1000) {
       const minutes = Math.floor(diff / (60 * 1000));
       return `Vor ${minutes} ${minutes === 1 ? 'Minute' : 'Minuten'}`;
     }
-    
+
     // Weniger als ein Tag
     if (diff < 24 * 60 * 60 * 1000) {
       const hours = Math.floor(diff / (60 * 60 * 1000));
       return `Vor ${hours} ${hours === 1 ? 'Stunde' : 'Stunden'}`;
     }
-    
+
     // Weniger als eine Woche
     if (diff < 7 * 24 * 60 * 60 * 1000) {
       const days = Math.floor(diff / (24 * 60 * 60 * 1000));
       return `Vor ${days} ${days === 1 ? 'Tag' : 'Tagen'}`;
     }
-    
+
     // Datum formatieren
     return new Intl.DateTimeFormat('de-DE', {
       year: 'numeric',
@@ -277,11 +277,11 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
       day: 'numeric',
     }).format(timestamp);
   };
-  
+
   // Aktivitätstext generieren
   const getActivityText = (activity: ActivityStreamItem): string => {
     const { type, object } = activity;
-    
+
     switch (type) {
       case 'Create':
         return `hat ${getObjectTypeText(object.type)} erstellt`;
@@ -327,7 +327,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
         return `hat eine Aktivität ausgeführt`;
     }
   };
-  
+
   // Objekttyp-Text generieren
   const getObjectTypeText = (type: ObjectType): string => {
     switch (type) {
@@ -361,46 +361,95 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
         return 'einen Inhalt';
     }
   };
-  
+
   // Icon für Aktivitätstyp
   const getActivityIcon = (type: ActivityType) => {
     switch (type) {
       case 'Create':
         return (
           <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/20 text-blue-500 dark:text-blue-400 flex items-center justify-center">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              />
             </svg>
           </div>
         );
       case 'Update':
         return (
           <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/20 text-amber-500 dark:text-amber-400 flex items-center justify-center">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
             </svg>
           </div>
         );
       case 'Delete':
         return (
           <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/20 text-red-500 dark:text-red-400 flex items-center justify-center">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
             </svg>
           </div>
         );
       case 'Follow':
         return (
           <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/20 text-purple-500 dark:text-purple-400 flex items-center justify-center">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+              />
             </svg>
           </div>
         );
       case 'Like':
         return (
           <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/20 text-red-500 dark:text-red-400 flex items-center justify-center">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
           </div>
@@ -408,26 +457,51 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
       case 'Announce':
         return (
           <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/20 text-teal-500 dark:text-teal-400 flex items-center justify-center">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+              />
             </svg>
           </div>
         );
       default:
         return (
           <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 flex items-center justify-center">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
           </div>
         );
     }
   };
-  
+
   // Platzhalter für den Ladezustand
   const renderPlaceholders = () => {
     return Array.from({ length: pageSize }).map((_, index) => (
-      <div key={`placeholder-${index}`} className="p-4 border-b border-gray-200 dark:border-gray-700 animate-pulse">
+      <div
+        key={`placeholder-${index}`}
+        className="p-4 border-b border-gray-200 dark:border-gray-700 animate-pulse"
+      >
         <div className="flex items-start">
           <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700" />
           <div className="ml-4 flex-1">
@@ -439,15 +513,13 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
       </div>
     ));
   };
-  
+
   return (
     <Card className={`overflow-hidden ${className}`}>
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-          ActivityPub Stream
-        </h3>
-        
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">ActivityPub Stream</h3>
+
         <div className="flex space-x-2">
           {onRefresh && (
             <Button
@@ -474,7 +546,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               </svg>
             </Button>
           )}
-          
+
           {showFilters && (
             <Button
               variant="outline"
@@ -483,14 +555,25 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               className="p-2"
               aria-label="Filter anzeigen/ausblenden"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                />
               </svg>
             </Button>
           )}
         </div>
       </div>
-      
+
       {/* Filter */}
       {showFilterPanel && (
         <div className="p-4 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 space-y-4">
@@ -498,18 +581,18 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
           <div>
             <Input
               value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Aktivitäten durchsuchen..."
               className="w-full"
             />
           </div>
-          
+
           {/* Aktivitätstyp-Filter */}
           <div>
             <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Aktivitätstyp
             </h4>
-            
+
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setFilters({ ...filters, type: undefined })}
@@ -521,8 +604,8 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               >
                 Alle
               </button>
-              
-              {['Create', 'Update', 'Delete', 'Follow', 'Like', 'Announce'].map(type => (
+
+              {['Create', 'Update', 'Delete', 'Follow', 'Like', 'Announce'].map((type) => (
                 <button
                   key={type}
                   onClick={() => setFilters({ ...filters, type })}
@@ -537,13 +620,11 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               ))}
             </div>
           </div>
-          
+
           {/* Objekttyp-Filter */}
           <div>
-            <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Objekttyp
-            </h4>
-            
+            <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Objekttyp</h4>
+
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setFilters({ ...filters, objectType: undefined })}
@@ -555,8 +636,8 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               >
                 Alle
               </button>
-              
-              {['Note', 'Article', 'Video', 'Audio', 'Image'].map(type => (
+
+              {['Note', 'Article', 'Video', 'Audio', 'Image'].map((type) => (
                 <button
                   key={type}
                   onClick={() => setFilters({ ...filters, objectType: type })}
@@ -571,14 +652,14 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               ))}
             </div>
           </div>
-          
+
           {/* Plattform-Filter */}
           {filters.platforms && (
             <div>
               <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Plattformen
               </h4>
-              
+
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setFilters({ ...filters, platform: undefined })}
@@ -590,11 +671,11 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                 >
                   Alle
                 </button>
-                
-                {Array.from(new Set(activities.map(a => a.platform.id))).map(platformId => {
-                  const platform = activities.find(a => a.platform.id === platformId)?.platform;
+
+                {Array.from(new Set(activities.map((a) => a.platform.id))).map((platformId) => {
+                  const platform = activities.find((a) => a.platform.id === platformId)?.platform;
                   if (!platform) return null;
-                  
+
                   return (
                     <button
                       key={platformId}
@@ -612,42 +693,48 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               </div>
             </div>
           )}
-          
+
           {/* Filter-Aktionen */}
           <div className="flex justify-end space-x-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={resetFilters}
-            >
+            <Button variant="outline" size="sm" onClick={resetFilters}>
               Zurücksetzen
             </Button>
-            
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={applyFilters}
-            >
+
+            <Button variant="primary" size="sm" onClick={applyFilters}>
               Anwenden
             </Button>
           </div>
         </div>
       )}
-      
+
       {/* Aktivitätsliste */}
-      <div ref={streamRef} className="divide-y divide-gray-200 dark:divide-gray-700 max-h-[600px] overflow-y-auto">
+      <div
+        ref={streamRef}
+        className="divide-y divide-gray-200 dark:divide-gray-700 max-h-[600px] overflow-y-auto"
+      >
         {loading && activities.length === 0 ? (
           renderPlaceholders()
         ) : activities.length === 0 ? (
           <div className="py-12 text-center text-gray-500 dark:text-gray-400">
-            <svg className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+            <svg
+              className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 10h16M4 14h16M4 18h16"
+              />
             </svg>
             <p className="text-lg font-medium">Keine Aktivitäten vorhanden</p>
             <p className="mt-2">Es wurden noch keine ActivityPub-Aktivitäten gefunden.</p>
           </div>
         ) : (
-          activities.map(activity => (
+          activities.map((activity) => (
             <div
               key={activity.id}
               className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors"
@@ -659,7 +746,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                   {activity.actor.icon ? (
                     <div
                       className="w-10 h-10 rounded-full overflow-hidden cursor-pointer"
-                      onClick={e => handleActorClick(activity.actor, e)}
+                      onClick={(e) => handleActorClick(activity.actor, e)}
                     >
                       <img
                         src={activity.actor.icon}
@@ -671,7 +758,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                     getActivityIcon(activity.type)
                   )}
                 </div>
-                
+
                 {/* Aktivitätsinhalt */}
                 <div className="ml-4 flex-1 min-w-0">
                   <div className="flex items-start justify-between">
@@ -679,15 +766,17 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                       <p className="text-sm">
                         <span
                           className="font-medium text-gray-900 dark:text-white hover:underline cursor-pointer"
-                          onClick={e => handleActorClick(activity.actor, e)}
+                          onClick={(e) => handleActorClick(activity.actor, e)}
                         >
-                          {activity.actor.name || activity.actor.preferredUsername || 'Unbekannter Akteur'}
+                          {activity.actor.name ||
+                            activity.actor.preferredUsername ||
+                            'Unbekannter Akteur'}
                         </span>{' '}
                         <span className="text-gray-600 dark:text-gray-300">
                           {getActivityText(activity)}
                         </span>
                       </p>
-                      
+
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center">
                         <span>{formatTimestamp(activity.published)}</span>
                         <span className="mx-1">•</span>
@@ -706,12 +795,12 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                       </p>
                     </div>
                   </div>
-                  
+
                   {/* Objektinhalt (falls vorhanden) */}
                   {activity.object.content && (
                     <div
                       className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-md cursor-pointer"
-                      onClick={e => handleObjectClick(activity.object, e)}
+                      onClick={(e) => handleObjectClick(activity.object, e)}
                     >
                       {activity.object.name && (
                         <p className="text-sm font-medium text-gray-900 dark:text-white mb-1">
@@ -723,12 +812,12 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                       </p>
                     </div>
                   )}
-                  
+
                   {/* Objektbild (falls vorhanden) */}
                   {activity.object.image && (
                     <div
                       className="mt-2 rounded-md overflow-hidden cursor-pointer"
-                      onClick={e => handleObjectClick(activity.object, e)}
+                      onClick={(e) => handleObjectClick(activity.object, e)}
                     >
                       <img
                         src={activity.object.image}
@@ -740,9 +829,8 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        )}
       </div>
     </Card>
   );
