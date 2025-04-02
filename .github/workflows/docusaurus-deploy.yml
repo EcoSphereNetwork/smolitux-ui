@@ -6,8 +6,16 @@ on:
       - 'docs/**'
     branches:
       - main
-  # Allows you to run this workflow manually from the Actions tab
+  schedule:
+    # Jeden Montag um 2:00 Uhr UTC
+    - cron: '0 2 * * 1'
   workflow_dispatch:
+    # Ermoeglicht manuelles Ausloesen des Workflows
+    inputs:
+      reason:
+        description: 'Grund fuer die manuelle Ausfuehrung'
+        required: false
+        default: 'Manuelle Aktualisierung der Dokumentation'
 
 defaults:
   run:
@@ -15,7 +23,7 @@ defaults:
 
 jobs:
   deploy:
-    name: Build Docusaurus to gh-pages
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,13 +33,17 @@ jobs:
           cache: npm
           cache-dependency-path: docs/package-lock.json
 
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
+      - name: Clean install
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install @docusaurus/logger
+          npm install
+
       - name: Build website
         run: npm run build
 
       - name: Create .nojekyll file
-        run: touch ../docs/build/.nojekyll
+        run: touch build/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
