@@ -7,19 +7,31 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.2] - 2023-03-26
+## [0.2.2] - 2023-04-02
 
 ### Hinzugefügt
+- Storybook-Stories für mehrere Komponenten (Button, Card, Avatar, Breadcrumb, Tooltip, Modal, Table, Accordion)
+- Cypress E2E-Tests für Komponenten
+- Cypress Accessibility-Tests
+- Umfassende Dokumentation zu Barrierefreiheit, Komponenten-Struktur, Theming und Teststrategie
+- Verbesserte CI/CD-Pipeline mit visuellen Regressionstests und Barrierefreiheitstests
 - Button-Komponente: Unterstützung für `solid`-Variante als Alias für `primary`
 - Button-Komponente: Unterstützung für `outline`-Variante als Alias für `ghost`
 - Button-Komponente: Unterstützung für `isLoading`-Prop als Alias für `loading`
 - TabView-Komponente: Unterstützung für `onChange`-Prop als Alias für `onTabChange`
 
-### Geändert
+### Verbessert
+- Überarbeitung der Button-Komponente mit besserer Barrierefreiheit
+- Flex-Komponente mit Tailwind-CSS-Integration
+- Verbesserte TypeScript-Typisierung für alle Komponenten
+- Aktualisierte Testabdeckung für Komponenten
 - Verbesserte Exportstruktur in der Utils-Bibliothek für einfachere Importe
 - Aktualisierte Dokumentation mit neuen Varianten und Props
 
 ### Behoben
+- Barrierefreiheitsprobleme in mehreren Komponenten
+- Inkonsistenzen im Theming-System
+- Probleme mit der Tastaturnavigation in interaktiven Komponenten
 - Typfehler in der Button-Komponente
 - Typfehler in der TabView-Komponente
 

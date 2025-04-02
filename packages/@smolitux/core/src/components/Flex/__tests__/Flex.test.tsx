@@ -3,181 +3,233 @@ import { render, screen } from '@testing-library/react';
 import { Flex } from '../Flex';
 
 describe('Flex', () => {
-  it('renders correctly with default props', () => {
+  test('renders with default props', () => {
     render(
-      <Flex data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toBeInTheDocument();
-    expect(flexContainer).toHaveStyle('display: flex');
-    expect(screen.getByText('Flex content')).toBeInTheDocument();
+    const flex = screen.getByTestId('flex');
+    expect(flex).toBeInTheDocument();
+    expect(flex).toHaveClass('flex');
+    expect(flex).toHaveClass('flex-row');
+    expect(flex).toHaveClass('flex-nowrap');
+    expect(flex).toHaveClass('justify-start');
+    expect(flex).toHaveClass('items-stretch');
   });
-
-  it('renders with row direction by default', () => {
+  
+  test('renders with custom direction', () => {
     render(
-      <Flex data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex direction="column" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('flex-direction: row');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('flex-col');
   });
-
-  it('renders with column direction when specified', () => {
+  
+  test('renders with custom wrap', () => {
     render(
-      <Flex direction="column" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex wrap="wrap" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('flex-direction: column');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('flex-wrap');
   });
-
-  it('renders with custom align items', () => {
+  
+  test('renders with custom justify', () => {
     render(
-      <Flex align="center" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex justify="space-between" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('align-items: center');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('justify-between');
   });
-
-  it('renders with custom justify content', () => {
+  
+  test('renders with custom align', () => {
     render(
-      <Flex justify="space-between" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex align="center" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('justify-content: space-between');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('items-center');
   });
-
-  it('renders with custom wrap', () => {
+  
+  test('renders with custom alignContent', () => {
     render(
-      <Flex wrap="wrap" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex alignContent="center" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('flex-wrap: wrap');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('content-center');
   });
-
-  it('renders with custom gap', () => {
+  
+  test('renders with custom gap', () => {
     render(
-      <Flex gap="10px" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex gap="md" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('gap: 10px');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('gap-4');
   });
-
-  it('renders with custom flex basis', () => {
+  
+  test('renders with custom columnGap', () => {
     render(
-      <Flex basis="50%" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex columnGap="lg" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('flex-basis: 50%');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('gap-x-6');
   });
-
-  it('renders with custom flex grow', () => {
+  
+  test('renders with custom rowGap', () => {
     render(
-      <Flex grow={1} data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex rowGap="xl" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('flex-grow: 1');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('gap-y-8');
   });
-
-  it('renders with custom flex shrink', () => {
+  
+  test('renders with fullWidth', () => {
     render(
-      <Flex shrink={0} data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex fullWidth data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('flex-shrink: 0');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('w-full');
   });
-
-  it('renders with custom className', () => {
+  
+  test('renders with fullHeight', () => {
     render(
-      <Flex className="custom-flex" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex fullHeight data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveClass('custom-flex');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('h-full');
   });
-
-  it('renders with custom style', () => {
+  
+  test('renders as inline-flex', () => {
     render(
-      <Flex style={{ backgroundColor: 'red' }} data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex inline data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('background-color: red');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('inline-flex');
+    expect(flex).not.toHaveClass('flex');
   });
-
-  it('renders with custom width', () => {
+  
+  test('applies custom className', () => {
     render(
-      <Flex width="300px" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex className="custom-class" data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('width: 300px');
+    const flex = screen.getByTestId('flex');
+    expect(flex).toHaveClass('custom-class');
   });
-
-  it('renders with custom height', () => {
+  
+  test('renders with responsive direction', () => {
     render(
-      <Flex height="200px" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex direction={{ sm: 'column', md: 'row' }} data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('height: 200px');
+    const flex = screen.getByTestId('flex');
+    expect(flex.className).toContain('sm:flex-col');
+    expect(flex.className).toContain('md:flex-row');
   });
-
-  it('renders with custom padding', () => {
+  
+  test('renders with responsive justify', () => {
     render(
-      <Flex padding="10px" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex justify={{ sm: 'flex-start', md: 'center', lg: 'space-between' }} data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('padding: 10px');
+    const flex = screen.getByTestId('flex');
+    expect(flex.className).toContain('sm:justify-start');
+    expect(flex.className).toContain('md:justify-center');
+    expect(flex.className).toContain('lg:justify-between');
   });
-
-  it('renders with custom margin', () => {
+  
+  test('renders with responsive align', () => {
     render(
-      <Flex margin="10px" data-testid="flex-container">
-        <div>Flex content</div>
+      <Flex align={{ sm: 'flex-start', md: 'center' }} data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
       </Flex>
     );
     
-    const flexContainer = screen.getByTestId('flex-container');
-    expect(flexContainer).toHaveStyle('margin: 10px');
+    const flex = screen.getByTestId('flex');
+    expect(flex.className).toContain('sm:items-start');
+    expect(flex.className).toContain('md:items-center');
+  });
+  
+  test('renders with responsive gap', () => {
+    render(
+      <Flex gap={{ sm: 'xs', md: 'md', lg: 'xl' }} data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
+      </Flex>
+    );
+    
+    const flex = screen.getByTestId('flex');
+    expect(flex.className).toContain('sm:gap-1');
+    expect(flex.className).toContain('md:gap-4');
+    expect(flex.className).toContain('lg:gap-8');
+  });
+  
+  test('forwards ref to div element', () => {
+    const ref = React.createRef<HTMLDivElement>();
+    render(
+      <Flex ref={ref} data-testid="flex">
+        <div>Item 1</div>
+        <div>Item 2</div>
+      </Flex>
+    );
+    
+    expect(ref.current).not.toBeNull();
+    expect(ref.current?.tagName).toBe('DIV');
+    expect(ref.current).toHaveClass('flex');
   });
 });
