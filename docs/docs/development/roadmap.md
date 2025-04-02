@@ -5,12 +5,12 @@ Diese Roadmap beschreibt den umfassenden Plan zur Weiterentwicklung und Fertigst
 ## Inhaltsverzeichnis
 
 1. [Analyse des aktuellen Zustands](#1-analyse-des-aktuellen-zustands)
-2. [Priorisierte Aufgabenliste](#2-priorisierte-aufgabenliste)
-3. [Phasen und Meilensteine](#3-phasen-und-meilensteine)
-4. [Detaillierter Implementierungsplan](#4-detaillierter-implementierungsplan)
-5. [Ressourcenbedarf und Risikomanagement](#5-ressourcenbedarf-und-risikomanagement)
-6. [Nächste Schritte](#6-nächste-schritte)
-7. [Referenzdokumente](#7-referenzdokumente)
+2. [Priorisierte Aufgabenliste](#2-priorisierte-aufgabenliste-für-version-030)
+3. [Phasen und Meilensteine](#3-phasen-und-meilensteine-für-version-030)
+4. [Detaillierter Implementierungsplan](#4-detaillierter-implementierungsplan-für-version-030)
+5. [Ressourcenbedarf und Risikomanagement](#5-ressourcenbedarf-und-risikomanagement-für-version-030)
+6. [Nächste Schritte](#6-nächste-schritte-für-version-030)
+7. [Referenzdokumente](#7-referenzdokumente-für-version-030)
 
 ## 1. Analyse des aktuellen Zustands
 
