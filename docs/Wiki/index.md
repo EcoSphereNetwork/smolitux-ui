@@ -85,9 +85,11 @@ Our component library is organized into functional categories for easy navigatio
 ### Guidelines
 
 - **[Accessibility](accessibility/README.md)** - Accessibility standards and practices
+- **[Accessibility Guidelines](guidelines/accessibility.md)** - Detailed accessibility guidelines
 - **[Best Practices](guidelines/best-practices.md)** - Development best practices
 - **[Coding Standards](guidelines/coding-standards.md)** - Code style and standards
 - **[Component Structure](guidelines/component-structure.md)** - How to structure components
+- **[Theming](guidelines/theming/index.md)** - Theming system and customization
 - **[Testing Strategy](guidelines/testing-strategy.md)** - Approach to testing
 
 ### Testing
