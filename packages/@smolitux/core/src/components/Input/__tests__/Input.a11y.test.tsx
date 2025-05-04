@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { InputA11y } from '../Input.a11y';
+import { Input } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
@@ -10,7 +10,7 @@ expect.extend(toHaveNoViolations);
 describe('Input Accessibility', () => {
   it('should have no accessibility violations', async () => {
     const { container } = render(
-      <InputA11y
+      <Input.A11y
         label="Email"
         placeholder="name@example.com"
         type="email"
@@ -24,7 +24,7 @@ describe('Input Accessibility', () => {
 
   it('should have proper ARIA attributes', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Email"
         placeholder="name@example.com"
         type="email"
@@ -44,7 +44,7 @@ describe('Input Accessibility', () => {
 
   it('should handle error states correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Email"
         placeholder="name@example.com"
         type="email"
@@ -64,7 +64,7 @@ describe('Input Accessibility', () => {
 
   it('should handle success states correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Email"
         placeholder="name@example.com"
         type="email"
@@ -83,7 +83,7 @@ describe('Input Accessibility', () => {
 
   it('should handle disabled state correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Email"
         placeholder="name@example.com"
         type="email"
@@ -98,7 +98,7 @@ describe('Input Accessibility', () => {
 
   it('should handle readonly state correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Email"
         placeholder="name@example.com"
         type="email"
@@ -114,7 +114,7 @@ describe('Input Accessibility', () => {
 
   it('should handle password toggle correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Passwort"
         type="password"
         showPasswordToggle
@@ -134,7 +134,7 @@ describe('Input Accessibility', () => {
   it('should handle clearable input correctly', () => {
     const handleClear = jest.fn();
     render(
-      <InputA11y
+      <Input.A11y
         label="Suche"
         type="search"
         isClearable
@@ -155,7 +155,7 @@ describe('Input Accessibility', () => {
 
   it('should handle counter correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Kommentar"
         showCounter
         maxLength={100}
@@ -172,7 +172,7 @@ describe('Input Accessibility', () => {
 
   it('should handle progress bar correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Fortschritt"
         showProgressBar
         progressValue={50}
@@ -188,7 +188,7 @@ describe('Input Accessibility', () => {
 
   it('should handle hidden label correctly', () => {
     render(
-      <InputA11y
+      <Input.A11y
         label="Verstecktes Label"
         hideLabel
       />
@@ -204,7 +204,7 @@ describe('Input Accessibility', () => {
   it('should handle keyboard interactions correctly', () => {
     const handleKeyDown = jest.fn();
     render(
-      <InputA11y
+      <Input.A11y
         label="Tastatur"
         onKeyDown={handleKeyDown}
       />
@@ -220,7 +220,7 @@ describe('Input Accessibility', () => {
     const handleFocus = jest.fn();
     const handleBlur = jest.fn();
     render(
-      <InputA11y
+      <Input.A11y
         label="Fokus"
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -239,7 +239,7 @@ describe('Input Accessibility', () => {
     const handleLeftIconClick = jest.fn();
     const handleRightIconClick = jest.fn();
     render(
-      <InputA11y
+      <Input.A11y
         label="Icons"
         leftIcon={<span>L</span>}
         rightIcon={<span>R</span>}

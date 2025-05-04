@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { ModalA11y } from '../Modal.a11y';
+import { Modal } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
 
-describe('ModalA11y', () => {
+describe('Modal.A11y', () => {
   // Setze NODE_ENV auf 'test' für die Tests
   const originalNodeEnv = process.env.NODE_ENV;
   
@@ -20,9 +20,9 @@ describe('ModalA11y', () => {
 
   test('renders with default props when open', () => {
     render(
-      <ModalA11y isOpen={true} onClose={jest.fn()} title="Test Modal">
+      <Modal.A11y isOpen={true} onClose={jest.fn()} title="Test Modal">
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     expect(screen.getByText('Test Modal')).toBeInTheDocument();
@@ -32,9 +32,9 @@ describe('ModalA11y', () => {
 
   test('does not render when closed', () => {
     const { container } = render(
-      <ModalA11y isOpen={false} onClose={jest.fn()} title="Test Modal">
+      <Modal.A11y isOpen={false} onClose={jest.fn()} title="Test Modal">
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     // Überprüfe, ob der Container leer ist oder der Modal nicht sichtbar ist
@@ -43,7 +43,7 @@ describe('ModalA11y', () => {
 
   test('has no accessibility violations', async () => {
     const { container } = render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Accessible Modal"
@@ -51,7 +51,7 @@ describe('ModalA11y', () => {
         description="This is a test modal dialog"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const results = await axe(container);
@@ -60,7 +60,7 @@ describe('ModalA11y', () => {
 
   test('has proper ARIA attributes', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Accessible Modal"
@@ -69,7 +69,7 @@ describe('ModalA11y', () => {
         id="test-modal"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const modal = screen.getByTestId('modal-content');
@@ -90,9 +90,9 @@ describe('ModalA11y', () => {
   test('handles close button click', () => {
     const handleClose = jest.fn();
     render(
-      <ModalA11y isOpen={true} onClose={handleClose} title="Test Modal">
+      <Modal.A11y isOpen={true} onClose={handleClose} title="Test Modal">
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const closeButton = screen.getByTestId('modal-close-button');
@@ -104,14 +104,14 @@ describe('ModalA11y', () => {
   test('handles overlay click', () => {
     const handleClose = jest.fn();
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={handleClose} 
         title="Test Modal"
         closeOnOverlayClick={true}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const overlay = screen.getByTestId('modal-overlay');
@@ -123,14 +123,14 @@ describe('ModalA11y', () => {
   test('does not close on overlay click when closeOnOverlayClick is false', () => {
     const handleClose = jest.fn();
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={handleClose} 
         title="Test Modal"
         closeOnOverlayClick={false}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const overlay = screen.getByTestId('modal-overlay');
@@ -142,14 +142,14 @@ describe('ModalA11y', () => {
   test('handles escape key press', () => {
     const handleClose = jest.fn();
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={handleClose} 
         title="Test Modal"
         closeOnEsc={true}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     fireEvent.keyDown(document, { key: 'Escape' });
@@ -160,14 +160,14 @@ describe('ModalA11y', () => {
   test('does not close on escape key press when closeOnEsc is false', () => {
     const handleClose = jest.fn();
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={handleClose} 
         title="Test Modal"
         closeOnEsc={false}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     fireEvent.keyDown(document, { key: 'Escape' });
@@ -180,7 +180,7 @@ describe('ModalA11y', () => {
     const handleCancel = jest.fn();
     
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Test Modal"
@@ -192,7 +192,7 @@ describe('ModalA11y', () => {
         onCancel={handleCancel}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const confirmButton = screen.getByTestId('modal-confirm-button');
@@ -212,28 +212,28 @@ describe('ModalA11y', () => {
 
   test('renders with different sizes', () => {
     const { rerender } = render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Small Modal"
         size="sm"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     let modal = screen.getByTestId('modal-content');
     expect(modal).toHaveClass('max-w-sm');
     
     rerender(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Large Modal"
         size="lg"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     modal = screen.getByTestId('modal-content');
@@ -242,14 +242,14 @@ describe('ModalA11y', () => {
 
   test('renders with different positions', () => {
     const { rerender } = render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Centered Modal"
         position="center"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     let overlay = screen.getByTestId('modal-overlay');
@@ -257,14 +257,14 @@ describe('ModalA11y', () => {
     expect(overlay).toHaveClass('justify-center');
     
     rerender(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Top Modal"
         position="top"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     overlay = screen.getByTestId('modal-overlay');
@@ -274,14 +274,14 @@ describe('ModalA11y', () => {
 
   test('renders with custom footer', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Modal with Custom Footer"
         footer={<button>Custom Footer Button</button>}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     expect(screen.getByText('Custom Footer Button')).toBeInTheDocument();
@@ -289,14 +289,14 @@ describe('ModalA11y', () => {
 
   test('renders as alert dialog when specified', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Alert Dialog"
         isAlertDialog={true}
       >
         <p>Alert content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const modal = screen.getByTestId('modal-content');
@@ -305,14 +305,14 @@ describe('ModalA11y', () => {
 
   test('handles busy state correctly', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Busy Modal"
         busy={true}
       >
         <p>Loading content...</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const modal = screen.getByTestId('modal-content');
@@ -321,7 +321,7 @@ describe('ModalA11y', () => {
 
   test('renders live region for announcements', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Announced Modal"
@@ -330,7 +330,7 @@ describe('ModalA11y', () => {
         liveRegionPoliteness="assertive"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     // Überprüfe, ob die Ankündigung im DOM vorhanden ist
@@ -340,7 +340,7 @@ describe('ModalA11y', () => {
 
   test('applies animation classes when animated', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Animated Modal"
@@ -348,7 +348,7 @@ describe('ModalA11y', () => {
         animation="fade"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const modal = screen.getByTestId('modal-content');
@@ -357,7 +357,7 @@ describe('ModalA11y', () => {
 
   test('does not apply animation classes when not animated', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Non-Animated Modal"
@@ -365,7 +365,7 @@ describe('ModalA11y', () => {
         animation="fade"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const modal = screen.getByTestId('modal-content');
@@ -374,7 +374,7 @@ describe('ModalA11y', () => {
 
   test('applies effect classes correctly', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Styled Modal"
@@ -387,7 +387,7 @@ describe('ModalA11y', () => {
         transition={true}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const modal = screen.getByTestId('modal-content');
@@ -402,14 +402,14 @@ describe('ModalA11y', () => {
 
   test('does not render header when showHeader is false', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Hidden Header Modal"
         showHeader={false}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     expect(screen.queryByText('Hidden Header Modal')).not.toBeInTheDocument();
@@ -417,14 +417,14 @@ describe('ModalA11y', () => {
 
   test('does not render footer when showFooter is false', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="No Footer Modal"
         showFooter={false}
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     // Überprüfe, ob kein Footer vorhanden ist
@@ -434,7 +434,7 @@ describe('ModalA11y', () => {
 
   test('applies custom class names', () => {
     render(
-      <ModalA11y 
+      <Modal.A11y 
         isOpen={true} 
         onClose={jest.fn()} 
         title="Custom Classes Modal"
@@ -445,7 +445,7 @@ describe('ModalA11y', () => {
         overlayClassName="custom-overlay"
       >
         <p>Modal content</p>
-      </ModalA11y>
+      </Modal.A11y>
     );
     
     const modal = screen.getByTestId('modal-content');

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { FormControlA11y } from '../FormControl.a11y';
+import { FormControl } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
@@ -9,9 +9,9 @@ expect.extend(toHaveNoViolations);
 describe('FormControl Accessibility', () => {
   it('should have no accessibility violations', async () => {
     const { container } = render(
-      <FormControlA11y label="Name" helperText="Bitte geben Sie Ihren vollständigen Namen ein">
+      <FormControl.A11y label="Name" helperText="Bitte geben Sie Ihren vollständigen Namen ein">
         <input type="text" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     const results = await axe(container);
@@ -20,13 +20,13 @@ describe('FormControl Accessibility', () => {
 
   it('should have proper ARIA attributes', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Email" 
         helperText="Ihre geschäftliche Email-Adresse"
         id="test-email"
       >
         <input type="email" id="test-email" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     const label = screen.getByText('Email');
@@ -43,13 +43,13 @@ describe('FormControl Accessibility', () => {
 
   it('should handle error states correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Email" 
         error="Ungültige Email-Adresse"
         id="test-email"
       >
         <input type="email" id="test-email" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     const errorMessage = screen.getByText('Ungültige Email-Adresse');
@@ -63,14 +63,14 @@ describe('FormControl Accessibility', () => {
 
   it('should handle success states correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Email" 
         successMessage="Email-Adresse ist verfügbar"
         isSuccess
         id="test-email"
       >
         <input type="email" id="test-email" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     const successMessage = screen.getByText('Email-Adresse ist verfügbar');
@@ -84,14 +84,14 @@ describe('FormControl Accessibility', () => {
 
   it('should handle required state correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Name" 
         required
         showRequiredIndicator
         id="test-name"
       >
         <input type="text" id="test-name" required />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     // Überprüfe, ob das Sternchen angezeigt wird
@@ -103,13 +103,13 @@ describe('FormControl Accessibility', () => {
 
   it('should handle tooltip correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Name" 
         tooltip="Bitte geben Sie Ihren vollständigen Namen ein"
         id="test-name"
       >
         <input type="text" id="test-name" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     // Überprüfe, ob der Tooltip vorhanden ist
@@ -120,13 +120,13 @@ describe('FormControl Accessibility', () => {
 
   it('should handle hidden label correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Name" 
         hideLabel
         id="test-name"
       >
         <input type="text" id="test-name" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     const label = screen.getByText('Name');
@@ -135,7 +135,7 @@ describe('FormControl Accessibility', () => {
 
   it('should handle counter correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Beschreibung" 
         showCounter
         counterValue={10}
@@ -143,7 +143,7 @@ describe('FormControl Accessibility', () => {
         id="test-description"
       >
         <textarea id="test-description"></textarea>
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     const counter = screen.getByText('10/100', { selector: 'span[aria-hidden="true"]' });
@@ -155,7 +155,7 @@ describe('FormControl Accessibility', () => {
 
   it('should handle progress bar correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Upload" 
         showProgressBar
         progressValue={50}
@@ -163,7 +163,7 @@ describe('FormControl Accessibility', () => {
         id="test-upload"
       >
         <input type="file" id="test-upload" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     const progressBar = screen.getByRole('progressbar');
@@ -177,14 +177,14 @@ describe('FormControl Accessibility', () => {
 
   it('should handle loading state correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Name" 
         isLoading
         showLoadingIndicator
         id="test-name"
       >
         <input type="text" id="test-name" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     // Überprüfe, ob der Ladeindikator angezeigt wird
@@ -196,13 +196,13 @@ describe('FormControl Accessibility', () => {
 
   it('should handle description correctly', () => {
     render(
-      <FormControlA11y 
+      <FormControl.A11y 
         label="Name" 
         description="Dieses Feld ist für Ihren vollständigen Namen vorgesehen"
         id="test-name"
       >
         <input type="text" id="test-name" />
-      </FormControlA11y>
+      </FormControl.A11y>
     );
     
     // Überprüfe, ob die Beschreibung vorhanden ist

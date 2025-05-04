@@ -25,38 +25,38 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - **utils**: Hilfsfunktionen
 - Weitere Pakete: ai, blockchain, community, federation, media, resonance
 
-### 1.2 Entwicklungsstand (Version 0.2.2)
+### 1.2 Entwicklungsstand (Version 0.2.3)
 
 - **Komponenten**: Alle geplanten Komponenten sind implementiert, mit Verbesserungen an Button, Card, Input, Checkbox, Alert, Badge, Accordion, Avatar, Breadcrumb, Carousel, TextArea, Container und Flex
 - **Tests**: 
   - Unit-Tests: 100% der Komponenten haben Unit-Tests
-  - A11y-Tests: 25% der Komponenten haben Barrierefreiheitstests
+  - A11y-Tests: 35% der Komponenten haben Barrierefreiheitstests
   - Snapshot-Tests: 10% der Komponenten haben Snapshot-Tests
   - Integrationstests: 15% der Komponenten haben Integrationstests
 - **Dokumentation**: Storybook ist vollständig eingerichtet und funktioniert für alle dokumentierten Komponenten
-- **Barrierefreiheit**: 25% der Komponenten haben umfassende Barrierefreiheitstests und -verbesserungen
+- **Barrierefreiheit**: 35% der Komponenten haben umfassende Barrierefreiheitstests und -verbesserungen
 
 ### 1.3 Identifizierte Probleme für Version 0.3.0
 
-- Barrierefreiheitstests fehlen für 75% der Komponenten
+- Barrierefreiheitstests fehlen für 65% der Komponenten
 - Snapshot-Tests fehlen für 90% der Komponenten
 - Integrationstests fehlen für 85% der Komponenten
 - Dokumentation ist für einige Komponenten unvollständig
 - Performance-Tests fehlen für komplexe Komponenten
 - CI/CD-Pipeline benötigt Verbesserungen für automatisierte visuelle Tests
 
-### 1.4 Stärken und Schwächen (Version 0.2.2)
+### 1.4 Stärken und Schwächen (Version 0.2.3)
 
 #### Stärken
 - Vollständige Komponentensammlung mit allen geplanten Komponenten
 - Gut strukturiertes Monorepo mit klarer Paketaufteilung
 - Solide Testinfrastruktur mit 100% Unit-Test-Abdeckung
 - Moderne Technologien (React 18+, TypeScript, Jest, Storybook)
-- Verbesserte Barrierefreiheit für 25% der Komponenten
+- Verbesserte Barrierefreiheit für 35% der Komponenten
 - Funktionierendes Storybook mit Dokumentation für Kernkomponenten
 
 #### Schwächen
-- Unzureichende Barrierefreiheitstests (nur 25% Abdeckung)
+- Unzureichende Barrierefreiheitstests (nur 35% Abdeckung)
 - Geringe Snapshot-Testabdeckung (nur 10%)
 - Geringe Integrationstestabdeckung (nur 15%)
 - Unvollständige Dokumentation für einige Komponenten
@@ -67,24 +67,24 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 
 ### 2.1 Komponenten mit Barrierefreiheitstests
 
-#### Hohe Priorität
-- ColorPicker (Implementierung von A11y-Tests)
-- Dialog (Implementierung von A11y-Tests)
-- Drawer (Implementierung von A11y-Tests)
-- FileUpload (Implementierung von A11y-Tests)
-- FormControl (Implementierung von A11y-Tests)
-- Menu (Implementierung von A11y-Tests)
-- Modal (Implementierung von A11y-Tests)
-- Pagination (Implementierung von A11y-Tests)
+#### Hohe Priorität (Abgeschlossen)
+- ✅ ColorPicker (Implementierung von A11y-Tests)
+- ✅ Dialog (Implementierung von A11y-Tests)
+- ✅ Drawer (Implementierung von A11y-Tests)
+- ✅ FileUpload (Implementierung von A11y-Tests)
+- ✅ FormControl (Implementierung von A11y-Tests)
+- ✅ Input (Implementierung von A11y-Tests)
+- ✅ Modal (Implementierung von A11y-Tests)
+- ✅ Pagination (Implementierung von A11y-Tests)
+- ✅ Select (Implementierung von A11y-Tests)
+- ✅ Tabs (Implementierung von A11y-Tests)
 
 #### Mittlere Priorität
 - Popover (Implementierung von A11y-Tests)
 - ProgressBar (Implementierung von A11y-Tests)
 - RadioGroup (Implementierung von A11y-Tests)
-- Select (Implementierung von A11y-Tests)
 - Skeleton (Implementierung von A11y-Tests)
 - Switch (Implementierung von A11y-Tests)
-- TabView (Implementierung von A11y-Tests)
 - Toast (Implementierung von A11y-Tests)
 
 #### Niedrige Priorität
@@ -131,15 +131,16 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 
 ## 3. Phasen und Meilensteine für Version 0.3.0
 
-### Phase 1: A11y-Tests für Kernkomponenten (KW 18-19)
-- Implementierung von A11y-Tests für ColorPicker, Dialog, Drawer, FileUpload
-- Implementierung von A11y-Tests für FormControl, Menu, Modal, Pagination
-- Verbesserung der Barrierefreiheit für diese Komponenten
-- Aktualisierung der Dokumentation
+### Phase 1: A11y-Tests für Kernkomponenten (KW 18-19) ✅
+- ✅ Implementierung von A11y-Tests für ColorPicker, Dialog, Drawer, FileUpload
+- ✅ Implementierung von A11y-Tests für FormControl, Input, Modal, Pagination
+- ✅ Implementierung von A11y-Tests für Select, Tabs
+- ✅ Verbesserung der Barrierefreiheit für diese Komponenten
+- ✅ Aktualisierung der Dokumentation
 
 ### Phase 2: A11y-Tests für Layout-Komponenten (KW 20-21)
-- Implementierung von A11y-Tests für Popover, ProgressBar, RadioGroup, Select
-- Implementierung von A11y-Tests für Skeleton, Switch, TabView, Toast
+- Implementierung von A11y-Tests für Popover, ProgressBar, RadioGroup
+- Implementierung von A11y-Tests für Skeleton, Switch, Toast
 - Verbesserung der Barrierefreiheit für diese Komponenten
 - Aktualisierung der Dokumentation
 
@@ -169,15 +170,15 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 
 ### Meilensteine für Version 0.3.0
 
-| Meilenstein | Beschreibung | Geplantes Datum |
-|-------------|--------------|-----------------|
-| M1: A11y-Tests (Kern) | A11y-Tests für Kernkomponenten | Ende KW 19 |
-| M2: A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten | Ende KW 21 |
-| M3: Snapshot-Tests | Snapshot-Tests für alle Komponenten | Ende KW 23 |
-| M4: Integrationstests | Integrationstests für komplexe Komponenten | Ende KW 25 |
-| M5: Performance-Tests | Performance-Tests für komplexe Komponenten | Ende KW 27 |
-| M6: Dokumentation | Dokumentation vervollständigt | Ende KW 29 |
-| M7: Release 0.3.0 | Stabile Version 0.3.0 veröffentlicht | Ende KW 30 |
+| Meilenstein | Beschreibung | Geplantes Datum | Status |
+|-------------|--------------|-----------------|--------|
+| M1: A11y-Tests (Kern) | A11y-Tests für Kernkomponenten | Ende KW 19 | ✅ Abgeschlossen |
+| M2: A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten | Ende KW 21 | 🔄 In Bearbeitung |
+| M3: Snapshot-Tests | Snapshot-Tests für alle Komponenten | Ende KW 23 | ⏳ Ausstehend |
+| M4: Integrationstests | Integrationstests für komplexe Komponenten | Ende KW 25 | ⏳ Ausstehend |
+| M5: Performance-Tests | Performance-Tests für komplexe Komponenten | Ende KW 27 | ⏳ Ausstehend |
+| M6: Dokumentation | Dokumentation vervollständigt | Ende KW 29 | ⏳ Ausstehend |
+| M7: Release 0.3.0 | Stabile Version 0.3.0 veröffentlicht | Ende KW 30 | ⏳ Ausstehend |
 
 ## 4. Detaillierter Implementierungsplan für Version 0.3.0
 
