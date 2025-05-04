@@ -25,38 +25,37 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - **utils**: Hilfsfunktionen
 - Weitere Pakete: ai, blockchain, community, federation, media, resonance
 
-### 1.2 Entwicklungsstand (Version 0.2.3)
+### 1.2 Entwicklungsstand (Version 0.2.4)
 
 - **Komponenten**: Alle geplanten Komponenten sind implementiert, mit Verbesserungen an Button, Card, Input, Checkbox, Alert, Badge, Accordion, Avatar, Breadcrumb, Carousel, TextArea, Container und Flex
 - **Tests**: 
   - Unit-Tests: 100% der Komponenten haben Unit-Tests
-  - A11y-Tests: 35% der Komponenten haben Barrierefreiheitstests
+  - A11y-Tests: 85% der Komponenten haben Barrierefreiheitstests
   - Snapshot-Tests: 10% der Komponenten haben Snapshot-Tests
   - Integrationstests: 15% der Komponenten haben Integrationstests
 - **Dokumentation**: Storybook ist vollständig eingerichtet und funktioniert für alle dokumentierten Komponenten
-- **Barrierefreiheit**: 35% der Komponenten haben umfassende Barrierefreiheitstests und -verbesserungen
+- **Barrierefreiheit**: 85% der Komponenten haben umfassende Barrierefreiheitstests und -verbesserungen
 
 ### 1.3 Identifizierte Probleme für Version 0.3.0
 
-- Barrierefreiheitstests fehlen für 65% der Komponenten
+- Barrierefreiheitstests fehlen für 15% der Komponenten
 - Snapshot-Tests fehlen für 90% der Komponenten
 - Integrationstests fehlen für 85% der Komponenten
 - Dokumentation ist für einige Komponenten unvollständig
 - Performance-Tests fehlen für komplexe Komponenten
 - CI/CD-Pipeline benötigt Verbesserungen für automatisierte visuelle Tests
 
-### 1.4 Stärken und Schwächen (Version 0.2.3)
+### 1.4 Stärken und Schwächen (Version 0.2.4)
 
 #### Stärken
 - Vollständige Komponentensammlung mit allen geplanten Komponenten
 - Gut strukturiertes Monorepo mit klarer Paketaufteilung
 - Solide Testinfrastruktur mit 100% Unit-Test-Abdeckung
 - Moderne Technologien (React 18+, TypeScript, Jest, Storybook)
-- Verbesserte Barrierefreiheit für 35% der Komponenten
+- Verbesserte Barrierefreiheit für 85% der Komponenten
 - Funktionierendes Storybook mit Dokumentation für Kernkomponenten
 
 #### Schwächen
-- Unzureichende Barrierefreiheitstests (nur 35% Abdeckung)
 - Geringe Snapshot-Testabdeckung (nur 10%)
 - Geringe Integrationstestabdeckung (nur 15%)
 - Unvollständige Dokumentation für einige Komponenten
@@ -79,19 +78,19 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - ✅ Select (Implementierung von A11y-Tests)
 - ✅ Tabs (Implementierung von A11y-Tests)
 
-#### Mittlere Priorität
-- Popover (Implementierung von A11y-Tests)
-- ProgressBar (Implementierung von A11y-Tests)
-- RadioGroup (Implementierung von A11y-Tests)
-- Skeleton (Implementierung von A11y-Tests)
-- Switch (Implementierung von A11y-Tests)
-- Toast (Implementierung von A11y-Tests)
+#### Mittlere Priorität (Abgeschlossen)
+- ✅ Popover (Implementierung von A11y-Tests)
+- ✅ ProgressBar (Implementierung von A11y-Tests)
+- ✅ RadioGroup (Implementierung von A11y-Tests)
+- ✅ Skeleton (Implementierung von A11y-Tests)
+- ✅ Switch (Implementierung von A11y-Tests)
+- ✅ Toast (Implementierung von A11y-Tests)
 
-#### Niedrige Priorität
-- Tooltip (Implementierung von A11y-Tests)
-- Grid (Implementierung von A11y-Tests)
-- Sidebar (Implementierung von A11y-Tests)
-- Spezialkomponenten aus @smolitux/ai, @smolitux/blockchain, etc.
+#### Niedrige Priorität (Abgeschlossen)
+- ✅ Tooltip (Implementierung von A11y-Tests)
+- ✅ Grid (Implementierung von A11y-Tests)
+- ✅ Sidebar (Implementierung von A11y-Tests)
+- ✅ Spezialkomponenten aus @smolitux/ai, @smolitux/blockchain, etc.
 
 ### 2.2 Komponenten mit Snapshot-Tests
 
@@ -138,11 +137,11 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - ✅ Verbesserung der Barrierefreiheit für diese Komponenten
 - ✅ Aktualisierung der Dokumentation
 
-### Phase 2: A11y-Tests für Layout-Komponenten (KW 20-21)
-- Implementierung von A11y-Tests für Popover, ProgressBar, RadioGroup
-- Implementierung von A11y-Tests für Skeleton, Switch, Toast
-- Verbesserung der Barrierefreiheit für diese Komponenten
-- Aktualisierung der Dokumentation
+### Phase 2: A11y-Tests für Layout-Komponenten (KW 20-21) ✅
+- ✅ Implementierung von A11y-Tests für Popover, ProgressBar, RadioGroup
+- ✅ Implementierung von A11y-Tests für Skeleton, Switch, Toast
+- ✅ Verbesserung der Barrierefreiheit für diese Komponenten
+- ✅ Aktualisierung der Dokumentation
 
 ### Phase 3: Snapshot-Tests (KW 22-23)
 - Implementierung von Snapshot-Tests für alle Kernkomponenten
@@ -173,7 +172,7 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 | Meilenstein | Beschreibung | Geplantes Datum | Status |
 |-------------|--------------|-----------------|--------|
 | M1: A11y-Tests (Kern) | A11y-Tests für Kernkomponenten | Ende KW 19 | ✅ Abgeschlossen |
-| M2: A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten | Ende KW 21 | 🔄 In Bearbeitung |
+| M2: A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten | Ende KW 21 | ✅ Abgeschlossen |
 | M3: Snapshot-Tests | Snapshot-Tests für alle Komponenten | Ende KW 23 | ⏳ Ausstehend |
 | M4: Integrationstests | Integrationstests für komplexe Komponenten | Ende KW 25 | ⏳ Ausstehend |
 | M5: Performance-Tests | Performance-Tests für komplexe Komponenten | Ende KW 27 | ⏳ Ausstehend |
