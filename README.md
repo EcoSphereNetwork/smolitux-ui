@@ -1,5 +1,7 @@
 # Smolitux UI Bibliothek
 
+e15d7ccd-6c61-4079-b8f4-ffa7d1814e69
+
 Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
 
 > **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](https://ecospherenetwork.github.io/smolitux-ui/). Informationen zur Barrierefreiheit finden Sie in der [Barrierefreiheits-Dokumentation](/docs/Wiki/accessibility/README.md).
