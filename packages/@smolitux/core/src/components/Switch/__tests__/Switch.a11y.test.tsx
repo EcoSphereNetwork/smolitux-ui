@@ -1,15 +1,29 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { SwitchA11y } from '../Switch.a11y';
+import { Switch } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
 
 describe('Switch Accessibility', () => {
-  it('should have no accessibility violations', async () => {
+  // Test für die Standard-Switch-Komponente
+  it('should have no accessibility violations with standard Switch', async () => {
     const { container } = render(
-      <SwitchA11y 
+      <Switch 
+        label="Benachrichtigungen aktivieren"
+        aria-label="Benachrichtigungen"
+      />
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  
+  // Test für die A11y-Version der Switch-Komponente
+  it('should have no accessibility violations with A11y Switch', async () => {
+    const { container } = render(
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         ariaLabel="Benachrichtigungen"
       />
@@ -21,7 +35,7 @@ describe('Switch Accessibility', () => {
 
   it('should have proper ARIA attributes', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         ariaLabel="Benachrichtigungen"
         description="Aktivieren Sie diese Option, um Benachrichtigungen zu erhalten"
@@ -43,7 +57,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle checked state correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         checked
         ariaLabel="Benachrichtigungen"
@@ -59,7 +73,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle custom state text correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         checked
         ariaLabel="Benachrichtigungen"
@@ -78,7 +92,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle error state correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         error="Bitte wählen Sie eine Option"
         ariaLabel="Benachrichtigungen"
@@ -96,7 +110,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle helper text correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         helperText="Sie können diese Einstellung jederzeit ändern"
         ariaLabel="Benachrichtigungen"
@@ -113,7 +127,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle disabled state correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         disabled
         ariaLabel="Benachrichtigungen"
@@ -131,7 +145,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle required state correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         required
         ariaLabel="Benachrichtigungen"
@@ -149,7 +163,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle different label positions correctly', () => {
     const { rerender } = render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         labelPosition="right"
         ariaLabel="Benachrichtigungen"
@@ -162,7 +176,7 @@ describe('Switch Accessibility', () => {
     expect(switchElement.compareDocumentPosition(label)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     
     rerender(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         labelPosition="left"
         ariaLabel="Benachrichtigungen"
@@ -177,7 +191,7 @@ describe('Switch Accessibility', () => {
     const handleChange = jest.fn();
     
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         onChange={handleChange}
         ariaLabel="Benachrichtigungen"
@@ -200,7 +214,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle different sizes correctly', () => {
     const { rerender } = render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         size="xs"
         ariaLabel="Benachrichtigungen"
@@ -212,7 +226,7 @@ describe('Switch Accessibility', () => {
     expect(switchContainer).toHaveClass('w-7');
     
     rerender(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         size="xl"
         ariaLabel="Benachrichtigungen"
@@ -226,7 +240,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle different color schemes correctly', () => {
     const { rerender } = render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         colorScheme="primary"
         checked
@@ -238,7 +252,7 @@ describe('Switch Accessibility', () => {
     expect(switchContainer).toHaveClass('bg-primary-600');
     
     rerender(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         colorScheme="success"
         checked
@@ -252,7 +266,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle icons correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         icons
         ariaLabel="Benachrichtigungen"
@@ -266,7 +280,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle labels correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         labels={{ on: 'AN', off: 'AUS' }}
         ariaLabel="Benachrichtigungen"
@@ -284,7 +298,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle auto focus correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         autoFocus
         ariaLabel="Benachrichtigungen"
@@ -297,7 +311,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle live region correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         liveRegionPoliteness="assertive"
         ariaLabel="Benachrichtigungen"
@@ -313,7 +327,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle busy state correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         busy
         ariaLabel="Benachrichtigungen"
@@ -326,7 +340,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle vertical layout correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         isVertical
         ariaLabel="Benachrichtigungen"
@@ -339,7 +353,7 @@ describe('Switch Accessibility', () => {
 
   it('should handle custom icons correctly', () => {
     render(
-      <SwitchA11y 
+      <Switch.A11y 
         label="Benachrichtigungen aktivieren"
         checkedIcon={<span data-testid="checked-icon">✓</span>}
         uncheckedIcon={<span data-testid="unchecked-icon">✕</span>}

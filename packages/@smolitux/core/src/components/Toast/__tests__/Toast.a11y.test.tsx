@@ -1,19 +1,61 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Toast } from '../Toast';
+import { Toast } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
 
 describe('Toast Accessibility', () => {
-  it('should have no accessibility violations in basic state', async () => {
+  // Test für die Standard-Toast-Komponente
+  it('should have no accessibility violations with standard Toast', async () => {
     const { container } = render(<Toast message="Test message" />);
     
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
+  
+  // Test für die A11y-Version der Toast-Komponente
+  it('should have no accessibility violations with A11y Toast', async () => {
+    const { container } = render(
+      <Toast.A11y 
+        id="test-toast"
+        title="Test Title"
+        description="Test message"
+      />
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
 
+  it('should have proper ARIA attributes in A11y Toast', () => {
+    render(
+      <Toast.A11y 
+        id="test-toast"
+        title="Test Title"
+        description="Test message"
+        ariaLabel="Test Toast"
+        role="alert"
+        ariaLive="polite"
+      />
+    );
+    
+    const toast = screen.getByRole('alert');
+    expect(toast).toHaveAttribute('id', 'test-toast');
+    expect(toast).toHaveAttribute('aria-label', 'Test Toast');
+    expect(toast).toHaveAttribute('aria-live', 'polite');
+    expect(toast).toHaveAttribute('aria-atomic', 'true');
+    
+    // Überprüfe die Titel- und Beschreibungselemente
+    const title = screen.getByText('Test Title');
+    const description = screen.getByText('Test message');
+    expect(title).toHaveAttribute('id', 'test-toast-title');
+    expect(description).toHaveAttribute('id', 'test-toast-description');
+    expect(toast).toHaveAttribute('aria-labelledby', 'test-toast-title');
+    expect(toast).toHaveAttribute('aria-describedby', 'test-toast-description');
+  });
+  
   it('should have no accessibility violations with title and actions', async () => {
     const { container } = render(
       <Toast 
@@ -27,6 +69,56 @@ describe('Toast Accessibility', () => {
     expect(results).toHaveNoViolations();
   });
 
+  it('should handle different toast types correctly in A11y Toast', () => {
+    const { rerender } = render(
+      <Toast.A11y 
+        id="test-toast"
+        type="info"
+        title="Info"
+        description="Info message"
+      />
+    );
+    
+    let toast = screen.getByRole('alert');
+    expect(toast).toHaveClass('toast-info');
+    
+    rerender(
+      <Toast.A11y 
+        id="test-toast"
+        type="success"
+        title="Success"
+        description="Success message"
+      />
+    );
+    
+    toast = screen.getByRole('alert');
+    expect(toast).toHaveClass('toast-success');
+    
+    rerender(
+      <Toast.A11y 
+        id="test-toast"
+        type="warning"
+        title="Warning"
+        description="Warning message"
+      />
+    );
+    
+    toast = screen.getByRole('alert');
+    expect(toast).toHaveClass('toast-warning');
+    
+    rerender(
+      <Toast.A11y 
+        id="test-toast"
+        type="error"
+        title="Error"
+        description="Error message"
+      />
+    );
+    
+    toast = screen.getByRole('alert');
+    expect(toast).toHaveClass('toast-error');
+  });
+  
   it('should have correct ARIA attributes for info toast', () => {
     render(<Toast type="info" message="Info message" />);
     
@@ -71,6 +163,28 @@ describe('Toast Accessibility', () => {
     expect(toast).toHaveAttribute('aria-describedby', message.id);
   });
 
+  it('should handle close button correctly in A11y Toast', () => {
+    const handleClose = jest.fn();
+    
+    render(
+      <Toast.A11y 
+        id="test-toast"
+        title="Test Title"
+        description="Test message"
+        onClose={handleClose}
+        isClosable={true}
+      />
+    );
+    
+    const closeButton = screen.getByRole('button', { name: 'Schließen' });
+    expect(closeButton).toBeInTheDocument();
+    expect(closeButton).toHaveAttribute('type', 'button');
+    
+    // Klicke auf den Schließen-Button
+    fireEvent.click(closeButton);
+    expect(handleClose).toHaveBeenCalled();
+  });
+  
   it('should have accessible close button', () => {
     render(<Toast message="Test message" showCloseButton />);
     
@@ -101,6 +215,30 @@ describe('Toast Accessibility', () => {
     expect(iconContainer).toHaveAttribute('aria-hidden', 'true');
   });
 
+  it('should support keyboard navigation in A11y Toast', () => {
+    render(
+      <Toast.A11y 
+        id="test-toast"
+        title="Test Title"
+        description="Test message"
+        isClosable={true}
+        keyboardNavigation={true}
+      />
+    );
+    
+    const toast = screen.getByRole('alert');
+    const closeButton = screen.getByRole('button', { name: 'Schließen' });
+    
+    // Simuliere Tastendruck (Escape)
+    fireEvent.keyDown(toast, { key: 'Escape' });
+    
+    // Der Toast sollte geschlossen werden (aber wir können das in diesem Test nicht überprüfen)
+    
+    // Fokussiere den Schließen-Button
+    closeButton.focus();
+    expect(document.activeElement).toBe(closeButton);
+  });
+  
   it('should support keyboard navigation to close button', () => {
     render(<Toast message="Test message" showCloseButton />);
     
@@ -136,6 +274,41 @@ describe('Toast Accessibility', () => {
     expect(document.activeElement).toBe(actionButton);
   });
 
+  it('should handle auto focus correctly in A11y Toast', () => {
+    render(
+      <Toast.A11y 
+        id="test-toast"
+        title="Test Title"
+        description="Test message"
+        autoFocus={true}
+      />
+    );
+    
+    const toast = screen.getByRole('alert');
+    expect(toast).toHaveAttribute('tabIndex', '0');
+    
+    // In einem echten Browser würde der Toast automatisch fokussiert werden,
+    // aber in JSDOM funktioniert das nicht automatisch
+  });
+  
+  it('should handle screen reader announcements correctly', () => {
+    render(
+      <Toast.A11y 
+        id="test-toast"
+        title="Test Title"
+        description="Test message"
+        announce={true}
+        screenReaderSupport={true}
+      />
+    );
+    
+    // Überprüfe, ob die Screenreader-Ankündigung vorhanden ist
+    const announcement = screen.getByText('Test Title: Test message');
+    expect(announcement).toHaveClass('sr-only');
+    expect(announcement).toHaveAttribute('aria-live');
+    expect(announcement).toHaveAttribute('aria-atomic', 'true');
+  });
+  
   it('should have proper focus management', () => {
     render(<Toast message="Test message" showCloseButton />);
     
