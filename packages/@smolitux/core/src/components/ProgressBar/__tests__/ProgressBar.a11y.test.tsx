@@ -2,15 +2,58 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { ProgressBarA11y } from '../ProgressBar.a11y';
+import { ProgressBar } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
 
 describe('ProgressBar Accessibility', () => {
-  it('should have no accessibility violations', async () => {
+  // Test für zusätzliche A11y-Funktionen
+  it('should support custom announcements', async () => {
+    render(
+      <ProgressBar.A11y 
+        value={75} 
+        ariaLabel="Ladefortschritt"
+        announceProgress={true}
+        announceFormat="Fortschritt: {value} von {max}"
+      />
+    );
+    
+    const liveRegion = screen.getByText('Fortschritt: 75 von 100');
+    expect(liveRegion).toHaveClass('sr-only');
+    expect(liveRegion).toHaveAttribute('aria-live', 'polite');
+  });
+  
+  it('should support custom ARIA roles and properties', async () => {
+    render(
+      <ProgressBar.A11y 
+        value={75} 
+        ariaLabel="Ladefortschritt"
+        ariaValuetext="75 von 100 Punkten"
+        role="meter"
+      />
+    );
+    
+    const progressbar = screen.getByRole('meter');
+    expect(progressbar).toHaveAttribute('aria-valuetext', '75 von 100 Punkten');
+  });
+  // Test für die Standard-ProgressBar-Komponente
+  it('should have no accessibility violations with standard ProgressBar', async () => {
     const { container } = render(
-      <ProgressBarA11y 
+      <ProgressBar 
+        value={50} 
+        aria-label="Ladefortschritt" 
+      />
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  
+  // Test für die A11y-Version der ProgressBar-Komponente
+  it('should have no accessibility violations with A11y ProgressBar', async () => {
+    const { container } = render(
+      <ProgressBar.A11y 
         value={50} 
         ariaLabel="Ladefortschritt" 
       />
@@ -22,7 +65,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should have proper ARIA attributes', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         min={0}
         max={100}
@@ -56,7 +99,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle indeterminate state correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={0} 
         indeterminate
         ariaLabel="Ladefortschritt"
@@ -75,7 +118,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle label correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         showLabel
         ariaLabel="Ladefortschritt"
@@ -90,7 +133,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle custom label format correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         max={200}
         showLabel
@@ -105,7 +148,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle custom text value format correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         textValueFormat="Fortschritt: {value} Prozent"
         ariaLabel="Ladefortschritt"
@@ -118,7 +161,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle live updates correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         liveUpdate={false}
         ariaLabel="Ladefortschritt"
@@ -131,7 +174,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle different sizes correctly', () => {
     const { rerender } = render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         size="xs"
         ariaLabel="Ladefortschritt"
@@ -142,7 +185,7 @@ describe('ProgressBar Accessibility', () => {
     expect(progressbar).toHaveClass('h-1');
     
     rerender(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         size="lg"
         ariaLabel="Ladefortschritt"
@@ -155,7 +198,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle different colors correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         color="success"
         ariaLabel="Ladefortschritt"
@@ -168,7 +211,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle different variants correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         variant="striped"
         ariaLabel="Ladefortschritt"
@@ -181,7 +224,7 @@ describe('ProgressBar Accessibility', () => {
 
   it('should handle inverted progress correctly', () => {
     render(
-      <ProgressBarA11y 
+      <ProgressBar.A11y 
         value={75} 
         inverted
         ariaLabel="Ladefortschritt"
