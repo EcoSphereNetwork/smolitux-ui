@@ -16,21 +16,21 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/core | Avatar | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/core | Breadcrumb | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/core | Carousel | ✅ | ✅ | ❌ | ❌ | Ready |
-| @smolitux/core | ColorPicker | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | Dialog | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | Drawer | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | FileUpload | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | FormControl | ✅ | ❌ | ❌ | ✅ | Needs A11y Tests |
-| @smolitux/core | Menu | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | Modal | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | Pagination | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/core | ColorPicker | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/core | Dialog | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/core | Drawer | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/core | FileUpload | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/core | FormControl | ✅ | ✅ | ❌ | ✅ | Ready |
+| @smolitux/core | Input | ✅ | ✅ | ✅ | ✅ | Ready |
+| @smolitux/core | Modal | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/core | Pagination | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/core | Popover | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | ProgressBar | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | RadioGroup | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | Select | ✅ | ❌ | ❌ | ✅ | Needs A11y Tests |
+| @smolitux/core | Select | ✅ | ✅ | ❌ | ✅ | Ready |
 | @smolitux/core | Skeleton | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Switch | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/core | TabView | ✅ | ❌ | ❌ | ✅ | Needs A11y Tests |
+| @smolitux/core | Tabs | ✅ | ✅ | ❌ | ✅ | Ready |
 | @smolitux/core | TextArea | ✅ | ✅ | ❌ | ✅ | Ready |
 | @smolitux/core | Toast | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Tooltip | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
@@ -98,14 +98,14 @@ This document provides a comprehensive test status report for all components in 
 
 ## Summary
 
-### Test Coverage by Type (Version 0.2.2)
+### Test Coverage by Type (Version 0.2.3)
 - **Unit Tests**: 100% of components have unit tests
-- **A11y Tests**: 25% of components have accessibility tests
+- **A11y Tests**: 35% of components have accessibility tests
 - **Snapshot Tests**: 10% of components have snapshot tests
 - **Integration Tests**: 15% of components have integration tests
 
-### Status by Package (Version 0.2.2)
-- **@smolitux/core**: 12 components ready, 17 need A11y tests
+### Status by Package (Version 0.2.3)
+- **@smolitux/core**: 20 components ready, 9 need A11y tests
 - **@smolitux/theme**: 1 component ready
 - **@smolitux/layout**: 2 components ready, 2 need A11y tests
 - **@smolitux/charts**: 7 components ready
@@ -117,15 +117,15 @@ This document provides a comprehensive test status report for all components in 
 - **@smolitux/resonance**: 16 components need A11y tests
 - **@smolitux/utils**: Ready
 
-### Verbesserungen seit Version 0.2.1
-- Erhöhung der A11y-Testabdeckung von 10% auf 25%
-- Verbesserung der Snapshot-Testabdeckung von 5% auf 10%
-- Verbesserung der Integrationstestabdeckung von 8% auf 15%
-- Implementierung von Unit-Tests für alle Komponenten (100%)
+### Verbesserungen seit Version 0.2.2
+- Erhöhung der A11y-Testabdeckung von 25% auf 35%
+- Implementierung von A11y-Tests für 10 weitere Kernkomponenten
+- Verbesserung der Barrierefreiheit für alle getesteten Komponenten
+- Aktualisierung der Dokumentation für alle getesteten Komponenten
 
 ## Recommendations for Version 0.3.0
 
-1. **Complete A11y Testing**: Erhöhen der A11y-Testabdeckung von 25% auf mindestens 75% aller Komponenten, mit Fokus auf die am häufigsten verwendeten Komponenten.
+1. **Complete A11y Testing**: Erhöhen der A11y-Testabdeckung von 35% auf mindestens 75% aller Komponenten, mit Fokus auf die am häufigsten verwendeten Komponenten.
 
 2. **Increase Snapshot Test Coverage**: Erhöhen der Snapshot-Testabdeckung von 10% auf mindestens 50%, um unbeabsichtigte visuelle Änderungen zu verhindern.
 
@@ -137,10 +137,11 @@ This document provides a comprehensive test status report for all components in 
 
 ## Next Steps
 
-1. Umsetzung des A11y-Testplans für alle verbleibenden Komponenten
+1. Umsetzung des A11y-Testplans für die verbleibenden Komponenten mit mittlerer Priorität
 2. Priorisierung der Komponenten basierend auf Nutzungshäufigkeit und Komplexität
-3. Verbesserung der automatisierten Tests in der CI/CD-Pipeline
-4. Erstellung eines Testabdeckungsberichts für jede Release
-5. Dokumentation von Teststandards und Best Practices für Mitwirkende
+3. Implementierung von Snapshot-Tests für die wichtigsten Komponenten
+4. Verbesserung der automatisierten Tests in der CI/CD-Pipeline
+5. Erstellung eines Testabdeckungsberichts für jede Release
+6. Dokumentation von Teststandards und Best Practices für Mitwirkende
 
 Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der Testabdeckung und dem Komponentenstatus zu verfolgen.

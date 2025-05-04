@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { SelectA11y } from '../Select.a11y';
+import { Select } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
@@ -16,7 +16,7 @@ const mockOptions = [
 describe('Select Accessibility', () => {
   it('should have no accessibility violations', async () => {
     const { container } = render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         ariaLabel="Optionsauswahl"
@@ -29,7 +29,7 @@ describe('Select Accessibility', () => {
 
   it('should have proper ARIA attributes', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         ariaLabel="Optionsauswahl"
@@ -56,7 +56,7 @@ describe('Select Accessibility', () => {
 
   it('should handle error state correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         error="Bitte wählen Sie eine Option"
@@ -76,7 +76,7 @@ describe('Select Accessibility', () => {
 
   it('should handle helper text correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         helperText="Wählen Sie die Option, die am besten zu Ihnen passt"
@@ -94,7 +94,7 @@ describe('Select Accessibility', () => {
 
   it('should handle required state correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         required
@@ -116,7 +116,7 @@ describe('Select Accessibility', () => {
 
   it('should handle disabled state correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         disabled
@@ -133,7 +133,7 @@ describe('Select Accessibility', () => {
 
   it('should handle readonly state correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         readOnly
@@ -150,7 +150,7 @@ describe('Select Accessibility', () => {
     const handleChange = jest.fn();
     
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         onChange={handleChange}
@@ -172,7 +172,7 @@ describe('Select Accessibility', () => {
     const handleChange = jest.fn();
     
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie Optionen"
         isMulti
@@ -192,7 +192,7 @@ describe('Select Accessibility', () => {
 
   it('should handle max selections correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie Optionen"
         isMulti
@@ -208,7 +208,7 @@ describe('Select Accessibility', () => {
 
   it('should handle option descriptions correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         ariaLabel="Optionsauswahl"
@@ -224,7 +224,7 @@ describe('Select Accessibility', () => {
     const handleKeyDown = jest.fn();
     
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         onKeyDown={handleKeyDown}
@@ -247,7 +247,7 @@ describe('Select Accessibility', () => {
     const handleBlur = jest.fn();
     
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         onFocus={handleFocus}
@@ -269,7 +269,7 @@ describe('Select Accessibility', () => {
 
   it('should handle different sizes correctly', () => {
     const { rerender } = render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         size="xs"
@@ -282,7 +282,7 @@ describe('Select Accessibility', () => {
     expect(select).toHaveClass('h-7');
     
     rerender(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         size="lg"
@@ -297,7 +297,7 @@ describe('Select Accessibility', () => {
 
   it('should handle different variants correctly', () => {
     const { rerender } = render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         variant="default"
@@ -310,7 +310,7 @@ describe('Select Accessibility', () => {
     expect(select).toHaveClass('border');
     
     rerender(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         variant="filled"
@@ -325,7 +325,7 @@ describe('Select Accessibility', () => {
 
   it('should handle left and right icons correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         leftIcon={<span data-testid="left-icon">L</span>}
@@ -347,7 +347,7 @@ describe('Select Accessibility', () => {
 
   it('should handle placeholder correctly', () => {
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={mockOptions}
         label="Wählen Sie eine Option"
         placeholder="Bitte auswählen"
@@ -370,7 +370,7 @@ describe('Select Accessibility', () => {
     ];
     
     render(
-      <SelectA11y 
+      <Select.A11y 
         options={groupedOptions}
         label="Wählen Sie eine Option"
         groupOptions

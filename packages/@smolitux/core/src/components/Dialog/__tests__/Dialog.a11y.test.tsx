@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Dialog } from '../Dialog';
+import { Dialog } from '../';
 
 expect.extend(toHaveNoViolations);
 
@@ -17,6 +17,137 @@ const a11y = {
 };
 
 describe('Dialog Accessibility', () => {
+  // Tests für die A11y-Version des Dialogs
+  describe('Dialog.A11y Component', () => {
+    beforeEach(() => {
+      // Mock IntersectionObserver
+      global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+      }));
+    });
+    
+    it('should render with accessible label and description', () => {
+      render(
+        <Dialog.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Dialog Title"
+          accessibleLabel="Accessible Dialog"
+          accessibleDescription="This is an accessible description"
+        >
+          <p>Dialog Content</p>
+        </Dialog.A11y>
+      );
+      
+      const dialog = screen.getByRole('dialog');
+      expect(dialog).toHaveAttribute('aria-label', 'Accessible Dialog');
+      
+      // Beschreibung sollte als verstecktes Element vorhanden sein
+      const description = screen.getByText('This is an accessible description');
+      expect(description).toHaveClass('sr-only');
+    });
+    
+    it('should support custom a11y texts', () => {
+      render(
+        <Dialog.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Dialog Title"
+          a11yTexts={{
+            closeButtonLabel: 'Custom Close',
+            confirmButtonLabel: 'Custom Confirm',
+            cancelButtonLabel: 'Custom Cancel'
+          }}
+        >
+          <p>Dialog Content</p>
+        </Dialog.A11y>
+      );
+      
+      // Buttons sollten die benutzerdefinierten Texte haben
+      const closeButton = screen.getByRole('button', { name: /Custom Close/i });
+      expect(closeButton).toBeInTheDocument();
+      
+      const confirmButton = screen.getByRole('button', { name: /Custom Confirm/i });
+      expect(confirmButton).toBeInTheDocument();
+      
+      const cancelButton = screen.getByRole('button', { name: /Custom Cancel/i });
+      expect(cancelButton).toBeInTheDocument();
+    });
+    
+    it('should support form dialog role', () => {
+      render(
+        <Dialog.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Form Dialog"
+          isFormDialog={true}
+        >
+          <form>
+            <input type="text" />
+          </form>
+        </Dialog.A11y>
+      );
+      
+      const dialog = screen.getByRole('form');
+      expect(dialog).toBeInTheDocument();
+    });
+    
+    it('should support search dialog role', () => {
+      render(
+        <Dialog.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Search Dialog"
+          isSearchDialog={true}
+        >
+          <input type="search" />
+        </Dialog.A11y>
+      );
+      
+      const dialog = screen.getByRole('search');
+      expect(dialog).toBeInTheDocument();
+    });
+    
+    it('should support aria-live attributes', () => {
+      render(
+        <Dialog.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Live Dialog"
+          live="polite"
+          atomic={true}
+          relevant="additions"
+        >
+          <p>Dialog Content</p>
+        </Dialog.A11y>
+      );
+      
+      const dialog = screen.getByTestId('a11y-dialog');
+      expect(dialog).toHaveAttribute('aria-live', 'polite');
+      expect(dialog).toHaveAttribute('aria-atomic', 'true');
+      expect(dialog).toHaveAttribute('aria-relevant', 'additions');
+    });
+    
+    it('should not have accessibility violations', async () => {
+      const { container } = render(
+        <Dialog.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Accessibility Test"
+          accessibleLabel="Accessible Dialog"
+          accessibleDescription="This dialog is fully accessible"
+        >
+          <p>Dialog Content</p>
+        </Dialog.A11y>
+      );
+      
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+  });
+  
   beforeEach(() => {
     // Mock IntersectionObserver
     global.IntersectionObserver = jest.fn().mockImplementation(() => ({

@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { PaginationA11y } from '../Pagination.a11y';
+import { Pagination } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
@@ -11,7 +11,7 @@ describe('Pagination Accessibility', () => {
   it('should have no accessibility violations', async () => {
     const handleChange = jest.fn();
     const { container } = render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={1}
         onChange={handleChange}
@@ -25,7 +25,7 @@ describe('Pagination Accessibility', () => {
   it('should have proper ARIA attributes', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={3}
         onChange={handleChange}
@@ -62,7 +62,7 @@ describe('Pagination Accessibility', () => {
   it('should handle keyboard navigation correctly', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={3}
         onChange={handleChange}
@@ -88,7 +88,7 @@ describe('Pagination Accessibility', () => {
   it('should handle disabled state correctly', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={1}
         onChange={handleChange}
@@ -113,7 +113,7 @@ describe('Pagination Accessibility', () => {
   it('should handle first/last page navigation correctly', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={5}
         onChange={handleChange}
@@ -137,7 +137,7 @@ describe('Pagination Accessibility', () => {
   it('should handle prev/next navigation correctly', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={5}
         onChange={handleChange}
@@ -161,7 +161,7 @@ describe('Pagination Accessibility', () => {
   it('should disable prev button on first page', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={1}
         onChange={handleChange}
@@ -185,7 +185,7 @@ describe('Pagination Accessibility', () => {
   it('should disable next button on last page', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={10}
         onChange={handleChange}
@@ -209,7 +209,7 @@ describe('Pagination Accessibility', () => {
   it('should handle ellipsis correctly', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={20}
         currentPage={10}
         onChange={handleChange}
@@ -229,7 +229,7 @@ describe('Pagination Accessibility', () => {
   it('should show page count when enabled', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={5}
         onChange={handleChange}
@@ -247,7 +247,7 @@ describe('Pagination Accessibility', () => {
   it('should use custom labels', () => {
     const handleChange = jest.fn();
     render(
-      <PaginationA11y
+      <Pagination.A11y
         pageCount={10}
         currentPage={5}
         onChange={handleChange}

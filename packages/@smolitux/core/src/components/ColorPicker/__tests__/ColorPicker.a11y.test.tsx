@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 // import { a11y } from '@smolitux/testing';
-import { ColorPicker } from '../ColorPicker';
+import { ColorPicker } from '../';
 
 // Mock für a11y, da es Probleme mit jest-axe gibt
 const a11y = {
@@ -10,6 +10,68 @@ const a11y = {
 };
 
 describe('ColorPicker Accessibility', () => {
+  // Tests für die A11y-Version des ColorPickers
+  describe('ColorPicker.A11y Component', () => {
+    it('should render with accessible label and description', () => {
+      render(
+        <ColorPicker.A11y
+          label="Wähle eine Farbe"
+          accessibleLabel="Farbauswahl für den Hintergrund"
+          accessibleDescription="Klicken Sie, um den Farbwähler zu öffnen"
+        />
+      );
+      
+      const button = screen.getByRole('button');
+      expect(button).toHaveAttribute('aria-label', 'Farbauswahl für den Hintergrund');
+      
+      // Beschreibung sollte als verstecktes Element vorhanden sein
+      const description = screen.getByText('Klicken Sie, um den Farbwähler zu öffnen');
+      expect(description).toHaveClass('sr-only');
+      expect(button.getAttribute('aria-describedby')).toContain(description.id);
+    });
+    
+    it('should support custom a11y texts', () => {
+      render(
+        <ColorPicker.A11y
+          label="Wähle eine Farbe"
+          a11yTexts={{
+            dialogTitle: 'Benutzerdefinierter Farbwähler',
+            colorInputLabel: 'Benutzerdefinierte Farbe',
+            closeButtonLabel: 'Benutzerdefiniertes Schließen'
+          }}
+        />
+      );
+      
+      const button = screen.getByRole('button');
+      fireEvent.click(button);
+      
+      // Dialog sollte den benutzerdefinierten Titel haben
+      const dialog = screen.getByRole('dialog');
+      expect(dialog).toHaveAttribute('aria-label', 'Benutzerdefinierter Farbwähler');
+      
+      // Schließen-Button sollte den benutzerdefinierten Text haben
+      const closeButton = screen.getByText('Benutzerdefiniertes Schließen');
+      expect(closeButton).toBeInTheDocument();
+    });
+    
+    it('should support aria-live attributes', () => {
+      render(
+        <ColorPicker.A11y
+          label="Wähle eine Farbe"
+          live="polite"
+          atomic={true}
+          relevant="additions"
+        />
+      );
+      
+      // Container sollte die ARIA-Live-Attribute haben
+      const container = screen.getByTestId('a11y-color-picker');
+      expect(container).toHaveAttribute('aria-live', 'polite');
+      expect(container).toHaveAttribute('aria-atomic', 'true');
+      expect(container).toHaveAttribute('aria-relevant', 'additions');
+    });
+  });
+  
   it('should not have accessibility violations in basic state', async () => {
     const { violations } = await a11y.testA11y(
       <ColorPicker label="Wähle eine Farbe" />

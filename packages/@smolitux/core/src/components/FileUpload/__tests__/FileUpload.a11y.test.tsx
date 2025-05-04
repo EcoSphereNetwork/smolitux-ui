@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 // import { a11y } from '@smolitux/testing';
-import { FileUpload } from '../FileUpload';
+import { FileUpload } from '../';
 
 // Mock für a11y, da es Probleme mit jest-axe gibt
 const a11y = {
@@ -28,6 +28,113 @@ jest.mock('../../FormControl/FormControl', () => ({
 }));
 
 describe('FileUpload Accessibility', () => {
+  // Tests für die A11y-Version der FileUpload-Komponente
+  describe('FileUpload.A11y Component', () => {
+    beforeEach(() => {
+      // Mock für URL.createObjectURL
+      global.URL.createObjectURL = jest.fn(() => 'mock-url');
+      global.URL.revokeObjectURL = jest.fn();
+    });
+    
+    it('should render with proper ARIA attributes', () => {
+      render(
+        <FileUpload.A11y
+          label="Upload Files"
+          accept="image/*,application/pdf"
+          multiple
+          maxSize={5 * 1024 * 1024}
+        />
+      );
+      
+      const dropzone = screen.getByTestId('file-upload-dropzone');
+      expect(dropzone).toHaveAttribute('aria-labelledby');
+      
+      // Sollte eine versteckte Beschreibung für Screenreader haben
+      const description = screen.getByText(/Maximale Dateigröße: 5MB/);
+      expect(description).toHaveClass('sr-only');
+      
+      // Dropzone sollte auf die Beschreibung verweisen
+      expect(dropzone.getAttribute('aria-describedby')).toContain(description.id);
+    });
+    
+    it('should announce file selection to screen readers', () => {
+      const { rerender } = render(
+        <FileUpload.A11y
+          label="Upload Files"
+          accept="image/*,application/pdf"
+        />
+      );
+      
+      // Simuliere Dateiauswahl
+      const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
+      const fileInfo = {
+        id: 'test-id',
+        name: 'test.txt',
+        type: 'text/plain',
+        size: 12,
+        file,
+        status: 'idle' as const
+      };
+      
+      rerender(
+        <FileUpload.A11y
+          label="Upload Files"
+          accept="image/*,application/pdf"
+          value={[fileInfo]}
+        />
+      );
+      
+      // Sollte ein Live-Region-Element für Ankündigungen haben
+      const liveRegion = screen.getByRole('status');
+      expect(liveRegion).toBeInTheDocument();
+    });
+    
+    it('should have accessible error state', () => {
+      render(
+        <FileUpload.A11y
+          label="Upload Files"
+          error="File too large"
+          accept="image/*,application/pdf"
+        />
+      );
+      
+      const error = screen.getByText('File too large');
+      expect(error).toHaveAttribute('role', 'alert');
+      
+      const dropzone = screen.getByTestId('file-upload-dropzone');
+      expect(dropzone).toHaveAttribute('aria-invalid', 'true');
+      expect(dropzone.getAttribute('aria-describedby')).toContain(error.id);
+    });
+    
+    it('should have accessible upload progress', () => {
+      const fileInfo = {
+        id: 'test-id',
+        name: 'test.txt',
+        type: 'text/plain',
+        size: 12,
+        file: new File(['test content'], 'test.txt', { type: 'text/plain' }),
+        status: 'uploading' as const,
+        progress: 50
+      };
+      
+      render(
+        <FileUpload.A11y
+          label="Upload Files"
+          accept="image/*,application/pdf"
+          value={[fileInfo]}
+          showProgress
+        />
+      );
+      
+      // Progress bar sollte ARIA-Attribute haben
+      const progressBar = screen.getByRole('progressbar');
+      expect(progressBar).toHaveAttribute('aria-valuenow', '50');
+      expect(progressBar).toHaveAttribute('aria-valuemin', '0');
+      expect(progressBar).toHaveAttribute('aria-valuemax', '100');
+      expect(progressBar).toHaveAttribute('aria-valuetext', '50%');
+    });
+  });
+  
   beforeEach(() => {
     // Mock für URL.createObjectURL
     global.URL.createObjectURL = jest.fn(() => 'mock-url');

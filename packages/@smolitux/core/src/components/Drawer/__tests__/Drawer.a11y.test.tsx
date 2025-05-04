@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 // import { a11y } from '@smolitux/testing';
-import { Drawer } from '../Drawer';
+import { Drawer } from '../';
 
 // Mock für a11y, da es Probleme mit jest-axe gibt
 const a11y = {
@@ -11,6 +11,142 @@ const a11y = {
 };
 
 describe('Drawer Accessibility', () => {
+  // Tests für die A11y-Version des Drawers
+  describe('Drawer.A11y Component', () => {
+    it('should render with accessible label and description', () => {
+      render(
+        <Drawer.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Drawer Title"
+          accessibleLabel="Accessible Drawer"
+          accessibleDescription="This is an accessible description"
+        >
+          <p>Drawer content</p>
+        </Drawer.A11y>
+      );
+      
+      const drawer = screen.getByRole('dialog');
+      expect(drawer).toHaveAttribute('aria-label', 'Accessible Drawer');
+      
+      // Beschreibung sollte als verstecktes Element vorhanden sein
+      const description = screen.getByText('This is an accessible description');
+      expect(description).toHaveClass('sr-only');
+    });
+    
+    it('should support custom a11y texts', () => {
+      render(
+        <Drawer.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Drawer Title"
+          a11yTexts={{
+            closeButtonLabel: 'Custom Close',
+            drawerTitleLabel: 'Custom Drawer Title',
+            overlayLabel: 'Custom Overlay'
+          }}
+        >
+          <p>Drawer content</p>
+        </Drawer.A11y>
+      );
+      
+      // Close button sollte den benutzerdefinierten Text haben
+      const closeButton = screen.getByLabelText('Custom Close');
+      expect(closeButton).toBeInTheDocument();
+    });
+    
+    it('should support navigation role', () => {
+      render(
+        <Drawer.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Navigation Drawer"
+          isNavigation={true}
+        >
+          <nav>
+            <ul>
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+            </ul>
+          </nav>
+        </Drawer.A11y>
+      );
+      
+      const drawer = screen.getByRole('navigation');
+      expect(drawer).toBeInTheDocument();
+    });
+    
+    it('should support complementary role', () => {
+      render(
+        <Drawer.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Complementary Drawer"
+          isComplementary={true}
+        >
+          <div>Complementary content</div>
+        </Drawer.A11y>
+      );
+      
+      const drawer = screen.getByRole('complementary');
+      expect(drawer).toBeInTheDocument();
+    });
+    
+    it('should support form role', () => {
+      render(
+        <Drawer.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Form Drawer"
+          isForm={true}
+        >
+          <form>
+            <input type="text" />
+          </form>
+        </Drawer.A11y>
+      );
+      
+      const drawer = screen.getByRole('form');
+      expect(drawer).toBeInTheDocument();
+    });
+    
+    it('should support search role', () => {
+      render(
+        <Drawer.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Search Drawer"
+          isSearch={true}
+        >
+          <input type="search" />
+        </Drawer.A11y>
+      );
+      
+      const drawer = screen.getByRole('search');
+      expect(drawer).toBeInTheDocument();
+    });
+    
+    it('should support aria-live attributes', () => {
+      render(
+        <Drawer.A11y
+          isOpen={true}
+          onClose={() => {}}
+          title="Live Drawer"
+          live="polite"
+          atomic={true}
+          relevant="additions"
+        >
+          <p>Drawer content</p>
+        </Drawer.A11y>
+      );
+      
+      const drawer = screen.getByTestId('a11y-drawer');
+      expect(drawer).toHaveAttribute('aria-live', 'polite');
+      expect(drawer).toHaveAttribute('aria-atomic', 'true');
+      expect(drawer).toHaveAttribute('aria-relevant', 'additions');
+    });
+  });
+  
   it('should not have accessibility violations in basic state', async () => {
     const { violations } = await a11y.testA11y(
       <Drawer isOpen={true} onClose={() => {}} title="Test Drawer">
