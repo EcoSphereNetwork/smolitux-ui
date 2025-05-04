@@ -2,15 +2,30 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { SkeletonA11y } from '../Skeleton.a11y';
+import { Skeleton } from '../';
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
 
 describe('Skeleton Accessibility', () => {
-  it('should have no accessibility violations', async () => {
+  // Test für die Standard-Skeleton-Komponente
+  it('should have no accessibility violations with standard Skeleton', async () => {
     const { container } = render(
-      <SkeletonA11y 
+      <Skeleton 
+        aria-label="Lädt Text" 
+        width={200}
+        height={20}
+      />
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  
+  // Test für die A11y-Version der Skeleton-Komponente
+  it('should have no accessibility violations with A11y Skeleton', async () => {
+    const { container } = render(
+      <Skeleton.A11y 
         ariaLabel="Lädt Text" 
         width={200}
         height={20}
@@ -23,7 +38,7 @@ describe('Skeleton Accessibility', () => {
 
   it('should have proper ARIA attributes', () => {
     render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         ariaLabel="Lädt Text"
         description="Bitte warten Sie, während der Text geladen wird"
         id="test-skeleton"
@@ -49,7 +64,7 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle different variants correctly', () => {
     const { rerender } = render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         variant="text"
         ariaLabel="Lädt Text"
       />
@@ -59,7 +74,7 @@ describe('Skeleton Accessibility', () => {
     expect(skeletonItem).toHaveClass('rounded');
     
     rerender(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         variant="circular"
         ariaLabel="Lädt Avatar"
       />
@@ -71,7 +86,7 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle different animations correctly', () => {
     const { rerender } = render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         animation="pulse"
         ariaLabel="Lädt Text"
       />
@@ -81,7 +96,7 @@ describe('Skeleton Accessibility', () => {
     expect(skeletonItem).toHaveClass('animate-pulse');
     
     rerender(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         animation="wave"
         ariaLabel="Lädt Text"
       />
@@ -91,7 +106,7 @@ describe('Skeleton Accessibility', () => {
     expect(skeletonItem).toHaveClass('animate-skeleton-wave');
     
     rerender(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         animation="none"
         ariaLabel="Lädt Text"
       />
@@ -104,7 +119,7 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle multiple items correctly', () => {
     render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         count={3}
         gap={10}
         ariaLabel="Lädt Liste"
@@ -121,12 +136,12 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle loaded state correctly', () => {
     const { rerender } = render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         isLoaded={false}
         ariaLabel="Lädt Text"
       >
         <p>Geladener Inhalt</p>
-      </SkeletonA11y>
+      </Skeleton.A11y>
     );
     
     // Im Ladezustand sollte der Skeleton angezeigt werden
@@ -135,12 +150,12 @@ describe('Skeleton Accessibility', () => {
     
     // Im geladenen Zustand sollte der Inhalt angezeigt werden
     rerender(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         isLoaded={true}
         ariaLabel="Lädt Text"
       >
         <p>Geladener Inhalt</p>
-      </SkeletonA11y>
+      </Skeleton.A11y>
     );
     
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
@@ -149,13 +164,13 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle hideWhenLoaded correctly', () => {
     const { rerender } = render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         isLoaded={true}
         hideWhenLoaded={false}
         ariaLabel="Lädt Text"
       >
         <p>Geladener Inhalt</p>
-      </SkeletonA11y>
+      </Skeleton.A11y>
     );
     
     // Wenn hideWhenLoaded=false, sollte der Inhalt angezeigt werden
@@ -163,7 +178,7 @@ describe('Skeleton Accessibility', () => {
     
     // Wenn hideWhenLoaded=true, sollte der Skeleton ausgeblendet werden
     rerender(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         isLoaded={true}
         hideWhenLoaded={true}
         ariaLabel="Lädt Text"
@@ -175,7 +190,7 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle different live region politeness correctly', () => {
     const { rerender } = render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         liveRegionPoliteness="assertive"
         ariaLabel="Lädt Text"
       />
@@ -185,7 +200,7 @@ describe('Skeleton Accessibility', () => {
     expect(skeleton).toHaveAttribute('aria-live', 'assertive');
     
     rerender(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         liveRegionPoliteness="off"
         ariaLabel="Lädt Text"
       />
@@ -197,7 +212,7 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle aria-relevant correctly', () => {
     render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         relevant="additions"
         ariaLabel="Lädt Text"
       />
@@ -209,7 +224,7 @@ describe('Skeleton Accessibility', () => {
 
   it('should handle non-busy state correctly', () => {
     render(
-      <SkeletonA11y 
+      <Skeleton.A11y 
         busy={false}
         ariaLabel="Lädt Text"
       />
