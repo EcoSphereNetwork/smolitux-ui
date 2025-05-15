@@ -1,23 +1,27 @@
-yangshun:
-  name: Yangshun Tay
-  title: Front End Engineer @ Facebook
-  url: https://github.com/yangshun
-  image_url: https://github.com/yangshun.png
-  page: true
-  socials:
-    x: yangshunz
-    github: yangshun
-
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
+sam:
+  name: Sam Schimmelpfennig
+  title: Founder & Technical Lead @ EcoSphereNetwork
+  url: https://www.ecospherenetwork.org
+  image_url: https://github.com/EcoSphereNetwork.png
   page:
     # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
+    permalink: '/all-sam-articles'
   socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    discord: https://discord.gg/raUqSAQPnz
+    reddit: https://www.reddit.com/user/EcoSphereNetwork/
+    blog: https://www.ecospherenetwork.org/blog/
+    x: https://x.com/ESN_Community
+    instagram: https://www.instagram.com/ecospherenetwork/
+
+johanna:
+  name: Johanna Gassmann
+  title: Co-Founder & Digital Strategy Lead @ EcoSphereNetwork
+  url: https://www.ecospherenetwork.org
+  image_url: https://github.com/EcoSphereNetwork.png
+  page: true
+  socials:
+    discord: https://discord.gg/raUqSAQPnz
+    reddit: https://www.reddit.com/user/EcoSphereNetwork/
+    blog: https://www.ecospherenetwork.org/blog/
+    x: https://x.com/ESN_Community
+    instagram: https://www.instagram.com/ecospherenetwork/
