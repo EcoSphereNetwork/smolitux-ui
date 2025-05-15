@@ -1,19 +1,30 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
-
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+ecospherenetwork:
+  label: EcoSphereNetwork
+  permalink: /ecospherenetwork
+  description: EcoSphereNetwork
 
 docusaurus:
   label: Docusaurus
   permalink: /docusaurus
   description: Docusaurus tag description
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+components:
+  label: Components
+  permalink: /components
+  description: Smolitux-UI Components
+
+smolitux-os:
+  label: Smoilitux-OS
+  permalink: /smolitux-os
+  description: Smolitux-OS 
+
+smolit-assistant:
+  label: Smolit
+  permalink: /smolit-assistant
+  description: Smolit - Your personal AI-Assistant
+
+resonance:
+  label: Resonance
+  permalink: /resonance
+  description: Resonance - real social Media
+
