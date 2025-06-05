@@ -15,6 +15,7 @@
      "pretty-format": "^29.7.0"
      ```
    - Anschließend alle Pakete neu installieren: `yarn install` oder `npm install`.
+   - Alternativ kann das neue Skript `scripts/setup-dev-env.sh` genutzt werden, das alle Node-Abhängigkeiten installiert und die Verfügbarkeit von `eslint`, `jest` und `prettier` prüft.
 
 3. **Node-Module-Probleme beheben**
 
@@ -60,5 +61,9 @@
    - Snapshot-Tests regelmäßig mit `npm run test:update-snapshots` aktualisieren.
    - Linting und Formatierung als pre-commit Hooks (z. B. mit `husky`/`lint-staged`) einrichten.
    - Größere HTML-Dateien oder generierte Testdaten als Fixtures ablegen und nicht in Testdateien einbetten.
+
+10. **Bekannte Fehlerquellen**
+    - In CI/CD-Umgebungen ohne Netzverbindung muss `scripts/setup-dev-env.sh` ausgeführt oder ein `node_modules`-Cache bereitgestellt werden.
+    - Prüfe nach jedem Neuaufsetzen der Umgebung die Verfügbarkeit von `eslint`, `jest` und `prettier`.
 
 Dieser Plan führt zu konsistenten Abhängigkeiten, repariert die fehlerhafte Testdatei und sorgt dafür, dass Formatierung, Linting und Tests wieder ohne Fehler laufen.
