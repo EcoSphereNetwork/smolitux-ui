@@ -193,7 +193,7 @@ Besuchen Sie dann http://localhost:6006
 
 ```bash
 # Alle Abhängigkeiten installieren
-npm run bootstrap
+yarn install
 
 # Entwicklungsmodus für alle Pakete starten
 npm run dev
