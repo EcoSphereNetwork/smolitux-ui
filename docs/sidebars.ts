@@ -122,18 +122,13 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Media',
           collapsed: true,
-          items: [
-            'components/media/carousel',
-            'components/media/mediaplayer',
-          ],
+          items: ['components/media/carousel', 'components/media/mediaplayer'],
         },
         {
           type: 'category',
           label: 'Charts',
           collapsed: true,
-          items: [
-            'components/charts/line-chart',
-          ],
+          items: ['components/charts/line-chart'],
         },
       ],
     },
@@ -181,10 +176,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Releases',
           collapsed: true,
-          items: [
-            'development/releases/v0.2.1',
-            'development/releases/v0.2.2',
-          ],
+          items: ['development/releases/v0.2.1', 'development/releases/v0.2.2'],
         },
         {
           type: 'category',
@@ -280,9 +272,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Presentation',
           collapsed: true,
-          items: [
-            'testing/presentation/testplan-implementation',
-          ],
+          items: ['testing/presentation/testplan-implementation'],
         },
         {
           type: 'category',
@@ -316,9 +306,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'API',
       collapsed: true,
-      items: [
-        'api/reference',
-      ],
+      items: ['api/reference'],
     },
     {
       type: 'category',
@@ -391,6 +379,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'improvement-plan/button-component',
         'improvement-plan/phase2-accessibility',
+        'improvement-plan/snapshot-linting-fix-plan',
       ],
     },
   ],
@@ -400,9 +389,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Tutorial Basics',
       collapsed: false,
-      items: [
-        'tutorial-basics/create-a-document',
-      ],
+      items: ['tutorial-basics/create-a-document'],
     },
   ],
 };
