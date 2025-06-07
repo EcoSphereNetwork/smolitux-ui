@@ -143,7 +143,6 @@ const sidebars: SidebarsConfig = {
         'guides/internationalization',
         'guides/migration-guide',
         'guides/mvp-development',
-        'guides/reorganize',
       ],
     },
     {
@@ -383,7 +382,7 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
-  tutorialSidebar: [
+  guideSidebar: [
     'intro',
     {
       type: 'category',

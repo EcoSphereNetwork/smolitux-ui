@@ -4,9 +4,9 @@ e15d7ccd-6c61-4079-b8f4-ffa7d1814e69
 
 Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
 
-> **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](https://ecospherenetwork.github.io/smolitux-ui/). Informationen zur Barrierefreiheit finden Sie in der [Barrierefreiheits-Dokumentation](/docs/Wiki/accessibility/README.md).
+> **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](https://ecospherenetwork.github.io/smolitux-ui/wiki/). Informationen zur Barrierefreiheit finden Sie in der [Barrierefreiheits-Dokumentation](/docs/wiki/accessibility/README.md). Weitere Hinweise zur Pflege und Struktur der Doku gibt es im [Guide](https://ecospherenetwork.github.io/smolitux-ui/guide/).
 
-## 📦 Packages 
+## 📦 Packages
 
 - **@smolitux/core**: Grundlegende UI-Komponenten
 - **@smolitux/theme**: Theming und Styling
@@ -33,11 +33,7 @@ Zuerst müssen Sie den ThemeProvider in Ihrer App einrichten:
 import { ThemeProvider } from '@smolitux/theme';
 
 function App() {
-  return (
-    <ThemeProvider>
-      {/* Ihre App-Komponenten hier */}
-    </ThemeProvider>
-  );
+  return <ThemeProvider>{/* Ihre App-Komponenten hier */}</ThemeProvider>;
 }
 ```
 
@@ -71,18 +67,18 @@ import { Input, Select } from '@smolitux/core';
 function MyForm() {
   return (
     <form>
-      <Input 
+      <Input
         label="E-Mail"
         type="email"
         placeholder="beispiel@domain.de"
         helperText="Wir werden Ihre E-Mail niemals weitergeben."
       />
-      
+
       <Select
         label="Kategorie"
         options={[
           { value: 'option1', label: 'Option 1' },
-          { value: 'option2', label: 'Option 2' }
+          { value: 'option2', label: 'Option 2' },
         ]}
       />
     </form>
@@ -99,7 +95,7 @@ import { useTheme } from '@smolitux/theme';
 
 function ThemeSwitcher() {
   const { themeMode, toggleTheme } = useTheme();
-  
+
   return (
     <button onClick={toggleTheme}>
       {themeMode === 'light' ? 'Zu Dark Mode wechseln' : 'Zu Light Mode wechseln'}
@@ -159,11 +155,7 @@ const customTheme = {
 };
 
 function App() {
-  return (
-    <ThemeProvider theme={customTheme}>
-      {/* Ihre App-Komponenten hier */}
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={customTheme}>{/* Ihre App-Komponenten hier */}</ThemeProvider>;
 }
 ```
 
