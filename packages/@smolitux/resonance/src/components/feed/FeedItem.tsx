@@ -3,6 +3,14 @@ import { Card } from '@smolitux/core';
 import { Box, Flex, Text } from '../primitives';
 import { MediaPlayer } from '@smolitux/core';
 
+// theme integration with fallback
+let useTheme: () => { themeMode: string };
+try {
+  useTheme = require('@smolitux/theme').useTheme;
+} catch {
+  useTheme = () => ({ themeMode: 'light' });
+}
+
 export interface FeedItemData {
   /** Eindeutige ID */
   id: string;
@@ -89,6 +97,10 @@ export const FeedItem: React.FC<FeedItemProps> = ({
     if (onShare) onShare(item.id);
   };
 
+  const { themeMode } = useTheme();
+  const textMuted = themeMode === 'dark' ? '#d1d5db' : '#6b7280';
+  const accent = '#3b82f6';
+
   const handleClick = () => {
     if (onClick) onClick(item.id);
   };
@@ -169,11 +181,7 @@ export const FeedItem: React.FC<FeedItemProps> = ({
           alignItems: 'center',
         }}
       >
-        <Text 
-          size="sm" 
-          color="#3b82f6"
-          style={{ fontWeight: 500 }}
-        >
+        <Text size="sm" style={{ fontWeight: 500, color: accent }}>
           {`${item.monetization.earnings} ${item.monetization.currency}`} earned
         </Text>
       </Box>
@@ -211,7 +219,7 @@ export const FeedItem: React.FC<FeedItemProps> = ({
           </Box>
           <Box>
             <Text weight="bold">{item.author.name}</Text>
-            <Text size="sm" color="#6b7280">{formatDate(item.createdAt)}</Text>
+            <Text size="sm" style={{ color: textMuted }}>{formatDate(item.createdAt)}</Text>
           </Box>
         </Flex>
 
@@ -239,9 +247,9 @@ export const FeedItem: React.FC<FeedItemProps> = ({
           <Flex>
             <Flex 
               align="center" 
-              style={{ 
+              style={{
                 marginRight: '16px',
-                color: item.isLiked ? '#3b82f6' : 'inherit',
+                color: item.isLiked ? accent : 'inherit',
                 fontWeight: item.isLiked ? 500 : 400,
               }}
               onClick={handleLike}
@@ -256,11 +264,11 @@ export const FeedItem: React.FC<FeedItemProps> = ({
               >
                 <path 
                   d="M14 10h3l-4 8v-6h-3l4-8v6z" 
-                  stroke={item.isLiked ? "#3b82f6" : "currentColor"} 
+                  stroke={item.isLiked ? accent : "currentColor"}
                   strokeWidth="2" 
                   strokeLinecap="round" 
                   strokeLinejoin="round"
-                  fill={item.isLiked ? "#3b82f6" : "none"}
+                  fill={item.isLiked ? accent : "none"}
                 />
               </svg>
               <Text size="sm">{item.stats.likes}</Text>
@@ -290,8 +298,8 @@ export const FeedItem: React.FC<FeedItemProps> = ({
             </Flex>
             <Flex 
               align="center" 
-              style={{ 
-                color: item.isShared ? '#3b82f6' : 'inherit',
+              style={{
+                color: item.isShared ? accent : 'inherit',
                 fontWeight: item.isShared ? 500 : 400,
               }}
               onClick={handleShare}
@@ -306,7 +314,7 @@ export const FeedItem: React.FC<FeedItemProps> = ({
               >
                 <path 
                   d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13" 
-                  stroke={item.isShared ? "#3b82f6" : "currentColor"} 
+                  stroke={item.isShared ? accent : "currentColor"}
                   strokeWidth="2" 
                   strokeLinecap="round" 
                   strokeLinejoin="round"
