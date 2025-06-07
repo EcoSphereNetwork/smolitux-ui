@@ -10,6 +10,7 @@ This repository hosts the **Smolitux UI** component library. Packages live under
   `layout`, `charts`, `ai`, `blockchain`, `community`, `media`, `resonance`,
   `testing`, `utils`)
 - `docs/` – Docusaurus documentation site
+- `docs/wiki/development/` - smolitux-ui development documentation
 - `scripts/` – helper scripts such as `setup-dev-env.sh`
 - `test-app/` – simple demo application
 
@@ -33,6 +34,8 @@ This repository hosts the **Smolitux UI** component library. Packages live under
 
 - The Docusaurus site resides in `docs/`. Use `npm start` inside that directory
   to preview docs and `npm run build` to generate the static site.
+
+- The smloitux-ui 
 
 ## Commits and Pull Requests
 
