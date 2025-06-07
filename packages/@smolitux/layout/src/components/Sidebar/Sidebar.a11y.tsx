@@ -1,6 +1,7 @@
 // packages/@smolitux/layout/src/components/Sidebar/Sidebar.a11y.tsx
 import React, { useState, useEffect, forwardRef } from 'react';
 import { useTheme } from '@smolitux/theme';
+import { breakpoints } from '@smolitux/utils/styling';
 import { SidebarProps, SidebarItem } from './Sidebar';
 
 export interface SidebarA11yProps extends SidebarProps {
@@ -538,6 +539,8 @@ export const SidebarA11y = forwardRef<HTMLDivElement, SidebarA11yProps>(({
   isBusy = false,
   isFocusable = false,
   tabIndex,
+  responsive = false,
+  collapseBreakpoint = 'md',
   hasOrientation = false,
   orientation = 'vertical',
   isMultiselectable = false,
@@ -616,6 +619,20 @@ export const SidebarA11y = forwardRef<HTMLDivElement, SidebarA11yProps>(({
   useEffect(() => {
     setIsCollapsed(collapsed);
   }, [collapsed]);
+
+  useEffect(() => {
+    if (!responsive) return;
+    const bp = typeof collapseBreakpoint === 'number'
+      ? collapseBreakpoint
+      : parseInt(breakpoints[collapseBreakpoint], 10);
+    const check = () => {
+      const shouldCollapse = window.innerWidth < bp;
+      setIsCollapsed(shouldCollapse ? true : collapsed);
+    };
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, [responsive, collapseBreakpoint, collapsed]);
   
   // Behandle das Umschalten des Collapse-Status
   const handleToggleCollapse = () => {

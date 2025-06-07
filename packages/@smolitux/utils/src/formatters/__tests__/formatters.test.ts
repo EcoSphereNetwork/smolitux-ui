@@ -8,8 +8,8 @@ import {
   formatFileSize,
   formatPercentage,
   truncateText,
-  formatAddress
-} from './formatters';
+  formatAddress,
+} from '..';
 
 describe('formatters', () => {
   describe('formatNumber', () => {
@@ -85,8 +85,12 @@ describe('formatters', () => {
 
     it('formats date with custom locale', () => {
       const date = new Date('2023-06-15');
-      expect(formatDate(date, { locale: 'de-DE', format: 'MMMM d, yyyy' })).toMatch(/Juni 15, 2023/);
-      expect(formatDate(date, { locale: 'fr-FR', format: 'MMMM d, yyyy' })).toMatch(/juin 15, 2023/);
+      expect(formatDate(date, { locale: 'de-DE', format: 'MMMM d, yyyy' })).toMatch(
+        /Juni 15, 2023/
+      );
+      expect(formatDate(date, { locale: 'fr-FR', format: 'MMMM d, yyyy' })).toMatch(
+        /juin 15, 2023/
+      );
     });
 
     it('handles edge cases', () => {
@@ -133,7 +137,9 @@ describe('formatters', () => {
 
     it('formats date and time with custom locale', () => {
       const date = new Date('2023-06-15T14:30:45');
-      expect(formatDateTime(date, { locale: 'de-DE', format: 'dd.MM.yyyy, HH:mm' })).toBe('15.06.2023, 14:30');
+      expect(formatDateTime(date, { locale: 'de-DE', format: 'dd.MM.yyyy, HH:mm' })).toBe(
+        '15.06.2023, 14:30'
+      );
     });
 
     it('handles edge cases', () => {
@@ -222,11 +228,15 @@ describe('formatters', () => {
 
   describe('truncateText', () => {
     it('truncates text with default options', () => {
-      expect(truncateText('This is a long text that should be truncated', 20)).toBe('This is a long text...');
+      expect(truncateText('This is a long text that should be truncated', 20)).toBe(
+        'This is a long text...'
+      );
     });
 
     it('truncates text with custom suffix', () => {
-      expect(truncateText('This is a long text that should be truncated', 20, { suffix: ' [more]' })).toBe('This is a long text [more]');
+      expect(
+        truncateText('This is a long text that should be truncated', 20, { suffix: ' [more]' })
+      ).toBe('This is a long text [more]');
     });
 
     it('does not truncate text shorter than maxLength', () => {
@@ -246,15 +256,21 @@ describe('formatters', () => {
     });
 
     it('formats blockchain address with custom prefix length', () => {
-      expect(formatAddress('0x1234567890123456789012345678901234567890', { prefixLength: 6 })).toBe('0x12345...7890');
+      expect(formatAddress('0x1234567890123456789012345678901234567890', { prefixLength: 6 })).toBe(
+        '0x12345...7890'
+      );
     });
 
     it('formats blockchain address with custom suffix length', () => {
-      expect(formatAddress('0x1234567890123456789012345678901234567890', { suffixLength: 6 })).toBe('0x1234...567890');
+      expect(formatAddress('0x1234567890123456789012345678901234567890', { suffixLength: 6 })).toBe(
+        '0x1234...567890'
+      );
     });
 
     it('formats blockchain address with custom separator', () => {
-      expect(formatAddress('0x1234567890123456789012345678901234567890', { separator: '___' })).toBe('0x1234___7890');
+      expect(
+        formatAddress('0x1234567890123456789012345678901234567890', { separator: '___' })
+      ).toBe('0x1234___7890');
     });
 
     it('handles edge cases', () => {
