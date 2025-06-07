@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Setup Smolitux UI development environment
 
 # Clean proxy-related npm env vars to avoid warnings
 unset npm_config_http_proxy npm_config_https_proxy
