@@ -3,3 +3,4 @@ export { withVoiceControl } from './withVoiceControl';
 export type { VoiceControlProps } from './withVoiceControl';
 export { VoiceControlManager } from './VoiceControlManager';
 export type { EngineType } from './VoiceControlManager';
+export type { TensorFlowRecognitionOptions } from './engines/TensorFlowRecognitionEngine';

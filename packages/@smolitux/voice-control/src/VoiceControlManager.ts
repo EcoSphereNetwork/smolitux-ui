@@ -1,6 +1,9 @@
 import { RecognitionEngine } from './engines/RecognitionEngine';
 import { WebSpeechRecognitionEngine } from './engines/WebSpeechRecognitionEngine';
-import { TensorFlowRecognitionEngine } from './engines/TensorFlowRecognitionEngine';
+import {
+  TensorFlowRecognitionEngine,
+  TensorFlowRecognitionOptions,
+} from './engines/TensorFlowRecognitionEngine';
 import { CommandProcessor } from './CommandProcessor';
 import { FeedbackManager } from './FeedbackManager';
 
@@ -16,10 +19,14 @@ export class VoiceControlManager {
   public onCommandRecognized: (command: string, target: string) => void = () => {};
   public onListeningStateChanged: (isListening: boolean) => void = () => {};
 
-  constructor(engineType: EngineType = 'webSpeech', language = 'de-DE') {
+  constructor(
+    engineType: EngineType = 'webSpeech',
+    language = 'de-DE',
+    tensorFlowOptions?: TensorFlowRecognitionOptions
+  ) {
     switch (engineType) {
       case 'tensorFlow':
-        this.recognitionEngine = new TensorFlowRecognitionEngine();
+        this.recognitionEngine = new TensorFlowRecognitionEngine(tensorFlowOptions);
         break;
       case 'external':
         this.recognitionEngine = new WebSpeechRecognitionEngine(language);
@@ -39,7 +46,10 @@ export class VoiceControlManager {
   private setupEventListeners() {
     this.recognitionEngine.onResult = (text) => {
       this.onRecognitionResult(text);
-      const { command, targetId } = this.commandProcessor.processCommand(text, this.registeredComponents);
+      const { command, targetId } = this.commandProcessor.processCommand(
+        text,
+        this.registeredComponents
+      );
       if (command && targetId) {
         this.onCommandRecognized(command, targetId);
         this.feedbackManager.provideFeedback('command', command);

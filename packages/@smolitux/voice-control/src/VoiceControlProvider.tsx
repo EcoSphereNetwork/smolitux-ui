@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { VoiceControlManager, EngineType } from './VoiceControlManager';
+import type { TensorFlowRecognitionOptions } from './engines/TensorFlowRecognitionEngine';
 
 interface VoiceControlContextType {
   isListening: boolean;
@@ -16,6 +17,7 @@ interface VoiceControlProviderProps {
   children: ReactNode;
   engineType?: EngineType;
   language?: string;
+  tensorFlowOptions?: TensorFlowRecognitionOptions;
   debug?: boolean;
 }
 
@@ -25,9 +27,12 @@ export const VoiceControlProvider: React.FC<VoiceControlProviderProps> = ({
   children,
   engineType = 'webSpeech',
   language = 'de-DE',
+  tensorFlowOptions,
   debug = false,
 }) => {
-  const [manager] = useState(() => new VoiceControlManager(engineType, language));
+  const [manager] = useState(
+    () => new VoiceControlManager(engineType, language, tensorFlowOptions)
+  );
   const [isListening, setIsListening] = useState(false);
   const [recognizedText, setRecognizedText] = useState('');
   const [lastCommand, setLastCommand] = useState('');
@@ -57,7 +62,8 @@ export const VoiceControlProvider: React.FC<VoiceControlProviderProps> = ({
 
   const startListening = () => manager.startListening();
   const stopListening = () => manager.stopListening();
-  const registerComponent = (id: string, commands: string[]) => manager.registerComponent(id, commands);
+  const registerComponent = (id: string, commands: string[]) =>
+    manager.registerComponent(id, commands);
   const unregisterComponent = (id: string) => manager.unregisterComponent(id);
 
   return (
