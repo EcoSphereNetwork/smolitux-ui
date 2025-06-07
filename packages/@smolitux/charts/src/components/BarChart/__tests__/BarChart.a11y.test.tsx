@@ -8,7 +8,10 @@ expect.extend(toHaveNoViolations);
 
 // Mock for useTheme hook
 jest.mock('@smolitux/theme', () => ({
-  useTheme: () => ({ themeMode: 'light' })
+  useTheme: () => ({
+    themeMode: 'light',
+    colors: require('@smolitux/theme').defaultTheme.colors,
+  }),
 }));
 
 describe('BarChart Accessibility', () => {
@@ -20,43 +23,31 @@ describe('BarChart Accessibility', () => {
       { label: 'Q2', value: 230 },
       { label: 'Q3', value: 180 },
       { label: 'Q4', value: 275 },
-    ]
+    ],
   };
 
   test('should not have accessibility violations', async () => {
     const { container } = render(
-      <BarChart 
-        data={mockData}
-        title="Quarterly Sales"
-        aria-label="Chart: Quarterly Sales"
-      />
+      <BarChart data={mockData} title="Quarterly Sales" aria-label="Chart: Quarterly Sales" />
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   test('should have appropriate ARIA attributes', () => {
     const { container } = render(
-      <BarChart 
-        data={mockData}
-        title="Quarterly Sales"
-        aria-label="Chart: Quarterly Sales"
-      />
+      <BarChart data={mockData} title="Quarterly Sales" aria-label="Chart: Quarterly Sales" />
     );
-    
+
     const svg = container.querySelector('svg');
     expect(svg).toHaveAttribute('aria-label', 'Chart: Quarterly Sales');
+    expect(svg).toHaveAttribute('role', 'img');
   });
 
   test('should include descriptive title', () => {
-    const { container } = render(
-      <BarChart 
-        data={mockData}
-        title="Quarterly Sales"
-      />
-    );
-    
+    const { container } = render(<BarChart data={mockData} title="Quarterly Sales" />);
+
     const titleElement = container.querySelector('text.chart-title');
     expect(titleElement).toBeInTheDocument();
     expect(titleElement).toHaveTextContent('Quarterly Sales');
@@ -64,15 +55,12 @@ describe('BarChart Accessibility', () => {
 
   test('should include axis labels for better understanding', () => {
     const { container } = render(
-      <BarChart 
-        data={mockData}
-        axisLabels={{ x: 'Quarters', y: 'Revenue ($)' }}
-      />
+      <BarChart data={mockData} axisLabels={{ x: 'Quarters', y: 'Revenue ($)' }} />
     );
-    
+
     const xAxisLabel = container.querySelector('.x-axis-label');
     const yAxisLabel = container.querySelector('.y-axis-label');
-    
+
     expect(xAxisLabel).toBeInTheDocument();
     expect(xAxisLabel).toHaveTextContent('Quarters');
     expect(yAxisLabel).toBeInTheDocument();
