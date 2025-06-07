@@ -474,6 +474,24 @@ Die Sprachsteuerung verbessert die Barrierefreiheit durch:
 - Akustisches Feedback für Benutzerinteraktionen
 - Visuelle Indikatoren für den Spracherkennungsstatus
 
+### Theme-Integration
+
+Das visuelle Feedback der Sprachsteuerung kann über das Smolitux-Theme
+angepasst werden. Der `voice-feedback` Container nutzt standardmäßig die
+Primär- und Graupaletten des aktiven Themes. Entwickelnde können die Farben
+einfach überschreiben:
+
+```css
+#voice-feedback.listening {
+  background-color: var(--color-primary-500);
+}
+
+#voice-feedback {
+  background-color: var(--color-gray-500);
+  color: var(--color-white);
+}
+```
+
 ## Leistungsoptimierung
 
 ### Lazy Loading
