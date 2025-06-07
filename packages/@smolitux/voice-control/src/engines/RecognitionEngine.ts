@@ -4,4 +4,5 @@ export interface RecognitionEngine {
   start(): void;
   stop(): void;
   cleanup(): void;
+  isSupported(): boolean;
 }

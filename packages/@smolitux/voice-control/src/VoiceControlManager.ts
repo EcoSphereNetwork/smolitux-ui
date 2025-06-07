@@ -30,6 +30,11 @@ export class VoiceControlManager {
         break;
     }
 
+    if (!this.recognitionEngine.isSupported()) {
+      console.warn('Selected recognition engine not supported, falling back to Web Speech API.');
+      this.recognitionEngine = new WebSpeechRecognitionEngine(language);
+    }
+
     this.commandProcessor = new CommandProcessor();
     this.feedbackManager = new FeedbackManager();
 
@@ -39,7 +44,10 @@ export class VoiceControlManager {
   private setupEventListeners() {
     this.recognitionEngine.onResult = (text) => {
       this.onRecognitionResult(text);
-      const { command, targetId } = this.commandProcessor.processCommand(text, this.registeredComponents);
+      const { command, targetId } = this.commandProcessor.processCommand(
+        text,
+        this.registeredComponents
+      );
       if (command && targetId) {
         this.onCommandRecognized(command, targetId);
         this.feedbackManager.provideFeedback('command', command);
