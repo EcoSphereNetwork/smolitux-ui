@@ -40,11 +40,6 @@ const config = {
     'default',
   ],
   snapshotSerializers: [],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.json',
-    },
-  },
 };
 
 module.exports = config;
