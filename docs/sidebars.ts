@@ -314,6 +314,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'accessibility/a11y-components',
         'accessibility/component-status',
+        'accessibility/best-practices',
         {
           type: 'category',
           label: 'Components',
