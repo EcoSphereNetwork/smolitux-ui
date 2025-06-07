@@ -42,12 +42,10 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/',
-          routeBasePath: 'docs',
-          path: 'docs',
+            'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/wiki/',
+          routeBasePath: 'wiki',
+          path: 'wiki',
           sidebarCollapsible: true,
           sidebarCollapsed: false,
         },
@@ -73,6 +71,20 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'guide',
+        path: 'guide',
+        routeBasePath: 'guide',
+        sidebarPath: './sidebars.ts',
+        editUrl:
+          'https://github.com/EcoSphereNetwork/smolitux-ui/tree/main/docs/guide/',
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -91,9 +103,10 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'guideSidebar',
+          docsPluginId: 'guide',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Guide',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -115,7 +128,11 @@ const config: Config = {
           items: [
             {
               label: 'Wiki',
-              to: '/docs/intro',
+              to: '/wiki/',
+            },
+            {
+              label: 'Guide',
+              to: '/guide/',
             },
           ],
         },
