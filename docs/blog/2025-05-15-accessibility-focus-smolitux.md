@@ -1,6 +1,6 @@
 ---
 slug: accessibility-focus-smolitux
-title: Accessibility First: Building Inclusive Components in Smolitux-UI
+title: "Accessibility First: Building Inclusive Components in Smolitux-UI"
 authors:
   - sam
 tags:
