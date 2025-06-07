@@ -55,10 +55,10 @@ Die Umsetzung der Teststrategie erfolgt in vier Phasen, die aufeinander aufbauen
 - [ ] Performance-Tests
 
 #### Woche 8: Browserkompatibilitätstests
-- [ ] Playwright-Tests für Chrome, Firefox, Safari
-- [ ] Mobile Browser-Emulation
-- [ ] Responsive Design-Tests
-- [ ] Zugänglichkeitstests über Browser hinweg
+- [x] Playwright-Tests für Chrome, Firefox, Safari
+- [x] Mobile Browser-Emulation
+- [x] Responsive Design-Tests
+- [x] Zugänglichkeitstests über Browser hinweg
 
 ### 1.4 Phase 4: Automatisierung und kontinuierliche Überwachung (2 Wochen)
 
@@ -136,7 +136,7 @@ Die Tests werden nach folgender Priorität implementiert:
 
 ### 5.3 Meilenstein 3: Vollständige Testabdeckung (Ende Woche 8)
 - [ ] Tests für alle Komponenten
-- [ ] Browserkompatibilitätstests
+- [x] Browserkompatibilitätstests
 - [ ] A11y-Tests
 
 ### 5.4 Meilenstein 4: Automatisierte Testpipeline (Ende Woche 10)
