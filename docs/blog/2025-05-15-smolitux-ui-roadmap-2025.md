@@ -1,8 +1,14 @@
 ---
 slug: smolitux-ui-roadmap-2025
-title: [Smolitux-UI Roadmap for 2025: Sustainability Meets Accessibility]
-authors: [sam, johanna]
-tags: [roadmap, sustainability, accessibility, community]
+title: Smolitux-UI Roadmap for 2025: Sustainability Meets Accessibility
+authors:
+  - sam
+  - johanna
+tags:
+  - roadmap
+  - sustainability
+  - accessibility
+  - community
 ---
 
 # Smolitux-UI Roadmap for 2025: Sustainability Meets Accessibility
