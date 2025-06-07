@@ -98,6 +98,7 @@ Our component library is organized into functional categories for easy navigatio
 
 - **[Accessibility](accessibility/README.md)** - Accessibility standards and practices
 - **[Accessibility Guidelines](guidelines/accessibility.md)** - Detailed accessibility guidelines
+- **[Accessibility Checklist](accessibility/checklist.md)** - Checklist for accessible components
 - **[Best Practices](guidelines/best-practices.md)** - Development best practices
 - **[Coding Standards](guidelines/coding-standards.md)** - Code style and standards
 - **[Component Structure](guidelines/component-structure.md)** - How to structure components
