@@ -5,6 +5,9 @@ set -euo pipefail
 # Clean proxy-related npm env vars to avoid warnings
 unset npm_config_http_proxy npm_config_https_proxy
 unset npm_config_http-proxy npm_config_https-proxy
+# Ensure ESLint packages for Flat Config are installed
+npm install --no-audit --no-fund --save-dev \
+  @eslint/js eslint eslint-plugin-react eslint-plugin-jsx-a11y eslint-plugin-import >/dev/null
 
 # Always install Node dependencies via npm for reliability
 echo "==> Installing dependencies with npm"
