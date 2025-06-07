@@ -15,6 +15,7 @@ Diese Dokumentation beschreibt die verfügbaren Komponenten in der Smolitux UI-B
 - [KI-Komponenten](#ki-komponenten)
   - [TrendingTopics](#trendingtopics)
   - [EngagementScore](#engagementscore)
+  - [Voice-Komponenten](#voice-komponenten)
 - [Styling](#styling)
 - [Theming](#theming)
 - [Barrierefreiheit](#barrierefreiheit)
@@ -251,6 +252,10 @@ function Example() {
   );
 }
 ```
+
+## Voice-Komponenten
+
+Die Voice-Komponenten integrieren Sprachbefehle in Standard-UI-Elemente. Eine Übersicht befindet sich unter [Voice-Komponenten](/docs/components/voice/index).
 
 ## Styling
 
