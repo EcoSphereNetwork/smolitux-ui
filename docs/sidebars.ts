@@ -130,6 +130,12 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: ['components/charts/line-chart'],
         },
+        {
+          type: 'category',
+          label: 'Resonance',
+          collapsed: true,
+          items: ['components/resonance/index'],
+        },
       ],
     },
     {
