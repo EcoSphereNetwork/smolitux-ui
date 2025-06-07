@@ -13,7 +13,12 @@ Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MV
 - **@smolitux/icons**: Icon-Bibliothek
 - **@smolitux/layout**: Layout-Komponenten
 - **@smolitux/charts**: Diagramm-Komponenten
+- **@smolitux/voice-control**: Sprachsteuerung für UI-Elemente
 - **@smolitux/types**: Gemeinsame TypeScript-Typen
+
+## ⚙️ Voraussetzungen
+
+Diese Bibliothek benötigt **Node.js 20** oder höher.
 
 ## 🚀 Installation
 
@@ -134,6 +139,14 @@ Die smolitux UI Bibliothek enthält folgende Komponenten:
 - BarChart
 - PieChart
 - AreaChart
+
+### Voice
+
+- VoiceButton
+- VoiceInput
+- VoiceSelect
+- VoiceCard
+- VoiceModal
 
 ## 🎨 Theme Anpassung
 
