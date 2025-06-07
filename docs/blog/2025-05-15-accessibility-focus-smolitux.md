@@ -1,8 +1,13 @@
 ---
 slug: accessibility-focus-smolitux
-title: [Accessibility First: Building Inclusive Components in Smolitux-UI]
-authors: [sam]
-tags: [accessibility, a11y, components, docusaurus]
+title: Accessibility First: Building Inclusive Components in Smolitux-UI
+authors:
+  - sam
+tags:
+  - accessibility
+  - a11y
+  - components
+  - docusaurus
 ---
 
 # Accessibility First: Building Inclusive Components in Smolitux-UI
