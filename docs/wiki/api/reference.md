@@ -293,3 +293,5 @@ function MyComponent() {
 | `themeMode` | `'light' \| 'dark'` | Der aktuelle Theme-Modus |
 | `setThemeMode` | `(mode: 'light' \| 'dark') => void` | Funktion zum Ändern des Theme-Modus |
 | `toggleThemeMode` | `() => void` | Funktion zum Umschalten des Theme-Modus |
+## Automatische API-Dokumentation
+Weitere Details findest du im Verzeichnis [generated](./generated). Führe `npm run docs:api` aus, um die Dokumentation zu aktualisieren.

@@ -1,0 +1,16 @@
+{
+  "entryPoints": [
+    "packages/@smolitux/core/src/index.ts",
+    "packages/@smolitux/layout/src/index.ts",
+    "packages/@smolitux/charts/src/index.ts",
+    "packages/@smolitux/theme/src/index.ts"
+  ],
+  "tsconfig": "./tsconfig.json",
+  "out": "docs/wiki/api/generated",
+  "name": "Smolitux UI",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "includeVersion": true,
+  "plugin": ["typedoc-plugin-markdown"],
+  "readme": "none"
+}
