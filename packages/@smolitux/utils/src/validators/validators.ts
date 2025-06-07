@@ -36,7 +36,9 @@ export function isIPAddress(value: string): boolean {
 }
 
 export function isCreditCard(value: string): boolean {
-  return /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12})(?:[0-9]{3})?$/.test(value.replace(/[-\s]/g, ''));
+  return /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12})(?:[0-9]{3})?$/.test(
+    value.replace(/[-\s]/g, '')
+  );
 }
 
 export function isStrongPassword(value: string): boolean {
@@ -65,5 +67,5 @@ export function isEthereumAddress(value: string): boolean {
 }
 
 export function isBase64(value: string): boolean {
-  return /^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/.test(value);
+  return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value);
 }
