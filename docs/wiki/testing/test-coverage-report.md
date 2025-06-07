@@ -100,6 +100,7 @@ Die implementierten Tests decken verschiedene Aspekte der Komponenten ab:
 - ✅ Checkbox, Radio, Select, Textarea
 - ✅ Table, Tabs, Accordion, Dropdown
 - ✅ Integrationstests für komplexe Komponenten
+- ✅ Snapshot-Tests für alle Komponenten
 
 3. **@smolitux/utils**:
    - ✅ Formatters, Validators, Helpers
