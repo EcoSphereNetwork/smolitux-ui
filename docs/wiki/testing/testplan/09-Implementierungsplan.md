@@ -140,7 +140,7 @@ Die Tests werden nach folgender Priorität implementiert:
 - [ ] A11y-Tests
 
 ### 5.4 Meilenstein 4: Automatisierte Testpipeline (Ende Woche 10)
-- [ ] Vollständige CI/CD-Integration
+ - [x] Vollständige CI/CD-Integration
 - [ ] Testmonitoring
 - [ ] Dokumentation
 

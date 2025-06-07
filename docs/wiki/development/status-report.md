@@ -69,7 +69,7 @@ Basierend auf der README.md und den Anforderungsdokumenten fehlen noch:
 - **Integrationstests**: Vorhanden für Formulare und Theme-Integration
 - **Visuelle Tests**: Nicht implementiert
 - **Browserkompatibilitätstests**: Nicht implementiert
-- **CI/CD-Integration**: Teilweise implementiert
+- **CI/CD-Integration**: Abgeschlossen
 
 ### 1.4 Dokumentation
 
@@ -162,7 +162,7 @@ Basierend auf der README.md und den Anforderungsdokumenten fehlen noch:
 #### Woche 7: Visuelle Tests und Browserkompatibilität
 - Implementieren von visuellen Tests mit Storybook/Chromatic
 - Implementieren von Browserkompatibilitätstests mit Playwright
-- Verbessern der CI/CD-Integration
+- CI/CD-Integration abgeschlossen
 - Aktualisieren der Dokumentation
 
 ### 3.4 Phase 4: Finalisierung und Veröffentlichung (1 Woche)

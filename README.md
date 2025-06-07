@@ -16,6 +16,10 @@ Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MV
 - **@smolitux/voice-control**: Sprachsteuerung für UI-Elemente
 - **@smolitux/types**: Gemeinsame TypeScript-Typen
 
+## ⚙️ Voraussetzungen
+
+Diese Bibliothek benötigt **Node.js 20** oder höher.
+
 ## 🚀 Installation
 
 ```bash
