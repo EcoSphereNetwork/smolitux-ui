@@ -4,7 +4,7 @@ import { AreaChart } from '../AreaChart';
 
 // Mock für useTheme hook
 jest.mock('@smolitux/theme', () => ({
-  useTheme: () => ({ themeMode: 'light' })
+  useTheme: () => ({ themeMode: 'light' }),
 }));
 
 describe('AreaChart', () => {
@@ -16,19 +16,16 @@ describe('AreaChart', () => {
       { x: 'Feb', y: 150 },
       { x: 'Mar', y: 200 },
       { x: 'Apr', y: 120 },
-      { x: 'May', y: 180 }
-    ]
+      { x: 'May', y: 180 },
+    ],
   };
 
-  test('renders chart with placeholder text', () => {
+  test('renders chart with default props', () => {
     render(<AreaChart data={mockData} />);
-    
-    // SVG sollte gerendert werden
+
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
-    
-    // Platzhaltertext sollte angezeigt werden
-    expect(screen.getByText('AreaChart Platzhalter')).toBeInTheDocument();
+    expect(screen.getByText('Test Data')).toBeInTheDocument();
   });
 
   test('passes height and width properties correctly', () => {
@@ -56,22 +53,20 @@ describe('AreaChart', () => {
           { x: 'Feb', y: 70 },
           { x: 'Mar', y: 90 },
           { x: 'Apr', y: 60 },
-          { x: 'May', y: 80 }
-        ]
-      }
+          { x: 'May', y: 80 },
+        ],
+      },
     ];
-    
+
     render(<AreaChart data={multiSeriesData} />);
-    
-    // Chart sollte ohne Fehler gerendert werden
-    expect(document.querySelector('svg')).toBeInTheDocument();
+
+    expect(screen.getByText('Test Data')).toBeInTheDocument();
+    expect(screen.getByText('Second Series')).toBeInTheDocument();
   });
 
   test('renders with title when provided', () => {
     render(<AreaChart data={mockData} title="Test Chart Title" />);
-    
-    // SVG sollte gerendert werden
-    const svg = document.querySelector('svg');
-    expect(svg).toBeInTheDocument();
+
+    expect(screen.getByText('Test Chart Title')).toBeInTheDocument();
   });
 });
