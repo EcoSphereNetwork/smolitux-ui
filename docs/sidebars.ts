@@ -136,6 +136,12 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: ['components/resonance/index'],
         },
+        {
+          type: 'category',
+          label: 'Voice',
+          collapsed: true,
+          items: ['components/voice/index'],
+        },
       ],
     },
     {

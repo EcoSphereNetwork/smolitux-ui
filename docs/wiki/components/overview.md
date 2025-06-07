@@ -97,3 +97,9 @@ Komponenten fuer die Anzeige von Medieninhalten.
 Komponenten zur Visualisierung von Daten.
 
 - [LineChart](/docs/components/charts/line-chart) - Liniendiagramm
+
+## Voice-Komponenten
+
+Komponenten mit integrierter Sprachsteuerung.
+
+- [Voice-Komponenten](/docs/components/voice/index) - Buttons, Inputs und mehr
