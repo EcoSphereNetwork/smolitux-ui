@@ -1,30 +1,56 @@
-# Repository Guidelines
+# Smolitux UI Guide for Codex Agents
 
-This monorepo contains a React component library (packages in `packages/`) and a small Python CLI (in `src/`).
+This repository hosts the **Smolitux UI** component library. Packages live under
+`packages/@smolitux/` and are written in TypeScript. A small Python CLI exists in
+`Trash/src`.
 
-## JavaScript/TypeScript
+## Repository Layout
 
-- Use `npm run format` to apply Prettier formatting (print width 100).
-- Run `npm run lint` to check ESLint rules.
-- Execute unit tests with `npm run test`.
+- `packages/@smolitux/` – main library packages (`core`, `theme`, `icons`,
+  `layout`, `charts`, `ai`, `blockchain`, `community`, `media`, `resonance`,
+  `testing`, `utils`)
+- `docs/` – Docusaurus documentation site
+- `scripts/` – helper scripts such as `setup-dev-env.sh`
+- `test-app/` – simple demo application
+
+## Node Development
+
+- Run `./scripts/setup-dev-env.sh` once to install dependencies.
+- Format with `npm run format` (Prettier, width 100).
+- Lint using `npm run lint`.
+- Run unit tests via `npm run test`.
 - End‑to‑end tests use Playwright: `npm run test:e2e`.
-- Build all packages via `npm run build`.
+- Build all packages with `npm run build` or `./build-all.sh`.
+- Start Storybook using `npm run storybook`.
 
-## Python
+## Python CLI (`Trash/src`)
 
 - Install dependencies with `poetry install`.
-- Format code with `poetry run ruff check --fix .` and `poetry run black .`.
+- Format with `poetry run ruff check --fix .` and `poetry run black .`.
 - Type‑check using `poetry run mypy .`.
-- Run tests through `poetry run pytest` (or `make test`).
+- Run tests through `poetry run pytest` or `make test`.
+
+## Documentation
+
+- The Docusaurus site resides in `docs/`. Use `npm start` inside that directory
+  to preview docs and `npm run build` to generate the static site. There is no
+  top‑level `npm run docs` command – run documentation scripts from within the
+  `docs/` folder.
+- The complete user documentation for **smolitux-ui** is located under
+  `docs/wiki/`.
+- Developer documentation (build process, component structure, test strategy,
+  etc.) lives in `docs/wiki/development/`. Codex should consult this before
+  making automated changes and follow the conventions described there.
 
 ## Commits and Pull Requests
 
-- Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages (`feat:`, `fix:`, `docs:`, etc.).
-- Keep commits focused. Update or add tests for code changes.
+- Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit
+  messages (`feat:`, `fix:`, `docs:`, etc.).
+- Keep commits focused and update or add tests for changes.
 - Include a short summary of changes and test results in the PR description.
+- Always run `npm run lint` and `npm run test` before opening a PR.
 
-## Microagents and Structure
+## Codex Role
 
-- Core packages reside in `packages/@smolitux/`.
-- Use `scripts/setup-dev-env.sh` to install dependencies.
-- Always run `npm run lint` and `npm run test` before creating a PR.
+- Codex may modify or add tests and documentation but must **not** publish
+  releases or push tags.
