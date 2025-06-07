@@ -73,6 +73,7 @@ Our component library is organized into functional categories for easy navigatio
 
 - **[Getting Started](guides/quickstart.md)** - Quick start guide to using our components
 - **[Development Guide](development/guide.md)** - Guide for developers working on the project
+- **[Storybook Guide](development/storybook-guide.md)** - Aufbau und Nutzung des Storybooks
 - **[Contributing](development/contributing.md)** - How to contribute to the project
 - **[Changelog](development/changelog.md)** - History of changes
 - **[Release Notes](development/releases/v0.2.2.md)** - Latest release notes
