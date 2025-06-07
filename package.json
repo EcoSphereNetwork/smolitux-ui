@@ -12,7 +12,7 @@
   "scripts": {
     "install-deps": "npm install && lerna exec -- npm install",
     "clean": "lerna clean --yes && rm -rf node_modules",
-    "build": "lerna run build --parallel",
+    "build": "./build-all.sh",
     "build:utils": "cd packages/@smolitux/utils && npm run build",
     "build:core": "cd packages/@smolitux/core && npm run build",
     "build:ai": "cd packages/@smolitux/ai && npm run build",
