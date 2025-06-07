@@ -12,6 +12,7 @@ Die Testabdeckung wurde durch die Hinzufügung umfassender Tests für verschiede
 - **@smolitux/blockchain**: Tests für alle 7 Komponenten (TokenEconomy, SmartContractInteraction, WalletConnect, TokenDisplay, TransactionHistory, StakingInterface, TokenDistributionChart)
 - **@smolitux/resonance**: Tests für 21 Komponenten (ProfileHeader, ProfileContent, GovernanceDashboard, ProposalView, RevenueModel, CreatorDashboard, FeedView, FeedFilter, FeedItem, FeedSidebar, PostView, PostCreator, PostInteractions, PostMetrics, ProfileEditor, UserProfile, NotificationList, MessageList, CommentSection, SearchResults, TrendingTopics)
 - **@smolitux/core**: Tests für 12 Komponenten (Button, Card, Input, Modal, Checkbox, Radio, Select, Textarea, Table, Tabs, Accordion, Dropdown)
+- **Integrationstests**: Abdeckung komplexer Szenarien wie Modal mit eingebettetem Formular
 
 ### Teststatistik
 

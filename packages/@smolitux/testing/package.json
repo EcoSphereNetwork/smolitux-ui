@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist",
     "test": "jest",
     "lint": "eslint src --ext .ts,.tsx",
     "clean": "rimraf dist"
@@ -41,9 +41,7 @@
     "jest-axe": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rimraf": "^4.4.1",
-    "rollup": "^3.20.2",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.3",
+    "tsup": "^8.0.0"
   }
 }

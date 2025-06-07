@@ -37,6 +37,7 @@
   font-weight: bold;
 }
 
+.smolitux-line-chart .line,
 .smolitux-line-chart .data-line {
   fill: none;
   stroke-width: 2;
@@ -46,6 +47,10 @@
 
 .smolitux-line-chart .data-point {
   stroke-width: 2;
+}
+
+.smolitux-line-chart .area {
+  opacity: 0.2;
 }
 
 .smolitux-line-chart .legend-item {

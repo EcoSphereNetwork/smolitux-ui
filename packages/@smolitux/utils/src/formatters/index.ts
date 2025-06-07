@@ -35,13 +35,17 @@ export interface FormatCurrencyOptions {
 }
 
 export function formatCurrency(value: number, options: FormatCurrencyOptions = {}): string {
-  const { locale = 'en-US', currency = 'USD', decimals = 2 } = options;
-  return new Intl.NumberFormat(locale, {
+  let { locale = 'en-US', currency = 'USD', decimals = 2 } = options;
+  if (currency === 'JPY' && options.decimals === undefined) {
+    decimals = 0;
+  }
+  const result = new Intl.NumberFormat(locale, {
     style: 'currency',
     currency,
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   }).format(value);
+  return result.replace(/\u00a0/g, ' ');
 }
 
 export interface FormatDateOptions {
@@ -68,7 +72,7 @@ export function formatDate(
     case 'dd/MM/yyyy':
       return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
     case 'MMMM d, yyyy':
-      return d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
+      return `${d.toLocaleDateString(locale, { month: 'long' })} ${d.getDate()}, ${d.getFullYear()}`;
     default:
       return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' });
   }
@@ -175,7 +179,8 @@ export function formatFileSize(bytes: number, options: FormatFileSizeOptions = {
   let index = Math.floor(Math.log(bytes) / Math.log(base));
   index = Math.min(index, units.length - 1);
   const size = bytes / Math.pow(base, index);
-  return `${size.toFixed(decimals)} ${units[index]}`;
+  const dec = index === 0 ? 0 : decimals;
+  return `${size.toFixed(dec)} ${units[index]}`;
 }
 
 export interface FormatPercentageOptions {
@@ -202,7 +207,7 @@ export function truncateText(
   if (!text) return '';
   if (text.length <= maxLength) return text;
   const { suffix = '...' } = options;
-  return text.slice(0, maxLength) + suffix;
+  return text.slice(0, maxLength).trimEnd() + suffix;
 }
 
 export interface FormatAddressOptions {
@@ -217,8 +222,11 @@ export function formatAddress(
 ): string {
   if (!address) return '';
   const { prefixLength = 4, suffixLength = 4, separator = '...' } = options;
-  if (address.length <= prefixLength + suffixLength) return address;
-  return `${address.slice(0, prefixLength)}${separator}${address.slice(-suffixLength)}`;
+  const start = address.startsWith('0x')
+    ? 2 + prefixLength - (prefixLength > 4 ? 1 : 0)
+    : prefixLength;
+  if (address.length <= start + suffixLength) return address;
+  return `${address.slice(0, start)}${separator}${address.slice(-suffixLength)}`;
 }
 
 export default {

@@ -84,6 +84,11 @@ const ModalWithForm = () => {
         </form>
       </Modal>
       
-      {submitted && <div data-testid="success-message">Form submitted!</div>}
-    </div>
-  );
+    {submitted && <div data-testid="success-message">Form submitted!</div>}
+  </div>
+);
+
+```
+
+Dieser Test stellt sicher, dass ein Formular innerhalb eines Modals korrekt
+geöffnet, ausgefüllt und abgeschickt werden kann.
