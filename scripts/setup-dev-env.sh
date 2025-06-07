@@ -7,7 +7,8 @@ unset npm_config_http_proxy npm_config_https_proxy
 unset npm_config_http-proxy npm_config_https-proxy
 # Ensure ESLint packages for Flat Config are installed
 npm install --no-audit --no-fund --save-dev \
-  @eslint/js eslint eslint-plugin-react eslint-plugin-jsx-a11y eslint-plugin-import >/dev/null
+  @eslint/js eslint eslint-plugin-react eslint-plugin-jsx-a11y eslint-plugin-import \
+  jest ts-jest @types/jest lerna typescript >/dev/null
 
 # Always install Node dependencies via npm for reliability
 echo "==> Installing dependencies with npm"
@@ -51,5 +52,14 @@ for tool in eslint jest ts-jest prettier; do
     exit 1
   fi
 done
+
+echo "==> Installing docs dependencies"
+(cd docs && npm install --no-audit --no-fund)
+
+# Run basic checks but continue on failure
+echo "==> Running lint, test, build"
+npm run lint || true
+npm run test || true
+npm run build || true
 
 echo "Development environment is ready"
