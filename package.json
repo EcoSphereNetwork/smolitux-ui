@@ -42,7 +42,7 @@
     "dev": "lerna run dev --parallel",
     "prepare": "husky install",
 "docs:api": "typedoc",
-    "docs:generate": "typedoc --options typedoc.json",
+    "docs:generate": "typedoc --options typedoc.json"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
