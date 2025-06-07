@@ -33,9 +33,14 @@ This repository hosts the **Smolitux UI** component library. Packages live under
 ## Documentation
 
 - The Docusaurus site resides in `docs/`. Use `npm start` inside that directory
-  to preview docs and `npm run build` to generate the static site.
-
-- The smloitux-ui 
+  to preview docs and `npm run build` to generate the static site. There is no
+  top‑level `npm run docs` command – run documentation scripts from within the
+  `docs/` folder.
+- The complete user documentation for **smolitux-ui** is located under
+  `docs/wiki/`.
+- Developer documentation (build process, component structure, test strategy,
+  etc.) lives in `docs/wiki/development/`. Codex should consult this before
+  making automated changes and follow the conventions described there.
 
 ## Commits and Pull Requests
 
