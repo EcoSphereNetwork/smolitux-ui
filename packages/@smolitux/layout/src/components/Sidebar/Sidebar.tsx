@@ -1,6 +1,7 @@
 // packages/@smolitux/layout/src/components/Sidebar/Sidebar.tsx
 import React, { useState, useEffect, forwardRef } from 'react';
 import { useTheme } from '@smolitux/theme';
+import { breakpoints } from '@smolitux/utils/styling';
 
 export interface SidebarItem {
   /** Eindeutige ID des Items */
@@ -52,6 +53,10 @@ export interface SidebarProps {
   width?: string | number;
   /** Breite der Sidebar (eingeklappt) */
   collapsedWidth?: string | number;
+  /** Responsive Verhalten aktivieren */
+  responsive?: boolean;
+  /** Breakpoint ab dem die Sidebar automatisch einklappt */
+  collapseBreakpoint?: keyof typeof breakpoints | number;
   /** Footer-Inhalt */
   footer?: React.ReactNode;
 }
@@ -83,6 +88,8 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({
   variant = 'default',
   width = 240,
   collapsedWidth = 64,
+  responsive = false,
+  collapseBreakpoint = 'md',
   footer,
   className = '',
   ...rest
@@ -90,6 +97,20 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({
   const { themeMode } = useTheme();
   const [isCollapsed, setIsCollapsed] = useState(collapsed);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!responsive) return;
+    const bp = typeof collapseBreakpoint === 'number'
+      ? collapseBreakpoint
+      : parseInt(breakpoints[collapseBreakpoint], 10);
+    const handle = () => {
+      const shouldCollapse = window.innerWidth < bp;
+      setIsCollapsed(shouldCollapse ? true : collapsed);
+    };
+    handle();
+    window.addEventListener('resize', handle);
+    return () => window.removeEventListener('resize', handle);
+  }, [responsive, collapseBreakpoint, collapsed]);
   
   // Synchronisiere externen und internen Collapse-Status
   useEffect(() => {

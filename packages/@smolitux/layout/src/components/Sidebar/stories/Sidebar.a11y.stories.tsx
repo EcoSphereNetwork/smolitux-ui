@@ -46,6 +46,15 @@ const meta: Meta<typeof Sidebar.A11y> = {
       options: ['default', 'light', 'dark', 'transparent'],
       description: 'Variante der Sidebar'
     },
+    responsive: {
+      control: 'boolean',
+      description: 'Automatisch einklappen bei kleinem Bildschirm'
+    },
+    collapseBreakpoint: {
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg', 'xl', '2xl'],
+      description: 'Breakpoint zum automatischen Einklappen'
+    },
     ariaLabel: {
       control: 'text',
       description: 'ARIA-Label für die Sidebar'
@@ -270,6 +279,22 @@ export const Collapsible: Story = {
         </div>
       </div>
     );
+  }
+};
+
+export const Responsive: Story = {
+  args: {
+    title: 'Navigation',
+    ariaLabel: 'Hauptnavigation',
+    isNavigation: true,
+    responsive: true,
+    collapseBreakpoint: 'md',
+    items: [
+      { id: 'home', label: 'Home', icon: <HomeIcon />, active: true },
+      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
+      { id: 'users', label: 'Users', icon: <UsersIcon /> },
+      { id: 'settings', label: 'Settings', icon: <SettingsIcon /> }
+    ]
   }
 };
 
