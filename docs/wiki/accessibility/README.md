@@ -4,6 +4,8 @@
 
 Die Smolitux UI Bibliothek wurde mit einem starken Fokus auf Barrierefreiheit entwickelt, um sicherzustellen, dass alle Benutzer, unabhängig von ihren Fähigkeiten oder Einschränkungen, die Komponenten effektiv nutzen können. Diese Dokumentation bietet einen Überblick über die implementierten Barrierefreiheitsverbesserungen und bewährte Praktiken.
 
+Weitere Hinweise findest du im Dokument [Best Practices für barrierefreie Komponenten](./best-practices.md).
+
 ## Implementierte Komponenten
 
 Die folgenden Komponenten wurden mit Barrierefreiheitsverbesserungen implementiert:
