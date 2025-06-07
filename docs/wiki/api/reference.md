@@ -1,5 +1,7 @@
 # API-Referenz
 
+Die vollständige Referenz wird mit [TypeDoc](https://typedoc.org/) erzeugt. Führen Sie `npm run docs:generate` aus, um HTML-Dokumente im Ordner `docs/api` zu erstellen.
+
 Diese Seite bietet eine detaillierte API-Referenz für alle Komponenten der Smolitux UI Bibliothek.
 
 ## Core-Komponenten
@@ -9,29 +11,24 @@ Diese Seite bietet eine detaillierte API-Referenz für alle Komponenten der Smol
 ```tsx
 import { Button } from '@smolitux/core';
 
-<Button
-  variant="primary"
-  size="md"
-  disabled={false}
-  onClick={() => console.log('Button geklickt')}
->
+<Button variant="primary" size="md" disabled={false} onClick={() => console.log('Button geklickt')}>
   Klick mich
-</Button>
+</Button>;
 ```
 
 #### Props
 
-| Prop | Typ | Standard | Beschreibung |
-|------|-----|----------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'link' \| 'danger'` | `'primary'` | Die Variante des Buttons |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Die Größe des Buttons |
-| `disabled` | `boolean` | `false` | Deaktiviert den Button |
-| `fullWidth` | `boolean` | `false` | Button nimmt die volle Breite ein |
-| `leftIcon` | `ReactNode` | - | Icon links vom Text |
-| `rightIcon` | `ReactNode` | - | Icon rechts vom Text |
-| `isLoading` | `boolean` | `false` | Zeigt einen Ladezustand an |
-| `loadingText` | `string` | - | Text während des Ladezustands |
-| `onClick` | `(event: React.MouseEvent<HTMLButtonElement>) => void` | - | Klick-Handler |
+| Prop          | Typ                                                                      | Standard    | Beschreibung                      |
+| ------------- | ------------------------------------------------------------------------ | ----------- | --------------------------------- |
+| `variant`     | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'link' \| 'danger'` | `'primary'` | Die Variante des Buttons          |
+| `size`        | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                   | `'md'`      | Die Größe des Buttons             |
+| `disabled`    | `boolean`                                                                | `false`     | Deaktiviert den Button            |
+| `fullWidth`   | `boolean`                                                                | `false`     | Button nimmt die volle Breite ein |
+| `leftIcon`    | `ReactNode`                                                              | -           | Icon links vom Text               |
+| `rightIcon`   | `ReactNode`                                                              | -           | Icon rechts vom Text              |
+| `isLoading`   | `boolean`                                                                | `false`     | Zeigt einen Ladezustand an        |
+| `loadingText` | `string`                                                                 | -           | Text während des Ladezustands     |
+| `onClick`     | `(event: React.MouseEvent<HTMLButtonElement>) => void`                   | -           | Klick-Handler                     |
 
 ### Input
 
@@ -49,28 +46,28 @@ const [email, setEmail] = useState('');
   value={email}
   onChange={(e) => setEmail(e.target.value)}
   error="Ungültige E-Mail-Adresse"
-/>
+/>;
 ```
 
 #### Props
 
-| Prop | Typ | Standard | Beschreibung |
-|------|-----|----------|-------------|
-| `label` | `string` | - | Label für das Eingabefeld |
-| `type` | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'` | Typ des Eingabefelds |
-| `placeholder` | `string` | - | Platzhaltertext |
-| `value` | `string` | - | Wert des Eingabefelds |
-| `defaultValue` | `string` | - | Standardwert des Eingabefelds |
-| `onChange` | `(event: React.ChangeEvent<HTMLInputElement>) => void` | - | Änderungs-Handler |
-| `onBlur` | `(event: React.FocusEvent<HTMLInputElement>) => void` | - | Blur-Handler |
-| `onFocus` | `(event: React.FocusEvent<HTMLInputElement>) => void` | - | Focus-Handler |
-| `error` | `string` | - | Fehlermeldung |
-| `disabled` | `boolean` | `false` | Deaktiviert das Eingabefeld |
-| `readOnly` | `boolean` | `false` | Schreibgeschützt |
-| `required` | `boolean` | `false` | Pflichtfeld |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Größe des Eingabefelds |
-| `leftElement` | `ReactNode` | - | Element links im Eingabefeld |
-| `rightElement` | `ReactNode` | - | Element rechts im Eingabefeld |
+| Prop           | Typ                                                                         | Standard | Beschreibung                  |
+| -------------- | --------------------------------------------------------------------------- | -------- | ----------------------------- |
+| `label`        | `string`                                                                    | -        | Label für das Eingabefeld     |
+| `type`         | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'` | Typ des Eingabefelds          |
+| `placeholder`  | `string`                                                                    | -        | Platzhaltertext               |
+| `value`        | `string`                                                                    | -        | Wert des Eingabefelds         |
+| `defaultValue` | `string`                                                                    | -        | Standardwert des Eingabefelds |
+| `onChange`     | `(event: React.ChangeEvent<HTMLInputElement>) => void`                      | -        | Änderungs-Handler             |
+| `onBlur`       | `(event: React.FocusEvent<HTMLInputElement>) => void`                       | -        | Blur-Handler                  |
+| `onFocus`      | `(event: React.FocusEvent<HTMLInputElement>) => void`                       | -        | Focus-Handler                 |
+| `error`        | `string`                                                                    | -        | Fehlermeldung                 |
+| `disabled`     | `boolean`                                                                   | `false`  | Deaktiviert das Eingabefeld   |
+| `readOnly`     | `boolean`                                                                   | `false`  | Schreibgeschützt              |
+| `required`     | `boolean`                                                                   | `false`  | Pflichtfeld                   |
+| `size`         | `'sm' \| 'md' \| 'lg'`                                                      | `'md'`   | Größe des Eingabefelds        |
+| `leftElement`  | `ReactNode`                                                                 | -        | Element links im Eingabefeld  |
+| `rightElement` | `ReactNode`                                                                 | -        | Element rechts im Eingabefeld |
 
 ### Select
 
@@ -90,25 +87,25 @@ const [selectedCountry, setSelectedCountry] = useState('de');
   ]}
   value={selectedCountry}
   onChange={(value) => setSelectedCountry(value)}
-/>
+/>;
 ```
 
 #### Props
 
-| Prop | Typ | Standard | Beschreibung |
-|------|-----|----------|-------------|
-| `label` | `string` | - | Label für das Auswahlfeld |
-| `options` | `Array<{ value: string; label: string; disabled?: boolean }>` | `[]` | Optionen für das Auswahlfeld |
-| `value` | `string` | - | Ausgewählter Wert |
-| `defaultValue` | `string` | - | Standardwert |
-| `onChange` | `(value: string) => void` | - | Änderungs-Handler |
-| `placeholder` | `string` | - | Platzhaltertext |
-| `disabled` | `boolean` | `false` | Deaktiviert das Auswahlfeld |
-| `error` | `string` | - | Fehlermeldung |
-| `required` | `boolean` | `false` | Pflichtfeld |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Größe des Auswahlfelds |
-| `isSearchable` | `boolean` | `false` | Ermöglicht die Suche |
-| `isMulti` | `boolean` | `false` | Ermöglicht Mehrfachauswahl |
+| Prop           | Typ                                                           | Standard | Beschreibung                 |
+| -------------- | ------------------------------------------------------------- | -------- | ---------------------------- |
+| `label`        | `string`                                                      | -        | Label für das Auswahlfeld    |
+| `options`      | `Array<{ value: string; label: string; disabled?: boolean }>` | `[]`     | Optionen für das Auswahlfeld |
+| `value`        | `string`                                                      | -        | Ausgewählter Wert            |
+| `defaultValue` | `string`                                                      | -        | Standardwert                 |
+| `onChange`     | `(value: string) => void`                                     | -        | Änderungs-Handler            |
+| `placeholder`  | `string`                                                      | -        | Platzhaltertext              |
+| `disabled`     | `boolean`                                                     | `false`  | Deaktiviert das Auswahlfeld  |
+| `error`        | `string`                                                      | -        | Fehlermeldung                |
+| `required`     | `boolean`                                                     | `false`  | Pflichtfeld                  |
+| `size`         | `'sm' \| 'md' \| 'lg'`                                        | `'md'`   | Größe des Auswahlfelds       |
+| `isSearchable` | `boolean`                                                     | `false`  | Ermöglicht die Suche         |
+| `isMulti`      | `boolean`                                                     | `false`  | Ermöglicht Mehrfachauswahl   |
 
 ## Layout-Komponenten
 
@@ -120,17 +117,17 @@ import { Container } from '@smolitux/layout';
 <Container maxWidth="lg" disableGutters={false}>
   <h1>Meine Seite</h1>
   <p>Inhalt, der auf verschiedenen Bildschirmgrößen konsistent angezeigt wird</p>
-</Container>
+</Container>;
 ```
 
 #### Props
 
-| Prop | Typ | Standard | Beschreibung |
-|------|-----|----------|-------------|
-| `maxWidth` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full' \| 'none'` | `'lg'` | Maximale Breite des Containers |
-| `disableGutters` | `boolean` | `false` | Horizontales Padding deaktivieren |
-| `fullHeight` | `boolean` | `false` | Container auf Bildschirmhöhe setzen |
-| `centerContent` | `boolean` | `false` | Content innerhalb des Containers zentrieren |
+| Prop             | Typ                                                                 | Standard | Beschreibung                                |
+| ---------------- | ------------------------------------------------------------------- | -------- | ------------------------------------------- |
+| `maxWidth`       | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full' \| 'none'` | `'lg'`   | Maximale Breite des Containers              |
+| `disableGutters` | `boolean`                                                           | `false`  | Horizontales Padding deaktivieren           |
+| `fullHeight`     | `boolean`                                                           | `false`  | Container auf Bildschirmhöhe setzen         |
+| `centerContent`  | `boolean`                                                           | `false`  | Content innerhalb des Containers zentrieren |
 
 ### Grid
 
@@ -144,28 +141,28 @@ import { Grid } from '@smolitux/layout';
   <Grid item xs={12} md={6}>
     <Card>Inhalt 2</Card>
   </Grid>
-</Grid>
+</Grid>;
 ```
 
 #### Props
 
-| Prop | Typ | Standard | Beschreibung |
-|------|-----|----------|-------------|
-| `container` | `boolean` | `false` | Container-Modus aktivieren (für Grid-Container) |
-| `item` | `boolean` | `false` | Item-Modus aktivieren (für Grid-Items) |
-| `spacing` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 8 \| 10 \| 12` | `0` | Abstand zwischen Grid-Items |
-| `columnSpacing` | `Grid['spacing']` | - | Horizontaler Abstand zwischen Grid-Items |
-| `rowSpacing` | `Grid['spacing']` | - | Vertikaler Abstand zwischen Grid-Items |
-| `justifyContent` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | - | Ausrichtung der Items entlang der Hauptachse |
-| `alignItems` | `'flex-start' \| 'center' \| 'flex-end' \| 'stretch' \| 'baseline'` | - | Ausrichtung der Items entlang der Kreuzachse |
-| `direction` | `'row' \| 'row-reverse' \| 'column' \| 'column-reverse'` | - | Flex-Direction der Items |
-| `wrap` | `'nowrap' \| 'wrap' \| 'wrap-reverse'` | `'wrap'` | Flex-Wrap-Verhalten |
-| `xs` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für xs-Bildschirme (0px+) |
-| `sm` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für sm-Bildschirme (640px+) |
-| `md` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für md-Bildschirme (768px+) |
-| `lg` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für lg-Bildschirme (1024px+) |
-| `xl` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für xl-Bildschirme (1280px+) |
-| `xxl` | `number \| 'auto' \| boolean` | - | Anzahl der Spalten für 2xl-Bildschirme (1536px+) |
+| Prop             | Typ                                                                                             | Standard | Beschreibung                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------ |
+| `container`      | `boolean`                                                                                       | `false`  | Container-Modus aktivieren (für Grid-Container)  |
+| `item`           | `boolean`                                                                                       | `false`  | Item-Modus aktivieren (für Grid-Items)           |
+| `spacing`        | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 8 \| 10 \| 12`                                              | `0`      | Abstand zwischen Grid-Items                      |
+| `columnSpacing`  | `Grid['spacing']`                                                                               | -        | Horizontaler Abstand zwischen Grid-Items         |
+| `rowSpacing`     | `Grid['spacing']`                                                                               | -        | Vertikaler Abstand zwischen Grid-Items           |
+| `justifyContent` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | -        | Ausrichtung der Items entlang der Hauptachse     |
+| `alignItems`     | `'flex-start' \| 'center' \| 'flex-end' \| 'stretch' \| 'baseline'`                             | -        | Ausrichtung der Items entlang der Kreuzachse     |
+| `direction`      | `'row' \| 'row-reverse' \| 'column' \| 'column-reverse'`                                        | -        | Flex-Direction der Items                         |
+| `wrap`           | `'nowrap' \| 'wrap' \| 'wrap-reverse'`                                                          | `'wrap'` | Flex-Wrap-Verhalten                              |
+| `xs`             | `number \| 'auto' \| boolean`                                                                   | -        | Anzahl der Spalten für xs-Bildschirme (0px+)     |
+| `sm`             | `number \| 'auto' \| boolean`                                                                   | -        | Anzahl der Spalten für sm-Bildschirme (640px+)   |
+| `md`             | `number \| 'auto' \| boolean`                                                                   | -        | Anzahl der Spalten für md-Bildschirme (768px+)   |
+| `lg`             | `number \| 'auto' \| boolean`                                                                   | -        | Anzahl der Spalten für lg-Bildschirme (1024px+)  |
+| `xl`             | `number \| 'auto' \| boolean`                                                                   | -        | Anzahl der Spalten für xl-Bildschirme (1280px+)  |
+| `xxl`            | `number \| 'auto' \| boolean`                                                                   | -        | Anzahl der Spalten für 2xl-Bildschirme (1536px+) |
 
 ## Chart-Komponenten
 
@@ -184,35 +181,35 @@ import { LineChart } from '@smolitux/charts';
       { x: 'Mar', y: 200 },
       { x: 'Apr', y: 120 },
       { x: 'May', y: 180 },
-    ]
+    ],
   }}
   height={300}
   showGrid
   showPoints
-/>
+/>;
 ```
 
 #### Props
 
-| Prop | Typ | Standard | Beschreibung |
-|------|-----|----------|-------------|
-| `data` | `LineChartSeries \| LineChartSeries[]` | - | Einzelne Datenserie oder Array von Serien |
-| `height` | `number` | `300` | Höhe des Charts |
-| `width` | `number \| string` | `'100%'` | Breite des Charts |
-| `padding` | `{ top?: number; right?: number; bottom?: number; left?: number }` | `{ top: 30, right: 30, bottom: 40, left: 50 }` | Padding innerhalb des Charts |
-| `axisLabels` | `{ x?: string; y?: string }` | - | Achsentitel |
-| `units` | `{ x?: string; y?: string }` | - | Einheiten für Achsenbeschriftungen |
-| `showGrid` | `boolean` | `true` | Grid-Linien anzeigen |
-| `showPoints` | `boolean` | `true` | Datenpunkte anzeigen |
-| `showTooltips` | `boolean` | `true` | Tooltips anzeigen |
-| `showLegend` | `boolean` | `true` | Legende anzeigen |
-| `legendPosition` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | Position der Legende |
-| `animated` | `boolean` | `true` | Animation aktivieren |
-| `startYAxisAtZero` | `boolean` | `false` | Y-Achse bei Null beginnen |
-| `colors` | `string[]` | - | Angepasste Farben für mehrere Serien |
-| `formatYLabel` | `(value: number) => string` | `(value) => value.toString()` | Angepasste Formatierung für Y-Achsenbeschriftungen |
-| `formatXLabel` | `(value: string \| number) => string` | `(value) => value.toString()` | Angepasste Formatierung für X-Achsenbeschriftungen |
-| `aspectRatio` | `number` | `16 / 9` | Für responsive SVG (viewBox) |
+| Prop               | Typ                                                                | Standard                                       | Beschreibung                                       |
+| ------------------ | ------------------------------------------------------------------ | ---------------------------------------------- | -------------------------------------------------- |
+| `data`             | `LineChartSeries \| LineChartSeries[]`                             | -                                              | Einzelne Datenserie oder Array von Serien          |
+| `height`           | `number`                                                           | `300`                                          | Höhe des Charts                                    |
+| `width`            | `number \| string`                                                 | `'100%'`                                       | Breite des Charts                                  |
+| `padding`          | `{ top?: number; right?: number; bottom?: number; left?: number }` | `{ top: 30, right: 30, bottom: 40, left: 50 }` | Padding innerhalb des Charts                       |
+| `axisLabels`       | `{ x?: string; y?: string }`                                       | -                                              | Achsentitel                                        |
+| `units`            | `{ x?: string; y?: string }`                                       | -                                              | Einheiten für Achsenbeschriftungen                 |
+| `showGrid`         | `boolean`                                                          | `true`                                         | Grid-Linien anzeigen                               |
+| `showPoints`       | `boolean`                                                          | `true`                                         | Datenpunkte anzeigen                               |
+| `showTooltips`     | `boolean`                                                          | `true`                                         | Tooltips anzeigen                                  |
+| `showLegend`       | `boolean`                                                          | `true`                                         | Legende anzeigen                                   |
+| `legendPosition`   | `'top' \| 'right' \| 'bottom' \| 'left'`                           | `'top'`                                        | Position der Legende                               |
+| `animated`         | `boolean`                                                          | `true`                                         | Animation aktivieren                               |
+| `startYAxisAtZero` | `boolean`                                                          | `false`                                        | Y-Achse bei Null beginnen                          |
+| `colors`           | `string[]`                                                         | -                                              | Angepasste Farben für mehrere Serien               |
+| `formatYLabel`     | `(value: number) => string`                                        | `(value) => value.toString()`                  | Angepasste Formatierung für Y-Achsenbeschriftungen |
+| `formatXLabel`     | `(value: string \| number) => string`                              | `(value) => value.toString()`                  | Angepasste Formatierung für X-Achsenbeschriftungen |
+| `aspectRatio`      | `number`                                                           | `16 / 9`                                       | Für responsive SVG (viewBox)                       |
 
 #### LineChartSeries Typ
 
@@ -255,15 +252,15 @@ const customTheme = createTheme({
 // Theme anwenden
 <ThemeProvider theme={customTheme}>
   <App />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 #### Props
 
-| Prop | Typ | Standard | Beschreibung |
-|------|-----|----------|-------------|
-| `theme` | `Theme` | `defaultTheme` | Das zu verwendende Theme |
-| `children` | `ReactNode` | - | Die Komponenten, auf die das Theme angewendet werden soll |
+| Prop       | Typ         | Standard       | Beschreibung                                              |
+| ---------- | ----------- | -------------- | --------------------------------------------------------- |
+| `theme`    | `Theme`     | `defaultTheme` | Das zu verwendende Theme                                  |
+| `children` | `ReactNode` | -              | Die Komponenten, auf die das Theme angewendet werden soll |
 
 ### useTheme Hook
 
@@ -272,7 +269,7 @@ import { useTheme } from '@smolitux/theme';
 
 function MyComponent() {
   const { theme, themeMode, setThemeMode } = useTheme();
-  
+
   return (
     <div>
       <p>Aktuelle Primärfarbe: {theme.colors.primary}</p>
@@ -287,11 +284,9 @@ function MyComponent() {
 
 #### Rückgabewerte
 
-| Wert | Typ | Beschreibung |
-|------|-----|-------------|
-| `theme` | `Theme` | Das aktuelle Theme-Objekt |
-| `themeMode` | `'light' \| 'dark'` | Der aktuelle Theme-Modus |
-| `setThemeMode` | `(mode: 'light' \| 'dark') => void` | Funktion zum Ändern des Theme-Modus |
-| `toggleThemeMode` | `() => void` | Funktion zum Umschalten des Theme-Modus |
-## Automatische API-Dokumentation
-Weitere Details findest du im Verzeichnis [generated](./generated). Führe `npm run docs:api` aus, um die Dokumentation zu aktualisieren.
+| Wert              | Typ                                 | Beschreibung                            |
+| ----------------- | ----------------------------------- | --------------------------------------- |
+| `theme`           | `Theme`                             | Das aktuelle Theme-Objekt               |
+| `themeMode`       | `'light' \| 'dark'`                 | Der aktuelle Theme-Modus                |
+| `setThemeMode`    | `(mode: 'light' \| 'dark') => void` | Funktion zum Ändern des Theme-Modus     |
+| `toggleThemeMode` | `() => void`                        | Funktion zum Umschalten des Theme-Modus |

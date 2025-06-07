@@ -41,7 +41,8 @@
     "build-storybook": "storybook build",
     "dev": "lerna run dev --parallel",
     "prepare": "husky install",
-    "docs:api": "typedoc"
+"docs:api": "typedoc",
+    "docs:generate": "typedoc --options typedoc.json",
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
@@ -112,6 +113,7 @@
     "storybook": "^7.6.17",
     "ts-jest": "^29.3.0",
     "tsup": "^6.7.0",
+    "typedoc": "^0.28.5",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.28.0",
     "typedoc": "^0.25.2",
