@@ -22,3 +22,9 @@ This monorepo contains a React component library (packages in `packages/`) and a
 - Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages (`feat:`, `fix:`, `docs:`, etc.).
 - Keep commits focused. Update or add tests for code changes.
 - Include a short summary of changes and test results in the PR description.
+
+## Microagents and Structure
+
+- Core packages reside in `packages/@smolitux/`.
+- Use `scripts/setup-dev-env.sh` to install dependencies.
+- Always run `npm run lint` and `npm run test` before creating a PR.
