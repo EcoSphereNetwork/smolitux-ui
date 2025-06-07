@@ -1,14 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Install Node dependencies using yarn or npm
-if command -v yarn >/dev/null 2>&1; then
-  echo "==> Installing dependencies with yarn"
-  yarn install
-else
-  echo "==> Installing dependencies with npm"
-  npm ci
-fi
+# Always install Node dependencies via npm for reliability
+echo "==> Installing dependencies with npm"
+npm install --no-audit --no-fund
+
+# Synchronize package versions across packages
+ROOT_VERSION=$(jq -r '.version' package.json)
+for pkg in packages/@smolitux/*; do
+  if [ -f "$pkg/package.json" ]; then
+    sed -i "s/0\.2\.1/$ROOT_VERSION/g" "$pkg/package.json"
+    tmp=$(mktemp)
+    jq --arg v "$ROOT_VERSION" '.version = $v' "$pkg/package.json" > "$tmp" && mv "$tmp" "$pkg/package.json"
+  fi
+
+  cat > "$pkg/tsconfig.json" <<EOF
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
+}
+EOF
+
+  cat > "$pkg/jest.config.js" <<'EOF'
+const base = require('../../jest.config');
+module.exports = { ...base, rootDir: __dirname };
+EOF
+done
 
 # Verify essential tools are available from local node_modules
 for tool in eslint jest prettier; do
