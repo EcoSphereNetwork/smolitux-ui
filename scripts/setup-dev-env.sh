@@ -36,11 +36,11 @@ module.exports = { ...base, rootDir: __dirname };
 EOF
 done
 
-# Rebuild packages like eslint and jest-cli to ensure build artifacts
-npm rebuild eslint jest-cli
+# Rebuild packages like eslint, jest-cli and ts-jest to ensure build artifacts
+npm rebuild eslint jest-cli ts-jest
 
 # Verify essential tools are available from local node_modules
-for tool in eslint jest prettier; do
+for tool in eslint jest ts-jest prettier; do
   if ! npx --no-install $tool --version >/dev/null 2>&1; then
     echo "Error: $tool is not installed" >&2
     exit 1
