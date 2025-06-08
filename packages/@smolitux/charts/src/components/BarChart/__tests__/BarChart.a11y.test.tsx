@@ -47,6 +47,7 @@ describe('BarChart Accessibility', () => {
     
     const svg = container.querySelector('svg');
     expect(svg).toHaveAttribute('aria-label', 'Chart: Quarterly Sales');
+    expect(svg).toHaveAttribute('role', 'img');
   });
 
   test('should include descriptive title', () => {

@@ -49,6 +49,16 @@ describe('Container', () => {
     expect(containerElement).not.toHaveClass('max-w-7xl');
   });
 
+  test('applies responsive max-width classes', () => {
+    const { container } = render(
+      <Container maxWidth={{ sm: 'sm', lg: 'xl' }}>Content</Container>
+    );
+
+    const containerElement = container.firstChild as HTMLElement;
+    expect(containerElement).toHaveClass('sm:max-w-md');
+    expect(containerElement).toHaveClass('lg:max-w-5xl');
+  });
+
   test('disables gutters when disableGutters is true', () => {
     const { container } = render(<Container disableGutters>Content</Container>);
     
