@@ -72,6 +72,9 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 - Unified responsive type definitions across layout components.
 - Added additional grid logic tests and story examples.
 - Created `docs/wiki/development/component-status-layout.md` to track layout progress.
+### Update 2025-06-08 (AI)
+- Analyzer run focused on @smolitux/ai. All AI components fully tested with caching and error handling.
+- Updated docs/wiki/development/component-status-ai.md
 
 ---
 _Updated by Codex AI_
