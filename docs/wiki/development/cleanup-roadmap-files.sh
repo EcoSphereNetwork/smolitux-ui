@@ -3,7 +3,7 @@
 # Dieses Skript bereinigt die Roadmap-Dateien und behält nur die konsolidierte Version
 
 # Sicherstellen, dass wir im richtigen Verzeichnis sind
-cd /workspace/smolitux-ui/docs/Wiki/development
+cd /workspace/smolitux-ui/docs/wiki/development
 
 # Erstellen eines Backup-Verzeichnisses für die alten Dateien
 mkdir -p archive
