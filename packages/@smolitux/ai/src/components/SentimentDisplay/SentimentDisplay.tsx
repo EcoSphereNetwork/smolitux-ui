@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useResponseCache } from '../../utils/useResponseCache';
 import { Card, Button, ProgressBar } from '@smolitux/core';
 
 export interface SentimentScore {
@@ -64,6 +65,10 @@ export interface SentimentDisplayProps {
   topics?: SentimentTopic[];
   /** Callback beim Aktualisieren der Stimmungsanalyse */
   onRefresh?: () => Promise<void>;
+  /** Optionaler Fetcher, falls die Stimmungsdaten asynchron geladen werden */
+  fetchSentiment?: () => Promise<SentimentScore>;
+  /** Schlüssel für das Caching der Stimmungsdaten */
+  cacheKey?: string;
   /** Callback beim Ändern des Zeitraums */
   onTimeRangeChange?: (range: string) => Promise<void>;
   /** Zusätzliche CSS-Klassen */
@@ -111,6 +116,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
   trend,
   topics,
   onRefresh,
+  fetchSentiment,
   onTimeRangeChange,
   className = '',
   loading = false,
@@ -128,10 +134,23 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
   showEmotions = true,
   showTrend = true,
   showTopics = true,
+  cacheKey = 'sentiment',
 }) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [selectedTimeRange, setSelectedTimeRange] = useState(currentTimeRange);
   const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
+
+  const { data: cachedSentiment, error: fetchError } = useResponseCache(
+    cacheKey,
+    async () => {
+      if (fetchSentiment) {
+        return fetchSentiment();
+      }
+      return sentiment;
+    }
+  );
+
+  const effectiveSentiment = cachedSentiment || sentiment;
 
   // Zeitraum ändern
   const handleTimeRangeChange = async (range: string) => {
@@ -263,7 +282,9 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
 
   // Gesamtstimmung berechnen, falls nicht angegeben
   const calculatedOverallSentiment =
-    overallSentiment !== undefined ? overallSentiment : sentiment.positive - sentiment.negative;
+    overallSentiment !== undefined
+      ? overallSentiment
+      : effectiveSentiment.positive - effectiveSentiment.negative;
 
   return (
     <Card className={`overflow-hidden ${className}`}>
@@ -302,6 +323,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
         </div>
 
         {description && <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>}
+
+        {fetchError && (
+          <p className="text-sm text-red-500 mt-2" role="alert">
+            Fehler beim Laden der Stimmungsdaten
+          </p>
+        )}
 
         {/* Inhaltsinformationen */}
         {contentTitle && (
@@ -442,11 +469,11 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Positiv</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">
-                            {(sentiment.positive * 100).toFixed(1)}%
+                            {(effectiveSentiment.positive * 100).toFixed(1)}%
                           </span>
                         </div>
                         <ProgressBar
-                          value={sentiment.positive * 100}
+                          value={effectiveSentiment.positive * 100}
                           max={100}
                           className="h-2 bg-gray-200 dark:bg-gray-600"
                           progressClassName="bg-green-500"
@@ -458,11 +485,11 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Neutral</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">
-                            {(sentiment.neutral * 100).toFixed(1)}%
+                            {(effectiveSentiment.neutral * 100).toFixed(1)}%
                           </span>
                         </div>
                         <ProgressBar
-                          value={sentiment.neutral * 100}
+                          value={effectiveSentiment.neutral * 100}
                           max={100}
                           className="h-2 bg-gray-200 dark:bg-gray-600"
                           progressClassName="bg-gray-400"
@@ -474,11 +501,11 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Negativ</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300">
-                            {(sentiment.negative * 100).toFixed(1)}%
+                            {(effectiveSentiment.negative * 100).toFixed(1)}%
                           </span>
                         </div>
                         <ProgressBar
-                          value={sentiment.negative * 100}
+                          value={effectiveSentiment.negative * 100}
                           max={100}
                           className="h-2 bg-gray-200 dark:bg-gray-600"
                           progressClassName="bg-red-500"
@@ -486,18 +513,18 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                       </div>
 
                       {/* Gemischte Stimmung */}
-                      {sentiment.mixed !== undefined && (
+                      {effectiveSentiment.mixed !== undefined && (
                         <div>
                           <div className="flex justify-between mb-1">
                             <span className="text-sm text-gray-700 dark:text-gray-300">
                               Gemischt
                             </span>
                             <span className="text-sm text-gray-700 dark:text-gray-300">
-                              {(sentiment.mixed * 100).toFixed(1)}%
+                              {(effectiveSentiment.mixed * 100).toFixed(1)}%
                             </span>
                           </div>
                           <ProgressBar
-                            value={sentiment.mixed * 100}
+                            value={effectiveSentiment.mixed * 100}
                             max={100}
                             className="h-2 bg-gray-200 dark:bg-gray-600"
                             progressClassName="bg-purple-500"

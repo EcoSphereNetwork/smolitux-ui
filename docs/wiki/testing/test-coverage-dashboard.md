@@ -10,9 +10,10 @@
 | @smolitux/blockchain    | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/community     | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/federation    | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/media         | ⚠️ Teilweise | –          | –        | –         | –     |
+| @smolitux/media         | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/resonance     | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/utils         | ✅ Getestet  | –          | –        | –         | –     |
-| @smolitux/voice-control | ✅ Getestet  | –          | –        | –         | –     |
+| @smolitux/testing         | ✅ Getestet  | –          | –        | –         | –     |
+| @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
 
 > Letzte Aktualisierung: 2025-06-12

@@ -4,3 +4,5 @@ export * from './components/VideoPlayer';
 export * from './components/MediaUploader';
 export * from './components/MediaGrid';
 export * from './components/MediaCarousel';
+export * from './components/ImageGallery';
+export * from './types';

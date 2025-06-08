@@ -1,6 +1,7 @@
 # Smolitux UI - Codex Progress
 
 **Started:** Sun Jun 8 22:15:51 UTC 2025
+**Last Updated:** Tue Jun 10 00:00:00 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -18,8 +19,7 @@
 - [ ] **@smolitux/charts** (AreaChart, BarChart, PieChart, etc.)
 
 ### Tier 3: Advanced Features
-
-- [ ] **@smolitux/media** (AudioPlayer, VideoPlayer)
+- [ ] **@smolitux/media** (AudioPlayer, VideoPlayer, ImageGallery, MediaGrid)
 - [ ] **@smolitux/community** (ActivityFeed, UserProfile)
 
 ### Tier 4: Specialized
@@ -46,8 +46,27 @@
 5. Add missing stories (\*.stories.tsx)
 6. Ensure accessibility compliance
 7. Update this file after each session
+8. Remove remaining `any` casts in components
 
 ---
+_Updated by Codex AI_
+### Session 2025-06-12
+- Fixed generated layout tests and updated responsive behavior checks.
 
 _Updated by Codex AI_
 _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback. Updated documentation and dashboards.
+- 2025-06-08: Analyzer run - 120 validation issues remaining
+### Update 2025-06-11
+- Removed 'as any' casts in List, List.a11y, Zoom, Zoom.a11y, LanguageSwitcher.
+- Updated Dialog story typing.
+- Analyzer reports 126 validation issues.
+### Update 2025-06-08
+- Improved chunk helper input validation.
+- Added tests and stories for @smolitux/testing utilities (2025-06-12)
+
+*Updated by Codex AI*
+
+### Update 2025-06-08
+- Added SentimentDisplay caching and error handling tests.
+
+>>>>>>> pr-354

@@ -12,3 +12,5 @@ export * from './components/TrendingTopics';
 export * from './components/FakeNewsDetector';
 export * from './components/TrollFilter';
 export * from './components/ContentModerator';
+export * from './types';
+export * from './utils/useResponseCache';

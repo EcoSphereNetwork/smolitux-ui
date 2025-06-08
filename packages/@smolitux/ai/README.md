@@ -22,6 +22,7 @@ yarn add @smolitux/ai
 
 ```jsx
 import { RecommendationCarousel } from '@smolitux/ai';
+import { SentimentDisplay } from '@smolitux/ai';
 
 const MyComponent = () => {
   const recommendations = [
@@ -30,6 +31,18 @@ const MyComponent = () => {
 
   return <RecommendationCarousel recommendations={recommendations} title="Recommended for you" />;
 };
+```
+
+### Using SentimentDisplay with caching
+
+```jsx
+const fetchSentiment = async () => ({ positive: 0.6, negative: 0.2, neutral: 0.2 });
+
+<SentimentDisplay
+  sentiment={{ positive: 0, negative: 0, neutral: 0 }}
+  fetchSentiment={fetchSentiment}
+  cacheKey="article-1"
+/>;
 ```
 
 ## License

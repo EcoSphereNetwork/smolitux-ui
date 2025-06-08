@@ -99,6 +99,10 @@ export function sortBy<T>(arr: T[], key: (item: T) => any): T[] {
 }
 
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (!Number.isInteger(size) || size <= 0) {
+    throw new Error('size must be a positive integer');
+  }
+
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));

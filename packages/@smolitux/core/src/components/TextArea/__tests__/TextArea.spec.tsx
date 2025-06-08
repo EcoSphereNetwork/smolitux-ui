@@ -45,10 +45,10 @@ describe('TextArea Snapshots', () => {
   });
 
   it('renders textarea with different sizes correctly', () => {
-    const sizes = ['sm', 'md', 'lg'];
+    const sizes: Array<'sm' | 'md' | 'lg'> = ['sm', 'md', 'lg'];
 
     const fragments = sizes.map((size) => {
-      const { asFragment } = render(<TextArea size={size as any} />);
+      const { asFragment } = render(<TextArea size={size} />);
       return { size, fragment: asFragment() };
     });
 
@@ -58,10 +58,14 @@ describe('TextArea Snapshots', () => {
   });
 
   it('renders textarea with different variants correctly', () => {
-    const variants = ['outline', 'filled', 'unstyled'];
+    const variants: Array<'outline' | 'filled' | 'unstyled'> = [
+      'outline',
+      'filled',
+      'unstyled',
+    ];
 
     const fragments = variants.map((variant) => {
-      const { asFragment } = render(<TextArea variant={variant as any} />);
+      const { asFragment } = render(<TextArea variant={variant} />);
       return { variant, fragment: asFragment() };
     });
 
