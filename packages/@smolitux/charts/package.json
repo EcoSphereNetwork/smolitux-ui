@@ -21,9 +21,9 @@
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@smolitux/core": "^0.2.1",
-    "@smolitux/theme": "^0.2.1",
-    "@smolitux/utils": "^0.2.1"
+    "@smolitux/core": "^0.3.0",
+    "@smolitux/theme": "^0.3.0",
+    "@smolitux/utils": "^0.3.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.0.0",
