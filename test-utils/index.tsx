@@ -1,27 +1,22 @@
-import React from 'react';
 import { render, RenderOptions } from '@testing-library/react';
-import { ThemeProvider } from '@smolitux/theme';
+import React from 'react';
 
-// Mock für ThemeProvider
-jest.mock('@smolitux/theme', () => ({
-  useTheme: jest.fn(() => ({ themeMode: 'light', toggleTheme: jest.fn(), setThemeMode: jest.fn() })),
-  ThemeProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
-}));
+// Hier können wir später den ThemeProvider hinzufügen, wenn wir ihn implementieren
+const AllProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return <>{children}</>;
+};
 
-// Custom render mit ThemeProvider
-export const customRender = (
+// Custom render mit Providern
+const customRender = (
   ui: React.ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'> & { theme?: 'light' | 'dark' }
+  options?: Omit<RenderOptions, 'wrapper'>
 ) => {
-  const { theme = 'light', ...rest } = options || {};
   return render(ui, {
-    wrapper: ({ children }) => (
-      <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
-    ),
-    ...rest,
+    wrapper: AllProviders,
+    ...options,
   });
 };
 
-// Re-export everything from testing-library
+// Re-export alles von testing-library
 export * from '@testing-library/react';
 export { customRender as render };
