@@ -1,10 +1,5 @@
 // packages/@smolitux/layout/src/index.ts
-export {
-  default as Container,
-  type ContainerProps,
-  type Breakpoint as ContainerBreakpoint,
-  type ResponsiveProp as ContainerResponsiveProp,
-} from './components/Container/Container';
+export { default as Container, type ContainerProps } from './components/Container/Container';
 export { default as Grid, type GridProps } from './components/Grid/Grid';
 export { default as Flex, type FlexProps } from './components/Flex/Flex';
 export {
@@ -18,3 +13,11 @@ export {
   default as DashboardLayout,
   type DashboardLayoutProps,
 } from './components/DashboardLayout/DashboardLayout';
+export type {
+  Breakpoint,
+  ResponsiveProp,
+  GridBreakpoint,
+  GridGap,
+  GridJustify,
+  GridAlign,
+} from './types';

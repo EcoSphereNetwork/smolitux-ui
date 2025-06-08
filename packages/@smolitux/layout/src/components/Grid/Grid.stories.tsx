@@ -46,3 +46,16 @@ export const Responsive: Story = {
     </Grid>
   ),
 };
+
+export const LayoutCombination: Story = {
+  render: () => (
+    <Grid cols={{ sm: 1, lg: 4 }} gap="sm">
+      <Grid.Item xs={12} lg={1}>
+        <Box>Sidebar</Box>
+      </Grid.Item>
+      <Grid.Item xs={12} lg={3}>
+        <Box>Main Content</Box>
+      </Grid.Item>
+    </Grid>
+  ),
+};

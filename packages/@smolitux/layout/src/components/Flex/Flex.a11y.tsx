@@ -1,6 +1,6 @@
 // packages/@smolitux/layout/src/components/Flex/Flex.a11y.tsx
 import React, { forwardRef } from 'react';
-import type { Breakpoint, ResponsiveProp } from './Flex';
+import type { Breakpoint, ResponsiveProp } from '../../types';
 
 export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Flex-Richtung */
