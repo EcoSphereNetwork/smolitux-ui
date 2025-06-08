@@ -157,4 +157,11 @@ describe('PieChart', () => {
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
   });
+
+  test('handles malformed data gracefully', () => {
+    const badData: any = [{ id: 'bad' }];
+    render(<PieChart data={badData} />);
+    const svg = document.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+  });
 });

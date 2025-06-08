@@ -167,4 +167,11 @@ describe('BarChart', () => {
     const legendText = screen.getByText('Sales 2025');
     expect(legendText).toHaveAttribute('fill', '#654321');
   });
+
+  test('handles malformed data gracefully', () => {
+    const badData: any = { id: 'bad' };
+    render(<BarChart data={badData} />);
+    const svg = document.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+  });
 });

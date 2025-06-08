@@ -216,4 +216,11 @@ describe('RadarChart', () => {
     expect(screen.queryByText('Skills Assessment')).not.toBeInTheDocument();
     expect(screen.queryByText('Team Average')).not.toBeInTheDocument();
   });
+
+  test('handles malformed data gracefully', () => {
+    const badData: any = { id: 'bad' };
+    render(<RadarChart data={badData} />);
+    const svg = document.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+  });
 });
