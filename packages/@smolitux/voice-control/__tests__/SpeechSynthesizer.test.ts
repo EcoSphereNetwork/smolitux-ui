@@ -1,0 +1,29 @@
+import { SpeechSynthesizer } from '../src/SpeechSynthesizer';
+
+describe('SpeechSynthesizer', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  test('falls back when unsupported', () => {
+    Object.defineProperty(window, 'speechSynthesis', {
+      value: undefined,
+      configurable: true,
+    });
+    const synthesizer = new SpeechSynthesizer();
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    synthesizer.speak('hello');
+    expect(warn).toHaveBeenCalled();
+  });
+
+  test('uses SpeechSynthesis API when available', () => {
+    const speakMock = jest.fn();
+    Object.defineProperty(window, 'speechSynthesis', {
+      value: { speak: speakMock, cancel: jest.fn() },
+      configurable: true,
+    });
+    const synthesizer = new SpeechSynthesizer();
+    synthesizer.speak('hi');
+    expect(speakMock).toHaveBeenCalled();
+  });
+});

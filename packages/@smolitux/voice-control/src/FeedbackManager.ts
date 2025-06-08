@@ -1,5 +1,8 @@
+import { SpeechSynthesizer } from './SpeechSynthesizer';
+
 export class FeedbackManager {
   private audioContext: AudioContext | null = null;
+  private synthesizer: SpeechSynthesizer;
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -13,11 +16,15 @@ export class FeedbackManager {
         { once: true }
       );
     }
+    this.synthesizer = new SpeechSynthesizer();
   }
 
   provideFeedback(type: 'start' | 'stop' | 'command', command?: string) {
     this.provideVisualFeedback(type, command);
     this.provideAudioFeedback(type);
+    if (type === 'command' && command) {
+      this.synthesizer.speak(command);
+    }
   }
 
   private provideVisualFeedback(type: 'start' | 'stop' | 'command', command?: string) {

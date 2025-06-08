@@ -13,6 +13,6 @@
 | @smolitux/media         | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/resonance     | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/utils         | ✅ Getestet  | –          | –        | –         | –     |
-| @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
+| @smolitux/voice-control | ✅ Getestet  | –          | –        | –         | –     |
 
-> Letzte Aktualisierung: 2025-06-08
+> Letzte Aktualisierung: 2025-06-12

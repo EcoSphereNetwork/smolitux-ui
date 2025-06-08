@@ -8,3 +8,5 @@ export { TensorFlowRecognitionEngine } from './engines/TensorFlowRecognitionEngi
 export { ModelManager } from './models/ModelManager';
 export { ModelTrainer } from './models/ModelTrainer';
 export { default as ModelTrainingComponent } from './models/ModelTrainingComponent';
+export { SpeechSynthesizer } from './SpeechSynthesizer';
+export type { SpeechSynthesizerOptions } from "./SpeechSynthesizer";
