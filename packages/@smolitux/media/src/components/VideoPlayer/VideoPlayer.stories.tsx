@@ -2,33 +2,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { VideoPlayer } from './VideoPlayer';
 
 const meta: Meta<typeof VideoPlayer> = {
-  title: 'Components/VideoPlayer',
+  title: 'Media/VideoPlayer',
   component: VideoPlayer,
-  parameters: {
-    layout: 'centered',
-  },
+  parameters: { layout: 'centered' },
   tags: ['autodocs'],
 };
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
-    children: 'VideoPlayer',
-  },
-};
-
-export const CustomStyle: Story = {
-  args: {
-    children: 'Custom VideoPlayer',
-    className: 'custom-style',
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    children: 'Interactive VideoPlayer',
-    onClick: () => alert('Clicked!'),
+    src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    title: 'Beispiel Video',
+    controls: true,
   },
 };

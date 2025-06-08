@@ -71,8 +71,9 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/federation | FederatedSearch | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/federation | FederationStatus | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/federation | PlatformSelector | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/media | AudioPlayer | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/media | AudioPlayer | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | MediaCarousel | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/media | ImageGallery | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | MediaGrid | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | MediaUploader | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | VideoPlayer | ✅ | ✅ | ❌ | ❌ | Ready |
@@ -116,7 +117,7 @@ This document provides a comprehensive test status report for all components in 
 - **@smolitux/blockchain**: 7 components need A11y tests
 - **@smolitux/community**: 5 components need A11y tests
 - **@smolitux/federation**: 5 components need A11y tests
-- **@smolitux/media**: 4 components ready, 1 needs A11y tests
+- **@smolitux/media**: 6 components ready
 - **@smolitux/resonance**: 16 components ready
 - **@smolitux/utils**: Ready
 - **@smolitux/voice-control**: 3 components missing tests

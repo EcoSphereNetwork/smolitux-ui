@@ -1,34 +1,54 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MediaGrid } from './MediaGrid';
+import { MediaGrid, MediaItem } from './MediaGrid';
+
+const demoItems: MediaItem[] = [
+  {
+    id: '1',
+    title: 'Bild 1',
+    url: 'https://via.placeholder.com/400x300',
+    thumbnailUrl: 'https://via.placeholder.com/400x300',
+    type: 'image',
+    creator: { id: 'u1', name: 'Alice' },
+    createdAt: new Date(),
+    views: 10,
+    likes: 1,
+    comments: 0,
+  },
+  {
+    id: '2',
+    title: 'Bild 2',
+    url: 'https://via.placeholder.com/400x300',
+    thumbnailUrl: 'https://via.placeholder.com/400x300',
+    type: 'image',
+    creator: { id: 'u2', name: 'Bob' },
+    createdAt: new Date(),
+    views: 5,
+    likes: 0,
+    comments: 0,
+  },
+];
 
 const meta: Meta<typeof MediaGrid> = {
-  title: 'Components/MediaGrid',
+  title: 'Media/MediaGrid',
   component: MediaGrid,
-  parameters: {
-    layout: 'centered',
-  },
+  parameters: { layout: 'centered' },
   tags: ['autodocs'],
 };
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
-    children: 'MediaGrid',
+    items: demoItems,
+    showFilters: false,
   },
 };
 
-export const CustomStyle: Story = {
+export const WithFilters: Story = {
   args: {
-    children: 'Custom MediaGrid',
-    className: 'custom-style',
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    children: 'Interactive MediaGrid',
-    onClick: () => alert('Clicked!'),
+    items: demoItems,
+    showFilters: true,
   },
 };
