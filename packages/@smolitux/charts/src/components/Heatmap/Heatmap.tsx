@@ -10,7 +10,7 @@ export interface HeatmapDataPoint {
   /** Wert für die Farbintensität */
   value: number;
   /** Optional: Metadata für Tooltips etc. */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface HeatmapColorScale {

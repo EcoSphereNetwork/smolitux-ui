@@ -8,7 +8,7 @@ export interface RadarChartDataPoint {
   /** Wert für die Achse */
   value: number;
   /** Optional: Metadata für Tooltips etc. */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface RadarChartSeries {

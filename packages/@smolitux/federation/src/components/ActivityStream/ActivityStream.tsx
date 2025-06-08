@@ -59,7 +59,7 @@ export interface ActivityObject {
   /** Aktualisierungsdatum des Objekts */
   updated?: Date;
   /** Zusätzliche Attribute des Objekts */
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface ActivityActor {
@@ -78,7 +78,7 @@ export interface ActivityActor {
   /** URL des Akteurs */
   url?: string;
   /** Zusätzliche Attribute des Akteurs */
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface ActivityStreamItem {
@@ -106,7 +106,7 @@ export interface ActivityStreamItem {
     logoUrl?: string;
   };
   /** Zusätzliche Attribute der Aktivität */
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface ActivityStreamProps {
@@ -125,7 +125,7 @@ export interface ActivityStreamProps {
   /** Callback beim Aktualisieren der Aktivitäten */
   onRefresh?: () => Promise<void>;
   /** Callback beim Filtern der Aktivitäten */
-  onFilter?: (filters: Record<string, any>) => Promise<void>;
+  onFilter?: (filters: Record<string, unknown>) => Promise<void>;
   /** Zusätzliche CSS-Klassen */
   className?: string;
   /** Ist die Komponente im Ladezustand? */
@@ -135,7 +135,7 @@ export interface ActivityStreamProps {
   /** Filteroptionen anzeigen? */
   showFilters?: boolean;
   /** Standardfilter */
-  defaultFilters?: Record<string, any>;
+  defaultFilters?: Record<string, unknown>;
 }
 
 /**
@@ -158,7 +158,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
 }) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [filters, setFilters] = useState<Record<string, any>>(defaultFilters);
+  const [filters, setFilters] = useState<Record<string, unknown>>(defaultFilters);
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const streamRef = useRef<HTMLDivElement>(null);

@@ -24,7 +24,7 @@ export interface RecommendationItem {
   /** Grund für die Empfehlung */
   reason?: string;
   /** Zusätzliche Metadaten zum empfohlenen Element */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface RecommendationGroup {

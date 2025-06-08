@@ -3,7 +3,7 @@ import { keyframes, KeyframeAnimation } from './keyframes';
 import { TransitionPreset, transitions, TransitionPresetName } from './transitions';
 
 export type AnimationOptions = {
-  keyframe: KeyframeAnimation | Record<string, any>;
+  keyframe: KeyframeAnimation | Record<string, unknown>;
   transition?: TransitionPresetName | TransitionPreset;
   delay?: number;
   duration?: number;

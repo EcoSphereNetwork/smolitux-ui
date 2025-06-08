@@ -36,7 +36,7 @@ export interface ActivityItem {
     thumbnailUrl?: string;
   };
   /** Zusätzliche Metadaten zur Aktivität */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface ActivityFeedProps {

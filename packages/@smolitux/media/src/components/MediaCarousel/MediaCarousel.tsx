@@ -31,7 +31,7 @@ export interface MediaItem {
   /** Ist das Medienelement ein Premium-Inhalt? */
   isPremium?: boolean;
   /** Zusätzliche Metadaten zum Medienelement */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface MediaCarouselProps {

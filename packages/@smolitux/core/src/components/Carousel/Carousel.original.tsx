@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, useMemo, forwardRef, useCallback } from 'react';
 
 // Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
+let useTheme: () => { themeMode: string; colors?: Record<string, unknown> };
 try {
   useTheme = require('@smolitux/theme').useTheme;
 } catch (e) {

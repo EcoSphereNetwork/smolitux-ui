@@ -20,7 +20,7 @@ export const FederatedSearch: React.FC<FederatedSearchProps> = ({
   const [activePlatforms, setActivePlatforms] = useState<string[]>(
     defaultActivePlatforms || platforms.filter((p) => p.isActive).map((p) => p.id)
   );
-  const [filters, setFilters] = useState<Record<string, any>>(defaultFilters);
+  const [filters, setFilters] = useState<Record<string, unknown>>(defaultFilters);
   const [isSearching, setIsSearching] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +73,7 @@ export const FederatedSearch: React.FC<FederatedSearchProps> = ({
   };
 
   // Filter ändern
-  const handleFilterChange = (key: string, value: any) => {
+  const handleFilterChange = (key: string, value: unknown) => {
     setFilters((prev) => ({
       ...prev,
       [key]: value,

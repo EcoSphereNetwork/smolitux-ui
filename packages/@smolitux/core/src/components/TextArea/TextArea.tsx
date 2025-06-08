@@ -3,7 +3,7 @@ import React, { forwardRef, useCallback, useEffect, useRef, useState, useId } fr
 import { useFormControl } from '../FormControl/FormControl';
 
 // Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
-let useTheme: () => { themeMode: string; colors?: Record<string, any> };
+let useTheme: () => { themeMode: string; colors?: Record<string, unknown> };
 try {
   useTheme = require('@smolitux/theme').useTheme;
 } catch (e) {
