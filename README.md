@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./docs/static/img/logo.svg" alt="Smolitux UI Logo" width="200">
+  <img src="https://avatars.githubusercontent.com/u/168775088?s=400&u=a782fd605bdf54421b8bb4b011a8fb3d93ffa5cc&v=4" width="200">
   <h1>Smolitux UI</h1>
   <p>Eine umfassende Komponentenbibliothek im EcoSphere Network.</p>
 
