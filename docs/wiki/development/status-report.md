@@ -191,3 +191,6 @@ Viele Pakete verfügen zwar über Unit‑Tests, es fehlen jedoch noch Accessibil
 
 ### Strukturprobleme
 Die [Build-Analyse](build-analysis.md) dokumentiert fehlende Module (`./layout`, `./form`, `./feedback`, `./navigation`) und eine nicht gefundene tsconfig. Zusätzlich liegen veraltete Lerna-Skripte und zahlreiche Legacy-Dateien (`*.original.tsx`, `index.fixed.ts`) im Repository. Diese müssen bereinigt werden, um eine stabile Build-Umgebung zu gewährleisten.
+
+### Repository Maintenance
+Alle offenen Pull Requests wurden analysiert und es waren keine offenen PRs mehr vorhanden. Mehr als 160 bereits gemergte Remote-Branches wurden gelöscht, um die Übersichtlichkeit zu verbessern.
