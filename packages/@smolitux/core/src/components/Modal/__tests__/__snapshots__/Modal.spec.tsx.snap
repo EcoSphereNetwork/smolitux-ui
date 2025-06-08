@@ -2,38 +2,42 @@
 
 exports[`Modal Snapshots renders correctly with bottom position 1`] = `
 <div
-  aria-describedby="modal-8mg0r52uk-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
     aria-hidden="true"
-    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-end justify-center pb-10"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
-      id="modal-8mg0r52uk"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -54,7 +58,8 @@ exports[`Modal Snapshots renders correctly with bottom position 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-8mg0r52uk-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Bottom Modal
@@ -73,32 +78,42 @@ exports[`Modal Snapshots renders correctly with custom ID 1`] = `
   role="dialog"
 >
   <div
+    aria-live="polite"
+    className="sr-only"
+  >
+    Dialog geöffnet
+  </div>
+  <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
       id="custom-modal-id"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -119,6 +134,7 @@ exports[`Modal Snapshots renders correctly with custom ID 1`] = `
       </div>
       <div
         className="p-6 "
+        data-testid="modal-body"
         id="custom-modal-id-body"
       >
         <p>
@@ -132,38 +148,42 @@ exports[`Modal Snapshots renders correctly with custom ID 1`] = `
 
 exports[`Modal Snapshots renders correctly with custom className 1`] = `
 <div
-  aria-describedby="modal-szcf4i1gj-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
     aria-hidden="true"
-    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  custom-class"
-      id="modal-szcf4i1gj"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn custom-class "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -184,7 +204,8 @@ exports[`Modal Snapshots renders correctly with custom className 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-szcf4i1gj-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal with custom class
@@ -197,38 +218,42 @@ exports[`Modal Snapshots renders correctly with custom className 1`] = `
 
 exports[`Modal Snapshots renders correctly with default props 1`] = `
 <div
-  aria-describedby="modal-9wisssv33-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
     aria-hidden="true"
-    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
-      id="modal-9wisssv33"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -249,7 +274,8 @@ exports[`Modal Snapshots renders correctly with default props 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-9wisssv33-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal Content
@@ -262,24 +288,27 @@ exports[`Modal Snapshots renders correctly with default props 1`] = `
 
 exports[`Modal Snapshots renders correctly with footer 1`] = `
 <div
-  aria-describedby="modal-q1atbrt1h-body"
-  aria-labelledby="modal-q1atbrt1h-title"
+  aria-describedby="modal-f4bipx4bi-body"
+  aria-labelledby="modal-f4bipx4bi-title"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
     aria-hidden="true"
-    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
-      id="modal-q1atbrt1h"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
@@ -287,20 +316,21 @@ exports[`Modal Snapshots renders correctly with footer 1`] = `
       >
         <h3
           className="text-lg font-medium text-gray-900 dark:text-white"
-          id="modal-q1atbrt1h-title"
+          id="modal-f4bipx4bi-title"
         >
           Test Modal
         </h3>
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -321,7 +351,8 @@ exports[`Modal Snapshots renders correctly with footer 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-q1atbrt1h-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal Content
@@ -341,38 +372,42 @@ exports[`Modal Snapshots renders correctly with footer 1`] = `
 
 exports[`Modal Snapshots renders correctly with large size 1`] = `
 <div
-  aria-describedby="modal-i778wzrql-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
     aria-hidden="true"
-    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
-      id="modal-i778wzrql"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -393,7 +428,8 @@ exports[`Modal Snapshots renders correctly with large size 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-i778wzrql-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Large Modal
@@ -415,15 +451,18 @@ exports[`Modal Snapshots renders correctly with multiple props combined 1`] = `
   <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-start justify-center pt-10"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  custom-class"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  custom-class "
+      data-testid="modal-content"
       id="combined-modal"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
@@ -436,15 +475,16 @@ exports[`Modal Snapshots renders correctly with multiple props combined 1`] = `
           Combined Modal
         </h3>
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -465,6 +505,7 @@ exports[`Modal Snapshots renders correctly with multiple props combined 1`] = `
       </div>
       <div
         className="p-6 body-class"
+        data-testid="modal-body"
         id="combined-modal-body"
       >
         <p>
@@ -485,38 +526,48 @@ exports[`Modal Snapshots renders correctly with multiple props combined 1`] = `
 
 exports[`Modal Snapshots renders correctly with small size 1`] = `
 <div
-  aria-describedby="modal-wgd8alp91-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
+    aria-live="polite"
+    className="sr-only"
+  >
+    Dialog geöffnet
+  </div>
+  <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-sm shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
-      id="modal-wgd8alp91"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-sm shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -537,7 +588,8 @@ exports[`Modal Snapshots renders correctly with small size 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-wgd8alp91-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Small Modal
@@ -550,24 +602,33 @@ exports[`Modal Snapshots renders correctly with small size 1`] = `
 
 exports[`Modal Snapshots renders correctly with title 1`] = `
 <div
-  aria-describedby="modal-pr1s6120n-body"
-  aria-labelledby="modal-pr1s6120n-title"
+  aria-describedby="modal-f4bipx4bi-body"
+  aria-labelledby="modal-f4bipx4bi-title"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
+    aria-live="polite"
+    className="sr-only"
+  >
+    Dialog geöffnet
+  </div>
+  <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
-      id="modal-pr1s6120n"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
@@ -575,20 +636,21 @@ exports[`Modal Snapshots renders correctly with title 1`] = `
       >
         <h3
           className="text-lg font-medium text-gray-900 dark:text-white"
-          id="modal-pr1s6120n-title"
+          id="modal-f4bipx4bi-title"
         >
           Test Modal
         </h3>
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -609,7 +671,8 @@ exports[`Modal Snapshots renders correctly with title 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-pr1s6120n-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal Content
@@ -622,38 +685,48 @@ exports[`Modal Snapshots renders correctly with title 1`] = `
 
 exports[`Modal Snapshots renders correctly with top position 1`] = `
 <div
-  aria-describedby="modal-a6fusfagx-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
+    aria-live="polite"
+    className="sr-only"
+  >
+    Dialog geöffnet
+  </div>
+  <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-start justify-center pt-10"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
-      id="modal-a6fusfagx"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -674,7 +747,8 @@ exports[`Modal Snapshots renders correctly with top position 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-a6fusfagx-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Top Modal
@@ -687,7 +761,7 @@ exports[`Modal Snapshots renders correctly with top position 1`] = `
 
 exports[`Modal Snapshots renders correctly without animation 1`] = `
 <div
-  aria-describedby="modal-fqm1bhkvq-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
@@ -695,30 +769,34 @@ exports[`Modal Snapshots renders correctly without animation 1`] = `
   <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  "
-      id="modal-fqm1bhkvq"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700   "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -739,7 +817,8 @@ exports[`Modal Snapshots renders correctly without animation 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-fqm1bhkvq-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal without animation
@@ -752,38 +831,48 @@ exports[`Modal Snapshots renders correctly without animation 1`] = `
 
 exports[`Modal Snapshots renders correctly without border 1`] = `
 <div
-  aria-describedby="modal-c0g87eyys-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
+    aria-live="polite"
+    className="sr-only"
+  >
+    Dialog geöffnet
+  </div>
+  <div
     aria-hidden="true"
-    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg   "
-      id="modal-c0g87eyys"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg  animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -804,7 +893,8 @@ exports[`Modal Snapshots renders correctly without border 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-c0g87eyys-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal without border
@@ -817,28 +907,38 @@ exports[`Modal Snapshots renders correctly without border 1`] = `
 
 exports[`Modal Snapshots renders correctly without close button 1`] = `
 <div
-  aria-describedby="modal-0olszxfvz-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
+    aria-live="polite"
+    className="sr-only"
+  >
+    Dialog geöffnet
+  </div>
+  <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn "
-      id="modal-0olszxfvz"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="p-6 "
-        id="modal-0olszxfvz-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal without close button
@@ -851,7 +951,7 @@ exports[`Modal Snapshots renders correctly without close button 1`] = `
 
 exports[`Modal Snapshots renders correctly without rounded corners 1`] = `
 <div
-  aria-describedby="modal-zajsp1ibx-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
@@ -859,30 +959,34 @@ exports[`Modal Snapshots renders correctly without rounded corners 1`] = `
   <div
     aria-hidden="true"
     className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl  border border-gray-200 dark:border-gray-700 animate-scaleIn "
-      id="modal-zajsp1ibx"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl  border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -903,7 +1007,8 @@ exports[`Modal Snapshots renders correctly without rounded corners 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-zajsp1ibx-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal without rounded corners
@@ -916,38 +1021,48 @@ exports[`Modal Snapshots renders correctly without rounded corners 1`] = `
 
 exports[`Modal Snapshots renders correctly without shadow 1`] = `
 <div
-  aria-describedby="modal-d0vsks2i2-body"
+  aria-describedby="modal-f4bipx4bi-body"
   aria-modal="true"
   className="fixed inset-0 z-50 overflow-y-auto "
   role="dialog"
 >
   <div
+    aria-live="polite"
+    className="sr-only"
+  >
+    Dialog geöffnet
+  </div>
+  <div
     aria-hidden="true"
-    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity  "
+    className="fixed inset-0 bg-black bg-opacity-50 transition-opacity animate-fadeIn "
+    data-testid="modal-overlay"
     onClick={[Function]}
   />
   <div
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md  rounded-lg border border-gray-200 dark:border-gray-700  "
-      id="modal-d0vsks2i2"
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md  rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      data-testid="modal-content"
+      id="modal-f4bipx4bi"
       onClick={[Function]}
+      style={{}}
       tabIndex={-1}
     >
       <div
         className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 "
       >
         <button
-          aria-label="Close"
+          aria-label="Schließen"
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          data-testid="modal-close-button"
           onClick={[Function]}
           type="button"
         >
           <span
             className="sr-only"
           >
-            Close
+            Schließen
           </span>
           <svg
             aria-hidden="true"
@@ -968,7 +1083,8 @@ exports[`Modal Snapshots renders correctly without shadow 1`] = `
       </div>
       <div
         className="p-6 "
-        id="modal-d0vsks2i2-body"
+        data-testid="modal-body"
+        id="modal-f4bipx4bi-body"
       >
         <p>
           Modal without shadow

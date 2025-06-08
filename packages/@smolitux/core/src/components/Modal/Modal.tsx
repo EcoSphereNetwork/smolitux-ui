@@ -4,7 +4,14 @@ import './animations.css';
 
 export type ModalSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type ModalPosition = 'center' | 'top' | 'right' | 'bottom' | 'left';
-export type ModalAnimation = 'fade' | 'scale' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'none';
+export type ModalAnimation =
+  | 'fade'
+  | 'scale'
+  | 'slide-up'
+  | 'slide-down'
+  | 'slide-left'
+  | 'slide-right'
+  | 'none';
 
 export interface ModalProps {
   /** Ist der Modal sichtbar? */
@@ -132,26 +139,20 @@ export interface ModalProps {
   autoFocus?: boolean;
   /** Ob der Fokus-Trap aktiviert werden soll */
   trapFocus?: boolean;
-  /** Ob der Modal eine Rolle als Warn-Dialog haben soll */
-  isWarningDialog?: boolean;
-  /** Ob der Modal eine Rolle als Hilfe-Dialog haben soll */
-  isHelpDialog?: boolean;
-  /** Ob der Modal eine Rolle als Status-Dialog haben soll */
-  isStatusDialog?: boolean;
 }
 
 /**
  * Modal-Komponente zum Anzeigen von Inhalten in einem Overlay
- * 
+ *
  * @example
  * ```tsx
  * <Modal isOpen={isOpen} onClose={handleClose} title="Beispiel Modal">
  *   <p>Modal-Inhalt</p>
  * </Modal>
- * 
- * <Modal 
- *   isOpen={isOpen} 
- *   onClose={handleClose} 
+ *
+ * <Modal
+ *   isOpen={isOpen}
+ *   onClose={handleClose}
  *   title="Beispiel mit Footer"
  *   footer={
  *     <>
@@ -213,7 +214,7 @@ export const Modal: React.FC<ModalProps> = ({
     cancel: 'Abbrechen',
     confirm: 'Bestätigen',
     modalOpened: 'Dialog geöffnet',
-    modalClosed: 'Dialog geschlossen'
+    modalClosed: 'Dialog geschlossen',
   },
   initialFocusRef,
   isFormDialog = false,
@@ -224,7 +225,9 @@ export const Modal: React.FC<ModalProps> = ({
   isSuccessDialog = false,
   isWarningDialog = false,
   isHelpDialog = false,
-  isStatusDialog = false
+  isStatusDialog = false,
+  animation = 'scale',
+  trapFocus = true,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -234,45 +237,56 @@ export const Modal: React.FC<ModalProps> = ({
   const titleId = `${modalId}-title`;
   const bodyId = `${modalId}-body`;
   const descriptionId = description ? `${modalId}-description` : undefined;
-  
+
   // Bestimme die korrekte Dialog-Rolle
   const getDialogRole = () => {
-    if (isAlertDialog) return "alertdialog";
-    if (isFormDialog) return "form";
-    if (isConfirmationDialog || isInformationDialog || isErrorDialog || 
-        isSuccessDialog || isWarningDialog || isHelpDialog || isStatusDialog) {
-      return "alertdialog";
+    if (isAlertDialog) return 'alertdialog';
+    if (isFormDialog) return 'form';
+    if (
+      isConfirmationDialog ||
+      isInformationDialog ||
+      isErrorDialog ||
+      isSuccessDialog ||
+      isWarningDialog ||
+      isHelpDialog ||
+      isStatusDialog
+    ) {
+      return 'alertdialog';
     }
-    return "dialog";
+    return 'dialog';
   };
-  
+
   // Ankündigung für Screenreader
   const announceToScreenReader = (message: string) => {
     setAnnouncement(message);
     setTimeout(() => setAnnouncement(null), 1000);
   };
-  
+
   // Speichern des vorherigen Fokus
   useEffect(() => {
     if (isOpen && returnFocus) {
       previousFocusRef.current = document.activeElement as HTMLElement;
-      
+
       // Ankündigung für Screenreader
       announceToScreenReader(i18n.modalOpened);
     }
-    
+
     return () => {
       if (!isOpen) {
         // Ankündigung für Screenreader beim Schließen
         announceToScreenReader(i18n.modalClosed);
       }
-      
-      if (returnFocus && previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
+
+      if (
+        returnFocus &&
+        previousFocusRef.current &&
+        typeof previousFocusRef.current.focus === 'function'
+      ) {
         previousFocusRef.current.focus();
       }
     };
   }, [isOpen, returnFocus, i18n]);
-  
+
   // Schließen mit Escape-Taste
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -280,19 +294,19 @@ export const Modal: React.FC<ModalProps> = ({
         onClose();
       }
     };
-    
+
     if (closeOnEsc) {
       document.addEventListener('keydown', handleEscape);
       return () => document.removeEventListener('keydown', handleEscape);
     }
-    
+
     return undefined;
   }, [isOpen, onClose, closeOnEsc, isStatic]);
-  
+
   // Fokussierbare Elemente finden
   const getFocusableElements = useCallback(() => {
     if (!modalRef.current) return [];
-    
+
     // Verbesserte Selektor-Liste für fokussierbare Elemente
     return Array.from(
       modalRef.current.querySelectorAll(
@@ -300,17 +314,17 @@ export const Modal: React.FC<ModalProps> = ({
       )
     ) as HTMLElement[];
   }, []);
-  
+
   // Focus Lock innerhalb des Modals
   useEffect(() => {
     if (isOpen && initialFocus) {
       // Verzögerung für Animation
       const focusDelay = animated ? 100 : 0;
-      
+
       // Wenn eine spezifische Referenz für den initialen Fokus angegeben wurde
       if (initialFocusRef) {
         let elementToFocus: HTMLElement | null = null;
-        
+
         if (typeof initialFocusRef === 'string') {
           // Wenn ein CSS-Selektor angegeben wurde
           elementToFocus = modalRef.current?.querySelector(initialFocusRef) as HTMLElement;
@@ -318,7 +332,7 @@ export const Modal: React.FC<ModalProps> = ({
           // Wenn eine React-Ref angegeben wurde
           elementToFocus = initialFocusRef.current;
         }
-        
+
         if (elementToFocus) {
           setTimeout(() => {
             elementToFocus?.focus();
@@ -330,24 +344,30 @@ export const Modal: React.FC<ModalProps> = ({
           return;
         }
       }
-      
+
       // Fallback: Fokussiere das erste fokussierbare Element oder den Modal selbst
       setTimeout(() => {
         if (modalRef.current) {
           const focusableElements = getFocusableElements();
-          
+
           // Priorisiere interaktive Elemente in dieser Reihenfolge:
           // 1. Schließen-Button (wenn vorhanden)
           // 2. Bestätigen-Button (wenn vorhanden)
           // 3. Abbrechen-Button (wenn vorhanden)
           // 4. Erstes fokussierbares Element
           // 5. Modal selbst
-          
-          const closeButton = modalRef.current.querySelector('[data-testid="modal-close-button"]') as HTMLElement;
-          const confirmButton = modalRef.current.querySelector('[data-testid="modal-confirm-button"]') as HTMLElement;
+
+          const closeButton = modalRef.current.querySelector(
+            '[data-testid="modal-close-button"]'
+          ) as HTMLElement;
+          const confirmButton = modalRef.current.querySelector(
+            '[data-testid="modal-confirm-button"]'
+          ) as HTMLElement;
           // Korrigiere den Selektor für den Abbrechen-Button
-          const cancelButton = modalRef.current.querySelector(`button[type="button"]:not([data-testid="modal-confirm-button"]):not([data-testid="modal-close-button"])`) as HTMLElement;
-          
+          const cancelButton = modalRef.current.querySelector(
+            `button[type="button"]:not([data-testid="modal-confirm-button"]):not([data-testid="modal-close-button"])`
+          ) as HTMLElement;
+
           if (closeButton) {
             closeButton.focus();
           } else if (confirmButton) {
@@ -363,61 +383,70 @@ export const Modal: React.FC<ModalProps> = ({
       }, focusDelay);
     }
   }, [isOpen, initialFocus, initialFocusRef, animated, getFocusableElements]);
-  
+
   // Tab-Fokus innerhalb des Modals halten
-  const handleTabKey = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Tab' && modalRef.current) {
-      const focusableElements = getFocusableElements();
-      
-      if (focusableElements.length === 0) return;
-      
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-      
-      // Aktives Element
-      const activeElement = document.activeElement;
-      
-      // Wenn Shift+Tab gedrückt wird und das erste Element fokussiert ist oder
-      // das aktive Element vor dem ersten fokussierbaren Element liegt
-      if (e.shiftKey && (activeElement === firstElement || 
-          !focusableElements.includes(activeElement as HTMLElement) || 
-          focusableElements.indexOf(activeElement as HTMLElement) <= 0)) {
-        e.preventDefault();
-        lastElement.focus();
-      } 
-      // Wenn Tab gedrückt wird und das letzte Element fokussiert ist oder
-      // das aktive Element nach dem letzten fokussierbaren Element liegt
-      else if (!e.shiftKey && (activeElement === lastElement || 
-               !focusableElements.includes(activeElement as HTMLElement) || 
-               focusableElements.indexOf(activeElement as HTMLElement) >= focusableElements.length - 1)) {
-        e.preventDefault();
-        firstElement.focus();
+  const handleTabKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = getFocusableElements();
+
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        // Aktives Element
+        const activeElement = document.activeElement;
+
+        // Wenn Shift+Tab gedrückt wird und das erste Element fokussiert ist oder
+        // das aktive Element vor dem ersten fokussierbaren Element liegt
+        if (
+          e.shiftKey &&
+          (activeElement === firstElement ||
+            !focusableElements.includes(activeElement as HTMLElement) ||
+            focusableElements.indexOf(activeElement as HTMLElement) <= 0)
+        ) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+        // Wenn Tab gedrückt wird und das letzte Element fokussiert ist oder
+        // das aktive Element nach dem letzten fokussierbaren Element liegt
+        else if (
+          !e.shiftKey &&
+          (activeElement === lastElement ||
+            !focusableElements.includes(activeElement as HTMLElement) ||
+            focusableElements.indexOf(activeElement as HTMLElement) >= focusableElements.length - 1)
+        ) {
+          e.preventDefault();
+          firstElement.focus();
+        }
       }
-    }
-  }, [getFocusableElements]);
-  
+    },
+    [getFocusableElements]
+  );
+
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && trapFocus) {
       document.addEventListener('keydown', handleTabKey);
       return () => document.removeEventListener('keydown', handleTabKey);
     }
     return undefined;
-  }, [isOpen, handleTabKey]);
-  
+  }, [isOpen, trapFocus, handleTabKey]);
+
   // Verhindern des Body-Scrollings
   useEffect(() => {
     if (isOpen && disableBodyScroll) {
       const originalStyle = window.getComputedStyle(document.body).overflow;
       document.body.style.overflow = 'hidden';
-      
+
       return () => {
         document.body.style.overflow = originalStyle;
       };
     }
-    
+
     return undefined;
   }, [isOpen, disableBodyScroll]);
-  
+
   // Animation
   useEffect(() => {
     if (isOpen && animated) {
@@ -426,26 +455,29 @@ export const Modal: React.FC<ModalProps> = ({
         setIsAnimating(false);
         if (onOpen) onOpen();
       }, 300);
-      
+
       return () => clearTimeout(timer);
     }
-    
+
     return undefined;
   }, [isOpen, animated, onOpen]);
-  
+
   // Callback beim Schließen
   useEffect(() => {
     if (!isOpen && onClosed) {
-      const timer = setTimeout(() => {
-        onClosed();
-      }, animated ? 300 : 0);
-      
+      const timer = setTimeout(
+        () => {
+          onClosed();
+        },
+        animated ? 300 : 0
+      );
+
       return () => clearTimeout(timer);
     }
-    
+
     return undefined;
   }, [isOpen, animated, onClosed]);
-  
+
   // Größen-spezifische Klassen
   const sizeClasses = {
     xs: 'max-w-xs',
@@ -453,35 +485,42 @@ export const Modal: React.FC<ModalProps> = ({
     md: 'max-w-md',
     lg: 'max-w-lg',
     xl: 'max-w-xl',
-    full: 'max-w-full m-5'
+    full: 'max-w-full m-5',
   };
-  
+
   // Positions-spezifische Klassen
   const positionClasses = {
     center: 'items-center justify-center',
     top: 'items-start justify-center pt-10',
     right: 'items-center justify-end pr-10',
     bottom: 'items-end justify-center pb-10',
-    left: 'items-center justify-start pl-10'
+    left: 'items-center justify-start pl-10',
   };
-  
+
   // Animations-Klassen
-  const animationClasses = animated ? {
-    overlay: isAnimating ? 'animate-fadeIn' : '',
-    modal: isAnimating ? 'animate-scaleIn' : ''
-  } : { overlay: '', modal: '' };
-  
+  const animationMap: Record<ModalAnimation, { overlay: string; modal: string }> = {
+    fade: { overlay: 'animate-fadeIn', modal: 'animate-fadeIn' },
+    scale: { overlay: 'animate-fadeIn', modal: 'animate-scaleIn' },
+    'slide-up': { overlay: 'animate-fadeIn', modal: 'animate-slideInUp' },
+    'slide-down': { overlay: 'animate-fadeIn', modal: 'animate-slideInDown' },
+    'slide-left': { overlay: 'animate-fadeIn', modal: 'animate-slideInLeft' },
+    'slide-right': { overlay: 'animate-fadeIn', modal: 'animate-slideInRight' },
+    none: { overlay: '', modal: '' },
+  };
+
+  const animationClasses = animated ? animationMap[animation] : { overlay: '', modal: '' };
+
   // Styling-Klassen
   const styleClasses = {
     shadow: shadow ? 'shadow-xl' : '',
     rounded: rounded ? 'rounded-lg' : '',
-    bordered: bordered ? 'border border-gray-200 dark:border-gray-700' : ''
+    bordered: bordered ? 'border border-gray-200 dark:border-gray-700' : '',
   };
-  
+
   if (!isOpen) return null;
-  
+
   const modalContent = (
-    <div 
+    <div
       className={`fixed inset-0 z-50 overflow-y-auto ${scrollable ? '' : 'overflow-hidden'}`}
       aria-modal="true"
       role={getDialogRole()}
@@ -496,18 +535,18 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
       )}
       {/* Overlay */}
-      <div 
+      <div
         className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity ${animationClasses.overlay} ${overlayClassName}`}
         onClick={closeOnOverlayClick && !isStatic && !blocking ? onClose : undefined}
         aria-hidden="true"
         data-testid="modal-overlay"
         {...overlayProps}
       ></div>
-      
+
       {/* Modal-Container */}
       <div className={`flex min-h-screen p-4 ${positionClasses[position]}`}>
         {/* Modal-Box */}
-        <div 
+        <div
           ref={modalRef}
           id={modalId}
           className={`relative bg-white dark:bg-gray-800 text-left transform transition-all w-full ${sizeClasses[size]} ${styleClasses.shadow} ${styleClasses.rounded} ${styleClasses.bordered} ${animationClasses.modal} ${className} ${isFullscreenDialog ? 'h-full m-0 max-w-full' : ''}`}
@@ -516,12 +555,14 @@ export const Modal: React.FC<ModalProps> = ({
           data-testid="modal-content"
           style={{
             ...(width ? { width } : {}),
-            ...(height ? { height } : {})
+            ...(height ? { height } : {}),
           }}
         >
           {/* Modal-Header */}
           {(title || header || showCloseButton) && (
-            <div className={`border-b border-gray-200 dark:border-gray-700 px-6 py-4 ${headerClassName}`}>
+            <div
+              className={`border-b border-gray-200 dark:border-gray-700 px-6 py-4 ${headerClassName}`}
+            >
               {header ? (
                 header
               ) : (
@@ -542,18 +583,18 @@ export const Modal: React.FC<ModalProps> = ({
                   data-testid="modal-close-button"
                 >
                   <span className="sr-only">{i18n.close}</span>
-                  <svg 
-                    className="h-6 w-6" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24" 
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth="2" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M6 18L18 6M6 6l12 12"
                     ></path>
                   </svg>
@@ -561,7 +602,7 @@ export const Modal: React.FC<ModalProps> = ({
               )}
             </div>
           )}
-          
+
           {/* Modal-Body */}
           <div id={bodyId} className={`p-6 ${bodyClassName}`} data-testid="modal-body">
             {description && (
@@ -571,10 +612,12 @@ export const Modal: React.FC<ModalProps> = ({
             )}
             {children}
           </div>
-          
+
           {/* Modal-Footer */}
           {(footer || footerButtons) && (
-            <div className={`border-t border-gray-200 dark:border-gray-700 px-6 py-4 ${footerClassName}`}>
+            <div
+              className={`border-t border-gray-200 dark:border-gray-700 px-6 py-4 ${footerClassName}`}
+            >
               {footer || (
                 <div className="flex justify-end space-x-3">
                   {onCancel && (
@@ -610,12 +653,12 @@ export const Modal: React.FC<ModalProps> = ({
       </div>
     </div>
   );
-  
+
   // Portal verwenden, wenn aktiviert
   if (usePortal && typeof document !== 'undefined') {
     return createPortal(modalContent, document.body);
   }
-  
+
   return modalContent;
 };
 
