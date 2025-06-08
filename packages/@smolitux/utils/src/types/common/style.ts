@@ -4,7 +4,9 @@ import { Theme } from '../../styling/theme';
 export type CSSProperties = React.CSSProperties;
 
 // Theme-aware style function
-export type StyleFn<Props = {}> = (props: Props & { theme: Theme }) => CSSProperties;
+export type StyleFn<Props = Record<string, unknown>> = (
+  props: Props & { theme: Theme }
+) => CSSProperties;
 
 // Style object with responsive values
 export type ResponsiveValue<T> = T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; '2xl'?: T };
@@ -22,4 +24,11 @@ export type SizeValue = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 export type Variant = 'solid' | 'outline' | 'ghost' | 'link' | string;
 
 // Color scheme
-export type ColorScheme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | string;
+export type ColorScheme =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | string;

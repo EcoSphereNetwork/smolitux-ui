@@ -9,8 +9,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "node build.js",
-    "build:js": "node build.js",
+    "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist",
+    "build:js": "tsup src/index.ts --format cjs,esm",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "dev": "nodemon --watch src --exec \"node build.js\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
