@@ -1,27 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
+    "moduleResolution": "Node",
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "@smolitux/*": ["packages/@smolitux/*/src"]
-    }
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
+  "include": ["packages", "docs"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "packages/@smolitux/charts/src/components/ScatterPlot/ScatterPlot.old.tsx",
+    "packages/@smolitux/core/src/components/Textarea/**/*"
+  ]
 }

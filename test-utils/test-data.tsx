@@ -1,3 +1,4 @@
+import React from "react";
 // Gemeinsame Testdaten für die gesamte Testsuite
 
 export const mockButtonProps = {
