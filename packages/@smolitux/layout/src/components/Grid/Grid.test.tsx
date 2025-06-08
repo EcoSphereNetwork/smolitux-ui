@@ -4,18 +4,18 @@ import { Grid } from './Grid';
 
 describe('Grid', () => {
   it('renders without crashing', () => {
-    render(<Grid />);
-    expect(screen.getByRole('button', { name: /Grid/i })).toBeInTheDocument();
+    render(<Grid data-testid="grid" />);
+    expect(screen.getByTestId('grid')).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
-    render(<Grid className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
+    render(<Grid data-testid="grid" className="custom-class" />);
+    expect(screen.getByTestId('grid')).toHaveClass('custom-class');
   });
 
   it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
+    const ref = React.createRef<HTMLDivElement>();
     render(<Grid ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 });

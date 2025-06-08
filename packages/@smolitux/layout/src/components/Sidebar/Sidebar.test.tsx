@@ -4,18 +4,18 @@ import { Sidebar } from './Sidebar';
 
 describe('Sidebar', () => {
   it('renders without crashing', () => {
-    render(<Sidebar />);
-    expect(screen.getByRole('button', { name: /Sidebar/i })).toBeInTheDocument();
+    render(<Sidebar items={[]} data-testid="sidebar" />);
+    expect(screen.getByTestId('sidebar')).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
-    render(<Sidebar className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
+    render(<Sidebar items={[]} data-testid="sidebar" className="custom-class" />);
+    expect(screen.getByTestId('sidebar')).toHaveClass('custom-class');
   });
 
   it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
-    render(<Sidebar ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    const ref = React.createRef<HTMLDivElement>();
+    render(<Sidebar items={[]} ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 });

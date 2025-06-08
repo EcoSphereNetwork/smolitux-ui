@@ -15,4 +15,4 @@
 | @smolitux/utils         | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
 
-> Letzte Aktualisierung: 2025-06-08
+> Letzte Aktualisierung: 2025-06-12
