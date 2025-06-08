@@ -3,10 +3,14 @@
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
 > **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](/docs/wiki/index.md). Die aktuelle Version des Changelogs finden Sie [hier](/docs/wiki/development/changelog.md).
+## [0.3.2] - 2025-06-08
+### Added
+- Offline Komponentenscan und TODO-Liste erstellt
+
 ## [0.3.1] - 2025-06-08
+
 ### Added
 - component status updated with voice-control package
-
 ## [0.3.0] - 2025-06-08
 ### Added
 - minimal project setup without Lerna
