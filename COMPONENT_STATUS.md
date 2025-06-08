@@ -1,6 +1,7 @@
 # Smolitux UI - Codex Progress
 
 **Started:** Sun Jun 8 22:15:51 UTC 2025
+**Last Updated:** Tue Jun 10 00:00:00 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -46,6 +47,7 @@
 5. Add missing stories (\*.stories.tsx)
 6. Ensure accessibility compliance
 7. Update this file after each session
+8. Remove remaining `any` casts in components
 
 ---
 

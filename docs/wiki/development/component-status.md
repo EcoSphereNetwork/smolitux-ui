@@ -2,6 +2,8 @@
 
 This document provides a comprehensive test status report for all components in the Smolitux UI library version 0.3.0.
 
+Last Updated: 2025-06-10
+
 ## Test Status Overview
 
 | Package                 | Component                | Unit Tests | A11y Tests | Snapshot Tests | Integration Tests | Status           |
@@ -297,6 +299,11 @@ Latest analyzer run shows **100%** test and story coverage across 180 components
 ### Update 2025-06-10 (Analyzer Results)
 
 Latest analyzer run shows **100%** test and story coverage across 180 components. **126 validation issues** remain, primarily TypeScript "any" usage and missing `data-testid` attributes. Continue strict typing cleanup and fix remaining accessibility IDs.
+### Update 2025-06-10 (Codex Session)
+- Replaced remaining `as any` usages in Sidebar tests and DashboardLayout mocks.
+- Updated Grid component to expose typed `Item` property.
+- Fixed Tooltip and Slide components to avoid `as any` casts.
+- Analyzer now reports 120 validation issues.
 
 ### Update 2025-06-11 (Codex Session)
 

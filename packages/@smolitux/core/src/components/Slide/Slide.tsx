@@ -131,7 +131,7 @@ export const Slide: React.FC<SlideProps> = ({
 
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {
-    return React.cloneElement(children, {
+    return React.cloneElement(children as React.ReactElement, {
       ref,
       style: {
         ...slideStyle,
@@ -142,7 +142,7 @@ export const Slide: React.FC<SlideProps> = ({
         ? `${className} ${children.props.className || ''}`
         : children.props.className,
       'data-state': state,
-    } as any);
+    });
   }
 
   // Ansonsten wrappen wir die Kinder in einem div

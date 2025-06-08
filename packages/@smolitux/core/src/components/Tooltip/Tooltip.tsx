@@ -154,7 +154,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       triggerRef.current = node;
 
       // Forward ref if the original element has one
-      const { ref } = children as any;
+      const { ref } = children as React.ReactElement;
       if (typeof ref === 'function') {
         ref(node);
       } else if (ref && typeof ref === 'object') {
