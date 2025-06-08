@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, render, act } from '@testing-library/react';
 import { VoiceControlProvider, useVoiceControl } from './VoiceControlProvider';
 import { VoiceControlManager } from './VoiceControlManager';
 
@@ -38,6 +38,18 @@ describe('VoiceControlProvider', () => {
 
     expect(manager.startListening).toHaveBeenCalled();
     expect(manager.stopListening).toHaveBeenCalled();
+  });
+
+  it('renders aria-live feedback element', () => {
+    createManager();
+    const { container } = render(
+      <VoiceControlProvider>
+        <div />
+      </VoiceControlProvider>
+    );
+    const feedback = container.querySelector('#voice-feedback');
+    expect(feedback).not.toBeNull();
+    expect(feedback?.getAttribute('aria-live')).toBe('polite');
   });
 });
 
