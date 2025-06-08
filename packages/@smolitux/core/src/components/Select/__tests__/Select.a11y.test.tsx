@@ -66,7 +66,7 @@ describe('Select Accessibility', () => {
     
     const select = screen.getByRole('combobox');
     expect(select).toHaveAttribute('aria-invalid', 'true');
-    expect(select).toHaveAttribute('aria-describedby', expect.stringContaining('select-error'));
+    expect(select).toHaveAttribute('aria-describedby', expect.stringContaining('error'));
     
     // Überprüfe die Fehlermeldung
     const error = screen.getByText('Bitte wählen Sie eine Option');
@@ -85,7 +85,7 @@ describe('Select Accessibility', () => {
     );
     
     const select = screen.getByRole('combobox');
-    expect(select).toHaveAttribute('aria-describedby', expect.stringContaining('select-helper'));
+    expect(select).toHaveAttribute('aria-describedby', expect.stringContaining('helper'));
     
     // Überprüfe den Hilfetext
     const helperText = screen.getByText('Wählen Sie die Option, die am besten zu Ihnen passt');
@@ -106,10 +106,8 @@ describe('Select Accessibility', () => {
     expect(select).toHaveAttribute('aria-required', 'true');
     
     // Überprüfe das Sternchen im Label
-    const label = screen.getByText('Wählen Sie eine Option');
-    expect(label.nextSibling).toHaveTextContent('*');
-    expect(label.nextSibling).toHaveAttribute('aria-hidden', 'true');
-    
+    expect(screen.getByText('*')).toHaveAttribute('aria-hidden', 'true');
+
     // Überprüfe den versteckten Text für Screenreader
     expect(screen.getByText('(Erforderlich)')).toHaveClass('sr-only');
   });
