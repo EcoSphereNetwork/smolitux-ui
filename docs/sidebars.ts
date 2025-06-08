@@ -1,4 +1,4 @@
-import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+type SidebarsConfig = any;
 
 const sidebars: SidebarsConfig = {
   wikiSidebar: [
