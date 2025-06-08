@@ -17,11 +17,11 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@smolitux/utils": "^0.2.1",
-    "@smolitux/ai": "^0.2.1",
-    "@smolitux/blockchain": "^0.2.1",
-    "@smolitux/media": "^0.2.1",
-    "@smolitux/community": "^0.2.1"
+    "@smolitux/utils": "^0.3.0",
+    "@smolitux/ai": "^0.3.0",
+    "@smolitux/blockchain": "^0.3.0",
+    "@smolitux/media": "^0.3.0",
+    "@smolitux/community": "^0.3.0"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
