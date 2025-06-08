@@ -1,11 +1,13 @@
-export { Button } from './Button';
+import { Button as BaseButton } from './Button';
+import { A11yButton } from './Button.a11y';
+
 export type { ButtonProps, ButtonVariant, ButtonSize, ButtonShape } from './Button';
-export { A11yButton } from './Button.a11y';
 export type { A11yButtonProps } from './Button.a11y';
+
+/**
+ * Button-Komponente mit integrierter A11y-Version.
+ * Export sowohl als named als auch als default export.
+ */
+export const Button = Object.assign(BaseButton, { A11y: A11yButton });
 export { A11yButton as ButtonA11y } from './Button.a11y';
-
-// Fur Abwartskompatibilitat mit dem bestehenden Export
-export { Button as default } from './Button';
-
-// Erweitere Button um A11y-Komponente
-Button.A11y = A11yButton;
+export default Button;
