@@ -5,13 +5,64 @@ import { useState, useEffect } from 'react';
  * @param options Optionen für die Monetarisierung
  * @returns Monetarisierungsdaten und Funktionen
  */
-export function useMonetization(options: any = {}) {
-  const [revenue, setRevenue] = useState(null);
-  const [rewards, setRewards] = useState(null);
-  const [creatorStats, setCreatorStats] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [period, setPeriod] = useState(options.initialPeriod || 'monthly');
+export interface UseMonetizationOptions {
+  initialPeriod?: string;
+}
+
+export interface RevenueData {
+  totalRevenue: number;
+  creatorShare: number;
+  platformShare: number;
+  communityShare: number;
+  operationalCosts: number;
+}
+
+export interface RewardData {
+  totalPoints: number;
+  pointsToNextTier: number;
+  activities: unknown[];
+  tiers: unknown[];
+  hasClaimableRewards: boolean;
+  claimableAmount: number;
+}
+
+export interface CreatorStats {
+  contentStats: {
+    postCount: number;
+    viewCount: number;
+    likeCount: number;
+    commentCount: number;
+    shareCount: number;
+    engagementRate: number;
+  };
+  earningStats: {
+    totalEarnings: number;
+    earningsPerPost: number;
+    earningsPerView: number;
+    monthlyGrowth: number;
+  };
+  topContent: unknown[];
+}
+
+export function useMonetization(
+  options: UseMonetizationOptions = {}
+): {
+  revenue: RevenueData | null;
+  rewards: RewardData | null;
+  creatorStats: CreatorStats | null;
+  loading: boolean;
+  error: Error | null;
+  period: string;
+  changePeriod: (newPeriod: string) => void;
+  claimRewards: () => void;
+  withdraw: () => void;
+} {
+  const [revenue, setRevenue] = useState<RevenueData | null>(null);
+  const [rewards, setRewards] = useState<RewardData | null>(null);
+  const [creatorStats, setCreatorStats] = useState<CreatorStats | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [period, setPeriod] = useState<string>(options.initialPeriod || 'monthly');
 
   // Simulierte Daten-Fetch-Funktion
   const fetchMonetizationData = async () => {
@@ -58,7 +109,7 @@ export function useMonetization(options: any = {}) {
         topContent: [],
       });
     } catch (err) {
-      setError(err);
+      setError(err as Error);
     } finally {
       setLoading(false);
     }

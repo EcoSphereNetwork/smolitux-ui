@@ -5,12 +5,29 @@ import { useState, useEffect } from 'react';
  * @param options Optionen für den Feed
  * @returns Feed-Daten und Funktionen
  */
-export function useFeed(options: any = {}) {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [filter, setFilter] = useState(options.initialFilter || 'latest');
-  const [hasMore, setHasMore] = useState(true);
+export interface UseFeedOptions {
+  initialFilter?: string;
+}
+
+export interface FeedItem {
+  id: string;
+  [key: string]: unknown;
+}
+
+export function useFeed(options: UseFeedOptions = {}): {
+  items: FeedItem[];
+  loading: boolean;
+  error: Error | null;
+  filter: string;
+  hasMore: boolean;
+  loadMore: () => void;
+  changeFilter: (newFilter: string) => void;
+} {
+  const [items, setItems] = useState<FeedItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [filter, setFilter] = useState<string>(options.initialFilter || 'latest');
+  const [hasMore, setHasMore] = useState<boolean>(true);
 
   // Simulierte Daten-Fetch-Funktion
   const fetchItems = async () => {
@@ -22,11 +39,11 @@ export function useFeed(options: any = {}) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Simulierte Daten
-      const newItems = [];
+      const newItems: FeedItem[] = [];
       setItems((prevItems) => [...prevItems, ...newItems]);
       setHasMore(newItems.length > 0);
     } catch (err) {
-      setError(err);
+      setError(err as Error);
     } finally {
       setLoading(false);
     }
@@ -45,7 +62,7 @@ export function useFeed(options: any = {}) {
   };
 
   // Funktion zum Ändern des Filters
-  const changeFilter = (newFilter) => {
+  const changeFilter = (newFilter: string) => {
     if (newFilter !== filter) {
       setItems([]);
       setHasMore(true);
