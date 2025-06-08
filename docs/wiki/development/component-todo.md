@@ -1,8 +1,5 @@
 # Komponenten TODO-Liste
 
-Diese Liste basiert auf einem Offline-Scan vom 2025-06-08. Tests konnten mangels Abhängigkeiten nicht ausgeführt werden.
-
-
 ## @smolitux/ai
 
 | Komponente | TODOs |
