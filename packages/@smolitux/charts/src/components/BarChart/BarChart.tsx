@@ -59,6 +59,10 @@ export interface BarChartProps extends Omit<React.SVGProps<SVGSVGElement>, 'data
   stacked?: boolean;
   /** Angepasste Farben für Datenreihen */
   colors?: string[];
+  /** Farbe der Wertebeschriftungen */
+  valueTextColor?: string;
+  /** Farbe des Legendentextes */
+  legendTextColor?: string;
   /** Angepasste Formatierung für Y-Achsenbeschriftungen */
   formatYLabel?: (value: number) => string;
   /** Für responsive SVG (viewBox) */
@@ -105,6 +109,8 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
   horizontal = false,
   stacked = false,
   colors,
+  valueTextColor,
+  legendTextColor,
   formatYLabel = (value) => `${value}`,
   aspectRatio = 16 / 9,
   className = '',
@@ -336,7 +342,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
                           x={x + barWidth / 2}
                           y={y - 5}
                           textAnchor="middle"
-                          fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
+                          fill={valueTextColor || (themeMode === 'dark' ? '#D1D5DB' : '#4B5563')}
                           fontSize={12}
                           fontWeight="bold"
                           className={animated ? 'animate-fade-in' : ''}
@@ -392,7 +398,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
                           x={x + barWidth / 2}
                           y={y - 5}
                           textAnchor="middle"
-                          fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
+                          fill={valueTextColor || (themeMode === 'dark' ? '#D1D5DB' : '#4B5563')}
                           fontSize={12}
                           fontWeight="bold"
                           className={animated ? 'animate-fade-in' : ''}
@@ -468,7 +474,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
                           x={x + barWidth + 5}
                           y={y + barHeight / 2}
                           dominantBaseline="middle"
-                          fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
+                          fill={valueTextColor || (themeMode === 'dark' ? '#D1D5DB' : '#4B5563')}
                           fontSize={12}
                           fontWeight="bold"
                           className={animated ? 'animate-fade-in' : ''}
@@ -524,7 +530,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
                           x={x + barWidth + 5}
                           y={y + barHeight / 2}
                           dominantBaseline="middle"
-                          fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
+                          fill={valueTextColor || (themeMode === 'dark' ? '#D1D5DB' : '#4B5563')}
                           fontSize={12}
                           fontWeight="bold"
                           className={animated ? 'animate-fade-in' : ''}
@@ -555,6 +561,8 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
       width={width}
       height={height}
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+      role="img"
+      aria-label={rest['aria-label']}
       preserveAspectRatio="xMidYMid meet"
       {...rest}
     >
@@ -838,7 +846,7 @@ export const BarChart = forwardRef<SVGSVGElement, BarChartProps>(({
                       x={20}
                       y={10}
                       dominantBaseline="middle"
-                      fill={themeMode === 'dark' ? '#D1D5DB' : '#4B5563'}
+                      fill={legendTextColor || (themeMode === 'dark' ? '#D1D5DB' : '#4B5563')}
                       fontSize={12}
                     >
                       {series.name}
