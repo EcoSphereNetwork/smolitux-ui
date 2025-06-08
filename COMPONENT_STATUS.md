@@ -1042,3 +1042,13 @@
 - @smolitux/utils Grid tests & stories added
 - @smolitux/utils Text tests & stories added
 - @smolitux/layout DashboardLayout tests & stories added
+
+## ✅ Component Completion
+
+| Package | Component | Notes | Date |
+|---------|-----------|-------|------|
+| @smolitux/core | Button | Verified TS, tests & stories | 2025-06-08 |
+| @smolitux/core | Input | Verified TS, tests & stories | 2025-06-08 |
+| @smolitux/core | Card | Removed `any` casts | 2025-06-08 |
+| @smolitux/core | Modal | Verified TS, tests & stories | 2025-06-08 |
+| @smolitux/core | Table | Replaced generic `any` with `unknown` | 2025-06-08 |
