@@ -1,8 +1,10 @@
-const eslint = require('@eslint/js');
-const tseslint = require('typescript-eslint');
-const reactPlugin = require('eslint-plugin-react');
-const reactHooksPlugin = require('eslint-plugin-react-hooks');
-const jsxA11yPlugin = require('eslint-plugin-jsx-a11y');
+const { createRequire } = require('module');
+const requireFromCwd = createRequire(process.cwd());
+const eslint = requireFromCwd('@eslint/js');
+const tseslint = requireFromCwd('typescript-eslint');
+const reactPlugin = requireFromCwd('eslint-plugin-react');
+const reactHooksPlugin = requireFromCwd('eslint-plugin-react-hooks');
+const jsxA11yPlugin = requireFromCwd('eslint-plugin-jsx-a11y');
 
 module.exports = [
   eslint.configs.recommended,
