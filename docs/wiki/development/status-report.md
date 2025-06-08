@@ -162,4 +162,32 @@ Basierend auf der README.md und den Anforderungsdokumenten fehlen noch:
 -#### Woche 7: Visuelle Tests und Browserkompatibilität
 - Implementieren von visuellen Tests mit Storybook/Chromatic
 - Browserkompatibilitätstests mit Playwright abgeschlossen
-Der vorgeschlagene Entwicklungsplan umfasst 8 Wochen und deckt alle wichtigen Aspekte der Bibliothek ab. Nach Abschluss des Plans sollte die Bibliothek bereit für die Veröffentlichung sein und alle Anforderungen erfüllen.
+
+## 4. Repository Status (2025-06-08)
+
+### Vollständige vs. unvollständige Komponenten
+Die Teststatus-Übersicht in [component-status.md](component-status.md) zeigt, dass
+- **@smolitux/core**: 12 Komponenten sind einsatzbereit, 17 benötigen noch A11y‑Tests.
+- **@smolitux/theme**: 1 Komponente ist bereit.
+- **@smolitux/layout**: 2 Komponenten einsatzbereit, 2 ohne A11y‑Tests.
+- **@smolitux/charts**: 7 Komponenten bereit.
+- **@smolitux/ai**, **@smolitux/blockchain**, **@smolitux/community**, **@smolitux/federation** und **@smolitux/resonance** haben zahlreiche Komponenten ohne A11y‑Tests.
+- **@smolitux/media**: 4 Komponenten bereit, 1 ohne A11y‑Tests.
+
+### Fehlende Tests
+Viele Pakete verfügen zwar über Unit‑Tests, es fehlen jedoch noch Accessibility‑ und Integrationstests. Der [Testplan](../testing/testplan/09-Implementierungsplan.md) listet weitere noch offene Aufgaben für Snapshot‑Tests und visuelle Regressionstests.
+
+### Offene GitHub Issues
+- [#298](https://github.com/EcoSphereNetwork/smolitux-ui/issues/298) Zentrale tsconfig erstellen und Versionen angleichen
+- [#299](https://github.com/EcoSphereNetwork/smolitux-ui/issues/299) @smolitux/ai refactoren und Tests ergänzen
+- [#300](https://github.com/EcoSphereNetwork/smolitux-ui/issues/300) Zentrale Jest-Konfiguration einführen
+- [#301](https://github.com/EcoSphereNetwork/smolitux-ui/issues/301) Snapshot-Tests und Linting reparieren
+- [#302](https://github.com/EcoSphereNetwork/smolitux-ui/issues/302) Fehlende Module und tsconfig-Pfade korrigieren
+- [#303](https://github.com/EcoSphereNetwork/smolitux-ui/issues/303) Storybook-Integration umsetzen
+- [#304](https://github.com/EcoSphereNetwork/smolitux-ui/issues/304) Sprachsteuerung mit TensorFlow integrieren
+- [#305](https://github.com/EcoSphereNetwork/smolitux-ui/issues/305) A11y-Checkliste abarbeiten
+- [#306](https://github.com/EcoSphereNetwork/smolitux-ui/issues/306) CI/CD-Pipeline für Build und Tests einrichten
+- [#307](https://github.com/EcoSphereNetwork/smolitux-ui/issues/307) Alte und doppelte Dateien bereinigen
+
+### Strukturprobleme
+Die [Build-Analyse](build-analysis.md) dokumentiert fehlende Module (`./layout`, `./form`, `./feedback`, `./navigation`) und eine nicht gefundene tsconfig. Zusätzlich liegen veraltete Lerna-Skripte und zahlreiche Legacy-Dateien (`*.original.tsx`, `index.fixed.ts`) im Repository. Diese müssen bereinigt werden, um eine stabile Build-Umgebung zu gewährleisten.
