@@ -9,6 +9,8 @@ export type GridFlow = 'row' | 'column' | 'row-dense' | 'column-dense';
 export type GridAutoFlow = 'auto' | 'min' | 'max' | 'fr';
 export type GridBreakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
+export type ResponsiveProp<T> = T | { [key in GridBreakpoint]?: T };
+
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Anzahl der Spalten
@@ -127,8 +129,8 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
     ref
   ) => {
     // Hilfsfunktion zum Generieren von Klassen für responsive Eigenschaften
-    const getResponsiveClasses = (
-      prop: any,
+    const getResponsiveClasses = <T extends string | number>(
+      prop: ResponsiveProp<T> | undefined,
       classPrefix: string,
       valueMap: Record<string, Record<string | number, string>>
     ): string => {
