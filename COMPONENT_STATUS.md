@@ -47,3 +47,5 @@
 - Removed 'as any' casts in List, List.a11y, Zoom, Zoom.a11y, LanguageSwitcher.
 - Updated Dialog story typing.
 - Analyzer reports 126 validation issues.
+### Update 2025-06-08
+- Improved chunk helper input validation.
