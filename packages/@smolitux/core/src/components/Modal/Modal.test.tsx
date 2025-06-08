@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import Modal from './Modal';
 
@@ -109,9 +110,9 @@ describe('Modal Component', () => {
     const handleCancel = jest.fn();
     const handleConfirm = jest.fn();
     render(
-      <Modal 
-        isOpen={true} 
-        onClose={() => {}} 
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
         title="Test Modal"
         footerButtons={true}
         onCancel={handleCancel}
@@ -131,9 +132,9 @@ describe('Modal Component', () => {
     const handleClose = jest.fn();
     const handleCancel = jest.fn();
     render(
-      <Modal 
-        isOpen={true} 
-        onClose={handleClose} 
+      <Modal
+        isOpen={true}
+        onClose={handleClose}
         title="Test Modal"
         footerButtons={true}
         onCancel={handleCancel}
@@ -153,9 +154,9 @@ describe('Modal Component', () => {
     const handleClose = jest.fn();
     const handleConfirm = jest.fn();
     render(
-      <Modal 
-        isOpen={true} 
-        onClose={handleClose} 
+      <Modal
+        isOpen={true}
+        onClose={handleClose}
         title="Test Modal"
         footerButtons={true}
         onConfirm={handleConfirm}
@@ -210,13 +211,7 @@ describe('Modal Component', () => {
 
   test('renders with custom width and height', () => {
     render(
-      <Modal 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Test Modal" 
-        width="600px"
-        height="400px"
-      >
+      <Modal isOpen={true} onClose={() => {}} title="Test Modal" width="600px" height="400px">
         <p>Modal Content</p>
       </Modal>
     );
@@ -246,10 +241,10 @@ describe('Modal Component', () => {
 
   test('renders with custom animation type', async () => {
     render(
-      <Modal 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Test Modal" 
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
+        title="Test Modal"
         animated={true}
         animation="slide-up"
       >
@@ -261,5 +256,24 @@ describe('Modal Component', () => {
     await waitFor(() => {
       expect(screen.getByTestId('modal-content')).toHaveClass('animate-slideInUp');
     });
+  });
+
+  test('allows focus to leave when trapFocus is false', async () => {
+    render(
+      <>
+        <button data-testid="outside">outside</button>
+        <Modal isOpen={true} onClose={() => {}} trapFocus={false}>
+          <button data-testid="inside">inside</button>
+        </Modal>
+      </>
+    );
+
+    const inside = screen.getByTestId('inside');
+    const outside = screen.getByTestId('outside');
+
+    inside.focus();
+    await userEvent.tab();
+
+    expect(document.activeElement).toBe(outside);
   });
 });
