@@ -101,6 +101,20 @@ Prüft, ob ein Element einen ausreichenden Farbkontrast hat.
 const hasContrast = a11y.hasAdequateColorContrast('#ffffff', '#2563eb', false);
 ```
 
+### Custom Matchers
+
+Richte optionale Jest-Matcher ein, um die Utilities komfortabler zu nutzen:
+
+```tsx
+import { registerA11yMatchers } from '@smolitux/testing';
+
+// vor deinen Tests ausführen
+registerA11yMatchers();
+
+expect(element).toHaveAriaAttributes({ 'aria-label': 'save' });
+expect(element).toBeFocusable();
+```
+
 ## Lizenz
 
 MIT
