@@ -316,8 +316,7 @@ export const Button = memo(
           if (typeof ref === 'function') {
             ref(element);
           } else if (ref) {
-            // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
-            ref.current = element;
+            (ref as React.MutableRefObject<HTMLButtonElement | null>).current = element;
           }
         },
         [ref]

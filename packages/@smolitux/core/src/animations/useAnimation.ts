@@ -27,7 +27,7 @@ export type AnimationControls = {
  */
 export const useAnimation = (
   options: AnimationOptions,
-  deps: any[] = []
+  deps: React.DependencyList = []
 ): [React.RefObject<HTMLElement>, AnimationControls] => {
   const ref = useRef<HTMLElement>(null);
   const [isRunning, setIsRunning] = useState(false);
