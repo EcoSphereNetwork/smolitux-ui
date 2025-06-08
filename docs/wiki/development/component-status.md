@@ -290,3 +290,8 @@ Latest analyzer run shows **100%** test and story coverage across 180 components
 - Updated Dialog stories to use typed motion presets.
 - Analyzer still reports 126 validation issues after fixes.
 - Next: Continue TypeScript strict cleanup.
+
+### Update 2025-06-08 (SentimentDisplay Caching)
+- Added AI response caching hook and error handling.
+- Updated SentimentDisplay stories with mock data.
+
