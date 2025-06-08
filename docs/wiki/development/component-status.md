@@ -95,6 +95,7 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/resonance | ProfileEditor | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/resonance | ProfileHeader | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/resonance | ProfileWallet | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/resonance | PlatformNotice | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/utils | Various Utilities | ✅ | ❌ | ❌ | ❌ | Ready |
 | @smolitux/voice-control | VoiceControlProvider | ❌ | ❌ | ❌ | ❌ | Missing Tests |
 | @smolitux/voice-control | withVoiceControl | ❌ | ❌ | ❌ | ❌ | Missing Tests |
@@ -117,8 +118,8 @@ This document provides a comprehensive test status report for all components in 
 - **@smolitux/blockchain**: 7 components need A11y tests
 - **@smolitux/community**: 5 components need A11y tests
 - **@smolitux/federation**: 5 components need A11y tests
-- **@smolitux/media**: 6 components ready
-- **@smolitux/resonance**: 16 components ready
+- **@smolitux/media**: 6 components ready, 1 needs A11y tests
+- **@smolitux/resonance**: 17 components ready
 - **@smolitux/utils**: Ready
 - **@smolitux/voice-control**: 3 components missing tests
 

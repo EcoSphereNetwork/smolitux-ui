@@ -31,6 +31,12 @@ export * from './components/monetization/CreatorDashboard';
 // Platform integration components
 export * from './components/platform/PlatformIntegration';
 
+// Platform components
+export * from './components/platform/PlatformNotice';
+
+// Platform data types
+export * from './platform/types';
+
 // Hooks
 export * from './hooks/useFeed';
 export * from './hooks/usePost';
