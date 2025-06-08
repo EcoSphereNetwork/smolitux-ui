@@ -1,6 +1,6 @@
 # Smolitux UI - Codex Progress
 
-**Started:** Sun Jun  8 22:54:46 UTC 2025
+**Started:** Sun Jun  8 22:54:15 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -15,7 +15,7 @@
 - [ ] **@smolitux/layout** (Container, Grid, Flex)
 - [ ] **@smolitux/charts** (AreaChart, BarChart, PieChart, etc.)
 
-### Tier 3: Advanced Features  
+### Tier 3: Advanced Features
 - [ ] **@smolitux/media** (AudioPlayer, VideoPlayer)
 - [ ] **@smolitux/community** (ActivityFeed, UserProfile)
 
@@ -41,6 +41,7 @@
 6. Add missing stories (*.stories.tsx)
 7. Ensure accessibility compliance
 8. Update this file after each session
+9. Card, Modal, Table, and Form updated with forwardRef support
 
 ---
 *Updated by Codex AI*
