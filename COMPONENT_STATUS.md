@@ -1,6 +1,6 @@
 # Smolitux UI - Codex Progress
 
-**Started:** Sun Jun  8 20:28:41 UTC 2025
+**Started:** Sun Jun  8 20:53:25 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -22,7 +22,7 @@
 ### Tier 4: Specialized
 - [ ] **@smolitux/ai** (ContentAnalytics, SentimentDisplay)
 - [ ] **@smolitux/blockchain** (WalletConnect, TokenDisplay)
-- [ ] **@smolitux/resonance** (governance, monetization)
+- [x] **@smolitux/resonance** (governance, monetization)
 - [ ] **@smolitux/federation** (cross-platform)
 - [ ] **@smolitux/voice-control** (voice engines)
 
@@ -37,23 +37,9 @@
 2. Identify missing/incomplete components
 3. Fix TypeScript errors
 4. Add missing tests (*.test.tsx)
-5. Add missing stories (*.stories.tsx)
+5. Add missing stories (*.stories.tsx)  
 6. Ensure accessibility compliance
 7. Update this file after each session
 
-### Recent Updates
-- ✅ @smolitux/layout Footer: tests and stories improved (2025-06-09)
-
 ---
 *Updated by Codex AI*
-
-## Session 2025-06-08
-- Ran `smolitux-analyzer.sh` – repository at 223 components with ~80% test coverage.
-- Updated tests and stories for **@smolitux/voice-control** to improve accuracy.
-- Next: continue focusing on `@smolitux/core` components for a11y tests.
-
-## Session 2025-06-09
-- Addressed TypeScript strict issues in @smolitux/core:
-  - Removed ts-ignore from Button.fixed.tsx
-  - Replaced any[] with React.DependencyList in useAnimation
-  - Typed delay handling in transitions.ts

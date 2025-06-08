@@ -5,11 +5,34 @@ import { useState, useEffect } from 'react';
  * @param userId ID des Benutzers
  * @returns Profildaten und Funktionen
  */
-export function useProfile(userId: string) {
-  const [profile, setProfile] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+export interface Profile {
+  id: string;
+  name: string;
+  bio: string;
+  avatar: string;
+  followers: number;
+  following: number;
+  [key: string]: unknown;
+}
+
+export interface Post {
+  id: string;
+  [key: string]: unknown;
+}
+
+export function useProfile(userId: string): {
+  profile: Profile | null;
+  posts: Post[];
+  loading: boolean;
+  error: Error | null;
+  updateProfile: (data: Partial<Profile>) => void;
+  followUser: () => void;
+  unfollowUser: () => void;
+} {
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
 
   // Simulierte Daten-Fetch-Funktion
   const fetchProfile = async () => {
@@ -34,7 +57,7 @@ export function useProfile(userId: string) {
 
       setPosts([]);
     } catch (err) {
-      setError(err);
+      setError(err as Error);
     } finally {
       setLoading(false);
     }
@@ -46,7 +69,7 @@ export function useProfile(userId: string) {
   }, [userId]);
 
   // Funktion zum Aktualisieren des Profils
-  const updateProfile = (data: any) => {
+  const updateProfile = (data: Partial<Profile>) => {
     setProfile((prev) => ({
       ...prev,
       ...data,

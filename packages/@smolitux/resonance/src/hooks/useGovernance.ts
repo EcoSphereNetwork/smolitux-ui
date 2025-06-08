@@ -5,12 +5,40 @@ import { useState, useEffect } from 'react';
  * @param options Optionen für die Governance
  * @returns Governance-Daten und Funktionen
  */
-export function useGovernance(options: any = {}) {
-  const [proposals, setProposals] = useState([]);
-  const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [filter, setFilter] = useState(options.initialFilter || 'all');
+export interface UseGovernanceOptions {
+  initialFilter?: string;
+}
+
+export interface Proposal {
+  id: string;
+  [key: string]: unknown;
+}
+
+export interface GovernanceStats {
+  activeProposals: number;
+  implementedProposals: number;
+  rejectedProposals: number;
+  totalVotes: number;
+  totalParticipants: number;
+  averageParticipation: number;
+}
+
+export function useGovernance(options: UseGovernanceOptions = {}): {
+  proposals: Proposal[];
+  stats: GovernanceStats | null;
+  loading: boolean;
+  error: Error | null;
+  filter: string;
+  changeFilter: (newFilter: string) => void;
+  createProposal: (data: Partial<Proposal>) => void;
+  supportProposal: (proposalId: string) => void;
+  voteOnProposal: (proposalId: string, voteOption: string) => void;
+} {
+  const [proposals, setProposals] = useState<Proposal[]>([]);
+  const [stats, setStats] = useState<GovernanceStats | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [filter, setFilter] = useState<string>(options.initialFilter || 'all');
 
   // Simulierte Daten-Fetch-Funktion
   const fetchProposals = async () => {
@@ -32,7 +60,7 @@ export function useGovernance(options: any = {}) {
         averageParticipation: 0,
       });
     } catch (err) {
-      setError(err);
+      setError(err as Error);
     } finally {
       setLoading(false);
     }
@@ -51,7 +79,7 @@ export function useGovernance(options: any = {}) {
   };
 
   // Funktion zum Erstellen eines Vorschlags
-  const createProposal = (data: any) => {
+  const createProposal = (data: Partial<Proposal>) => {
     const newProposal = {
       id: `proposal-${Date.now()}`,
       ...data,
