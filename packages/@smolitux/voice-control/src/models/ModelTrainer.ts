@@ -34,7 +34,13 @@ export class ModelTrainer {
   }
 
   public async train(options: TrainingOptions = {}): Promise<tf.History> {
-    const { epochs = 50, batchSize = 32, learningRate = 0.01, validationSplit = 0.2, callbacks = {} } = options;
+    const {
+      epochs = 50,
+      batchSize = 32,
+      learningRate = 0.01,
+      validationSplit = 0.2,
+      callbacks = {},
+    } = options;
     const trainingOptions: speech.TransferLearnConfig = {
       epochs,
       callback: callbacks,
@@ -45,7 +51,10 @@ export class ModelTrainer {
     return this.recognizer.train(trainingOptions);
   }
 
-  public async save(format: 'indexeddb' | 'downloads' | 'localstorage' = 'indexeddb', name = 'custom-model'): Promise<tf.io.SaveResult> {
+  public async save(
+    format: 'indexeddb' | 'downloads' | 'localstorage' = 'indexeddb',
+    name = 'custom-model'
+  ): Promise<tf.io.SaveResult> {
     let result: tf.io.SaveResult;
     switch (format) {
       case 'indexeddb':
@@ -64,7 +73,10 @@ export class ModelTrainer {
     return result;
   }
 
-  public async load(format: 'indexeddb' | 'localstorage' = 'indexeddb', name = 'custom-model'): Promise<boolean> {
+  public async load(
+    format: 'indexeddb' | 'localstorage' = 'indexeddb',
+    name = 'custom-model'
+  ): Promise<boolean> {
     try {
       switch (format) {
         case 'indexeddb':

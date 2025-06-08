@@ -3,11 +3,19 @@ import { useFormControl } from '../FormControl';
 
 export type CheckboxSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type CheckboxVariant = 'solid' | 'outline' | 'filled' | 'minimal';
-export type CheckboxColorScheme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+export type CheckboxColorScheme =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'neutral';
 export type CheckboxLabelPosition = 'left' | 'right';
 export type CheckboxDisplayType = 'checkbox' | 'switch' | 'radio' | 'toggle' | 'button';
 
-export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+export interface CheckboxProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /** Text-Label */
   label?: React.ReactNode;
   /** Hilfetext */
@@ -340,25 +348,25 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
 
 /**
  * Checkbox-Komponente für Formulare
- * 
+ *
  * @example
  * ```tsx
  * <Checkbox label="Nutzungsbedingungen akzeptieren" />
- * 
- * <Checkbox 
- *   label="Newsletter abonnieren" 
+ *
+ * <Checkbox
+ *   label="Newsletter abonnieren"
  *   helperText="Sie können sich jederzeit abmelden"
  *   colorScheme="primary"
  *   size="md"
  * />
- * 
- * <Checkbox 
+ *
+ * <Checkbox
  *   label={<span>Ich akzeptiere die <a href="#">AGB</a></span>}
  *   isRequired
  *   error={!isChecked ? "Bitte akzeptieren Sie die AGB" : undefined}
  * />
- * 
- * <Checkbox 
+ *
+ * <Checkbox
  *   indeterminate={someChecked && !allChecked}
  *   checked={allChecked}
  *   onChange={handleSelectAll}
@@ -366,508 +374,545 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
  * />
  * ```
  */
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
-  label,
-  helperText,
-  error,
-  successMessage,
-  size = 'md',
-  variant = 'solid',
-  indeterminate = false,
-  colorScheme = 'primary',
-  className = '',
-  containerClassName = '',
-  checkboxContainerClassName = '',
-  labelClassName = '',
-  helperTextClassName = '',
-  errorClassName = '',
-  successClassName = '',
-  disabled,
-  id,
-  checked,
-  defaultChecked,
-  onChange,
-  onFocus,
-  onBlur,
-  onKeyDown,
-  bordered = true,
-  rounded = true,
-  shadow = false,
-  hoverable = true,
-  focusable = true,
-  transition = true,
-  transparent = false,
-  tooltip,
-  isLoading = false,
-  isValid = false,
-  isInvalid = false,
-  isSuccess = false,
-  isDisabled,
-  isRequired,
-  showSuccessIndicator = true,
-  showErrorIndicator = true,
-  showLoadingIndicator = true,
-  showValidationIndicator = true,
-  hideLabel = false,
-  hideHelperText = false,
-  hideError = false,
-  hideSuccessMessage = false,
-  labelTooltip,
-  checkboxTooltip,
-  description,
-  autoFocus = false,
-  icon,
-  checkedIcon,
-  uncheckedIcon,
-  indeterminateIcon,
-  ripple = false,
-  labelPosition = 'right',
-  isVertical = false,
-  isSwitch = false,
-  isRadio = false,
-  isToggle = false,
-  isButton = false,
-  required,
-  name,
-  value,
-  ...props
-}, ref) => {
-  // Hole FormControl-Context, falls vorhanden
-  const formControl = useFormControl();
-  
-  // Kombiniere Props mit FormControl-Context
-  const _id = id || formControl.id || `checkbox-${Math.random().toString(36).substring(2, 9)}`;
-  const _disabled = isDisabled ?? disabled ?? formControl.disabled;
-  const _required = isRequired ?? required ?? formControl.required;
-  const _error = error || (formControl.hasError ? 'Ungültige Eingabe' : undefined);
-  const _isInvalid = isInvalid || Boolean(_error) || formControl.isInvalid;
-  const _isValid = isValid || formControl.isValid;
-  const _isSuccess = isSuccess || formControl.isSuccess;
-  const _isLoading = isLoading || formControl.isLoading;
-  const _size = size || formControl.size || 'md';
-  const _name = name || formControl.name;
-  
-  // State für Fokus und Hover
-  const [isFocused, setIsFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isPressed, setIsPressed] = useState(false);
-  const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
-  const [showRipple, setShowRipple] = useState(false);
-  
-  // Refs
-  const checkboxRef = useRef<HTMLInputElement>(null);
-  
-  // Kombiniere den externen Ref mit unserem internen Ref
-  const handleRef = (element: HTMLInputElement | null) => {
-    if (checkboxRef) {
-      (checkboxRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
-    }
-    
-    if (typeof ref === 'function') {
-      ref(element);
-    } else if (ref) {
-      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
-    }
-  };
-  
-  // Setze den indeterminaten Zustand
-  useEffect(() => {
-    if (checkboxRef.current) {
-      checkboxRef.current.indeterminate = indeterminate;
-    }
-  }, [indeterminate]);
-  
-  // Effekt für autoFocus
-  useEffect(() => {
-    if (autoFocus && checkboxRef.current) {
-      checkboxRef.current.focus();
-    }
-  }, [autoFocus]);
-  
-  // Klassen für verschiedene Größen
-  const sizeClasses = {
-    xs: 'h-3 w-3',
-    sm: 'h-4 w-4',
-    md: 'h-5 w-5',
-    lg: 'h-6 w-6',
-    xl: 'h-7 w-7'
-  };
-  
-  // Klassen für verschiedene Label-Größen
-  const labelSizeClasses = {
-    xs: 'text-xs',
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg',
-    xl: 'text-xl'
-  };
-  
-  // Klassen für verschiedene Varianten
-  const variantClasses: Record<CheckboxVariant, string> = {
-    solid: 'bg-white dark:bg-gray-700',
-    outline: bordered 
-      ? 'border-2 border-gray-300 dark:border-gray-600 bg-transparent' 
-      : 'bg-transparent',
-    filled: 'bg-gray-100 dark:bg-gray-800',
-    minimal: 'bg-transparent'
-  };
-  
-  // Klassen für verschiedene Farben
-  const colorClasses = {
-    primary: 'text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400',
-    secondary: 'text-secondary-600 dark:text-secondary-500 focus:ring-secondary-500 dark:focus:ring-secondary-400',
-    success: 'text-green-600 dark:text-green-500 focus:ring-green-500 dark:focus:ring-green-400',
-    danger: 'text-red-600 dark:text-red-500 focus:ring-red-500 dark:focus:ring-red-400',
-    warning: 'text-yellow-600 dark:text-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-400',
-    info: 'text-blue-600 dark:text-blue-500 focus:ring-blue-500 dark:focus:ring-blue-400'
-  };
-  
-  // Zustandsabhängige Klassen
-  const stateClasses = _isInvalid
-    ? 'border-red-500 dark:border-red-400 focus:ring-red-500 focus:border-red-500'
-    : _isValid || _isSuccess
-      ? 'border-green-500 dark:border-green-400 focus:ring-green-500 focus:border-green-500'
-      : colorClasses[colorScheme];
-  
-  // Effekt-spezifische Klassen
-  const effectClasses = {
-    shadow: shadow ? 'shadow-md' : '',
-    rounded: rounded ? 'rounded' : 'rounded-none',
-    hover: hoverable && !_disabled ? 'hover:border-gray-400 dark:hover:border-gray-500' : '',
-    focus: focusable && !_disabled ? 'focus:outline-none focus:ring-2' : '',
-    transition: transition ? 'transition duration-150 ease-in-out' : '',
-    transparent: transparent ? 'bg-transparent' : ''
-  };
-  
-  // Basis-Klassen für die Checkbox
-  const checkboxClasses = [
-    sizeClasses[_size],
-    variantClasses[variant],
-    stateClasses,
-    effectClasses.shadow,
-    effectClasses.rounded,
-    effectClasses.hover,
-    effectClasses.focus,
-    effectClasses.transition,
-    effectClasses.transparent,
-    _disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-    checkboxContainerClassName
-  ].filter(Boolean).join(' ');
-  
-  // Event-Handler
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(true);
-    onFocus?.(e);
-  };
-  
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(false);
-    onBlur?.(e);
-  };
-  
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-  
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setIsPressed(false);
-  };
-  
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsPressed(true);
-    
-    // Ripple-Effekt
-    if (ripple && checkboxRef.current) {
-      const rect = checkboxRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      setRippleStyle({
-        left: `${x}px`,
-        top: `${y}px`
-      });
-      
-      setShowRipple(true);
-      setTimeout(() => setShowRipple(false), 600);
-    }
-  };
-  
-  const handleMouseUp = () => {
-    setIsPressed(false);
-  };
-  
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      setIsPressed(true);
-    }
-    
-    onKeyDown?.(e);
-  };
-  
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  (
+    {
+      label,
+      helperText,
+      error,
+      successMessage,
+      size = 'md',
+      variant = 'solid',
+      indeterminate = false,
+      colorScheme = 'primary',
+      className = '',
+      containerClassName = '',
+      checkboxContainerClassName = '',
+      labelClassName = '',
+      helperTextClassName = '',
+      errorClassName = '',
+      successClassName = '',
+      disabled,
+      id,
+      checked,
+      defaultChecked,
+      onChange,
+      onFocus,
+      onBlur,
+      onKeyDown,
+      bordered = true,
+      rounded = true,
+      shadow = false,
+      hoverable = true,
+      focusable = true,
+      transition = true,
+      transparent = false,
+      tooltip,
+      isLoading = false,
+      isValid = false,
+      isInvalid = false,
+      isSuccess = false,
+      isDisabled,
+      isRequired,
+      showSuccessIndicator = true,
+      showErrorIndicator = true,
+      showLoadingIndicator = true,
+      showValidationIndicator = true,
+      hideLabel = false,
+      hideHelperText = false,
+      hideError = false,
+      hideSuccessMessage = false,
+      labelTooltip,
+      checkboxTooltip,
+      description,
+      autoFocus = false,
+      icon,
+      checkedIcon,
+      uncheckedIcon,
+      indeterminateIcon,
+      ripple = false,
+      labelPosition = 'right',
+      isVertical = false,
+      isSwitch = false,
+      isRadio = false,
+      isToggle = false,
+      isButton = false,
+      required,
+      name,
+      value,
+      ...props
+    },
+    ref
+  ) => {
+    // Hole FormControl-Context, falls vorhanden
+    const formControl = useFormControl();
+
+    // Kombiniere Props mit FormControl-Context
+    const _id = id || formControl.id || `checkbox-${Math.random().toString(36).substring(2, 9)}`;
+    const _disabled = isDisabled ?? disabled ?? formControl.disabled;
+    const _required = isRequired ?? required ?? formControl.required;
+    const _error = error || (formControl.hasError ? 'Ungültige Eingabe' : undefined);
+    const _isInvalid = isInvalid || Boolean(_error) || formControl.isInvalid;
+    const _isValid = isValid || formControl.isValid;
+    const _isSuccess = isSuccess || formControl.isSuccess;
+    const _isLoading = isLoading || formControl.isLoading;
+    const _size = size || formControl.size || 'md';
+    const _name = name || formControl.name;
+
+    // State für Fokus und Hover
+    const [isFocused, setIsFocused] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
+    const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
+    const [showRipple, setShowRipple] = useState(false);
+
+    // Refs
+    const checkboxRef = useRef<HTMLInputElement>(null);
+
+    // Kombiniere den externen Ref mit unserem internen Ref
+    const handleRef = (element: HTMLInputElement | null) => {
+      if (checkboxRef) {
+        (checkboxRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
+      }
+
+      if (typeof ref === 'function') {
+        ref(element);
+      } else if (ref) {
+        (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
+      }
+    };
+
+    // Setze den indeterminaten Zustand
+    useEffect(() => {
+      if (checkboxRef.current) {
+        checkboxRef.current.indeterminate = indeterminate;
+      }
+    }, [indeterminate]);
+
+    // Effekt für autoFocus
+    useEffect(() => {
+      if (autoFocus && checkboxRef.current) {
+        checkboxRef.current.focus();
+      }
+    }, [autoFocus]);
+
+    // Klassen für verschiedene Größen
+    const sizeClasses = {
+      xs: 'h-3 w-3',
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
+      xl: 'h-7 w-7',
+    };
+
+    // Klassen für verschiedene Label-Größen
+    const labelSizeClasses = {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    };
+
+    // Klassen für verschiedene Varianten
+    const variantClasses: Record<CheckboxVariant, string> = {
+      solid: 'bg-white dark:bg-gray-700',
+      outline: bordered
+        ? 'border-2 border-gray-300 dark:border-gray-600 bg-transparent'
+        : 'bg-transparent',
+      filled: 'bg-gray-100 dark:bg-gray-800',
+      minimal: 'bg-transparent',
+    };
+
+    // Klassen für verschiedene Farben
+    const colorClasses = {
+      primary:
+        'text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400',
+      secondary:
+        'text-secondary-600 dark:text-secondary-500 focus:ring-secondary-500 dark:focus:ring-secondary-400',
+      success: 'text-green-600 dark:text-green-500 focus:ring-green-500 dark:focus:ring-green-400',
+      danger: 'text-red-600 dark:text-red-500 focus:ring-red-500 dark:focus:ring-red-400',
+      warning:
+        'text-yellow-600 dark:text-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-400',
+      info: 'text-blue-600 dark:text-blue-500 focus:ring-blue-500 dark:focus:ring-blue-400',
+    };
+
+    // Zustandsabhängige Klassen
+    const stateClasses = _isInvalid
+      ? 'border-red-500 dark:border-red-400 focus:ring-red-500 focus:border-red-500'
+      : _isValid || _isSuccess
+        ? 'border-green-500 dark:border-green-400 focus:ring-green-500 focus:border-green-500'
+        : colorClasses[colorScheme];
+
+    // Effekt-spezifische Klassen
+    const effectClasses = {
+      shadow: shadow ? 'shadow-md' : '',
+      rounded: rounded ? 'rounded' : 'rounded-none',
+      hover: hoverable && !_disabled ? 'hover:border-gray-400 dark:hover:border-gray-500' : '',
+      focus: focusable && !_disabled ? 'focus:outline-none focus:ring-2' : '',
+      transition: transition ? 'transition duration-150 ease-in-out' : '',
+      transparent: transparent ? 'bg-transparent' : '',
+    };
+
+    // Basis-Klassen für die Checkbox
+    const checkboxClasses = [
+      sizeClasses[_size],
+      variantClasses[variant],
+      stateClasses,
+      effectClasses.shadow,
+      effectClasses.rounded,
+      effectClasses.hover,
+      effectClasses.focus,
+      effectClasses.transition,
+      effectClasses.transparent,
+      _disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+      checkboxContainerClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    // Event-Handler
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocused(true);
+      onFocus?.(e);
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocused(false);
+      onBlur?.(e);
+    };
+
+    const handleMouseEnter = () => {
+      setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+      setIsHovered(false);
       setIsPressed(false);
-    }
-  };
-  
-  // Rendere das passende Icon basierend auf dem Zustand
-  const renderIcon = () => {
-    if (indeterminate && indeterminateIcon) {
-      return indeterminateIcon;
-    }
-    
-    if (checked && checkedIcon) {
-      return checkedIcon;
-    }
-    
-    if (!checked && uncheckedIcon) {
-      return uncheckedIcon;
-    }
-    
-    if (icon) {
-      return icon;
-    }
-    
-    return null;
-  };
-  
-  // Rendere Indikatoren (Erfolg, Fehler, Laden)
-  const renderIndicators = () => {
-    if (!showSuccessIndicator && !showErrorIndicator && !showLoadingIndicator && !showValidationIndicator) {
+    };
+
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+      setIsPressed(true);
+
+      // Ripple-Effekt
+      if (ripple && checkboxRef.current) {
+        const rect = checkboxRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        setRippleStyle({
+          left: `${x}px`,
+          top: `${y}px`,
+        });
+
+        setShowRipple(true);
+        setTimeout(() => setShowRipple(false), 600);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsPressed(false);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        setIsPressed(true);
+      }
+
+      onKeyDown?.(e);
+    };
+
+    const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        setIsPressed(false);
+      }
+    };
+
+    // Rendere das passende Icon basierend auf dem Zustand
+    const renderIcon = () => {
+      if (indeterminate && indeterminateIcon) {
+        return indeterminateIcon;
+      }
+
+      if (checked && checkedIcon) {
+        return checkedIcon;
+      }
+
+      if (!checked && uncheckedIcon) {
+        return uncheckedIcon;
+      }
+
+      if (icon) {
+        return icon;
+      }
+
       return null;
-    }
-    
-    // Bestimme, welcher Indikator angezeigt werden soll
-    let indicator = null;
-    
-    if (_isLoading && showLoadingIndicator) {
-      indicator = (
-        <span className="text-primary-500 animate-spin" aria-hidden="true">
-          ⟳
-        </span>
-      );
-    } else if (_isInvalid && showErrorIndicator) {
-      indicator = (
-        <span className="text-red-500" aria-hidden="true">
-          ✕
-        </span>
-      );
-    } else if (_isSuccess && showSuccessIndicator) {
-      indicator = (
-        <span className="text-green-500" aria-hidden="true">
-          ✓
-        </span>
-      );
-    } else if (_isValid && showValidationIndicator) {
-      indicator = (
-        <span className="text-green-500" aria-hidden="true">
-          ✓
-        </span>
-      );
-    }
-    
-    if (!indicator) return null;
-    
-    return (
-      <div className="absolute inset-y-0 right-0 flex items-center pr-2">
-        {indicator}
-      </div>
-    );
-  };
-  
-  // Bestimme die ARIA-Attribute für die Checkbox
-  const getAriaAttributes = () => {
-    const attributes: Record<string, string> = {};
+    };
 
-    // Beschreibungen und Hilfetexte
-    const describedByParts = [];
-    if (description) {
-      describedByParts.push(`${_id}-description`);
-    }
-    if (helperText && !_error) {
-      describedByParts.push(`${_id}-helper`);
-    }
-    if (successMessage) {
-      describedByParts.push(`${_id}-success`);
-    }
-    if (describedByParts.length > 0) {
-      attributes['aria-describedby'] = describedByParts.join(' ');
-    }
+    // Rendere Indikatoren (Erfolg, Fehler, Laden)
+    const renderIndicators = () => {
+      if (
+        !showSuccessIndicator &&
+        !showErrorIndicator &&
+        !showLoadingIndicator &&
+        !showValidationIndicator
+      ) {
+        return null;
+      }
 
-    // Fehlermeldungen
-    if (_error) {
-      attributes['aria-errormessage'] = `${_id}-error`;
-      attributes['aria-invalid'] = 'true';
-    } else if (_isInvalid) {
-      attributes['aria-invalid'] = 'true';
-    }
+      // Bestimme, welcher Indikator angezeigt werden soll
+      let indicator = null;
 
-    // Zustandsattribute
-    if (indeterminate) {
-      attributes['aria-checked'] = 'mixed';
-    }
-    if (_disabled) {
-      attributes['aria-disabled'] = 'true';
-    }
-    if (_required) {
-      attributes['aria-required'] = 'true';
-    }
-    if (_isLoading) {
-      attributes['aria-busy'] = 'true';
-    }
-    
-    // Rollen und Beschreibungen
-    if (isSwitch || isToggle) {
-      attributes['role'] = 'switch';
-      attributes['aria-roledescription'] = 'Schalter';
-    }
-    
-    if (isButton) {
-      attributes['role'] = 'checkbox';
-    }
+      if (_isLoading && showLoadingIndicator) {
+        indicator = (
+          <span className="text-primary-500 animate-spin" aria-hidden="true">
+            ⟳
+          </span>
+        );
+      } else if (_isInvalid && showErrorIndicator) {
+        indicator = (
+          <span className="text-red-500" aria-hidden="true">
+            ✕
+          </span>
+        );
+      } else if (_isSuccess && showSuccessIndicator) {
+        indicator = (
+          <span className="text-green-500" aria-hidden="true">
+            ✓
+          </span>
+        );
+      } else if (_isValid && showValidationIndicator) {
+        indicator = (
+          <span className="text-green-500" aria-hidden="true">
+            ✓
+          </span>
+        );
+      }
 
-    return attributes;
-  };
-  
-  // Rendere die Checkbox basierend auf dem Typ
-  const renderCheckbox = () => {
-    if (isSwitch) {
-      return (
-        <div className="relative inline-block w-10 h-5 rounded-full bg-gray-300 dark:bg-gray-600">
-          <input
-            ref={handleRef}
-            id={_id}
-            type="checkbox"
-            disabled={_disabled}
-            required={_required}
-            name={_name}
-            value={value}
-            checked={checked}
-            defaultChecked={defaultChecked}
-            onChange={onChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            className="absolute w-0 h-0 opacity-0"
-            title={checkboxTooltip || tooltip}
-            {...getAriaAttributes()}
-            {...props}
-          />
-          <span 
-            className={`
+      if (!indicator) return null;
+
+      return <div className="absolute inset-y-0 right-0 flex items-center pr-2">{indicator}</div>;
+    };
+
+    // Bestimme die ARIA-Attribute für die Checkbox
+    const getAriaAttributes = () => {
+      const attributes: Record<string, string> = {};
+
+      // Beschreibungen und Hilfetexte
+      const describedByParts = [];
+      if (description) {
+        describedByParts.push(`${_id}-description`);
+      }
+      if (helperText && !_error) {
+        describedByParts.push(`${_id}-helper`);
+      }
+      if (successMessage) {
+        describedByParts.push(`${_id}-success`);
+      }
+      if (describedByParts.length > 0) {
+        attributes['aria-describedby'] = describedByParts.join(' ');
+      }
+
+      // Fehlermeldungen
+      if (_error) {
+        attributes['aria-errormessage'] = `${_id}-error`;
+        attributes['aria-invalid'] = 'true';
+      } else if (_isInvalid) {
+        attributes['aria-invalid'] = 'true';
+      }
+
+      // Zustandsattribute
+      if (indeterminate) {
+        attributes['aria-checked'] = 'mixed';
+      }
+      if (_disabled) {
+        attributes['aria-disabled'] = 'true';
+      }
+      if (_required) {
+        attributes['aria-required'] = 'true';
+      }
+      if (_isLoading) {
+        attributes['aria-busy'] = 'true';
+      }
+
+      // Rollen und Beschreibungen
+      if (isSwitch || isToggle) {
+        attributes['role'] = 'switch';
+        attributes['aria-roledescription'] = 'Schalter';
+      }
+
+      if (isButton) {
+        attributes['role'] = 'checkbox';
+      }
+
+      return attributes;
+    };
+
+    // Rendere die Checkbox basierend auf dem Typ
+    const renderCheckbox = () => {
+      if (isSwitch) {
+        return (
+          <div className="relative inline-block w-10 h-5 rounded-full bg-gray-300 dark:bg-gray-600">
+            <input
+              ref={handleRef}
+              id={_id}
+              type="checkbox"
+              disabled={_disabled}
+              required={_required}
+              name={_name}
+              value={value}
+              checked={checked}
+              defaultChecked={defaultChecked}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              onKeyUp={handleKeyUp}
+              className="absolute w-0 h-0 opacity-0"
+              title={checkboxTooltip || tooltip}
+              {...getAriaAttributes()}
+              {...props}
+            />
+            <span
+              className={`
               absolute left-0 top-0 bottom-0 w-5 h-5 rounded-full bg-white dark:bg-gray-400 
               transition-transform duration-200 ease-in-out transform
               ${checked ? 'translate-x-5 bg-primary-600 dark:bg-primary-500' : 'translate-x-0'}
               ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
             `}
-          />
-        </div>
-      );
-    }
-    
-    if (isRadio) {
-      return (
-        <div className="relative">
-          <input
-            ref={handleRef}
-            id={_id}
-            type="radio"
-            disabled={_disabled}
-            required={_required}
-            name={_name}
-            value={value}
-            checked={checked}
-            defaultChecked={defaultChecked}
-            onChange={onChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            className={`
+            />
+          </div>
+        );
+      }
+
+      if (isRadio) {
+        return (
+          <div className="relative">
+            <input
+              ref={handleRef}
+              id={_id}
+              type="radio"
+              disabled={_disabled}
+              required={_required}
+              name={_name}
+              value={value}
+              checked={checked}
+              defaultChecked={defaultChecked}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              onKeyUp={handleKeyUp}
+              className={`
               ${sizeClasses[_size]}
               rounded-full border-gray-300 dark:border-gray-600
               ${colorClasses[colorScheme]}
               ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
             `}
-            title={checkboxTooltip || tooltip}
-            {...getAriaAttributes()}
-            {...props}
-          />
-        </div>
-      );
-    }
-    
-    if (isToggle) {
-      return (
-        <div className="relative inline-block w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-600">
-          <input
-            ref={handleRef}
-            id={_id}
-            type="checkbox"
-            disabled={_disabled}
-            required={_required}
-            name={_name}
-            value={value}
-            checked={checked}
-            defaultChecked={defaultChecked}
-            onChange={onChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            className="absolute w-0 h-0 opacity-0"
-            title={checkboxTooltip || tooltip}
-            {...getAriaAttributes()}
-            {...props}
-          />
-          <div 
-            className={`
+              title={checkboxTooltip || tooltip}
+              {...getAriaAttributes()}
+              {...props}
+            />
+          </div>
+        );
+      }
+
+      if (isToggle) {
+        return (
+          <div className="relative inline-block w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-600">
+            <input
+              ref={handleRef}
+              id={_id}
+              type="checkbox"
+              disabled={_disabled}
+              required={_required}
+              name={_name}
+              value={value}
+              checked={checked}
+              defaultChecked={defaultChecked}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              onKeyUp={handleKeyUp}
+              className="absolute w-0 h-0 opacity-0"
+              title={checkboxTooltip || tooltip}
+              {...getAriaAttributes()}
+              {...props}
+            />
+            <div
+              className={`
               absolute inset-0 rounded-full 
               transition-colors duration-200 ease-in-out
               ${checked ? `bg-${colorScheme}-600 dark:bg-${colorScheme}-500` : 'bg-gray-300 dark:bg-gray-600'}
               ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
             `}
-          />
-          <span 
-            className={`
+            />
+            <span
+              className={`
               absolute left-0.5 top-0.5 w-5 h-5 rounded-full bg-white dark:bg-gray-200 
               transition-transform duration-200 ease-in-out transform
               ${checked ? 'translate-x-6' : 'translate-x-0'}
               ${_disabled ? 'opacity-50' : ''}
               shadow-md
             `}
-          />
-        </div>
-      );
-    }
-    
-    if (isButton) {
-      return (
-        <button
-          id={_id}
-          disabled={_disabled}
-          aria-pressed={checked}
-          onClick={() => {
-            if (checkboxRef.current) {
-              checkboxRef.current.click();
-            }
-          }}
-          className={`
+            />
+          </div>
+        );
+      }
+
+      if (isButton) {
+        return (
+          <button
+            id={_id}
+            disabled={_disabled}
+            aria-pressed={checked}
+            onClick={() => {
+              if (checkboxRef.current) {
+                checkboxRef.current.click();
+              }
+            }}
+            className={`
             px-4 py-2 rounded-md font-medium
-            ${checked 
-              ? `bg-${colorScheme}-600 dark:bg-${colorScheme}-500 text-white` 
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'}
+            ${
+              checked
+                ? `bg-${colorScheme}-600 dark:bg-${colorScheme}-500 text-white`
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+            }
             ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
             transition-colors duration-200 ease-in-out
           `}
-          title={checkboxTooltip || tooltip}
-          {...getAriaAttributes()}
-        >
-          {label}
+            title={checkboxTooltip || tooltip}
+            {...getAriaAttributes()}
+          >
+            {label}
+            <input
+              ref={handleRef}
+              type="checkbox"
+              disabled={_disabled}
+              required={_required}
+              name={_name}
+              value={value}
+              checked={checked}
+              defaultChecked={defaultChecked}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              onKeyUp={handleKeyUp}
+              className="sr-only"
+              {...props}
+            />
+          </button>
+        );
+      }
+
+      // Standard-Checkbox
+      return (
+        <div className="relative">
           <input
             ref={handleRef}
+            id={_id}
             type="checkbox"
             disabled={_disabled}
             required={_required}
@@ -880,169 +925,143 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
             onKeyUp={handleKeyUp}
-            className="sr-only"
+            className={checkboxClasses}
+            title={checkboxTooltip || tooltip}
+            {...getAriaAttributes()}
             {...props}
           />
-        </button>
+
+          {/* Ripple-Effekt */}
+          {ripple && showRipple && (
+            <span
+              className="absolute bg-current bg-opacity-30 rounded-full animate-ripple"
+              style={{
+                width: '30px',
+                height: '30px',
+                transform: 'translate(-50%, -50%)',
+                ...rippleStyle,
+              }}
+            />
+          )}
+
+          {/* Icon */}
+          {renderIcon()}
+
+          {/* Indikatoren */}
+          {renderIndicators()}
+        </div>
       );
-    }
-    
-    // Standard-Checkbox
-    return (
-      <div className="relative">
-        <input
-          ref={handleRef}
-          id={_id}
-          type="checkbox"
-          disabled={_disabled}
-          required={_required}
-          name={_name}
-          value={value}
-          checked={checked}
-          defaultChecked={defaultChecked}
-          onChange={onChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyDown}
-          onKeyUp={handleKeyUp}
-          className={checkboxClasses}
-          title={checkboxTooltip || tooltip}
-          {...getAriaAttributes()}
-          {...props}
-        />
-        
-        {/* Ripple-Effekt */}
-        {ripple && showRipple && (
-          <span 
-            className="absolute bg-current bg-opacity-30 rounded-full animate-ripple" 
-            style={{
-              width: '30px',
-              height: '30px',
-              transform: 'translate(-50%, -50%)',
-              ...rippleStyle
-            }}
-          />
-        )}
-        
-        {/* Icon */}
-        {renderIcon()}
-        
-        {/* Indikatoren */}
-        {renderIndicators()}
-      </div>
-    );
-  };
-  
-  // Beschreibung für Screenreader
-  const renderDescription = () => {
-    if (!description) return null;
-    
-    return (
-      <div 
-        id={`${_id}-description`} 
-        className="sr-only"
-        aria-hidden="false"
-      >
-        {description}
-      </div>
-    );
-  };
-  
-  // Rendere das Label
-  const renderLabel = () => {
-    if (!label) return null;
-    
-    return (
-      <div className={`${hideLabel ? 'sr-only' : ''}`}>
-        <label 
-          htmlFor={_id} 
-          className={`
+    };
+
+    // Beschreibung für Screenreader
+    const renderDescription = () => {
+      if (!description) return null;
+
+      return (
+        <div id={`${_id}-description`} className="sr-only" aria-hidden="false">
+          {description}
+        </div>
+      );
+    };
+
+    // Rendere das Label
+    const renderLabel = () => {
+      if (!label) return null;
+
+      return (
+        <div className={`${hideLabel ? 'sr-only' : ''}`}>
+          <label
+            htmlFor={_id}
+            className={`
             ${labelSizeClasses[_size]}
             font-medium text-gray-700 dark:text-gray-300
             ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
             ${labelClassName}
           `}
-          title={labelTooltip}
-          data-testid="checkbox-label"
-        >
-          {label}
-          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
-          {_required && <span className="sr-only">(Erforderlich)</span>}
-        </label>
-      </div>
-    );
-  };
-  
-  // Rendere Hilfetext, Fehlermeldung oder Erfolgsmeldung
-  const renderHelperText = () => {
-    if (!_error && !helperText && !successMessage) return null;
-    
-    return (
-      <div className="mt-1 text-sm">
-        {_error && !hideError ? (
-          <p 
-            id={`${_id}-error`} 
-            className={`text-red-600 dark:text-red-400 ${errorClassName}`}
-            role="alert" 
-            aria-live="assertive"
-            aria-atomic="true"
+            title={labelTooltip}
+            data-testid="checkbox-label"
           >
-            {_error}
-          </p>
-        ) : successMessage && !hideSuccessMessage ? (
-          <p 
-            id={`${_id}-success`} 
-            className={`text-green-600 dark:text-green-400 ${successClassName}`}
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {successMessage}
-          </p>
-        ) : helperText && !hideHelperText ? (
-          <p 
-            id={`${_id}-helper`} 
-            className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
-            aria-live="polite"
-          >
-            {helperText}
-          </p>
-        ) : null}
-      </div>
-    );
-  };
-  
-  // Rendere die gesamte Komponente
-  return (
-    <div 
-      className={`${isVertical ? 'flex flex-col' : 'flex items-start'} ${containerClassName} ${className}`}
-      data-testid="checkbox-container"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-    >
-      {/* Beschreibung für Screenreader */}
-      {renderDescription()}
-      
-      {/* Label links */}
-      {labelPosition === 'left' && renderLabel()}
-      
-      {/* Checkbox */}
-      <div className={`flex items-center ${isVertical ? 'mb-2' : ''}`}>
-        {renderCheckbox()}
-      </div>
-      
-      {/* Label rechts */}
-      {labelPosition === 'right' && (
-        <div className={`${isVertical ? '' : 'ml-2'}`} data-testid="label-container">
-          {renderLabel()}
-          {renderHelperText()}
+            {label}
+            {_required && (
+              <span className="ml-1 text-red-500" aria-hidden="true">
+                *
+              </span>
+            )}
+            {_required && <span className="sr-only">(Erforderlich)</span>}
+          </label>
         </div>
-      )}
-    </div>
-  );
-});
+      );
+    };
+
+    // Rendere Hilfetext, Fehlermeldung oder Erfolgsmeldung
+    const renderHelperText = () => {
+      if (!_error && !helperText && !successMessage) return null;
+
+      return (
+        <div className="mt-1 text-sm">
+          {_error && !hideError ? (
+            <p
+              id={`${_id}-error`}
+              className={`text-red-600 dark:text-red-400 ${errorClassName}`}
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+            >
+              {_error}
+            </p>
+          ) : successMessage && !hideSuccessMessage ? (
+            <p
+              id={`${_id}-success`}
+              className={`text-green-600 dark:text-green-400 ${successClassName}`}
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {successMessage}
+            </p>
+          ) : helperText && !hideHelperText ? (
+            <p
+              id={`${_id}-helper`}
+              className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
+              aria-live="polite"
+            >
+              {helperText}
+            </p>
+          ) : null}
+        </div>
+      );
+    };
+
+    // Rendere die gesamte Komponente
+    return (
+      <div
+        className={`${isVertical ? 'flex flex-col' : 'flex items-start'} ${containerClassName} ${className}`}
+        data-testid="checkbox-container"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
+        {/* Beschreibung für Screenreader */}
+        {renderDescription()}
+
+        {/* Label links */}
+        {labelPosition === 'left' && renderLabel()}
+
+        {/* Checkbox */}
+        <div className={`flex items-center ${isVertical ? 'mb-2' : ''}`}>{renderCheckbox()}</div>
+
+        {/* Label rechts */}
+        {labelPosition === 'right' && (
+          <div className={`${isVertical ? '' : 'ml-2'}`} data-testid="label-container">
+            {renderLabel()}
+            {renderHelperText()}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 
 Checkbox.displayName = 'Checkbox';
 

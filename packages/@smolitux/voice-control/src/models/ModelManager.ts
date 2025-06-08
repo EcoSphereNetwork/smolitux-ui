@@ -83,6 +83,6 @@ export class ModelManager {
   }
 
   public getModelsByLanguage(language: string): ModelInfo[] {
-    return Array.from(this.models.values()).filter(m => m.language === language);
+    return Array.from(this.models.values()).filter((m) => m.language === language);
   }
 }

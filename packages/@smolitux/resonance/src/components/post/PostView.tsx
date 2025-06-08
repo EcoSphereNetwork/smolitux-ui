@@ -121,32 +121,32 @@ export const PostView: React.FC<PostViewProps> = ({
         {post.content.media.map((media, index) => {
           if (media.type === 'image') {
             return (
-              <Box 
-                key={index} 
-                style={{ 
-                  borderRadius: '8px', 
+              <Box
+                key={index}
+                style={{
+                  borderRadius: '8px',
                   overflow: 'hidden',
                   marginBottom: '16px',
                 }}
               >
-                <img 
-                  src={media.url} 
-                  alt={`Media content ${index + 1}`} 
-                  style={{ 
-                    width: '100%', 
+                <img
+                  src={media.url}
+                  alt={`Media content ${index + 1}`}
+                  style={{
+                    width: '100%',
                     height: 'auto',
                     maxHeight: '600px',
                     objectFit: 'contain',
-                  }} 
+                  }}
                 />
               </Box>
             );
           } else if (media.type === 'video' || media.type === 'audio') {
             return (
-              <Box 
-                key={index} 
-                style={{ 
-                  borderRadius: '8px', 
+              <Box
+                key={index}
+                style={{
+                  borderRadius: '8px',
                   overflow: 'hidden',
                   marginBottom: '16px',
                 }}
@@ -170,9 +170,9 @@ export const PostView: React.FC<PostViewProps> = ({
     if (!post.monetization || !post.monetization.enabled) return null;
 
     return (
-      <Box 
-        className="post-monetization" 
-        style={{ 
+      <Box
+        className="post-monetization"
+        style={{
           marginTop: '16px',
           padding: '12px 16px',
           backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -229,7 +229,7 @@ export const PostView: React.FC<PostViewProps> = ({
   };
 
   // Konvertiere die Kommentare in das Format der CommentSection-Komponente
-  const formattedComments = comments.map(comment => ({
+  const formattedComments = comments.map((comment) => ({
     id: comment.id,
     author: {
       id: comment.author.id,
@@ -240,7 +240,7 @@ export const PostView: React.FC<PostViewProps> = ({
     createdAt: comment.createdAt,
     likes: comment.likes,
     isLiked: comment.isLiked,
-    replies: comment.replies?.map(reply => ({
+    replies: comment.replies?.map((reply) => ({
       id: reply.id,
       author: {
         id: reply.author.id,
@@ -335,24 +335,28 @@ export const PostView: React.FC<PostViewProps> = ({
         <Box style={{ padding: '16px' }}>
           {/* Author info */}
           <Flex align="center">
-            <Box 
-              style={{ 
-                width: '48px', 
-                height: '48px', 
-                borderRadius: '50%', 
+            <Box
+              style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
                 overflow: 'hidden',
                 marginRight: '12px',
               }}
             >
-              <img 
-                src={post.author.avatar} 
-                alt={post.author.name} 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              <img
+                src={post.author.avatar}
+                alt={post.author.name}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </Box>
             <Box>
-              <Text weight="bold" size="lg">{post.author.name}</Text>
-              <Text size="sm" color="#6b7280">{formatDate(post.createdAt)}</Text>
+              <Text weight="bold" size="lg">
+                {post.author.name}
+              </Text>
+              <Text size="sm" color="#6b7280">
+                {formatDate(post.createdAt)}
+              </Text>
             </Box>
           </Flex>
 
@@ -401,8 +405,12 @@ export const PostView: React.FC<PostViewProps> = ({
       {showComments && (
         <Card>
           <Box style={{ padding: '16px' }}>
-            <Text weight="bold" size="lg">Comments</Text>
-            <Text size="sm" color="#6b7280">Comments functionality temporarily disabled</Text>
+            <Text weight="bold" size="lg">
+              Comments
+            </Text>
+            <Text size="sm" color="#6b7280">
+              Comments functionality temporarily disabled
+            </Text>
           </Box>
         </Card>
       )}

@@ -69,7 +69,7 @@ export const TabView: React.FC<TabViewProps> = ({
     if (React.isValidElement(child) && child.type === Tab) {
       const tabChild = child as React.ReactElement<TabProps>;
       tabs.push(tabChild);
-      
+
       // Extract panel from tab's children
       React.Children.forEach(tabChild.props.children, (panelChild) => {
         if (React.isValidElement(panelChild) && panelChild.type === TabPanel) {
@@ -148,7 +148,7 @@ export const TabView: React.FC<TabViewProps> = ({
   return (
     <TabViewContext.Provider value={contextValue}>
       <div className={`tab-view ${className}`}>
-        <div 
+        <div
           className={`tab-list ${variantClasses[variant]} ${centered ? 'flex justify-center' : ''}`}
           role="tablist"
           aria-orientation="horizontal"
@@ -156,7 +156,7 @@ export const TabView: React.FC<TabViewProps> = ({
           {tabs.map((tab, index) => {
             const isActive = index === activeTabIndex;
             const isDisabled = tab.props.disabled;
-            
+
             return (
               <button
                 key={index}
@@ -180,15 +180,13 @@ export const TabView: React.FC<TabViewProps> = ({
                 onKeyDown={(e) => handleKeyDown(e, index)}
                 disabled={isDisabled}
               >
-                {tab.props.icon && (
-                  <span className="mr-2">{tab.props.icon}</span>
-                )}
+                {tab.props.icon && <span className="mr-2">{tab.props.icon}</span>}
                 {tab.props.label}
               </button>
             );
           })}
         </div>
-        
+
         <div className={`tab-content ${contentClassName}`}>
           {panels.map((panel, index) => (
             <div

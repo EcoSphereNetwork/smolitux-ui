@@ -44,9 +44,17 @@ export const Default: Story = {
 export const WithDescriptions: Story = {
   args: {
     steps: [
-      { id: 'step1', title: 'Persönliche Daten', description: 'Geben Sie Ihre persönlichen Daten ein' },
+      {
+        id: 'step1',
+        title: 'Persönliche Daten',
+        description: 'Geben Sie Ihre persönlichen Daten ein',
+      },
       { id: 'step2', title: 'Kontaktdaten', description: 'Geben Sie Ihre Kontaktdaten ein' },
-      { id: 'step3', title: 'Bestätigung', description: 'Überprüfen und bestätigen Sie Ihre Eingaben' },
+      {
+        id: 'step3',
+        title: 'Bestätigung',
+        description: 'Überprüfen und bestätigen Sie Ihre Eingaben',
+      },
     ],
     activeStep: 1,
   },
@@ -79,10 +87,18 @@ export const WithDisabledSteps: Story = {
 export const VerticalStepper: Story = {
   args: {
     steps: [
-      { id: 'step1', title: 'Persönliche Daten', description: 'Geben Sie Ihre persönlichen Daten ein' },
+      {
+        id: 'step1',
+        title: 'Persönliche Daten',
+        description: 'Geben Sie Ihre persönlichen Daten ein',
+      },
       { id: 'step2', title: 'Kontaktdaten', description: 'Geben Sie Ihre Kontaktdaten ein' },
       { id: 'step3', title: 'Zahlungsdaten', description: 'Geben Sie Ihre Zahlungsdaten ein' },
-      { id: 'step4', title: 'Bestätigung', description: 'Überprüfen und bestätigen Sie Ihre Eingaben' },
+      {
+        id: 'step4',
+        title: 'Bestätigung',
+        description: 'Überprüfen und bestätigen Sie Ihre Eingaben',
+      },
     ],
     activeStep: 1,
     orientation: 'vertical',
@@ -116,33 +132,56 @@ export const ContainedVariant: Story = {
 export const WithCustomIcons: Story = {
   args: {
     steps: [
-      { 
-        id: 'step1', 
-        title: 'Persönliche Daten', 
+      {
+        id: 'step1',
+        title: 'Persönliche Daten',
         icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+              clipRule="evenodd"
+            />
           </svg>
-        ) 
+        ),
       },
-      { 
-        id: 'step2', 
-        title: 'Kontaktdaten', 
+      {
+        id: 'step2',
+        title: 'Kontaktdaten',
         icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
           </svg>
-        ) 
+        ),
       },
-      { 
-        id: 'step3', 
-        title: 'Zahlungsdaten', 
+      {
+        id: 'step3',
+        title: 'Zahlungsdaten',
         icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
             <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-            <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
+            <path
+              fillRule="evenodd"
+              d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+              clipRule="evenodd"
+            />
           </svg>
-        ) 
+        ),
       },
     ],
     activeStep: 1,
@@ -152,20 +191,24 @@ export const WithCustomIcons: Story = {
 export const WithContent: Story = {
   render: () => {
     const [activeStep, setActiveStep] = useState(0);
-    
+
     const steps = [
-      { id: 'step1', title: 'Persönliche Daten', description: 'Geben Sie Ihre persönlichen Daten ein' },
+      {
+        id: 'step1',
+        title: 'Persönliche Daten',
+        description: 'Geben Sie Ihre persönlichen Daten ein',
+      },
       { id: 'step2', title: 'Kontaktdaten', description: 'Geben Sie Ihre Kontaktdaten ein' },
-      { id: 'step3', title: 'Bestätigung', description: 'Überprüfen und bestätigen Sie Ihre Eingaben' },
+      {
+        id: 'step3',
+        title: 'Bestätigung',
+        description: 'Überprüfen und bestätigen Sie Ihre Eingaben',
+      },
     ];
-    
+
     return (
       <div style={{ width: '600px' }}>
-        <Stepper
-          steps={steps}
-          activeStep={activeStep}
-          onStepChange={setActiveStep}
-        >
+        <Stepper steps={steps} activeStep={activeStep} onStepChange={setActiveStep}>
           <StepperContent>
             <div>
               <h3 className="text-lg font-medium mb-4">Persönliche Daten</h3>
@@ -184,7 +227,7 @@ export const WithContent: Story = {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-medium mb-4">Kontaktdaten</h3>
               <div className="space-y-4">
@@ -202,11 +245,14 @@ export const WithContent: Story = {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-medium mb-4">Bestätigung</h3>
               <div className="p-4 bg-gray-100 rounded mb-4">
-                <p className="text-sm">Bitte überprüfen Sie Ihre Eingaben und bestätigen Sie, dass alle Angaben korrekt sind.</p>
+                <p className="text-sm">
+                  Bitte überprüfen Sie Ihre Eingaben und bestätigen Sie, dass alle Angaben korrekt
+                  sind.
+                </p>
               </div>
               <div className="flex items-center">
                 <input type="checkbox" id="confirm" className="mr-2" />
@@ -214,8 +260,8 @@ export const WithContent: Story = {
               </div>
             </div>
           </StepperContent>
-          
-          <StepperActions 
+
+          <StepperActions
             backLabel="Zurück"
             nextLabel="Weiter"
             completeLabel="Absenden"
@@ -242,7 +288,7 @@ export const CustomSizes: Story = {
           size="sm"
         />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-2">Medium (Default)</h3>
         <Stepper
@@ -255,7 +301,7 @@ export const CustomSizes: Story = {
           size="md"
         />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-2">Large</h3>
         <Stepper

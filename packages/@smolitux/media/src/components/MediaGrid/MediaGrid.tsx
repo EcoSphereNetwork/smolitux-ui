@@ -84,68 +84,68 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
   const [sortBy, setSortBy] = useState<string>('createdAt');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [availableTags, setAvailableTags] = useState<string[]>([]);
-  
+
   // Verfügbare Tags aus den Medienelementen extrahieren
   useEffect(() => {
     const tags = new Set<string>();
-    
-    items.forEach(item => {
+
+    items.forEach((item) => {
       if (item.tags) {
-        item.tags.forEach(tag => tags.add(tag));
+        item.tags.forEach((tag) => tags.add(tag));
       }
     });
-    
+
     setAvailableTags(Array.from(tags).sort());
   }, [items]);
-  
+
   // Typ-Filter ändern
   const handleTypeChange = (type: MediaType) => {
     setActiveType(type);
-    
+
     if (onFilter) {
       onFilter(type, activeTags);
     }
   };
-  
+
   // Tag-Filter ändern
   const handleTagToggle = (tag: string) => {
     const newTags = activeTags.includes(tag)
-      ? activeTags.filter(t => t !== tag)
+      ? activeTags.filter((t) => t !== tag)
       : [...activeTags, tag];
-    
+
     setActiveTags(newTags);
-    
+
     if (onFilter) {
       onFilter(activeType, newTags);
     }
   };
-  
+
   // Sortierung ändern
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(event.target.value);
-    
+
     if (onSort) {
       onSort(event.target.value, sortOrder);
     }
   };
-  
+
   // Sortierreihenfolge ändern
   const handleOrderChange = () => {
     const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
     setSortOrder(newOrder);
-    
+
     if (onSort) {
       onSort(sortBy, newOrder);
     }
   };
-  
+
   // Dauer formatieren (mm:ss)
   const formatDuration = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
-  
+
   // Anzahl formatieren (1.2k, 3.4M)
   const formatCount = (count: number): string => {
     if (count >= 1000000) {
@@ -156,7 +156,7 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
     }
     return count.toString();
   };
-  
+
   // Datum formatieren
   const formatDate = (date: Date): string => {
     return new Intl.DateTimeFormat('de-DE', {
@@ -165,7 +165,7 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
       day: 'numeric',
     }).format(date);
   };
-  
+
   // CSS-Klassen für das Grid
   const gridClasses = {
     1: 'grid-cols-1',
@@ -175,14 +175,14 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
     5: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-5',
     6: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-6',
   }[columns];
-  
+
   const gapClasses = {
     none: 'gap-0',
     small: 'gap-2',
     medium: 'gap-4',
     large: 'gap-6',
   }[gap];
-  
+
   // Platzhalter für den Ladezustand
   const renderPlaceholders = () => {
     return Array.from({ length: loadingPlaceholders }).map((_, index) => (
@@ -202,7 +202,7 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
       </Card>
     ));
   };
-  
+
   return (
     <div className={className}>
       {/* Filter- und Sortieroptionen */}
@@ -254,11 +254,11 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
                   Bild
                 </button>
               </div>
-              
+
               {/* Tag-Filter */}
               {availableTags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {availableTags.map(tag => (
+                  {availableTags.map((tag) => (
                     <button
                       key={tag}
                       onClick={() => handleTagToggle(tag)}
@@ -275,7 +275,7 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
               )}
             </div>
           )}
-          
+
           {/* Sortieroptionen */}
           {showSorting && (
             <div className="flex items-center space-x-2">
@@ -289,19 +289,41 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
                 <option value="likes">Likes</option>
                 <option value="title">Titel</option>
               </select>
-              
+
               <button
                 onClick={handleOrderChange}
                 className="p-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                 aria-label={sortOrder === 'asc' ? 'Absteigend sortieren' : 'Aufsteigend sortieren'}
               >
                 {sortOrder === 'asc' ? (
-                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                  <svg
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
+                    />
                   </svg>
                 ) : (
-                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                  <svg
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"
+                    />
                   </svg>
                 )}
               </button>
@@ -309,21 +331,34 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
           )}
         </div>
       )}
-      
+
       {/* Medienraster */}
       <div className={`grid ${gridClasses} ${gapClasses}`}>
         {loading ? (
           renderPlaceholders()
         ) : items.length === 0 ? (
           <div className="col-span-full py-12 text-center text-gray-500 dark:text-gray-400">
-            <svg className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+            <svg
+              className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"
+              />
             </svg>
             <p className="text-lg font-medium">Keine Medien gefunden</p>
-            <p className="mt-2">Versuchen Sie, Ihre Filterkriterien anzupassen oder später wiederzukommen.</p>
+            <p className="mt-2">
+              Versuchen Sie, Ihre Filterkriterien anzupassen oder später wiederzukommen.
+            </p>
           </div>
         ) : (
-          items.map(item => (
+          items.map((item) => (
             <Card
               key={item.id}
               className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
@@ -336,12 +371,17 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
                   alt={item.title}
                   className="w-full h-full object-cover"
                 />
-                
+
                 {/* Typ-Badge */}
                 <div className="absolute top-2 left-2 px-2 py-1 rounded-md text-xs font-medium bg-black/60 text-white">
                   {item.type === 'audio' && (
                     <span className="flex items-center">
-                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg
+                        className="w-3 h-3 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
                       </svg>
                       Audio
@@ -349,7 +389,12 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
                   )}
                   {item.type === 'video' && (
                     <span className="flex items-center">
-                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg
+                        className="w-3 h-3 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path d="M8 5v14l11-7z" />
                       </svg>
                       Video
@@ -357,21 +402,26 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
                   )}
                   {item.type === 'image' && (
                     <span className="flex items-center">
-                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg
+                        className="w-3 h-3 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
                       </svg>
                       Bild
                     </span>
                   )}
                 </div>
-                
+
                 {/* Premium-Badge */}
                 {item.isPremium && (
                   <div className="absolute top-2 right-2 px-2 py-1 rounded-md text-xs font-medium bg-yellow-500 text-white">
                     Premium
                   </div>
                 )}
-                
+
                 {/* Dauer */}
                 {item.duration && (
                   <div className="absolute bottom-2 right-2 px-2 py-1 rounded-md text-xs font-medium bg-black/60 text-white">
@@ -379,19 +429,19 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
                   </div>
                 )}
               </div>
-              
+
               {/* Inhalt */}
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1">
                   {item.title}
                 </h3>
-                
+
                 {item.description && (
                   <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
                     {item.description}
                   </p>
                 )}
-                
+
                 <div className="mt-3 flex items-center justify-between">
                   <div className="flex items-center">
                     {item.creator.avatarUrl ? (
@@ -409,32 +459,70 @@ export const MediaGrid: React.FC<MediaGridProps> = ({
                       {item.creator.name}
                     </span>
                   </div>
-                  
+
                   <span className="text-xs text-gray-500 dark:text-gray-400">
                     {formatDate(item.createdAt)}
                   </span>
                 </div>
-                
+
                 {/* Statistiken */}
                 <div className="mt-3 flex items-center text-xs text-gray-500 dark:text-gray-400 space-x-3">
                   <span className="flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <svg
+                      className="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
                     </svg>
                     {formatCount(item.views)}
                   </span>
-                  
+
                   <span className="flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    <svg
+                      className="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                      />
                     </svg>
                     {formatCount(item.likes)}
                   </span>
-                  
+
                   <span className="flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    <svg
+                      className="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      />
                     </svg>
                     {formatCount(item.comments)}
                   </span>

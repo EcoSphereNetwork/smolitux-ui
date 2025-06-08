@@ -74,8 +74,8 @@ export const Default: Story = {
               value === 'active'
                 ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300'
                 : value === 'inactive'
-                ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300'
-                : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300'
+                  ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300'
+                  : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300'
             }`}
           >
             {value === 'active' ? 'Aktiv' : value === 'inactive' ? 'Inaktiv' : 'Ausstehend'}
@@ -196,7 +196,7 @@ export const WithRefresh: Story = {
 export const Interactive: Story = {
   render: () => {
     const [tableData, setTableData] = useState<User[]>(users);
-    
+
     const columns = [
       {
         id: 'id',
@@ -218,7 +218,7 @@ export const Interactive: Story = {
         cell: (value: string) => (
           <div className="flex items-center">
             <span>{value}</span>
-            <a 
+            <a
               href={`mailto:${value}`}
               className="ml-1 text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
               onClick={(e) => e.stopPropagation()}
@@ -245,8 +245,8 @@ export const Interactive: Story = {
               value === 'active'
                 ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300'
                 : value === 'inactive'
-                ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300'
-                : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300'
+                  ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300'
+                  : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300'
             }`}
           >
             {value === 'active' ? 'Aktiv' : value === 'inactive' ? 'Inaktiv' : 'Ausstehend'}
@@ -310,7 +310,7 @@ export const Interactive: Story = {
         }, 1000);
       });
     };
-    
+
     return (
       <Table
         data={tableData}
@@ -326,14 +326,14 @@ export const Interactive: Story = {
         onExport={() => alert('Export-Funktion würde hier ausgeführt werden')}
         selectable
         onRowClick={(user) => alert(`Benutzer ausgewählt: ${user.name}`)}
-        actions={(
-          <button 
+        actions={
+          <button
             className="px-3 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 flex items-center"
             onClick={() => alert('Neuen Benutzer anlegen')}
           >
             <span className="text-lg mr-1">+</span> Benutzer
           </button>
-        )}
+        }
       />
     );
   },

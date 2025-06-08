@@ -168,11 +168,11 @@ export const CenteredItems: Story = {
     gap: 'md',
     justifyItems: 'center',
     alignItems: 'center',
-    children: createGridItems(6).map((item, index) => (
+    children: createGridItems(6).map((item, index) =>
       React.cloneElement(item, {
         className: `${item.props.className} h-24 w-32`,
       })
-    )),
+    ),
   },
 };
 
@@ -194,7 +194,8 @@ export const ResponsiveGrid: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Dieses Grid passt sich an verschiedene Bildschirmgrößen an. Verändere die Größe des Browserfensters, um den Effekt zu sehen.',
+        story:
+          'Dieses Grid passt sich an verschiedene Bildschirmgrößen an. Verändere die Größe des Browserfensters, um den Effekt zu sehen.',
       },
     },
   },
@@ -204,20 +205,20 @@ export const NestedGrids: Story = {
   render: () => (
     <Grid columns={2} gap="lg">
       <Grid columns={2} gap="sm">
-        {createGridItems(4).map((item, index) => (
+        {createGridItems(4).map((item, index) =>
           React.cloneElement(item, {
             className: `${item.props.className} bg-green-100 dark:bg-green-800`,
             children: `Nested ${index + 1}`,
           })
-        ))}
+        )}
       </Grid>
       <Grid columns={1} gap="sm">
-        {createGridItems(2).map((item, index) => (
+        {createGridItems(2).map((item, index) =>
           React.cloneElement(item, {
             className: `${item.props.className} bg-red-100 dark:bg-red-800`,
             children: `Main ${index + 1}`,
           })
-        ))}
+        )}
       </Grid>
     </Grid>
   ),
@@ -242,7 +243,8 @@ export const DashboardLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Ein Beispiel für ein typisches Dashboard-Layout mit Header, Sidebar, Hauptinhalt und Footer.',
+        story:
+          'Ein Beispiel für ein typisches Dashboard-Layout mit Header, Sidebar, Hauptinhalt und Footer.',
       },
     },
   },
@@ -257,11 +259,10 @@ export const CardGrid: Story = {
           <div className="p-4">
             <h3 className="text-lg font-medium">Card Title {index + 1}</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              This is a sample card description. It demonstrates how Grid can be used to create a responsive card layout.
+              This is a sample card description. It demonstrates how Grid can be used to create a
+              responsive card layout.
             </p>
-            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">
-              Action
-            </button>
+            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Action</button>
           </div>
         </div>
       ))}
@@ -270,7 +271,8 @@ export const CardGrid: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Ein Beispiel für ein responsives Karten-Layout, das sich an verschiedene Bildschirmgrößen anpasst.',
+        story:
+          'Ein Beispiel für ein responsives Karten-Layout, das sich an verschiedene Bildschirmgrößen anpasst.',
       },
     },
   },

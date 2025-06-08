@@ -20,7 +20,8 @@ const meta: Meta<typeof Carousel> = {
     },
     interval: {
       control: 'number',
-      description: 'Das Intervall in Millisekunden zwischen den Slides bei automatischer Wiedergabe',
+      description:
+        'Das Intervall in Millisekunden zwischen den Slides bei automatischer Wiedergabe',
     },
     showArrows: {
       control: 'boolean',
@@ -209,13 +210,22 @@ export const DynamicHeight: Story = {
     <div style={{ width: '600px' }}>
       <Carousel dynamicHeight>
         <div>
-          <img src="https://via.placeholder.com/600x300/3498db/ffffff?text=Height+300px" alt="Slide 1" />
+          <img
+            src="https://via.placeholder.com/600x300/3498db/ffffff?text=Height+300px"
+            alt="Slide 1"
+          />
         </div>
         <div>
-          <img src="https://via.placeholder.com/600x400/e74c3c/ffffff?text=Height+400px" alt="Slide 2" />
+          <img
+            src="https://via.placeholder.com/600x400/e74c3c/ffffff?text=Height+400px"
+            alt="Slide 2"
+          />
         </div>
         <div>
-          <img src="https://via.placeholder.com/600x500/2ecc71/ffffff?text=Height+500px" alt="Slide 3" />
+          <img
+            src="https://via.placeholder.com/600x500/2ecc71/ffffff?text=Height+500px"
+            alt="Slide 3"
+          />
         </div>
       </Carousel>
     </div>
@@ -241,9 +251,7 @@ export const CustomContent: Story = {
         <div className="bg-green-500 text-white p-8 h-full flex flex-col items-center justify-center">
           <h2 className="text-3xl font-bold mb-4">Kontakt</h2>
           <p className="text-xl mb-4">Nehmen Sie Kontakt mit uns auf:</p>
-          <button className="bg-white text-green-500 px-4 py-2 rounded font-bold">
-            Kontakt
-          </button>
+          <button className="bg-white text-green-500 px-4 py-2 rounded font-bold">Kontakt</button>
         </div>
       </Carousel>
     </div>
@@ -253,7 +261,7 @@ export const CustomContent: Story = {
 export const Controlled: Story = {
   render: () => {
     const [currentSlide, setCurrentSlide] = React.useState(0);
-    
+
     return (
       <div className="space-y-4">
         <div style={{ width: '600px', height: '400px' }}>
@@ -264,17 +272,26 @@ export const Controlled: Story = {
             showStatus={true}
           >
             <div>
-              <img src="https://via.placeholder.com/600x400/3498db/ffffff?text=Slide+1" alt="Slide 1" />
+              <img
+                src="https://via.placeholder.com/600x400/3498db/ffffff?text=Slide+1"
+                alt="Slide 1"
+              />
             </div>
             <div>
-              <img src="https://via.placeholder.com/600x400/e74c3c/ffffff?text=Slide+2" alt="Slide 2" />
+              <img
+                src="https://via.placeholder.com/600x400/e74c3c/ffffff?text=Slide+2"
+                alt="Slide 2"
+              />
             </div>
             <div>
-              <img src="https://via.placeholder.com/600x400/2ecc71/ffffff?text=Slide+3" alt="Slide 3" />
+              <img
+                src="https://via.placeholder.com/600x400/2ecc71/ffffff?text=Slide+3"
+                alt="Slide 3"
+              />
             </div>
           </Carousel>
         </div>
-        
+
         <div className="flex justify-center space-x-2">
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded"
@@ -295,10 +312,8 @@ export const Controlled: Story = {
             Slide 3
           </button>
         </div>
-        
-        <div className="text-center">
-          Aktueller Slide: {currentSlide + 1}
-        </div>
+
+        <div className="text-center">Aktueller Slide: {currentSlide + 1}</div>
       </div>
     );
   },

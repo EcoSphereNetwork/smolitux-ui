@@ -21,7 +21,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   // Theme aus localStorage oder System-Präferenz initialisieren
   useEffect(() => {
     const storedTheme = localStorage.getItem('themeMode') as ThemeMode | null;
-    
+
     if (storedTheme) {
       setThemeMode(storedTheme);
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -41,21 +41,17 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   // Light-/Dark-Mode umschalten
   const toggleTheme = () => {
-    setThemeMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+    setThemeMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
   // Context-Wert
   const value = {
     themeMode,
     toggleTheme,
-    setThemeMode
+    setThemeMode,
   };
 
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
 // Hook für Theme-Context
@@ -81,7 +77,7 @@ export const colors = {
     600: '#005BB3',
     700: '#004285',
     800: '#002957',
-    900: '#001429'
+    900: '#001429',
   },
   secondary: {
     50: '#F0FDF4',
@@ -93,7 +89,7 @@ export const colors = {
     600: '#16A34A',
     700: '#15803D',
     800: '#166534',
-    900: '#14532D'
+    900: '#14532D',
   },
   // Weitere Farbkategorien wie error, warning, success, etc.
   gray: {
@@ -106,17 +102,17 @@ export const colors = {
     600: '#4B5563',
     700: '#374151',
     800: '#1F2937',
-    900: '#111827'
+    900: '#111827',
   },
   white: '#FFFFFF',
-  black: '#000000'
+  black: '#000000',
 };
 
 export const typography = {
   fontFamily: {
     sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
     serif: ['Merriweather', 'Georgia', 'serif'],
-    mono: ['Fira Code', 'monospace']
+    mono: ['Fira Code', 'monospace'],
   },
   fontSize: {
     xs: '0.75rem',
@@ -127,21 +123,21 @@ export const typography = {
     '2xl': '1.5rem',
     '3xl': '1.875rem',
     '4xl': '2.25rem',
-    '5xl': '3rem'
+    '5xl': '3rem',
   },
   fontWeight: {
     light: 300,
     normal: 400,
     medium: 500,
     semibold: 600,
-    bold: 700
+    bold: 700,
   },
   lineHeight: {
     none: 1,
     tight: 1.25,
     normal: 1.5,
-    loose: 2
-  }
+    loose: 2,
+  },
 };
 
 export const spacing = {
@@ -167,7 +163,7 @@ export const spacing = {
   40: '10rem',
   48: '12rem',
   56: '14rem',
-  64: '16rem'
+  64: '16rem',
 };
 
 export const borderRadius = {
@@ -179,7 +175,7 @@ export const borderRadius = {
   xl: '0.75rem',
   '2xl': '1rem',
   '3xl': '1.5rem',
-  full: '9999px'
+  full: '9999px',
 };
 
 export const shadows = {
@@ -190,7 +186,7 @@ export const shadows = {
   xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
   '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
   inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-  none: 'none'
+  none: 'none',
 };
 
 // packages/@smolitux/theme/src/theme-utils.ts
@@ -203,7 +199,7 @@ export const shadows = {
  * Berechnet eine Farbe basierend auf dem aktuellen Theme
  */
 export function getColorByTheme(
-  colorName: keyof typeof colors, 
+  colorName: keyof typeof colors,
   shade: keyof typeof colors.primary
 ): string {
   const colorScale = colors[colorName];
@@ -211,7 +207,7 @@ export function getColorByTheme(
     console.warn(`Color ${colorName} not found in theme`);
     return '';
   }
-  
+
   return colorScale[shade];
 }
 
@@ -224,11 +220,13 @@ export function getContrastColor(backgroundColor: string): string {
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     const fullHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : { r: 0, g: 0, b: 0 };
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : { r: 0, g: 0, b: 0 };
   }
 
   const rgb = hexToRgb(backgroundColor);

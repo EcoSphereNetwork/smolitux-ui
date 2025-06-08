@@ -15,9 +15,7 @@ describe('ProgressBar', () => {
   });
 
   it('applies custom style', () => {
-    const { container } = render(
-      <ProgressBar value={50} style={{ backgroundColor: 'red' }} />
-    );
+    const { container } = render(<ProgressBar value={50} style={{ backgroundColor: 'red' }} />);
     expect(container.firstChild).toHaveStyle('background-color: red');
   });
 
@@ -66,11 +64,15 @@ describe('ProgressBar', () => {
   });
 
   it('applies different color schemes', () => {
-    const { container: containerPrimary } = render(<ProgressBar value={50} colorScheme="primary" />);
+    const { container: containerPrimary } = render(
+      <ProgressBar value={50} colorScheme="primary" />
+    );
     const progressFillPrimary = containerPrimary.querySelector('.progress-bar-fill');
     expect(progressFillPrimary).toHaveStyle('background-color: #3b82f6');
 
-    const { container: containerSuccess } = render(<ProgressBar value={50} colorScheme="success" />);
+    const { container: containerSuccess } = render(
+      <ProgressBar value={50} colorScheme="success" />
+    );
     const progressFillSuccess = containerSuccess.querySelector('.progress-bar-fill');
     expect(progressFillSuccess).toHaveStyle('background-color: #10b981');
 

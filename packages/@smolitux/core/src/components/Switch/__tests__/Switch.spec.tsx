@@ -22,8 +22,8 @@ jest.mock('../../FormControl', () => ({
     isValid: false,
     isInvalid: false,
     isSuccess: false,
-    isLoading: false
-  })
+    isLoading: false,
+  }),
 }));
 
 describe('Switch Snapshots', () => {
@@ -64,40 +64,45 @@ describe('Switch Snapshots', () => {
 
   it('renders switch with different sizes correctly', () => {
     const sizes: Array<'xs' | 'sm' | 'md' | 'lg' | 'xl'> = ['xs', 'sm', 'md', 'lg', 'xl'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(<Switch size={size} />);
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`Switch with size ${size}`);
     });
   });
 
   it('renders switch with different color schemes correctly', () => {
-    const colorSchemes: Array<'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral'> = [
-      'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'neutral'
-    ];
-    
-    const fragments = colorSchemes.map(colorScheme => {
+    const colorSchemes: Array<
+      'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral'
+    > = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'neutral'];
+
+    const fragments = colorSchemes.map((colorScheme) => {
       const { asFragment } = render(<Switch colorScheme={colorScheme} checked />);
       return { colorScheme, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ colorScheme, fragment }) => {
       expect(fragment).toMatchSnapshot(`Switch with color scheme ${colorScheme}`);
     });
   });
 
   it('renders switch with different variants correctly', () => {
-    const variants: Array<'solid' | 'outline' | 'filled' | 'minimal'> = ['solid', 'outline', 'filled', 'minimal'];
-    
-    const fragments = variants.map(variant => {
+    const variants: Array<'solid' | 'outline' | 'filled' | 'minimal'> = [
+      'solid',
+      'outline',
+      'filled',
+      'minimal',
+    ];
+
+    const fragments = variants.map((variant) => {
       const { asFragment } = render(<Switch variant={variant} />);
       return { variant, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ variant, fragment }) => {
       expect(fragment).toMatchSnapshot(`Switch with variant ${variant}`);
     });
@@ -115,12 +120,14 @@ describe('Switch Snapshots', () => {
 
   it('renders switch with different label alignments correctly', () => {
     const alignments: Array<'start' | 'center' | 'end'> = ['start', 'center', 'end'];
-    
-    const fragments = alignments.map(align => {
-      const { asFragment } = render(<Switch label="Aligned Label" labelPosition="left" labelAlign={align} />);
+
+    const fragments = alignments.map((align) => {
+      const { asFragment } = render(
+        <Switch label="Aligned Label" labelPosition="left" labelAlign={align} />
+      );
       return { align, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ align, fragment }) => {
       expect(fragment).toMatchSnapshot(`Switch with label alignment ${align}`);
     });

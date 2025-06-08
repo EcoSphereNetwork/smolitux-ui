@@ -44,11 +44,13 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<string>('text');
   const [text, setText] = useState<string>('');
-  const [mediaFiles, setMediaFiles] = useState<{
-    type: 'image' | 'video' | 'audio';
-    file: File;
-    preview: string;
-  }[]>([]);
+  const [mediaFiles, setMediaFiles] = useState<
+    {
+      type: 'image' | 'video' | 'audio';
+      file: File;
+      preview: string;
+    }[]
+  >([]);
   const [monetizationSettings, setMonetizationSettings] = useState({
     enabled: false,
     settings: {},
@@ -64,7 +66,7 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
-    const newMediaFiles = Array.from(files).map(file => {
+    const newMediaFiles = Array.from(files).map((file) => {
       let type: 'image' | 'video' | 'audio' = 'image';
       if (file.type.startsWith('video/')) type = 'video';
       if (file.type.startsWith('audio/')) type = 'audio';
@@ -96,9 +98,9 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
   const handleSubmit = () => {
     // Bestimme den Inhaltstyp basierend auf den vorhandenen Medien
     let contentType: 'text' | 'image' | 'video' | 'audio' | 'mixed' = 'text';
-    
+
     if (mediaFiles.length > 0) {
-      const types = new Set(mediaFiles.map(media => media.type));
+      const types = new Set(mediaFiles.map((media) => media.type));
       if (types.size === 1 && !text) {
         contentType = Array.from(types)[0];
       } else {
@@ -110,21 +112,21 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
       contentType,
       content: {
         text: text || undefined,
-        media: mediaFiles.length > 0 
-          ? mediaFiles.map(media => ({
-              type: media.type,
-              file: media.file,
-            }))
-          : undefined,
+        media:
+          mediaFiles.length > 0
+            ? mediaFiles.map((media) => ({
+                type: media.type,
+                file: media.file,
+              }))
+            : undefined,
       },
-      monetization: monetizationEnabled && monetizationSettings.enabled
-        ? monetizationSettings
-        : undefined,
+      monetization:
+        monetizationEnabled && monetizationSettings.enabled ? monetizationSettings : undefined,
     });
 
     // Zurücksetzen des Formulars
     setText('');
-    mediaFiles.forEach(media => URL.revokeObjectURL(media.preview));
+    mediaFiles.forEach((media) => URL.revokeObjectURL(media.preview));
     setMediaFiles([]);
     setMonetizationSettings({
       enabled: false,
@@ -169,13 +171,7 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
           type="file"
           ref={fileInputRef}
           style={{ display: 'none' }}
-          accept={
-            type === 'image' 
-              ? 'image/*' 
-              : type === 'video' 
-                ? 'video/*' 
-                : 'audio/*'
-          }
+          accept={type === 'image' ? 'image/*' : type === 'video' ? 'video/*' : 'audio/*'}
           multiple
           onChange={handleFileChange}
         />
@@ -361,12 +357,7 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
         ...style,
       }}
     >
-      <TabView
-        tabs={tabs}
-        activeTab={activeTab}
-        onChange={setActiveTab}
-        variant="enclosed"
-      />
+      <TabView tabs={tabs} activeTab={activeTab} onChange={setActiveTab} variant="enclosed" />
 
       <Box style={{ padding: '16px', borderTop: '1px solid #e5e7eb' }}>
         <Flex justify="space-between" align="center">
@@ -385,11 +376,7 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
             </Flex>
           )}
 
-          <Button
-            onClick={handleSubmit}
-            disabled={isDisabled}
-            loading={isSubmitting}
-          >
+          <Button onClick={handleSubmit} disabled={isDisabled} loading={isSubmitting}>
             Post
           </Button>
         </Flex>

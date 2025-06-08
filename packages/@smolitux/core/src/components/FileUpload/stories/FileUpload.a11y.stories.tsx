@@ -10,9 +10,10 @@ const meta: Meta<typeof FileUpload.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version der FileUpload-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version der FileUpload-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     label: { control: 'text' },
@@ -20,11 +21,11 @@ const meta: Meta<typeof FileUpload.A11y> = {
     error: { control: 'text' },
     variant: {
       control: { type: 'select' },
-      options: ['default', 'button']
+      options: ['default', 'button'],
     },
     size: {
       control: { type: 'select' },
-      options: ['sm', 'md', 'lg']
+      options: ['sm', 'md', 'lg'],
     },
     accept: { control: 'text' },
     multiple: { control: 'boolean' },
@@ -34,8 +35,8 @@ const meta: Meta<typeof FileUpload.A11y> = {
     showPreview: { control: 'boolean' },
     showProgress: { control: 'boolean' },
     buttonText: { control: 'text' },
-    dropzoneText: { control: 'text' }
-  }
+    dropzoneText: { control: 'text' },
+  },
 };
 
 export default meta;
@@ -49,8 +50,8 @@ export const Default: Story = {
     multiple: true,
     maxSize: 5 * 1024 * 1024, // 5MB
     showPreview: true,
-    showProgress: true
-  }
+    showProgress: true,
+  },
 };
 
 export const ButtonVariant: Story = {
@@ -61,8 +62,8 @@ export const ButtonVariant: Story = {
     buttonText: 'Dateien auswählen',
     accept: 'image/*,application/pdf',
     multiple: true,
-    maxSize: 5 * 1024 * 1024 // 5MB
-  }
+    maxSize: 5 * 1024 * 1024, // 5MB
+  },
 };
 
 export const WithError: Story = {
@@ -71,8 +72,8 @@ export const WithError: Story = {
     error: 'Die Datei ist zu groß. Maximale Größe: 5MB',
     accept: 'image/*,application/pdf',
     multiple: true,
-    maxSize: 5 * 1024 * 1024 // 5MB
-  }
+    maxSize: 5 * 1024 * 1024, // 5MB
+  },
 };
 
 export const Disabled: Story = {
@@ -81,8 +82,8 @@ export const Disabled: Story = {
     helperText: 'Diese Funktion ist derzeit deaktiviert',
     disabled: true,
     accept: 'image/*,application/pdf',
-    multiple: true
-  }
+    multiple: true,
+  },
 };
 
 export const SingleFile: Story = {
@@ -92,8 +93,8 @@ export const SingleFile: Story = {
     accept: 'image/*',
     multiple: false,
     maxSize: 2 * 1024 * 1024, // 2MB
-    showPreview: true
-  }
+    showPreview: true,
+  },
 };
 
 export const CustomDropzoneText: Story = {
@@ -101,19 +102,19 @@ export const CustomDropzoneText: Story = {
     label: 'Dateien hochladen',
     dropzoneText: 'Ziehen Sie Ihre Dateien hierher oder klicken Sie, um Dateien auszuwählen',
     accept: 'image/*,application/pdf',
-    multiple: true
-  }
+    multiple: true,
+  },
 };
 
 export const WithPreview: Story = {
   render: () => {
     const [files, setFiles] = useState<any[]>([]);
-    
+
     // Simuliere einen Datei-Upload
     const handleChange = (newFiles: any[]) => {
       setFiles(newFiles);
     };
-    
+
     return (
       <div className="p-4 max-w-md">
         <FileUpload.A11y
@@ -127,30 +128,30 @@ export const WithPreview: Story = {
           value={files}
           onChange={handleChange}
         />
-        
+
         {files.length > 0 && (
           <div className="mt-4">
-            <Button 
-              variant="primary" 
+            <Button
+              variant="primary"
               onClick={() => {
                 // Simuliere einen Upload-Fortschritt
-                const updatedFiles = files.map(file => ({
+                const updatedFiles = files.map((file) => ({
                   ...file,
                   status: 'uploading',
-                  progress: 0
+                  progress: 0,
                 }));
                 setFiles(updatedFiles);
-                
+
                 // Simuliere Fortschritt über Zeit
                 let progress = 0;
                 const interval = setInterval(() => {
                   progress += 10;
-                  
+
                   if (progress <= 100) {
-                    const progressFiles = files.map(file => ({
+                    const progressFiles = files.map((file) => ({
                       ...file,
                       status: progress < 100 ? 'uploading' : 'success',
-                      progress
+                      progress,
                     }));
                     setFiles(progressFiles);
                   } else {
@@ -165,30 +166,15 @@ export const WithPreview: Story = {
         )}
       </div>
     );
-  }
+  },
 };
 
 export const DifferentSizes: Story = {
   render: () => (
     <div className="space-y-8">
-      <FileUpload.A11y
-        label="Klein"
-        size="sm"
-        accept="image/*,application/pdf"
-        multiple
-      />
-      <FileUpload.A11y
-        label="Mittel"
-        size="md"
-        accept="image/*,application/pdf"
-        multiple
-      />
-      <FileUpload.A11y
-        label="Groß"
-        size="lg"
-        accept="image/*,application/pdf"
-        multiple
-      />
+      <FileUpload.A11y label="Klein" size="sm" accept="image/*,application/pdf" multiple />
+      <FileUpload.A11y label="Mittel" size="md" accept="image/*,application/pdf" multiple />
+      <FileUpload.A11y label="Groß" size="lg" accept="image/*,application/pdf" multiple />
     </div>
-  )
+  ),
 };

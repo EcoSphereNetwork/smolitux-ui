@@ -19,19 +19,17 @@ import { Button } from '@smolitux/core';
 
 describe('Button Accessibility', () => {
   it('should not have accessibility violations', async () => {
-    const { violations } = await a11y.testA11y(
-      <Button>Klick mich</Button>
-    );
+    const { violations } = await a11y.testA11y(<Button>Klick mich</Button>);
     expect(violations).toHaveLength(0);
   });
 
   it('should have correct ARIA attributes when disabled', () => {
     const { getByRole } = render(<Button isDisabled>Klick mich</Button>);
     const button = getByRole('button');
-    
+
     expect(
       a11y.hasCorrectAriaAttributes(button, {
-        'aria-disabled': 'true'
+        'aria-disabled': 'true',
       })
     ).toBe(true);
   });
@@ -50,7 +48,7 @@ const { violations, passes, incomplete, renderResult } = await a11y.testA11y(
   {
     failOnViolation: true, // Test schlägt fehl, wenn Verstöße gefunden werden
     disabledRules: ['color-contrast'], // Regeln, die ignoriert werden sollen
-    axeOptions: {} // Zusätzliche axe-Konfiguration
+    axeOptions: {}, // Zusätzliche axe-Konfiguration
   }
 );
 ```
@@ -63,7 +61,7 @@ Prüft, ob ein Element die korrekten ARIA-Attribute hat.
 const button = getByRole('button');
 const hasCorrectAttributes = a11y.hasCorrectAriaAttributes(button, {
   'aria-disabled': 'true',
-  'aria-pressed': 'false'
+  'aria-pressed': 'false',
 });
 ```
 

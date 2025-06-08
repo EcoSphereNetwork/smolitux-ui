@@ -17,11 +17,11 @@ export function useMonetization(options: any = {}) {
   const fetchMonetizationData = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       // In einer realen Implementierung würde hier ein API-Aufruf stehen
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Simulierte Daten
       setRevenue({
         totalRevenue: 1000,
@@ -30,7 +30,7 @@ export function useMonetization(options: any = {}) {
         communityShare: 300,
         operationalCosts: 100,
       });
-      
+
       setRewards({
         totalPoints: 500,
         pointsToNextTier: 500,
@@ -39,7 +39,7 @@ export function useMonetization(options: any = {}) {
         hasClaimableRewards: false,
         claimableAmount: 0,
       });
-      
+
       setCreatorStats({
         contentStats: {
           postCount: 10,
@@ -78,7 +78,7 @@ export function useMonetization(options: any = {}) {
 
   // Funktion zum Einlösen von Belohnungen
   const claimRewards = () => {
-    setRewards(prev => ({
+    setRewards((prev) => ({
       ...prev,
       hasClaimableRewards: false,
       claimableAmount: 0,

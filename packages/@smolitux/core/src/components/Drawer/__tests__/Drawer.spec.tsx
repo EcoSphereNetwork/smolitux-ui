@@ -25,11 +25,7 @@ describe('Drawer Snapshots', () => {
 
   it('renders with footer correctly', () => {
     const { asFragment } = render(
-      <Drawer 
-        isOpen={true} 
-        onClose={mockOnClose} 
-        footer={<button>Footer Button</button>}
-      >
+      <Drawer isOpen={true} onClose={mockOnClose} footer={<button>Footer Button</button>}>
         Drawer Content
       </Drawer>
     );
@@ -37,9 +33,14 @@ describe('Drawer Snapshots', () => {
   });
 
   it('renders with different placements correctly', () => {
-    const placements: Array<'left' | 'right' | 'top' | 'bottom'> = ['left', 'right', 'top', 'bottom'];
-    
-    const fragments = placements.map(placement => {
+    const placements: Array<'left' | 'right' | 'top' | 'bottom'> = [
+      'left',
+      'right',
+      'top',
+      'bottom',
+    ];
+
+    const fragments = placements.map((placement) => {
       const { asFragment } = render(
         <Drawer isOpen={true} onClose={mockOnClose} placement={placement}>
           Drawer Content
@@ -47,7 +48,7 @@ describe('Drawer Snapshots', () => {
       );
       return { placement, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ placement, fragment }) => {
       expect(fragment).toMatchSnapshot(`Drawer with placement ${placement}`);
     });
@@ -73,12 +74,7 @@ describe('Drawer Snapshots', () => {
 
   it('renders without header correctly', () => {
     const { asFragment } = render(
-      <Drawer 
-        isOpen={true} 
-        onClose={mockOnClose} 
-        title="Drawer Title"
-        showHeader={false}
-      >
+      <Drawer isOpen={true} onClose={mockOnClose} title="Drawer Title" showHeader={false}>
         Drawer Content
       </Drawer>
     );

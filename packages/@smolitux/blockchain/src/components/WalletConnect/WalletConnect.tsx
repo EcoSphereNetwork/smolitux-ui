@@ -26,10 +26,10 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showWalletOptions, setShowWalletOptions] = useState(false);
-  
+
   // Prüfen, ob Ethereum verfügbar ist
   const isEthereumAvailable = typeof window !== 'undefined' && (window as any).ethereum;
-  
+
   // Verbindungsstatus beim Laden prüfen
   useEffect(() => {
     const checkConnection = async () => {
@@ -46,10 +46,10 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
         }
       }
     };
-    
+
     checkConnection();
   }, [isEthereumAvailable, onConnect]);
-  
+
   // Ethereum-Events überwachen
   useEffect(() => {
     if (isEthereumAvailable) {
@@ -66,32 +66,34 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
           onConnect(accounts[0], (window as any).ethereum);
         }
       };
-      
+
       const handleChainChanged = () => {
         // Seite neu laden, wenn sich die Chain ändert
         window.location.reload();
       };
-      
+
       (window as any).ethereum.on('accountsChanged', handleAccountsChanged);
       (window as any).ethereum.on('chainChanged', handleChainChanged);
-      
+
       return () => {
         (window as any).ethereum.removeListener('accountsChanged', handleAccountsChanged);
         (window as any).ethereum.removeListener('chainChanged', handleChainChanged);
       };
     }
   }, [isEthereumAvailable, onConnect, onDisconnect]);
-  
+
   // Mit MetaMask verbinden
   const connectMetaMask = async () => {
     if (!isEthereumAvailable) {
-      setError('MetaMask ist nicht installiert. Bitte installieren Sie MetaMask und versuchen Sie es erneut.');
+      setError(
+        'MetaMask ist nicht installiert. Bitte installieren Sie MetaMask und versuchen Sie es erneut.'
+      );
       return;
     }
-    
+
     setIsConnecting(true);
     setError(null);
-    
+
     try {
       const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
       setWalletAddress(accounts[0]);
@@ -105,25 +107,25 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
       setShowWalletOptions(false);
     }
   };
-  
+
   // Mit WalletConnect verbinden
   const connectWalletConnect = async () => {
     setError('WalletConnect-Integration ist noch nicht implementiert.');
     setShowWalletOptions(false);
   };
-  
+
   // Verbindung trennen
   const disconnect = () => {
     setIsConnected(false);
     setWalletAddress(null);
     onDisconnect();
   };
-  
+
   // Wallet-Adresse formatieren
   const formatAddress = (address: string): string => {
     return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
   };
-  
+
   return (
     <div className={className}>
       {isConnected ? (
@@ -132,12 +134,8 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
             <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
             <span>{formatAddress(walletAddress!)}</span>
           </div>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={disconnect}
-          >
+
+          <Button variant="outline" size="sm" onClick={disconnect}>
             Trennen
           </Button>
         </div>
@@ -148,7 +146,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
                 Wallet verbinden
               </h3>
-              
+
               <div className="space-y-2">
                 {supportedWallets.includes('metamask') && (
                   <button
@@ -180,7 +178,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
                     </svg>
                   </button>
                 )}
-                
+
                 {supportedWallets.includes('walletconnect') && (
                   <button
                     onClick={connectWalletConnect}
@@ -212,28 +210,21 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
                   </button>
                 )}
               </div>
-              
+
               {error && (
                 <div className="mt-3 p-2 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-md text-sm">
                   {error}
                 </div>
               )}
-              
+
               <div className="mt-4 flex justify-end">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowWalletOptions(false)}
-                >
+                <Button variant="outline" size="sm" onClick={() => setShowWalletOptions(false)}>
                   Abbrechen
                 </Button>
               </div>
             </Card>
           ) : (
-            <Button
-              variant="primary"
-              onClick={() => setShowWalletOptions(true)}
-            >
+            <Button variant="primary" onClick={() => setShowWalletOptions(true)}>
               Wallet verbinden
             </Button>
           )}

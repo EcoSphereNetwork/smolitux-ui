@@ -1,9 +1,9 @@
 export { Slider } from './Slider';
 export { default as SliderA11y } from './Slider.a11y';
-export type { 
-  SliderProps, 
-  SliderSize, 
-  SliderVariant, 
+export type {
+  SliderProps,
+  SliderSize,
+  SliderVariant,
   SliderColorScheme,
   SliderOrientation,
   SliderThumbShape,
@@ -11,7 +11,7 @@ export type {
   SliderMarkPosition,
   SliderLabelPosition,
   SliderValuePosition,
-  SliderMark
+  SliderMark,
 } from './Slider';
 
 // Für Abwärtskompatibilität mit dem bestehenden Export

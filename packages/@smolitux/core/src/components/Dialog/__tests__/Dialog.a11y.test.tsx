@@ -13,7 +13,7 @@ const a11y = {
     return { violations: results.violations };
   },
   isFocusable: () => true,
-  hasVisibleFocusIndicator: () => true
+  hasVisibleFocusIndicator: () => true,
 };
 
 describe('Dialog Accessibility', () => {
@@ -27,7 +27,7 @@ describe('Dialog Accessibility', () => {
         disconnect: jest.fn(),
       }));
     });
-    
+
     it('should render with accessible label and description', () => {
       render(
         <Dialog.A11y
@@ -40,15 +40,15 @@ describe('Dialog Accessibility', () => {
           <p>Dialog Content</p>
         </Dialog.A11y>
       );
-      
+
       const dialog = screen.getByRole('dialog');
       expect(dialog).toHaveAttribute('aria-label', 'Accessible Dialog');
-      
+
       // Beschreibung sollte als verstecktes Element vorhanden sein
       const description = screen.getByText('This is an accessible description');
       expect(description).toHaveClass('sr-only');
     });
-    
+
     it('should support custom a11y texts', () => {
       render(
         <Dialog.A11y
@@ -58,58 +58,48 @@ describe('Dialog Accessibility', () => {
           a11yTexts={{
             closeButtonLabel: 'Custom Close',
             confirmButtonLabel: 'Custom Confirm',
-            cancelButtonLabel: 'Custom Cancel'
+            cancelButtonLabel: 'Custom Cancel',
           }}
         >
           <p>Dialog Content</p>
         </Dialog.A11y>
       );
-      
+
       // Buttons sollten die benutzerdefinierten Texte haben
       const closeButton = screen.getByRole('button', { name: /Custom Close/i });
       expect(closeButton).toBeInTheDocument();
-      
+
       const confirmButton = screen.getByRole('button', { name: /Custom Confirm/i });
       expect(confirmButton).toBeInTheDocument();
-      
+
       const cancelButton = screen.getByRole('button', { name: /Custom Cancel/i });
       expect(cancelButton).toBeInTheDocument();
     });
-    
+
     it('should support form dialog role', () => {
       render(
-        <Dialog.A11y
-          isOpen={true}
-          onClose={() => {}}
-          title="Form Dialog"
-          isFormDialog={true}
-        >
+        <Dialog.A11y isOpen={true} onClose={() => {}} title="Form Dialog" isFormDialog={true}>
           <form>
             <input type="text" />
           </form>
         </Dialog.A11y>
       );
-      
+
       const dialog = screen.getByRole('form');
       expect(dialog).toBeInTheDocument();
     });
-    
+
     it('should support search dialog role', () => {
       render(
-        <Dialog.A11y
-          isOpen={true}
-          onClose={() => {}}
-          title="Search Dialog"
-          isSearchDialog={true}
-        >
+        <Dialog.A11y isOpen={true} onClose={() => {}} title="Search Dialog" isSearchDialog={true}>
           <input type="search" />
         </Dialog.A11y>
       );
-      
+
       const dialog = screen.getByRole('search');
       expect(dialog).toBeInTheDocument();
     });
-    
+
     it('should support aria-live attributes', () => {
       render(
         <Dialog.A11y
@@ -123,13 +113,13 @@ describe('Dialog Accessibility', () => {
           <p>Dialog Content</p>
         </Dialog.A11y>
       );
-      
+
       const dialog = screen.getByTestId('a11y-dialog');
       expect(dialog).toHaveAttribute('aria-live', 'polite');
       expect(dialog).toHaveAttribute('aria-atomic', 'true');
       expect(dialog).toHaveAttribute('aria-relevant', 'additions');
     });
-    
+
     it('should not have accessibility violations', async () => {
       const { container } = render(
         <Dialog.A11y
@@ -142,12 +132,12 @@ describe('Dialog Accessibility', () => {
           <p>Dialog Content</p>
         </Dialog.A11y>
       );
-      
+
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });
   });
-  
+
   beforeEach(() => {
     // Mock IntersectionObserver
     global.IntersectionObserver = jest.fn().mockImplementation(() => ({
@@ -167,9 +157,9 @@ describe('Dialog Accessibility', () => {
 
   it('should not have accessibility violations with title and description', async () => {
     const { violations } = await a11y.testA11y(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
+      <Dialog
+        isOpen={true}
+        onClose={() => {}}
         title="Dialog Title"
         description="This is a description of the dialog for screen readers"
       >
@@ -181,9 +171,9 @@ describe('Dialog Accessibility', () => {
 
   it('should not have accessibility violations as alert dialog', async () => {
     const { violations } = await a11y.testA11y(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
+      <Dialog
+        isOpen={true}
+        onClose={() => {}}
         title="Warning"
         description="This action cannot be undone"
         isAlertDialog={true}
@@ -198,16 +188,11 @@ describe('Dialog Accessibility', () => {
 
   it('should have correct ARIA attributes for dialog role', () => {
     render(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Dialog Title"
-        id="test-dialog"
-      >
+      <Dialog isOpen={true} onClose={() => {}} title="Dialog Title" id="test-dialog">
         <p>Dialog Content</p>
       </Dialog>
     );
-    
+
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-modal', 'true');
     expect(dialog).toHaveAttribute('aria-labelledby', 'test-dialog-title');
@@ -216,9 +201,9 @@ describe('Dialog Accessibility', () => {
 
   it('should have correct ARIA attributes for alertdialog role', () => {
     render(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
+      <Dialog
+        isOpen={true}
+        onClose={() => {}}
         title="Warning"
         description="This is an important warning"
         isAlertDialog={true}
@@ -227,7 +212,7 @@ describe('Dialog Accessibility', () => {
         <p>Alert Content</p>
       </Dialog>
     );
-    
+
     const alertDialog = screen.getByRole('alertdialog');
     expect(alertDialog).toHaveAttribute('aria-modal', 'true');
     expect(alertDialog).toHaveAttribute('aria-labelledby', 'test-alert-title');
@@ -236,15 +221,11 @@ describe('Dialog Accessibility', () => {
 
   it('should have close button with correct accessibility attributes', () => {
     render(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Dialog Title"
-      >
+      <Dialog isOpen={true} onClose={() => {}} title="Dialog Title">
         <p>Dialog Content</p>
       </Dialog>
     );
-    
+
     const closeButton = screen.getByRole('button', { name: /schließen/i });
     expect(closeButton).toHaveAttribute('aria-label', 'Schließen');
     expect(closeButton).toHaveAttribute('type', 'button');
@@ -252,27 +233,18 @@ describe('Dialog Accessibility', () => {
 
   it('should not have close button when requiresAction is true', () => {
     render(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Required Action"
-        requiresAction={true}
-      >
+      <Dialog isOpen={true} onClose={() => {}} title="Required Action" requiresAction={true}>
         <p>You must complete this action</p>
       </Dialog>
     );
-    
+
     const closeButton = screen.queryByRole('button', { name: /schließen/i });
     expect(closeButton).not.toBeInTheDocument();
   });
 
   it('should have focusable elements in the correct tab order', () => {
     render(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Form Dialog"
-      >
+      <Dialog isOpen={true} onClose={() => {}} title="Form Dialog">
         <form>
           <label htmlFor="name">Name</label>
           <input id="name" type="text" data-testid="name-input" />
@@ -281,20 +253,20 @@ describe('Dialog Accessibility', () => {
         </form>
       </Dialog>
     );
-    
+
     const closeButton = screen.getByRole('button', { name: /schließen/i });
     const nameInput = screen.getByTestId('name-input');
     const emailInput = screen.getByTestId('email-input');
     const cancelButton = screen.getByRole('button', { name: /abbrechen/i });
     const confirmButton = screen.getByRole('button', { name: /bestätigen/i });
-    
+
     // Check that all elements are focusable
     expect(a11y.isFocusable(closeButton)).toBe(true);
     expect(a11y.isFocusable(nameInput)).toBe(true);
     expect(a11y.isFocusable(emailInput)).toBe(true);
     expect(a11y.isFocusable(cancelButton)).toBe(true);
     expect(a11y.isFocusable(confirmButton)).toBe(true);
-    
+
     // Check tab order (this is a simplified check)
     const tabOrder = [closeButton, nameInput, emailInput, cancelButton, confirmButton];
     tabOrder.forEach((element, index) => {
@@ -306,38 +278,30 @@ describe('Dialog Accessibility', () => {
 
   it('should have visible focus indicators on interactive elements', () => {
     render(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Dialog Title"
-      >
+      <Dialog isOpen={true} onClose={() => {}} title="Dialog Title">
         <p>Dialog Content</p>
       </Dialog>
     );
-    
+
     // Find buttons by role instead of testid
     const closeButton = screen.getByRole('button', { name: /schließen/i });
     const cancelButton = screen.getByRole('button', { name: /abbrechen/i });
     const confirmButton = screen.getByRole('button', { name: /bestätigen/i });
-    
+
     // Focus each element and check for visible focus indicator
     closeButton.focus();
     expect(a11y.hasVisibleFocusIndicator(closeButton)).toBe(true);
-    
+
     cancelButton.focus();
     expect(a11y.hasVisibleFocusIndicator(cancelButton)).toBe(true);
-    
+
     confirmButton.focus();
     expect(a11y.hasVisibleFocusIndicator(confirmButton)).toBe(true);
   });
-  
+
   it('should directly test with axe', async () => {
     const { container } = render(
-      <Dialog 
-        isOpen={true} 
-        onClose={() => {}} 
-        title="Accessibility Test Dialog"
-      >
+      <Dialog isOpen={true} onClose={() => {}} title="Accessibility Test Dialog">
         <div>
           <h3>Important Information</h3>
           <p>This dialog contains important information that should be accessible to all users.</p>
@@ -353,7 +317,7 @@ describe('Dialog Accessibility', () => {
         </div>
       </Dialog>
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

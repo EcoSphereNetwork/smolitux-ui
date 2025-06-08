@@ -70,7 +70,13 @@ describe('Badge Snapshots', () => {
   });
 
   test('renders correctly as counter with maxCount', () => {
-    const tree = renderer.create(<Badge isCounter maxCount={99}>100</Badge>).toJSON();
+    const tree = renderer
+      .create(
+        <Badge isCounter maxCount={99}>
+          100
+        </Badge>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -91,19 +97,21 @@ describe('Badge Snapshots', () => {
 
   test('renders correctly with multiple props combined', () => {
     const icon = <span>★</span>;
-    const tree = renderer.create(
-      <Badge 
-        variant="primary" 
-        size="lg" 
-        rounded 
-        icon={icon} 
-        outline
-        className="custom-class"
-        id="test-badge"
-      >
-        Combined
-      </Badge>
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Badge
+          variant="primary"
+          size="lg"
+          rounded
+          icon={icon}
+          outline
+          className="custom-class"
+          id="test-badge"
+        >
+          Combined
+        </Badge>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

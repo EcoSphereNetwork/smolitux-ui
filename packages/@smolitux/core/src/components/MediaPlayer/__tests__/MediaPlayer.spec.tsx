@@ -30,9 +30,9 @@ describe('MediaPlayer Snapshots', () => {
   it('renders with multiple sources correctly', () => {
     const sources = [
       { src: 'test-video.mp4', type: 'video/mp4' },
-      { src: 'test-video.webm', type: 'video/webm' }
+      { src: 'test-video.webm', type: 'video/webm' },
     ];
-    
+
     const { asFragment } = render(<MediaPlayer sources={sources} />);
     expect(asFragment()).toMatchSnapshot();
   });
@@ -40,9 +40,9 @@ describe('MediaPlayer Snapshots', () => {
   it('renders with tracks correctly', () => {
     const tracks = [
       { src: 'subtitles-en.vtt', srclang: 'en', label: 'English', kind: 'subtitles' as const },
-      { src: 'subtitles-de.vtt', srclang: 'de', label: 'Deutsch', kind: 'subtitles' as const }
+      { src: 'subtitles-de.vtt', srclang: 'de', label: 'Deutsch', kind: 'subtitles' as const },
     ];
-    
+
     const { asFragment } = render(<MediaPlayer src="test-video.mp4" tracks={tracks} />);
     expect(asFragment()).toMatchSnapshot();
   });
@@ -73,18 +73,22 @@ describe('MediaPlayer Snapshots', () => {
   });
 
   it('renders with custom className correctly', () => {
-    const { asFragment } = render(<MediaPlayer src="test-video.mp4" className="custom-media-player" />);
+    const { asFragment } = render(
+      <MediaPlayer src="test-video.mp4" className="custom-media-player" />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders with different control variants correctly', () => {
     const variants = ['default', 'minimal', 'transparent', 'floating'];
-    
-    const fragments = variants.map(variant => {
-      const { asFragment } = render(<MediaPlayer src="test-video.mp4" controlsVariant={variant as any} />);
+
+    const fragments = variants.map((variant) => {
+      const { asFragment } = render(
+        <MediaPlayer src="test-video.mp4" controlsVariant={variant as any} />
+      );
       return { variant, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ variant, fragment }) => {
       expect(fragment).toMatchSnapshot(`MediaPlayer with controls variant ${variant}`);
     });
@@ -92,12 +96,14 @@ describe('MediaPlayer Snapshots', () => {
 
   it('renders with different aspect ratios correctly', () => {
     const aspectRatios = ['16:9', '4:3', '1:1', '21:9'];
-    
-    const fragments = aspectRatios.map(aspectRatio => {
-      const { asFragment } = render(<MediaPlayer src="test-video.mp4" aspectRatio={aspectRatio as any} />);
+
+    const fragments = aspectRatios.map((aspectRatio) => {
+      const { asFragment } = render(
+        <MediaPlayer src="test-video.mp4" aspectRatio={aspectRatio as any} />
+      );
       return { aspectRatio, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ aspectRatio, fragment }) => {
       expect(fragment).toMatchSnapshot(`MediaPlayer with aspect ratio ${aspectRatio}`);
     });
@@ -107,9 +113,9 @@ describe('MediaPlayer Snapshots', () => {
     const sources = [
       { src: 'test-video-hd.mp4', type: 'video/mp4', quality: 'HD', bitrate: 5000 },
       { src: 'test-video-sd.mp4', type: 'video/mp4', quality: 'SD', bitrate: 2000 },
-      { src: 'test-video-low.mp4', type: 'video/mp4', quality: 'Low', bitrate: 800 }
+      { src: 'test-video-low.mp4', type: 'video/mp4', quality: 'Low', bitrate: 800 },
     ];
-    
+
     const { asFragment } = render(<MediaPlayer sources={sources} showQualitySelector />);
     expect(asFragment()).toMatchSnapshot();
   });
@@ -122,16 +128,16 @@ describe('MediaPlayer Snapshots', () => {
   it('renders with all features enabled correctly', () => {
     const sources = [
       { src: 'test-video-hd.mp4', type: 'video/mp4', quality: 'HD', bitrate: 5000 },
-      { src: 'test-video-sd.mp4', type: 'video/mp4', quality: 'SD', bitrate: 2000 }
+      { src: 'test-video-sd.mp4', type: 'video/mp4', quality: 'SD', bitrate: 2000 },
     ];
-    
+
     const tracks = [
       { src: 'subtitles-en.vtt', srclang: 'en', label: 'English', kind: 'subtitles' as const },
-      { src: 'subtitles-de.vtt', srclang: 'de', label: 'Deutsch', kind: 'subtitles' as const }
+      { src: 'subtitles-de.vtt', srclang: 'de', label: 'Deutsch', kind: 'subtitles' as const },
     ];
-    
+
     const { asFragment } = render(
-      <MediaPlayer 
+      <MediaPlayer
         sources={sources}
         tracks={tracks}
         poster="poster.jpg"

@@ -10,70 +10,62 @@ describe('Switch Accessibility', () => {
   // Test für die Standard-Switch-Komponente
   it('should have no accessibility violations with standard Switch', async () => {
     const { container } = render(
-      <Switch 
-        label="Benachrichtigungen aktivieren"
-        aria-label="Benachrichtigungen"
-      />
+      <Switch label="Benachrichtigungen aktivieren" aria-label="Benachrichtigungen" />
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
-  
+
   // Test für die A11y-Version der Switch-Komponente
   it('should have no accessibility violations with A11y Switch', async () => {
     const { container } = render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" ariaLabel="Benachrichtigungen" />
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should have proper ARIA attributes', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         ariaLabel="Benachrichtigungen"
         description="Aktivieren Sie diese Option, um Benachrichtigungen zu erhalten"
         id="test-switch"
       />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toHaveAttribute('id', 'test-switch');
     expect(switchElement).toHaveAttribute('aria-label', 'Benachrichtigungen');
     expect(switchElement).toHaveAttribute('aria-checked', 'false');
     expect(switchElement).toHaveAttribute('aria-describedby', 'test-switch-description');
-    
+
     // Überprüfe die Beschreibung
-    const description = screen.getByText('Aktivieren Sie diese Option, um Benachrichtigungen zu erhalten');
+    const description = screen.getByText(
+      'Aktivieren Sie diese Option, um Benachrichtigungen zu erhalten'
+    );
     expect(description).toHaveClass('sr-only');
     expect(description.id).toBe('test-switch-description');
   });
 
   it('should handle checked state correctly', () => {
     render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        checked
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" checked ariaLabel="Benachrichtigungen" />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toHaveAttribute('aria-checked', 'true');
-    
+
     // Überprüfe den versteckten Text für Screenreader
     expect(screen.getByText('eingeschaltet')).toHaveClass('sr-only');
   });
 
   it('should handle custom state text correctly', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         checked
         ariaLabel="Benachrichtigungen"
@@ -81,28 +73,28 @@ describe('Switch Accessibility', () => {
         uncheckedStateText="deaktiviert"
       />
     );
-    
+
     expect(screen.getByText('aktiviert')).toHaveClass('sr-only');
-    
+
     // Ändere den Zustand
     fireEvent.click(screen.getByRole('switch'));
-    
+
     expect(screen.getByText('deaktiviert')).toHaveClass('sr-only');
   });
 
   it('should handle error state correctly', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         error="Bitte wählen Sie eine Option"
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toHaveAttribute('aria-invalid', 'true');
     expect(switchElement).toHaveAttribute('aria-errormessage', 'switch-error');
-    
+
     // Überprüfe die Fehlermeldung
     const error = screen.getByText('Bitte wählen Sie eine Option');
     expect(error).toHaveAttribute('role', 'alert');
@@ -110,16 +102,16 @@ describe('Switch Accessibility', () => {
 
   it('should handle helper text correctly', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         helperText="Sie können diese Einstellung jederzeit ändern"
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toHaveAttribute('aria-describedby', 'switch-helper');
-    
+
     // Überprüfe den Hilfetext
     const helperText = screen.getByText('Sie können diese Einstellung jederzeit ändern');
     expect(helperText.id).toBe('switch-helper');
@@ -127,16 +119,12 @@ describe('Switch Accessibility', () => {
 
   it('should handle disabled state correctly', () => {
     render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        disabled
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" disabled ariaLabel="Benachrichtigungen" />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toBeDisabled();
-    
+
     // Überprüfe, ob der Container die entsprechenden Klassen hat
     const container = screen.getByText('Benachrichtigungen aktivieren').closest('label');
     expect(container).toHaveClass('opacity-50');
@@ -145,16 +133,12 @@ describe('Switch Accessibility', () => {
 
   it('should handle required state correctly', () => {
     render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        required
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" required ariaLabel="Benachrichtigungen" />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toBeRequired();
-    
+
     // Überprüfe das Sternchen im Label
     const label = screen.getByText('Benachrichtigungen aktivieren');
     expect(label.nextSibling).toHaveTextContent('*');
@@ -163,76 +147,68 @@ describe('Switch Accessibility', () => {
 
   it('should handle different label positions correctly', () => {
     const { rerender } = render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         labelPosition="right"
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     // Bei labelPosition="right" sollte das Label nach dem Switch kommen
     const switchElement = screen.getByRole('switch');
     const label = screen.getByText('Benachrichtigungen aktivieren');
     expect(switchElement.compareDocumentPosition(label)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
-    
+
     rerender(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         labelPosition="left"
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     // Bei labelPosition="left" sollte das Label vor dem Switch kommen
     expect(switchElement.compareDocumentPosition(label)).toBe(Node.DOCUMENT_POSITION_PRECEDING);
   });
 
   it('should handle keyboard navigation correctly', () => {
     const handleChange = jest.fn();
-    
+
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         onChange={handleChange}
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     const switchElement = screen.getByRole('switch');
-    
+
     // Fokussiere den Switch
     switchElement.focus();
     expect(document.activeElement).toBe(switchElement);
-    
+
     // Drücke die Leertaste
     fireEvent.keyDown(switchElement, { key: ' ' });
     fireEvent.keyUp(switchElement, { key: ' ' });
-    
+
     // Der onChange-Handler sollte aufgerufen worden sein
     expect(handleChange).toHaveBeenCalled();
   });
 
   it('should handle different sizes correctly', () => {
     const { rerender } = render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        size="xs"
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" size="xs" ariaLabel="Benachrichtigungen" />
     );
-    
+
     let switchContainer = screen.getByRole('switch').nextElementSibling;
     expect(switchContainer).toHaveClass('h-4');
     expect(switchContainer).toHaveClass('w-7');
-    
+
     rerender(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        size="xl"
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" size="xl" ariaLabel="Benachrichtigungen" />
     );
-    
+
     switchContainer = screen.getByRole('switch').nextElementSibling;
     expect(switchContainer).toHaveClass('h-8');
     expect(switchContainer).toHaveClass('w-16');
@@ -240,39 +216,35 @@ describe('Switch Accessibility', () => {
 
   it('should handle different color schemes correctly', () => {
     const { rerender } = render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         colorScheme="primary"
         checked
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     let switchContainer = screen.getByRole('switch').nextElementSibling;
     expect(switchContainer).toHaveClass('bg-primary-600');
-    
+
     rerender(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         colorScheme="success"
         checked
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     switchContainer = screen.getByRole('switch').nextElementSibling;
     expect(switchContainer).toHaveClass('bg-green-600');
   });
 
   it('should handle icons correctly', () => {
     render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        icons
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" icons ariaLabel="Benachrichtigungen" />
     );
-    
+
     const switchContainer = screen.getByRole('switch').nextElementSibling;
     const icons = switchContainer.querySelectorAll('[aria-hidden="true"]');
     expect(icons.length).toBeGreaterThan(0);
@@ -280,46 +252,44 @@ describe('Switch Accessibility', () => {
 
   it('should handle labels correctly', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         labels={{ on: 'AN', off: 'AUS' }}
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     const switchContainer = screen.getByRole('switch').nextElementSibling;
     expect(switchContainer.textContent).toContain('AUS');
-    
+
     // Ändere den Zustand
     fireEvent.click(screen.getByRole('switch'));
-    
+
     expect(switchContainer.textContent).toContain('AN');
   });
 
   it('should handle auto focus correctly', () => {
     render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        autoFocus
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" autoFocus ariaLabel="Benachrichtigungen" />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(document.activeElement).toBe(switchElement);
   });
 
   it('should handle live region correctly', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         liveRegionPoliteness="assertive"
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     // Es sollte eine Live-Region geben
-    const liveRegion = screen.getByRole('switch').parentElement?.querySelector('[aria-live="assertive"]');
+    const liveRegion = screen
+      .getByRole('switch')
+      .parentElement?.querySelector('[aria-live="assertive"]');
     expect(liveRegion).toBeInTheDocument();
     expect(liveRegion).toHaveClass('sr-only');
     expect(liveRegion).toHaveAttribute('aria-atomic', 'true');
@@ -327,47 +297,43 @@ describe('Switch Accessibility', () => {
 
   it('should handle busy state correctly', () => {
     render(
-      <Switch.A11y 
-        label="Benachrichtigungen aktivieren"
-        busy
-        ariaLabel="Benachrichtigungen"
-      />
+      <Switch.A11y label="Benachrichtigungen aktivieren" busy ariaLabel="Benachrichtigungen" />
     );
-    
+
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toHaveAttribute('aria-busy', 'true');
   });
 
   it('should handle vertical layout correctly', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         isVertical
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     const container = screen.getByRole('switch').closest('div');
     expect(container).toHaveClass('flex-col');
   });
 
   it('should handle custom icons correctly', () => {
     render(
-      <Switch.A11y 
+      <Switch.A11y
         label="Benachrichtigungen aktivieren"
         checkedIcon={<span data-testid="checked-icon">✓</span>}
         uncheckedIcon={<span data-testid="unchecked-icon">✕</span>}
         ariaLabel="Benachrichtigungen"
       />
     );
-    
+
     // Zunächst sollte das uncheckedIcon sichtbar sein
     const uncheckedIcon = screen.getByTestId('unchecked-icon');
     expect(uncheckedIcon).toBeInTheDocument();
-    
+
     // Ändere den Zustand
     fireEvent.click(screen.getByRole('switch'));
-    
+
     // Jetzt sollte das checkedIcon sichtbar sein
     const checkedIcon = screen.getByTestId('checked-icon');
     expect(checkedIcon).toBeInTheDocument();

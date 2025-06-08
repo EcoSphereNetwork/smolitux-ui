@@ -100,30 +100,17 @@ export const LabelPositions: Story = {
     <div className="space-y-8 w-[400px]">
       <div>
         <h3 className="text-lg font-medium mb-2">Label oben</h3>
-        <ProgressBar
-          value={60}
-          showLabel
-          labelPosition="top"
-        />
+        <ProgressBar value={60} showLabel labelPosition="top" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Label unten</h3>
-        <ProgressBar
-          value={60}
-          showLabel
-          labelPosition="bottom"
-        />
+        <ProgressBar value={60} showLabel labelPosition="bottom" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Label innen</h3>
-        <ProgressBar
-          value={60}
-          showLabel
-          labelPosition="inside"
-          size="md"
-        />
+        <ProgressBar value={60} showLabel labelPosition="inside" size="md" />
       </div>
     </div>
   ),
@@ -144,34 +131,22 @@ export const Sizes: Story = {
     <div className="space-y-8 w-[400px]">
       <div>
         <h3 className="text-lg font-medium mb-2">Extra Small</h3>
-        <ProgressBar
-          value={60}
-          size="xs"
-        />
+        <ProgressBar value={60} size="xs" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Small</h3>
-        <ProgressBar
-          value={60}
-          size="sm"
-        />
+        <ProgressBar value={60} size="sm" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Medium (Standard)</h3>
-        <ProgressBar
-          value={60}
-          size="md"
-        />
+        <ProgressBar value={60} size="md" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Large</h3>
-        <ProgressBar
-          value={60}
-          size="lg"
-        />
+        <ProgressBar value={60} size="lg" />
       </div>
     </div>
   ),
@@ -182,50 +157,32 @@ export const ColorSchemes: Story = {
     <div className="space-y-4 w-[400px]">
       <div>
         <h3 className="text-sm font-medium mb-1">Primary</h3>
-        <ProgressBar
-          value={60}
-          colorScheme="primary"
-        />
+        <ProgressBar value={60} colorScheme="primary" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Secondary</h3>
-        <ProgressBar
-          value={60}
-          colorScheme="secondary"
-        />
+        <ProgressBar value={60} colorScheme="secondary" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Success</h3>
-        <ProgressBar
-          value={60}
-          colorScheme="success"
-        />
+        <ProgressBar value={60} colorScheme="success" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Danger</h3>
-        <ProgressBar
-          value={60}
-          colorScheme="danger"
-        />
+        <ProgressBar value={60} colorScheme="danger" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Warning</h3>
-        <ProgressBar
-          value={60}
-          colorScheme="warning"
-        />
+        <ProgressBar value={60} colorScheme="warning" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Info</h3>
-        <ProgressBar
-          value={60}
-          colorScheme="info"
-        />
+        <ProgressBar value={60} colorScheme="info" />
       </div>
     </div>
   ),
@@ -276,32 +233,23 @@ export const MultipleProgressBars: Story = {
           <span className="text-sm font-medium">Fortschritt 1</span>
           <span className="text-sm font-medium">30%</span>
         </div>
-        <ProgressBar
-          value={30}
-          colorScheme="primary"
-        />
+        <ProgressBar value={30} colorScheme="primary" />
       </div>
-      
+
       <div>
         <div className="flex justify-between mb-1">
           <span className="text-sm font-medium">Fortschritt 2</span>
           <span className="text-sm font-medium">60%</span>
         </div>
-        <ProgressBar
-          value={60}
-          colorScheme="success"
-        />
+        <ProgressBar value={60} colorScheme="success" />
       </div>
-      
+
       <div>
         <div className="flex justify-between mb-1">
           <span className="text-sm font-medium">Fortschritt 3</span>
           <span className="text-sm font-medium">90%</span>
         </div>
-        <ProgressBar
-          value={90}
-          colorScheme="danger"
-        />
+        <ProgressBar value={90} colorScheme="danger" />
       </div>
     </div>
   ),
@@ -310,30 +258,33 @@ export const MultipleProgressBars: Story = {
 export const Interactive: Story = {
   render: () => {
     const [value, setValue] = React.useState(0);
-    
+
     const increment = () => {
       setValue((prev) => Math.min(prev + 10, 100));
     };
-    
+
     const decrement = () => {
       setValue((prev) => Math.max(prev - 10, 0));
     };
-    
+
     const reset = () => {
       setValue(0);
     };
-    
+
     return (
       <div className="space-y-4 w-[400px]">
-        <ProgressBar
-          value={value}
-          showLabel
-        />
-        
+        <ProgressBar value={value} showLabel />
+
         <div className="flex space-x-2">
-          <Button onClick={decrement} disabled={value === 0}>-10%</Button>
-          <Button onClick={increment} disabled={value === 100}>+10%</Button>
-          <Button onClick={reset} variant="ghost">Reset</Button>
+          <Button onClick={decrement} disabled={value === 0}>
+            -10%
+          </Button>
+          <Button onClick={increment} disabled={value === 100}>
+            +10%
+          </Button>
+          <Button onClick={reset} variant="ghost">
+            Reset
+          </Button>
         </div>
       </div>
     );
@@ -344,38 +295,38 @@ export const FileUploadExample: Story = {
   render: () => {
     const [progress, setProgress] = React.useState(0);
     const [isUploading, setIsUploading] = React.useState(false);
-    
+
     const startUpload = () => {
       setIsUploading(true);
       setProgress(0);
-      
+
       const interval = setInterval(() => {
         setProgress((prev) => {
           const newProgress = prev + 5;
-          
+
           if (newProgress >= 100) {
             clearInterval(interval);
             setIsUploading(false);
             return 100;
           }
-          
+
           return newProgress;
         });
       }, 300);
     };
-    
+
     return (
       <div className="space-y-4 w-[400px]">
         <div className="p-4 border rounded-lg">
           <h3 className="text-lg font-medium mb-4">Datei hochladen</h3>
-          
+
           <div className="mb-4">
             <input
               type="file"
               className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             />
           </div>
-          
+
           {(isUploading || progress === 100) && (
             <div className="mb-4">
               <ProgressBar
@@ -386,12 +337,8 @@ export const FileUploadExample: Story = {
               />
             </div>
           )}
-          
-          <Button
-            onClick={startUpload}
-            disabled={isUploading}
-            className="w-full"
-          >
+
+          <Button onClick={startUpload} disabled={isUploading} className="w-full">
             {isUploading ? 'Wird hochgeladen...' : 'Hochladen'}
           </Button>
         </div>
@@ -404,17 +351,17 @@ export const MultiStepExample: Story = {
   render: () => {
     const [currentStep, setCurrentStep] = React.useState(1);
     const totalSteps = 4;
-    
+
     const nextStep = () => {
       setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
     };
-    
+
     const prevStep = () => {
       setCurrentStep((prev) => Math.max(prev - 1, 1));
     };
-    
-    const progress = (currentStep - 1) / (totalSteps - 1) * 100;
-    
+
+    const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+
     return (
       <div className="space-y-6 w-[500px]">
         <div>
@@ -425,7 +372,7 @@ export const MultiStepExample: Story = {
             labelFormat={() => `Schritt ${currentStep} von ${totalSteps}`}
           />
         </div>
-        
+
         <div className="p-6 border rounded-lg">
           {currentStep === 1 && (
             <div>
@@ -456,7 +403,7 @@ export const MultiStepExample: Story = {
               </div>
             </div>
           )}
-          
+
           {currentStep === 2 && (
             <div>
               <h3 className="text-lg font-medium mb-4">Adresse</h3>
@@ -499,7 +446,7 @@ export const MultiStepExample: Story = {
               </div>
             </div>
           )}
-          
+
           {currentStep === 3 && (
             <div>
               <h3 className="text-lg font-medium mb-4">Zahlungsinformationen</h3>
@@ -542,31 +489,26 @@ export const MultiStepExample: Story = {
               </div>
             </div>
           )}
-          
+
           {currentStep === 4 && (
             <div>
               <h3 className="text-lg font-medium mb-4">Bestätigung</h3>
-              <p className="mb-4">Bitte überprüfen Sie Ihre Eingaben und bestätigen Sie die Bestellung.</p>
+              <p className="mb-4">
+                Bitte überprüfen Sie Ihre Eingaben und bestätigen Sie die Bestellung.
+              </p>
               <div className="p-4 bg-green-50 text-green-800 rounded-md">
                 <p>Alle Informationen wurden erfolgreich eingegeben.</p>
               </div>
             </div>
           )}
         </div>
-        
+
         <div className="flex justify-between">
-          <Button
-            onClick={prevStep}
-            disabled={currentStep === 1}
-            variant="outline"
-          >
+          <Button onClick={prevStep} disabled={currentStep === 1} variant="outline">
             Zurück
           </Button>
-          
-          <Button
-            onClick={nextStep}
-            disabled={currentStep === totalSteps}
-          >
+
+          <Button onClick={nextStep} disabled={currentStep === totalSteps}>
             {currentStep === totalSteps - 1 ? 'Abschließen' : 'Weiter'}
           </Button>
         </div>

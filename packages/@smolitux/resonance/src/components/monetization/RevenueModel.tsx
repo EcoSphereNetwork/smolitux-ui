@@ -195,7 +195,7 @@ export const RevenueModel: React.FC<RevenueModelProps> = ({
           {formatPercentage(creatorShare, totalRevenue)} of total revenue
         </Text>
       </Box>
-      
+
       <Box style={{ marginBottom: '16px' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: '4px' }}>
           <Text weight="medium">Platform Share</Text>
@@ -205,7 +205,7 @@ export const RevenueModel: React.FC<RevenueModelProps> = ({
           {formatPercentage(platformShare, totalRevenue)} of total revenue
         </Text>
       </Box>
-      
+
       <Box>
         <Flex justify="space-between" align="center" style={{ marginBottom: '4px' }}>
           <Text weight="medium">Community Share</Text>
@@ -268,7 +268,9 @@ export const RevenueModel: React.FC<RevenueModelProps> = ({
       <Box style={{ padding: '16px' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: '16px' }}>
           <Box>
-            <Text weight="bold" size="xl">Revenue Distribution</Text>
+            <Text weight="bold" size="xl">
+              Revenue Distribution
+            </Text>
             <Text color="#6b7280">30-30-30 Revenue Model</Text>
           </Box>
           <Text weight="bold" size="xl">
@@ -289,7 +291,9 @@ export const RevenueModel: React.FC<RevenueModelProps> = ({
           }}
         >
           <Text size="sm" color="#3b82f6">
-            The 30-30-30 model distributes revenue fairly: 30% to creators, 30% to platform development, and 30% to community engagement rewards. The remaining 10% covers operational costs.
+            The 30-30-30 model distributes revenue fairly: 30% to creators, 30% to platform
+            development, and 30% to community engagement rewards. The remaining 10% covers
+            operational costs.
           </Text>
         </Box>
       </Box>

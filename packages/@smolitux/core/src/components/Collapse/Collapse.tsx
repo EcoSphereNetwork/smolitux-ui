@@ -7,67 +7,67 @@ export type CollapseProps = {
    * Ob das Element ausgeklappt sein soll
    */
   in?: boolean;
-  
+
   /**
    * Die Richtung, in die das Element kollabieren soll
    */
   orientation?: 'horizontal' | 'vertical';
-  
+
   /**
    * Die Dauer des Übergangs in Millisekunden
    */
   timeout?: number;
-  
+
   /**
    * Das Übergangs-Preset
    */
   transition?: TransitionPresetName | TransitionPreset;
-  
+
   /**
    * Die minimale Größe im kollabierten Zustand
    */
   collapsedSize?: number | string;
-  
+
   /**
    * Ob das Element beim ersten Rendern animiert werden soll
    */
   appear?: boolean;
-  
+
   /**
    * Ob das Element erst beim Einblenden in den DOM eingefügt werden soll
    */
   mountOnEnter?: boolean;
-  
+
   /**
    * Ob das Element nach dem Ausblenden aus dem DOM entfernt werden soll
    */
   unmountOnExit?: boolean;
-  
+
   /**
    * Callback, wenn das Element vollständig ausgeklappt ist
    */
   onEntered?: () => void;
-  
+
   /**
    * Callback, wenn das Element vollständig eingeklappt ist
    */
   onExited?: () => void;
-  
+
   /**
    * Die Kinder der Komponente
    */
   children: React.ReactNode;
-  
+
   /**
    * Zusätzliche CSS-Klassen
    */
   className?: string;
-  
+
   /**
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
-  
+
   /**
    * ARIA-Attribute für Barrierefreiheit
    */
@@ -76,27 +76,27 @@ export type CollapseProps = {
      * ID des Elements, das den Collapse-Inhalt beschreibt
      */
     'aria-labelledby'?: string;
-    
+
     /**
      * ID des Elements, das den Collapse-Inhalt beschreibt
      */
     'aria-describedby'?: string;
-    
+
     /**
      * Ob der Collapse-Inhalt aktuell sichtbar ist
      */
     'aria-expanded'?: boolean;
-    
+
     /**
      * Ob der Collapse-Inhalt versteckt ist
      */
     'aria-hidden'?: boolean;
-    
+
     /**
      * Rolle des Elements für Screenreader
      */
     role?: string;
-    
+
     /**
      * ID des Elements
      */
@@ -127,18 +127,23 @@ export const Collapse: React.FC<CollapseProps> = ({
   const [size, setSize] = useState<number>(0);
   const isHorizontal = orientation === 'horizontal';
   const sizeProp = isHorizontal ? 'width' : 'height';
-  
+
   // Größe des Inhalts messen
   useEffect(() => {
     if (contentRef.current) {
-      const contentSize = isHorizontal 
-        ? contentRef.current.scrollWidth 
+      const contentSize = isHorizontal
+        ? contentRef.current.scrollWidth
         : contentRef.current.scrollHeight;
       setSize(contentSize);
     }
   }, [isHorizontal, children]);
-  
-  const { state, isVisible, ref, style: transitionStyle } = useTransition({
+
+  const {
+    state,
+    isVisible,
+    ref,
+    style: transitionStyle,
+  } = useTransition({
     in: inProp,
     timeout,
     transition,
@@ -148,11 +153,11 @@ export const Collapse: React.FC<CollapseProps> = ({
     onEntered,
     onExited,
   });
-  
+
   if (!isVisible && unmountOnExit) {
     return null;
   }
-  
+
   // Größe basierend auf dem Zustand
   const getSize = (): string | number => {
     if (state === 'entering' || state === 'entered') {
@@ -160,7 +165,7 @@ export const Collapse: React.FC<CollapseProps> = ({
     }
     return typeof collapsedSize === 'number' ? `${collapsedSize}px` : collapsedSize;
   };
-  
+
   const collapseStyle: React.CSSProperties = {
     ...transitionStyle,
     overflow: 'hidden',
@@ -168,10 +173,10 @@ export const Collapse: React.FC<CollapseProps> = ({
     // Wenn die Größe 'auto' ist, setzen wir eine maximale Größe, um die Animation zu ermöglichen
     ...(getSize() === 'auto' && { [`max-${sizeProp}`]: `${size}px` }),
   };
-  
+
   // Generiere eine eindeutige ID für ARIA-Attribute, wenn keine angegeben wurde
   const collapseId = ariaProps?.id || `collapse-${Math.random().toString(36).substr(2, 9)}`;
-  
+
   // Bestimme die ARIA-Attribute
   const getAriaAttributes = () => {
     const defaultAriaProps = {
@@ -180,13 +185,13 @@ export const Collapse: React.FC<CollapseProps> = ({
       'aria-hidden': !inProp,
       id: collapseId,
     };
-    
+
     return {
       ...defaultAriaProps,
       ...ariaProps,
     };
   };
-  
+
   return (
     <div
       ref={ref as React.LegacyRef<HTMLDivElement>}
@@ -197,9 +202,7 @@ export const Collapse: React.FC<CollapseProps> = ({
       data-testid="collapse"
       {...getAriaAttributes()}
     >
-      <div ref={contentRef}>
-        {children}
-      </div>
+      <div ref={contentRef}>{children}</div>
     </div>
   );
 };

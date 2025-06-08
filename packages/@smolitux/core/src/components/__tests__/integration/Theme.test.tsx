@@ -13,18 +13,18 @@ describe('Theme Integration', () => {
   // Mock implementation of ThemeProvider and useTheme
   const mockSetThemeMode = jest.fn();
   const mockToggleTheme = jest.fn();
-  
+
   beforeEach(() => {
     jest.resetAllMocks();
-    
+
     // Mock the useTheme hook
     (useTheme as jest.Mock) = jest.fn().mockImplementation(() => ({
       themeMode: 'light',
       setThemeMode: mockSetThemeMode,
-      toggleTheme: mockToggleTheme
+      toggleTheme: mockToggleTheme,
     }));
   });
-  
+
   test('components render correctly with light theme', () => {
     render(
       <ThemeProvider initialTheme="light">
@@ -35,22 +35,22 @@ describe('Theme Integration', () => {
         </Card>
       </ThemeProvider>
     );
-    
+
     // In light theme, the card should have a white background
     expect(screen.getByText('Theme Test').closest('.bg-white')).toBeInTheDocument();
-    
+
     // The button should have primary color classes
     expect(screen.getByRole('button')).toHaveClass('bg-primary-600');
   });
-  
+
   test('components render correctly with dark theme', () => {
     // Mock the useTheme hook for dark theme
     (useTheme as jest.Mock).mockImplementation(() => ({
       themeMode: 'dark',
       setThemeMode: mockSetThemeMode,
-      toggleTheme: mockToggleTheme
+      toggleTheme: mockToggleTheme,
     }));
-    
+
     render(
       <ThemeProvider initialTheme="dark">
         <Card>
@@ -60,18 +60,18 @@ describe('Theme Integration', () => {
         </Card>
       </ThemeProvider>
     );
-    
+
     // In dark theme, the card should have a dark background
     expect(screen.getByText('Theme Test').closest('.bg-gray-800')).toBeInTheDocument();
-    
+
     // The button should have primary color classes for dark theme
     expect(screen.getByRole('button')).toHaveClass('bg-primary-500');
   });
-  
+
   test('theme can be toggled', async () => {
     const ThemeToggleTest = () => {
       const { themeMode, toggleTheme } = useTheme();
-      
+
       return (
         <div>
           <div data-testid="theme-mode">{themeMode}</div>
@@ -79,27 +79,27 @@ describe('Theme Integration', () => {
         </div>
       );
     };
-    
+
     render(
       <ThemeProvider initialTheme="light">
         <ThemeToggleTest />
       </ThemeProvider>
     );
-    
+
     // Initially the theme should be light
     expect(screen.getByTestId('theme-mode')).toHaveTextContent('light');
-    
+
     // Click the toggle button
     await userEvent.click(screen.getByRole('button', { name: 'Toggle Theme' }));
-    
+
     // The toggleTheme function should have been called
     expect(mockToggleTheme).toHaveBeenCalledTimes(1);
   });
-  
+
   test('theme can be set explicitly', async () => {
     const ThemeSetTest = () => {
       const { themeMode, setThemeMode } = useTheme();
-      
+
       return (
         <div>
           <div data-testid="theme-mode">{themeMode}</div>
@@ -108,29 +108,29 @@ describe('Theme Integration', () => {
         </div>
       );
     };
-    
+
     render(
       <ThemeProvider initialTheme="light">
         <ThemeSetTest />
       </ThemeProvider>
     );
-    
+
     // Initially the theme should be light
     expect(screen.getByTestId('theme-mode')).toHaveTextContent('light');
-    
+
     // Click the dark theme button
     await userEvent.click(screen.getByRole('button', { name: 'Dark Theme' }));
-    
+
     // The setThemeMode function should have been called with 'dark'
     expect(mockSetThemeMode).toHaveBeenCalledWith('dark');
-    
+
     // Click the light theme button
     await userEvent.click(screen.getByRole('button', { name: 'Light Theme' }));
-    
+
     // The setThemeMode function should have been called with 'light'
     expect(mockSetThemeMode).toHaveBeenCalledWith('light');
   });
-  
+
   test('custom theme can be provided', () => {
     const customTheme = {
       colors: {
@@ -139,20 +139,20 @@ describe('Theme Integration', () => {
         },
       },
     };
-    
+
     render(
       <ThemeProvider theme={customTheme}>
         <Button>Custom Theme Button</Button>
       </ThemeProvider>
     );
-    
+
     // The button should have the custom primary color
     // Note: In a real test, we would need to check the computed style
     // This is just a placeholder for the concept
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
   });
-  
+
   test('theme is preserved in localStorage', () => {
     // Mock localStorage
     const localStorageMock = (() => {
@@ -167,17 +167,17 @@ describe('Theme Integration', () => {
         }),
       };
     })();
-    
+
     Object.defineProperty(window, 'localStorage', {
       value: localStorageMock,
     });
-    
+
     render(
       <ThemeProvider initialTheme="dark">
         <div>Theme Test</div>
       </ThemeProvider>
     );
-    
+
     // The theme should be saved to localStorage
     expect(localStorageMock.setItem).toHaveBeenCalledWith('themeMode', 'dark');
   });

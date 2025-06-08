@@ -5,18 +5,18 @@ import { Select } from '../Select';
 const mockOptions = [
   { value: 'option1', label: 'Option 1' },
   { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3', disabled: true }
+  { value: 'option3', label: 'Option 3', disabled: true },
 ];
 
 const mockGroupedOptions = [
   { value: 'option1', label: 'Option 1', group: 'Group 1' },
   { value: 'option2', label: 'Option 2', group: 'Group 1' },
-  { value: 'option3', label: 'Option 3', group: 'Group 2' }
+  { value: 'option3', label: 'Option 3', group: 'Group 2' },
 ];
 
 const mockOptionsWithDescriptions = [
   { value: 'option1', label: 'Option 1', description: 'Description 1' },
-  { value: 'option2', label: 'Option 2', description: 'Description 2' }
+  { value: 'option2', label: 'Option 2', description: 'Description 2' },
 ];
 
 describe('Select Snapshots', () => {
@@ -31,7 +31,9 @@ describe('Select Snapshots', () => {
   });
 
   test('renders correctly with helper text', () => {
-    const tree = renderer.create(<Select options={mockOptions} helperText="Helper Text" />).toJSON();
+    const tree = renderer
+      .create(<Select options={mockOptions} helperText="Helper Text" />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -83,12 +85,16 @@ describe('Select Snapshots', () => {
   });
 
   test('renders correctly with placeholder', () => {
-    const tree = renderer.create(<Select options={mockOptions} placeholder="Select an option" />).toJSON();
+    const tree = renderer
+      .create(<Select options={mockOptions} placeholder="Select an option" />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with required indicator', () => {
-    const tree = renderer.create(<Select options={mockOptions} label="Test Label" required />).toJSON();
+    const tree = renderer
+      .create(<Select options={mockOptions} label="Test Label" required />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -108,7 +114,9 @@ describe('Select Snapshots', () => {
   });
 
   test('renders correctly with option descriptions', () => {
-    const tree = renderer.create(<Select options={mockOptionsWithDescriptions} showOptionDescription />).toJSON();
+    const tree = renderer
+      .create(<Select options={mockOptionsWithDescriptions} showOptionDescription />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -118,18 +126,20 @@ describe('Select Snapshots', () => {
   });
 
   test('renders correctly with custom class names', () => {
-    const tree = renderer.create(
-      <Select 
-        options={mockOptions} 
-        className="custom-class"
-        containerClassName="container-class"
-        labelClassName="label-class"
-        helperTextClassName="helper-class"
-        errorClassName="error-class"
-        label="Label"
-        helperText="Helper"
-      />
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Select
+          options={mockOptions}
+          className="custom-class"
+          containerClassName="container-class"
+          labelClassName="label-class"
+          helperTextClassName="helper-class"
+          errorClassName="error-class"
+          label="Label"
+          helperText="Helper"
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -170,30 +180,32 @@ describe('Select Snapshots', () => {
 
   test('renders correctly with multiple props combined', () => {
     const leftIcon = <span>★</span>;
-    const tree = renderer.create(
-      <Select 
-        options={mockOptions} 
-        label="Combined Select"
-        helperText="Helper Text"
-        size="lg"
-        variant="filled"
-        fullWidth
-        leftIcon={leftIcon}
-        placeholder="Select an option"
-        required
-        shadow
-        rounded
-        bordered
-        hoverable
-        focusable
-        transition
-        tooltip="Tooltip Text"
-        className="custom-class"
-        containerClassName="container-class"
-        labelClassName="label-class"
-        helperTextClassName="helper-class"
-      />
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Select
+          options={mockOptions}
+          label="Combined Select"
+          helperText="Helper Text"
+          size="lg"
+          variant="filled"
+          fullWidth
+          leftIcon={leftIcon}
+          placeholder="Select an option"
+          required
+          shadow
+          rounded
+          bordered
+          hoverable
+          focusable
+          transition
+          tooltip="Tooltip Text"
+          className="custom-class"
+          containerClassName="container-class"
+          labelClassName="label-class"
+          helperTextClassName="helper-class"
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

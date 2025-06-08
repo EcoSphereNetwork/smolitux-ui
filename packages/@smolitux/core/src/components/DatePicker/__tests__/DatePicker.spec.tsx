@@ -81,12 +81,12 @@ describe('DatePicker Snapshots', () => {
 
   it('renders date picker with different date formats correctly', () => {
     const formats = ['yyyy-MM-dd', 'dd.MM.yyyy', 'MM/dd/yyyy'];
-    
-    const fragments = formats.map(format => {
+
+    const fragments = formats.map((format) => {
       const { asFragment } = render(<DatePicker value={new Date(2023, 0, 20)} format={format} />);
       return { format, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ format, fragment }) => {
       expect(fragment).toMatchSnapshot(`DatePicker with format ${format}`);
     });
@@ -104,12 +104,12 @@ describe('DatePicker Snapshots', () => {
 
   it('renders date picker with different sizes correctly', () => {
     const sizes = ['sm', 'md', 'lg'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(<DatePicker size={size as any} />);
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`DatePicker with size ${size}`);
     });
@@ -127,12 +127,12 @@ describe('DatePicker Snapshots', () => {
 
   it('renders date picker with different variants correctly', () => {
     const variants = ['outline', 'filled', 'unstyled'];
-    
-    const fragments = variants.map(variant => {
+
+    const fragments = variants.map((variant) => {
       const { asFragment } = render(<DatePicker variant={variant as any} />);
       return { variant, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ variant, fragment }) => {
       expect(fragment).toMatchSnapshot(`DatePicker with variant ${variant}`);
     });
@@ -140,12 +140,12 @@ describe('DatePicker Snapshots', () => {
 
   it('renders date picker with different color schemes correctly', () => {
     const colorSchemes = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
-    
-    const fragments = colorSchemes.map(colorScheme => {
+
+    const fragments = colorSchemes.map((colorScheme) => {
       const { asFragment } = render(<DatePicker colorScheme={colorScheme as any} />);
       return { colorScheme, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ colorScheme, fragment }) => {
       expect(fragment).toMatchSnapshot(`DatePicker with color scheme ${colorScheme}`);
     });
@@ -153,12 +153,12 @@ describe('DatePicker Snapshots', () => {
 
   it('renders date picker with different calendar positions correctly', () => {
     const positions = ['bottom', 'top', 'left', 'right'];
-    
-    const fragments = positions.map(position => {
+
+    const fragments = positions.map((position) => {
       const { asFragment } = render(<DatePicker calendarPosition={position as any} />);
       return { position, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ position, fragment }) => {
       expect(fragment).toMatchSnapshot(`DatePicker with calendar position ${position}`);
     });
@@ -166,7 +166,7 @@ describe('DatePicker Snapshots', () => {
 
   it('renders date picker with all features enabled correctly', () => {
     const { asFragment } = render(
-      <DatePicker 
+      <DatePicker
         label="Date"
         helperText="Select a date"
         placeholder="Select date"

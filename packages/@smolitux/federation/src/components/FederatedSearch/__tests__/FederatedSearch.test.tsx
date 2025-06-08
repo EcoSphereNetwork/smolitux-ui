@@ -34,13 +34,13 @@ describe('FederatedSearch', () => {
 
   it('renders without crashing', () => {
     render(<FederatedSearch platforms={mockPlatforms} />);
-    
+
     expect(screen.getByPlaceholderText('Search across platforms...')).toBeInTheDocument();
   });
 
   it('displays platform options', () => {
     render(<FederatedSearch platforms={mockPlatforms} />);
-    
+
     expect(screen.getByText('Platform 1')).toBeInTheDocument();
     expect(screen.getByText('Platform 2')).toBeInTheDocument();
     expect(screen.getByText('Platform 3')).toBeInTheDocument();
@@ -49,38 +49,28 @@ describe('FederatedSearch', () => {
   it('performs search when form is submitted', () => {
     const mockOnSearch = jest.fn();
     render(<FederatedSearch platforms={mockPlatforms} onSearch={mockOnSearch} />);
-    
+
     const input = screen.getByPlaceholderText('Search across platforms...');
     fireEvent.change(input, { target: { value: 'test query' } });
-    
+
     const form = screen.getByRole('form');
     fireEvent.submit(form);
-    
+
     expect(mockOnSearch).toHaveBeenCalledWith('test query', expect.any(Array));
   });
 
   it('displays search results', () => {
     render(
-      <FederatedSearch 
-        platforms={mockPlatforms} 
-        results={mockResults}
-        searchPerformed={true}
-      />
+      <FederatedSearch platforms={mockPlatforms} results={mockResults} searchPerformed={true} />
     );
-    
+
     expect(screen.getByText('Result 1')).toBeInTheDocument();
     expect(screen.getByText('Result 2')).toBeInTheDocument();
   });
 
   it('shows loading state', () => {
-    render(
-      <FederatedSearch 
-        platforms={mockPlatforms} 
-        loading={true}
-        searchPerformed={true}
-      />
-    );
-    
+    render(<FederatedSearch platforms={mockPlatforms} loading={true} searchPerformed={true} />);
+
     expect(screen.getByText('Searching...')).toBeInTheDocument();
   });
 });

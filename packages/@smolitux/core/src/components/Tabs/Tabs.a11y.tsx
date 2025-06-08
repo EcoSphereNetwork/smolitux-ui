@@ -1,6 +1,12 @@
 // packages/@smolitux/core/src/components/Tabs/Tabs.a11y.tsx
 import React, { useRef, useEffect } from 'react';
-import { Tabs as BaseTabs, TabList as BaseTabList, Tab as BaseTab, TabPanels as BaseTabPanels, TabPanel as BaseTabPanel } from './Tabs';
+import {
+  Tabs as BaseTabs,
+  TabList as BaseTabList,
+  Tab as BaseTab,
+  TabPanels as BaseTabPanels,
+  TabPanel as BaseTabPanel,
+} from './Tabs';
 import type { TabsProps, TabListProps, TabProps, TabPanelsProps, TabPanelProps } from './Tabs';
 
 export interface TabsA11yProps extends TabsProps {
@@ -90,7 +96,8 @@ export const TabsA11y: React.FC<TabsA11yProps> = ({
   // Ankündigung bei Tab-Wechsel
   useEffect(() => {
     if (announceTabChange && lastActiveIndex !== null && liveRegionRef.current) {
-      const announcement = tabChangeAnnouncement || 
+      const announcement =
+        tabChangeAnnouncement ||
         `${i18n?.tabSelected || 'Tab'} ${lastActiveIndex + 1} ${i18n?.tabSelected || 'ausgewählt'}`;
       liveRegionRef.current.textContent = announcement;
     }
@@ -99,7 +106,7 @@ export const TabsA11y: React.FC<TabsA11yProps> = ({
   const mergedI18n = {
     tabSelected: 'ausgewählt',
     tabDisabled: 'deaktiviert',
-    ...i18n
+    ...i18n,
   };
 
   return (
@@ -219,7 +226,7 @@ export const Tabs = {
   List: TabListA11y,
   Tab: TabA11y,
   Panels: TabPanelsA11y,
-  Panel: TabPanelA11y
+  Panel: TabPanelA11y,
 };
 
 export default Tabs;

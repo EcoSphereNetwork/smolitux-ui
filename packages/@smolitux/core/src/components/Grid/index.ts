@@ -3,7 +3,7 @@ import { default as GridA11y, type GridA11yProps } from './Grid.a11y';
 
 // Erweitere Grid um die A11y-Komponente
 const Grid = Object.assign(OriginalGrid, {
-  A11y: GridA11y
+  A11y: GridA11y,
 });
 
 // Exportiere Komponenten und Typen

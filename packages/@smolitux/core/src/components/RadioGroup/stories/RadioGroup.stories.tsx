@@ -99,7 +99,7 @@ export const Sizes: Story = {
           </div>
         </RadioGroup>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Medium</h3>
         <RadioGroup size="md" defaultValue="1">
@@ -110,7 +110,7 @@ export const Sizes: Story = {
           </div>
         </RadioGroup>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Large</h3>
         <RadioGroup size="lg" defaultValue="1">
@@ -138,7 +138,7 @@ export const ColorSchemes: Story = {
           </div>
         </RadioGroup>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Secondary</h3>
         <RadioGroup colorScheme="secondary" defaultValue="1">
@@ -149,7 +149,7 @@ export const ColorSchemes: Story = {
           </div>
         </RadioGroup>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Success</h3>
         <RadioGroup colorScheme="success" defaultValue="1">
@@ -160,7 +160,7 @@ export const ColorSchemes: Story = {
           </div>
         </RadioGroup>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Danger</h3>
         <RadioGroup colorScheme="danger" defaultValue="1">
@@ -218,8 +218,17 @@ export const WithCustomIcons: Story = {
         <Radio
           value="1"
           icon={
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
-              <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-3 h-3"
+            >
+              <path
+                fillRule="evenodd"
+                d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                clipRule="evenodd"
+              />
             </svg>
           }
         >
@@ -228,8 +237,17 @@ export const WithCustomIcons: Story = {
         <Radio
           value="2"
           icon={
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
-              <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-3 h-3"
+            >
+              <path
+                fillRule="evenodd"
+                d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                clipRule="evenodd"
+              />
             </svg>
           }
         >
@@ -238,8 +256,17 @@ export const WithCustomIcons: Story = {
         <Radio
           value="3"
           icon={
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
-              <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-3 h-3"
+            >
+              <path
+                fillRule="evenodd"
+                d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                clipRule="evenodd"
+              />
             </svg>
           }
         >
@@ -286,7 +313,7 @@ export const WithRichContent: Story = {
 export const Controlled: Story = {
   render: () => {
     const [value, setValue] = React.useState('1');
-    
+
     return (
       <div className="space-y-4">
         <RadioGroup value={value} onChange={setValue}>
@@ -296,11 +323,9 @@ export const Controlled: Story = {
             <Radio value="3">Option 3</Radio>
           </div>
         </RadioGroup>
-        
-        <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded">
-          Ausgewählter Wert: {value}
-        </div>
-        
+
+        <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded">Ausgewählter Wert: {value}</div>
+
         <div className="flex space-x-2">
           <button
             className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -330,25 +355,13 @@ export const WithCustomStyling: Story = {
   render: () => (
     <RadioGroup defaultValue="1">
       <div className="space-y-2">
-        <Radio
-          value="1"
-          className="border-purple-500 text-purple-600"
-          iconClassName="text-white"
-        >
+        <Radio value="1" className="border-purple-500 text-purple-600" iconClassName="text-white">
           Option 1
         </Radio>
-        <Radio
-          value="2"
-          className="border-purple-500 text-purple-600"
-          iconClassName="text-white"
-        >
+        <Radio value="2" className="border-purple-500 text-purple-600" iconClassName="text-white">
           Option 2
         </Radio>
-        <Radio
-          value="3"
-          className="border-purple-500 text-purple-600"
-          iconClassName="text-white"
-        >
+        <Radio value="3" className="border-purple-500 text-purple-600" iconClassName="text-white">
           Option 3
         </Radio>
       </div>
@@ -360,32 +373,25 @@ export const WithCards: Story = {
   render: () => (
     <RadioGroup defaultValue="basic">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Radio
-          value="basic"
-          className="sr-only"
-        >
+        <Radio value="basic" className="sr-only">
           <div className="border-2 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 peer-checked:border-blue-500 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900">
             <h3 className="font-bold text-lg mb-2">Basic</h3>
-            <p className="text-gray-600 dark:text-gray-400">Grundlegende Funktionen für Einsteiger</p>
+            <p className="text-gray-600 dark:text-gray-400">
+              Grundlegende Funktionen für Einsteiger
+            </p>
             <div className="mt-4 text-xl font-bold">9,99 €</div>
           </div>
         </Radio>
-        
-        <Radio
-          value="pro"
-          className="sr-only"
-        >
+
+        <Radio value="pro" className="sr-only">
           <div className="border-2 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 peer-checked:border-blue-500 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900">
             <h3 className="font-bold text-lg mb-2">Pro</h3>
             <p className="text-gray-600 dark:text-gray-400">Erweiterte Funktionen für Profis</p>
             <div className="mt-4 text-xl font-bold">19,99 €</div>
           </div>
         </Radio>
-        
-        <Radio
-          value="enterprise"
-          className="sr-only"
-        >
+
+        <Radio value="enterprise" className="sr-only">
           <div className="border-2 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 peer-checked:border-blue-500 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900">
             <h3 className="font-bold text-lg mb-2">Enterprise</h3>
             <p className="text-gray-600 dark:text-gray-400">Umfassende Lösung für Unternehmen</p>

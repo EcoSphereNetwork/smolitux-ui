@@ -57,7 +57,8 @@ export const VoiceControlProvider: React.FC<VoiceControlProviderProps> = ({
 
   const startListening = () => manager.startListening();
   const stopListening = () => manager.stopListening();
-  const registerComponent = (id: string, commands: string[]) => manager.registerComponent(id, commands);
+  const registerComponent = (id: string, commands: string[]) =>
+    manager.registerComponent(id, commands);
   const unregisterComponent = (id: string) => manager.unregisterComponent(id);
 
   return (

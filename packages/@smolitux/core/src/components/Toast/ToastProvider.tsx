@@ -32,7 +32,7 @@ export interface ToastProviderProps {
 
 /**
  * Provider für Toast-Benachrichtigungen
- * 
+ *
  * @example
  * ```tsx
  * function App() {
@@ -48,30 +48,33 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   limit = 5,
   position = 'top-right',
   children,
-  'data-testid': dataTestId = 'toast-provider'
+  'data-testid': dataTestId = 'toast-provider',
 }) => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   const providerId = useId();
 
   // Toast hinzufügen
-  const addToast = useCallback((props: Omit<ToastProps, 'onClose' | 'isOpen'>): string => {
-    const id = `toast-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-    
-    setToasts(prevToasts => {
-      // Bei Überschreitung des Limits die ältesten entfernen
-      const newToasts = [...prevToasts, { ...props, id }];
-      if (newToasts.length > limit) {
-        return newToasts.slice(newToasts.length - limit);
-      }
-      return newToasts;
-    });
-    
-    return id;
-  }, [limit]);
+  const addToast = useCallback(
+    (props: Omit<ToastProps, 'onClose' | 'isOpen'>): string => {
+      const id = `toast-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+      setToasts((prevToasts) => {
+        // Bei Überschreitung des Limits die ältesten entfernen
+        const newToasts = [...prevToasts, { ...props, id }];
+        if (newToasts.length > limit) {
+          return newToasts.slice(newToasts.length - limit);
+        }
+        return newToasts;
+      });
+
+      return id;
+    },
+    [limit]
+  );
 
   // Toast entfernen
   const removeToast = useCallback((id: string) => {
-    setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   }, []);
 
   // Alle Toasts entfernen
@@ -82,16 +85,16 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   return (
     <ToastContext.Provider value={{ addToast, removeToast, removeAllToasts, toasts }}>
       {children}
-      
+
       {/* Toast-Container */}
-      <div 
+      <div
         id={`toast-container-${providerId}`}
         aria-live="polite"
         aria-atomic="true"
         className="toast-container"
         data-testid={dataTestId}
       >
-        {toasts.map(toast => (
+        {toasts.map((toast) => (
           <Toast
             key={toast.id}
             isOpen={true}
@@ -108,12 +111,12 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
 
 /**
  * Hook für den Zugriff auf Toast-Funktionen
- * 
+ *
  * @example
  * ```tsx
  * function MyComponent() {
  *   const toast = useToast();
- *   
+ *
  *   const handleClick = () => {
  *     toast.show({
  *       type: 'success',
@@ -121,7 +124,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
  *       message: 'Aktion erfolgreich durchgeführt'
  *     });
  *   };
- *   
+ *
  *   return <Button onClick={handleClick}>Toast anzeigen</Button>;
  * }
  * ```
@@ -131,29 +134,33 @@ export const useToast = () => {
   if (context === undefined) {
     throw new Error('useToast must be used within a ToastProvider');
   }
-  
+
   // Erweiterte API für einfachere Nutzung
   return {
     // Grundlegende Funktionen
     show: context.addToast,
     close: context.removeToast,
     closeAll: context.removeAllToasts,
-    
+
     // Hilfsfunktionen für verschiedene Toast-Typen
-    success: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
-      context.addToast({ type: 'success', message, ...props }),
-      
-    error: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
+    success: (
+      message: string,
+      props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>
+    ) => context.addToast({ type: 'success', message, ...props }),
+
+    error: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) =>
       context.addToast({ type: 'error', message, ...props }),
-      
-    warning: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
-      context.addToast({ type: 'warning', message, ...props }),
-      
-    info: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
+
+    warning: (
+      message: string,
+      props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>
+    ) => context.addToast({ type: 'warning', message, ...props }),
+
+    info: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) =>
       context.addToast({ type: 'info', message, ...props }),
-    
+
     // Zugriff auf aktuelle Toasts
-    toasts: context.toasts
+    toasts: context.toasts,
   };
 };
 

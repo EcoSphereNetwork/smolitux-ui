@@ -134,7 +134,16 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Resonance',
           collapsed: true,
-          items: ['components/resonance/index'],
+          items: [
+            'components/resonance/index',
+            'components/resonance/feed-view',
+            'components/resonance/feed-filter',
+            'components/resonance/feed-item',
+            'components/resonance/post-view',
+            'components/resonance/post-interactions',
+            'components/resonance/profile-header',
+            'components/resonance/profile-content',
+          ],
         },
         {
           type: 'category',

@@ -5,7 +5,7 @@ import type { SwitchA11yProps } from './Switch.a11y';
 
 // Erweitere Switch um die A11y-Komponente
 const Switch = Object.assign(BaseSwitch, {
-  A11y: SwitchA11y
+  A11y: SwitchA11y,
 });
 
 // Exportiere Komponenten und Typen

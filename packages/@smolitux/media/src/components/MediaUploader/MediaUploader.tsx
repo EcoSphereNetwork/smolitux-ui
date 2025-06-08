@@ -33,34 +33,34 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  
+
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   // Dateien validieren
   const validateFiles = (fileList: FileList | null): File[] => {
     if (!fileList) return [];
-    
+
     const validFiles: File[] = [];
     const errors: string[] = [];
-    
-    Array.from(fileList).forEach(file => {
+
+    Array.from(fileList).forEach((file) => {
       // Dateityp prüfen
       const fileType = file.type.split('/')[0];
       if (!accept.includes(fileType) && !accept.includes('*')) {
         errors.push(`${file.name}: Ungültiger Dateityp. Erlaubt sind ${accept}`);
         return;
       }
-      
+
       // Dateigröße prüfen
       if (file.size > maxSize) {
         const maxSizeMB = Math.round(maxSize / (1024 * 1024));
         errors.push(`${file.name}: Datei zu groß. Maximale Größe ist ${maxSizeMB}MB`);
         return;
       }
-      
+
       validFiles.push(file);
     });
-    
+
     if (errors.length > 0) {
       const errorMessage = errors.join('\n');
       setError(errorMessage);
@@ -68,28 +68,28 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
     } else {
       setError(null);
     }
-    
+
     return validFiles;
   };
-  
+
   // Dateien hinzufügen
   const addFiles = (fileList: FileList | null) => {
     const validFiles = validateFiles(fileList);
-    
+
     if (validFiles.length > 0) {
       if (multiple) {
-        setFiles(prevFiles => [...prevFiles, ...validFiles]);
+        setFiles((prevFiles) => [...prevFiles, ...validFiles]);
       } else {
         setFiles(validFiles.slice(0, 1));
       }
     }
   };
-  
+
   // Datei entfernen
   const removeFile = (index: number) => {
-    setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
-  
+
   // Dateien hochladen
   const handleUpload = async () => {
     if (files.length === 0) {
@@ -97,25 +97,25 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
       onError?.('Keine Dateien ausgewählt');
       return;
     }
-    
+
     setUploading(true);
     setProgress(0);
     setError(null);
-    
+
     try {
       // Simuliere Fortschritt
       const progressInterval = setInterval(() => {
-        setProgress(prev => {
+        setProgress((prev) => {
           const newProgress = prev + 5;
           return newProgress >= 90 ? 90 : newProgress;
         });
       }, 300);
-      
+
       await onUpload(files);
-      
+
       clearInterval(progressInterval);
       setProgress(100);
-      
+
       // Zurücksetzen nach erfolgreichem Upload
       setTimeout(() => {
         setFiles([]);
@@ -130,58 +130,56 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
       setProgress(0);
     }
   };
-  
+
   // Drag & Drop Handlers
   const handleDragEnter = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
   }, []);
-  
+
   const handleDragLeave = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
   }, []);
-  
+
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
   }, []);
-  
+
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
-    
+
     const { files } = e.dataTransfer;
     addFiles(files);
   }, []);
-  
+
   // Datei-Input Handler
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     addFiles(files);
   };
-  
+
   // Datei-Input öffnen
   const openFileDialog = () => {
     fileInputRef.current?.click();
   };
-  
+
   // Dateigröße formatieren
   const formatFileSize = (bytes: number): string => {
     if (bytes < 1024) return `${bytes} B`;
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   };
-  
+
   return (
     <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${className}`}>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-        Medien hochladen
-      </h3>
-      
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Medien hochladen</h3>
+
       {/* Drag & Drop Bereich */}
       <div
         className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
@@ -203,7 +201,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
           onChange={handleFileInputChange}
           className="hidden"
         />
-        
+
         <svg
           className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500"
           fill="none"
@@ -218,16 +216,18 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
           />
         </svg>
-        
+
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-          Dateien hierher ziehen oder <span className="text-primary-600 dark:text-primary-400">durchsuchen</span>
+          Dateien hierher ziehen oder{' '}
+          <span className="text-primary-600 dark:text-primary-400">durchsuchen</span>
         </p>
-        
+
         <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
-          {multiple ? 'Mehrere Dateien erlaubt' : 'Nur eine Datei erlaubt'} • Max. {formatFileSize(maxSize)}
+          {multiple ? 'Mehrere Dateien erlaubt' : 'Nur eine Datei erlaubt'} • Max.{' '}
+          {formatFileSize(maxSize)}
         </p>
       </div>
-      
+
       {/* Fehleranzeige */}
       {error && (
         <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-md text-sm">
@@ -235,14 +235,14 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
           <p className="whitespace-pre-line">{error}</p>
         </div>
       )}
-      
+
       {/* Dateiliste */}
       {files.length > 0 && (
         <div className="mt-4">
           <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Ausgewählte Dateien ({files.length})
           </h4>
-          
+
           <ul className="space-y-2">
             {files.map((file, index) => (
               <li
@@ -277,7 +277,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
                       />
                     )}
                   </svg>
-                  
+
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                       {file.name}
@@ -287,10 +287,10 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
                     </p>
                   </div>
                 </div>
-                
+
                 <button
                   type="button"
-                  onClick={e => {
+                  onClick={(e) => {
                     e.stopPropagation();
                     removeFile(index);
                   }}
@@ -317,7 +317,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
           </ul>
         </div>
       )}
-      
+
       {/* Fortschrittsanzeige */}
       {uploading && (
         <div className="mt-4">
@@ -325,12 +325,10 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
             Upload-Fortschritt
           </p>
           <ProgressBar value={progress} max={100} />
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-right">
-            {progress}%
-          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-right">{progress}%</p>
         </div>
       )}
-      
+
       {/* Aktionen */}
       <div className="mt-4 flex justify-end space-x-2">
         <Button
@@ -343,12 +341,8 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
         >
           Zurücksetzen
         </Button>
-        
-        <Button
-          variant="primary"
-          onClick={handleUpload}
-          disabled={files.length === 0 || uploading}
-        >
+
+        <Button variant="primary" onClick={handleUpload} disabled={files.length === 0 || uploading}>
           {uploading ? 'Wird hochgeladen...' : 'Hochladen'}
         </Button>
       </div>

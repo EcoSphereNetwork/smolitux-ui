@@ -64,7 +64,7 @@ export const TabView: React.FC<TabViewProps> = ({
 
   // Track which tabs have been rendered (for lazy loading)
   const [renderedTabs, setRenderedTabs] = useState<Set<string>>(
-    new Set(lazy ? [activeTabId] : tabs.map(tab => tab.id))
+    new Set(lazy ? [activeTabId] : tabs.map((tab) => tab.id))
   );
 
   // Handle tab change
@@ -78,14 +78,14 @@ export const TabView: React.FC<TabViewProps> = ({
 
     // Mark tab as rendered for lazy loading
     if (lazy) {
-      setRenderedTabs(prev => new Set([...prev, tabId]));
+      setRenderedTabs((prev) => new Set([...prev, tabId]));
     }
 
     // Notify parent if callback provided
     if (onTabChange) {
       onTabChange(tabId);
     }
-    
+
     // Support for onChange alias
     if (onChange) {
       onChange(tabId);
@@ -96,16 +96,18 @@ export const TabView: React.FC<TabViewProps> = ({
   useEffect(() => {
     if (tabsRef.current && position !== 'left' && position !== 'right') {
       const tabsContainer = tabsRef.current;
-      const activeTab = tabsContainer.querySelector(`[data-tab-id="${activeTabId}"]`) as HTMLElement;
+      const activeTab = tabsContainer.querySelector(
+        `[data-tab-id="${activeTabId}"]`
+      ) as HTMLElement;
 
       if (activeTab) {
         const containerRect = tabsContainer.getBoundingClientRect();
         const tabRect = activeTab.getBoundingClientRect();
 
         if (tabRect.left < containerRect.left) {
-          tabsContainer.scrollLeft -= (containerRect.left - tabRect.left);
+          tabsContainer.scrollLeft -= containerRect.left - tabRect.left;
         } else if (tabRect.right > containerRect.right) {
-          tabsContainer.scrollLeft += (tabRect.right - containerRect.right);
+          tabsContainer.scrollLeft += tabRect.right - containerRect.right;
         }
       }
     }
@@ -114,7 +116,7 @@ export const TabView: React.FC<TabViewProps> = ({
   // On first mount, ensure default tab is in rendered tabs set
   useEffect(() => {
     if (lazy && activeTabId && !renderedTabs.has(activeTabId)) {
-      setRenderedTabs(prev => new Set([...prev, activeTabId]));
+      setRenderedTabs((prev) => new Set([...prev, activeTabId]));
     }
   }, [lazy, activeTabId, renderedTabs]);
 
@@ -220,11 +222,7 @@ export const TabView: React.FC<TabViewProps> = ({
           >
             {tab.icon && <span className="mr-2">{tab.icon}</span>}
             <span>{tab.label}</span>
-            {tab.badge && (
-              <span className={getBadgeClasses(tab.badgeColor)}>
-                {tab.badge}
-              </span>
-            )}
+            {tab.badge && <span className={getBadgeClasses(tab.badgeColor)}>{tab.badge}</span>}
           </div>
         ))}
       </div>
@@ -261,7 +259,10 @@ export const TabView: React.FC<TabViewProps> = ({
 
   // Layout the tabs and content based on position
   return (
-    <div className={`w-full ${position === 'left' || position === 'right' ? 'flex' : ''} ${className}`} style={style}>
+    <div
+      className={`w-full ${position === 'left' || position === 'right' ? 'flex' : ''} ${className}`}
+      style={style}
+    >
       {position === 'top' && (
         <>
           {renderTabs()}

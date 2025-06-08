@@ -37,7 +37,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
   });
@@ -48,10 +48,10 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
-    
+
     fireEvent.mouseLeave(screen.getByText('Hover me'));
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
   });
@@ -62,7 +62,7 @@ describe('Tooltip', () => {
         <button>Focus me</button>
       </Tooltip>
     );
-    
+
     fireEvent.focus(screen.getByText('Focus me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
   });
@@ -73,10 +73,10 @@ describe('Tooltip', () => {
         <button>Focus me</button>
       </Tooltip>
     );
-    
+
     fireEvent.focus(screen.getByText('Focus me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
-    
+
     fireEvent.blur(screen.getByText('Focus me'));
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
   });
@@ -87,61 +87,61 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
   });
 
   it('shows tooltip with delay', async () => {
     jest.useFakeTimers();
-    
+
     render(
       <Tooltip content="Tooltip content" showDelay={200}>
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
-    
+
     act(() => {
       jest.advanceTimersByTime(100);
     });
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
-    
+
     act(() => {
       jest.advanceTimersByTime(100);
     });
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
-    
+
     jest.useRealTimers();
   });
 
   it('hides tooltip with delay', async () => {
     jest.useFakeTimers();
-    
+
     render(
       <Tooltip content="Tooltip content" hideDelay={200}>
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
-    
+
     fireEvent.mouseLeave(screen.getByText('Hover me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
-    
+
     act(() => {
       jest.advanceTimersByTime(100);
     });
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
-    
+
     act(() => {
       jest.advanceTimersByTime(100);
     });
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
-    
+
     jest.useRealTimers();
   });
 
@@ -151,7 +151,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
     expect(document.querySelector('.tooltip-arrow')).toBeInTheDocument();
@@ -163,7 +163,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
     expect(document.querySelector('.tooltip-arrow')).not.toBeInTheDocument();
@@ -175,7 +175,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     expect(document.querySelector('.custom-class')).toBeInTheDocument();
   });
 
@@ -185,7 +185,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(document.querySelector('.tooltip.custom-tooltip')).toBeInTheDocument();
   });
@@ -196,7 +196,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(document.querySelector('.tooltip-arrow.custom-arrow')).toBeInTheDocument();
   });
@@ -207,7 +207,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(document.querySelector('.tooltip')).toHaveStyle('background-color: red');
   });
@@ -218,21 +218,21 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
-    
+
     rerender(
       <Tooltip content="Tooltip content" placement="bottom">
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     rerender(
       <Tooltip content="Tooltip content" placement="left">
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     rerender(
       <Tooltip content="Tooltip content" placement="right">
         <button>Hover me</button>
@@ -247,7 +247,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     expect(handleOpen).toHaveBeenCalledTimes(1);
   });
@@ -259,7 +259,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     fireEvent.mouseEnter(screen.getByText('Hover me'));
     fireEvent.mouseLeave(screen.getByText('Hover me'));
     expect(handleClose).toHaveBeenCalledTimes(1);
@@ -271,15 +271,15 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
-    
+
     rerender(
       <Tooltip content="Tooltip content" isOpen={false}>
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
   });
 
@@ -289,7 +289,7 @@ describe('Tooltip', () => {
         <button>Hover me</button>
       </Tooltip>
     );
-    
+
     expect(screen.getByText('Tooltip content')).toBeInTheDocument();
   });
 });

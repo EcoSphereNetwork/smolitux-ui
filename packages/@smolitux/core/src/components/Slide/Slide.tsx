@@ -9,57 +9,57 @@ export type SlideProps = {
    * Ob das Element sichtbar sein soll
    */
   in?: boolean;
-  
+
   /**
    * Die Richtung, aus der das Element hereingleiten soll
    */
   direction?: SlideDirection;
-  
+
   /**
    * Die Dauer des Übergangs in Millisekunden
    */
   timeout?: number;
-  
+
   /**
    * Das Übergangs-Preset
    */
   transition?: TransitionPresetName | TransitionPreset;
-  
+
   /**
    * Ob das Element beim ersten Rendern animiert werden soll
    */
   appear?: boolean;
-  
+
   /**
    * Ob das Element erst beim Einblenden in den DOM eingefügt werden soll
    */
   mountOnEnter?: boolean;
-  
+
   /**
    * Ob das Element nach dem Ausblenden aus dem DOM entfernt werden soll
    */
   unmountOnExit?: boolean;
-  
+
   /**
    * Callback, wenn das Element vollständig eingeblendet ist
    */
   onEntered?: () => void;
-  
+
   /**
    * Callback, wenn das Element vollständig ausgeblendet ist
    */
   onExited?: () => void;
-  
+
   /**
    * Die Kinder der Komponente
    */
   children: React.ReactNode;
-  
+
   /**
    * Zusätzliche CSS-Klassen
    */
   className?: string;
-  
+
   /**
    * Zusätzliche CSS-Eigenschaften
    */
@@ -84,11 +84,11 @@ export const Slide: React.FC<SlideProps> = ({
   style,
 }) => {
   const nodeRef = useRef<HTMLDivElement>(null);
-  
+
   // Transformations-Werte basierend auf der Richtung
   const getTransformValue = (state: 'entering' | 'entered' | 'exiting' | 'exited'): string => {
     const isEntering = state === 'entering' || state === 'entered';
-    
+
     switch (direction) {
       case 'up':
         return `translateY(${isEntering ? '0' : '100%'})`;
@@ -102,8 +102,13 @@ export const Slide: React.FC<SlideProps> = ({
         return 'none';
     }
   };
-  
-  const { state, isVisible, ref, style: transitionStyle } = useTransition({
+
+  const {
+    state,
+    isVisible,
+    ref,
+    style: transitionStyle,
+  } = useTransition({
     in: inProp,
     timeout,
     transition,
@@ -113,17 +118,17 @@ export const Slide: React.FC<SlideProps> = ({
     onEntered,
     onExited,
   });
-  
+
   if (!isVisible && unmountOnExit) {
     return null;
   }
-  
+
   const slideStyle: React.CSSProperties = {
     ...transitionStyle,
     transform: getTransformValue(state),
     overflow: 'hidden',
   };
-  
+
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {
     return React.cloneElement(children, {
@@ -133,11 +138,13 @@ export const Slide: React.FC<SlideProps> = ({
         ...style,
         ...(children.props.style || {}),
       },
-      className: className ? `${className} ${children.props.className || ''}` : children.props.className,
+      className: className
+        ? `${className} ${children.props.className || ''}`
+        : children.props.className,
       'data-state': state,
     } as any);
   }
-  
+
   // Ansonsten wrappen wir die Kinder in einem div
   return (
     <div

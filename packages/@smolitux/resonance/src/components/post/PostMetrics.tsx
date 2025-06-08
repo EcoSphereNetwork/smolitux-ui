@@ -53,7 +53,7 @@ export const PostMetrics: React.FC<PostMetricsProps> = ({
   style,
 }) => {
   // Konvertiere die Metriken in das Format der EngagementScore-Komponente
-  const formattedMetrics = metrics.map(metric => ({
+  const formattedMetrics = metrics.map((metric) => ({
     name: metric.name,
     value: metric.value,
     weight: 1 / metrics.length, // Gleichmäßige Gewichtung

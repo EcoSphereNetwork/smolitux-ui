@@ -12,7 +12,7 @@ export const keyframes = {
     from: { opacity: 1 },
     to: { opacity: 0 },
   },
-  
+
   // Slide Animationen
   slideInRight: {
     from: { transform: 'translateX(100%)' },
@@ -46,7 +46,7 @@ export const keyframes = {
     from: { transform: 'translateY(0)' },
     to: { transform: 'translateY(100%)' },
   },
-  
+
   // Scale Animationen
   zoomIn: {
     from: { transform: 'scale(0.5)', opacity: 0 },
@@ -56,7 +56,7 @@ export const keyframes = {
     from: { transform: 'scale(1)', opacity: 1 },
     to: { transform: 'scale(0.5)', opacity: 0 },
   },
-  
+
   // Rotate Animationen
   rotateIn: {
     from: { transform: 'rotate(-90deg)', opacity: 0 },
@@ -66,7 +66,7 @@ export const keyframes = {
     from: { transform: 'rotate(0)', opacity: 1 },
     to: { transform: 'rotate(90deg)', opacity: 0 },
   },
-  
+
   // Bounce Animationen
   bounceIn: {
     '0%': { transform: 'scale(0.3)', opacity: 0 },
@@ -80,7 +80,7 @@ export const keyframes = {
     '50%': { transform: 'scale(1.05)', opacity: 0.5 },
     '100%': { transform: 'scale(0.3)', opacity: 0 },
   },
-  
+
   // Flip Animationen
   flipInX: {
     '0%': { transform: 'perspective(400px) rotateX(90deg)', opacity: 0 },
@@ -104,7 +104,7 @@ export const keyframes = {
     '30%': { transform: 'perspective(400px) rotateY(-10deg)', opacity: 0.7 },
     '100%': { transform: 'perspective(400px) rotateY(90deg)', opacity: 0 },
   },
-  
+
   // Spezielle Animationen
   pulse: {
     '0%': { transform: 'scale(1)' },
@@ -130,7 +130,7 @@ export const keyframes = {
     '40%, 60%, 80%': { transform: 'scale(1.1) rotate(-3deg)' },
     '100%': { transform: 'scale(1) rotate(0)' },
   },
-  
+
   // Loader Animationen
   spin: {
     '0%': { transform: 'rotate(0deg)' },

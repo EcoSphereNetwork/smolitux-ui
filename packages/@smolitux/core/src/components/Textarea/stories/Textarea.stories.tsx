@@ -126,7 +126,11 @@ export const States: Story = {
     <div className="flex flex-col space-y-4 w-80">
       <Textarea placeholder="Standard" />
       <Textarea placeholder="Disabled" disabled />
-      <Textarea placeholder="Read Only" readOnly defaultValue="Dieser Text kann nicht geändert werden" />
+      <Textarea
+        placeholder="Read Only"
+        readOnly
+        defaultValue="Dieser Text kann nicht geändert werden"
+      />
       <Textarea placeholder="Invalid" isInvalid />
       <Textarea placeholder="Required" isRequired />
     </div>
@@ -177,7 +181,7 @@ export const WithMaxLength: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     const maxLength = 100;
-    
+
     return (
       <div className="flex flex-col space-y-2 w-80">
         <Textarea
@@ -199,13 +203,13 @@ export const WithValidation: Story = {
     const [value, setValue] = React.useState('');
     const [isValid, setIsValid] = React.useState(true);
     const minLength = 10;
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const newValue = e.target.value;
       setValue(newValue);
       setIsValid(newValue.length >= minLength || newValue.length === 0);
     };
-    
+
     return (
       <div className="flex flex-col space-y-2 w-80">
         <Textarea
@@ -227,7 +231,7 @@ export const WithValidation: Story = {
 export const Controlled: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
-    
+
     return (
       <div className="flex flex-col space-y-4 w-80">
         <Textarea
@@ -237,9 +241,7 @@ export const Controlled: Story = {
         />
         <div>
           <div className="font-medium mb-1">Aktueller Wert:</div>
-          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded">
-            {value || '(leer)'}
-          </div>
+          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded">{value || '(leer)'}</div>
         </div>
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -256,14 +258,14 @@ export const AutoResize: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-    
+
     React.useEffect(() => {
       if (textareaRef.current) {
         textareaRef.current.style.height = 'auto';
         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
       }
     }, [value]);
-    
+
     return (
       <div className="flex flex-col space-y-4 w-80">
         <div className="font-medium mb-1">Auto-resize Textarea:</div>

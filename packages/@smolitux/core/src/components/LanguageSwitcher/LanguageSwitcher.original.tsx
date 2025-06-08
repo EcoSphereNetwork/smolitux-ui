@@ -8,52 +8,52 @@ export type LanguageSwitcherProps = {
    * Die Variante des Sprachumschalters
    */
   variant?: 'dropdown' | 'select' | 'buttons' | 'flags' | 'minimal';
-  
+
   /**
    * Die Größe des Sprachumschalters
    */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  
+
   /**
    * Die Sprachen, die angezeigt werden sollen
    */
   locales?: Locale[];
-  
+
   /**
    * Ob der Name der Sprache angezeigt werden soll
    */
   showName?: boolean;
-  
+
   /**
    * Ob der Code der Sprache angezeigt werden soll
    */
   showCode?: boolean;
-  
+
   /**
    * Ob die Flagge der Sprache angezeigt werden soll
    */
   showFlag?: boolean;
-  
+
   /**
    * Ob die aktuelle Sprache hervorgehoben werden soll
    */
   highlightCurrent?: boolean;
-  
+
   /**
    * Ob der Sprachumschalter deaktiviert sein soll
    */
   disabled?: boolean;
-  
+
   /**
    * Callback, wenn die Sprache geändert wird
    */
   onChange?: (locale: Locale) => void;
-  
+
   /**
    * Zusätzliche CSS-Klassen
    */
   className?: string;
-  
+
   /**
    * Zusätzliche CSS-Eigenschaften
    */
@@ -78,10 +78,10 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
 }) => {
   const { locale: currentLocale, supportedLocales, changeLocale } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
-  
+
   // Verwende die übergebenen Sprachen oder die unterstützten Sprachen
   const availableLocales = locales || supportedLocales;
-  
+
   // Ändere die Sprache
   const handleLocaleChange = (locale: Locale) => {
     if (locale !== currentLocale && !disabled) {
@@ -90,7 +90,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       setIsOpen(false);
     }
   };
-  
+
   // Schließe das Dropdown, wenn außerhalb geklickt wird
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -98,14 +98,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         setIsOpen(false);
       }
     };
-    
+
     document.addEventListener('click', handleClickOutside);
-    
+
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [isOpen]);
-  
+
   // Größenklassen
   const sizeClasses = {
     xs: 'text-xs',
@@ -114,16 +114,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     lg: 'text-lg',
     xl: 'text-xl',
   };
-  
+
   // Flaggen-Komponente
   const Flag = ({ locale }: { locale: Locale }) => {
-    return (
-      <span className="language-switcher-flag mr-2">
-        {locale.toUpperCase()}
-      </span>
-    );
+    return <span className="language-switcher-flag mr-2">{locale.toUpperCase()}</span>;
   };
-  
+
   // Rendere den Sprachumschalter basierend auf der Variante
   const renderSwitcher = () => {
     switch (variant) {
@@ -132,14 +128,22 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           <div className="language-switcher-dropdown relative">
             <button
               className={`language-switcher-dropdown-button flex items-center justify-between px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 ${
-                disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600'
+                disabled
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600'
               } ${sizeClasses[size]}`}
               onClick={() => !disabled && setIsOpen(!isOpen)}
               disabled={disabled}
             >
               {showFlag && <Flag locale={currentLocale} />}
-              {showName && <span className="language-switcher-name">{LOCALE_NAMES[currentLocale]}</span>}
-              {showCode && <span className="language-switcher-code ml-1 text-gray-500">({LOCALE_CODES[currentLocale]})</span>}
+              {showName && (
+                <span className="language-switcher-name">{LOCALE_NAMES[currentLocale]}</span>
+              )}
+              {showCode && (
+                <span className="language-switcher-code ml-1 text-gray-500">
+                  ({LOCALE_CODES[currentLocale]})
+                </span>
+              )}
               <span className="language-switcher-arrow ml-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -148,11 +152,16 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </span>
             </button>
-            
+
             {isOpen && (
               <div className="language-switcher-dropdown-menu absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg">
                 {availableLocales.map((locale) => (
@@ -166,15 +175,21 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                     onClick={() => handleLocaleChange(locale)}
                   >
                     {showFlag && <Flag locale={locale} />}
-                    {showName && <span className="language-switcher-name">{LOCALE_NAMES[locale]}</span>}
-                    {showCode && <span className="language-switcher-code ml-1 text-gray-500">({LOCALE_CODES[locale]})</span>}
+                    {showName && (
+                      <span className="language-switcher-name">{LOCALE_NAMES[locale]}</span>
+                    )}
+                    {showCode && (
+                      <span className="language-switcher-code ml-1 text-gray-500">
+                        ({LOCALE_CODES[locale]})
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>
             )}
           </div>
         );
-        
+
       case 'select':
         return (
           <select
@@ -194,7 +209,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             ))}
           </select>
         );
-        
+
       case 'buttons':
         return (
           <div className="language-switcher-buttons flex space-x-2">
@@ -211,12 +226,16 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
               >
                 {showFlag && <Flag locale={locale} />}
                 {showName && <span className="language-switcher-name">{LOCALE_NAMES[locale]}</span>}
-                {showCode && <span className="language-switcher-code ml-1 text-gray-500">({LOCALE_CODES[locale]})</span>}
+                {showCode && (
+                  <span className="language-switcher-code ml-1 text-gray-500">
+                    ({LOCALE_CODES[locale]})
+                  </span>
+                )}
               </button>
             ))}
           </div>
         );
-        
+
       case 'flags':
         return (
           <div className="language-switcher-flags flex space-x-2">
@@ -237,7 +256,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             ))}
           </div>
         );
-        
+
       case 'minimal':
         return (
           <div className="language-switcher-minimal flex">
@@ -257,12 +276,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             ))}
           </div>
         );
-        
+
       default:
         return null;
     }
   };
-  
+
   return (
     <div
       className={`language-switcher language-switcher-${variant} ${className}`}

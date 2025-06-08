@@ -82,7 +82,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
 }) => {
   const [following, setFollowing] = useState(isFollowing);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // Datum formatieren
   const formatDate = (date: Date): string => {
     return new Intl.DateTimeFormat('de-DE', {
@@ -91,18 +91,18 @@ export const UserProfile: React.FC<UserProfileProps> = ({
       day: 'numeric',
     }).format(date);
   };
-  
+
   // Wallet-Adresse formatieren
   const formatWalletAddress = (address: string): string => {
     return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
   };
-  
+
   // Folgen/Entfolgen
   const handleFollow = async () => {
     if (!onFollow) return;
-    
+
     setIsLoading(true);
-    
+
     try {
       await onFollow(userId, !following);
       setFollowing(!following);
@@ -112,7 +112,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden ${className}`}>
       {/* Cover-Bild */}
@@ -126,16 +126,12 @@ export const UserProfile: React.FC<UserProfileProps> = ({
         ) : (
           <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-600" />
         )}
-        
+
         {/* Avatar */}
         <div className="absolute -bottom-16 left-6">
           <div className="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 overflow-hidden bg-gray-200 dark:bg-gray-700">
             {avatarUrl ? (
-              <img
-                src={avatarUrl}
-                alt={displayName}
-                className="w-full h-full object-cover"
-              />
+              <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400 text-4xl font-bold">
                 {displayName.charAt(0).toUpperCase()}
@@ -143,7 +139,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
             )}
           </div>
         </div>
-        
+
         {/* Aktionen */}
         <div className="absolute top-4 right-4 flex space-x-2">
           {isCurrentUser ? (
@@ -165,19 +161,15 @@ export const UserProfile: React.FC<UserProfileProps> = ({
           )}
         </div>
       </div>
-      
+
       {/* Profilinformationen */}
       <div className="pt-20 px-6 pb-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {displayName}
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              @{username}
-            </p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{displayName}</h1>
+            <p className="text-gray-600 dark:text-gray-400">@{username}</p>
           </div>
-          
+
           <div className="mt-4 md:mt-0 flex items-center text-sm text-gray-500 dark:text-gray-400">
             <span>Mitglied seit {formatDate(joinDate)}</span>
             {walletAddress && (
@@ -201,64 +193,42 @@ export const UserProfile: React.FC<UserProfileProps> = ({
             )}
           </div>
         </div>
-        
+
         {/* Biografie */}
         {bio && (
           <div className="mt-6">
-            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
-              {bio}
-            </p>
+            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">{bio}</p>
           </div>
         )}
-        
+
         {/* Statistiken */}
         <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-4">
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.followers}
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Follower
-            </p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.followers}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Follower</p>
           </div>
-          
+
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.following}
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Folgt
-            </p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.following}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Folgt</p>
           </div>
-          
+
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.contentCount}
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Inhalte
-            </p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.contentCount}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Inhalte</p>
           </div>
-          
+
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.totalLikes}
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Likes
-            </p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalLikes}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Likes</p>
           </div>
-          
+
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.totalViews}
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Aufrufe
-            </p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalViews}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Aufrufe</p>
           </div>
         </div>
-        
+
         {/* Soziale Links */}
         {socialLinks && Object.keys(socialLinks).length > 0 && (
           <div className="mt-6 flex flex-wrap gap-2">
@@ -275,7 +245,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
                 </svg>
               </a>
             )}
-            
+
             {socialLinks.instagram && (
               <a
                 href={socialLinks.instagram}
@@ -289,7 +259,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
                 </svg>
               </a>
             )}
-            
+
             {socialLinks.youtube && (
               <a
                 href={socialLinks.youtube}
@@ -303,7 +273,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
                 </svg>
               </a>
             )}
-            
+
             {socialLinks.website && (
               <a
                 href={socialLinks.website}
@@ -312,8 +282,19 @@ export const UserProfile: React.FC<UserProfileProps> = ({
                 className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 aria-label="Website"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                  />
                 </svg>
               </a>
             )}

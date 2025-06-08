@@ -10,24 +10,24 @@ describe('Form', () => {
         <button type="submit">Submit</button>
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toBeInTheDocument();
     expect(form.tagName).toBe('FORM');
   });
 
   it('calls onSubmit when form is submitted', () => {
-    const handleSubmit = jest.fn(e => e.preventDefault());
+    const handleSubmit = jest.fn((e) => e.preventDefault());
     render(
       <Form onSubmit={handleSubmit}>
         <input type="text" name="username" />
         <button type="submit">Submit</button>
       </Form>
     );
-    
+
     const submitButton = screen.getByRole('button', { name: /submit/i });
     fireEvent.click(submitButton);
-    
+
     expect(handleSubmit).toHaveBeenCalledTimes(1);
   });
 
@@ -39,10 +39,10 @@ describe('Form', () => {
         <button type="submit">Submit</button>
       </Form>
     );
-    
+
     const submitButton = screen.getByRole('button', { name: /submit/i });
     fireEvent.click(submitButton);
-    
+
     expect(handleSubmit).toHaveBeenCalledTimes(1);
   });
 
@@ -52,7 +52,7 @@ describe('Form', () => {
         <input type="text" name="username" />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveClass('custom-form');
   });
@@ -63,7 +63,7 @@ describe('Form', () => {
         <input type="text" name="username" />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveStyle('background-color: lightgray');
   });
@@ -74,7 +74,7 @@ describe('Form', () => {
         <input type="email" name="email" required />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveAttribute('novalidate');
   });
@@ -85,7 +85,7 @@ describe('Form', () => {
         <input type="text" name="username" />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveAttribute('autocomplete', 'off');
   });
@@ -96,7 +96,7 @@ describe('Form', () => {
         <input type="file" name="file" />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveAttribute('enctype', 'multipart/form-data');
   });
@@ -107,7 +107,7 @@ describe('Form', () => {
         <input type="text" name="username" />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveAttribute('method', 'post');
   });
@@ -118,7 +118,7 @@ describe('Form', () => {
         <input type="text" name="username" />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveAttribute('action', '/submit');
   });
@@ -129,7 +129,7 @@ describe('Form', () => {
         <input type="text" name="username" />
       </Form>
     );
-    
+
     const form = screen.getByTestId('form');
     expect(form).toHaveAttribute('target', '_blank');
   });
@@ -142,10 +142,10 @@ describe('Form', () => {
         <button type="reset">Reset</button>
       </Form>
     );
-    
+
     const resetButton = screen.getByRole('button', { name: /reset/i });
     fireEvent.click(resetButton);
-    
+
     expect(handleReset).toHaveBeenCalledTimes(1);
   });
 });

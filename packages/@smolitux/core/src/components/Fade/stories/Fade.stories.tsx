@@ -17,11 +17,13 @@ const meta: Meta<typeof Fade> = {
     },
     unmountOnExit: {
       control: 'boolean',
-      description: 'Gibt an, ob das Element aus dem DOM entfernt werden soll, wenn es ausgeblendet ist',
+      description:
+        'Gibt an, ob das Element aus dem DOM entfernt werden soll, wenn es ausgeblendet ist',
     },
     mountOnEnter: {
       control: 'boolean',
-      description: 'Gibt an, ob das Element erst in das DOM eingefügt werden soll, wenn es eingeblendet wird',
+      description:
+        'Gibt an, ob das Element erst in das DOM eingefügt werden soll, wenn es eingeblendet wird',
     },
     timeout: {
       control: 'number',
@@ -67,19 +69,17 @@ type Story = StoryObj<typeof Fade>;
 export const Basic: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <Fade in={isVisible}>
           <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
             <h3 className="text-lg font-medium mb-2">Fade-Animation</h3>
-            <p>
-              Dieser Inhalt wird mit einer Fade-Animation ein- und ausgeblendet.
-            </p>
+            <p>Dieser Inhalt wird mit einer Fade-Animation ein- und ausgeblendet.</p>
           </div>
         </Fade>
       </div>
@@ -90,18 +90,19 @@ export const Basic: Story = {
 export const WithCustomDuration: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <Fade in={isVisible} timeout={2000}>
           <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
             <h3 className="text-lg font-medium mb-2">Langsame Fade-Animation</h3>
             <p>
-              Dieser Inhalt wird mit einer langsameren Fade-Animation (2 Sekunden) ein- und ausgeblendet.
+              Dieser Inhalt wird mit einer langsameren Fade-Animation (2 Sekunden) ein- und
+              ausgeblendet.
             </p>
           </div>
         </Fade>
@@ -113,20 +114,20 @@ export const WithCustomDuration: Story = {
 export const WithUnmountOnExit: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Fade in={isVisible} unmountOnExit>
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Unmount bei Exit</h3>
               <p>
-                Dieser Inhalt wird aus dem DOM entfernt, wenn er ausgeblendet ist.
-                Der umgebende Rahmen bleibt sichtbar.
+                Dieser Inhalt wird aus dem DOM entfernt, wenn er ausgeblendet ist. Der umgebende
+                Rahmen bleibt sichtbar.
               </p>
             </div>
           </Fade>
@@ -139,20 +140,20 @@ export const WithUnmountOnExit: Story = {
 export const WithMountOnEnter: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(false);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Fade in={isVisible} mountOnEnter>
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Mount bei Enter</h3>
               <p>
-                Dieser Inhalt wird erst in das DOM eingefügt, wenn er eingeblendet wird.
-                Anfangs ist er nicht im DOM vorhanden.
+                Dieser Inhalt wird erst in das DOM eingefügt, wenn er eingeblendet wird. Anfangs ist
+                er nicht im DOM vorhanden.
               </p>
             </div>
           </Fade>
@@ -166,23 +167,21 @@ export const WithCallbacks: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
     const [status, setStatus] = React.useState('Sichtbar');
-    
+
     const handleEnter = () => setStatus('Wird eingeblendet...');
     const handleEntered = () => setStatus('Sichtbar');
     const handleExit = () => setStatus('Wird ausgeblendet...');
     const handleExited = () => setStatus('Unsichtbar');
-    
+
     return (
       <div className="space-y-4">
         <div className="flex justify-between items-center">
           <Button onClick={() => setIsVisible(!isVisible)}>
             {isVisible ? 'Ausblenden' : 'Einblenden'}
           </Button>
-          <div className="ml-4 p-2 bg-gray-100 dark:bg-gray-800 rounded">
-            Status: {status}
-          </div>
+          <div className="ml-4 p-2 bg-gray-100 dark:bg-gray-800 rounded">Status: {status}</div>
         </div>
-        
+
         <Fade
           in={isVisible}
           onEnter={handleEnter}
@@ -192,9 +191,7 @@ export const WithCallbacks: Story = {
         >
           <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
             <h3 className="text-lg font-medium mb-2">Mit Callbacks</h3>
-            <p>
-              Dieser Inhalt verwendet Callbacks, um den Status der Animation anzuzeigen.
-            </p>
+            <p>Dieser Inhalt verwendet Callbacks, um den Status der Animation anzuzeigen.</p>
           </div>
         </Fade>
       </div>
@@ -205,13 +202,13 @@ export const WithCallbacks: Story = {
 export const MultipleElements: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="grid grid-cols-2 gap-4">
           <Fade in={isVisible} timeout={500}>
             <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-md">
@@ -219,21 +216,21 @@ export const MultipleElements: Story = {
               <p>Schnelle Animation (500ms)</p>
             </div>
           </Fade>
-          
+
           <Fade in={isVisible} timeout={1000}>
             <div className="p-4 bg-green-100 dark:bg-green-900 rounded-md">
               <h3 className="text-md font-medium mb-2">Element 2</h3>
               <p>Mittlere Animation (1000ms)</p>
             </div>
           </Fade>
-          
+
           <Fade in={isVisible} timeout={1500}>
             <div className="p-4 bg-yellow-100 dark:bg-yellow-900 rounded-md">
               <h3 className="text-md font-medium mb-2">Element 3</h3>
               <p>Langsame Animation (1500ms)</p>
             </div>
           </Fade>
-          
+
           <Fade in={isVisible} timeout={2000}>
             <div className="p-4 bg-red-100 dark:bg-red-900 rounded-md">
               <h3 className="text-md font-medium mb-2">Element 4</h3>
@@ -253,8 +250,8 @@ export const WithInitialAnimation: Story = {
         <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
           <h3 className="text-lg font-medium mb-2">Initiale Animation</h3>
           <p>
-            Dieser Inhalt wird mit einer Fade-Animation eingeblendet, wenn die Komponente
-            zum ersten Mal gerendert wird.
+            Dieser Inhalt wird mit einer Fade-Animation eingeblendet, wenn die Komponente zum ersten
+            Mal gerendert wird.
           </p>
         </div>
       </Fade>
@@ -265,7 +262,7 @@ export const WithInitialAnimation: Story = {
 export const WithCustomStyling: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button
@@ -274,7 +271,7 @@ export const WithCustomStyling: Story = {
         >
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <Fade in={isVisible}>
           <div className="p-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-md shadow-lg">
             <h3 className="text-lg font-bold mb-2">Benutzerdefiniertes Styling</h3>
@@ -294,20 +291,24 @@ export const WithCustomStyling: Story = {
 export const SequentialFades: Story = {
   render: () => {
     const [step, setStep] = React.useState(0);
-    
+
     const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
     const prevStep = () => setStep((prev) => Math.max(prev - 1, 0));
-    
+
     return (
       <div className="space-y-6">
         <div className="flex justify-between">
-          <Button onClick={prevStep} disabled={step === 0}>Zurück</Button>
+          <Button onClick={prevStep} disabled={step === 0}>
+            Zurück
+          </Button>
           <div className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded">
             Schritt {step + 1} von 4
           </div>
-          <Button onClick={nextStep} disabled={step === 3}>Weiter</Button>
+          <Button onClick={nextStep} disabled={step === 3}>
+            Weiter
+          </Button>
         </div>
-        
+
         <div className="border border-gray-300 dark:border-gray-600 rounded-md p-6">
           <Fade in={step >= 0} unmountOnExit>
             <div className="mb-4">
@@ -315,21 +316,21 @@ export const SequentialFades: Story = {
               <p>Dies ist der erste Schritt einer sequentiellen Fade-Animation.</p>
             </div>
           </Fade>
-          
+
           <Fade in={step >= 1} unmountOnExit>
             <div className="mb-4">
               <h3 className="text-lg font-medium mb-2">Schritt 2: Details</h3>
               <p>Im zweiten Schritt werden weitere Details angezeigt.</p>
             </div>
           </Fade>
-          
+
           <Fade in={step >= 2} unmountOnExit>
             <div className="mb-4">
               <h3 className="text-lg font-medium mb-2">Schritt 3: Optionen</h3>
               <p>Der dritte Schritt zeigt verschiedene Optionen an.</p>
             </div>
           </Fade>
-          
+
           <Fade in={step >= 3} unmountOnExit>
             <div>
               <h3 className="text-lg font-medium mb-2">Schritt 4: Abschluss</h3>

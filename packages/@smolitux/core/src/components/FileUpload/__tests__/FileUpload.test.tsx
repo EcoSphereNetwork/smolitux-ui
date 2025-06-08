@@ -28,38 +28,40 @@ describe('FileUpload', () => {
 
   it('renders correctly with default props', () => {
     render(<FileUpload />);
-    
-    expect(screen.getByText('Dateien hierher ziehen oder klicken zum Auswählen')).toBeInTheDocument();
+
+    expect(
+      screen.getByText('Dateien hierher ziehen oder klicken zum Auswählen')
+    ).toBeInTheDocument();
     expect(screen.getByTestId('file-upload-input')).toBeInTheDocument();
   });
 
   it('renders with custom dropzone text', () => {
     render(<FileUpload dropzoneText="Custom dropzone text" />);
-    
+
     expect(screen.getByText('Custom dropzone text')).toBeInTheDocument();
   });
 
   it('renders with label', () => {
     render(<FileUpload label="Upload Files" />);
-    
+
     expect(screen.getByText('Upload Files')).toBeInTheDocument();
   });
 
   it('renders with helper text', () => {
     render(<FileUpload helperText="Max file size: 5MB" />);
-    
+
     expect(screen.getByText('Max file size: 5MB')).toBeInTheDocument();
   });
 
   it('renders with error message', () => {
     render(<FileUpload error="File too large" />);
-    
+
     expect(screen.getByText('File too large')).toBeInTheDocument();
   });
 
   it('renders in disabled state', () => {
     render(<FileUpload disabled />);
-    
+
     const input = screen.getByTestId('file-upload-input');
     expect(input).toBeDisabled();
   });
@@ -67,16 +69,16 @@ describe('FileUpload', () => {
   it('calls onChange when files are selected', async () => {
     const handleChange = jest.fn();
     render(<FileUpload onChange={handleChange} />);
-    
+
     const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
     const input = screen.getByTestId('file-upload-input');
-    
+
     Object.defineProperty(input, 'files', {
       value: [file],
     });
-    
+
     fireEvent.change(input);
-    
+
     await waitFor(() => {
       expect(handleChange).toHaveBeenCalled();
       const fileInfo = handleChange.mock.calls[0][0][0];
@@ -91,22 +93,22 @@ describe('FileUpload', () => {
     const handleChange = jest.fn();
     const onUploadError = jest.fn();
     render(
-      <FileUpload 
-        onChange={handleChange} 
+      <FileUpload
+        onChange={handleChange}
         maxSize={5} // 5 bytes
         onUploadError={onUploadError}
       />
     );
-    
+
     const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
     const input = screen.getByTestId('file-upload-input');
-    
+
     Object.defineProperty(input, 'files', {
       value: [file],
     });
-    
+
     fireEvent.change(input);
-    
+
     await waitFor(() => {
       expect(onUploadError).toHaveBeenCalled();
       // In der verbesserten Version wird onChange auch aufgerufen, aber mit leeren Dateien
@@ -117,17 +119,17 @@ describe('FileUpload', () => {
   it('handles multiple file selection', async () => {
     const handleChange = jest.fn();
     render(<FileUpload multiple onChange={handleChange} />);
-    
+
     const file1 = new File(['test content 1'], 'test1.txt', { type: 'text/plain' });
     const file2 = new File(['test content 2'], 'test2.txt', { type: 'text/plain' });
     const input = screen.getByTestId('file-upload-input');
-    
+
     Object.defineProperty(input, 'files', {
       value: [file1, file2],
     });
-    
+
     fireEvent.change(input);
-    
+
     await waitFor(() => {
       expect(handleChange).toHaveBeenCalled();
       const files = handleChange.mock.calls[0][0];
@@ -141,24 +143,19 @@ describe('FileUpload', () => {
     const handleChange = jest.fn();
     const onUploadError = jest.fn();
     render(
-      <FileUpload 
-        multiple 
-        maxFiles={1} 
-        onChange={handleChange}
-        onUploadError={onUploadError}
-      />
+      <FileUpload multiple maxFiles={1} onChange={handleChange} onUploadError={onUploadError} />
     );
-    
+
     const file1 = new File(['test content 1'], 'test1.txt', { type: 'text/plain' });
     const file2 = new File(['test content 2'], 'test2.txt', { type: 'text/plain' });
     const input = screen.getByTestId('file-upload-input');
-    
+
     Object.defineProperty(input, 'files', {
       value: [file1, file2],
     });
-    
+
     fireEvent.change(input);
-    
+
     await waitFor(() => {
       expect(onUploadError).toHaveBeenCalled();
       expect(handleChange).not.toHaveBeenCalled();
@@ -168,10 +165,10 @@ describe('FileUpload', () => {
   it('handles drag and drop', async () => {
     const handleChange = jest.fn();
     render(<FileUpload onChange={handleChange} />);
-    
+
     const dropzone = screen.getByTestId('file-upload-dropzone');
     const file = new File(['test content'], 'test.txt', { type: 'text/plain' });
-    
+
     // Mock dataTransfer
     const dataTransfer = {
       files: [file],
@@ -179,42 +176,42 @@ describe('FileUpload', () => {
         {
           kind: 'file',
           type: file.type,
-          getAsFile: () => file
-        }
+          getAsFile: () => file,
+        },
       ],
-      types: ['Files']
+      types: ['Files'],
     };
-    
+
     // Trigger drag events
     fireEvent.dragEnter(dropzone, { dataTransfer });
     expect(dropzone).toHaveClass('border-primary-500');
-    
+
     fireEvent.dragOver(dropzone, { dataTransfer });
-    
+
     fireEvent.drop(dropzone, { dataTransfer });
-    
+
     await waitFor(() => {
       expect(handleChange).toHaveBeenCalled();
       const fileInfo = handleChange.mock.calls[0][0][0];
       expect(fileInfo.name).toBe('test.txt');
     });
-    
+
     expect(dropzone).not.toHaveClass('border-primary-500');
   });
 
   it('displays file preview for images', async () => {
     const handleChange = jest.fn();
     render(<FileUpload showPreview={true} onChange={handleChange} />);
-    
+
     const file = new File(['test content'], 'test.jpg', { type: 'image/jpeg' });
     const input = screen.getByTestId('file-upload-input');
-    
+
     Object.defineProperty(input, 'files', {
       value: [file],
     });
-    
+
     fireEvent.change(input);
-    
+
     await waitFor(() => {
       expect(handleChange).toHaveBeenCalled();
       expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
@@ -223,7 +220,7 @@ describe('FileUpload', () => {
 
   it('renders with custom className', () => {
     render(<FileUpload className="custom-file-upload" />);
-    
+
     const container = screen.getByTestId('file-upload-container');
     expect(container).toHaveClass('custom-file-upload');
   });
@@ -231,7 +228,7 @@ describe('FileUpload', () => {
   it('forwards ref to input element', () => {
     const ref = React.createRef<HTMLInputElement>();
     render(<FileUpload ref={ref} />);
-    
+
     expect(ref.current).not.toBeNull();
     expect(ref.current?.tagName).toBe('INPUT');
   });

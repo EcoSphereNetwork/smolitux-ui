@@ -70,29 +70,29 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   layout = 'vertical',
   disabled = false,
   className = '',
-  children
+  children,
 }) => {
   // Generiere eine eindeutige ID für die Gruppe
   const groupId = `radio-group-${Math.random().toString(36).substring(2, 9)}`;
-  
+
   // State für uncontrolled mode
   const [internalValue, setInternalValue] = React.useState(defaultValue);
-  
+
   // Aktueller Wert (controlled oder uncontrolled)
   const currentValue = value !== undefined ? value : internalValue;
-  
+
   // Handler für Änderungen
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Wenn das Radio disabled ist, nichts tun
     if (e.target.disabled) {
       return;
     }
-    
+
     // Für uncontrolled mode
     if (value === undefined) {
       setInternalValue(e.target.value);
     }
-    
+
     // Callback aufrufen
     if (onChange) {
       onChange(e.target.value);
@@ -110,7 +110,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
           checked: currentValue === child.props.value,
           onChange: handleChange,
           size,
-          disabled: disabled || child.props.disabled
+          disabled: disabled || child.props.disabled,
         });
       }
       return child;
@@ -124,7 +124,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     onChange: (value: string) => {
       // Adapter-Funktion, die einen String-Wert akzeptiert
       const syntheticEvent = {
-        target: { value }
+        target: { value },
       } as React.ChangeEvent<HTMLInputElement>;
       handleChange(syntheticEvent);
     },
@@ -133,57 +133,58 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     error,
     isInvalid: Boolean(error),
     size,
-    getRadioId: (val: string) => `${groupId}-${val}`
+    getRadioId: (val: string) => `${groupId}-${val}`,
   };
 
   return (
     <RadioGroupContext.Provider value={contextValue}>
-      <div 
+      <div
         className={`${className}`}
         role="radiogroup"
         aria-labelledby={label ? `${groupId}-label` : undefined}
-        aria-describedby={
-          error ? `${groupId}-error` : 
-          helperText ? `${groupId}-helper` : 
-          undefined
-        }
+        aria-describedby={error ? `${groupId}-error` : helperText ? `${groupId}-helper` : undefined}
       >
-      {label && (
-        <div id={`${groupId}-label`} className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-          {label}
+        {label && (
+          <div
+            id={`${groupId}-label`}
+            className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            {label}
+          </div>
+        )}
+
+        <div className={`${layout === 'horizontal' ? 'flex flex-row' : 'flex flex-col'} gap-2`}>
+          {options
+            ? options.map((option) => (
+                <Radio
+                  key={option.value}
+                  id={`${groupId}-${option.value}`}
+                  name={name}
+                  value={option.value}
+                  checked={value === option.value || defaultValue === option.value}
+                  onChange={handleChange}
+                  label={option.label}
+                  size={size}
+                  disabled={disabled || option.disabled}
+                />
+              ))
+            : renderChildren()}
         </div>
-      )}
-      
-      <div className={`${layout === 'horizontal' ? 'flex flex-row' : 'flex flex-col'} gap-2`}>
-        {options ? options.map((option) => (
-          <Radio
-            key={option.value}
-            id={`${groupId}-${option.value}`}
-            name={name}
-            value={option.value}
-            checked={value === option.value || defaultValue === option.value}
-            onChange={handleChange}
-            label={option.label}
-            size={size}
-            disabled={disabled || option.disabled}
-          />
-        )) : renderChildren()}
+
+        {(error || helperText) && (
+          <div className="mt-1 text-sm">
+            {error ? (
+              <p id={`${groupId}-error`} className="text-red-600 dark:text-red-400">
+                {error}
+              </p>
+            ) : helperText ? (
+              <p id={`${groupId}-helper`} className="text-gray-500 dark:text-gray-400">
+                {helperText}
+              </p>
+            ) : null}
+          </div>
+        )}
       </div>
-      
-      {(error || helperText) && (
-        <div className="mt-1 text-sm">
-          {error ? (
-            <p id={`${groupId}-error`} className="text-red-600 dark:text-red-400">
-              {error}
-            </p>
-          ) : helperText ? (
-            <p id={`${groupId}-helper`} className="text-gray-500 dark:text-gray-400">
-              {helperText}
-            </p>
-          ) : null}
-        </div>
-      )}
-    </div>
     </RadioGroupContext.Provider>
   );
 };

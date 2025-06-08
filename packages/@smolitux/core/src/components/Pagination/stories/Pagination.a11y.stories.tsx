@@ -9,9 +9,10 @@ const meta: Meta<typeof Pagination.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version der Pagination-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version der Pagination-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     pageCount: { control: 'number' },
@@ -25,14 +26,14 @@ const meta: Meta<typeof Pagination.A11y> = {
     disabled: { control: 'boolean' },
     size: {
       control: { type: 'select' },
-      options: ['sm', 'md', 'lg']
+      options: ['sm', 'md', 'lg'],
     },
     variant: {
       control: { type: 'select' },
-      options: ['default', 'rounded', 'outline', 'minimal']
+      options: ['default', 'rounded', 'outline', 'minimal'],
     },
-    description: { control: 'text' }
-  }
+    description: { control: 'text' },
+  },
 };
 
 export default meta;
@@ -47,8 +48,8 @@ export const Default: Story = {
     showFirstLast: true,
     showPrevNext: true,
     showPageCount: true,
-    description: 'Navigieren Sie durch die Ergebnisse'
-  }
+    description: 'Navigieren Sie durch die Ergebnisse',
+  },
 };
 
 export const WithManyPages: Story = {
@@ -60,8 +61,8 @@ export const WithManyPages: Story = {
     showFirstLast: true,
     showPrevNext: true,
     showPageCount: true,
-    description: 'Navigieren Sie durch die Ergebnisse'
-  }
+    description: 'Navigieren Sie durch die Ergebnisse',
+  },
 };
 
 export const Minimal: Story = {
@@ -74,8 +75,8 @@ export const Minimal: Story = {
     showPrevNext: true,
     showPageCount: false,
     variant: 'minimal',
-    description: 'Minimale Pagination'
-  }
+    description: 'Minimale Pagination',
+  },
 };
 
 export const Disabled: Story = {
@@ -85,35 +86,20 @@ export const Disabled: Story = {
     disabled: true,
     showFirstLast: true,
     showPrevNext: true,
-    description: 'Deaktivierte Pagination'
-  }
+    description: 'Deaktivierte Pagination',
+  },
 };
 
 export const DifferentSizes: Story = {
   render: () => (
     <div className="space-y-4">
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={5}
-        size="sm"
-        description="Kleine Pagination"
-      />
-      
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={5}
-        size="md"
-        description="Mittlere Pagination"
-      />
-      
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={5}
-        size="lg"
-        description="Große Pagination"
-      />
+      <Pagination.A11y pageCount={10} currentPage={5} size="sm" description="Kleine Pagination" />
+
+      <Pagination.A11y pageCount={10} currentPage={5} size="md" description="Mittlere Pagination" />
+
+      <Pagination.A11y pageCount={10} currentPage={5} size="lg" description="Große Pagination" />
     </div>
-  )
+  ),
 };
 
 export const DifferentVariants: Story = {
@@ -125,21 +111,21 @@ export const DifferentVariants: Story = {
         variant="default"
         description="Standard-Pagination"
       />
-      
+
       <Pagination.A11y
         pageCount={10}
         currentPage={5}
         variant="rounded"
         description="Abgerundete Pagination"
       />
-      
+
       <Pagination.A11y
         pageCount={10}
         currentPage={5}
         variant="outline"
         description="Outline-Pagination"
       />
-      
+
       <Pagination.A11y
         pageCount={10}
         currentPage={5}
@@ -147,7 +133,7 @@ export const DifferentVariants: Story = {
         description="Minimale Pagination"
       />
     </div>
-  )
+  ),
 };
 
 export const CustomLabels: Story = {
@@ -165,16 +151,16 @@ export const CustomLabels: Story = {
       last: 'Ende',
       pageTemplate: 'Blatt {page} von {total}',
       ellipsis: 'Weitere Blätter',
-      pageCount: 'Blatt {page} von {total}'
+      pageCount: 'Blatt {page} von {total}',
     },
-    description: 'Pagination mit benutzerdefinierten Labels'
-  }
+    description: 'Pagination mit benutzerdefinierten Labels',
+  },
 };
 
 export const Interactive: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = useState(1);
-    
+
     return (
       <div className="space-y-4">
         <Pagination.A11y
@@ -186,11 +172,11 @@ export const Interactive: Story = {
           showPageCount
           description="Interaktive Pagination"
         />
-        
+
         <div className="text-center">
           <p>Aktuelle Seite: {currentPage}</p>
         </div>
       </div>
     );
-  }
+  },
 };

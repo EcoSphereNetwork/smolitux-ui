@@ -172,7 +172,9 @@ export const CreatorDashboard: React.FC<CreatorDashboardProps> = ({
       <Box style={{ padding: '16px' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: '16px' }}>
           <Box>
-            <Text weight="bold" size="xl">Creator Earnings</Text>
+            <Text weight="bold" size="xl">
+              Creator Earnings
+            </Text>
             <Text color="#6b7280">{getPeriodLabel(period)}</Text>
           </Box>
           <Button onClick={onWithdraw}>Withdraw</Button>
@@ -184,10 +186,7 @@ export const CreatorDashboard: React.FC<CreatorDashboardProps> = ({
             <Text weight="bold" size="3xl" color="#3b82f6">
               {formatCurrency(earningStats.totalEarnings)}
             </Text>
-            <Text
-              size="sm"
-              color={earningStats.monthlyGrowth >= 0 ? '#10b981' : '#ef4444'}
-            >
+            <Text size="sm" color={earningStats.monthlyGrowth >= 0 ? '#10b981' : '#ef4444'}>
               {formatPercentage(earningStats.monthlyGrowth)} from last period
             </Text>
           </Box>
@@ -518,23 +517,25 @@ export const CreatorDashboard: React.FC<CreatorDashboardProps> = ({
     >
       <Flex justify="space-between" align="center" style={{ marginBottom: '24px' }}>
         <Flex align="center">
-          <Box 
-            style={{ 
-              width: '48px', 
-              height: '48px', 
-              borderRadius: '50%', 
+          <Box
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
               overflow: 'hidden',
               marginRight: '12px',
             }}
           >
-            <img 
-              src={avatar} 
-              alt={username} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            <img
+              src={avatar}
+              alt={username}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </Box>
           <Box>
-            <Text weight="bold" size="xl">{username}</Text>
+            <Text weight="bold" size="xl">
+              {username}
+            </Text>
             <Text color="#6b7280">Creator Dashboard</Text>
           </Box>
         </Flex>

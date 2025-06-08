@@ -47,22 +47,13 @@ describe('Carousel Snapshots', () => {
 
   it('renders with custom navigation correctly', () => {
     const { asFragment } = render(
-      <Carousel 
-        items={mockItems} 
-        showArrows={false}
-        showIndicators={false}
-      />
+      <Carousel items={mockItems} showArrows={false} showIndicators={false} />
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders with custom className correctly', () => {
-    const { asFragment } = render(
-      <Carousel 
-        items={mockItems} 
-        className="custom-carousel"
-      />
-    );
+    const { asFragment } = render(<Carousel items={mockItems} className="custom-carousel" />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

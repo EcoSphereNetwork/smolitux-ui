@@ -59,7 +59,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
 
 /**
  * Dropdown-Komponente für Dropdown-Menüs mit verbesserter Barrierefreiheit
- * 
+ *
  * @example
  * ```tsx
  * <Dropdown>
@@ -71,170 +71,180 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
  * </Dropdown>
  * ```
  */
-export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(({
-  children,
-  isOpen: controlledIsOpen,
-  onOpenChange,
-  onOpen,
-  onClose,
-  onSelect,
-  placement = 'bottom',
-  size = 'md',
-  isDisabled = false,
-  closeOnClickOutside = true,
-  closeOnEscape = true,
-  closeOnSelect = true,
-  id: providedId,
-  'aria-label': ariaLabel,
-  className = '',
-  ...rest
-}, ref) => {
-  // Generiere eine eindeutige ID, wenn keine bereitgestellt wurde
-  const uniqueIdRef = useRef(`dropdown-${Math.random().toString(36).substr(2, 9)}`);
-  const dropdownId = providedId || uniqueIdRef.current;
-  
-  // State für das Dropdown
-  const [isOpen, setIsOpen] = useState(controlledIsOpen || false);
-  const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
-  const triggerRef = useRef<HTMLElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const itemsMap = useRef(new Map<string, number>());
-  const itemsCounter = useRef(0);
-  
-  // Das Dropdown wird durch externe Props oder internen State gesteuert
-  const isControlled = controlledIsOpen !== undefined;
-  const dropdownIsOpen = isControlled ? controlledIsOpen : isOpen;
-  
-  // Registrieren eines neuen Items
-  const registerItem = useCallback((id: string) => {
-    if (!itemsMap.current.has(id)) {
-      itemsMap.current.set(id, itemsCounter.current);
-      return itemsCounter.current++;
-    }
-    return itemsMap.current.get(id)!;
-  }, []);
-  
-  // State-Änderungen propagieren
-  const updateOpenState = useCallback((newIsOpen: boolean) => {
-    if (!isControlled) {
-      setIsOpen(newIsOpen);
-    }
-    if (onOpenChange) {
-      onOpenChange(newIsOpen);
-    }
-    
-    if (newIsOpen) {
-      if (onOpen) onOpen();
-    } else {
-      if (onClose) onClose();
-      // Aktives Item zurücksetzen beim Schließen
-      setActiveItemIndex(null);
-    }
-  }, [isControlled, onOpenChange, onOpen, onClose]);
-  
-  // Dropdown öffnen
-  const openDropdown = useCallback(() => {
-    if (isDisabled) return;
-    updateOpenState(true);
-  }, [isDisabled, updateOpenState]);
-  
-  // Dropdown schließen
-  const closeDropdown = useCallback(() => {
-    updateOpenState(false);
-  }, [updateOpenState]);
-  
-  // Dropdown umschalten
-  const toggleDropdown = useCallback(() => {
-    if (isDisabled) return;
-    updateOpenState(!dropdownIsOpen);
-  }, [isDisabled, dropdownIsOpen, updateOpenState]);
-  
-  // Bei Klick außerhalb schließen
-  useEffect(() => {
-    if (!closeOnClickOutside || !dropdownIsOpen) return;
-    
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current && 
-        !dropdownRef.current.contains(e.target as Node) &&
-        triggerRef.current && 
-        !triggerRef.current.contains(e.target as Node)
-      ) {
-        // Verzögerung hinzufügen, um sicherzustellen, dass der Test den Zustand erfassen kann
-        setTimeout(() => {
-          closeDropdown();
-        }, 0);
+export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
+  (
+    {
+      children,
+      isOpen: controlledIsOpen,
+      onOpenChange,
+      onOpen,
+      onClose,
+      onSelect,
+      placement = 'bottom',
+      size = 'md',
+      isDisabled = false,
+      closeOnClickOutside = true,
+      closeOnEscape = true,
+      closeOnSelect = true,
+      id: providedId,
+      'aria-label': ariaLabel,
+      className = '',
+      ...rest
+    },
+    ref
+  ) => {
+    // Generiere eine eindeutige ID, wenn keine bereitgestellt wurde
+    const uniqueIdRef = useRef(`dropdown-${Math.random().toString(36).substr(2, 9)}`);
+    const dropdownId = providedId || uniqueIdRef.current;
+
+    // State für das Dropdown
+    const [isOpen, setIsOpen] = useState(controlledIsOpen || false);
+    const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
+    const triggerRef = useRef<HTMLElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const itemsMap = useRef(new Map<string, number>());
+    const itemsCounter = useRef(0);
+
+    // Das Dropdown wird durch externe Props oder internen State gesteuert
+    const isControlled = controlledIsOpen !== undefined;
+    const dropdownIsOpen = isControlled ? controlledIsOpen : isOpen;
+
+    // Registrieren eines neuen Items
+    const registerItem = useCallback((id: string) => {
+      if (!itemsMap.current.has(id)) {
+        itemsMap.current.set(id, itemsCounter.current);
+        return itemsCounter.current++;
       }
-    };
-    
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [dropdownIsOpen, closeOnClickOutside, closeDropdown]);
-  
-  // Bei ESC-Taste schließen
-  useEffect(() => {
-    if (!closeOnEscape || !dropdownIsOpen) return;
-    
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        closeDropdown();
-        // Fokus zurück auf den Trigger setzen
-        if (triggerRef.current) {
-          triggerRef.current.focus();
+      return itemsMap.current.get(id)!;
+    }, []);
+
+    // State-Änderungen propagieren
+    const updateOpenState = useCallback(
+      (newIsOpen: boolean) => {
+        if (!isControlled) {
+          setIsOpen(newIsOpen);
         }
-      }
+        if (onOpenChange) {
+          onOpenChange(newIsOpen);
+        }
+
+        if (newIsOpen) {
+          if (onOpen) onOpen();
+        } else {
+          if (onClose) onClose();
+          // Aktives Item zurücksetzen beim Schließen
+          setActiveItemIndex(null);
+        }
+      },
+      [isControlled, onOpenChange, onOpen, onClose]
+    );
+
+    // Dropdown öffnen
+    const openDropdown = useCallback(() => {
+      if (isDisabled) return;
+      updateOpenState(true);
+    }, [isDisabled, updateOpenState]);
+
+    // Dropdown schließen
+    const closeDropdown = useCallback(() => {
+      updateOpenState(false);
+    }, [updateOpenState]);
+
+    // Dropdown umschalten
+    const toggleDropdown = useCallback(() => {
+      if (isDisabled) return;
+      updateOpenState(!dropdownIsOpen);
+    }, [isDisabled, dropdownIsOpen, updateOpenState]);
+
+    // Bei Klick außerhalb schließen
+    useEffect(() => {
+      if (!closeOnClickOutside || !dropdownIsOpen) return;
+
+      const handleClickOutside = (e: MouseEvent) => {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(e.target as Node) &&
+          triggerRef.current &&
+          !triggerRef.current.contains(e.target as Node)
+        ) {
+          // Verzögerung hinzufügen, um sicherzustellen, dass der Test den Zustand erfassen kann
+          setTimeout(() => {
+            closeDropdown();
+          }, 0);
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [dropdownIsOpen, closeOnClickOutside, closeDropdown]);
+
+    // Bei ESC-Taste schließen
+    useEffect(() => {
+      if (!closeOnEscape || !dropdownIsOpen) return;
+
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeDropdown();
+          // Fokus zurück auf den Trigger setzen
+          if (triggerRef.current) {
+            triggerRef.current.focus();
+          }
+        }
+      };
+
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }, [dropdownIsOpen, closeOnEscape, closeDropdown]);
+
+    // Größen-spezifische Klassen
+    const sizeClasses = {
+      sm: 'dropdown-sm',
+      md: 'dropdown-md',
+      lg: 'dropdown-lg',
     };
-    
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [dropdownIsOpen, closeOnEscape, closeDropdown]);
-  
-  // Größen-spezifische Klassen
-  const sizeClasses = {
-    sm: 'dropdown-sm',
-    md: 'dropdown-md',
-    lg: 'dropdown-lg'
-  };
-  
-  // CSS-Klassen zusammenstellen
-  const classes = [
-    'dropdown',
-    sizeClasses[size],
-    isDisabled ? 'dropdown-disabled' : '',
-    className
-  ].filter(Boolean).join(' ');
-  
-  return (
-    <DropdownContext.Provider
-      value={{
-        isOpen: dropdownIsOpen,
-        setIsOpen: updateOpenState,
-        activeItemIndex,
-        setActiveItemIndex,
-        registerItem,
-        triggerRef,
-        dropdownId,
-        onSelect,
-        closeDropdown
-      }}
-    >
-      <div
-        ref={ref}
-        id={dropdownId}
-        className={classes}
-        data-placement={placement}
-        aria-label={ariaLabel}
-        data-testid="dropdown"
-        {...rest}
+
+    // CSS-Klassen zusammenstellen
+    const classes = [
+      'dropdown',
+      sizeClasses[size],
+      isDisabled ? 'dropdown-disabled' : '',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return (
+      <DropdownContext.Provider
+        value={{
+          isOpen: dropdownIsOpen,
+          setIsOpen: updateOpenState,
+          activeItemIndex,
+          setActiveItemIndex,
+          registerItem,
+          triggerRef,
+          dropdownId,
+          onSelect,
+          closeDropdown,
+        }}
       >
-        {children}
-      </div>
-    </DropdownContext.Provider>
-  );
-});
+        <div
+          ref={ref}
+          id={dropdownId}
+          className={classes}
+          data-placement={placement}
+          aria-label={ariaLabel}
+          data-testid="dropdown"
+          {...rest}
+        >
+          {children}
+        </div>
+      </DropdownContext.Provider>
+    );
+  }
+);
 
 Dropdown.displayName = 'Dropdown';
 

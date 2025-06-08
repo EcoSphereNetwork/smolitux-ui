@@ -107,21 +107,11 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
     }
 
     // Format the value
-    const formattedValue = formatValue
-      ? formatValue(value, max)
-      : `${Math.round(percentage)}%`;
+    const formattedValue = formatValue ? formatValue(value, max) : `${Math.round(percentage)}%`;
 
     return (
-      <Box
-        ref={ref}
-        className={`progress-bar ${className}`}
-        style={containerStyle}
-        {...rest}
-      >
-        <Box
-          className={`progress-bar-fill ${progressClassName}`}
-          style={progressStyle}
-        />
+      <Box ref={ref} className={`progress-bar ${className}`} style={containerStyle} {...rest}>
+        <Box className={`progress-bar-fill ${progressClassName}`} style={progressStyle} />
         {showValue && (
           <Box
             className="progress-bar-text"

@@ -6,27 +6,27 @@ export type AnimatePresenceProps = {
    * Ob die Kinder angezeigt werden sollen
    */
   in?: boolean;
-  
+
   /**
    * Ob die Kinder beim ersten Rendern animiert werden sollen
    */
   initial?: boolean;
-  
+
   /**
    * Ob die Kinder in einem Portal gerendert werden sollen
    */
   portal?: boolean | HTMLElement;
-  
+
   /**
    * Verzögerung vor dem Entfernen der Kinder aus dem DOM (in ms)
    */
   exitTimeout?: number;
-  
+
   /**
    * Callback, wenn alle Kinder den DOM verlassen haben
    */
   onExitComplete?: () => void;
-  
+
   /**
    * Die zu animierenden Kinder
    */
@@ -48,7 +48,7 @@ export const AnimatePresence: React.FC<AnimatePresenceProps> = ({
   const [shouldRender, setShouldRender] = useState(inProp || initial);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const initialRender = useRef(true);
-  
+
   // Zustandsübergänge verwalten
   useEffect(() => {
     // Beim ersten Rendern nichts tun, wenn initial=false
@@ -56,12 +56,12 @@ export const AnimatePresence: React.FC<AnimatePresenceProps> = ({
       initialRender.current = false;
       return;
     }
-    
+
     // Timeout löschen, wenn die Komponente unmountet
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    
+
     if (inProp) {
       // Element einblenden
       setShouldRender(true);
@@ -69,26 +69,26 @@ export const AnimatePresence: React.FC<AnimatePresenceProps> = ({
     } else {
       // Element ausblenden
       setIsVisible(false);
-      
+
       // Nach der Ausblendanimation aus dem DOM entfernen
       timeoutRef.current = setTimeout(() => {
         setShouldRender(false);
         onExitComplete?.();
       }, exitTimeout);
     }
-    
+
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
   }, [inProp, exitTimeout, initial, onExitComplete]);
-  
+
   // Wenn nichts gerendert werden soll, null zurückgeben
   if (!shouldRender) {
     return null;
   }
-  
+
   // Kinder mit Animation-Props erweitern
   const childrenWithProps = Children.map(children, (child) => {
     if (isValidElement(child)) {
@@ -99,13 +99,13 @@ export const AnimatePresence: React.FC<AnimatePresenceProps> = ({
     }
     return child;
   });
-  
+
   // In Portal rendern, wenn gewünscht
   if (portal) {
-    const portalElement = portal === true ? document.body : portal as HTMLElement;
+    const portalElement = portal === true ? document.body : (portal as HTMLElement);
     return createPortal(childrenWithProps, portalElement);
   }
-  
+
   return <>{childrenWithProps}</>;
 };
 

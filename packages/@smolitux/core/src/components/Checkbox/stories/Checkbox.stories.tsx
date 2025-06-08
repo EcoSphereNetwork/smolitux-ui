@@ -114,12 +114,24 @@ export const Sizes: Story = {
 export const ColorSchemes: Story = {
   render: () => (
     <div className="flex flex-col space-y-4">
-      <Checkbox colorScheme="primary" defaultChecked>Primary Checkbox</Checkbox>
-      <Checkbox colorScheme="secondary" defaultChecked>Secondary Checkbox</Checkbox>
-      <Checkbox colorScheme="success" defaultChecked>Success Checkbox</Checkbox>
-      <Checkbox colorScheme="danger" defaultChecked>Danger Checkbox</Checkbox>
-      <Checkbox colorScheme="warning" defaultChecked>Warning Checkbox</Checkbox>
-      <Checkbox colorScheme="info" defaultChecked>Info Checkbox</Checkbox>
+      <Checkbox colorScheme="primary" defaultChecked>
+        Primary Checkbox
+      </Checkbox>
+      <Checkbox colorScheme="secondary" defaultChecked>
+        Secondary Checkbox
+      </Checkbox>
+      <Checkbox colorScheme="success" defaultChecked>
+        Success Checkbox
+      </Checkbox>
+      <Checkbox colorScheme="danger" defaultChecked>
+        Danger Checkbox
+      </Checkbox>
+      <Checkbox colorScheme="warning" defaultChecked>
+        Warning Checkbox
+      </Checkbox>
+      <Checkbox colorScheme="info" defaultChecked>
+        Info Checkbox
+      </Checkbox>
     </div>
   ),
 };
@@ -153,8 +165,17 @@ export const WithCustomIcon: Story = {
   render: () => (
     <Checkbox
       icon={
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-          <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="w-4 h-4"
+        >
+          <path
+            fillRule="evenodd"
+            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+            clipRule="evenodd"
+          />
         </svg>
       }
     >
@@ -179,10 +200,10 @@ export const WithRichContent: Story = {
 export const Group: Story = {
   render: () => {
     const [checkedItems, setCheckedItems] = React.useState([true, false]);
-    
+
     const allChecked = checkedItems.every(Boolean);
     const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
-    
+
     return (
       <div className="flex flex-col space-y-4">
         <Checkbox
@@ -214,13 +235,10 @@ export const Group: Story = {
 export const Controlled: Story = {
   render: () => {
     const [checked, setChecked] = React.useState(false);
-    
+
     return (
       <div className="flex flex-col space-y-4">
-        <Checkbox
-          checked={checked}
-          onChange={(e) => setChecked(e.target.checked)}
-        >
+        <Checkbox checked={checked} onChange={(e) => setChecked(e.target.checked)}>
           Controlled Checkbox
         </Checkbox>
         <button

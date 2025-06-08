@@ -159,20 +159,44 @@ export const ColorSchemes: Story = {
         <Button colorScheme="info">Info</Button>
       </div>
       <div style={{ display: 'flex', gap: '12px' }}>
-        <Button variant="outline" colorScheme="primary">Primary</Button>
-        <Button variant="outline" colorScheme="secondary">Secondary</Button>
-        <Button variant="outline" colorScheme="success">Success</Button>
-        <Button variant="outline" colorScheme="danger">Danger</Button>
-        <Button variant="outline" colorScheme="warning">Warning</Button>
-        <Button variant="outline" colorScheme="info">Info</Button>
+        <Button variant="outline" colorScheme="primary">
+          Primary
+        </Button>
+        <Button variant="outline" colorScheme="secondary">
+          Secondary
+        </Button>
+        <Button variant="outline" colorScheme="success">
+          Success
+        </Button>
+        <Button variant="outline" colorScheme="danger">
+          Danger
+        </Button>
+        <Button variant="outline" colorScheme="warning">
+          Warning
+        </Button>
+        <Button variant="outline" colorScheme="info">
+          Info
+        </Button>
       </div>
       <div style={{ display: 'flex', gap: '12px' }}>
-        <Button variant="ghost" colorScheme="primary">Primary</Button>
-        <Button variant="ghost" colorScheme="secondary">Secondary</Button>
-        <Button variant="ghost" colorScheme="success">Success</Button>
-        <Button variant="ghost" colorScheme="danger">Danger</Button>
-        <Button variant="ghost" colorScheme="warning">Warning</Button>
-        <Button variant="ghost" colorScheme="info">Info</Button>
+        <Button variant="ghost" colorScheme="primary">
+          Primary
+        </Button>
+        <Button variant="ghost" colorScheme="secondary">
+          Secondary
+        </Button>
+        <Button variant="ghost" colorScheme="success">
+          Success
+        </Button>
+        <Button variant="ghost" colorScheme="danger">
+          Danger
+        </Button>
+        <Button variant="ghost" colorScheme="warning">
+          Warning
+        </Button>
+        <Button variant="ghost" colorScheme="info">
+          Info
+        </Button>
       </div>
     </div>
   ),
@@ -181,22 +205,48 @@ export const ColorSchemes: Story = {
 export const WithIcons: Story = {
   render: () => {
     const leftIcon = (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 4L20 20H4L12 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 4L20 20H4L12 4Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
-    
+
     const rightIcon = (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12H19M19 12L12 5M19 12L12 19"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
-    
+
     return (
       <div style={{ display: 'flex', gap: '12px' }}>
         <Button leftIcon={leftIcon}>Left Icon</Button>
         <Button rightIcon={rightIcon}>Right Icon</Button>
-        <Button leftIcon={leftIcon} rightIcon={rightIcon}>Both Icons</Button>
+        <Button leftIcon={leftIcon} rightIcon={rightIcon}>
+          Both Icons
+        </Button>
       </div>
     );
   },
@@ -224,8 +274,8 @@ export const FullWidth: Story = {
 
 export const WithCustomStyle: Story = {
   args: {
-    style: { 
-      backgroundColor: '#8b5cf6', 
+    style: {
+      backgroundColor: '#8b5cf6',
       borderColor: '#8b5cf6',
       borderRadius: '9999px',
       boxShadow: '0 10px 15px -3px rgba(139, 92, 246, 0.3), 0 4px 6px -2px rgba(139, 92, 246, 0.2)',

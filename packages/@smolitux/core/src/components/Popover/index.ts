@@ -5,7 +5,7 @@ import type { PopoverProps as PopoverA11yProps } from './Popover.a11y';
 
 // Erweitere Popover um die A11y-Komponente
 export const Popover = Object.assign(BasePopover, {
-  A11y: PopoverA11y
+  A11y: PopoverA11y,
 });
 
 // Exportiere Typen

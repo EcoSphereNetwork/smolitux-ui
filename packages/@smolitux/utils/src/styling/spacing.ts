@@ -44,10 +44,7 @@ export const getSpacing = (value: number | string): string => {
 };
 
 // Create spacing utilities
-export const createSpacing = (
-  property: string,
-  value: number | string
-): Record<string, string> => {
+export const createSpacing = (property: string, value: number | string): Record<string, string> => {
   const spacingValue = getSpacing(value);
   return { [property]: spacingValue };
 };

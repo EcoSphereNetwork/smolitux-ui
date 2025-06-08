@@ -39,7 +39,15 @@ export interface TableFilterOption {
 export interface TableFilterCriteria<T = any> {
   columnId: string;
   value: string | string[];
-  operator?: 'equals' | 'contains' | 'startsWith' | 'endsWith' | 'in' | 'notIn' | 'greaterThan' | 'lessThan';
+  operator?:
+    | 'equals'
+    | 'contains'
+    | 'startsWith'
+    | 'endsWith'
+    | 'in'
+    | 'notIn'
+    | 'greaterThan'
+    | 'lessThan';
   customFilter?: (row: T, value: string | string[]) => boolean;
 }
 
@@ -186,9 +194,25 @@ const Table = <T extends Record<string, any>>({
   currentPage: controlledCurrentPage,
   onPageChange,
   onRowClick,
-  emptyState = <div className="p-4 text-center text-gray-500 dark:text-gray-400" role="status" aria-live="polite">Keine Daten vorhanden</div>,
+  emptyState = (
+    <div
+      className="p-4 text-center text-gray-500 dark:text-gray-400"
+      role="status"
+      aria-live="polite"
+    >
+      Keine Daten vorhanden
+    </div>
+  ),
   loading = false,
-  loadingState = <div className="p-4 text-center text-gray-500 dark:text-gray-400" role="status" aria-live="polite">Laden...</div>,
+  loadingState = (
+    <div
+      className="p-4 text-center text-gray-500 dark:text-gray-400"
+      role="status"
+      aria-live="polite"
+    >
+      Laden...
+    </div>
+  ),
   className = '',
   containerClassName = '',
   headerClassName = '',
@@ -223,67 +247,69 @@ const Table = <T extends Record<string, any>>({
   // Zustand für Sortierung
   const [sortColumn, setSortColumn] = useState<string | null>(defaultSort?.id || null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(defaultSort?.direction || null);
-  
+
   // Zustand für Paginierung
   const [currentPage, setCurrentPage] = useState(controlledCurrentPage || 1);
-  const [itemsPerPageState, setItemsPerPageState] = useState(paginationOptions?.itemsPerPage || itemsPerPage);
-  
+  const [itemsPerPageState, setItemsPerPageState] = useState(
+    paginationOptions?.itemsPerPage || itemsPerPage
+  );
+
   // Zustand für Filterung
   const [filters, setFilters] = useState<TableFilterCriteria<T>[]>(defaultFilters);
-  
+
   // Zustand für Suche
   const [searchTermState, setSearchTermState] = useState(searchTerm);
-  
+
   // Zustand für Zeilenauswahl
   const [selectedRowsState, setSelectedRowsState] = useState<T[]>(selectedRows);
   const [selectAllState, setSelectAllState] = useState(selectAll);
-  
+
   // Effekt für kontrollierte Paginierung
   useEffect(() => {
     if (controlledCurrentPage !== undefined) {
       setCurrentPage(controlledCurrentPage);
     }
   }, [controlledCurrentPage]);
-  
+
   // Effekt für kontrollierte Filterung
   useEffect(() => {
     setFilters(defaultFilters);
   }, [defaultFilters]);
-  
+
   // Effekt für kontrollierte Suche
   useEffect(() => {
     setSearchTermState(searchTerm);
   }, [searchTerm]);
-  
+
   // Effekt für kontrollierte Zeilenauswahl
   useEffect(() => {
     setSelectedRowsState(selectedRows);
   }, [selectedRows]);
-  
+
   // Effekt für kontrollierte Auswahl aller Zeilen
   useEffect(() => {
     setSelectAllState(selectAll);
   }, [selectAll]);
-  
+
   // Hilfsfunktion zum Filtern der Daten
   const applyFilter = (row: T, filter: TableFilterCriteria<T>): boolean => {
     const { columnId, value, operator = 'equals', customFilter } = filter;
-    
+
     // Verwende benutzerdefinierte Filterfunktion, wenn vorhanden
     if (customFilter) {
       return customFilter(row, value);
     }
-    
+
     const cellValue = row[columnId];
-    
+
     // Wenn der Zellenwert nicht existiert, kann er nicht gefiltert werden
     if (cellValue === undefined || cellValue === null) {
       return false;
     }
-    
+
     // Konvertiere Zellenwert zu String für String-basierte Operationen
     const cellValueStr = String(cellValue).toLowerCase();
-    
+
     // Behandle verschiedene Operatoren
     switch (operator) {
       case 'equals':
@@ -295,13 +321,9 @@ const Table = <T extends Record<string, any>>({
       case 'endsWith':
         return cellValueStr.endsWith(String(value).toLowerCase());
       case 'in':
-        return Array.isArray(value) && value.some(v => 
-          String(v).toLowerCase() === cellValueStr
-        );
+        return Array.isArray(value) && value.some((v) => String(v).toLowerCase() === cellValueStr);
       case 'notIn':
-        return Array.isArray(value) && !value.some(v => 
-          String(v).toLowerCase() === cellValueStr
-        );
+        return Array.isArray(value) && !value.some((v) => String(v).toLowerCase() === cellValueStr);
       case 'greaterThan':
         return cellValue > value;
       case 'lessThan':
@@ -310,65 +332,61 @@ const Table = <T extends Record<string, any>>({
         return false;
     }
   };
-  
+
   // Hilfsfunktion zum Durchsuchen der Daten
   const applySearch = (row: T, term: string, columns: string[]): boolean => {
     if (!term) return true;
-    
+
     const searchTerm = term.toLowerCase();
-    
+
     // Wenn keine Spalten angegeben sind, durchsuche alle Spalten
     const columnsToSearch = columns.length > 0 ? columns : Object.keys(row);
-    
-    return columnsToSearch.some(columnId => {
+
+    return columnsToSearch.some((columnId) => {
       const cellValue = row[columnId];
-      
+
       if (cellValue === undefined || cellValue === null) {
         return false;
       }
-      
+
       return String(cellValue).toLowerCase().includes(searchTerm);
     });
   };
-  
+
   // Gefilterte Daten
   const filteredData = useMemo(() => {
     let result = [...data];
-    
+
     // Wende Filter an
     if (filterable && filters.length > 0) {
-      result = result.filter(row => 
-        filters.every(filter => applyFilter(row, filter))
-      );
+      result = result.filter((row) => filters.every((filter) => applyFilter(row, filter)));
     }
-    
+
     // Wende Suche an
     if (searchable && searchTermState) {
-      result = result.filter(row => 
-        applySearch(row, searchTermState, searchColumns)
-      );
+      result = result.filter((row) => applySearch(row, searchTermState, searchColumns));
     }
-    
+
     return result;
   }, [data, filterable, filters, searchable, searchTermState, searchColumns]);
-  
+
   // Sortierte Daten
   const sortedData = useMemo(() => {
     if (!sortColumn || !sortDirection) return filteredData;
-    
-    const column = columns.find(col => col.id === sortColumn);
+
+    const column = columns.find((col) => col.id === sortColumn);
     if (!column || !column.sortable) return filteredData;
-    
+
     return [...filteredData].sort((a, b) => {
       if (column.sortFn) {
         return column.sortFn(a, b, sortDirection);
       }
-      
+
       const aValue = a[sortColumn];
       const bValue = b[sortColumn];
-      
+
       if (aValue === bValue) return 0;
-      
+
       if (sortDirection === 'asc') {
         return aValue < bValue ? -1 : 1;
       } else {
@@ -376,24 +394,24 @@ const Table = <T extends Record<string, any>>({
       }
     });
   }, [filteredData, columns, sortColumn, sortDirection]);
-  
+
   // Paginierte Daten
   const paginatedData = useMemo(() => {
     if (!paginated) return sortedData;
-    
+
     const startIndex = (currentPage - 1) * itemsPerPageState;
     const endIndex = startIndex + itemsPerPageState;
-    
+
     return sortedData.slice(startIndex, endIndex);
   }, [sortedData, paginated, currentPage, itemsPerPageState]);
-  
+
   // Funktion zum Ändern der Sortierung
   const handleSort = (columnId: string) => {
-    const column = columns.find(col => col.id === columnId);
+    const column = columns.find((col) => col.id === columnId);
     if (!column || !column.sortable) return;
-    
+
     let newDirection: SortDirection = null;
-    
+
     if (sortColumn !== columnId) {
       newDirection = 'asc';
     } else if (sortDirection === 'asc') {
@@ -403,70 +421,70 @@ const Table = <T extends Record<string, any>>({
     } else {
       newDirection = 'asc';
     }
-    
+
     setSortColumn(newDirection ? columnId : null);
     setSortDirection(newDirection);
-    
+
     if (onSort) {
       onSort(columnId, newDirection);
     }
   };
-  
+
   // Funktion zum Ändern der Seite
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    
+
     if (onPageChange) {
       onPageChange(page);
     }
   };
-  
+
   // Funktion zum Ändern der Einträge pro Seite
   const handleItemsPerPageChange = (newItemsPerPage: number) => {
     setItemsPerPageState(newItemsPerPage);
     setCurrentPage(1); // Zurück zur ersten Seite
-    
+
     if (paginationOptions?.onItemsPerPageChange) {
       paginationOptions.onItemsPerPageChange(newItemsPerPage);
     }
   };
-  
+
   // Funktion zum Ändern der Filter
   const handleFilterChange = (newFilters: TableFilterCriteria<T>[]) => {
     setFilters(newFilters);
     setCurrentPage(1); // Zurück zur ersten Seite
-    
+
     if (onFilter) {
       onFilter(newFilters);
     }
   };
-  
+
   // Funktion zum Ändern des Suchbegriffs
   const handleSearchChange = (newSearchTerm: string) => {
     setSearchTermState(newSearchTerm);
     setCurrentPage(1); // Zurück zur ersten Seite
-    
+
     if (onSearch) {
       onSearch(newSearchTerm);
     }
   };
-  
+
   // Funktion zum Auswählen/Abwählen einer Zeile
   const handleRowSelection = (row: T) => {
     if (!selectable) return;
-    
+
     let newSelectedRows: T[];
-    
+
     if (multiSelect) {
       // Prüfe, ob die Zeile bereits ausgewählt ist
-      const isSelected = selectedRowsState.some(selectedRow => 
-        JSON.stringify(selectedRow) === JSON.stringify(row)
+      const isSelected = selectedRowsState.some(
+        (selectedRow) => JSON.stringify(selectedRow) === JSON.stringify(row)
       );
-      
+
       if (isSelected) {
         // Entferne die Zeile aus der Auswahl
-        newSelectedRows = selectedRowsState.filter(selectedRow => 
-          JSON.stringify(selectedRow) !== JSON.stringify(row)
+        newSelectedRows = selectedRowsState.filter(
+          (selectedRow) => JSON.stringify(selectedRow) !== JSON.stringify(row)
         );
       } else {
         // Füge die Zeile zur Auswahl hinzu
@@ -476,47 +494,47 @@ const Table = <T extends Record<string, any>>({
       // Im Einzelauswahlmodus wird nur die aktuelle Zeile ausgewählt
       newSelectedRows = [row];
     }
-    
+
     setSelectedRowsState(newSelectedRows);
-    
+
     if (onRowSelect) {
       onRowSelect(newSelectedRows);
     }
   };
-  
+
   // Funktion zum Auswählen/Abwählen aller Zeilen
   const handleSelectAll = () => {
     if (!selectable || !multiSelect) return;
-    
+
     const newSelectAll = !selectAllState;
     setSelectAllState(newSelectAll);
-    
+
     const newSelectedRows = newSelectAll ? [...sortedData] : [];
     setSelectedRowsState(newSelectedRows);
-    
+
     if (onSelectAll) {
       onSelectAll(newSelectAll);
     }
-    
+
     if (onRowSelect) {
       onRowSelect(newSelectedRows);
     }
   };
-  
+
   // Funktion zum Exportieren der Daten
   const handleExport = (format: 'csv' | 'excel' | 'pdf') => {
     if (!exportable) return;
-    
+
     if (onExport) {
       onExport(format);
     } else {
       // Standardimplementierung für CSV-Export
       if (format === 'csv') {
-        const headers = columns.map(col => col.id).join(',');
-        const rows = sortedData.map(row => 
-          columns.map(col => String(row[col.id] || '')).join(',')
-        ).join('\n');
-        
+        const headers = columns.map((col) => col.id).join(',');
+        const rows = sortedData
+          .map((row) => columns.map((col) => String(row[col.id] || '')).join(','))
+          .join('\n');
+
         const csvContent = `data:text/csv;charset=utf-8,${headers}\n${rows}`;
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement('a');
@@ -528,32 +546,58 @@ const Table = <T extends Record<string, any>>({
       }
     }
   };
-  
+
   // Funktion zum Rendern des Sortierungssymbols
   const renderSortIcon = (columnId: string) => {
     if (sortColumn !== columnId) {
       return (
-        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+        <svg
+          className="w-4 h-4 text-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+          />
         </svg>
       );
     }
-    
+
     if (sortDirection === 'asc') {
       return (
-        <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg
+          className="w-4 h-4 text-gray-700 dark:text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
         </svg>
       );
     }
-    
+
     return (
-      <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg
+        className="w-4 h-4 text-gray-700 dark:text-gray-300"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
       </svg>
     );
   };
-  
+
   // CSS-Klassen für die Tabelle
   const tableClasses = [
     'min-w-full divide-y divide-gray-200 dark:divide-gray-700',
@@ -561,29 +605,35 @@ const Table = <T extends Record<string, any>>({
     bordered ? 'border border-gray-200 dark:border-gray-700' : '',
     rounded ? 'rounded-lg overflow-hidden' : '',
     shadow ? 'shadow-md' : '',
-    className
-  ].filter(Boolean).join(' ');
-  
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // CSS-Klassen für den Container
   const wrapperClasses = [
     responsive ? 'overflow-x-auto' : '',
     shadow && !bordered ? 'shadow-md' : '',
     rounded && !bordered ? 'rounded-lg' : '',
-    containerClassName
-  ].filter(Boolean).join(' ');
-  
+    containerClassName,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // CSS-Klassen für die Zeilen
   const getRowClasses = (row: T, index: number) => {
     const baseClasses = [
       hover ? 'hover:bg-gray-50 dark:hover:bg-gray-800' : '',
       striped && index % 2 === 1 ? 'bg-gray-50 dark:bg-gray-800' : '',
       onRowClick ? 'cursor-pointer' : '',
-      typeof rowClassName === 'function' ? rowClassName(row, index) : rowClassName
-    ].filter(Boolean).join(' ');
-    
+      typeof rowClassName === 'function' ? rowClassName(row, index) : rowClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
     return baseClasses;
   };
-  
+
   // CSS-Klassen für die Zellen
   const getCellClasses = (column: TableColumn<T>) => {
     return [
@@ -592,10 +642,12 @@ const Table = <T extends Record<string, any>>({
       column.align === 'center' ? 'text-center' : '',
       column.align === 'right' ? 'text-right' : '',
       column.className || '',
-      cellClassName
-    ].filter(Boolean).join(' ');
+      cellClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
   };
-  
+
   // CSS-Klassen für die Header-Zellen
   const getHeaderClasses = (column: TableColumn<T>) => {
     return [
@@ -605,29 +657,42 @@ const Table = <T extends Record<string, any>>({
       column.align === 'right' ? 'text-right' : '',
       column.sortable && sortable ? 'cursor-pointer' : '',
       column.headerClassName || '',
-      headerClassName
-    ].filter(Boolean).join(' ');
+      headerClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
   };
-  
+
   // Hilfsfunktion zum Prüfen, ob eine Zeile ausgewählt ist
   const isRowSelected = (row: T): boolean => {
     if (!selectable) return false;
-    
-    return selectedRowsState.some(selectedRow => 
-      JSON.stringify(selectedRow) === JSON.stringify(row)
+
+    return selectedRowsState.some(
+      (selectedRow) => JSON.stringify(selectedRow) === JSON.stringify(row)
     );
   };
-  
+
   // Rendere Suchfeld
   const renderSearchField = () => {
     if (!searchable) return null;
-    
+
     return (
       <div className="mb-4">
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            <svg
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
             </svg>
           </div>
           <input
@@ -642,11 +707,11 @@ const Table = <T extends Record<string, any>>({
       </div>
     );
   };
-  
+
   // Rendere Export-Buttons
   const renderExportButtons = () => {
     if (!exportable) return null;
-    
+
     return (
       <div className="mb-4 flex space-x-2">
         {exportFormats.includes('csv') && (
@@ -679,7 +744,7 @@ const Table = <T extends Record<string, any>>({
       </div>
     );
   };
-  
+
   return (
     <div className={wrapperClasses}>
       {loading ? (
@@ -693,14 +758,14 @@ const Table = <T extends Record<string, any>>({
             {renderSearchField()}
             {renderExportButtons()}
           </div>
-          
+
           {caption && captionPosition === 'top' && (
             <div className="px-6 py-3 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-medium">
               {caption}
             </div>
           )}
-          
-          <table 
+
+          <table
             className={tableClasses}
             id={id}
             aria-label={ariaLabel}
@@ -714,7 +779,7 @@ const Table = <T extends Record<string, any>>({
                 {caption}
               </caption>
             )}
-            
+
             {showHeader && (
               <thead className="bg-gray-50 dark:bg-gray-800">
                 <tr role="row" aria-rowindex="1">
@@ -738,113 +803,124 @@ const Table = <T extends Record<string, any>>({
                       </div>
                     </th>
                   )}
-                  
+
                   {/* Einzelne Spaltenheader */}
-                  {columns.map((column) => (
-                    !column.hidden && (
-                      <th
-                        key={column.id}
-                        scope="col"
-                        className={getHeaderClasses(column)}
-                        style={{ width: column.width }}
-                        onClick={() => column.sortable && sortable && handleSort(column.id)}
-                        role="columnheader"
-                        aria-colindex={columnIndex + 1}
-                        aria-sort={
-                          sortColumn === column.id 
-                            ? sortDirection === 'asc' 
-                              ? 'ascending' 
-                              : sortDirection === 'desc' 
-                                ? 'descending' 
-                                : undefined 
-                            : undefined
-                        }
-                        tabIndex={column.sortable && sortable ? 0 : undefined}
-                        onKeyDown={(e) => {
-                          if (column.sortable && sortable && (e.key === 'Enter' || e.key === ' ')) {
-                            e.preventDefault();
-                            handleSort(column.id);
+                  {columns.map(
+                    (column) =>
+                      !column.hidden && (
+                        <th
+                          key={column.id}
+                          scope="col"
+                          className={getHeaderClasses(column)}
+                          style={{ width: column.width }}
+                          onClick={() => column.sortable && sortable && handleSort(column.id)}
+                          role="columnheader"
+                          aria-colindex={columnIndex + 1}
+                          aria-sort={
+                            sortColumn === column.id
+                              ? sortDirection === 'asc'
+                                ? 'ascending'
+                                : sortDirection === 'desc'
+                                  ? 'descending'
+                                  : undefined
+                              : undefined
                           }
-                        }}
-                        aria-label={
-                          column.sortable && sortable
-                            ? `${column.header}${sortColumn === column.id ? `, sortiert ${sortDirection === 'asc' ? 'aufsteigend' : 'absteigend'}` : ', klicken zum Sortieren'}`
-                            : undefined
-                        }
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>{column.header}</div>
-                          {column.sortable && sortable && (
-                            <div className="ml-2" aria-hidden="true">
-                              {renderSortIcon(column.id)}
-                            </div>
-                          )}
-                        </div>
-                      </th>
-                    )
-                  ))}
+                          tabIndex={column.sortable && sortable ? 0 : undefined}
+                          onKeyDown={(e) => {
+                            if (
+                              column.sortable &&
+                              sortable &&
+                              (e.key === 'Enter' || e.key === ' ')
+                            ) {
+                              e.preventDefault();
+                              handleSort(column.id);
+                            }
+                          }}
+                          aria-label={
+                            column.sortable && sortable
+                              ? `${column.header}${sortColumn === column.id ? `, sortiert ${sortDirection === 'asc' ? 'aufsteigend' : 'absteigend'}` : ', klicken zum Sortieren'}`
+                              : undefined
+                          }
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>{column.header}</div>
+                            {column.sortable && sortable && (
+                              <div className="ml-2" aria-hidden="true">
+                                {renderSortIcon(column.id)}
+                              </div>
+                            )}
+                          </div>
+                        </th>
+                      )
+                  )}
                 </tr>
-                
+
                 {/* Filter-Zeile */}
                 {filterable && (
                   <tr>
                     {/* Leere Zelle für Checkbox-Spalte */}
-                    {selectable && multiSelect && (
-                      <th></th>
-                    )}
-                    
+                    {selectable && multiSelect && <th></th>}
+
                     {/* Filter für jede Spalte */}
-                    {columns.map((column) => (
-                      !column.hidden && (
-                        <th key={`filter-${column.id}`} className="px-6 py-2">
-                          <input
-                            type="text"
-                            className="w-full p-1 text-xs border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                            placeholder={`Filter...`}
-                            onChange={(e) => {
-                              const value = e.target.value;
-                              const newFilters = [...filters];
-                              
-                              // Finde den existierenden Filter für diese Spalte
-                              const existingFilterIndex = newFilters.findIndex(f => f.columnId === column.id);
-                              
-                              if (value) {
-                                // Erstelle oder aktualisiere den Filter
-                                const newFilter: TableFilterCriteria<T> = {
-                                  columnId: column.id,
-                                  value,
-                                  operator: 'contains'
-                                };
-                                
-                                if (existingFilterIndex >= 0) {
-                                  newFilters[existingFilterIndex] = newFilter;
-                                } else {
-                                  newFilters.push(newFilter);
+                    {columns.map(
+                      (column) =>
+                        !column.hidden && (
+                          <th key={`filter-${column.id}`} className="px-6 py-2">
+                            <input
+                              type="text"
+                              className="w-full p-1 text-xs border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                              placeholder={`Filter...`}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                const newFilters = [...filters];
+
+                                // Finde den existierenden Filter für diese Spalte
+                                const existingFilterIndex = newFilters.findIndex(
+                                  (f) => f.columnId === column.id
+                                );
+
+                                if (value) {
+                                  // Erstelle oder aktualisiere den Filter
+                                  const newFilter: TableFilterCriteria<T> = {
+                                    columnId: column.id,
+                                    value,
+                                    operator: 'contains',
+                                  };
+
+                                  if (existingFilterIndex >= 0) {
+                                    newFilters[existingFilterIndex] = newFilter;
+                                  } else {
+                                    newFilters.push(newFilter);
+                                  }
+                                } else if (existingFilterIndex >= 0) {
+                                  // Entferne den Filter, wenn das Feld leer ist
+                                  newFilters.splice(existingFilterIndex, 1);
                                 }
-                              } else if (existingFilterIndex >= 0) {
-                                // Entferne den Filter, wenn das Feld leer ist
-                                newFilters.splice(existingFilterIndex, 1);
+
+                                handleFilterChange(newFilters);
+                              }}
+                              value={
+                                (filters.find((f) => f.columnId === column.id)?.value as string) ||
+                                ''
                               }
-                              
-                              handleFilterChange(newFilters);
-                            }}
-                            value={filters.find(f => f.columnId === column.id)?.value as string || ''}
-                            aria-label={`Filter für ${column.header}`}
-                          />
-                        </th>
-                      )
-                    ))}
+                              aria-label={`Filter für ${column.header}`}
+                            />
+                          </th>
+                        )
+                    )}
                   </tr>
                 )}
               </thead>
             )}
-            
-            <tbody className={`bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 ${bodyClassName}`}>
+
+            <tbody
+              className={`bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 ${bodyClassName}`}
+            >
               {paginatedData.map((row, rowIndex) => {
                 const isSelected = isRowSelected(row);
-                
+
                 return (
-                  <tr 
+                  <tr
                     key={rowIndex}
                     className={`${getRowClasses(row, rowIndex)} ${isSelected ? 'bg-primary-50 dark:bg-primary-900' : ''}`}
                     onClick={(e) => {
@@ -852,27 +928,27 @@ const Table = <T extends Record<string, any>>({
                       if ((e.target as HTMLElement).tagName === 'INPUT') {
                         return;
                       }
-                      
+
                       // Wenn selectable, dann Zeile auswählen
                       if (selectable) {
                         handleRowSelection(row);
                       }
-                      
+
                       // Wenn onRowClick, dann Callback aufrufen
                       if (onRowClick) {
                         onRowClick(row, rowIndex);
                       }
                     }}
                     role="row"
-                    tabIndex={(onRowClick || selectable) ? 0 : undefined}
+                    tabIndex={onRowClick || selectable ? 0 : undefined}
                     onKeyDown={(e) => {
                       if ((onRowClick || selectable) && (e.key === 'Enter' || e.key === ' ')) {
                         e.preventDefault();
-                        
+
                         if (selectable) {
                           handleRowSelection(row);
                         }
-                        
+
                         if (onRowClick) {
                           onRowClick(row, rowIndex);
                         }
@@ -883,7 +959,9 @@ const Table = <T extends Record<string, any>>({
                   >
                     {/* Checkbox für Zeilenauswahl */}
                     {selectable && (
-                      <td className={`px-6 py-4 whitespace-nowrap ${compact ? 'px-3 py-2 text-sm' : ''}`}>
+                      <td
+                        className={`px-6 py-4 whitespace-nowrap ${compact ? 'px-3 py-2 text-sm' : ''}`}
+                      >
                         <div className="flex items-center">
                           <input
                             type="checkbox"
@@ -896,45 +974,51 @@ const Table = <T extends Record<string, any>>({
                         </div>
                       </td>
                     )}
-                    
+
                     {/* Zelleninhalte */}
-                    {columns.map((column) => (
-                      !column.hidden && (
-                        <td
-                          key={column.id}
-                          className={getCellClasses(column)}
-                          role="gridcell" aria-colindex={columnIndex + 1}
-                        >
-                          {column.cell(row, rowIndex)}
-                        </td>
-                      )
-                    ))}
+                    {columns.map(
+                      (column) =>
+                        !column.hidden && (
+                          <td
+                            key={column.id}
+                            className={getCellClasses(column)}
+                            role="gridcell"
+                            aria-colindex={columnIndex + 1}
+                          >
+                            {column.cell(row, rowIndex)}
+                          </td>
+                        )
+                    )}
                   </tr>
                 );
               })}
             </tbody>
-            
+
             {showFooter && (
               <tfoot className={`bg-gray-50 dark:bg-gray-800 ${footerClassName}`}>
                 <tr>
-                  {columns.map((column) => (
-                    !column.hidden && (
-                      <td
-                        key={column.id}
-                        className={getCellClasses(column)}
-                        role="gridcell" aria-colindex={columnIndex + 1}
-                      >
-                        {/* Footer-Inhalt hier */}
-                      </td>
-                    )
-                  ))}
+                  {columns.map(
+                    (column) =>
+                      !column.hidden && (
+                        <td
+                          key={column.id}
+                          className={getCellClasses(column)}
+                          role="gridcell"
+                          aria-colindex={columnIndex + 1}
+                        >
+                          {/* Footer-Inhalt hier */}
+                        </td>
+                      )
+                  )}
                 </tr>
               </tfoot>
             )}
           </table>
-          
+
           {paginated && (
-            <div className={`bg-white dark:bg-gray-900 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6 ${paginationClassName}`}>
+            <div
+              className={`bg-white dark:bg-gray-900 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6 ${paginationClassName}`}
+            >
               <div className="flex-1 flex justify-between sm:hidden">
                 <button
                   onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
@@ -950,7 +1034,11 @@ const Table = <T extends Record<string, any>>({
                   Zurück
                 </button>
                 <button
-                  onClick={() => handlePageChange(Math.min(Math.ceil(sortedData.length / itemsPerPageState), currentPage + 1))}
+                  onClick={() =>
+                    handlePageChange(
+                      Math.min(Math.ceil(sortedData.length / itemsPerPageState), currentPage + 1)
+                    )
+                  }
                   disabled={currentPage >= Math.ceil(sortedData.length / itemsPerPageState)}
                   className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md ${
                     currentPage >= Math.ceil(sortedData.length / itemsPerPageState)
@@ -966,17 +1054,24 @@ const Table = <T extends Record<string, any>>({
               <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm text-gray-700 dark:text-gray-300" aria-live="polite">
-                    Zeige <span className="font-medium">{sortedData.length > 0 ? (currentPage - 1) * itemsPerPageState + 1 : 0}</span> bis{' '}
+                    Zeige{' '}
+                    <span className="font-medium">
+                      {sortedData.length > 0 ? (currentPage - 1) * itemsPerPageState + 1 : 0}
+                    </span>{' '}
+                    bis{' '}
                     <span className="font-medium">
                       {Math.min(currentPage * itemsPerPageState, sortedData.length)}
-                    </span> von <span className="font-medium">{sortedData.length}</span> Einträgen
+                    </span>{' '}
+                    von <span className="font-medium">{sortedData.length}</span> Einträgen
                   </p>
                 </div>
-                
+
                 {/* Einträge pro Seite Auswahl */}
                 {paginationOptions?.itemsPerPageOptions && (
                   <div className="flex items-center ml-4">
-                    <span className="text-sm text-gray-700 dark:text-gray-300 mr-2">Einträge pro Seite:</span>
+                    <span className="text-sm text-gray-700 dark:text-gray-300 mr-2">
+                      Einträge pro Seite:
+                    </span>
                     <select
                       className="text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                       value={itemsPerPageState}
@@ -991,10 +1086,13 @@ const Table = <T extends Record<string, any>>({
                     </select>
                   </div>
                 )}
-                
+
                 {/* Seitenzahlen */}
                 <div>
-                  <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                  <nav
+                    className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                    aria-label="Pagination"
+                  >
                     {/* Zurück-Button */}
                     <button
                       onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
@@ -1007,48 +1105,76 @@ const Table = <T extends Record<string, any>>({
                       aria-label="Vorherige Seite"
                       aria-disabled={currentPage === 1}
                     >
-                      <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                      <svg
+                        className="h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
                       </svg>
                     </button>
-                    
+
                     {/* Seitenzahlen */}
-                    {Array.from({ length: Math.min(paginationOptions?.pageRangeDisplayed || 5, Math.ceil(sortedData.length / itemsPerPageState)) }, (_, i) => {
-                      // Berechne die anzuzeigenden Seitenzahlen
-                      const totalPages = Math.ceil(sortedData.length / itemsPerPageState);
-                      const pageRangeDisplayed = paginationOptions?.pageRangeDisplayed || 5;
-                      
-                      let startPage = Math.max(1, currentPage - Math.floor(pageRangeDisplayed / 2));
-                      let endPage = Math.min(totalPages, startPage + pageRangeDisplayed - 1);
-                      
-                      // Anpassen, wenn wir am Ende sind
-                      if (endPage - startPage + 1 < pageRangeDisplayed) {
-                        startPage = Math.max(1, endPage - pageRangeDisplayed + 1);
+                    {Array.from(
+                      {
+                        length: Math.min(
+                          paginationOptions?.pageRangeDisplayed || 5,
+                          Math.ceil(sortedData.length / itemsPerPageState)
+                        ),
+                      },
+                      (_, i) => {
+                        // Berechne die anzuzeigenden Seitenzahlen
+                        const totalPages = Math.ceil(sortedData.length / itemsPerPageState);
+                        const pageRangeDisplayed = paginationOptions?.pageRangeDisplayed || 5;
+
+                        let startPage = Math.max(
+                          1,
+                          currentPage - Math.floor(pageRangeDisplayed / 2)
+                        );
+                        let endPage = Math.min(totalPages, startPage + pageRangeDisplayed - 1);
+
+                        // Anpassen, wenn wir am Ende sind
+                        if (endPage - startPage + 1 < pageRangeDisplayed) {
+                          startPage = Math.max(1, endPage - pageRangeDisplayed + 1);
+                        }
+
+                        const page = startPage + i;
+                        if (page > endPage) return null;
+
+                        return (
+                          <button
+                            key={page}
+                            onClick={() => handlePageChange(page)}
+                            className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
+                              currentPage === page
+                                ? 'z-10 bg-primary-50 dark:bg-primary-900 border-primary-500 dark:border-primary-500 text-primary-600 dark:text-primary-300'
+                                : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
+                            }`}
+                            aria-current={currentPage === page ? 'page' : undefined}
+                            aria-label={`Seite ${page}`}
+                          >
+                            {page}
+                          </button>
+                        );
                       }
-                      
-                      const page = startPage + i;
-                      if (page > endPage) return null;
-                      
-                      return (
-                        <button
-                          key={page}
-                          onClick={() => handlePageChange(page)}
-                          className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                            currentPage === page
-                              ? 'z-10 bg-primary-50 dark:bg-primary-900 border-primary-500 dark:border-primary-500 text-primary-600 dark:text-primary-300'
-                              : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-                          }`}
-                          aria-current={currentPage === page ? 'page' : undefined}
-                          aria-label={`Seite ${page}`}
-                        >
-                          {page}
-                        </button>
-                      );
-                    })}
-                    
+                    )}
+
                     {/* Weiter-Button */}
                     <button
-                      onClick={() => handlePageChange(Math.min(Math.ceil(sortedData.length / itemsPerPageState), currentPage + 1))}
+                      onClick={() =>
+                        handlePageChange(
+                          Math.min(
+                            Math.ceil(sortedData.length / itemsPerPageState),
+                            currentPage + 1
+                          )
+                        )
+                      }
                       disabled={currentPage >= Math.ceil(sortedData.length / itemsPerPageState)}
                       className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-600 text-sm font-medium ${
                         currentPage >= Math.ceil(sortedData.length / itemsPerPageState)
@@ -1056,10 +1182,22 @@ const Table = <T extends Record<string, any>>({
                           : 'bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
                       }`}
                       aria-label="Nächste Seite"
-                      aria-disabled={currentPage >= Math.ceil(sortedData.length / itemsPerPageState)}
+                      aria-disabled={
+                        currentPage >= Math.ceil(sortedData.length / itemsPerPageState)
+                      }
                     >
-                      <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                      <svg
+                        className="h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
                       </svg>
                     </button>
                   </nav>

@@ -39,7 +39,9 @@ export interface BoxBaseProps {
   /** Position */
   position?: ResponsiveValue<'static' | 'relative' | 'absolute' | 'fixed' | 'sticky'>;
   /** Display */
-  display?: ResponsiveValue<'block' | 'inline' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'inline-grid' | 'none'>;
+  display?: ResponsiveValue<
+    'block' | 'inline' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'inline-grid' | 'none'
+  >;
   /** Overflow */
   overflow?: ResponsiveValue<'visible' | 'hidden' | 'scroll' | 'auto'>;
 }

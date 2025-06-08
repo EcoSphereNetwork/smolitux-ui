@@ -65,32 +65,92 @@ export const ProfileWallet: React.FC<ProfileWalletProps> = ({
     switch (type) {
       case 'send':
         return (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 17l10-10M7 7h10v10" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 17l10-10M7 7h10v10"
+              stroke="#ef4444"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         );
       case 'receive':
         return (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 7L7 17M17 17H7V7" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17 7L7 17M17 17H7V7"
+              stroke="#10b981"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         );
       case 'stake':
         return (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2v20M2 12h20" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2v20M2 12h20"
+              stroke="#3b82f6"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         );
       case 'unstake':
         return (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12h14" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12h14"
+              stroke="#f59e0b"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         );
       case 'reward':
         return (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 15l-3-3m0 0l3-3m-3 3h6M7 20h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 15l-3-3m0 0l3-3m-3 3h6M7 20h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke="#8b5cf6"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         );
       default:
@@ -141,59 +201,69 @@ export const ProfileWallet: React.FC<ProfileWalletProps> = ({
     >
       <Card style={{ marginBottom: '16px' }}>
         <Box style={{ padding: '16px' }}>
-          <Text size="sm" color="#6b7280" style={{ marginBottom: '4px' }}>Wallet Address</Text>
+          <Text size="sm" color="#6b7280" style={{ marginBottom: '4px' }}>
+            Wallet Address
+          </Text>
           <Flex align="center" style={{ marginBottom: '16px' }}>
             <Text style={{ marginRight: '8px' }}>{formatAddress(address)}</Text>
-            <Box 
+            <Box
               style={{ cursor: 'pointer' }}
               onClick={() => {
                 navigator.clipboard.writeText(address);
                 alert('Address copied to clipboard');
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </Box>
           </Flex>
-          
-          <Text size="sm" color="#6b7280" style={{ marginBottom: '4px' }}>Balance</Text>
+
+          <Text size="sm" color="#6b7280" style={{ marginBottom: '4px' }}>
+            Balance
+          </Text>
           <Text size="xl" weight="bold" style={{ marginBottom: '16px' }}>
             {balance} {tokenSymbol}
           </Text>
-          
+
           <Flex>
-            <Button 
-              variant="outline" 
-              onClick={onSend}
-              style={{ marginRight: '8px' }}
-            >
+            <Button variant="outline" onClick={onSend} style={{ marginRight: '8px' }}>
               Send
             </Button>
-            <Button 
-              variant="outline" 
-              onClick={onReceive}
-              style={{ marginRight: '8px' }}
-            >
+            <Button variant="outline" onClick={onReceive} style={{ marginRight: '8px' }}>
               Receive
             </Button>
-            <Button 
-              variant="outline" 
-              onClick={onStake}
-            >
+            <Button variant="outline" onClick={onStake}>
               Stake
             </Button>
           </Flex>
         </Box>
       </Card>
-      
+
       <Box>
-        <Text weight="bold" style={{ marginBottom: '12px' }}>Transaction History</Text>
-        
+        <Text weight="bold" style={{ marginBottom: '12px' }}>
+          Transaction History
+        </Text>
+
         {isLoading ? (
           <Card>
-            {[1, 2, 3].map(i => (
-              <Box key={i} style={{ padding: '12px 16px', borderBottom: i < 3 ? '1px solid #e5e7eb' : 'none' }}>
+            {[1, 2, 3].map((i) => (
+              <Box
+                key={i}
+                style={{ padding: '12px 16px', borderBottom: i < 3 ? '1px solid #e5e7eb' : 'none' }}
+              >
                 <Flex justify="space-between" style={{ marginBottom: '8px' }}>
                   <Box
                     style={{
@@ -232,38 +302,42 @@ export const ProfileWallet: React.FC<ProfileWalletProps> = ({
         ) : (
           <Card>
             {transactions.map((transaction, index) => (
-              <Box 
-                key={transaction.id} 
-                style={{ 
-                  padding: '12px 16px', 
+              <Box
+                key={transaction.id}
+                style={{
+                  padding: '12px 16px',
                   borderBottom: index < transactions.length - 1 ? '1px solid #e5e7eb' : 'none',
                 }}
               >
                 <Flex justify="space-between" style={{ marginBottom: '4px' }}>
                   <Flex align="center">
-                    <Box style={{ marginRight: '8px' }}>
-                      {getTransactionIcon(transaction.type)}
-                    </Box>
-                    <Text weight="medium">
-                      {getTransactionLabel(transaction.type)}
-                    </Text>
+                    <Box style={{ marginRight: '8px' }}>{getTransactionIcon(transaction.type)}</Box>
+                    <Text weight="medium">{getTransactionLabel(transaction.type)}</Text>
                   </Flex>
-                  <Text 
+                  <Text
                     weight="medium"
-                    color={transaction.type === 'send' || transaction.type === 'unstake' ? '#ef4444' : '#10b981'}
+                    color={
+                      transaction.type === 'send' || transaction.type === 'unstake'
+                        ? '#ef4444'
+                        : '#10b981'
+                    }
                   >
-                    {transaction.type === 'send' || transaction.type === 'unstake' ? '-' : '+'}{transaction.amount} {tokenSymbol}
+                    {transaction.type === 'send' || transaction.type === 'unstake' ? '-' : '+'}
+                    {transaction.amount} {tokenSymbol}
                   </Text>
                 </Flex>
                 <Flex justify="space-between">
                   <Text size="sm" color="#6b7280">
                     {formatDate(transaction.timestamp)}
                   </Text>
-                  <Text 
-                    size="sm" 
+                  <Text
+                    size="sm"
                     color={
-                      transaction.status === 'completed' ? '#10b981' : 
-                      transaction.status === 'pending' ? '#f59e0b' : '#ef4444'
+                      transaction.status === 'completed'
+                        ? '#10b981'
+                        : transaction.status === 'pending'
+                          ? '#f59e0b'
+                          : '#ef4444'
                     }
                   >
                     {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
@@ -271,7 +345,8 @@ export const ProfileWallet: React.FC<ProfileWalletProps> = ({
                 </Flex>
                 {transaction.counterparty && (
                   <Text size="sm" color="#6b7280">
-                    {transaction.type === 'send' ? 'To: ' : 'From: '}{formatAddress(transaction.counterparty)}
+                    {transaction.type === 'send' ? 'To: ' : 'From: '}
+                    {formatAddress(transaction.counterparty)}
                   </Text>
                 )}
               </Box>

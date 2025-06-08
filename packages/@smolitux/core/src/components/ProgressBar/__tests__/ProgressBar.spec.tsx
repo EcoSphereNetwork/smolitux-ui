@@ -14,27 +14,23 @@ describe('ProgressBar Snapshots', () => {
   });
 
   it('renders with custom label format correctly', () => {
-    const { asFragment } = render(
-      <ProgressBar value={50} showLabel labelFormat="valueAndMax" />
-    );
+    const { asFragment } = render(<ProgressBar value={50} showLabel labelFormat="valueAndMax" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders with custom label correctly', () => {
-    const { asFragment } = render(
-      <ProgressBar value={50} label="Loading..." />
-    );
+    const { asFragment } = render(<ProgressBar value={50} label="Loading..." />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders with different sizes correctly', () => {
     const sizes: Array<'xs' | 'sm' | 'md' | 'lg'> = ['xs', 'sm', 'md', 'lg'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(<ProgressBar value={50} size={size} />);
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`ProgressBar with size ${size}`);
     });
@@ -42,14 +38,19 @@ describe('ProgressBar Snapshots', () => {
 
   it('renders with different colors correctly', () => {
     const colors: Array<'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'> = [
-      'primary', 'secondary', 'success', 'warning', 'error', 'info'
+      'primary',
+      'secondary',
+      'success',
+      'warning',
+      'error',
+      'info',
     ];
-    
-    const fragments = colors.map(color => {
+
+    const fragments = colors.map((color) => {
       const { asFragment } = render(<ProgressBar value={50} color={color} />);
       return { color, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ color, fragment }) => {
       expect(fragment).toMatchSnapshot(`ProgressBar with color ${color}`);
     });

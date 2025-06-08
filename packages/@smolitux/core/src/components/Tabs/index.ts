@@ -1,28 +1,19 @@
 // packages/@smolitux/core/src/components/Tabs/index.ts
-import { 
-  Tabs as BaseTabs, 
-  TabList, 
-  Tab, 
-  TabPanels, 
-  TabPanel,
-  useTabsContext
-} from './Tabs';
-import { 
-  Tabs as TabsA11y
-} from './Tabs.a11y';
+import { Tabs as BaseTabs, TabList, Tab, TabPanels, TabPanel, useTabsContext } from './Tabs';
+import { Tabs as TabsA11y } from './Tabs.a11y';
 
-export type { 
-  TabsProps, 
-  TabListProps, 
-  TabProps, 
-  TabPanelsProps, 
+export type {
+  TabsProps,
+  TabListProps,
+  TabProps,
+  TabPanelsProps,
   TabPanelProps,
   TabsVariant,
   TabsColorScheme,
   TabsSize,
   TabsAlign,
   TabsOrientation,
-  TabsContextProps
+  TabsContextProps,
 } from './Tabs';
 
 export type {
@@ -30,7 +21,7 @@ export type {
   TabListA11yProps,
   TabA11yProps,
   TabPanelsA11yProps,
-  TabPanelA11yProps
+  TabPanelA11yProps,
 } from './Tabs.a11y';
 
 // Erweitere Tabs um die A11y-Komponente
@@ -39,7 +30,7 @@ export const Tabs = Object.assign(BaseTabs, {
   Tab: Tab,
   Panels: TabPanels,
   Panel: TabPanel,
-  A11y: TabsA11y
+  A11y: TabsA11y,
 });
 
 // Exportiere den Context-Hook

@@ -60,13 +60,13 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
   const [replyContent, setReplyContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [expandedReplies, setExpandedReplies] = useState<Record<string, boolean>>({});
-  
+
   // Kommentar hinzufügen
   const handleAddComment = async () => {
     if (!newComment.trim() || !currentUser) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
       await onAddComment(newComment);
       setNewComment('');
@@ -76,13 +76,13 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       setIsSubmitting(false);
     }
   };
-  
+
   // Antwort hinzufügen
   const handleAddReply = async (parentId: string) => {
     if (!replyContent.trim() || !currentUser) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
       await onAddComment(replyContent, parentId);
       setReplyContent('');
@@ -93,7 +93,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       setIsSubmitting(false);
     }
   };
-  
+
   // Kommentar liken
   const handleLikeComment = async (commentId: string, isLiked: boolean) => {
     try {
@@ -102,26 +102,26 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       console.error('Fehler beim Liken des Kommentars:', error);
     }
   };
-  
+
   // Kommentar löschen
   const handleDeleteComment = async (commentId: string) => {
     if (!onDeleteComment) return;
-    
+
     try {
       await onDeleteComment(commentId);
     } catch (error) {
       console.error('Fehler beim Löschen des Kommentars:', error);
     }
   };
-  
+
   // Antworten ein-/ausklappen
   const toggleReplies = (commentId: string) => {
-    setExpandedReplies(prev => ({
+    setExpandedReplies((prev) => ({
       ...prev,
       [commentId]: !prev[commentId],
     }));
   };
-  
+
   // Datum formatieren
   const formatDate = (date: Date): string => {
     return new Intl.DateTimeFormat('de-DE', {
@@ -132,17 +132,29 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       minute: '2-digit',
     }).format(date);
   };
-  
+
   // Avatar-Komponente
-  const Avatar = ({ src, alt, size = 'md', className = '' }: { src?: string; alt: string; size?: 'sm' | 'md' | 'lg'; className?: string }) => {
+  const Avatar = ({
+    src,
+    alt,
+    size = 'md',
+    className = '',
+  }: {
+    src?: string;
+    alt: string;
+    size?: 'sm' | 'md' | 'lg';
+    className?: string;
+  }) => {
     const sizeClasses = {
       sm: 'w-8 h-8',
       md: 'w-10 h-10',
       lg: 'w-12 h-12',
     };
-    
+
     return (
-      <div className={`${sizeClasses[size]} rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 flex-shrink-0 ${className}`}>
+      <div
+        className={`${sizeClasses[size]} rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 flex-shrink-0 ${className}`}
+      >
         {src ? (
           <img src={src} alt={alt} className="w-full h-full object-cover" />
         ) : (
@@ -153,34 +165,25 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       </div>
     );
   };
-  
+
   // Einzelner Kommentar
   const Comment = ({ comment, isReply = false }: { comment: CommentData; isReply?: boolean }) => {
     const { id, content, author, createdAt, likes, isLiked, replies } = comment;
     const hasReplies = replies && replies.length > 0;
     const isExpanded = expandedReplies[id] || false;
-    
+
     return (
       <div className={`${isReply ? 'ml-12 mt-4' : 'mt-6'}`}>
         <div className="flex">
-          <Avatar
-            src={author.avatar}
-            alt={author.name}
-            size="md"
-            className="mr-4"
-          />
-          
+          <Avatar src={author.avatar} alt={author.name} size="md" className="mr-4" />
+
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-sm font-medium text-gray-900 dark:text-white">
-                  {author.name}
-                </h4>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {formatDate(createdAt)}
-                </p>
+                <h4 className="text-sm font-medium text-gray-900 dark:text-white">{author.name}</h4>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{formatDate(createdAt)}</p>
               </div>
-              
+
               {currentUser && onDeleteComment && currentUser.id === author.id && (
                 <button
                   onClick={() => handleDeleteComment(id)}
@@ -203,11 +206,9 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                 </button>
               )}
             </div>
-            
-            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-              {content}
-            </p>
-            
+
+            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{content}</p>
+
             <div className="mt-2 flex items-center space-x-4">
               <button
                 onClick={() => handleLikeComment(id, !!isLiked)}
@@ -233,7 +234,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                 </svg>
                 <span>{likes}</span>
               </button>
-              
+
               {currentUser && (
                 <button
                   onClick={() => setReplyingTo(replyingTo === id ? null : id)}
@@ -257,7 +258,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                 </button>
               )}
             </div>
-            
+
             {replyingTo === id && currentUser && (
               <div className="mt-4 flex">
                 <Avatar
@@ -266,7 +267,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                   size="sm"
                   className="mr-2"
                 />
-                
+
                 <div className="flex-1">
                   <Input
                     value={replyContent}
@@ -274,7 +275,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                     placeholder="Antwort schreiben..."
                     className="mb-2"
                   />
-                  
+
                   <div className="flex justify-end space-x-2">
                     <Button
                       variant="outline"
@@ -286,7 +287,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                     >
                       Abbrechen
                     </Button>
-                    
+
                     <Button
                       variant="primary"
                       size="sm"
@@ -299,7 +300,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                 </div>
               </div>
             )}
-            
+
             {hasReplies && (
               <div className="mt-3">
                 <button
@@ -310,10 +311,10 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
                     ? `${replies!.length} Antworten ausblenden`
                     : `${replies!.length} Antworten anzeigen`}
                 </button>
-                
+
                 {isExpanded && (
                   <div className="mt-2">
-                    {replies!.map(reply => (
+                    {replies!.map((reply) => (
                       <Comment key={reply.id} comment={reply} isReply />
                     ))}
                   </div>
@@ -325,23 +326,18 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       </div>
     );
   };
-  
+
   return (
     <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${className}`}>
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
         Kommentare ({comments.length})
       </h3>
-      
+
       {/* Kommentar-Eingabe */}
       {currentUser ? (
         <div className="mt-4 flex">
-          <Avatar
-            src={currentUser.avatar}
-            alt={currentUser.name}
-            size="md"
-            className="mr-4"
-          />
-          
+          <Avatar src={currentUser.avatar} alt={currentUser.name} size="md" className="mr-4" />
+
           <div className="flex-1">
             <Input
               value={newComment}
@@ -349,7 +345,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
               placeholder="Kommentar schreiben..."
               className="mb-2"
             />
-            
+
             <div className="flex justify-end">
               <Button
                 variant="primary"
@@ -366,7 +362,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
           Bitte melden Sie sich an, um zu kommentieren.
         </p>
       )}
-      
+
       {/* Kommentarliste */}
       <div className="mt-6 space-y-6">
         {comments.length === 0 ? (
@@ -374,9 +370,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
             Noch keine Kommentare. Sei der Erste!
           </p>
         ) : (
-          comments.map(comment => (
-            <Comment key={comment.id} comment={comment} />
-          ))
+          comments.map((comment) => <Comment key={comment.id} comment={comment} />)
         )}
       </div>
     </div>

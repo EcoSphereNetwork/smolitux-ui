@@ -167,19 +167,15 @@ export const ImagePositions: Story = {
     <div className="space-y-4">
       <div>
         <h3 className="text-lg font-medium mb-2">Image Top</h3>
-        <Card 
-          title="Image Top" 
-          image="https://via.placeholder.com/400x200" 
-          imagePosition="top"
-        >
+        <Card title="Image Top" image="https://via.placeholder.com/400x200" imagePosition="top">
           <p>Dies ist eine Karte mit einem Bild oben.</p>
         </Card>
       </div>
       <div>
         <h3 className="text-lg font-medium mb-2">Image Bottom</h3>
-        <Card 
-          title="Image Bottom" 
-          image="https://via.placeholder.com/400x200" 
+        <Card
+          title="Image Bottom"
+          image="https://via.placeholder.com/400x200"
           imagePosition="bottom"
         >
           <p>Dies ist eine Karte mit einem Bild unten.</p>
@@ -187,21 +183,13 @@ export const ImagePositions: Story = {
       </div>
       <div>
         <h3 className="text-lg font-medium mb-2">Image Left</h3>
-        <Card 
-          title="Image Left" 
-          image="https://via.placeholder.com/200x200" 
-          imagePosition="left"
-        >
+        <Card title="Image Left" image="https://via.placeholder.com/200x200" imagePosition="left">
           <p>Dies ist eine Karte mit einem Bild links.</p>
         </Card>
       </div>
       <div>
         <h3 className="text-lg font-medium mb-2">Image Right</h3>
-        <Card 
-          title="Image Right" 
-          image="https://via.placeholder.com/200x200" 
-          imagePosition="right"
-        >
+        <Card title="Image Right" image="https://via.placeholder.com/200x200" imagePosition="right">
           <p>Dies ist eine Karte mit einem Bild rechts.</p>
         </Card>
       </div>
@@ -246,7 +234,9 @@ export const ComplexCard: Story = {
         <div className="flex justify-between items-center">
           <div className="text-sm text-gray-500">Letzte Aktualisierung: 01.04.2023</div>
           <div className="flex space-x-2">
-            <Button variant="outlined" size="sm">Details</Button>
+            <Button variant="outlined" size="sm">
+              Details
+            </Button>
             <Button size="sm">Kaufen</Button>
           </div>
         </div>
@@ -254,8 +244,8 @@ export const ComplexCard: Story = {
     >
       <div className="space-y-4">
         <p>
-          Dies ist eine komplexe Karte mit einem Bild, Titel, Untertitel und Footer.
-          Sie demonstriert die verschiedenen Funktionen der Card-Komponente.
+          Dies ist eine komplexe Karte mit einem Bild, Titel, Untertitel und Footer. Sie
+          demonstriert die verschiedenen Funktionen der Card-Komponente.
         </p>
         <div className="flex space-x-2">
           <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
@@ -277,13 +267,7 @@ export const CardGrid: Story = {
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {Array.from({ length: 6 }).map((_, index) => (
-        <Card
-          key={index}
-          variant="elevated"
-          title={`Karte ${index + 1}`}
-          interactive
-          clickable
-        >
+        <Card key={index} variant="elevated" title={`Karte ${index + 1}`} interactive clickable>
           <p>Dies ist der Inhalt der Karte {index + 1}.</p>
         </Card>
       ))}

@@ -1,19 +1,13 @@
 // packages/@smolitux/core/src/components/List/index.ts
-export { 
-  default as List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  ListItemAction
-} from './List';
+export { default as List, ListItem, ListItemText, ListItemIcon, ListItemAction } from './List';
 
-export type { 
+export type {
   ListProps,
   ListItemProps,
   ListItemTextProps,
   ListItemIconProps,
   ListItemActionProps,
-  ListContextType
+  ListContextType,
 } from './List';
 
 // Barrierefreie Versionen
@@ -22,5 +16,5 @@ export {
   ListItemA11y,
   ListItemTextA11y,
   ListItemIconA11y,
-  ListItemActionA11y
+  ListItemActionA11y,
 } from './List.a11y';

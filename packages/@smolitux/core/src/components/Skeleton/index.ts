@@ -4,7 +4,7 @@ import { default as SkeletonA11y, type SkeletonA11yProps } from './Skeleton.a11y
 
 // Erweitere Skeleton um die A11y-Komponente
 const Skeleton = Object.assign(BaseSkeleton, {
-  A11y: SkeletonA11y
+  A11y: SkeletonA11y,
 });
 
 // Exportiere Komponenten und Typen

@@ -17,7 +17,7 @@ export interface OptionProps extends React.OptionHTMLAttributes<HTMLOptionElemen
 
 /**
  * Option-Komponente für Select
- * 
+ *
  * @example
  * ```tsx
  * <Option value="option1">Option 1</Option>
@@ -35,8 +35,8 @@ export const Option: React.FC<OptionProps> = ({
   ...props
 }) => {
   return (
-    <option 
-      value={value} 
+    <option
+      value={value}
       disabled={disabled}
       title={description}
       data-icon={icon ? 'true' : undefined}

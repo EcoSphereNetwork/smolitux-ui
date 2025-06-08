@@ -102,8 +102,19 @@ export const WithIcon: Story = {
     variant: 'success',
     size: 'md',
     icon: (
-      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+      <svg
+        className="w-3 h-3"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M5 13l4 4L19 7"
+        ></path>
       </svg>
     ),
   },
@@ -170,12 +181,24 @@ export const AllVariants: Story = {
         <Badge variant="info">Info</Badge>
       </div>
       <div className="flex items-center space-x-2">
-        <Badge variant="default" outline>Default</Badge>
-        <Badge variant="primary" outline>Primary</Badge>
-        <Badge variant="success" outline>Success</Badge>
-        <Badge variant="warning" outline>Warning</Badge>
-        <Badge variant="error" outline>Error</Badge>
-        <Badge variant="info" outline>Info</Badge>
+        <Badge variant="default" outline>
+          Default
+        </Badge>
+        <Badge variant="primary" outline>
+          Primary
+        </Badge>
+        <Badge variant="success" outline>
+          Success
+        </Badge>
+        <Badge variant="warning" outline>
+          Warning
+        </Badge>
+        <Badge variant="error" outline>
+          Error
+        </Badge>
+        <Badge variant="info" outline>
+          Info
+        </Badge>
       </div>
     </div>
   ),
@@ -186,7 +209,9 @@ export const InContext: Story = {
     <div className="flex flex-col space-y-4">
       <div className="flex items-center">
         <span className="mr-2">Nachrichten</span>
-        <Badge variant="primary" isCounter>5</Badge>
+        <Badge variant="primary" isCounter>
+          5
+        </Badge>
       </div>
       <div className="flex items-center">
         <span className="mr-2">Status:</span>
@@ -194,11 +219,15 @@ export const InContext: Story = {
       </div>
       <div className="flex items-center">
         <span className="mr-2">Benachrichtigungen</span>
-        <Badge variant="error" isCounter maxCount={99}>120</Badge>
+        <Badge variant="error" isCounter maxCount={99}>
+          120
+        </Badge>
       </div>
       <div className="flex items-center">
         <span className="mr-2">Neue Funktion</span>
-        <Badge variant="info" size="sm">Neu</Badge>
+        <Badge variant="info" size="sm">
+          Neu
+        </Badge>
       </div>
     </div>
   ),

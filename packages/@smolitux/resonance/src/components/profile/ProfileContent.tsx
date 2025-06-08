@@ -51,7 +51,7 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
     if (isLoading) {
       return (
         <Grid columns={{ base: 1, md: 2 }} gap={16}>
-          {[1, 2, 3, 4].map(i => (
+          {[1, 2, 3, 4].map((i) => (
             <Card key={i}>
               <Box style={{ padding: '16px' }}>
                 <Box
@@ -109,16 +109,14 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
 
     return (
       <Grid columns={{ base: 1, md: 2 }} gap={16}>
-        {posts.map(post => (
-          <Card 
-            key={post.id}
-            hoverable
-            onClick={() => onPostClick && onPostClick(post.id)}
-          >
+        {posts.map((post) => (
+          <Card key={post.id} hoverable onClick={() => onPostClick && onPostClick(post.id)}>
             <Box style={{ padding: '16px' }}>
-              <Text weight="bold" style={{ marginBottom: '8px' }}>{post.title}</Text>
+              <Text weight="bold" style={{ marginBottom: '8px' }}>
+                {post.title}
+              </Text>
               <Text style={{ marginBottom: '12px' }}>{post.content}</Text>
-              
+
               {post.media && post.media.length > 0 && (
                 <Box style={{ marginBottom: '12px' }}>
                   <Grid columns={post.media.length > 1 ? 2 : 1} gap={8}>
@@ -175,9 +173,11 @@ export const ProfileContent: React.FC<ProfileContentProps> = ({
                   </Grid>
                 </Box>
               )}
-              
+
               <Flex justify="space-between">
-                <Text size="sm" color="#6b7280">{formatDate(post.createdAt)}</Text>
+                <Text size="sm" color="#6b7280">
+                  {formatDate(post.createdAt)}
+                </Text>
                 <Flex>
                   <Flex align="center" style={{ marginRight: '12px' }}>
                     <svg

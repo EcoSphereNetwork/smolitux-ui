@@ -23,15 +23,15 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     expect(screen.getByRole('tablist')).toBeInTheDocument();
     expect(screen.getAllByRole('tab')).toHaveLength(3);
     expect(screen.getByRole('tabpanel')).toBeInTheDocument();
-    
+
     expect(screen.getByText('Tab 1')).toBeInTheDocument();
     expect(screen.getByText('Tab 2')).toBeInTheDocument();
     expect(screen.getByText('Tab 3')).toBeInTheDocument();
-    
+
     // By default, the first tab should be selected
     expect(screen.getByText('Content 1')).toBeInTheDocument();
     expect(screen.queryByText('Content 2')).not.toBeInTheDocument();
@@ -52,13 +52,13 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Initially, the first tab is active
     expect(screen.getByText('Content 1')).toBeInTheDocument();
-    
+
     // Click on the second tab
     await userEvent.click(screen.getByText('Tab 2'));
-    
+
     // Now the second tab should be active
     expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
     expect(screen.getByText('Content 2')).toBeInTheDocument();
@@ -79,7 +79,7 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // The second tab (index 1) should be active
     expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
     expect(screen.getByText('Content 2')).toBeInTheDocument();
@@ -89,7 +89,7 @@ describe('TabView', () => {
   test('handles controlled active tab', async () => {
     const TestComponent = () => {
       const [activeTab, setActiveTab] = React.useState(0);
-      
+
       return (
         <>
           <button onClick={() => setActiveTab(2)}>Set Tab 3</button>
@@ -107,23 +107,23 @@ describe('TabView', () => {
         </>
       );
     };
-    
+
     render(<TestComponent />);
-    
+
     // Initially, the first tab is active
     expect(screen.getByText('Content 1')).toBeInTheDocument();
-    
+
     // Click the button to set the third tab as active
     await userEvent.click(screen.getByText('Set Tab 3'));
-    
+
     // Now the third tab should be active
     expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
     expect(screen.queryByText('Content 2')).not.toBeInTheDocument();
     expect(screen.getByText('Content 3')).toBeInTheDocument();
-    
+
     // Click on the second tab
     await userEvent.click(screen.getByText('Tab 2'));
-    
+
     // Now the second tab should be active
     expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
     expect(screen.getByText('Content 2')).toBeInTheDocument();
@@ -144,14 +144,14 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // The second tab should be disabled
     const tabs = screen.getAllByRole('tab');
     expect(tabs[1]).toHaveAttribute('aria-disabled', 'true');
-    
+
     // Try to click the disabled tab
     await userEvent.click(screen.getByText('Tab 2'));
-    
+
     // The first tab should still be active
     expect(screen.getByText('Content 1')).toBeInTheDocument();
     expect(screen.queryByText('Content 2')).not.toBeInTheDocument();
@@ -168,10 +168,10 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Check for underlined variant classes
     expect(screen.getByRole('tablist')).toHaveClass('border-b');
-    
+
     rerender(
       <TabView variant="enclosed">
         <Tab label="Tab 1">
@@ -182,7 +182,7 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Check for enclosed variant classes
     expect(screen.getByRole('tablist')).toHaveClass('border-b');
     expect(screen.getAllByRole('tab')[0]).toHaveClass('rounded-t-md');
@@ -199,10 +199,10 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Check for small size classes
     expect(screen.getAllByRole('tab')[0]).toHaveClass('px-3 py-1.5 text-sm');
-    
+
     rerender(
       <TabView size="md">
         <Tab label="Tab 1">
@@ -213,10 +213,10 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Check for medium size classes
     expect(screen.getAllByRole('tab')[0]).toHaveClass('px-4 py-2 text-base');
-    
+
     rerender(
       <TabView size="lg">
         <Tab label="Tab 1">
@@ -227,7 +227,7 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Check for large size classes
     expect(screen.getAllByRole('tab')[0]).toHaveClass('px-6 py-3 text-lg');
   });
@@ -243,7 +243,7 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Check for accent color classes
     const activeTab = screen.getAllByRole('tab')[0];
     expect(activeTab).toHaveClass('text-accent-600');
@@ -260,7 +260,7 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     expect(screen.getByTestId('icon-1')).toBeInTheDocument();
     expect(screen.getByTestId('icon-2')).toBeInTheDocument();
   });
@@ -276,7 +276,7 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     expect(screen.getByRole('tablist').parentElement).toHaveClass('custom-class');
   });
 
@@ -294,23 +294,23 @@ describe('TabView', () => {
         </Tab>
       </TabView>
     );
-    
+
     // Focus the first tab
     const tabs = screen.getAllByRole('tab');
     tabs[0].focus();
-    
+
     // Press right arrow to move to the next tab
     fireEvent.keyDown(document.activeElement || document.body, { key: 'ArrowRight' });
     expect(document.activeElement).toBe(tabs[1]);
-    
+
     // Press right arrow again to move to the last tab
     fireEvent.keyDown(document.activeElement || document.body, { key: 'ArrowRight' });
     expect(document.activeElement).toBe(tabs[2]);
-    
+
     // Press left arrow to move back to the middle tab
     fireEvent.keyDown(document.activeElement || document.body, { key: 'ArrowLeft' });
     expect(document.activeElement).toBe(tabs[1]);
-    
+
     // Press Enter to select the tab
     fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
     expect(screen.getByText('Content 2')).toBeInTheDocument();

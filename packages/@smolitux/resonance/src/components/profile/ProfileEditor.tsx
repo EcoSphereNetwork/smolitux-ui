@@ -41,25 +41,25 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validierung
     const newErrors: Record<string, string> = {};
-    
+
     if (!username.trim()) {
       newErrors.username = 'Username is required';
     } else if (username.length < 3) {
       newErrors.username = 'Username must be at least 3 characters';
     }
-    
+
     if (bio.length > 160) {
       newErrors.bio = 'Bio must be less than 160 characters';
     }
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    
+
     onSave({ username, bio, avatar });
   };
 
@@ -73,21 +73,21 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
       <form onSubmit={handleSubmit}>
         <Box style={{ marginBottom: '16px' }}>
           <Flex justify="center" style={{ marginBottom: '16px' }}>
-            <Box 
-              style={{ 
-                width: '100px', 
-                height: '100px', 
-                borderRadius: '50%', 
+            <Box
+              style={{
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
                 overflow: 'hidden',
                 position: 'relative',
               }}
             >
-              <img 
-                src={avatar} 
-                alt={username} 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              <img
+                src={avatar}
+                alt={username}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
-              <Box 
+              <Box
                 style={{
                   position: 'absolute',
                   bottom: '0',
@@ -110,7 +110,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
               </Box>
             </Box>
           </Flex>
-          
+
           <Box style={{ marginBottom: '16px' }}>
             <Input
               label="Username"
@@ -120,7 +120,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
               required
             />
           </Box>
-          
+
           <Box style={{ marginBottom: '16px' }}>
             <TextArea
               label="Bio"
@@ -133,19 +133,12 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
             />
           </Box>
         </Box>
-        
+
         <Flex justify="flex-end">
-          <Button 
-            variant="outline" 
-            onClick={onCancel}
-            style={{ marginRight: '8px' }}
-          >
+          <Button variant="outline" onClick={onCancel} style={{ marginRight: '8px' }}>
             Cancel
           </Button>
-          <Button 
-            type="submit"
-            disabled={isSaving}
-          >
+          <Button type="submit" disabled={isSaving}>
             {isSaving ? 'Saving...' : 'Save Changes'}
           </Button>
         </Flex>

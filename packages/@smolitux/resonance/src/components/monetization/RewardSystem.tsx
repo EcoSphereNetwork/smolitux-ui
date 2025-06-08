@@ -285,26 +285,26 @@ export const RewardSystem: React.FC<RewardSystemProps> = ({
   const renderUserSummary = () => (
     <Box style={{ marginBottom: '24px' }}>
       <Flex align="center" style={{ marginBottom: '16px' }}>
-        <Box 
-          style={{ 
-            width: '64px', 
-            height: '64px', 
-            borderRadius: '50%', 
+        <Box
+          style={{
+            width: '64px',
+            height: '64px',
+            borderRadius: '50%',
             overflow: 'hidden',
             marginRight: '16px',
           }}
         >
-          <img 
-            src={avatar} 
-            alt={username} 
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+          <img
+            src={avatar}
+            alt={username}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </Box>
         <Box>
-          <Text weight="bold" size="xl">{username}</Text>
-          <Text color="#6b7280">
-            {totalPoints.toLocaleString()} points
+          <Text weight="bold" size="xl">
+            {username}
           </Text>
+          <Text color="#6b7280">{totalPoints.toLocaleString()} points</Text>
         </Box>
       </Flex>
 
@@ -329,9 +329,7 @@ export const RewardSystem: React.FC<RewardSystemProps> = ({
         <Box>
           <Flex justify="space-between" align="center" style={{ marginBottom: '8px' }}>
             <Text>Progress to next tier</Text>
-            <Text weight="medium">
-              {pointsToNextTier.toLocaleString()} points needed
-            </Text>
+            <Text weight="medium">{pointsToNextTier.toLocaleString()} points needed</Text>
           </Flex>
           <Box
             style={{
@@ -376,12 +374,20 @@ export const RewardSystem: React.FC<RewardSystemProps> = ({
                   style={{
                     padding: '4px 8px',
                     borderRadius: '9999px',
-                    backgroundColor: tier.isCurrent ? '#3b82f6' : tier.isNext ? '#e5e7eb' : 'transparent',
+                    backgroundColor: tier.isCurrent
+                      ? '#3b82f6'
+                      : tier.isNext
+                        ? '#e5e7eb'
+                        : 'transparent',
                     color: tier.isCurrent ? 'white' : 'inherit',
                     fontSize: '0.75rem',
                   }}
                 >
-                  {tier.isCurrent ? 'Current' : tier.isNext ? 'Next' : `${tier.minPoints.toLocaleString()} points`}
+                  {tier.isCurrent
+                    ? 'Current'
+                    : tier.isNext
+                      ? 'Next'
+                      : `${tier.minPoints.toLocaleString()} points`}
                 </Box>
               </Flex>
               <Text style={{ marginBottom: '8px' }}>{tier.description}</Text>
@@ -619,7 +625,9 @@ export const RewardSystem: React.FC<RewardSystemProps> = ({
       <Card style={{ marginBottom: '24px' }}>
         <Box style={{ padding: '16px' }}>
           <Flex justify="space-between" align="center" style={{ marginBottom: '16px' }}>
-            <Text weight="bold" size="xl">Reward System</Text>
+            <Text weight="bold" size="xl">
+              Reward System
+            </Text>
             {renderPeriodSelector()}
           </Flex>
           {renderUserSummary()}

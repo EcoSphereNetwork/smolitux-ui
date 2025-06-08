@@ -35,12 +35,7 @@ const MyComponent = () => {
     console.log('Selected platforms:', selectedPlatforms);
   };
 
-  return (
-    <FederatedSearch 
-      platforms={platforms}
-      onSearch={handleSearch}
-    />
-  );
+  return <FederatedSearch platforms={platforms} onSearch={handleSearch} />;
 };
 ```
 

@@ -103,13 +103,15 @@ const columns = [
   { id: 'email', header: 'E-Mail', accessor: 'email' },
   { id: 'role', header: 'Rolle', accessor: 'role' },
   { id: 'status', header: 'Status', accessor: 'status' },
-  { 
-    id: 'actions', 
-    header: 'Aktionen', 
+  {
+    id: 'actions',
+    header: 'Aktionen',
     accessor: (row: any) => (
       <div className="flex space-x-2">
         <Button size="sm">Bearbeiten</Button>
-        <Button size="sm" variant="outlined" color="danger">Löschen</Button>
+        <Button size="sm" variant="outlined" color="danger">
+          Löschen
+        </Button>
       </div>
     ),
   },
@@ -120,7 +122,13 @@ const data = [
   { id: 2, name: 'Anna Schmidt', email: 'anna@example.com', role: 'Benutzer', status: 'Inaktiv' },
   { id: 3, name: 'John Doe', email: 'john@example.com', role: 'Benutzer', status: 'Aktiv' },
   { id: 4, name: 'Jane Smith', email: 'jane@example.com', role: 'Editor', status: 'Aktiv' },
-  { id: 5, name: 'Michael Johnson', email: 'michael@example.com', role: 'Benutzer', status: 'Inaktiv' },
+  {
+    id: 5,
+    name: 'Michael Johnson',
+    email: 'michael@example.com',
+    role: 'Benutzer',
+    status: 'Inaktiv',
+  },
 ];
 
 export const Basic: Story = {
@@ -247,7 +255,8 @@ export const Responsive: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Eine responsive Tabelle. Ändern Sie die Größe des Fensters, um den Effekt zu sehen.',
+        story:
+          'Eine responsive Tabelle. Ändern Sie die Größe des Fensters, um den Effekt zu sehen.',
       },
     },
   },
@@ -258,51 +267,57 @@ export const CustomCellRendering: Story = {
     const customColumns = [
       { id: 'name', header: 'Name', accessor: 'name' },
       { id: 'email', header: 'E-Mail', accessor: 'email' },
-      { 
-        id: 'role', 
-        header: 'Rolle', 
+      {
+        id: 'role',
+        header: 'Rolle',
         accessor: (row: any) => {
           const roleStyles = {
             Admin: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
             Benutzer: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
             Editor: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
           };
-          
+
           return (
-            <span className={`px-2 py-1 rounded-full text-xs font-medium ${roleStyles[row.role as keyof typeof roleStyles]}`}>
+            <span
+              className={`px-2 py-1 rounded-full text-xs font-medium ${roleStyles[row.role as keyof typeof roleStyles]}`}
+            >
               {row.role}
             </span>
           );
         },
       },
-      { 
-        id: 'status', 
-        header: 'Status', 
+      {
+        id: 'status',
+        header: 'Status',
         accessor: (row: any) => {
           const statusStyles = {
             Aktiv: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
             Inaktiv: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
           };
-          
+
           return (
-            <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusStyles[row.status as keyof typeof statusStyles]}`}>
+            <span
+              className={`px-2 py-1 rounded-full text-xs font-medium ${statusStyles[row.status as keyof typeof statusStyles]}`}
+            >
               {row.status}
             </span>
           );
         },
       },
-      { 
-        id: 'actions', 
-        header: 'Aktionen', 
+      {
+        id: 'actions',
+        header: 'Aktionen',
         accessor: (row: any) => (
           <div className="flex space-x-2">
             <Button size="sm">Bearbeiten</Button>
-            <Button size="sm" variant="outlined" color="danger">Löschen</Button>
+            <Button size="sm" variant="outlined" color="danger">
+              Löschen
+            </Button>
           </div>
         ),
       },
     ];
-    
+
     return <Table columns={customColumns} data={data} />;
   },
 };
@@ -314,19 +329,21 @@ export const WithFooter: Story = {
       { id: 'email', header: 'E-Mail', accessor: 'email', footer: '5 Einträge' },
       { id: 'role', header: 'Rolle', accessor: 'role', footer: '3 Rollen' },
       { id: 'status', header: 'Status', accessor: 'status', footer: '2 Status' },
-      { 
-        id: 'actions', 
-        header: 'Aktionen', 
+      {
+        id: 'actions',
+        header: 'Aktionen',
         accessor: (row: any) => (
           <div className="flex space-x-2">
             <Button size="sm">Bearbeiten</Button>
-            <Button size="sm" variant="outlined" color="danger">Löschen</Button>
+            <Button size="sm" variant="outlined" color="danger">
+              Löschen
+            </Button>
           </div>
         ),
         footer: '',
       },
     ];
-    
+
     return <Table columns={columnsWithFooter} data={data} />;
   },
 };
@@ -334,38 +351,38 @@ export const WithFooter: Story = {
 export const WithNestedData: Story = {
   render: () => {
     const nestedData = [
-      { 
-        id: 1, 
-        name: 'Max Mustermann', 
-        email: 'max@example.com', 
-        details: { 
+      {
+        id: 1,
+        name: 'Max Mustermann',
+        email: 'max@example.com',
+        details: {
           address: 'Musterstraße 1, 12345 Musterstadt',
           phone: '+49 123 456789',
           department: 'IT',
         },
       },
-      { 
-        id: 2, 
-        name: 'Anna Schmidt', 
-        email: 'anna@example.com', 
-        details: { 
+      {
+        id: 2,
+        name: 'Anna Schmidt',
+        email: 'anna@example.com',
+        details: {
           address: 'Beispielweg 2, 54321 Beispielstadt',
           phone: '+49 987 654321',
           department: 'Marketing',
         },
       },
-      { 
-        id: 3, 
-        name: 'John Doe', 
-        email: 'john@example.com', 
-        details: { 
+      {
+        id: 3,
+        name: 'John Doe',
+        email: 'john@example.com',
+        details: {
           address: 'Teststraße 3, 67890 Teststadt',
           phone: '+49 456 123789',
           department: 'Vertrieb',
         },
       },
     ];
-    
+
     const nestedColumns = [
       { id: 'name', header: 'Name', accessor: 'name' },
       { id: 'email', header: 'E-Mail', accessor: 'email' },
@@ -373,7 +390,7 @@ export const WithNestedData: Story = {
       { id: 'phone', header: 'Telefon', accessor: (row: any) => row.details.phone },
       { id: 'department', header: 'Abteilung', accessor: (row: any) => row.details.department },
     ];
-    
+
     return <Table columns={nestedColumns} data={nestedData} />;
   },
 };

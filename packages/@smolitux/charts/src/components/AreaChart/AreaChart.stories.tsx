@@ -38,7 +38,7 @@ const singleSeriesData = {
     { x: 'Apr', y: 120 },
     { x: 'Mai', y: 180 },
     { x: 'Jun', y: 250 },
-  ]
+  ],
 };
 
 // Beispieldaten für mehrere Serien
@@ -53,7 +53,7 @@ const multiSeriesData = [
       { x: 'Apr', y: 120 },
       { x: 'Mai', y: 180 },
       { x: 'Jun', y: 250 },
-    ]
+    ],
   },
   {
     id: 'uniqueVisitors',
@@ -65,8 +65,8 @@ const multiSeriesData = [
       { x: 'Apr', y: 80 },
       { x: 'Mai', y: 110 },
       { x: 'Jun', y: 150 },
-    ]
-  }
+    ],
+  },
 ];
 
 export const Default: Story = {

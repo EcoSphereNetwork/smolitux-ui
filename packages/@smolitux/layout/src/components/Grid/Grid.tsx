@@ -1,135 +1,147 @@
-// packages/@smolitux/layout/src/components/Grid/Grid.tsx
 import React, { forwardRef } from 'react';
 
+export type GridBreakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type GridGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type GridJustify =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
+export type GridAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Container-Modus aktivieren (für Grid-Container) */
-  container?: boolean;
-  /** Item-Modus aktivieren (für Grid-Items) */
-  item?: boolean;
-  /** Abstand zwischen Grid-Items */
-  spacing?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12;
-  /** Horizontaler Abstand zwischen Grid-Items */
-  columnSpacing?: GridProps['spacing'];
-  /** Vertikaler Abstand zwischen Grid-Items */
-  rowSpacing?: GridProps['spacing'];
-  /** Ausrichtung der Items entlang der Hauptachse */
-  justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
-  /** Ausrichtung der Items entlang der Kreuzachse */
-  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
-  /** Flex-Direction der Items */
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-  /** Flex-Wrap-Verhalten */
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  /** Anzahl der Spalten für xs-Bildschirme (0px+) */
-  xs?: number | 'auto' | boolean;
-  /** Anzahl der Spalten für sm-Bildschirme (640px+) */
-  sm?: number | 'auto' | boolean;
-  /** Anzahl der Spalten für md-Bildschirme (768px+) */
-  md?: number | 'auto' | boolean;
-  /** Anzahl der Spalten für lg-Bildschirme (1024px+) */
-  lg?: number | 'auto' | boolean;
-  /** Anzahl der Spalten für xl-Bildschirme (1280px+) */
-  xl?: number | 'auto' | boolean;
-  /** Anzahl der Spalten für 2xl-Bildschirme (1536px+) */
-  xxl?: number | 'auto' | boolean;
+  cols?: number | { [key in GridBreakpoint]?: number };
+  gap?: GridGap | { [key in GridBreakpoint]?: GridGap };
+  columnGap?: GridGap | { [key in GridBreakpoint]?: GridGap };
+  rowGap?: GridGap | { [key in GridBreakpoint]?: GridGap };
+  justify?: GridJustify | { [key in GridBreakpoint]?: GridJustify };
+  align?: GridAlign | { [key in GridBreakpoint]?: GridAlign };
 }
 
-const GRID_COLS = 12;
+export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  xs?: number | 'auto';
+  sm?: number | 'auto';
+  md?: number | 'auto';
+  lg?: number | 'auto';
+  xl?: number | 'auto';
+  xxl?: number | 'auto';
+  order?: number;
+}
 
-/**
- * Grid-Komponente für responsive Layouts
- * 
- * @example
- * ```tsx
- * <Grid container spacing={4}>
- *   <Grid item xs={12} md={6}>
- *     <Card>Inhalt 1</Card>
- *   </Grid>
- *   <Grid item xs={12} md={6}>
- *     <Card>Inhalt 2</Card>
- *   </Grid>
- * </Grid>
- * ```
- */
-export const Grid = forwardRef<HTMLDivElement, GridProps>(({
-  container = false,
-  item = false,
-  spacing = 0,
-  columnSpacing,
-  rowSpacing,
-  justifyContent,
-  alignItems,
-  direction,
-  wrap = 'wrap',
-  xs,
-  sm,
-  md,
-  lg,
-  xl,
-  xxl,
-  className = '',
-  children,
-  ...rest
-}, ref) => {
-  // Spacing-Klassen umrechnen
-  const getSpacing = (value: number | undefined) => {
-    if (value === undefined) return '';
-    return `gap-${value}`;
-  };
+const gapMap: Record<GridGap, string> = {
+  none: '0',
+  xs: '1',
+  sm: '2',
+  md: '4',
+  lg: '6',
+  xl: '8',
+};
 
-  // Responsive Col-Span-Klassen generieren
-  const getColumnClass = (breakpoint: string, value: number | 'auto' | boolean | undefined) => {
-    if (value === undefined) return '';
-    if (value === 'auto') return `${breakpoint}:col-auto`;
-    if (value === true) return `${breakpoint}:col`;
-    if (typeof value === 'number') return `${breakpoint}:col-span-${value}`;
-    return '';
-  };
+const justifyMap: Record<GridJustify, string> = {
+  start: 'start',
+  center: 'center',
+  end: 'end',
+  'space-between': 'between',
+  'space-around': 'around',
+  'space-evenly': 'evenly',
+};
 
-  // CSS-Klassen zusammenstellen
-  const classes = [
-    // Container-Klassen
-    container ? 'grid' : '',
-    container && spacing !== undefined ? getSpacing(spacing) : '',
-    container && columnSpacing !== undefined ? `gap-x-${columnSpacing}` : '',
-    container && rowSpacing !== undefined ? `gap-y-${rowSpacing}` : '',
-    
-    // Item-Klassen
-    item ? 'col-span-full' : '', // Default auf volle Breite
-    item ? getColumnClass('', xs) : '',
-    item ? getColumnClass('sm', sm) : '',
-    item ? getColumnClass('md', md) : '',
-    item ? getColumnClass('lg', lg) : '',
-    item ? getColumnClass('xl', xl) : '',
-    item ? getColumnClass('2xl', xxl) : '',
-    
-    // Flexbox-Eigenschaften
-    justifyContent ? `justify-${justifyContent}` : '',
-    alignItems ? `items-${alignItems}` : '',
-    direction ? `flex-${direction}` : '',
-    wrap ? `flex-${wrap}` : '',
-    
-    // Benutzerdefinierte Klassen
-    className
-  ].filter(Boolean).join(' ');
-  
-  // Container-spezifische Logik
-  let gridTemplateColumns = '';
-  if (container) {
-    gridTemplateColumns = 'grid-cols-12'; // Default 12-Spalten-Grid
+const alignMap: Record<GridAlign, string> = {
+  start: 'start',
+  center: 'center',
+  end: 'end',
+  stretch: 'stretch',
+  baseline: 'baseline',
+};
+
+const getPrefix = (bp: GridBreakpoint) =>
+  bp === 'sm' ? 'sm:' : bp === 'md' ? 'md:' : bp === 'lg' ? 'lg:' : bp === 'xl' ? 'xl:' : '2xl:';
+
+const responsive = (prop: any, prefix: string, map: Record<string, string>) => {
+  if (prop === undefined) return '';
+  if (typeof prop === 'object') {
+    return Object.entries(prop)
+      .map(
+        ([bp, val]) => `${getPrefix(bp as GridBreakpoint)}${prefix}-${map[val as keyof typeof map]}`
+      )
+      .join(' ');
   }
-  
-  return (
-    <div
-      ref={ref}
-      className={`${classes} ${container ? gridTemplateColumns : ''}`}
-      {...rest}
-    >
-      {children}
-    </div>
-  );
-});
+  return `${prefix}-${map[prop as keyof typeof map]}`;
+};
+
+export const Grid = forwardRef<HTMLDivElement, GridProps>(
+  (
+    {
+      cols = 12,
+      gap = 'none',
+      columnGap,
+      rowGap,
+      justify = 'start',
+      align = 'stretch',
+      className = '',
+      children,
+      ...rest
+    },
+    ref
+  ) => {
+    const colsClasses =
+      typeof cols === 'object'
+        ? Object.entries(cols)
+            .map(([bp, v]) => `${getPrefix(bp as GridBreakpoint)}grid-cols-${v}`)
+            .join(' ')
+        : `grid-cols-${cols}`;
+
+    const gapClasses = responsive(gap, 'gap', gapMap);
+    const columnGapClasses = columnGap ? responsive(columnGap, 'gap-x', gapMap) : '';
+    const rowGapClasses = rowGap ? responsive(rowGap, 'gap-y', gapMap) : '';
+    const justifyClasses = responsive(justify, 'justify', justifyMap);
+    const alignClasses = responsive(align, 'items', alignMap);
+
+    const classes =
+      `grid ${colsClasses} ${gapClasses} ${columnGapClasses} ${rowGapClasses} ${justifyClasses} ${alignClasses} ${className}`
+        .trim()
+        .replace(/\s+/g, ' ');
+
+    return (
+      <div ref={ref} className={classes} {...rest}>
+        {children}
+      </div>
+    );
+  }
+);
 
 Grid.displayName = 'Grid';
+
+export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
+  ({ xs = 12, sm, md, lg, xl, xxl, order, className = '', children, ...rest }, ref) => {
+    const span = (v: number | 'auto') => (v === 'auto' ? 'auto' : `span-${v}`);
+
+    const classes = [
+      `col-${span(xs)}`,
+      sm !== undefined ? `sm:col-${span(sm)}` : '',
+      md !== undefined ? `md:col-${span(md)}` : '',
+      lg !== undefined ? `lg:col-${span(lg)}` : '',
+      xl !== undefined ? `xl:col-${span(xl)}` : '',
+      xxl !== undefined ? `2xl:col-${span(xxl)}` : '',
+      order !== undefined ? `order-${order}` : '',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return (
+      <div ref={ref} className={classes} {...rest}>
+        {children}
+      </div>
+    );
+  }
+);
+
+GridItem.displayName = 'Grid.Item';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(Grid as any).Item = GridItem;
 
 export default Grid;

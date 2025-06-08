@@ -103,12 +103,24 @@ export const Sizes: Story = {
 export const ColorSchemes: Story = {
   render: () => (
     <div className="flex flex-col space-y-4">
-      <Radio colorScheme="primary" defaultChecked>Primary Radio Button</Radio>
-      <Radio colorScheme="secondary" defaultChecked>Secondary Radio Button</Radio>
-      <Radio colorScheme="success" defaultChecked>Success Radio Button</Radio>
-      <Radio colorScheme="danger" defaultChecked>Danger Radio Button</Radio>
-      <Radio colorScheme="warning" defaultChecked>Warning Radio Button</Radio>
-      <Radio colorScheme="info" defaultChecked>Info Radio Button</Radio>
+      <Radio colorScheme="primary" defaultChecked>
+        Primary Radio Button
+      </Radio>
+      <Radio colorScheme="secondary" defaultChecked>
+        Secondary Radio Button
+      </Radio>
+      <Radio colorScheme="success" defaultChecked>
+        Success Radio Button
+      </Radio>
+      <Radio colorScheme="danger" defaultChecked>
+        Danger Radio Button
+      </Radio>
+      <Radio colorScheme="warning" defaultChecked>
+        Warning Radio Button
+      </Radio>
+      <Radio colorScheme="info" defaultChecked>
+        Info Radio Button
+      </Radio>
     </div>
   ),
 };
@@ -142,8 +154,17 @@ export const WithCustomIcon: Story = {
   render: () => (
     <Radio
       icon={
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
-          <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="w-3 h-3"
+        >
+          <path
+            fillRule="evenodd"
+            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+            clipRule="evenodd"
+          />
         </svg>
       }
     >
@@ -168,7 +189,7 @@ export const WithRichContent: Story = {
 export const Group: Story = {
   render: () => {
     const [value, setValue] = React.useState('1');
-    
+
     return (
       <div className="flex flex-col space-y-4">
         <div className="font-medium mb-2">Wählen Sie eine Option:</div>
@@ -198,9 +219,7 @@ export const Group: Story = {
             Option 3
           </Radio>
         </div>
-        <div className="mt-2">
-          Ausgewählter Wert: {value}
-        </div>
+        <div className="mt-2">Ausgewählter Wert: {value}</div>
       </div>
     );
   },
@@ -209,13 +228,10 @@ export const Group: Story = {
 export const Controlled: Story = {
   render: () => {
     const [checked, setChecked] = React.useState(false);
-    
+
     return (
       <div className="flex flex-col space-y-4">
-        <Radio
-          checked={checked}
-          onChange={(e) => setChecked(e.target.checked)}
-        >
+        <Radio checked={checked} onChange={(e) => setChecked(e.target.checked)}>
           Controlled Radio Button
         </Radio>
         <button
@@ -231,10 +247,7 @@ export const Controlled: Story = {
 
 export const WithCustomStyling: Story = {
   render: () => (
-    <Radio
-      className="border-purple-500 text-purple-600"
-      iconClassName="text-white"
-    >
+    <Radio className="border-purple-500 text-purple-600" iconClassName="text-white">
       Custom Styled Radio
     </Radio>
   ),

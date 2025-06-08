@@ -6,7 +6,7 @@ export type { InputProps, InputSize, InputVariant, InputType } from './Input';
 
 // Erweitere Input um die A11y-Komponente
 export const Input = Object.assign(BaseInput, {
-  A11y: InputA11y
+  A11y: InputA11y,
 });
 
 // Fuer Abwaertskompatibilitaet mit dem bestehenden Export

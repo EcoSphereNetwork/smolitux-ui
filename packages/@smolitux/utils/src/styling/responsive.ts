@@ -35,30 +35,30 @@ export const createResponsiveStyles = <T>(
   values: { base?: T; sm?: T; md?: T; lg?: T; xl?: T; '2xl'?: T }
 ) => {
   const styles: Record<string, unknown> = {};
-  
+
   if (values.base !== undefined) {
     styles[property] = values.base;
   }
-  
+
   if (values.sm !== undefined) {
     styles[createMediaQuery('sm')] = { [property]: values.sm };
   }
-  
+
   if (values.md !== undefined) {
     styles[createMediaQuery('md')] = { [property]: values.md };
   }
-  
+
   if (values.lg !== undefined) {
     styles[createMediaQuery('lg')] = { [property]: values.lg };
   }
-  
+
   if (values.xl !== undefined) {
     styles[createMediaQuery('xl')] = { [property]: values.xl };
   }
-  
+
   if (values['2xl'] !== undefined) {
     styles[createMediaQuery('2xl')] = { [property]: values['2xl'] };
   }
-  
+
   return styles;
 };

@@ -4,7 +4,7 @@ import { LineChart } from '../LineChart';
 
 // Mock for useTheme hook
 jest.mock('@smolitux/theme', () => ({
-  useTheme: () => ({ themeMode: 'light' })
+  useTheme: () => ({ themeMode: 'light' }),
 }));
 
 describe('LineChart', () => {
@@ -17,17 +17,17 @@ describe('LineChart', () => {
       { x: 'Mar', y: 12 },
       { x: 'Apr', y: 15 },
       { x: 'May', y: 20 },
-      { x: 'Jun', y: 25 }
-    ]
+      { x: 'Jun', y: 25 },
+    ],
   };
 
   test('renders chart with default props', () => {
     render(<LineChart data={mockData} />);
-    
+
     // SVG should be rendered
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
-    
+
     // Legend should be rendered by default
     expect(screen.getByText('Temperature')).toBeInTheDocument();
   });
@@ -43,31 +43,25 @@ describe('LineChart', () => {
     render(<LineChart data={mockData} className="custom-chart" />);
     const svg = document.querySelector('svg');
     expect(svg).toHaveClass('custom-chart');
+    expect(svg).toHaveClass('smolitux-line-chart');
   });
 
   test('renders with title when provided', () => {
     render(<LineChart data={mockData} title="Temperature Chart" />);
-    
+
     expect(screen.getByText('Temperature Chart')).toBeInTheDocument();
   });
 
   test('renders axis labels when provided', () => {
-    render(<LineChart 
-      data={mockData} 
-      axisLabels={{ x: 'Month', y: 'Temperature' }}
-    />);
-    
+    render(<LineChart data={mockData} axisLabels={{ x: 'Month', y: 'Temperature' }} />);
+
     expect(screen.getByText('Month')).toBeInTheDocument();
     expect(screen.getByText('Temperature')).toBeInTheDocument();
   });
 
   test('renders axis units when provided', () => {
-    render(<LineChart 
-      data={mockData} 
-      units={{ y: '°C' }}
-      showValues={true}
-    />);
-    
+    render(<LineChart data={mockData} units={{ y: '°C' }} showValues={true} />);
+
     // Check if at least one tick has the unit
     const tickWithUnit = screen.getByText('5 °C');
     expect(tickWithUnit).toBeInTheDocument();
@@ -85,13 +79,13 @@ describe('LineChart', () => {
           { x: 'Mar', y: 55 },
           { x: 'Apr', y: 50 },
           { x: 'May', y: 45 },
-          { x: 'Jun', y: 40 }
-        ]
-      }
+          { x: 'Jun', y: 40 },
+        ],
+      },
     ];
-    
+
     render(<LineChart data={multiSeriesData} />);
-    
+
     // Both series names should be in the legend
     expect(screen.getByText('Temperature')).toBeInTheDocument();
     expect(screen.getByText('Humidity')).toBeInTheDocument();
@@ -101,7 +95,7 @@ describe('LineChart', () => {
     const multiSeriesData = [
       {
         ...mockData,
-        lineType: 'dashed'
+        lineType: 'dashed',
       },
       {
         id: 'humidity',
@@ -113,30 +107,30 @@ describe('LineChart', () => {
           { x: 'Mar', y: 55 },
           { x: 'Apr', y: 50 },
           { x: 'May', y: 45 },
-          { x: 'Jun', y: 40 }
-        ]
-      }
+          { x: 'Jun', y: 40 },
+        ],
+      },
     ];
-    
+
     render(<LineChart data={multiSeriesData} />);
-    
+
     // SVG should be rendered
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
-    
+
     // Check for dashed and dotted lines
     const paths = document.querySelectorAll('path.line');
     expect(paths.length).toBe(2);
-    
-    const dashedPath = Array.from(paths).find(path => 
-      path.getAttribute('stroke-dasharray') !== null
+
+    const dashedPath = Array.from(paths).find(
+      (path) => path.getAttribute('stroke-dasharray') !== null
     );
     expect(dashedPath).toBeInTheDocument();
   });
 
   test('renders with area fill when showArea is true', () => {
     render(<LineChart data={mockData} showArea={true} />);
-    
+
     // Check for area path
     const areaPath = document.querySelector('path.area');
     expect(areaPath).toBeInTheDocument();
@@ -144,7 +138,7 @@ describe('LineChart', () => {
 
   test('renders with data points when showPoints is true', () => {
     render(<LineChart data={mockData} showPoints={true} />);
-    
+
     // Check for data points (circles)
     const points = document.querySelectorAll('circle.data-point');
     expect(points.length).toBe(mockData.data.length);
@@ -152,23 +146,23 @@ describe('LineChart', () => {
 
   test('renders without animation when animated prop is false', () => {
     render(<LineChart data={mockData} animated={false} />);
-    
+
     // SVG should be rendered
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
-    
+
     // Check that no animation styles are applied
     const paths = document.querySelectorAll('path.line');
-    const animatedPaths = Array.from(paths).filter(path => 
+    const animatedPaths = Array.from(paths).filter((path) =>
       path.classList.contains('animate-draw')
     );
-    
+
     expect(animatedPaths.length).toBe(0);
   });
 
   test('renders without legend when showLegend is false', () => {
     render(<LineChart data={mockData} showLegend={false} />);
-    
+
     // Legend should not be rendered
     expect(screen.queryByText('Temperature')).not.toBeInTheDocument();
   });
@@ -176,13 +170,27 @@ describe('LineChart', () => {
   test('renders with custom colors when provided', () => {
     const customColors = ['#FF0000', '#00FF00', '#0000FF'];
     render(<LineChart data={mockData} colors={customColors} />);
-    
+
     // SVG should be rendered
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();
-    
+
     // Check that the line has the first custom color
     const path = document.querySelector('path.line');
     expect(path).toHaveAttribute('stroke', '#FF0000');
+  });
+
+  test('applies custom value text color', () => {
+    render(<LineChart data={mockData} showValues valueTextColor="#123456" />);
+
+    const valueLabel = document.querySelector('text.value-label');
+    expect(valueLabel).toHaveAttribute('fill', '#123456');
+  });
+
+  test('applies custom legend text color', () => {
+    render(<LineChart data={mockData} legendTextColor="#654321" />);
+
+    const legendText = document.querySelector('.chart-legend text');
+    expect(legendText).toHaveAttribute('fill', '#654321');
   });
 });

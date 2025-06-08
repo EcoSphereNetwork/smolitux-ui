@@ -26,7 +26,7 @@ export interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElemen
 
 /**
  * Dashboard-Layout für Admin-Bereiche und Applikationen
- * 
+ *
  * @example
  * ```tsx
  * <DashboardLayout
@@ -53,55 +53,62 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   // State für Sidebar Collapse und Mobile-Layout
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(sidebarCollapsed);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   // Prüfe bei Initialisierung und Resize ob es sich um ein mobiles Gerät handelt
   useEffect(() => {
     const checkIfMobile = () => {
       const mobile = window.innerWidth < 768; // md breakpoint
       setIsMobile(mobile);
-      
+
       // Auto-Collapse auf Mobile-Geräten
       if (responsive && mobile && !isSidebarCollapsed) {
         setIsSidebarCollapsed(true);
       }
     };
-    
+
     // Initial check
     checkIfMobile();
-    
+
     // Event listener für Resize
     window.addEventListener('resize', checkIfMobile);
-    
+
     // Cleanup
     return () => {
       window.removeEventListener('resize', checkIfMobile);
     };
   }, [responsive, isSidebarCollapsed]);
-  
+
   // Sidebarbreite berechnen für Content-Margin
-  const sidebarWidth = sidebar.show 
-    ? (isSidebarCollapsed 
-      ? (sidebar.collapsedWidth || 64)
-      : (sidebar.width || 240))
+  const sidebarWidth = sidebar.show
+    ? isSidebarCollapsed
+      ? sidebar.collapsedWidth || 64
+      : sidebar.width || 240
     : 0;
-  
+
   // CSS für dynamischen Content-Bereich
   const contentStyle = {
     marginLeft: sidebar.show && sidebar.position !== 'right' ? `${sidebarWidth}px` : 0,
     marginRight: sidebar.show && sidebar.position === 'right' ? `${sidebarWidth}px` : 0,
-    marginTop: header.show && header.fixed ? (header.height === 'sm' ? '3rem' : header.height === 'md' ? '4rem' : '5rem') : 0,
+    marginTop:
+      header.show && header.fixed
+        ? header.height === 'sm'
+          ? '3rem'
+          : header.height === 'md'
+            ? '4rem'
+            : '5rem'
+        : 0,
     marginBottom: footer.show && footer.fixed ? '4rem' : 0,
     paddingLeft: contentPadding ? '1rem' : 0,
     paddingRight: contentPadding ? '1rem' : 0,
     paddingTop: contentPadding ? '1rem' : 0,
     paddingBottom: contentPadding ? '1rem' : 0,
   };
-  
+
   // Header/Sidebar toggle für mobile
   const handleSidebarToggle = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
-  
+
   return (
     <div className={`min-h-screen ${className}`} {...rest}>
       {/* Header */}
@@ -112,7 +119,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           onSidebarToggle={handleSidebarToggle}
         />
       )}
-      
+
       {/* Sidebar */}
       {sidebar.show && (
         <Sidebar
@@ -121,17 +128,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           onCollapseChange={setIsSidebarCollapsed}
         />
       )}
-      
+
       {/* Hauptinhalt-Bereich mit dynamischen Rändern */}
-      <main
-        className="flex-grow transition-all duration-300 ease-in-out"
-        style={contentStyle}
-      >
+      <main className="flex-grow transition-all duration-300 ease-in-out" style={contentStyle}>
         <Container maxWidth={maxWidth} disableGutters={!contentPadding}>
           {children}
         </Container>
       </main>
-      
+
       {/* Footer */}
       {footer.show && (
         <Footer
@@ -145,7 +149,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           }`}
         />
       )}
-      
+
       {/* Mobile Overlay für Sidebar */}
       {sidebar.show && responsive && isMobile && !isSidebarCollapsed && (
         <div

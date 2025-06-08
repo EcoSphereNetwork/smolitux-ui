@@ -82,11 +82,11 @@ type Story = StoryObj<typeof FileUpload>;
 export const Basic: Story = {
   render: () => {
     const [files, setFiles] = React.useState<File[]>([]);
-    
+
     const onDrop = React.useCallback((acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     }, []);
-    
+
     return (
       <div className="w-[500px] space-y-4">
         <FileUpload onDrop={onDrop}>
@@ -108,7 +108,7 @@ export const Basic: Story = {
             </div>
           )}
         </FileUpload>
-        
+
         {files.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2">Hochgeladene Dateien:</h3>
@@ -129,11 +129,11 @@ export const Basic: Story = {
 export const WithFileTypeRestriction: Story = {
   render: () => {
     const [files, setFiles] = React.useState<File[]>([]);
-    
+
     const onDrop = React.useCallback((acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     }, []);
-    
+
     return (
       <div className="w-[500px] space-y-4">
         <FileUpload onDrop={onDrop} accept={{ 'image/*': ['.jpeg', '.jpg', '.png', '.gif'] }}>
@@ -160,7 +160,7 @@ export const WithFileTypeRestriction: Story = {
             </div>
           )}
         </FileUpload>
-        
+
         {files.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2">Hochgeladene Bilder:</h3>
@@ -181,15 +181,15 @@ export const WithFileTypeRestriction: Story = {
 export const WithMultipleFiles: Story = {
   render: () => {
     const [files, setFiles] = React.useState<File[]>([]);
-    
+
     const onDrop = React.useCallback((acceptedFiles: File[]) => {
       setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
     }, []);
-    
+
     const removeFile = (index: number) => {
       setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
     };
-    
+
     return (
       <div className="w-[500px] space-y-4">
         <FileUpload onDrop={onDrop} multiple>
@@ -216,7 +216,7 @@ export const WithMultipleFiles: Story = {
             </div>
           )}
         </FileUpload>
-        
+
         {files.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2">Hochgeladene Dateien:</h3>
@@ -248,16 +248,21 @@ export const WithMultipleFiles: Story = {
 export const WithFileSizeLimit: Story = {
   render: () => {
     const [files, setFiles] = React.useState<File[]>([]);
-    const [rejectedFiles, setRejectedFiles] = React.useState<{ file: File; errors: { message: string }[] }[]>([]);
-    
-    const onDrop = React.useCallback((acceptedFiles: File[], rejectedFiles: { file: File; errors: { message: string }[] }[]) => {
-      setFiles(acceptedFiles);
-      setRejectedFiles(rejectedFiles);
-    }, []);
-    
+    const [rejectedFiles, setRejectedFiles] = React.useState<
+      { file: File; errors: { message: string }[] }[]
+    >([]);
+
+    const onDrop = React.useCallback(
+      (acceptedFiles: File[], rejectedFiles: { file: File; errors: { message: string }[] }[]) => {
+        setFiles(acceptedFiles);
+        setRejectedFiles(rejectedFiles);
+      },
+      []
+    );
+
     // 1MB Limit
     const maxSize = 1024 * 1024;
-    
+
     return (
       <div className="w-[500px] space-y-4">
         <FileUpload
@@ -280,15 +285,13 @@ export const WithFileSizeLimit: Story = {
               ) : (
                 <div>
                   <p>Dateien hier ablegen oder klicken, um Dateien auszuwählen</p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    (Maximale Dateigröße: 1MB)
-                  </p>
+                  <p className="text-sm text-gray-500 mt-2">(Maximale Dateigröße: 1MB)</p>
                 </div>
               )}
             </div>
           )}
         </FileUpload>
-        
+
         {files.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2">Akzeptierte Dateien:</h3>
@@ -301,7 +304,7 @@ export const WithFileSizeLimit: Story = {
             </ul>
           </div>
         )}
-        
+
         {rejectedFiles.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2 text-red-500">Abgelehnte Dateien:</h3>
@@ -328,26 +331,23 @@ export const WithImagePreview: Story = {
   render: () => {
     const [files, setFiles] = React.useState<File[]>([]);
     const [previews, setPreviews] = React.useState<string[]>([]);
-    
+
     const onDrop = React.useCallback((acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
-      
+
       // Erstelle Vorschaubilder
       const newPreviews = acceptedFiles.map((file) => URL.createObjectURL(file));
       setPreviews(newPreviews);
-      
+
       // Bereinige die Vorschaubilder, wenn die Komponente unmountet
       return () => {
         newPreviews.forEach((preview) => URL.revokeObjectURL(preview));
       };
     }, []);
-    
+
     return (
       <div className="w-[500px] space-y-4">
-        <FileUpload
-          onDrop={onDrop}
-          accept={{ 'image/*': ['.jpeg', '.jpg', '.png', '.gif'] }}
-        >
+        <FileUpload onDrop={onDrop} accept={{ 'image/*': ['.jpeg', '.jpg', '.png', '.gif'] }}>
           {({ getRootProps, getInputProps, isDragActive }) => (
             <div
               {...getRootProps()}
@@ -363,26 +363,20 @@ export const WithImagePreview: Story = {
               ) : (
                 <div>
                   <p>Bilder hier ablegen oder klicken, um Bilder auszuwählen</p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    (Nur Bilder werden akzeptiert)
-                  </p>
+                  <p className="text-sm text-gray-500 mt-2">(Nur Bilder werden akzeptiert)</p>
                 </div>
               )}
             </div>
           )}
         </FileUpload>
-        
+
         {previews.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2">Vorschau:</h3>
             <div className="grid grid-cols-2 gap-4">
               {previews.map((preview, index) => (
                 <div key={index} className="border rounded-md overflow-hidden">
-                  <img
-                    src={preview}
-                    alt={`Vorschau ${index + 1}`}
-                    className="w-full h-auto"
-                  />
+                  <img src={preview} alt={`Vorschau ${index + 1}`} className="w-full h-auto" />
                   <div className="p-2 text-sm">
                     {files[index].name} - {(files[index].size / 1024).toFixed(2)} KB
                   </div>
@@ -401,22 +395,22 @@ export const WithProgressBar: Story = {
     const [files, setFiles] = React.useState<File[]>([]);
     const [uploading, setUploading] = React.useState(false);
     const [progress, setProgress] = React.useState(0);
-    
+
     const onDrop = React.useCallback((acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     }, []);
-    
+
     const uploadFiles = () => {
       if (files.length === 0) return;
-      
+
       setUploading(true);
       setProgress(0);
-      
+
       // Simuliere einen Upload mit einem Fortschrittsbalken
       const interval = setInterval(() => {
         setProgress((prevProgress) => {
           const newProgress = prevProgress + 5;
-          
+
           if (newProgress >= 100) {
             clearInterval(interval);
             setTimeout(() => {
@@ -425,12 +419,12 @@ export const WithProgressBar: Story = {
             }, 500);
             return 100;
           }
-          
+
           return newProgress;
         });
       }, 200);
     };
-    
+
     return (
       <div className="w-[500px] space-y-4">
         <FileUpload onDrop={onDrop}>
@@ -452,7 +446,7 @@ export const WithProgressBar: Story = {
             </div>
           )}
         </FileUpload>
-        
+
         {files.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2">Ausgewählte Dateien:</h3>
@@ -463,7 +457,7 @@ export const WithProgressBar: Story = {
                 </li>
               ))}
             </ul>
-            
+
             <button
               onClick={uploadFiles}
               disabled={uploading}
@@ -475,7 +469,7 @@ export const WithProgressBar: Story = {
             >
               {uploading ? 'Wird hochgeladen...' : 'Hochladen'}
             </button>
-            
+
             {uploading && (
               <div className="mt-4">
                 <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -515,11 +509,11 @@ export const Disabled: Story = {
 export const WithCustomUI: Story = {
   render: () => {
     const [files, setFiles] = React.useState<File[]>([]);
-    
+
     const onDrop = React.useCallback((acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     }, []);
-    
+
     return (
       <div className="w-[500px] space-y-4">
         <FileUpload onDrop={onDrop}>
@@ -561,7 +555,7 @@ export const WithCustomUI: Story = {
                   )}
                 </div>
               </div>
-              
+
               {!isDragActive && (
                 <button
                   type="button"
@@ -574,7 +568,7 @@ export const WithCustomUI: Story = {
             </div>
           )}
         </FileUpload>
-        
+
         {files.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-2">Ausgewählte Dateien:</h3>
@@ -582,8 +576,17 @@ export const WithCustomUI: Story = {
               {files.map((file, index) => (
                 <li key={index} className="py-3 flex items-center">
                   <div className="mr-3 text-purple-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
                   <div>

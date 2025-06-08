@@ -62,12 +62,12 @@ describe('ColorPicker Snapshots', () => {
 
   it('renders color picker with different formats correctly', () => {
     const formats = ['hex', 'rgb', 'hsl'];
-    
-    const fragments = formats.map(format => {
+
+    const fragments = formats.map((format) => {
       const { asFragment } = render(<ColorPicker value="#ff0000" format={format as any} />);
       return { format, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ format, fragment }) => {
       expect(fragment).toMatchSnapshot(`ColorPicker with format ${format}`);
     });
@@ -80,12 +80,12 @@ describe('ColorPicker Snapshots', () => {
 
   it('renders color picker with different sizes correctly', () => {
     const sizes = ['sm', 'md', 'lg'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(<ColorPicker size={size as any} />);
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`ColorPicker with size ${size}`);
     });
@@ -108,12 +108,12 @@ describe('ColorPicker Snapshots', () => {
 
   it('renders color picker with different popup positions correctly', () => {
     const positions = ['bottom', 'top', 'left', 'right'];
-    
-    const fragments = positions.map(position => {
+
+    const fragments = positions.map((position) => {
       const { asFragment } = render(<ColorPicker popupPosition={position as any} />);
       return { position, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ position, fragment }) => {
       expect(fragment).toMatchSnapshot(`ColorPicker with popup position ${position}`);
     });
@@ -121,7 +121,7 @@ describe('ColorPicker Snapshots', () => {
 
   it('renders color picker with all features enabled correctly', () => {
     const { asFragment } = render(
-      <ColorPicker 
+      <ColorPicker
         label="Color"
         helperText="Choose a color"
         value="#ff0000"

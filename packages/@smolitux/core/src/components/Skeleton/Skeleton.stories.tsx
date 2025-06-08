@@ -11,29 +11,29 @@ const meta: Meta<typeof Skeleton> = {
     variant: {
       control: 'select',
       options: ['text', 'circular', 'rectangular', 'rounded'],
-      description: 'Die Form des Skeletons'
+      description: 'Die Form des Skeletons',
     },
     animation: {
       control: 'select',
       options: ['pulse', 'wave', 'none'],
-      description: 'Art der Animation'
+      description: 'Art der Animation',
     },
     width: {
       control: 'text',
-      description: 'Breite des Skeletons'
+      description: 'Breite des Skeletons',
     },
     height: {
       control: 'text',
-      description: 'Höhe des Skeletons'
+      description: 'Höhe des Skeletons',
     },
     count: {
       control: 'number',
-      description: 'Anzahl der zu wiederholenden Elemente'
+      description: 'Anzahl der zu wiederholenden Elemente',
     },
     gap: {
       control: 'number',
-      description: 'Abstand zwischen wiederholten Elementen in Pixeln'
-    }
+      description: 'Abstand zwischen wiederholten Elementen in Pixeln',
+    },
   },
 };
 
@@ -46,7 +46,7 @@ export const Default: Story = {
     variant: 'text',
     animation: 'pulse',
     width: 200,
-    height: 20
+    height: 20,
   },
 };
 
@@ -89,7 +89,7 @@ export const MultiLine: Story = {
     width: '100%',
     height: 15,
     count: 5,
-    gap: 8
+    gap: 8,
   },
 };
 

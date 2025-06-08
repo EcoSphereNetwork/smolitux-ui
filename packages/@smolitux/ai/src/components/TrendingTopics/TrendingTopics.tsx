@@ -108,45 +108,45 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(currentCategory);
   const [expandedTopicId, setExpandedTopicId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'trending' | 'rising' | 'new'>('trending');
-  
+
   // Themen nach Tab filtern und sortieren
   const filteredTopics = topics
-    .filter(topic => {
+    .filter((topic) => {
       if (selectedCategory && topic.category !== selectedCategory) {
         return false;
       }
-      
+
       if (activeTab === 'new' && !topic.isNew) {
         return false;
       }
-      
+
       if (activeTab === 'rising' && (!topic.change || topic.change <= 0)) {
         return false;
       }
-      
+
       return true;
     })
     .sort((a, b) => {
       if (activeTab === 'trending') {
         return b.mentionCount - a.mentionCount;
       }
-      
+
       if (activeTab === 'rising') {
         return (b.change || 0) - (a.change || 0);
       }
-      
+
       if (activeTab === 'new') {
         return b.mentionCount - a.mentionCount;
       }
-      
+
       return 0;
     })
     .slice(0, maxTopics);
-  
+
   // Zeitraum ändern
   const handleTimeRangeChange = async (range: string) => {
     setSelectedTimeRange(range);
-    
+
     if (onTimeRangeChange) {
       try {
         await onTimeRangeChange(range);
@@ -155,11 +155,11 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       }
     }
   };
-  
+
   // Kategorie ändern
   const handleCategoryChange = async (category: string | null) => {
     setSelectedCategory(category);
-    
+
     if (onCategoryChange) {
       try {
         await onCategoryChange(category);
@@ -168,13 +168,13 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       }
     }
   };
-  
+
   // Themen aktualisieren
   const handleRefresh = async () => {
     if (!onRefresh || isRefreshing) return;
-    
+
     setIsRefreshing(true);
-    
+
     try {
       await onRefresh();
     } catch (error) {
@@ -183,7 +183,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       setIsRefreshing(false);
     }
   };
-  
+
   // Thema anklicken
   const handleTopicClick = (topic: TrendingTopic) => {
     if (onTopicClick) {
@@ -192,26 +192,26 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       setExpandedTopicId(expandedTopicId === topic.id ? null : topic.id);
     }
   };
-  
+
   // Verwandten Inhalt anklicken
   const handleContentClick = (content: TrendingTopic['relatedContent'][0]) => {
     if (onContentClick) {
       onContentClick(content);
     }
   };
-  
+
   // Veränderung formatieren
   const formatChange = (change?: number): string => {
     if (change === undefined) return '';
-    
+
     const sign = change >= 0 ? '+' : '';
     return `${sign}${change.toFixed(1)}%`;
   };
-  
+
   // Datum formatieren
   const formatDate = (date?: Date): string => {
     if (!date) return '';
-    
+
     return new Intl.DateTimeFormat('de-DE', {
       year: 'numeric',
       month: 'short',
@@ -220,7 +220,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       minute: '2-digit',
     }).format(date);
   };
-  
+
   // Platzhalter für den Ladezustand
   const renderPlaceholders = () => {
     return (
@@ -233,15 +233,15 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       </div>
     );
   };
-  
+
   return (
-    <div className={`overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 ${className}`}>
+    <div
+      className={`overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 ${className}`}
+    >
       <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            {title}
-          </h3>
-          
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+
           <div className="flex space-x-2">
             {onRefresh && (
               <button
@@ -268,26 +268,22 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
             )}
           </div>
         </div>
-        
-        {description && (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            {description}
-          </p>
-        )}
-        
+
+        {description && <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>}
+
         {analysisTimestamp && (
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
             Letzte Aktualisierung: {formatDate(analysisTimestamp)}
           </p>
         )}
       </div>
-      
+
       {/* Filter */}
       <div className="px-6 py-3 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0">
           {/* Zeitraumauswahl */}
           <div className="flex space-x-2">
-            {timeRanges.map(range => (
+            {timeRanges.map((range) => (
               <button
                 key={range}
                 onClick={() => handleTimeRangeChange(range)}
@@ -305,7 +301,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
               </button>
             ))}
           </div>
-          
+
           {/* Kategorieauswahl */}
           {categories.length > 0 && (
             <div className="flex flex-wrap gap-2">
@@ -319,8 +315,8 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
               >
                 Alle
               </button>
-              
-              {categories.map(category => (
+
+              {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
@@ -337,7 +333,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
           )}
         </div>
       </div>
-      
+
       {/* Tabs */}
       <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
         <div className="flex space-x-4">
@@ -345,7 +341,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
             { id: 'trending', label: 'Trending' },
             { id: 'rising', label: 'Aufsteigend' },
             { id: 'new', label: 'Neu' },
-          ].map(tab => (
+          ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
@@ -360,14 +356,25 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
           ))}
         </div>
       </div>
-      
+
       <div className="p-6">
         {loading ? (
           renderPlaceholders()
         ) : filteredTopics.length === 0 ? (
           <div className="py-12 text-center text-gray-500 dark:text-gray-400">
-            <svg className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            <svg
+              className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              />
             </svg>
             <p className="text-lg font-medium">Keine Themen gefunden</p>
             <p className="mt-2">
@@ -393,26 +400,26 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
                       <span className="text-lg font-medium text-gray-900 dark:text-white mr-2">
                         {index + 1}.
                       </span>
-                      
+
                       <div>
                         <div className="flex items-center">
                           <h4 className="text-base font-medium text-gray-900 dark:text-white">
                             {topic.name}
                           </h4>
-                          
+
                           {highlightNew && topic.isNew && (
                             <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400">
                               Neu
                             </span>
                           )}
-                          
+
                           {topic.category && (
                             <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                               {topic.category}
                             </span>
                           )}
                         </div>
-                        
+
                         {topic.description && (
                           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">
                             {topic.description}
@@ -420,26 +427,28 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
                         )}
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center">
                       <div className="text-right">
                         <p className="text-sm font-medium text-gray-900 dark:text-white">
                           {topic.mentionCount.toLocaleString()} Erwähnungen
                         </p>
-                        
+
                         {showChanges && topic.change !== undefined && (
-                          <p className={`text-xs ${
-                            topic.change > 0
-                              ? 'text-green-600 dark:text-green-400'
-                              : topic.change < 0
-                              ? 'text-red-600 dark:text-red-400'
-                              : 'text-gray-500 dark:text-gray-400'
-                          }`}>
+                          <p
+                            className={`text-xs ${
+                              topic.change > 0
+                                ? 'text-green-600 dark:text-green-400'
+                                : topic.change < 0
+                                  ? 'text-red-600 dark:text-red-400'
+                                  : 'text-gray-500 dark:text-gray-400'
+                            }`}
+                          >
                             {formatChange(topic.change)}
                           </p>
                         )}
                       </div>
-                      
+
                       <svg
                         className={`w-5 h-5 ml-3 text-gray-400 transition-transform ${
                           expandedTopicId === topic.id ? 'transform rotate-180' : ''
@@ -449,12 +458,17 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Erweiterte Informationen */}
                 {expandedTopicId === topic.id && (
                   <div className="p-4 bg-gray-50 dark:bg-gray-800">
@@ -469,16 +483,16 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
                         </p>
                       </div>
                     )}
-                    
+
                     {/* Verwandte Themen */}
                     {showRelatedTopics && topic.relatedTopics && topic.relatedTopics.length > 0 && (
                       <div className="mb-4">
                         <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                           Verwandte Themen
                         </h5>
-                        
+
                         <div className="flex flex-wrap gap-2">
-                          {topic.relatedTopics.map(relatedTopic => (
+                          {topic.relatedTopics.map((relatedTopic) => (
                             <span
                               key={relatedTopic}
                               className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
@@ -489,60 +503,62 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
                         </div>
                       </div>
                     )}
-                    
+
                     {/* Verwandte Inhalte */}
-                    {showRelatedContent && topic.relatedContent && topic.relatedContent.length > 0 && (
-                      <div>
-                        <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Verwandte Inhalte
-                        </h5>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {topic.relatedContent.map(content => (
-                            <div
-                              key={content.id}
-                              className="flex items-start p-2 rounded-md bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-                              onClick={e => {
-                                e.stopPropagation();
-                                handleContentClick(content);
-                              }}
-                            >
-                              {content.thumbnail && (
-                                <div className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0 mr-3">
-                                  <img
-                                    src={content.thumbnail}
-                                    alt={content.title}
-                                    className="w-full h-full object-cover"
-                                  />
+                    {showRelatedContent &&
+                      topic.relatedContent &&
+                      topic.relatedContent.length > 0 && (
+                        <div>
+                          <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Verwandte Inhalte
+                          </h5>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {topic.relatedContent.map((content) => (
+                              <div
+                                key={content.id}
+                                className="flex items-start p-2 rounded-md bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleContentClick(content);
+                                }}
+                              >
+                                {content.thumbnail && (
+                                  <div className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0 mr-3">
+                                    <img
+                                      src={content.thumbnail}
+                                      alt={content.title}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  </div>
+                                )}
+
+                                <div className="flex-1 min-w-0">
+                                  <h6 className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                                    {content.title}
+                                  </h6>
+
+                                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center">
+                                    <span className="capitalize">{content.type}</span>
+
+                                    {content.url && (
+                                      <a
+                                        href={content.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="ml-2 text-primary-600 dark:text-primary-400 hover:underline"
+                                        onClick={(e) => e.stopPropagation()}
+                                      >
+                                        Öffnen
+                                      </a>
+                                    )}
+                                  </p>
                                 </div>
-                              )}
-                              
-                              <div className="flex-1 min-w-0">
-                                <h6 className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                                  {content.title}
-                                </h6>
-                                
-                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center">
-                                  <span className="capitalize">{content.type}</span>
-                                  
-                                  {content.url && (
-                                    <a
-                                      href={content.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="ml-2 text-primary-600 dark:text-primary-400 hover:underline"
-                                      onClick={e => e.stopPropagation()}
-                                    >
-                                      Öffnen
-                                    </a>
-                                  )}
-                                </p>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
                   </div>
                 )}
               </div>

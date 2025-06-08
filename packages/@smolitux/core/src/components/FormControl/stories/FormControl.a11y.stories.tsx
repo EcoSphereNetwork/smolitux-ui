@@ -15,9 +15,10 @@ const meta: Meta<typeof FormControl.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version der FormControl-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version der FormControl-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     label: { control: 'text' },
@@ -28,15 +29,15 @@ const meta: Meta<typeof FormControl.A11y> = {
     disabled: { control: 'boolean' },
     labelPosition: {
       control: { type: 'select' },
-      options: ['top', 'left', 'right', 'bottom', 'floating']
+      options: ['top', 'left', 'right', 'bottom', 'floating'],
     },
     size: {
       control: { type: 'select' },
-      options: ['xs', 'sm', 'md', 'lg']
+      options: ['xs', 'sm', 'md', 'lg'],
     },
     variant: {
       control: { type: 'select' },
-      options: ['default', 'filled', 'outlined', 'unstyled']
+      options: ['default', 'filled', 'outlined', 'unstyled'],
     },
     fullWidth: { control: 'boolean' },
     hideLabel: { control: 'boolean' },
@@ -53,8 +54,8 @@ const meta: Meta<typeof FormControl.A11y> = {
     isLoading: { control: 'boolean' },
     isValid: { control: 'boolean' },
     isInvalid: { control: 'boolean' },
-    isSuccess: { control: 'boolean' }
-  }
+    isSuccess: { control: 'boolean' },
+  },
 };
 
 export default meta;
@@ -64,16 +65,16 @@ export const Default: Story = {
   args: {
     label: 'Name',
     helperText: 'Bitte geben Sie Ihren vollständigen Namen ein',
-    children: <Input placeholder="Max Mustermann" />
-  }
+    children: <Input placeholder="Max Mustermann" />,
+  },
 };
 
 export const WithError: Story = {
   args: {
     label: 'Email',
     error: 'Ungültige Email-Adresse',
-    children: <Input type="email" placeholder="beispiel@domain.de" />
-  }
+    children: <Input type="email" placeholder="beispiel@domain.de" />,
+  },
 };
 
 export const WithSuccess: Story = {
@@ -81,8 +82,8 @@ export const WithSuccess: Story = {
     label: 'Benutzername',
     successMessage: 'Benutzername ist verfügbar',
     isSuccess: true,
-    children: <Input placeholder="username" />
-  }
+    children: <Input placeholder="username" />,
+  },
 };
 
 export const Required: Story = {
@@ -90,8 +91,8 @@ export const Required: Story = {
     label: 'Passwort',
     required: true,
     showRequiredIndicator: true,
-    children: <Input type="password" />
-  }
+    children: <Input type="password" />,
+  },
 };
 
 export const Disabled: Story = {
@@ -99,14 +100,14 @@ export const Disabled: Story = {
     label: 'Kommentar',
     helperText: 'Diese Funktion ist derzeit deaktiviert',
     disabled: true,
-    children: <Textarea placeholder="Ihr Kommentar" />
-  }
+    children: <Textarea placeholder="Ihr Kommentar" />,
+  },
 };
 
 export const WithCounter: Story = {
   render: () => {
     const [value, setValue] = useState('');
-    
+
     return (
       <FormControl.A11y
         label="Beschreibung"
@@ -122,13 +123,13 @@ export const WithCounter: Story = {
         />
       </FormControl.A11y>
     );
-  }
+  },
 };
 
 export const WithProgressBar: Story = {
   render: () => {
     const [progress, setProgress] = useState(0);
-    
+
     return (
       <div className="space-y-4">
         <FormControl.A11y
@@ -140,7 +141,7 @@ export const WithProgressBar: Story = {
         >
           <FileUpload accept="image/*,application/pdf" />
         </FormControl.A11y>
-        
+
         <div className="flex space-x-2">
           <button
             className="px-3 py-1 bg-blue-500 text-white rounded"
@@ -163,7 +164,7 @@ export const WithProgressBar: Story = {
         </div>
       </div>
     );
-  }
+  },
 };
 
 export const Loading: Story = {
@@ -172,32 +173,32 @@ export const Loading: Story = {
     helperText: 'Suche läuft...',
     isLoading: true,
     showLoadingIndicator: true,
-    children: <Input placeholder="Suchbegriff" />
-  }
+    children: <Input placeholder="Suchbegriff" />,
+  },
 };
 
 export const WithTooltip: Story = {
   args: {
     label: 'Geburtsdatum',
     tooltip: 'Bitte geben Sie Ihr Geburtsdatum im Format TT.MM.JJJJ ein',
-    children: <Input placeholder="TT.MM.JJJJ" />
-  }
+    children: <Input placeholder="TT.MM.JJJJ" />,
+  },
 };
 
 export const HiddenLabel: Story = {
   args: {
     label: 'Suche',
     hideLabel: true,
-    children: <Input placeholder="Suchen..." />
-  }
+    children: <Input placeholder="Suchen..." />,
+  },
 };
 
 export const FloatingLabel: Story = {
   args: {
     label: 'Email',
     labelPosition: 'floating',
-    children: <Input placeholder="beispiel@domain.de" />
-  }
+    children: <Input placeholder="beispiel@domain.de" />,
+  },
 };
 
 export const HorizontalLayout: Story = {
@@ -212,16 +213,16 @@ export const HorizontalLayout: Story = {
         <Radio value="diverse">Divers</Radio>
         <Radio value="none">Keine Angabe</Radio>
       </RadioGroup>
-    )
-  }
+    ),
+  },
 };
 
 export const WithDescription: Story = {
   args: {
     label: 'Newsletter',
     description: 'Aktivieren Sie diese Option, um regelmäßig Neuigkeiten und Angebote zu erhalten',
-    children: <Checkbox>Newsletter abonnieren</Checkbox>
-  }
+    children: <Checkbox>Newsletter abonnieren</Checkbox>,
+  },
 };
 
 export const WithSelect: Story = {
@@ -235,74 +236,50 @@ export const WithSelect: Story = {
         <option value="ch">Schweiz</option>
         <option value="other">Anderes Land</option>
       </Select>
-    )
-  }
+    ),
+  },
 };
 
 export const DifferentSizes: Story = {
   render: () => (
     <div className="space-y-6">
-      <FormControl.A11y
-        label="Extra Small"
-        size="xs"
-      >
+      <FormControl.A11y label="Extra Small" size="xs">
         <Input placeholder="XS Input" />
       </FormControl.A11y>
-      
-      <FormControl.A11y
-        label="Small"
-        size="sm"
-      >
+
+      <FormControl.A11y label="Small" size="sm">
         <Input placeholder="SM Input" />
       </FormControl.A11y>
-      
-      <FormControl.A11y
-        label="Medium"
-        size="md"
-      >
+
+      <FormControl.A11y label="Medium" size="md">
         <Input placeholder="MD Input" />
       </FormControl.A11y>
-      
-      <FormControl.A11y
-        label="Large"
-        size="lg"
-      >
+
+      <FormControl.A11y label="Large" size="lg">
         <Input placeholder="LG Input" />
       </FormControl.A11y>
     </div>
-  )
+  ),
 };
 
 export const DifferentVariants: Story = {
   render: () => (
     <div className="space-y-6">
-      <FormControl.A11y
-        label="Default"
-        variant="default"
-      >
+      <FormControl.A11y label="Default" variant="default">
         <Input placeholder="Default Input" />
       </FormControl.A11y>
-      
-      <FormControl.A11y
-        label="Filled"
-        variant="filled"
-      >
+
+      <FormControl.A11y label="Filled" variant="filled">
         <Input placeholder="Filled Input" />
       </FormControl.A11y>
-      
-      <FormControl.A11y
-        label="Outlined"
-        variant="outlined"
-      >
+
+      <FormControl.A11y label="Outlined" variant="outlined">
         <Input placeholder="Outlined Input" />
       </FormControl.A11y>
-      
-      <FormControl.A11y
-        label="Unstyled"
-        variant="unstyled"
-      >
+
+      <FormControl.A11y label="Unstyled" variant="unstyled">
         <Input placeholder="Unstyled Input" />
       </FormControl.A11y>
     </div>
-  )
+  ),
 };

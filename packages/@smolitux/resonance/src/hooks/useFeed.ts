@@ -16,14 +16,14 @@ export function useFeed(options: any = {}) {
   const fetchItems = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       // In einer realen Implementierung würde hier ein API-Aufruf stehen
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Simulierte Daten
       const newItems = [];
-      setItems(prevItems => [...prevItems, ...newItems]);
+      setItems((prevItems) => [...prevItems, ...newItems]);
       setHasMore(newItems.length > 0);
     } catch (err) {
       setError(err);

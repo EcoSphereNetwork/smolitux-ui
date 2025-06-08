@@ -8,7 +8,7 @@ import type { RadioGroupA11yProps } from './RadioGroup.a11y';
 
 // Erweitere RadioGroup um die A11y-Komponente
 const RadioGroup = Object.assign(BaseRadioGroup, {
-  A11y: RadioGroupA11y
+  A11y: RadioGroupA11y,
 });
 
 // Exportiere Komponenten und Typen

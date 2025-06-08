@@ -82,12 +82,12 @@ describe('FileUpload Snapshots', () => {
 
   it('renders file upload with different sizes correctly', () => {
     const sizes = ['sm', 'md', 'lg'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(<FileUpload size={size as any} />);
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`FileUpload with size ${size}`);
     });
@@ -105,12 +105,12 @@ describe('FileUpload Snapshots', () => {
 
   it('renders file upload with different variants correctly', () => {
     const variants = ['outline', 'filled', 'flushed', 'unstyled'];
-    
-    const fragments = variants.map(variant => {
+
+    const fragments = variants.map((variant) => {
       const { asFragment } = render(<FileUpload variant={variant as any} />);
       return { variant, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ variant, fragment }) => {
       expect(fragment).toMatchSnapshot(`FileUpload with variant ${variant}`);
     });
@@ -118,12 +118,12 @@ describe('FileUpload Snapshots', () => {
 
   it('renders file upload with different color schemes correctly', () => {
     const colorSchemes = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
-    
-    const fragments = colorSchemes.map(colorScheme => {
+
+    const fragments = colorSchemes.map((colorScheme) => {
       const { asFragment } = render(<FileUpload colorScheme={colorScheme as any} />);
       return { colorScheme, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ colorScheme, fragment }) => {
       expect(fragment).toMatchSnapshot(`FileUpload with color scheme ${colorScheme}`);
     });
@@ -131,7 +131,7 @@ describe('FileUpload Snapshots', () => {
 
   it('renders file upload with all features enabled correctly', () => {
     const { asFragment } = render(
-      <FileUpload 
+      <FileUpload
         label="Upload Files"
         helperText="Max file size: 5MB"
         dropzoneText="Drop files here"

@@ -8,11 +8,7 @@ interface LoginFormProps {
   onRegister?: () => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ 
-  onSubmit, 
-  onForgotPassword, 
-  onRegister 
-}) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onForgotPassword, onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,8 +31,8 @@ const LoginForm: React.FC<LoginFormProps> = ({
   };
 
   return (
-    <Card 
-      title="Anmeldung" 
+    <Card
+      title="Anmeldung"
       className="max-w-md mx-auto"
       footer={
         <div className="flex justify-between">
@@ -69,16 +65,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
           className="mb-4"
         />
       )}
-      
+
       {error && (
-        <Alert
-          type="error"
-          title="Anmeldung fehlgeschlagen"
-          message={error}
-          className="mb-4"
-        />
+        <Alert type="error" title="Anmeldung fehlgeschlagen" message={error} className="mb-4" />
       )}
-      
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
           label="E-Mail-Adresse"
@@ -90,7 +81,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           placeholder="beispiel@domain.de"
           disabled={loading}
         />
-        
+
         <Input
           label="Passwort"
           type="password"
@@ -100,14 +91,8 @@ const LoginForm: React.FC<LoginFormProps> = ({
           required
           disabled={loading}
         />
-        
-        <Button
-          type="submit"
-          variant="primary"
-          fullWidth
-          loading={loading}
-          disabled={loading}
-        >
+
+        <Button type="submit" variant="primary" fullWidth loading={loading} disabled={loading}>
           Anmelden
         </Button>
       </form>

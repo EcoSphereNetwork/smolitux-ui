@@ -11,7 +11,7 @@ export type ButtonVariant =
   | 'outline'
   | 'ghost'
   | 'link'
-  | 'solid'  // Hinzugefügt für Kompatibilität
+  | 'solid' // Hinzugefügt für Kompatibilität
   | 'unstyled';
 
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -137,492 +137,577 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
  * <Button isLink href="https://example.com" target="_blank">Link Button</Button>
  * ```
  */
-export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
-  children,
-  variant = 'primary',
-  size = 'md',
-  shape = 'rounded',
-  fullWidth = false,
-  leftIcon,
-  rightIcon,
-  loading = false,
-  isLoading = false, // Alias für loading
-  disabled,
-  className = '',
-  onClick,
-  type = 'button',
-  shadow = false,
-  hoverable = true,
-  focusable = true,
-  transition = true,
-  active = false,
-  bordered = true,
-  transparent = false,
-  tooltip,
-  isIconButton = false,
-  isSubmit = false,
-  isReset = false,
-  isLink = false,
-  href,
-  target,
-  rel,
-  download,
-  isExternal = false,
-  isDropdownTrigger = false,
-  isToggle = false,
-  isToggleOn = false,
-  ripple = false,
-  loadingText = 'Loading...',
-  loadingSpinner,
-  loadingPlaceholder,
-  successIcon,
-  errorIcon,
-  isSuccess = false,
-  isError = false,
-  onSuccess,
-  onError,
-  onPress,
-  onRelease,
-  onHold,
-  onFocus,
-  onBlur,
-  onMouseDown,
-  onMouseUp,
-  onMouseEnter,
-  onMouseLeave,
-  onKeyDown,
-  onKeyUp,
-  onKeyPress,
-  ...props
-}, ref) => {
-  // const { themeMode } = useTheme();
-  const themeMode = 'light';
-  const [isPressed, setIsPressed] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
-  const [showRipple, setShowRipple] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
+export const Button = memo(
+  forwardRef<HTMLButtonElement, ButtonProps>(
+    (
+      {
+        children,
+        variant = 'primary',
+        size = 'md',
+        shape = 'rounded',
+        fullWidth = false,
+        leftIcon,
+        rightIcon,
+        loading = false,
+        isLoading = false, // Alias für loading
+        disabled,
+        className = '',
+        onClick,
+        type = 'button',
+        shadow = false,
+        hoverable = true,
+        focusable = true,
+        transition = true,
+        active = false,
+        bordered = true,
+        transparent = false,
+        tooltip,
+        isIconButton = false,
+        isSubmit = false,
+        isReset = false,
+        isLink = false,
+        href,
+        target,
+        rel,
+        download,
+        isExternal = false,
+        isDropdownTrigger = false,
+        isToggle = false,
+        isToggleOn = false,
+        ripple = false,
+        loadingText = 'Loading...',
+        loadingSpinner,
+        loadingPlaceholder,
+        successIcon,
+        errorIcon,
+        isSuccess = false,
+        isError = false,
+        onSuccess,
+        onError,
+        onPress,
+        onRelease,
+        onHold,
+        onFocus,
+        onBlur,
+        onMouseDown,
+        onMouseUp,
+        onMouseEnter,
+        onMouseLeave,
+        onKeyDown,
+        onKeyUp,
+        onKeyPress,
+        ...props
+      },
+      ref
+    ) => {
+      // const { themeMode } = useTheme();
+      const themeMode = 'light';
+      const [isPressed, setIsPressed] = useState(false);
+      const [isFocused, setIsFocused] = useState(false);
+      const [isHovered, setIsHovered] = useState(false);
+      const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
+      const [showRipple, setShowRipple] = useState(false);
+      const buttonRef = useRef<HTMLButtonElement | null>(null);
+      const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Unterstützung für isLoading als Alias für loading
-  const isButtonLoading = loading || isLoading;
+      // Unterstützung für isLoading als Alias für loading
+      const isButtonLoading = loading || isLoading;
 
-  // Bestimme den Button-Typ
-  const buttonType = isSubmit ? 'submit' : isReset ? 'reset' : type;
+      // Bestimme den Button-Typ
+      const buttonType = isSubmit ? 'submit' : isReset ? 'reset' : type;
 
-  // Bestimme die Rel-Attribute für externe Links
-  const relAttribute = isExternal
-    ? rel ? `${rel} noopener noreferrer` : 'noopener noreferrer'
-    : rel;
+      // Bestimme die Rel-Attribute für externe Links
+      const relAttribute = isExternal
+        ? rel
+          ? `${rel} noopener noreferrer`
+          : 'noopener noreferrer'
+        : rel;
 
-  // Normalisiere die Variante (solid -> primary für Kompatibilität)
-  const normalizedVariant = variant === 'solid' ? 'primary' : variant;
+      // Normalisiere die Variante (solid -> primary für Kompatibilität)
+      const normalizedVariant = variant === 'solid' ? 'primary' : variant;
 
-  // Varianten-spezifische Klassen
-  const variantClasses = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white',
-    secondary: 'bg-secondary-600 hover:bg-secondary-700 text-white',
-    success: 'bg-green-600 hover:bg-green-700 text-white',
-    danger: 'bg-red-600 hover:bg-red-700 text-white',
-    warning: 'bg-yellow-600 hover:bg-yellow-700 text-white',
-    info: 'bg-blue-600 hover:bg-blue-700 text-white',
-    outline: bordered
-      ? 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
-    ghost: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
-    link: 'text-primary-600 dark:text-primary-400 underline hover:text-primary-700 dark:hover:text-primary-300 p-0',
-    solid: 'bg-primary-600 hover:bg-primary-700 text-white', // Alias für primary
-    unstyled: ''
-  };
+      // Varianten-spezifische Klassen
+      const variantClasses = {
+        primary: 'bg-primary-600 hover:bg-primary-700 text-white',
+        secondary: 'bg-secondary-600 hover:bg-secondary-700 text-white',
+        success: 'bg-green-600 hover:bg-green-700 text-white',
+        danger: 'bg-red-600 hover:bg-red-700 text-white',
+        warning: 'bg-yellow-600 hover:bg-yellow-700 text-white',
+        info: 'bg-blue-600 hover:bg-blue-700 text-white',
+        outline: bordered
+          ? 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
+        ghost: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
+        link: 'text-primary-600 dark:text-primary-400 underline hover:text-primary-700 dark:hover:text-primary-300 p-0',
+        solid: 'bg-primary-600 hover:bg-primary-700 text-white', // Alias für primary
+        unstyled: '',
+      };
 
-  // Größen-spezifische Klassen
-  const sizeClasses = {
-    xs: isIconButton ? 'p-1 text-xs' : 'px-2 py-1 text-xs',
-    sm: isIconButton ? 'p-1.5 text-sm' : 'px-3 py-1.5 text-sm',
-    md: isIconButton ? 'p-2 text-base' : 'px-4 py-2 text-base',
-    lg: isIconButton ? 'p-2.5 text-lg' : 'px-6 py-3 text-lg',
-    xl: isIconButton ? 'p-3 text-xl' : 'px-8 py-4 text-xl'
-  };
+      // Größen-spezifische Klassen
+      const sizeClasses = {
+        xs: isIconButton ? 'p-1 text-xs' : 'px-2 py-1 text-xs',
+        sm: isIconButton ? 'p-1.5 text-sm' : 'px-3 py-1.5 text-sm',
+        md: isIconButton ? 'p-2 text-base' : 'px-4 py-2 text-base',
+        lg: isIconButton ? 'p-2.5 text-lg' : 'px-6 py-3 text-lg',
+        xl: isIconButton ? 'p-3 text-xl' : 'px-8 py-4 text-xl',
+      };
 
-  // Form-spezifische Klassen
-  const shapeClasses = {
-    square: 'rounded-none',
-    rounded: 'rounded-md',
-    pill: 'rounded-full'
-  };
+      // Form-spezifische Klassen
+      const shapeClasses = {
+        square: 'rounded-none',
+        rounded: 'rounded-md',
+        pill: 'rounded-full',
+      };
 
-  // Zustandsspezifische Klassen
-  const stateClasses = {
-    active: active ? 'active' : '',
-    disabled: disabled || isButtonLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-    hover: hoverable && !disabled && !isButtonLoading ? 'hover:opacity-90' : '',
-    focus: focusable && !disabled && !isButtonLoading ? 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500' : '',
-    pressed: isPressed && !disabled && !isButtonLoading ? 'transform scale-95' : '',
-    success: isSuccess ? 'bg-green-600 text-white' : '',
-    error: isError ? 'bg-red-600 text-white' : '',
-    toggle: isToggle && isToggleOn ? 'bg-primary-600 text-white' : ''
-  };
+      // Zustandsspezifische Klassen
+      const stateClasses = {
+        active: active ? 'active' : '',
+        disabled: disabled || isButtonLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+        hover: hoverable && !disabled && !isButtonLoading ? 'hover:opacity-90' : '',
+        focus:
+          focusable && !disabled && !isButtonLoading
+            ? 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
+            : '',
+        pressed: isPressed && !disabled && !isButtonLoading ? 'transform scale-95' : '',
+        success: isSuccess ? 'bg-green-600 text-white' : '',
+        error: isError ? 'bg-red-600 text-white' : '',
+        toggle: isToggle && isToggleOn ? 'bg-primary-600 text-white' : '',
+      };
 
-  // Effekt-spezifische Klassen
-  const effectClasses = {
-    shadow: shadow ? 'shadow-md' : '',
-    transition: transition ? 'transition duration-150 ease-in-out' : '',
-    transparent: transparent ? 'bg-transparent' : ''
-  };
+      // Effekt-spezifische Klassen
+      const effectClasses = {
+        shadow: shadow ? 'shadow-md' : '',
+        transition: transition ? 'transition duration-150 ease-in-out' : '',
+        transparent: transparent ? 'bg-transparent' : '',
+      };
 
-  // Allgemeine Button-Klassen
-  const buttonClasses = [
-    'font-medium',
-    'inline-flex items-center justify-center',
-    normalizedVariant !== 'unstyled' ? shapeClasses[shape] : '',
-    fullWidth ? 'w-full' : '',
-    variantClasses[normalizedVariant],
-    normalizedVariant !== 'link' && normalizedVariant !== 'unstyled' ? sizeClasses[size] : '',
-    stateClasses.active,
-    stateClasses.disabled,
-    stateClasses.hover,
-    stateClasses.focus,
-    stateClasses.pressed,
-    stateClasses.success,
-    stateClasses.error,
-    stateClasses.toggle,
-    effectClasses.shadow,
-    effectClasses.transition,
-    effectClasses.transparent,
-    isIconButton ? 'p-2' : '',
-    className
-  ].filter(Boolean).join(' ');
+      // Allgemeine Button-Klassen
+      const buttonClasses = [
+        'font-medium',
+        'inline-flex items-center justify-center',
+        normalizedVariant !== 'unstyled' ? shapeClasses[shape] : '',
+        fullWidth ? 'w-full' : '',
+        variantClasses[normalizedVariant],
+        normalizedVariant !== 'link' && normalizedVariant !== 'unstyled' ? sizeClasses[size] : '',
+        stateClasses.active,
+        stateClasses.disabled,
+        stateClasses.hover,
+        stateClasses.focus,
+        stateClasses.pressed,
+        stateClasses.success,
+        stateClasses.error,
+        stateClasses.toggle,
+        effectClasses.shadow,
+        effectClasses.transition,
+        effectClasses.transparent,
+        isIconButton ? 'p-2' : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ');
 
-  // Kombiniere den externen Ref mit unserem internen Ref
-  const handleRef = React.useCallback((element: HTMLButtonElement | null) => {
-    // Setze den internen Ref
-    buttonRef.current = element;
+      // Kombiniere den externen Ref mit unserem internen Ref
+      const handleRef = React.useCallback(
+        (element: HTMLButtonElement | null) => {
+          // Setze den internen Ref
+          buttonRef.current = element;
 
-    // Leite den Ref weiter
-    if (typeof ref === 'function') {
-      ref(element);
-    } else if (ref) {
-      // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
-      ref.current = element;
-    }
-  }, [ref]);
-
-  // Behandlung von Keyboard-Events für bessere Barrierefreiheit
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      setIsPressed(true);
-      onPress?.();
-      onClick?.(event as unknown as React.MouseEvent<HTMLButtonElement>);
-    }
-
-    onKeyDown?.(event);
-  };
-
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      setIsPressed(false);
-      onRelease?.();
-    }
-
-    onKeyUp?.(event);
-  };
-
-  // Maus-Event-Handler
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setIsPressed(true);
-    onPress?.();
-
-    // Starte den Hold-Timer
-    if (onHold) {
-      holdTimerRef.current = setTimeout(() => {
-        onHold();
-      }, 500); // 500ms für einen "Hold"
-    }
-
-    // Ripple-Effekt
-    if (ripple && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      setRippleStyle({
-        left: `${x}px`,
-        top: `${y}px`
-      });
-
-      setShowRipple(true);
-      setTimeout(() => setShowRipple(false), 600);
-    }
-
-    onMouseDown?.(event);
-  };
-
-  const handleMouseUp = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setIsPressed(false);
-    onRelease?.();
-
-    // Lösche den Hold-Timer
-    if (holdTimerRef.current) {
-      clearTimeout(holdTimerRef.current);
-      holdTimerRef.current = null;
-    }
-
-    onMouseUp?.(event);
-  };
-
-  const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setIsHovered(true);
-    onMouseEnter?.(event);
-  };
-
-  const handleMouseLeave = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setIsHovered(false);
-    setIsPressed(false);
-
-    // Lösche den Hold-Timer
-    if (holdTimerRef.current) {
-      clearTimeout(holdTimerRef.current);
-      holdTimerRef.current = null;
-    }
-
-    onMouseLeave?.(event);
-  };
-
-  // Fokus-Event-Handler
-  const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
-    setIsFocused(true);
-    onFocus?.(event);
-  };
-
-  const handleBlur = (event: React.FocusEvent<HTMLButtonElement>) => {
-    setIsFocused(false);
-    onBlur?.(event);
-  };
-
-  // Cleanup beim Unmount
-  useEffect(() => {
-    return () => {
-      if (holdTimerRef.current) {
-        clearTimeout(holdTimerRef.current);
-      }
-    };
-  }, []);
-
-  // Erfolgs- und Fehler-Callbacks
-  useEffect(() => {
-    if (isSuccess) {
-      onSuccess?.();
-    }
-  }, [isSuccess, onSuccess]);
-
-  useEffect(() => {
-    if (isError) {
-      onError?.();
-    }
-  }, [isError, onError]);
-
-  // Rendere einen Link statt eines Buttons, wenn isLink oder href angegeben ist
-  if (isLink || href) {
-    return (
-      <a
-        href={href || '#'}
-        className={buttonClasses}
-        target={target}
-        rel={relAttribute}
-        download={download}
-        aria-disabled={disabled || isButtonLoading}
-        aria-busy={isButtonLoading}
-        title={tooltip}
-        onClick={(e) => {
-          if (disabled || isButtonLoading) {
-            e.preventDefault();
-            return;
+          // Leite den Ref weiter
+          if (typeof ref === 'function') {
+            ref(element);
+          } else if (ref) {
+            // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
+            ref.current = element;
           }
-          onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
-        }}
-        onMouseEnter={handleMouseEnter as unknown as React.MouseEventHandler<HTMLAnchorElement>}
-        onMouseLeave={handleMouseLeave as unknown as React.MouseEventHandler<HTMLAnchorElement>}
-        {...props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>}
-      >
-        {isButtonLoading ? (
-          <>
-            {loadingSpinner || (
-              <svg
-                className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-            )}
-            {loadingPlaceholder || <span>{loadingText}</span>}
-          </>
-        ) : isSuccess ? (
-          <>
-            {successIcon || (
-              <svg
-                className="mr-2 h-4 w-4 text-current"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            )}
-            {children}
-          </>
-        ) : isError ? (
-          <>
-            {errorIcon || (
-              <svg
-                className="mr-2 h-4 w-4 text-current"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            )}
-            {children}
-          </>
-        ) : (
-          <>
-            {leftIcon && <span className={`${isIconButton ? '' : 'mr-2'}`} aria-hidden="true">{leftIcon}</span>}
-            {!isIconButton && children}
-            {rightIcon && <span className={`${isIconButton ? '' : 'ml-2'}`} aria-hidden="true">{rightIcon}</span>}
-            {isDropdownTrigger && (
-              <svg
-                className="ml-2 h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            )}
-          </>
-        )}
-      </a>
-    );
-  }
+        },
+        [ref]
+      );
 
-  return (
-    <button
-      ref={handleRef}
-      disabled={disabled || isButtonLoading}
-      className={buttonClasses}
-      onClick={onClick}
-      type={buttonType}
-      role="button"
-      aria-disabled={disabled || isButtonLoading}
-      aria-busy={isButtonLoading}
-      aria-pressed={isToggle ? isToggleOn : undefined}
-      title={tooltip}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-      onKeyPress={onKeyPress}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      {...props}
-    >
-      {/* Ripple-Effekt */}
-      {ripple && showRipple && (
-        <span
-          className="absolute bg-white bg-opacity-30 rounded-full animate-ripple"
-          style={{
-            width: '100px',
-            height: '100px',
-            transform: 'translate(-50%, -50%)',
-            ...rippleStyle
-          }}
-        />
-      )}
+      // Behandlung von Keyboard-Events für bessere Barrierefreiheit
+      const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          setIsPressed(true);
+          onPress?.();
+          onClick?.(event as unknown as React.MouseEvent<HTMLButtonElement>);
+        }
 
-      {isButtonLoading ? (
-        <>
-          {loadingSpinner || (
-            <svg
-              className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
+        onKeyDown?.(event);
+      };
+
+      const handleKeyUp = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          setIsPressed(false);
+          onRelease?.();
+        }
+
+        onKeyUp?.(event);
+      };
+
+      // Maus-Event-Handler
+      const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setIsPressed(true);
+        onPress?.();
+
+        // Starte den Hold-Timer
+        if (onHold) {
+          holdTimerRef.current = setTimeout(() => {
+            onHold();
+          }, 500); // 500ms für einen "Hold"
+        }
+
+        // Ripple-Effekt
+        if (ripple && buttonRef.current) {
+          const rect = buttonRef.current.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+
+          setRippleStyle({
+            left: `${x}px`,
+            top: `${y}px`,
+          });
+
+          setShowRipple(true);
+          setTimeout(() => setShowRipple(false), 600);
+        }
+
+        onMouseDown?.(event);
+      };
+
+      const handleMouseUp = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setIsPressed(false);
+        onRelease?.();
+
+        // Lösche den Hold-Timer
+        if (holdTimerRef.current) {
+          clearTimeout(holdTimerRef.current);
+          holdTimerRef.current = null;
+        }
+
+        onMouseUp?.(event);
+      };
+
+      const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setIsHovered(true);
+        onMouseEnter?.(event);
+      };
+
+      const handleMouseLeave = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setIsHovered(false);
+        setIsPressed(false);
+
+        // Lösche den Hold-Timer
+        if (holdTimerRef.current) {
+          clearTimeout(holdTimerRef.current);
+          holdTimerRef.current = null;
+        }
+
+        onMouseLeave?.(event);
+      };
+
+      // Fokus-Event-Handler
+      const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
+        setIsFocused(true);
+        onFocus?.(event);
+      };
+
+      const handleBlur = (event: React.FocusEvent<HTMLButtonElement>) => {
+        setIsFocused(false);
+        onBlur?.(event);
+      };
+
+      // Cleanup beim Unmount
+      useEffect(() => {
+        return () => {
+          if (holdTimerRef.current) {
+            clearTimeout(holdTimerRef.current);
+          }
+        };
+      }, []);
+
+      // Erfolgs- und Fehler-Callbacks
+      useEffect(() => {
+        if (isSuccess) {
+          onSuccess?.();
+        }
+      }, [isSuccess, onSuccess]);
+
+      useEffect(() => {
+        if (isError) {
+          onError?.();
+        }
+      }, [isError, onError]);
+
+      // Rendere einen Link statt eines Buttons, wenn isLink oder href angegeben ist
+      if (isLink || href) {
+        return (
+          <a
+            href={href || '#'}
+            className={buttonClasses}
+            target={target}
+            rel={relAttribute}
+            download={download}
+            aria-disabled={disabled || isButtonLoading}
+            aria-busy={isButtonLoading}
+            title={tooltip}
+            onClick={(e) => {
+              if (disabled || isButtonLoading) {
+                e.preventDefault();
+                return;
+              }
+              onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
+            }}
+            onMouseEnter={handleMouseEnter as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+            onMouseLeave={handleMouseLeave as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+            {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+          >
+            {isButtonLoading ? (
+              <>
+                {loadingSpinner || (
+                  <svg
+                    className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                )}
+                {loadingPlaceholder || <span>{loadingText}</span>}
+              </>
+            ) : isSuccess ? (
+              <>
+                {successIcon || (
+                  <svg
+                    className="mr-2 h-4 w-4 text-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                )}
+                {children}
+              </>
+            ) : isError ? (
+              <>
+                {errorIcon || (
+                  <svg
+                    className="mr-2 h-4 w-4 text-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                )}
+                {children}
+              </>
+            ) : (
+              <>
+                {leftIcon && (
+                  <span className={`${isIconButton ? '' : 'mr-2'}`} aria-hidden="true">
+                    {leftIcon}
+                  </span>
+                )}
+                {!isIconButton && children}
+                {rightIcon && (
+                  <span className={`${isIconButton ? '' : 'ml-2'}`} aria-hidden="true">
+                    {rightIcon}
+                  </span>
+                )}
+                {isDropdownTrigger && (
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                )}
+              </>
+            )}
+          </a>
+        );
+      }
+
+      return (
+        <button
+          ref={handleRef}
+          disabled={disabled || isButtonLoading}
+          className={buttonClasses}
+          onClick={onClick}
+          type={buttonType}
+          role="button"
+          aria-disabled={disabled || isButtonLoading}
+          aria-busy={isButtonLoading}
+          aria-pressed={isToggle ? isToggleOn : undefined}
+          title={tooltip}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          onKeyPress={onKeyPress}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          {...props}
+        >
+          {/* Ripple-Effekt */}
+          {ripple && showRipple && (
+            <span
+              className="absolute bg-white bg-opacity-30 rounded-full animate-ripple"
+              style={{
+                width: '100px',
+                height: '100px',
+                transform: 'translate(-50%, -50%)',
+                ...rippleStyle,
+              }}
+            />
           )}
-          {loadingPlaceholder || <span>{loadingText}</span>}
-        </>
-      ) : isSuccess ? (
-        <>
-          {successIcon || (
-            <svg
-              className="mr-2 h-4 w-4 text-current"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+
+          {isButtonLoading ? (
+            <>
+              {loadingSpinner || (
+                <svg
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              )}
+              {loadingPlaceholder || <span>{loadingText}</span>}
+            </>
+          ) : isSuccess ? (
+            <>
+              {successIcon || (
+                <svg
+                  className="mr-2 h-4 w-4 text-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              )}
+              {children}
+            </>
+          ) : isError ? (
+            <>
+              {errorIcon || (
+                <svg
+                  className="mr-2 h-4 w-4 text-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+              {children}
+            </>
+          ) : (
+            <>
+              {leftIcon && (
+                <span className={`${isIconButton ? '' : 'mr-2'}`} aria-hidden="true">
+                  {leftIcon}
+                </span>
+              )}
+              {!isIconButton && children}
+              {rightIcon && (
+                <span className={`${isIconButton ? '' : 'ml-2'}`} aria-hidden="true">
+                  {rightIcon}
+                </span>
+              )}
+              {isDropdownTrigger && (
+                <svg
+                  className="ml-2 h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              )}
+            </>
           )}
-          {children}
-        </>
-      ) : isError ? (
-        <>
-          {errorIcon || (
-            <svg
-              className="mr-2 h-4 w-4 text-current"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          )}
-          {children}
-        </>
-      ) : (
-        <>
-          {leftIcon && <span className={`${isIconButton ? '' : 'mr-2'}`} aria-hidden="true">{leftIcon}</span>}
-          {!isIconButton && children}
-          {rightIcon && <span className={`${isIconButton ? '' : 'ml-2'}`} aria-hidden="true">{rightIcon}</span>}
-          {isDropdownTrigger && (
-            <svg
-              className="ml-2 h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          )}
-        </>
-      )}
-    </button>
-  );
-}));
+        </button>
+      );
+    }
+  )
+);
 
 Button.displayName = 'Button';
 

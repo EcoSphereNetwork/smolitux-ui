@@ -26,7 +26,7 @@ describe('TabView', () => {
   it('changes active tab when clicked', () => {
     const handleChange = jest.fn();
     render(<TabView tabs={tabs} activeTab="tab1" onChange={handleChange} />);
-    
+
     fireEvent.click(screen.getByText('Tab 2'));
     expect(handleChange).toHaveBeenCalledWith('tab2');
   });
@@ -34,7 +34,7 @@ describe('TabView', () => {
   it('does not change tab when isManual=true', () => {
     const handleChange = jest.fn();
     render(<TabView tabs={tabs} activeTab="tab1" onChange={handleChange} isManual />);
-    
+
     fireEvent.click(screen.getByText('Tab 2'));
     expect(handleChange).toHaveBeenCalledWith('tab2');
     // The active tab should still be tab1 because isManual=true
@@ -47,12 +47,16 @@ describe('TabView', () => {
   });
 
   it('applies tabListClassName to the tab list', () => {
-    const { container } = render(<TabView tabs={tabs} activeTab="tab1" tabListClassName="custom-tab-list" />);
+    const { container } = render(
+      <TabView tabs={tabs} activeTab="tab1" tabListClassName="custom-tab-list" />
+    );
     expect(container.querySelector('.tab-list')).toHaveClass('custom-tab-list');
   });
 
   it('applies tabPanelsClassName to the tab panels', () => {
-    const { container } = render(<TabView tabs={tabs} activeTab="tab1" tabPanelsClassName="custom-tab-panels" />);
+    const { container } = render(
+      <TabView tabs={tabs} activeTab="tab1" tabPanelsClassName="custom-tab-panels" />
+    );
     expect(container.querySelector('.tab-panels')).toHaveClass('custom-tab-panels');
   });
 
@@ -69,10 +73,14 @@ describe('TabView', () => {
   });
 
   it('renders tabs with different orientations', () => {
-    const { container: containerHorizontal } = render(<TabView tabs={tabs} activeTab="tab1" orientation="horizontal" />);
+    const { container: containerHorizontal } = render(
+      <TabView tabs={tabs} activeTab="tab1" orientation="horizontal" />
+    );
     expect(containerHorizontal.querySelector('.tab-list')).toHaveStyle('flex-direction: row');
 
-    const { container: containerVertical } = render(<TabView tabs={tabs} activeTab="tab1" orientation="vertical" />);
+    const { container: containerVertical } = render(
+      <TabView tabs={tabs} activeTab="tab1" orientation="vertical" />
+    );
     expect(containerVertical.querySelector('.tab-list')).toHaveStyle('flex-direction: column');
   });
 
@@ -135,36 +143,36 @@ describe('TabView', () => {
       { id: 'tab2', label: 'Tab 2', content: <div>Content of Tab 2</div>, disabled: true },
       { id: 'tab3', label: 'Tab 3', content: <div>Content of Tab 3</div> },
     ];
-    
+
     const handleChange = jest.fn();
     render(<TabView tabs={disabledTabs} activeTab="tab1" onChange={handleChange} />);
-    
+
     const disabledTab = screen.getByText('Tab 2').closest('.tab');
     expect(disabledTab).toHaveStyle('cursor: not-allowed');
     expect(disabledTab).toHaveStyle('opacity: 0.6');
-    
+
     fireEvent.click(screen.getByText('Tab 2'));
     expect(handleChange).not.toHaveBeenCalled();
   });
 
   it('renders tabs with icons', () => {
     const tabsWithIcons = [
-      { 
-        id: 'tab1', 
-        label: 'Tab 1', 
+      {
+        id: 'tab1',
+        label: 'Tab 1',
         content: <div>Content of Tab 1</div>,
-        icon: <span data-testid="icon-1">Icon 1</span>
+        icon: <span data-testid="icon-1">Icon 1</span>,
       },
-      { 
-        id: 'tab2', 
-        label: 'Tab 2', 
+      {
+        id: 'tab2',
+        label: 'Tab 2',
         content: <div>Content of Tab 2</div>,
-        icon: <span data-testid="icon-2">Icon 2</span>
+        icon: <span data-testid="icon-2">Icon 2</span>,
       },
     ];
-    
+
     render(<TabView tabs={tabsWithIcons} activeTab="tab1" />);
-    
+
     expect(screen.getByTestId('icon-1')).toBeInTheDocument();
     expect(screen.getByTestId('icon-2')).toBeInTheDocument();
   });

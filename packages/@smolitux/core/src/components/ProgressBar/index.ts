@@ -4,7 +4,7 @@ import { default as ProgressBarA11y, type ProgressBarA11yProps } from './Progres
 
 // Erweitere ProgressBar um die A11y-Komponente
 export const ProgressBar = Object.assign(BaseProgressBar, {
-  A11y: ProgressBarA11y
+  A11y: ProgressBarA11y,
 });
 
 // Exportiere Typen

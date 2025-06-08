@@ -7,7 +7,7 @@ export type { ModalA11yProps } from './Modal.a11y';
 
 // Erweitere Modal um die A11y-Komponente
 export const Modal = Object.assign(BaseModal, {
-  A11y: ModalA11y
+  A11y: ModalA11y,
 });
 
 // Fuer Abwaertskompatibilitaet mit dem bestehenden Export

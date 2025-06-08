@@ -119,9 +119,21 @@ export const WithCustomPresets: Story = {
     label: 'Farbe mit benutzerdefinierten Farben',
     defaultValue: '#3b82f6',
     presets: [
-      '#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51',
-      '#001219', '#005f73', '#0a9396', '#94d2bd', '#e9d8a6',
-      '#ee9b00', '#ca6702', '#bb3e03', '#ae2012', '#9b2226',
+      '#264653',
+      '#2a9d8f',
+      '#e9c46a',
+      '#f4a261',
+      '#e76f51',
+      '#001219',
+      '#005f73',
+      '#0a9396',
+      '#94d2bd',
+      '#e9d8a6',
+      '#ee9b00',
+      '#ca6702',
+      '#bb3e03',
+      '#ae2012',
+      '#9b2226',
     ],
   },
 };
@@ -165,9 +177,19 @@ export const DifferentFormats: Story = {
     <div className="flex flex-col space-y-4">
       <ColorPicker label="HEX Format" format="hex" defaultValue="#3b82f6" />
       <ColorPicker label="RGB Format" format="rgb" defaultValue="rgb(59, 130, 246)" />
-      <ColorPicker label="RGBA Format" format="rgba" defaultValue="rgba(59, 130, 246, 1)" showAlpha />
+      <ColorPicker
+        label="RGBA Format"
+        format="rgba"
+        defaultValue="rgba(59, 130, 246, 1)"
+        showAlpha
+      />
       <ColorPicker label="HSL Format" format="hsl" defaultValue="hsl(217, 91%, 60%)" />
-      <ColorPicker label="HSLA Format" format="hsla" defaultValue="hsla(217, 91%, 60%, 1)" showAlpha />
+      <ColorPicker
+        label="HSLA Format"
+        format="hsla"
+        defaultValue="hsla(217, 91%, 60%, 1)"
+        showAlpha
+      />
     </div>
   ),
 };
@@ -175,35 +197,31 @@ export const DifferentFormats: Story = {
 export const ControlledComponent: Story = {
   render: () => {
     const [color, setColor] = useState('#3b82f6');
-    
+
     return (
       <div className="space-y-4">
-        <ColorPicker 
-          label="Kontrollierter Farbwähler" 
-          value={color} 
-          onChange={setColor} 
-        />
-        
+        <ColorPicker label="Kontrollierter Farbwähler" value={color} onChange={setColor} />
+
         <div className="p-4 bg-gray-100 rounded">
           <p>Ausgewählte Farbe: {color}</p>
           <div className="mt-2 flex space-x-2">
-            <div 
+            <div
               className="w-8 h-8 rounded-md border border-gray-300"
               style={{ backgroundColor: color }}
             ></div>
-            <button 
+            <button
               className="px-3 py-1 bg-blue-500 text-white rounded"
               onClick={() => setColor('#ff0000')}
             >
               Rot
             </button>
-            <button 
+            <button
               className="px-3 py-1 bg-green-500 text-white rounded"
               onClick={() => setColor('#00ff00')}
             >
               Grün
             </button>
-            <button 
+            <button
               className="px-3 py-1 bg-blue-500 text-white rounded"
               onClick={() => setColor('#0000ff')}
             >

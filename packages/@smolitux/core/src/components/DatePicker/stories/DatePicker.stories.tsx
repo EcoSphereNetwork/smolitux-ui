@@ -161,7 +161,7 @@ type Story = StoryObj<typeof DatePicker>;
 export const Basic: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -170,9 +170,7 @@ export const Basic: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },
@@ -185,7 +183,7 @@ export const WithMinMaxDates: Story = {
     minDate.setDate(minDate.getDate() - 5);
     const maxDate = new Date();
     maxDate.setDate(maxDate.getDate() + 5);
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -196,9 +194,7 @@ export const WithMinMaxDates: Story = {
           placeholderText="Datum auswählen"
           dateFormat="dd.MM.yyyy"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
         <div className="text-sm text-gray-500">
           Erlaubter Bereich: {minDate.toLocaleDateString()} bis {maxDate.toLocaleDateString()}
         </div>
@@ -210,7 +206,7 @@ export const WithMinMaxDates: Story = {
 export const WithTimeSelect: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -222,9 +218,7 @@ export const WithTimeSelect: Story = {
           dateFormat="dd.MM.yyyy HH:mm"
           placeholderText="Datum und Zeit auswählen"
         />
-        <div>
-          Ausgewähltes Datum und Zeit: {date ? date.toLocaleString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum und Zeit: {date ? date.toLocaleString() : 'Keins'}</div>
       </div>
     );
   },
@@ -233,7 +227,7 @@ export const WithTimeSelect: Story = {
 export const WithTimeSelectOnly: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -247,7 +241,8 @@ export const WithTimeSelectOnly: Story = {
           placeholderText="Zeit auswählen"
         />
         <div>
-          Ausgewählte Zeit: {date ? date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Keine'}
+          Ausgewählte Zeit:{' '}
+          {date ? date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Keine'}
         </div>
       </div>
     );
@@ -257,7 +252,7 @@ export const WithTimeSelectOnly: Story = {
 export const WithMonthYearDropdowns: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -269,9 +264,7 @@ export const WithMonthYearDropdowns: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },
@@ -280,7 +273,7 @@ export const WithMonthYearDropdowns: Story = {
 export const WithWeekNumbers: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -290,9 +283,7 @@ export const WithWeekNumbers: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },
@@ -301,7 +292,7 @@ export const WithWeekNumbers: Story = {
 export const WithMultipleMonths: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -311,9 +302,7 @@ export const WithMultipleMonths: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },
@@ -323,7 +312,7 @@ export const WithRangeSelection: Story = {
   render: () => {
     const [startDate, setStartDate] = React.useState<Date | null>(new Date());
     const [endDate, setEndDate] = React.useState<Date | null>(null);
-    
+
     return (
       <div className="space-y-4">
         <div className="flex space-x-4">
@@ -354,7 +343,8 @@ export const WithRangeSelection: Story = {
           </div>
         </div>
         <div>
-          Ausgewählter Zeitraum: {startDate ? startDate.toLocaleDateString() : 'Keins'} bis {endDate ? endDate.toLocaleDateString() : 'Keins'}
+          Ausgewählter Zeitraum: {startDate ? startDate.toLocaleDateString() : 'Keins'} bis{' '}
+          {endDate ? endDate.toLocaleDateString() : 'Keins'}
         </div>
       </div>
     );
@@ -364,7 +354,7 @@ export const WithRangeSelection: Story = {
 export const WithHighlightedDates: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     // Erstelle ein Array von Daten für die nächsten 5 Tage
     const highlightDates: Date[] = [];
     const today = new Date();
@@ -373,7 +363,7 @@ export const WithHighlightedDates: Story = {
       date.setDate(today.getDate() + i);
       highlightDates.push(date);
     }
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -383,12 +373,8 @@ export const WithHighlightedDates: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
-        <div className="text-sm text-gray-500">
-          Die nächsten 5 Tage sind hervorgehoben.
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
+        <div className="text-sm text-gray-500">Die nächsten 5 Tage sind hervorgehoben.</div>
       </div>
     );
   },
@@ -397,7 +383,7 @@ export const WithHighlightedDates: Story = {
 export const WithExcludedDates: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     // Erstelle ein Array von Daten für die nächsten 5 Wochenenden
     const excludeDates: Date[] = [];
     const today = new Date();
@@ -408,7 +394,7 @@ export const WithExcludedDates: Story = {
         excludeDates.push(date);
       }
     }
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -418,12 +404,8 @@ export const WithExcludedDates: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
-        <div className="text-sm text-gray-500">
-          Wochenenden sind ausgeschlossen.
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
+        <div className="text-sm text-gray-500">Wochenenden sind ausgeschlossen.</div>
       </div>
     );
   },
@@ -432,13 +414,13 @@ export const WithExcludedDates: Story = {
 export const WithFilterDate: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     // Filterfunktion: Nur Werktage zulassen
     const isWeekday = (date: Date) => {
       const day = date.getDay();
       return day !== 0 && day !== 6;
     };
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -448,9 +430,7 @@ export const WithFilterDate: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
         <div className="text-sm text-gray-500">
           Nur Werktage (Montag bis Freitag) können ausgewählt werden.
         </div>
@@ -462,7 +442,7 @@ export const WithFilterDate: Story = {
 export const Inline: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -471,9 +451,7 @@ export const Inline: Story = {
           inline
           dateFormat="dd.MM.yyyy"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },
@@ -482,7 +460,7 @@ export const Inline: Story = {
 export const WithTodayButton: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(null);
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -492,9 +470,7 @@ export const WithTodayButton: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },
@@ -503,7 +479,7 @@ export const WithTodayButton: Story = {
 export const WithClearButton: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -513,9 +489,7 @@ export const WithClearButton: Story = {
           dateFormat="dd.MM.yyyy"
           placeholderText="Datum auswählen"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },
@@ -524,14 +498,12 @@ export const WithClearButton: Story = {
 export const WithCustomStyles: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
-    
+
     // Funktion zum Bestimmen der CSS-Klasse eines Tages
     const getDayClassName = (date: Date) => {
-      return date.getDay() === 0 || date.getDay() === 6
-        ? 'bg-red-100 text-red-800'
-        : undefined;
+      return date.getDay() === 0 || date.getDay() === 6 ? 'bg-red-100 text-red-800' : undefined;
     };
-    
+
     return (
       <div className="space-y-4">
         <DatePicker
@@ -543,9 +515,7 @@ export const WithCustomStyles: Story = {
           calendarClassName="bg-blue-50 border border-blue-200 rounded-lg shadow-lg"
           className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
         />
-        <div>
-          Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}
-        </div>
+        <div>Ausgewähltes Datum: {date ? date.toLocaleDateString() : 'Keins'}</div>
       </div>
     );
   },

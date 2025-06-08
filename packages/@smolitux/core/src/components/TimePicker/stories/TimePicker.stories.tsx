@@ -93,17 +93,11 @@ type Story = StoryObj<typeof TimePicker>;
 export const Basic: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('14:30');
-    
+
     return (
       <div className="space-y-4">
-        <TimePicker
-          value={time}
-          onChange={setTime}
-          placeholder="Zeit auswählen"
-        />
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <TimePicker value={time} onChange={setTime} placeholder="Zeit auswählen" />
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
       </div>
     );
   },
@@ -112,18 +106,11 @@ export const Basic: Story = {
 export const WithSeconds: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('14:30:00');
-    
+
     return (
       <div className="space-y-4">
-        <TimePicker
-          value={time}
-          onChange={setTime}
-          showSeconds
-          placeholder="Zeit auswählen"
-        />
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <TimePicker value={time} onChange={setTime} showSeconds placeholder="Zeit auswählen" />
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
       </div>
     );
   },
@@ -132,7 +119,7 @@ export const WithSeconds: Story = {
 export const With12HourFormat: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('02:30 PM');
-    
+
     return (
       <div className="space-y-4">
         <TimePicker
@@ -142,9 +129,7 @@ export const With12HourFormat: Story = {
           format="hh:mm A"
           placeholder="Zeit auswählen"
         />
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
       </div>
     );
   },
@@ -153,7 +138,7 @@ export const With12HourFormat: Story = {
 export const With12HourFormatAndSeconds: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('02:30:15 PM');
-    
+
     return (
       <div className="space-y-4">
         <TimePicker
@@ -164,9 +149,7 @@ export const With12HourFormatAndSeconds: Story = {
           format="hh:mm:ss A"
           placeholder="Zeit auswählen"
         />
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
       </div>
     );
   },
@@ -175,7 +158,7 @@ export const With12HourFormatAndSeconds: Story = {
 export const WithCustomSteps: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('14:30');
-    
+
     return (
       <div className="space-y-4">
         <TimePicker
@@ -185,9 +168,7 @@ export const WithCustomSteps: Story = {
           minuteStep={15}
           placeholder="Zeit auswählen"
         />
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
         <div className="text-sm text-gray-500">
           Stunden-Schrittweite: 2, Minuten-Schrittweite: 15
         </div>
@@ -199,18 +180,11 @@ export const WithCustomSteps: Story = {
 export const WithCustomFormat: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('14:30');
-    
+
     return (
       <div className="space-y-4">
-        <TimePicker
-          value={time}
-          onChange={setTime}
-          format="HH.mm"
-          placeholder="Zeit auswählen"
-        />
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <TimePicker value={time} onChange={setTime} format="HH.mm" placeholder="Zeit auswählen" />
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
       </div>
     );
   },
@@ -221,29 +195,17 @@ export const Sizes: Story = {
     <div className="space-y-8">
       <div>
         <h3 className="text-lg font-medium mb-2">Small</h3>
-        <TimePicker
-          defaultValue="14:30"
-          size="sm"
-          placeholder="Zeit auswählen"
-        />
+        <TimePicker defaultValue="14:30" size="sm" placeholder="Zeit auswählen" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Medium (Standard)</h3>
-        <TimePicker
-          defaultValue="14:30"
-          size="md"
-          placeholder="Zeit auswählen"
-        />
+        <TimePicker defaultValue="14:30" size="md" placeholder="Zeit auswählen" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Large</h3>
-        <TimePicker
-          defaultValue="14:30"
-          size="lg"
-          placeholder="Zeit auswählen"
-        />
+        <TimePicker defaultValue="14:30" size="lg" placeholder="Zeit auswählen" />
       </div>
     </div>
   ),
@@ -254,38 +216,22 @@ export const Placements: Story = {
     <div className="space-y-8">
       <div>
         <h3 className="text-lg font-medium mb-2">Top</h3>
-        <TimePicker
-          defaultValue="14:30"
-          placement="top"
-          placeholder="Zeit auswählen"
-        />
+        <TimePicker defaultValue="14:30" placement="top" placeholder="Zeit auswählen" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Right</h3>
-        <TimePicker
-          defaultValue="14:30"
-          placement="right"
-          placeholder="Zeit auswählen"
-        />
+        <TimePicker defaultValue="14:30" placement="right" placeholder="Zeit auswählen" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Bottom (Standard)</h3>
-        <TimePicker
-          defaultValue="14:30"
-          placement="bottom"
-          placeholder="Zeit auswählen"
-        />
+        <TimePicker defaultValue="14:30" placement="bottom" placeholder="Zeit auswählen" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Left</h3>
-        <TimePicker
-          defaultValue="14:30"
-          placement="left"
-          placeholder="Zeit auswählen"
-        />
+        <TimePicker defaultValue="14:30" placement="left" placeholder="Zeit auswählen" />
       </div>
     </div>
   ),
@@ -336,18 +282,11 @@ export const WithCustomStyling: Story = {
 export const WithClearButton: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('14:30');
-    
+
     return (
       <div className="space-y-4">
-        <TimePicker
-          value={time}
-          onChange={setTime}
-          allowClear
-          placeholder="Zeit auswählen"
-        />
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <TimePicker value={time} onChange={setTime} allowClear placeholder="Zeit auswählen" />
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
       </div>
     );
   },
@@ -357,10 +296,10 @@ export const WithTimeRangeValidation: Story = {
   render: () => {
     const [time, setTime] = React.useState<string | null>('14:30');
     const [isValid, setIsValid] = React.useState(true);
-    
+
     const handleChange = (value: string | null) => {
       setTime(value);
-      
+
       if (value) {
         const [hours, minutes] = value.split(':').map(Number);
         const isBusinessHours = hours >= 9 && (hours < 17 || (hours === 17 && minutes === 0));
@@ -369,7 +308,7 @@ export const WithTimeRangeValidation: Story = {
         setIsValid(true);
       }
     };
-    
+
     return (
       <div className="space-y-4">
         <TimePicker
@@ -383,9 +322,7 @@ export const WithTimeRangeValidation: Story = {
             Bitte wählen Sie eine Zeit zwischen 9:00 und 17:00 Uhr.
           </div>
         )}
-        <div>
-          Ausgewählte Zeit: {time || 'Keine'}
-        </div>
+        <div>Ausgewählte Zeit: {time || 'Keine'}</div>
       </div>
     );
   },
@@ -395,22 +332,22 @@ export const WithDateTimePicker: Story = {
   render: () => {
     const [date, setDate] = React.useState<Date | null>(new Date());
     const [time, setTime] = React.useState<string | null>('14:30');
-    
+
     const combinedDateTime = React.useMemo(() => {
       if (!date || !time) return null;
-      
+
       const [hours, minutes] = time.split(':').map(Number);
       const newDate = new Date(date);
       newDate.setHours(hours);
       newDate.setMinutes(minutes);
-      
+
       return newDate;
     }, [date, time]);
-    
+
     return (
       <div className="space-y-6 w-[350px]">
         <h3 className="text-lg font-medium">Datum und Zeit auswählen</h3>
-        
+
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Datum</label>
@@ -421,17 +358,13 @@ export const WithDateTimePicker: Story = {
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium mb-1">Zeit</label>
-            <TimePicker
-              value={time}
-              onChange={setTime}
-              placeholder="Zeit auswählen"
-            />
+            <TimePicker value={time} onChange={setTime} placeholder="Zeit auswählen" />
           </div>
         </div>
-        
+
         {combinedDateTime && (
           <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded">
             <div className="font-medium">Ausgewählter Termin:</div>
@@ -452,25 +385,37 @@ export const AppointmentScheduler: Story = {
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [isSubmitted, setIsSubmitted] = React.useState(false);
-    
+
     // Verfügbare Zeitslots
     const availableTimeSlots = [
-      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-      '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'
+      '09:00',
+      '09:30',
+      '10:00',
+      '10:30',
+      '11:00',
+      '11:30',
+      '13:00',
+      '13:30',
+      '14:00',
+      '14:30',
+      '15:00',
+      '15:30',
+      '16:00',
+      '16:30',
     ];
-    
+
     // Simuliere bereits gebuchte Zeitslots
     const bookedTimeSlots = ['10:00', '13:30', '15:00'];
-    
+
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
       setIsSubmitted(true);
     };
-    
+
     return (
       <div className="w-[400px] p-6 border rounded-lg">
         <h2 className="text-xl font-bold mb-6">Termin vereinbaren</h2>
-        
+
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -486,7 +431,7 @@ export const AppointmentScheduler: Story = {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium mb-1" htmlFor="email">
                 E-Mail
@@ -500,7 +445,7 @@ export const AppointmentScheduler: Story = {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium mb-1" htmlFor="date">
                 Datum
@@ -515,11 +460,9 @@ export const AppointmentScheduler: Story = {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Verfügbare Zeitslots
-              </label>
+              <label className="block text-sm font-medium mb-1">Verfügbare Zeitslots</label>
               <div className="grid grid-cols-3 gap-2 mt-2">
                 {availableTimeSlots.map((time) => (
                   <button
@@ -530,8 +473,8 @@ export const AppointmentScheduler: Story = {
                       selectedTime === time
                         ? 'bg-blue-500 text-white'
                         : bookedTimeSlots.includes(time)
-                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                          : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
                     }`}
                     onClick={() => setSelectedTime(time)}
                   >
@@ -540,7 +483,7 @@ export const AppointmentScheduler: Story = {
                 ))}
               </div>
             </div>
-            
+
             <button
               type="submit"
               disabled={!selectedTime}
@@ -558,7 +501,7 @@ export const AppointmentScheduler: Story = {
             <div className="p-4 bg-green-50 text-green-800 rounded-md">
               <p className="font-medium">Termin erfolgreich gebucht!</p>
             </div>
-            
+
             <div className="p-4 bg-gray-50 rounded-md">
               <h3 className="font-medium mb-2">Termindetails:</h3>
               <p>Name: {name}</p>
@@ -566,7 +509,7 @@ export const AppointmentScheduler: Story = {
               <p>Datum: {new Date(selectedDate).toLocaleDateString()}</p>
               <p>Zeit: {selectedTime}</p>
             </div>
-            
+
             <button
               onClick={() => setIsSubmitted(false)}
               className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"

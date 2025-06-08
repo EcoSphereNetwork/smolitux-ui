@@ -10,23 +10,24 @@ const meta: Meta<typeof Drawer.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version des Drawers mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version des Drawers mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     isOpen: { control: 'boolean' },
     onClose: { action: 'closed' },
     placement: {
       control: { type: 'select' },
-      options: ['left', 'right', 'top', 'bottom']
+      options: ['left', 'right', 'top', 'bottom'],
     },
     width: { control: 'text' },
     height: { control: 'text' },
     accessibleLabel: { control: 'text' },
     accessibleDescription: { control: 'text' },
-    a11yTexts: { control: 'object' }
-  }
+    a11yTexts: { control: 'object' },
+  },
 };
 
 export default meta;
@@ -38,8 +39,8 @@ export const Default: Story = {
     title: 'Drawer Titel',
     children: <p>Drawer Inhalt</p>,
     accessibleLabel: 'Informations-Drawer',
-    accessibleDescription: 'Dieser Drawer enthaelt wichtige Informationen'
-  }
+    accessibleDescription: 'Dieser Drawer enthaelt wichtige Informationen',
+  },
 };
 
 export const Navigation: Story = {
@@ -49,18 +50,38 @@ export const Navigation: Story = {
     children: (
       <nav>
         <ul className="space-y-2">
-          <li><a href="#" className="block p-2 hover:bg-gray-100 rounded">Startseite</a></li>
-          <li><a href="#" className="block p-2 hover:bg-gray-100 rounded">Profil</a></li>
-          <li><a href="#" className="block p-2 hover:bg-gray-100 rounded">Einstellungen</a></li>
-          <li><a href="#" className="block p-2 hover:bg-gray-100 rounded">Hilfe</a></li>
-          <li><a href="#" className="block p-2 hover:bg-gray-100 rounded">Abmelden</a></li>
+          <li>
+            <a href="#" className="block p-2 hover:bg-gray-100 rounded">
+              Startseite
+            </a>
+          </li>
+          <li>
+            <a href="#" className="block p-2 hover:bg-gray-100 rounded">
+              Profil
+            </a>
+          </li>
+          <li>
+            <a href="#" className="block p-2 hover:bg-gray-100 rounded">
+              Einstellungen
+            </a>
+          </li>
+          <li>
+            <a href="#" className="block p-2 hover:bg-gray-100 rounded">
+              Hilfe
+            </a>
+          </li>
+          <li>
+            <a href="#" className="block p-2 hover:bg-gray-100 rounded">
+              Abmelden
+            </a>
+          </li>
         </ul>
       </nav>
     ),
     isNavigation: true,
     accessibleLabel: 'Hauptnavigation',
-    accessibleDescription: 'Enthaelt die Hauptnavigationspunkte der Anwendung'
-  }
+    accessibleDescription: 'Enthaelt die Hauptnavigationspunkte der Anwendung',
+  },
 };
 
 export const Form: Story = {
@@ -70,7 +91,9 @@ export const Form: Story = {
     children: (
       <form className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Name
+          </label>
           <input
             type="text"
             id="name"
@@ -78,7 +101,9 @@ export const Form: Story = {
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">E-Mail</label>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            E-Mail
+          </label>
           <input
             type="email"
             id="email"
@@ -95,8 +120,8 @@ export const Form: Story = {
       </div>
     ),
     accessibleLabel: 'Formular: Benutzerdaten eingeben',
-    accessibleDescription: 'Bitte geben Sie Ihre Daten ein und klicken Sie auf Speichern'
-  }
+    accessibleDescription: 'Bitte geben Sie Ihre Daten ein und klicken Sie auf Speichern',
+  },
 };
 
 export const Search: Story = {
@@ -106,7 +131,9 @@ export const Search: Story = {
     children: (
       <div className="space-y-4">
         <div>
-          <label htmlFor="search" className="block text-sm font-medium text-gray-700">Suchbegriff</label>
+          <label htmlFor="search" className="block text-sm font-medium text-gray-700">
+            Suchbegriff
+          </label>
           <input
             type="search"
             id="search"
@@ -115,7 +142,9 @@ export const Search: Story = {
           />
         </div>
         <div>
-          <label htmlFor="category" className="block text-sm font-medium text-gray-700">Kategorie</label>
+          <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+            Kategorie
+          </label>
           <select
             id="category"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
@@ -126,13 +155,16 @@ export const Search: Story = {
             <option value="3">Kategorie 3</option>
           </select>
         </div>
-        <Button variant="primary" className="w-full">Suchen</Button>
+        <Button variant="primary" className="w-full">
+          Suchen
+        </Button>
       </div>
     ),
     isSearch: true,
     accessibleLabel: 'Suchfunktion',
-    accessibleDescription: 'Geben Sie einen Suchbegriff ein und waehlen Sie optional eine Kategorie aus'
-  }
+    accessibleDescription:
+      'Geben Sie einen Suchbegriff ein und waehlen Sie optional eine Kategorie aus',
+  },
 };
 
 export const CustomA11yTexts: Story = {
@@ -144,52 +176,64 @@ export const CustomA11yTexts: Story = {
       closeButtonLabel: 'Drawer schliessen',
       drawerTitleLabel: 'Benutzerdefinierter Drawer',
       drawerDescriptionLabel: 'Benutzerdefinierter Drawer-Inhalt',
-      overlayLabel: 'Klicken Sie hier, um den Drawer zu schliessen'
+      overlayLabel: 'Klicken Sie hier, um den Drawer zu schliessen',
     },
     accessibleLabel: 'Drawer mit angepassten Screenreader-Texten',
-    accessibleDescription: 'Dieser Drawer demonstriert die Anpassung von Screenreader-Texten'
-  }
+    accessibleDescription: 'Dieser Drawer demonstriert die Anpassung von Screenreader-Texten',
+  },
 };
 
 export const DifferentPlacements: Story = {
   render: () => {
     const [placement, setPlacement] = useState<'left' | 'right' | 'top' | 'bottom'>('left');
     const [isOpen, setIsOpen] = useState(false);
-    
+
     return (
       <div className="p-4">
         <div className="mb-4 space-y-2">
           <div>
-            <Button 
-              variant="primary" 
-              onClick={() => { setPlacement('left'); setIsOpen(true); }}
+            <Button
+              variant="primary"
+              onClick={() => {
+                setPlacement('left');
+                setIsOpen(true);
+              }}
               className="mr-2"
             >
               Links
             </Button>
-            <Button 
-              variant="primary" 
-              onClick={() => { setPlacement('right'); setIsOpen(true); }}
+            <Button
+              variant="primary"
+              onClick={() => {
+                setPlacement('right');
+                setIsOpen(true);
+              }}
               className="mr-2"
             >
               Rechts
             </Button>
-            <Button 
-              variant="primary" 
-              onClick={() => { setPlacement('top'); setIsOpen(true); }}
+            <Button
+              variant="primary"
+              onClick={() => {
+                setPlacement('top');
+                setIsOpen(true);
+              }}
               className="mr-2"
             >
               Oben
             </Button>
-            <Button 
-              variant="primary" 
-              onClick={() => { setPlacement('bottom'); setIsOpen(true); }}
+            <Button
+              variant="primary"
+              onClick={() => {
+                setPlacement('bottom');
+                setIsOpen(true);
+              }}
             >
               Unten
             </Button>
           </div>
         </div>
-        
+
         <Drawer.A11y
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -206,17 +250,17 @@ export const DifferentPlacements: Story = {
         </Drawer.A11y>
       </div>
     );
-  }
+  },
 };
 
 export const Interactive: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    
+
     return (
       <div className="p-4">
         <Button onClick={() => setIsOpen(true)}>Drawer oeffnen</Button>
-        
+
         <Drawer.A11y
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -227,9 +271,11 @@ export const Interactive: Story = {
           isForm={true}
           footer={
             <div className="flex justify-end space-x-2">
-              <Button variant="outline" onClick={() => setIsOpen(false)}>Abbrechen</Button>
-              <Button 
-                variant="primary" 
+              <Button variant="outline" onClick={() => setIsOpen(false)}>
+                Abbrechen
+              </Button>
+              <Button
+                variant="primary"
                 onClick={() => {
                   alert('Formular abgesendet!');
                   setIsOpen(false);
@@ -242,7 +288,9 @@ export const Interactive: Story = {
         >
           <form className="space-y-4">
             <div>
-              <label htmlFor="interactive-name" className="block text-sm font-medium text-gray-700">Name</label>
+              <label htmlFor="interactive-name" className="block text-sm font-medium text-gray-700">
+                Name
+              </label>
               <input
                 type="text"
                 id="interactive-name"
@@ -250,7 +298,12 @@ export const Interactive: Story = {
               />
             </div>
             <div>
-              <label htmlFor="interactive-message" className="block text-sm font-medium text-gray-700">Nachricht</label>
+              <label
+                htmlFor="interactive-message"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Nachricht
+              </label>
               <textarea
                 id="interactive-message"
                 rows={3}
@@ -261,5 +314,5 @@ export const Interactive: Story = {
         </Drawer.A11y>
       </div>
     );
-  }
+  },
 };

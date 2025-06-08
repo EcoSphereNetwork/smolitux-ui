@@ -4,9 +4,17 @@ import { useFormControl } from '../FormControl';
 
 export type SwitchSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type SwitchVariant = 'solid' | 'outline' | 'filled' | 'minimal';
-export type SwitchColorScheme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+export type SwitchColorScheme =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'neutral';
 
-export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+export interface SwitchProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /** Text-Label (alternativ zu label im FormControl) */
   label?: React.ReactNode;
   /** Hilfetext (alternativ zu helperText im FormControl) */
@@ -28,7 +36,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   /** Checked/Unchecked-Icons anzeigen */
   icons?: boolean;
   /** An/Aus-Beschriftung */
-  labels?: {on?: string; off?: string};
+  labels?: { on?: string; off?: string };
   /** Ob der Switch einen Rahmen haben soll */
   bordered?: boolean;
   /** Ob der Switch abgerundete Ecken haben soll */
@@ -717,16 +725,16 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
 
 /**
  * Switch-Komponente für Toggle-Steuerelemente
- * 
+ *
  * @example
  * ```tsx
- * <Switch 
- *   label="Benachrichtigungen aktivieren" 
- *   checked={notifications} 
- *   onChange={e => setNotifications(e.target.checked)} 
+ * <Switch
+ *   label="Benachrichtigungen aktivieren"
+ *   checked={notifications}
+ *   onChange={e => setNotifications(e.target.checked)}
  * />
- * 
- * <Switch 
+ *
+ * <Switch
  *   label="Dunkelmodus"
  *   colorScheme="primary"
  *   size="lg"
@@ -735,8 +743,8 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
  *   checked={darkMode}
  *   onChange={e => setDarkMode(e.target.checked)}
  * />
- * 
- * <Switch 
+ *
+ * <Switch
  *   label="Automatische Updates"
  *   helperText="Updates werden automatisch installiert, wenn verfügbar"
  *   labelPosition="left"
@@ -746,793 +754,893 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
  * />
  * ```
  */
-export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
-  label,
-  helperText,
-  error,
-  successMessage,
-  size = 'md',
-  variant = 'solid',
-  colorScheme = 'primary',
-  labelPosition = 'right',
-  labelAlign = 'start',
-  icons = false,
-  labels,
-  className = '',
-  containerClassName = '',
-  switchContainerClassName = '',
-  trackClassName = '',
-  thumbClassName = '',
-  labelClassName = '',
-  helperTextClassName = '',
-  errorClassName = '',
-  successClassName = '',
-  checked,
-  defaultChecked,
-  onChange,
-  disabled,
-  bordered = true,
-  rounded = true,
-  shadow = false,
-  hoverable = true,
-  focusable = true,
-  transition = true,
-  transparent = false,
-  tooltip,
-  isLoading = false,
-  isValid = false,
-  isInvalid = false,
-  isSuccess = false,
-  isDisabled,
-  isRequired,
-  showSuccessIndicator = true,
-  showErrorIndicator = true,
-  showLoadingIndicator = true,
-  showValidationIndicator = true,
-  hideLabel = false,
-  hideHelperText = false,
-  hideError = false,
-  hideSuccessMessage = false,
-  labelTooltip,
-  switchTooltip,
-  description,
-  autoFocus = false,
-  thumbIcon,
-  checkedIcon,
-  uncheckedIcon,
-  ripple = false,
-  isVertical = false,
-  isCard = false,
-  isButton = false,
-  isPill = false,
-  isSlider = false,
-  isIOS = false,
-  isAndroid = false,
-  isMaterial = false,
-  isWindows = false,
-  isFluent = false,
-  isFlat = false,
-  is3D = false,
-  isNeon = false,
-  isGlass = false,
-  isNeumorphic = false,
-  isSkeuomorphic = false,
-  isRetro = false,
-  isFuturistic = false,
-  isMinimal = false,
-  required,
-  ...rest
-}, ref) => {
-  // Aus dem FormControl-Context importierte Werte
-  const formControl = useFormControl();
-  
-  // Kombiniere Props mit FormControl-Context
-  const _disabled = isDisabled ?? disabled ?? formControl.disabled;
-  const _required = isRequired ?? required ?? formControl.required;
-  const _error = error || (formControl.hasError ? 'Ungültige Eingabe' : undefined);
-  const _isInvalid = isInvalid || Boolean(_error) || formControl.isInvalid;
-  const _isValid = isValid || formControl.isValid;
-  const _isSuccess = isSuccess || formControl.isSuccess;
-  const _isLoading = isLoading || formControl.isLoading;
-  const _size = size || formControl.size || 'md';
-  const _id = rest.id || formControl.id || `switch-${Math.random().toString(36).substring(2, 9)}`;
-  
-  // Lokaler Zustand für controlled/uncontrolled Komponente
-  const [isChecked, setIsChecked] = useState(() => {
-    if (checked !== undefined) return checked;
-    if (defaultChecked !== undefined) return defaultChecked;
-    return false;
-  });
-  
-  // Refs
-  const switchRef = useRef<HTMLInputElement>(null);
-  
-  // Kombiniere den externen Ref mit unserem internen Ref
-  const handleRef = (element: HTMLInputElement | null) => {
-    if (switchRef) {
-      (switchRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
-    }
-    
-    if (typeof ref === 'function') {
-      ref(element);
-    } else if (ref) {
-      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
-    }
-  };
-  
-  // Effekt für autoFocus
-  useEffect(() => {
-    if (autoFocus && switchRef.current) {
-      switchRef.current.focus();
-    }
-  }, [autoFocus]);
-  
-  // Aktualisiere lokalen Zustand, wenn sich checked von außen ändert
-  useEffect(() => {
-    if (checked !== undefined) {
-      setIsChecked(checked);
-    }
-  }, [checked]);
-  
-  // Event-Handler für Änderungen
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    // Wenn es eine kontrollierte Komponente ist, erfolgt die Änderung über onChange
-    if (checked === undefined) {
-      setIsChecked(e.target.checked);
-    }
-    
-    if (onChange) {
-      onChange(e);
-    }
-  }, [checked, setIsChecked, onChange]);
-  
-  // State für Fokus, Hover und Ripple
-  const [isFocused, setIsFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isPressed, setIsPressed] = useState(false);
-  const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
-  const [showRipple, setShowRipple] = useState(false);
-  
-  // Event-Handler
-  const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(true);
-    rest.onFocus?.(e);
-  }, [rest]);
-  
-  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(false);
-    rest.onBlur?.(e);
-  }, [rest]);
-  
-  const handleMouseEnter = useCallback(() => {
-    setIsHovered(true);
-  }, []);
-  
-  const handleMouseLeave = useCallback(() => {
-    setIsHovered(false);
-    setIsPressed(false);
-  }, []);
-  
-  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    setIsPressed(true);
-    
-    // Ripple-Effekt
-    if (ripple && switchRef.current) {
-      const rect = switchRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      setRippleStyle({
-        left: `${x}px`,
-        top: `${y}px`
-      });
-      
-      setShowRipple(true);
-      setTimeout(() => setShowRipple(false), 600);
-    }
-  }, [ripple]);
-  
-  const handleMouseUp = useCallback(() => {
-    setIsPressed(false);
-  }, []);
-  
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      setIsPressed(true);
-    }
-    
-    rest.onKeyDown?.(e);
-  }, [rest]);
-  
-  const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      setIsPressed(false);
-    }
-  }, []);
-  
-  // Bestimme den Stil basierend auf den Props
-  const style = useMemo(() => {
-    if (isIOS) return 'ios';
-    if (isAndroid) return 'android';
-    if (isMaterial) return 'material';
-    if (isWindows) return 'windows';
-    if (isFluent) return 'fluent';
-    if (isFlat) return 'flat';
-    if (is3D) return '3d';
-    if (isNeon) return 'neon';
-    if (isGlass) return 'glass';
-    if (isNeumorphic) return 'neumorphic';
-    if (isSkeuomorphic) return 'skeuomorphic';
-    if (isRetro) return 'retro';
-    if (isFuturistic) return 'futuristic';
-    if (isMinimal) return 'minimal';
-    return 'default';
-  }, [
-    isIOS, isAndroid, isMaterial, isWindows, isFluent, isFlat, is3D, 
-    isNeon, isGlass, isNeumorphic, isSkeuomorphic, isRetro, isFuturistic, isMinimal
-  ]);
-  
-  // Größen-spezifische Klassen
-  const sizeClasses = useMemo(() => ({
-    xs: {
-      track: 'w-6 h-3',
-      thumb: 'w-2 h-2',
-      thumbChecked: 'translate-x-3',
-      text: 'text-xs',
-      labelGap: 'gap-1'
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
+  (
+    {
+      label,
+      helperText,
+      error,
+      successMessage,
+      size = 'md',
+      variant = 'solid',
+      colorScheme = 'primary',
+      labelPosition = 'right',
+      labelAlign = 'start',
+      icons = false,
+      labels,
+      className = '',
+      containerClassName = '',
+      switchContainerClassName = '',
+      trackClassName = '',
+      thumbClassName = '',
+      labelClassName = '',
+      helperTextClassName = '',
+      errorClassName = '',
+      successClassName = '',
+      checked,
+      defaultChecked,
+      onChange,
+      disabled,
+      bordered = true,
+      rounded = true,
+      shadow = false,
+      hoverable = true,
+      focusable = true,
+      transition = true,
+      transparent = false,
+      tooltip,
+      isLoading = false,
+      isValid = false,
+      isInvalid = false,
+      isSuccess = false,
+      isDisabled,
+      isRequired,
+      showSuccessIndicator = true,
+      showErrorIndicator = true,
+      showLoadingIndicator = true,
+      showValidationIndicator = true,
+      hideLabel = false,
+      hideHelperText = false,
+      hideError = false,
+      hideSuccessMessage = false,
+      labelTooltip,
+      switchTooltip,
+      description,
+      autoFocus = false,
+      thumbIcon,
+      checkedIcon,
+      uncheckedIcon,
+      ripple = false,
+      isVertical = false,
+      isCard = false,
+      isButton = false,
+      isPill = false,
+      isSlider = false,
+      isIOS = false,
+      isAndroid = false,
+      isMaterial = false,
+      isWindows = false,
+      isFluent = false,
+      isFlat = false,
+      is3D = false,
+      isNeon = false,
+      isGlass = false,
+      isNeumorphic = false,
+      isSkeuomorphic = false,
+      isRetro = false,
+      isFuturistic = false,
+      isMinimal = false,
+      required,
+      ...rest
     },
-    sm: {
-      track: 'w-8 h-4',
-      thumb: 'w-3 h-3',
-      thumbChecked: 'translate-x-4',
-      text: 'text-xs',
-      labelGap: 'gap-1.5'
-    },
-    md: {
-      track: 'w-10 h-5',
-      thumb: 'w-4 h-4',
-      thumbChecked: 'translate-x-5',
-      text: 'text-sm',
-      labelGap: 'gap-2'
-    },
-    lg: {
-      track: 'w-12 h-6',
-      thumb: 'w-5 h-5',
-      thumbChecked: 'translate-x-6',
-      text: 'text-base',
-      labelGap: 'gap-3'
-    },
-    xl: {
-      track: 'w-14 h-7',
-      thumb: 'w-6 h-6',
-      thumbChecked: 'translate-x-7',
-      text: 'text-lg',
-      labelGap: 'gap-4'
-    }
-  }), []);
-  
-  // Farben-spezifische Klassen
-  const colorClasses = useMemo(() => ({
-    primary: {
-      bg: 'bg-primary-600',
-      bgDark: 'dark:bg-primary-500',
-      bgLight: 'bg-primary-100',
-      bgLightDark: 'dark:bg-primary-900',
-      border: 'border-primary-600',
-      borderDark: 'dark:border-primary-500',
-      text: 'text-primary-600',
-      textDark: 'dark:text-primary-500',
-      ring: 'ring-primary-600',
-      ringDark: 'dark:ring-primary-500'
-    },
-    secondary: {
-      bg: 'bg-secondary-600',
-      bgDark: 'dark:bg-secondary-500',
-      bgLight: 'bg-secondary-100',
-      bgLightDark: 'dark:bg-secondary-900',
-      border: 'border-secondary-600',
-      borderDark: 'dark:border-secondary-500',
-      text: 'text-secondary-600',
-      textDark: 'dark:text-secondary-500',
-      ring: 'ring-secondary-600',
-      ringDark: 'dark:ring-secondary-500'
-    },
-    success: {
-      bg: 'bg-green-600',
-      bgDark: 'dark:bg-green-500',
-      bgLight: 'bg-green-100',
-      bgLightDark: 'dark:bg-green-900',
-      border: 'border-green-600',
-      borderDark: 'dark:border-green-500',
-      text: 'text-green-600',
-      textDark: 'dark:text-green-500',
-      ring: 'ring-green-600',
-      ringDark: 'dark:ring-green-500'
-    },
-    danger: {
-      bg: 'bg-red-600',
-      bgDark: 'dark:bg-red-500',
-      bgLight: 'bg-red-100',
-      bgLightDark: 'dark:bg-red-900',
-      border: 'border-red-600',
-      borderDark: 'dark:border-red-500',
-      text: 'text-red-600',
-      textDark: 'dark:text-red-500',
-      ring: 'ring-red-600',
-      ringDark: 'dark:ring-red-500'
-    },
-    warning: {
-      bg: 'bg-yellow-600',
-      bgDark: 'dark:bg-yellow-500',
-      bgLight: 'bg-yellow-100',
-      bgLightDark: 'dark:bg-yellow-900',
-      border: 'border-yellow-600',
-      borderDark: 'dark:border-yellow-500',
-      text: 'text-yellow-600',
-      textDark: 'dark:text-yellow-500',
-      ring: 'ring-yellow-600',
-      ringDark: 'dark:ring-yellow-500'
-    },
-    info: {
-      bg: 'bg-blue-600',
-      bgDark: 'dark:bg-blue-500',
-      bgLight: 'bg-blue-100',
-      bgLightDark: 'dark:bg-blue-900',
-      border: 'border-blue-600',
-      borderDark: 'dark:border-blue-500',
-      text: 'text-blue-600',
-      textDark: 'dark:text-blue-500',
-      ring: 'ring-blue-600',
-      ringDark: 'dark:ring-blue-500'
-    },
-    neutral: {
-      bg: 'bg-gray-600',
-      bgDark: 'dark:bg-gray-500',
-      bgLight: 'bg-gray-100',
-      bgLightDark: 'dark:bg-gray-900',
-      border: 'border-gray-600',
-      borderDark: 'dark:border-gray-500',
-      text: 'text-gray-600',
-      textDark: 'dark:text-gray-500',
-      ring: 'ring-gray-600',
-      ringDark: 'dark:ring-gray-500'
-    }
-  }), []);
-  
-  // Varianten-spezifische Klassen
-  const variantClasses = useMemo(() => ({
-    solid: {
-      track: 'bg-gray-300 dark:bg-gray-600',
-      trackChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
-      thumb: 'bg-white'
-    },
-    outline: {
-      track: 'bg-transparent border-2 border-gray-300 dark:border-gray-600',
-      trackChecked: `bg-transparent border-2 ${colorClasses[colorScheme].border} ${colorClasses[colorScheme].borderDark}`,
-      thumb: 'bg-gray-500 dark:bg-gray-400',
-      thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
-    },
-    filled: {
-      track: 'bg-gray-200 dark:bg-gray-700',
-      trackChecked: `${colorClasses[colorScheme].bgLight} ${colorClasses[colorScheme].bg}`,
-      thumb: 'bg-gray-500 dark:bg-gray-400',
-      thumbChecked: 'bg-white'
-    },
-    minimal: {
-      track: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
-      trackChecked: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
-      thumb: 'bg-gray-400 dark:bg-gray-600',
-      thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`
-    }
-  }), [colorClasses, colorScheme]);
-  
-  // Stil-spezifische Klassen
-  const styleClasses = useMemo(() => ({
-    default: {
-      track: '',
-      trackChecked: '',
-      thumb: '',
-      thumbChecked: ''
-    },
-    ios: {
-      track: 'bg-gray-200 dark:bg-gray-700',
-      trackChecked: 'bg-green-500 dark:bg-green-400',
-      thumb: 'bg-white shadow-md',
-      thumbChecked: 'bg-white shadow-md scale-110'
-    },
-    android: {
-      track: 'bg-gray-300 dark:bg-gray-600',
-      trackChecked: 'bg-green-200 dark:bg-green-900',
-      thumb: 'bg-white shadow-md',
-      thumbChecked: 'bg-green-500 dark:bg-green-400 shadow-md'
-    },
-    material: {
-      track: 'bg-gray-400 dark:bg-gray-500',
-      trackChecked: 'bg-primary-200 dark:bg-primary-900',
-      thumb: 'bg-white shadow-md',
-      thumbChecked: 'bg-primary-500 dark:bg-primary-400 shadow-md'
-    },
-    windows: {
-      track: 'bg-gray-300 dark:bg-gray-600 rounded-none',
-      trackChecked: 'bg-primary-600 dark:bg-primary-500 rounded-none',
-      thumb: 'bg-white rounded-none',
-      thumbChecked: 'bg-white rounded-none'
-    },
-    fluent: {
-      track: 'bg-gray-200 dark:bg-gray-700 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80',
-      trackChecked: 'bg-primary-500 dark:bg-primary-400 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80',
-      thumb: 'bg-white shadow-md',
-      thumbChecked: 'bg-white shadow-md'
-    },
-    flat: {
-      track: 'bg-gray-300 dark:bg-gray-600 shadow-none',
-      trackChecked: 'bg-primary-600 dark:bg-primary-500 shadow-none',
-      thumb: 'bg-white shadow-none',
-      thumbChecked: 'bg-white shadow-none'
-    },
-    '3d': {
-      track: 'bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 shadow-inner',
-      trackChecked: 'bg-gradient-to-b from-primary-500 to-primary-600 dark:from-primary-400 dark:to-primary-500 shadow-inner',
-      thumb: 'bg-gradient-to-b from-white to-gray-100 dark:from-gray-200 dark:to-gray-300 shadow-md',
-      thumbChecked: 'bg-gradient-to-b from-white to-gray-100 dark:from-gray-200 dark:to-gray-300 shadow-md'
-    },
-    neon: {
-      track: 'bg-gray-900 dark:bg-black border border-gray-700 dark:border-gray-800',
-      trackChecked: 'bg-gray-900 dark:bg-black border border-primary-500 dark:border-primary-400 shadow-[0_0_10px_rgba(59,130,246,0.5)] dark:shadow-[0_0_10px_rgba(96,165,250,0.5)]',
-      thumb: 'bg-gray-700 dark:bg-gray-800',
-      thumbChecked: 'bg-primary-500 dark:bg-primary-400 shadow-[0_0_10px_rgba(59,130,246,0.5)] dark:shadow-[0_0_10px_rgba(96,165,250,0.5)]'
-    },
-    glass: {
-      track: 'bg-white bg-opacity-20 dark:bg-black dark:bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 dark:border-gray-700',
-      trackChecked: 'bg-primary-500 bg-opacity-20 dark:bg-primary-400 dark:bg-opacity-20 backdrop-blur-md border border-primary-500 border-opacity-30 dark:border-primary-400',
-      thumb: 'bg-white bg-opacity-70 dark:bg-white dark:bg-opacity-70 backdrop-blur-md shadow-md',
-      thumbChecked: 'bg-white bg-opacity-70 dark:bg-white dark:bg-opacity-70 backdrop-blur-md shadow-md'
-    },
-    neumorphic: {
-      track: 'bg-gray-200 dark:bg-gray-800 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.1),inset_-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.1)]',
-      trackChecked: 'bg-gray-200 dark:bg-gray-800 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.1),inset_-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.1)]',
-      thumb: 'bg-gray-200 dark:bg-gray-800 shadow-[3px_3px_6px_rgba(0,0,0,0.1),-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[3px_3px_6px_rgba(0,0,0,0.2),-3px_-3px_6px_rgba(255,255,255,0.1)]',
-      thumbChecked: 'bg-primary-500 dark:bg-primary-400 shadow-[3px_3px_6px_rgba(0,0,0,0.1),-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[3px_3px_6px_rgba(0,0,0,0.2),-3px_-3px_6px_rgba(255,255,255,0.1)]'
-    },
-    skeuomorphic: {
-      track: 'bg-gradient-to-b from-gray-400 to-gray-500 dark:from-gray-700 dark:to-gray-800 border border-gray-600 dark:border-gray-900 shadow-inner',
-      trackChecked: 'bg-gradient-to-b from-primary-400 to-primary-500 dark:from-primary-700 dark:to-primary-800 border border-primary-600 dark:border-primary-900 shadow-inner',
-      thumb: 'bg-gradient-to-b from-gray-100 to-gray-300 dark:from-gray-300 dark:to-gray-500 border border-gray-400 dark:border-gray-700 shadow-md',
-      thumbChecked: 'bg-gradient-to-b from-gray-100 to-gray-300 dark:from-gray-300 dark:to-gray-500 border border-gray-400 dark:border-gray-700 shadow-md'
-    },
-    retro: {
-      track: 'bg-gray-300 dark:bg-gray-700 border-2 border-gray-500 dark:border-gray-500',
-      trackChecked: 'bg-primary-500 dark:bg-primary-700 border-2 border-primary-700 dark:border-primary-500',
-      thumb: 'bg-gray-100 dark:bg-gray-300 border-2 border-gray-500 dark:border-gray-500',
-      thumbChecked: 'bg-gray-100 dark:bg-gray-300 border-2 border-primary-700 dark:border-primary-500'
-    },
-    futuristic: {
-      track: 'bg-gray-900 dark:bg-black border border-blue-500 dark:border-blue-400',
-      trackChecked: 'bg-blue-900 dark:bg-blue-800 border border-blue-500 dark:border-blue-400',
-      thumb: 'bg-blue-500 dark:bg-blue-400',
-      thumbChecked: 'bg-white dark:bg-gray-200'
-    },
-    minimal: {
-      track: 'bg-gray-200 dark:bg-gray-800',
-      trackChecked: 'bg-gray-200 dark:bg-gray-800',
-      thumb: 'bg-gray-400 dark:bg-gray-600',
-      thumbChecked: 'bg-primary-500 dark:bg-primary-400'
-    }
-  }), [colorClasses, colorScheme]);
-  
-  // Icon-Komponenten für checked/unchecked
-  const CheckedIcon = () => checkedIcon || (
-    <svg className="h-3 w-3 text-white" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3.5 6L5 7.5L8.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-  
-  const UncheckedIcon = () => uncheckedIcon || (
-    <svg className="h-3 w-3 text-gray-400" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 4L8 8M8 4L4 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-  
-  // Label-Ausrichtung
-  const labelAlignClasses = {
-    start: 'items-start',
-    center: 'items-center',
-    end: 'items-end'
-  };
-  
-  // Bestimme die ARIA-Attribute für den Switch
-  const getAriaAttributes = () => {
-    const attributes: Record<string, string> = {
-      role: 'switch',
-      'aria-checked': isChecked ? 'true' : 'false'
+    ref
+  ) => {
+    // Aus dem FormControl-Context importierte Werte
+    const formControl = useFormControl();
+
+    // Kombiniere Props mit FormControl-Context
+    const _disabled = isDisabled ?? disabled ?? formControl.disabled;
+    const _required = isRequired ?? required ?? formControl.required;
+    const _error = error || (formControl.hasError ? 'Ungültige Eingabe' : undefined);
+    const _isInvalid = isInvalid || Boolean(_error) || formControl.isInvalid;
+    const _isValid = isValid || formControl.isValid;
+    const _isSuccess = isSuccess || formControl.isSuccess;
+    const _isLoading = isLoading || formControl.isLoading;
+    const _size = size || formControl.size || 'md';
+    const _id = rest.id || formControl.id || `switch-${Math.random().toString(36).substring(2, 9)}`;
+
+    // Lokaler Zustand für controlled/uncontrolled Komponente
+    const [isChecked, setIsChecked] = useState(() => {
+      if (checked !== undefined) return checked;
+      if (defaultChecked !== undefined) return defaultChecked;
+      return false;
+    });
+
+    // Refs
+    const switchRef = useRef<HTMLInputElement>(null);
+
+    // Kombiniere den externen Ref mit unserem internen Ref
+    const handleRef = (element: HTMLInputElement | null) => {
+      if (switchRef) {
+        (switchRef as React.MutableRefObject<HTMLInputElement | null>).current = element;
+      }
+
+      if (typeof ref === 'function') {
+        ref(element);
+      } else if (ref) {
+        (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
+      }
     };
-    
-    if (description) {
-      attributes['aria-describedby'] = `${_id}-description`;
-    }
-    
-    if (_error) {
-      attributes['aria-errormessage'] = `${_id}-error`;
-      attributes['aria-invalid'] = 'true';
-    }
-    
-    if (helperText && !_error) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-helper` : `${_id}-helper`);
-    }
-    
-    if (successMessage) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${_id}-success` : `${_id}-success`);
-    }
-    
-    return attributes;
-  };
-  
-  // Rendere Indikatoren (Erfolg, Fehler, Laden)
-  const renderIndicators = () => {
-    if (!showSuccessIndicator && !showErrorIndicator && !showLoadingIndicator && !showValidationIndicator) {
-      return null;
-    }
-    
-    // Bestimme, welcher Indikator angezeigt werden soll
-    let indicator = null;
-    
-    if (_isLoading && showLoadingIndicator) {
-      indicator = (
-        <span className="text-primary-500 animate-spin" aria-hidden="true">
-          ⟳
-        </span>
-      );
-    } else if (_isInvalid && showErrorIndicator) {
-      indicator = (
-        <span className="text-red-500" aria-hidden="true">
-          ✕
-        </span>
-      );
-    } else if (_isSuccess && showSuccessIndicator) {
-      indicator = (
-        <span className="text-green-500" aria-hidden="true">
-          ✓
-        </span>
-      );
-    } else if (_isValid && showValidationIndicator) {
-      indicator = (
-        <span className="text-green-500" aria-hidden="true">
-          ✓
-        </span>
-      );
-    }
-    
-    if (!indicator) return null;
-    
-    return (
-      <div className="absolute inset-y-0 right-0 flex items-center pr-2">
-        {indicator}
-      </div>
+
+    // Effekt für autoFocus
+    useEffect(() => {
+      if (autoFocus && switchRef.current) {
+        switchRef.current.focus();
+      }
+    }, [autoFocus]);
+
+    // Aktualisiere lokalen Zustand, wenn sich checked von außen ändert
+    useEffect(() => {
+      if (checked !== undefined) {
+        setIsChecked(checked);
+      }
+    }, [checked]);
+
+    // Event-Handler für Änderungen
+    const handleChange = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Wenn es eine kontrollierte Komponente ist, erfolgt die Änderung über onChange
+        if (checked === undefined) {
+          setIsChecked(e.target.checked);
+        }
+
+        if (onChange) {
+          onChange(e);
+        }
+      },
+      [checked, setIsChecked, onChange]
     );
-  };
-  
-  // Beschreibung für Screenreader
-  const renderDescription = () => {
-    if (!description) return null;
-    
-    return (
-      <div 
-        id={`${_id}-description`} 
-        className="sr-only"
-        aria-hidden="false"
-      >
-        {description}
-      </div>
+
+    // State für Fokus, Hover und Ripple
+    const [isFocused, setIsFocused] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
+    const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
+    const [showRipple, setShowRipple] = useState(false);
+
+    // Event-Handler
+    const handleFocus = useCallback(
+      (e: React.FocusEvent<HTMLInputElement>) => {
+        setIsFocused(true);
+        rest.onFocus?.(e);
+      },
+      [rest]
     );
-  };
-  
-  // Rendere Hilfetext, Fehlermeldung oder Erfolgsmeldung
-  const renderHelperText = () => {
-    if (!_error && !helperText && !successMessage) return null;
-    
-    return (
-      <div className="mt-1 text-sm">
-        {_error && !hideError ? (
-          <p 
-            id={`${_id}-error`} 
-            className={`text-red-600 dark:text-red-400 ${errorClassName}`}
-            role="alert"
-            aria-live="assertive"
-            aria-atomic="true"
-          >
-            {_error}
-          </p>
-        ) : successMessage && !hideSuccessMessage ? (
-          <p 
-            id={`${_id}-success`} 
-            className={`text-green-600 dark:text-green-400 ${successClassName}`}
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {successMessage}
-          </p>
-        ) : helperText && !hideHelperText ? (
-          <p 
-            id={`${_id}-helper`} 
-            className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
-            aria-live="polite"
-          >
-            {helperText}
-          </p>
-        ) : null}
-      </div>
+
+    const handleBlur = useCallback(
+      (e: React.FocusEvent<HTMLInputElement>) => {
+        setIsFocused(false);
+        rest.onBlur?.(e);
+      },
+      [rest]
     );
-  };
-  
-  // Rendere das Label
-  const renderLabel = () => {
-    if (!label && !formControl.label) return null;
-    
-    return (
-      <div className={`${hideLabel ? 'sr-only' : ''}`}>
-        <label 
-          htmlFor={_id}
-          className={`
+
+    const handleMouseEnter = useCallback(() => {
+      setIsHovered(true);
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+      setIsHovered(false);
+      setIsPressed(false);
+    }, []);
+
+    const handleMouseDown = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        setIsPressed(true);
+
+        // Ripple-Effekt
+        if (ripple && switchRef.current) {
+          const rect = switchRef.current.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          setRippleStyle({
+            left: `${x}px`,
+            top: `${y}px`,
+          });
+
+          setShowRipple(true);
+          setTimeout(() => setShowRipple(false), 600);
+        }
+      },
+      [ripple]
+    );
+
+    const handleMouseUp = useCallback(() => {
+      setIsPressed(false);
+    }, []);
+
+    const handleKeyDown = useCallback(
+      (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          setIsPressed(true);
+        }
+
+        rest.onKeyDown?.(e);
+      },
+      [rest]
+    );
+
+    const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        setIsPressed(false);
+      }
+    }, []);
+
+    // Bestimme den Stil basierend auf den Props
+    const style = useMemo(() => {
+      if (isIOS) return 'ios';
+      if (isAndroid) return 'android';
+      if (isMaterial) return 'material';
+      if (isWindows) return 'windows';
+      if (isFluent) return 'fluent';
+      if (isFlat) return 'flat';
+      if (is3D) return '3d';
+      if (isNeon) return 'neon';
+      if (isGlass) return 'glass';
+      if (isNeumorphic) return 'neumorphic';
+      if (isSkeuomorphic) return 'skeuomorphic';
+      if (isRetro) return 'retro';
+      if (isFuturistic) return 'futuristic';
+      if (isMinimal) return 'minimal';
+      return 'default';
+    }, [
+      isIOS,
+      isAndroid,
+      isMaterial,
+      isWindows,
+      isFluent,
+      isFlat,
+      is3D,
+      isNeon,
+      isGlass,
+      isNeumorphic,
+      isSkeuomorphic,
+      isRetro,
+      isFuturistic,
+      isMinimal,
+    ]);
+
+    // Größen-spezifische Klassen
+    const sizeClasses = useMemo(
+      () => ({
+        xs: {
+          track: 'w-6 h-3',
+          thumb: 'w-2 h-2',
+          thumbChecked: 'translate-x-3',
+          text: 'text-xs',
+          labelGap: 'gap-1',
+        },
+        sm: {
+          track: 'w-8 h-4',
+          thumb: 'w-3 h-3',
+          thumbChecked: 'translate-x-4',
+          text: 'text-xs',
+          labelGap: 'gap-1.5',
+        },
+        md: {
+          track: 'w-10 h-5',
+          thumb: 'w-4 h-4',
+          thumbChecked: 'translate-x-5',
+          text: 'text-sm',
+          labelGap: 'gap-2',
+        },
+        lg: {
+          track: 'w-12 h-6',
+          thumb: 'w-5 h-5',
+          thumbChecked: 'translate-x-6',
+          text: 'text-base',
+          labelGap: 'gap-3',
+        },
+        xl: {
+          track: 'w-14 h-7',
+          thumb: 'w-6 h-6',
+          thumbChecked: 'translate-x-7',
+          text: 'text-lg',
+          labelGap: 'gap-4',
+        },
+      }),
+      []
+    );
+
+    // Farben-spezifische Klassen
+    const colorClasses = useMemo(
+      () => ({
+        primary: {
+          bg: 'bg-primary-600',
+          bgDark: 'dark:bg-primary-500',
+          bgLight: 'bg-primary-100',
+          bgLightDark: 'dark:bg-primary-900',
+          border: 'border-primary-600',
+          borderDark: 'dark:border-primary-500',
+          text: 'text-primary-600',
+          textDark: 'dark:text-primary-500',
+          ring: 'ring-primary-600',
+          ringDark: 'dark:ring-primary-500',
+        },
+        secondary: {
+          bg: 'bg-secondary-600',
+          bgDark: 'dark:bg-secondary-500',
+          bgLight: 'bg-secondary-100',
+          bgLightDark: 'dark:bg-secondary-900',
+          border: 'border-secondary-600',
+          borderDark: 'dark:border-secondary-500',
+          text: 'text-secondary-600',
+          textDark: 'dark:text-secondary-500',
+          ring: 'ring-secondary-600',
+          ringDark: 'dark:ring-secondary-500',
+        },
+        success: {
+          bg: 'bg-green-600',
+          bgDark: 'dark:bg-green-500',
+          bgLight: 'bg-green-100',
+          bgLightDark: 'dark:bg-green-900',
+          border: 'border-green-600',
+          borderDark: 'dark:border-green-500',
+          text: 'text-green-600',
+          textDark: 'dark:text-green-500',
+          ring: 'ring-green-600',
+          ringDark: 'dark:ring-green-500',
+        },
+        danger: {
+          bg: 'bg-red-600',
+          bgDark: 'dark:bg-red-500',
+          bgLight: 'bg-red-100',
+          bgLightDark: 'dark:bg-red-900',
+          border: 'border-red-600',
+          borderDark: 'dark:border-red-500',
+          text: 'text-red-600',
+          textDark: 'dark:text-red-500',
+          ring: 'ring-red-600',
+          ringDark: 'dark:ring-red-500',
+        },
+        warning: {
+          bg: 'bg-yellow-600',
+          bgDark: 'dark:bg-yellow-500',
+          bgLight: 'bg-yellow-100',
+          bgLightDark: 'dark:bg-yellow-900',
+          border: 'border-yellow-600',
+          borderDark: 'dark:border-yellow-500',
+          text: 'text-yellow-600',
+          textDark: 'dark:text-yellow-500',
+          ring: 'ring-yellow-600',
+          ringDark: 'dark:ring-yellow-500',
+        },
+        info: {
+          bg: 'bg-blue-600',
+          bgDark: 'dark:bg-blue-500',
+          bgLight: 'bg-blue-100',
+          bgLightDark: 'dark:bg-blue-900',
+          border: 'border-blue-600',
+          borderDark: 'dark:border-blue-500',
+          text: 'text-blue-600',
+          textDark: 'dark:text-blue-500',
+          ring: 'ring-blue-600',
+          ringDark: 'dark:ring-blue-500',
+        },
+        neutral: {
+          bg: 'bg-gray-600',
+          bgDark: 'dark:bg-gray-500',
+          bgLight: 'bg-gray-100',
+          bgLightDark: 'dark:bg-gray-900',
+          border: 'border-gray-600',
+          borderDark: 'dark:border-gray-500',
+          text: 'text-gray-600',
+          textDark: 'dark:text-gray-500',
+          ring: 'ring-gray-600',
+          ringDark: 'dark:ring-gray-500',
+        },
+      }),
+      []
+    );
+
+    // Varianten-spezifische Klassen
+    const variantClasses = useMemo(
+      () => ({
+        solid: {
+          track: 'bg-gray-300 dark:bg-gray-600',
+          trackChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
+          thumb: 'bg-white',
+        },
+        outline: {
+          track: 'bg-transparent border-2 border-gray-300 dark:border-gray-600',
+          trackChecked: `bg-transparent border-2 ${colorClasses[colorScheme].border} ${colorClasses[colorScheme].borderDark}`,
+          thumb: 'bg-gray-500 dark:bg-gray-400',
+          thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
+        },
+        filled: {
+          track: 'bg-gray-200 dark:bg-gray-700',
+          trackChecked: `${colorClasses[colorScheme].bgLight} ${colorClasses[colorScheme].bg}`,
+          thumb: 'bg-gray-500 dark:bg-gray-400',
+          thumbChecked: 'bg-white',
+        },
+        minimal: {
+          track: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
+          trackChecked: 'bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700',
+          thumb: 'bg-gray-400 dark:bg-gray-600',
+          thumbChecked: `${colorClasses[colorScheme].bg} ${colorClasses[colorScheme].bgDark}`,
+        },
+      }),
+      [colorClasses, colorScheme]
+    );
+
+    // Stil-spezifische Klassen
+    const styleClasses = useMemo(
+      () => ({
+        default: {
+          track: '',
+          trackChecked: '',
+          thumb: '',
+          thumbChecked: '',
+        },
+        ios: {
+          track: 'bg-gray-200 dark:bg-gray-700',
+          trackChecked: 'bg-green-500 dark:bg-green-400',
+          thumb: 'bg-white shadow-md',
+          thumbChecked: 'bg-white shadow-md scale-110',
+        },
+        android: {
+          track: 'bg-gray-300 dark:bg-gray-600',
+          trackChecked: 'bg-green-200 dark:bg-green-900',
+          thumb: 'bg-white shadow-md',
+          thumbChecked: 'bg-green-500 dark:bg-green-400 shadow-md',
+        },
+        material: {
+          track: 'bg-gray-400 dark:bg-gray-500',
+          trackChecked: 'bg-primary-200 dark:bg-primary-900',
+          thumb: 'bg-white shadow-md',
+          thumbChecked: 'bg-primary-500 dark:bg-primary-400 shadow-md',
+        },
+        windows: {
+          track: 'bg-gray-300 dark:bg-gray-600 rounded-none',
+          trackChecked: 'bg-primary-600 dark:bg-primary-500 rounded-none',
+          thumb: 'bg-white rounded-none',
+          thumbChecked: 'bg-white rounded-none',
+        },
+        fluent: {
+          track: 'bg-gray-200 dark:bg-gray-700 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80',
+          trackChecked:
+            'bg-primary-500 dark:bg-primary-400 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80',
+          thumb: 'bg-white shadow-md',
+          thumbChecked: 'bg-white shadow-md',
+        },
+        flat: {
+          track: 'bg-gray-300 dark:bg-gray-600 shadow-none',
+          trackChecked: 'bg-primary-600 dark:bg-primary-500 shadow-none',
+          thumb: 'bg-white shadow-none',
+          thumbChecked: 'bg-white shadow-none',
+        },
+        '3d': {
+          track:
+            'bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 shadow-inner',
+          trackChecked:
+            'bg-gradient-to-b from-primary-500 to-primary-600 dark:from-primary-400 dark:to-primary-500 shadow-inner',
+          thumb:
+            'bg-gradient-to-b from-white to-gray-100 dark:from-gray-200 dark:to-gray-300 shadow-md',
+          thumbChecked:
+            'bg-gradient-to-b from-white to-gray-100 dark:from-gray-200 dark:to-gray-300 shadow-md',
+        },
+        neon: {
+          track: 'bg-gray-900 dark:bg-black border border-gray-700 dark:border-gray-800',
+          trackChecked:
+            'bg-gray-900 dark:bg-black border border-primary-500 dark:border-primary-400 shadow-[0_0_10px_rgba(59,130,246,0.5)] dark:shadow-[0_0_10px_rgba(96,165,250,0.5)]',
+          thumb: 'bg-gray-700 dark:bg-gray-800',
+          thumbChecked:
+            'bg-primary-500 dark:bg-primary-400 shadow-[0_0_10px_rgba(59,130,246,0.5)] dark:shadow-[0_0_10px_rgba(96,165,250,0.5)]',
+        },
+        glass: {
+          track:
+            'bg-white bg-opacity-20 dark:bg-black dark:bg-opacity-20 backdrop-blur-md border border-white border-opacity-30 dark:border-gray-700',
+          trackChecked:
+            'bg-primary-500 bg-opacity-20 dark:bg-primary-400 dark:bg-opacity-20 backdrop-blur-md border border-primary-500 border-opacity-30 dark:border-primary-400',
+          thumb:
+            'bg-white bg-opacity-70 dark:bg-white dark:bg-opacity-70 backdrop-blur-md shadow-md',
+          thumbChecked:
+            'bg-white bg-opacity-70 dark:bg-white dark:bg-opacity-70 backdrop-blur-md shadow-md',
+        },
+        neumorphic: {
+          track:
+            'bg-gray-200 dark:bg-gray-800 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.1),inset_-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.1)]',
+          trackChecked:
+            'bg-gray-200 dark:bg-gray-800 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.1),inset_-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.1)]',
+          thumb:
+            'bg-gray-200 dark:bg-gray-800 shadow-[3px_3px_6px_rgba(0,0,0,0.1),-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[3px_3px_6px_rgba(0,0,0,0.2),-3px_-3px_6px_rgba(255,255,255,0.1)]',
+          thumbChecked:
+            'bg-primary-500 dark:bg-primary-400 shadow-[3px_3px_6px_rgba(0,0,0,0.1),-3px_-3px_6px_rgba(255,255,255,0.7)] dark:shadow-[3px_3px_6px_rgba(0,0,0,0.2),-3px_-3px_6px_rgba(255,255,255,0.1)]',
+        },
+        skeuomorphic: {
+          track:
+            'bg-gradient-to-b from-gray-400 to-gray-500 dark:from-gray-700 dark:to-gray-800 border border-gray-600 dark:border-gray-900 shadow-inner',
+          trackChecked:
+            'bg-gradient-to-b from-primary-400 to-primary-500 dark:from-primary-700 dark:to-primary-800 border border-primary-600 dark:border-primary-900 shadow-inner',
+          thumb:
+            'bg-gradient-to-b from-gray-100 to-gray-300 dark:from-gray-300 dark:to-gray-500 border border-gray-400 dark:border-gray-700 shadow-md',
+          thumbChecked:
+            'bg-gradient-to-b from-gray-100 to-gray-300 dark:from-gray-300 dark:to-gray-500 border border-gray-400 dark:border-gray-700 shadow-md',
+        },
+        retro: {
+          track: 'bg-gray-300 dark:bg-gray-700 border-2 border-gray-500 dark:border-gray-500',
+          trackChecked:
+            'bg-primary-500 dark:bg-primary-700 border-2 border-primary-700 dark:border-primary-500',
+          thumb: 'bg-gray-100 dark:bg-gray-300 border-2 border-gray-500 dark:border-gray-500',
+          thumbChecked:
+            'bg-gray-100 dark:bg-gray-300 border-2 border-primary-700 dark:border-primary-500',
+        },
+        futuristic: {
+          track: 'bg-gray-900 dark:bg-black border border-blue-500 dark:border-blue-400',
+          trackChecked: 'bg-blue-900 dark:bg-blue-800 border border-blue-500 dark:border-blue-400',
+          thumb: 'bg-blue-500 dark:bg-blue-400',
+          thumbChecked: 'bg-white dark:bg-gray-200',
+        },
+        minimal: {
+          track: 'bg-gray-200 dark:bg-gray-800',
+          trackChecked: 'bg-gray-200 dark:bg-gray-800',
+          thumb: 'bg-gray-400 dark:bg-gray-600',
+          thumbChecked: 'bg-primary-500 dark:bg-primary-400',
+        },
+      }),
+      [colorClasses, colorScheme]
+    );
+
+    // Icon-Komponenten für checked/unchecked
+    const CheckedIcon = () =>
+      checkedIcon || (
+        <svg
+          className="h-3 w-3 text-white"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.5 6L5 7.5L8.5 4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+
+    const UncheckedIcon = () =>
+      uncheckedIcon || (
+        <svg
+          className="h-3 w-3 text-gray-400"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 4L8 8M8 4L4 8"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+
+    // Label-Ausrichtung
+    const labelAlignClasses = {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+    };
+
+    // Bestimme die ARIA-Attribute für den Switch
+    const getAriaAttributes = () => {
+      const attributes: Record<string, string> = {
+        role: 'switch',
+        'aria-checked': isChecked ? 'true' : 'false',
+      };
+
+      if (description) {
+        attributes['aria-describedby'] = `${_id}-description`;
+      }
+
+      if (_error) {
+        attributes['aria-errormessage'] = `${_id}-error`;
+        attributes['aria-invalid'] = 'true';
+      }
+
+      if (helperText && !_error) {
+        attributes['aria-describedby'] = attributes['aria-describedby']
+          ? `${attributes['aria-describedby']} ${_id}-helper`
+          : `${_id}-helper`;
+      }
+
+      if (successMessage) {
+        attributes['aria-describedby'] = attributes['aria-describedby']
+          ? `${attributes['aria-describedby']} ${_id}-success`
+          : `${_id}-success`;
+      }
+
+      return attributes;
+    };
+
+    // Rendere Indikatoren (Erfolg, Fehler, Laden)
+    const renderIndicators = () => {
+      if (
+        !showSuccessIndicator &&
+        !showErrorIndicator &&
+        !showLoadingIndicator &&
+        !showValidationIndicator
+      ) {
+        return null;
+      }
+
+      // Bestimme, welcher Indikator angezeigt werden soll
+      let indicator = null;
+
+      if (_isLoading && showLoadingIndicator) {
+        indicator = (
+          <span className="text-primary-500 animate-spin" aria-hidden="true">
+            ⟳
+          </span>
+        );
+      } else if (_isInvalid && showErrorIndicator) {
+        indicator = (
+          <span className="text-red-500" aria-hidden="true">
+            ✕
+          </span>
+        );
+      } else if (_isSuccess && showSuccessIndicator) {
+        indicator = (
+          <span className="text-green-500" aria-hidden="true">
+            ✓
+          </span>
+        );
+      } else if (_isValid && showValidationIndicator) {
+        indicator = (
+          <span className="text-green-500" aria-hidden="true">
+            ✓
+          </span>
+        );
+      }
+
+      if (!indicator) return null;
+
+      return <div className="absolute inset-y-0 right-0 flex items-center pr-2">{indicator}</div>;
+    };
+
+    // Beschreibung für Screenreader
+    const renderDescription = () => {
+      if (!description) return null;
+
+      return (
+        <div id={`${_id}-description`} className="sr-only" aria-hidden="false">
+          {description}
+        </div>
+      );
+    };
+
+    // Rendere Hilfetext, Fehlermeldung oder Erfolgsmeldung
+    const renderHelperText = () => {
+      if (!_error && !helperText && !successMessage) return null;
+
+      return (
+        <div className="mt-1 text-sm">
+          {_error && !hideError ? (
+            <p
+              id={`${_id}-error`}
+              className={`text-red-600 dark:text-red-400 ${errorClassName}`}
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+            >
+              {_error}
+            </p>
+          ) : successMessage && !hideSuccessMessage ? (
+            <p
+              id={`${_id}-success`}
+              className={`text-green-600 dark:text-green-400 ${successClassName}`}
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {successMessage}
+            </p>
+          ) : helperText && !hideHelperText ? (
+            <p
+              id={`${_id}-helper`}
+              className={`text-gray-500 dark:text-gray-400 ${helperTextClassName}`}
+              aria-live="polite"
+            >
+              {helperText}
+            </p>
+          ) : null}
+        </div>
+      );
+    };
+
+    // Rendere das Label
+    const renderLabel = () => {
+      if (!label && !formControl.label) return null;
+
+      return (
+        <div className={`${hideLabel ? 'sr-only' : ''}`}>
+          <label
+            htmlFor={_id}
+            className={`
             ${sizeClasses[_size].text}
             ${_disabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-700 dark:text-gray-300'}
             ${_disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
             ${labelClassName}
           `}
-          title={labelTooltip}
-        >
-          {label || formControl.label}
-          {_required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
-          {_required && <span className="sr-only">(Erforderlich)</span>}
-        </label>
-      </div>
-    );
-  };
-  
-  // Render-Komponente - nur Switch ohne FormControl-Wrapper
-  const renderSwitch = () => (
-    <>
-      {/* Verstecktes Input-Element für tatsächlichen Wert */}
-      <input
-        ref={handleRef}
-        id={_id}
-        type="checkbox"
-        className="sr-only"
-        checked={isChecked}
-        defaultChecked={defaultChecked}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        disabled={_disabled}
-        required={_required}
-        {...getAriaAttributes()}
-        {...rest}
-      />
-      
-      {/* Visueller Switch */}
-      <div
-        className={`
+            title={labelTooltip}
+          >
+            {label || formControl.label}
+            {_required && (
+              <span className="ml-1 text-red-500" aria-hidden="true">
+                *
+              </span>
+            )}
+            {_required && <span className="sr-only">(Erforderlich)</span>}
+          </label>
+        </div>
+      );
+    };
+
+    // Render-Komponente - nur Switch ohne FormControl-Wrapper
+    const renderSwitch = () => (
+      <>
+        {/* Verstecktes Input-Element für tatsächlichen Wert */}
+        <input
+          ref={handleRef}
+          id={_id}
+          type="checkbox"
+          className="sr-only"
+          checked={isChecked}
+          defaultChecked={defaultChecked}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          disabled={_disabled}
+          required={_required}
+          {...getAriaAttributes()}
+          {...rest}
+        />
+
+        {/* Visueller Switch */}
+        <div
+          className={`
           relative inline-flex items-center 
           ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
           ${switchContainerClassName}
         `}
-        onClick={_disabled ? undefined : () => {
-          // Manueller Click-Handler um Label-Klicks zu unterstützen
-          const newChecked = !isChecked;
-          if (checked === undefined) {
-            setIsChecked(newChecked);
+          onClick={
+            _disabled
+              ? undefined
+              : () => {
+                  // Manueller Click-Handler um Label-Klicks zu unterstützen
+                  const newChecked = !isChecked;
+                  if (checked === undefined) {
+                    setIsChecked(newChecked);
+                  }
+
+                  if (onChange) {
+                    const syntheticEvent = {
+                      target: { checked: newChecked },
+                      currentTarget: { checked: newChecked },
+                      preventDefault: () => {},
+                      stopPropagation: () => {},
+                    } as React.ChangeEvent<HTMLInputElement>;
+
+                    onChange(syntheticEvent);
+                  }
+                }
           }
-          
-          if (onChange) {
-            const syntheticEvent = {
-              target: { checked: newChecked },
-              currentTarget: { checked: newChecked },
-              preventDefault: () => {},
-              stopPropagation: () => {}
-            } as React.ChangeEvent<HTMLInputElement>;
-            
-            onChange(syntheticEvent);
-          }
-        }}
-        title={switchTooltip || tooltip}
-      >
-        {/* Track (Hintergrund) */}
-        <div
-          className={`
+          title={switchTooltip || tooltip}
+        >
+          {/* Track (Hintergrund) */}
+          <div
+            className={`
             ${sizeClasses[_size].track}
             ${rounded ? 'rounded-full' : 'rounded-none'}
             ${transition ? 'transition-colors duration-200 ease-in-out' : ''}
-            ${isChecked 
-              ? (styleClasses[style] as any).trackChecked || (variantClasses[variant] as any).trackChecked
-              : (styleClasses[style] as any).track || (variantClasses[variant] as any).track
+            ${
+              isChecked
+                ? (styleClasses[style] as any).trackChecked ||
+                  (variantClasses[variant] as any).trackChecked
+                : (styleClasses[style] as any).track || (variantClasses[variant] as any).track
             }
             ${shadow ? 'shadow' : ''}
             ${transparent ? 'bg-opacity-50 dark:bg-opacity-50' : ''}
             ${trackClassName}
           `}
-        >
-          {/* Thumb (Knopf) */}
-          <div
-            className={`
+          >
+            {/* Thumb (Knopf) */}
+            <div
+              className={`
               ${sizeClasses[_size].thumb}
               absolute top-0.5 left-0.5
               ${rounded ? 'rounded-full' : 'rounded-none'}
               ${shadow ? 'shadow-md' : ''}
               transform ${transition ? 'transition-transform duration-200 ease-in-out' : ''}
-              ${isChecked 
-                ? `${sizeClasses[_size].thumbChecked} ${(styleClasses[style] as any).thumbChecked || (variantClasses[variant] as any).thumbChecked}`
-                : (styleClasses[style] as any).thumb || (variantClasses[variant] as any).thumb
+              ${
+                isChecked
+                  ? `${sizeClasses[_size].thumbChecked} ${(styleClasses[style] as any).thumbChecked || (variantClasses[variant] as any).thumbChecked}`
+                  : (styleClasses[style] as any).thumb || (variantClasses[variant] as any).thumb
               }
               flex items-center justify-center
               ${thumbClassName}
             `}
-          >
-            {/* Optionale Icons innerhalb des Thumbs */}
-            {icons && (
-              <>
-                {isChecked && React.isValidElement(CheckedIcon) ? CheckedIcon : null}
-                {!isChecked && React.isValidElement(UncheckedIcon) ? UncheckedIcon : null}
-              </>
-            )}
-            {thumbIcon}
-            
-            {/* Ripple-Effekt */}
-            {ripple && showRipple && (
-              <span 
-                className="absolute bg-current bg-opacity-30 rounded-full animate-ripple" 
-                style={{
-                  width: '30px',
-                  height: '30px',
-                  transform: 'translate(-50%, -50%)',
-                  ...rippleStyle
-                }}
-              />
-            )}
+            >
+              {/* Optionale Icons innerhalb des Thumbs */}
+              {icons && (
+                <>
+                  {isChecked && React.isValidElement(CheckedIcon) ? CheckedIcon : null}
+                  {!isChecked && React.isValidElement(UncheckedIcon) ? UncheckedIcon : null}
+                </>
+              )}
+              {thumbIcon}
+
+              {/* Ripple-Effekt */}
+              {ripple && showRipple && (
+                <span
+                  className="absolute bg-current bg-opacity-30 rounded-full animate-ripple"
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                    transform: 'translate(-50%, -50%)',
+                    ...rippleStyle,
+                  }}
+                />
+              )}
+            </div>
           </div>
-        </div>
-        
-        {/* Optionale An/Aus-Beschriftung neben dem Switch */}
-        {labels && (
-          <span 
-            className={`
+
+          {/* Optionale An/Aus-Beschriftung neben dem Switch */}
+          {labels && (
+            <span
+              className={`
               ml-1.5 
               ${sizeClasses[_size].text} 
               ${isChecked ? 'text-gray-900 dark:text-gray-100' : 'text-gray-500 dark:text-gray-400'}
             `}
-          >
-            {isChecked ? labels.on : labels.off}
-          </span>
-        )}
-        
-        {/* Indikatoren */}
-        {renderIndicators()}
-      </div>
-    </>
-  );
-  
-  // Wenn kein Label, nur den Switch zurückgeben
-  if (!label && !formControl.label) {
-    return (
-      <div 
-        className={className}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-      >
-        {renderDescription()}
-        {renderSwitch()}
-        {renderHelperText()}
-      </div>
+            >
+              {isChecked ? labels.on : labels.off}
+            </span>
+          )}
+
+          {/* Indikatoren */}
+          {renderIndicators()}
+        </div>
+      </>
     );
-  }
-  
-  // Mit Label
-  return (
-    <div 
-      className={`
+
+    // Wenn kein Label, nur den Switch zurückgeben
+    if (!label && !formControl.label) {
+      return (
+        <div
+          className={className}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+        >
+          {renderDescription()}
+          {renderSwitch()}
+          {renderHelperText()}
+        </div>
+      );
+    }
+
+    // Mit Label
+    return (
+      <div
+        className={`
         ${isVertical ? 'flex flex-col' : 'inline-flex'}
         ${!isVertical && labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row'}
         ${!isVertical && labelAlignClasses[labelAlign]}
@@ -1540,21 +1648,22 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
         ${containerClassName}
         ${className}
       `}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-    >
-      {renderDescription()}
-      {renderSwitch()}
-      
-      <div className={`${isVertical ? 'mt-1' : ''}`}>
-        {renderLabel()}
-        {renderHelperText()}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
+        {renderDescription()}
+        {renderSwitch()}
+
+        <div className={`${isVertical ? 'mt-1' : ''}`}>
+          {renderLabel()}
+          {renderHelperText()}
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 Switch.displayName = 'Switch';
 

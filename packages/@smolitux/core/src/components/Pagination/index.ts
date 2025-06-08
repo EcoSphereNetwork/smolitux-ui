@@ -7,7 +7,7 @@ export type { PaginationA11yProps } from './Pagination.a11y';
 
 // Erweitere Pagination um die A11y-Komponente
 export const Pagination = Object.assign(BasePagination, {
-  A11y: PaginationA11y
+  A11y: PaginationA11y,
 });
 
 // Fuer Abwaertskompatibilitaet mit dem bestehenden Export

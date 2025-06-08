@@ -9,7 +9,7 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     // Content should be hidden by default
     expect(screen.queryByText('Slide content')).not.toBeVisible();
   });
@@ -20,7 +20,7 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     expect(screen.getByText('Slide content')).toBeVisible();
   });
 
@@ -30,15 +30,15 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     expect(screen.queryByText('Slide content')).not.toBeVisible();
-    
+
     rerender(
       <Slide in={true}>
         <div>Slide content</div>
       </Slide>
     );
-    
+
     expect(screen.getByText('Slide content')).toBeVisible();
   });
 
@@ -48,7 +48,7 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveStyle('transition-duration: 500ms');
   });
@@ -59,7 +59,7 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveStyle('background-color: red');
   });
@@ -70,7 +70,7 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveClass('custom-slide');
   });
@@ -82,10 +82,10 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     fireEvent.transitionStart(slideElement);
-    
+
     expect(handleEnter).toHaveBeenCalled();
   });
 
@@ -96,10 +96,10 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     fireEvent.transitionEnd(slideElement);
-    
+
     expect(handleEntered).toHaveBeenCalled();
   });
 
@@ -110,16 +110,16 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     rerender(
       <Slide in={false} onExit={handleExit}>
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     fireEvent.transitionStart(slideElement);
-    
+
     expect(handleExit).toHaveBeenCalled();
   });
 
@@ -130,16 +130,16 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     rerender(
       <Slide in={false} onExited={handleExited}>
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     fireEvent.transitionEnd(slideElement);
-    
+
     expect(handleExited).toHaveBeenCalled();
   });
 
@@ -149,34 +149,34 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     let slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveClass('slide-right');
-    
+
     rerender(
       <Slide in direction="left" data-testid="slide-container">
         <div>Slide content</div>
       </Slide>
     );
-    
+
     slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveClass('slide-left');
-    
+
     rerender(
       <Slide in direction="up" data-testid="slide-container">
         <div>Slide content</div>
       </Slide>
     );
-    
+
     slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveClass('slide-up');
-    
+
     rerender(
       <Slide in direction="down" data-testid="slide-container">
         <div>Slide content</div>
       </Slide>
     );
-    
+
     slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveClass('slide-down');
   });
@@ -187,7 +187,7 @@ describe('Slide', () => {
         <div>Slide content</div>
       </Slide>
     );
-    
+
     const slideElement = screen.getByTestId('slide-container');
     expect(slideElement).toHaveStyle('--slide-offset: 100px');
   });

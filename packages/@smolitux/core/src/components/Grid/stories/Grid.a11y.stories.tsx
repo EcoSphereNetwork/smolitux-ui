@@ -9,114 +9,115 @@ const meta: Meta<typeof Grid.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version der Grid-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version der Grid-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     columns: {
       control: { type: 'select' },
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'auto'],
-      description: 'Anzahl der Spalten'
+      description: 'Anzahl der Spalten',
     },
     rows: {
       control: { type: 'select' },
       options: [1, 2, 3, 4, 5, 6, 'auto'],
-      description: 'Anzahl der Zeilen'
+      description: 'Anzahl der Zeilen',
     },
     gap: {
       control: { type: 'select' },
       options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Abstand zwischen den Elementen'
+      description: 'Abstand zwischen den Elementen',
     },
     columnGap: {
       control: { type: 'select' },
       options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Abstand zwischen den Spalten'
+      description: 'Abstand zwischen den Spalten',
     },
     rowGap: {
       control: { type: 'select' },
       options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Abstand zwischen den Zeilen'
+      description: 'Abstand zwischen den Zeilen',
     },
     ariaLabel: {
       control: 'text',
-      description: 'ARIA-Label für das Grid'
+      description: 'ARIA-Label für das Grid',
     },
     ariaLabelledby: {
       control: 'text',
-      description: 'ARIA-Labelledby für das Grid'
+      description: 'ARIA-Labelledby für das Grid',
     },
     ariaDescribedby: {
       control: 'text',
-      description: 'ARIA-Describedby für das Grid'
+      description: 'ARIA-Describedby für das Grid',
     },
     role: {
       control: 'text',
-      description: 'ARIA-Rolle für das Grid'
+      description: 'ARIA-Rolle für das Grid',
     },
     isRegion: {
       control: 'boolean',
-      description: 'Ob das Grid eine Region ist'
+      description: 'Ob das Grid eine Region ist',
     },
     isLandmark: {
       control: 'boolean',
-      description: 'Ob das Grid eine Landmark ist'
+      description: 'Ob das Grid eine Landmark ist',
     },
     isTable: {
       control: 'boolean',
-      description: 'Ob das Grid eine Tabelle ist'
+      description: 'Ob das Grid eine Tabelle ist',
     },
     isForm: {
       control: 'boolean',
-      description: 'Ob das Grid ein Formular ist'
+      description: 'Ob das Grid ein Formular ist',
     },
     isNavigation: {
       control: 'boolean',
-      description: 'Ob das Grid eine Navigation ist'
+      description: 'Ob das Grid eine Navigation ist',
     },
     isList: {
       control: 'boolean',
-      description: 'Ob das Grid eine Liste ist'
+      description: 'Ob das Grid eine Liste ist',
     },
     isLiveRegion: {
       control: 'boolean',
-      description: 'Ob das Grid eine Live-Region ist'
+      description: 'Ob das Grid eine Live-Region ist',
     },
     liveRegionPoliteness: {
       control: { type: 'select' },
       options: ['polite', 'assertive', 'off'],
-      description: 'Politeness-Level für Live-Region'
+      description: 'Politeness-Level für Live-Region',
     },
     isAtomic: {
       control: 'boolean',
-      description: 'Ob das Grid atomar ist'
+      description: 'Ob das Grid atomar ist',
     },
     isBusy: {
       control: 'boolean',
-      description: 'Ob das Grid busy ist'
+      description: 'Ob das Grid busy ist',
     },
     isFocusable: {
       control: 'boolean',
-      description: 'Ob das Grid fokussierbar ist'
+      description: 'Ob das Grid fokussierbar ist',
     },
     hasTableCaption: {
       control: 'boolean',
-      description: 'Ob das Grid eine Tabellen-Beschreibung hat'
+      description: 'Ob das Grid eine Tabellen-Beschreibung hat',
     },
     tableCaption: {
       control: 'text',
-      description: 'Tabellen-Beschreibung'
+      description: 'Tabellen-Beschreibung',
     },
     hasTableSummary: {
       control: 'boolean',
-      description: 'Ob das Grid eine Tabellen-Zusammenfassung hat'
+      description: 'Ob das Grid eine Tabellen-Zusammenfassung hat',
     },
     tableSummary: {
       control: 'text',
-      description: 'Tabellen-Zusammenfassung'
-    }
-  }
+      description: 'Tabellen-Zusammenfassung',
+    },
+  },
 };
 
 export default meta;
@@ -134,8 +135,8 @@ export const Default: Story = {
         <div className="bg-gray-200 p-4 rounded">Element 3</div>
         <div className="bg-gray-200 p-4 rounded">Element 4</div>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const AsRegion: Story = {
@@ -151,8 +152,8 @@ export const AsRegion: Story = {
         <div className="bg-gray-200 p-4 rounded">Element 3</div>
         <div className="bg-gray-200 p-4 rounded">Element 4</div>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const AsNavigation: Story = {
@@ -163,13 +164,21 @@ export const AsNavigation: Story = {
     isNavigation: true,
     children: (
       <>
-        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">Startseite</a>
-        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">Produkte</a>
-        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">Über uns</a>
-        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">Kontakt</a>
+        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">
+          Startseite
+        </a>
+        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">
+          Produkte
+        </a>
+        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">
+          Über uns
+        </a>
+        <a href="#" className="bg-blue-100 p-4 rounded hover:bg-blue-200">
+          Kontakt
+        </a>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const AsList: Story = {
@@ -193,8 +202,8 @@ export const AsList: Story = {
           <label htmlFor="task3">Aufgabe 3 erledigen</label>
         </div>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const AsTable: Story = {
@@ -212,21 +221,21 @@ export const AsTable: Story = {
         <div className="bg-gray-300 p-4 rounded font-bold">Produkt</div>
         <div className="bg-gray-300 p-4 rounded font-bold">Preis</div>
         <div className="bg-gray-300 p-4 rounded font-bold">Verfügbarkeit</div>
-        
+
         <div className="bg-gray-200 p-4 rounded">Produkt A</div>
         <div className="bg-gray-200 p-4 rounded">19,99 €</div>
         <div className="bg-gray-200 p-4 rounded">Auf Lager</div>
-        
+
         <div className="bg-gray-200 p-4 rounded">Produkt B</div>
         <div className="bg-gray-200 p-4 rounded">29,99 €</div>
         <div className="bg-gray-200 p-4 rounded">Ausverkauft</div>
-        
+
         <div className="bg-gray-200 p-4 rounded">Produkt C</div>
         <div className="bg-gray-200 p-4 rounded">39,99 €</div>
         <div className="bg-gray-200 p-4 rounded">Auf Lager</div>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const AsForm: Story = {
@@ -240,28 +249,34 @@ export const AsForm: Story = {
         <div className="col-span-2 bg-gray-200 p-4 rounded">
           <h2 className="text-lg font-bold">Kontaktformular</h2>
         </div>
-        
+
         <div className="bg-gray-200 p-4 rounded">
-          <label htmlFor="name" className="block mb-2">Name</label>
+          <label htmlFor="name" className="block mb-2">
+            Name
+          </label>
           <input id="name" type="text" className="w-full p-2 border rounded" />
         </div>
-        
+
         <div className="bg-gray-200 p-4 rounded">
-          <label htmlFor="email" className="block mb-2">E-Mail</label>
+          <label htmlFor="email" className="block mb-2">
+            E-Mail
+          </label>
           <input id="email" type="email" className="w-full p-2 border rounded" />
         </div>
-        
+
         <div className="col-span-2 bg-gray-200 p-4 rounded">
-          <label htmlFor="message" className="block mb-2">Nachricht</label>
+          <label htmlFor="message" className="block mb-2">
+            Nachricht
+          </label>
           <textarea id="message" className="w-full p-2 border rounded" rows={4}></textarea>
         </div>
-        
+
         <div className="col-span-2 bg-gray-200 p-4 rounded flex justify-end">
           <button className="px-4 py-2 bg-blue-500 text-white rounded">Absenden</button>
         </div>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const AsLiveRegion: Story = {
@@ -281,8 +296,8 @@ export const AsLiveRegion: Story = {
           Warnung: Ihre Sitzung läuft in 5 Minuten ab.
         </div>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const WithDifferentGaps: Story = {
@@ -299,7 +314,7 @@ export const WithDifferentGaps: Story = {
           <div className="bg-gray-200 p-4 rounded">Element 6</div>
         </Grid.A11y>
       </div>
-      
+
       <div>
         <h3 className="mb-2">Kleiner Abstand (xs)</h3>
         <Grid.A11y columns={3} gap="xs" ariaLabel="Grid mit kleinem Abstand">
@@ -311,7 +326,7 @@ export const WithDifferentGaps: Story = {
           <div className="bg-gray-200 p-4 rounded">Element 6</div>
         </Grid.A11y>
       </div>
-      
+
       <div>
         <h3 className="mb-2">Mittlerer Abstand (md)</h3>
         <Grid.A11y columns={3} gap="md" ariaLabel="Grid mit mittlerem Abstand">
@@ -323,7 +338,7 @@ export const WithDifferentGaps: Story = {
           <div className="bg-gray-200 p-4 rounded">Element 6</div>
         </Grid.A11y>
       </div>
-      
+
       <div>
         <h3 className="mb-2">Großer Abstand (xl)</h3>
         <Grid.A11y columns={3} gap="xl" ariaLabel="Grid mit großem Abstand">
@@ -336,7 +351,7 @@ export const WithDifferentGaps: Story = {
         </Grid.A11y>
       </div>
     </div>
-  )
+  ),
 };
 
 export const WithDifferentColumns: Story = {
@@ -350,7 +365,7 @@ export const WithDifferentColumns: Story = {
           <div className="bg-gray-200 p-4 rounded">Element 3</div>
         </Grid.A11y>
       </div>
-      
+
       <div>
         <h3 className="mb-2">2 Spalten</h3>
         <Grid.A11y columns={2} gap="md" ariaLabel="Grid mit 2 Spalten">
@@ -360,7 +375,7 @@ export const WithDifferentColumns: Story = {
           <div className="bg-gray-200 p-4 rounded">Element 4</div>
         </Grid.A11y>
       </div>
-      
+
       <div>
         <h3 className="mb-2">3 Spalten</h3>
         <Grid.A11y columns={3} gap="md" ariaLabel="Grid mit 3 Spalten">
@@ -372,7 +387,7 @@ export const WithDifferentColumns: Story = {
           <div className="bg-gray-200 p-4 rounded">Element 6</div>
         </Grid.A11y>
       </div>
-      
+
       <div>
         <h3 className="mb-2">4 Spalten</h3>
         <Grid.A11y columns={4} gap="md" ariaLabel="Grid mit 4 Spalten">
@@ -387,7 +402,7 @@ export const WithDifferentColumns: Story = {
         </Grid.A11y>
       </div>
     </div>
-  )
+  ),
 };
 
 export const NestedGrids: Story = {
@@ -399,11 +414,11 @@ export const NestedGrids: Story = {
         <div className="bg-blue-100 p-4 rounded">Inneres Element 3</div>
         <div className="bg-blue-100 p-4 rounded">Inneres Element 4</div>
       </Grid.A11y>
-      
+
       <Grid.A11y columns={1} gap="sm" ariaLabel="Inneres Grid 2" isRegion={true}>
         <div className="bg-green-100 p-4 rounded">Inneres Element 5</div>
         <div className="bg-green-100 p-4 rounded">Inneres Element 6</div>
       </Grid.A11y>
     </Grid.A11y>
-  )
+  ),
 };

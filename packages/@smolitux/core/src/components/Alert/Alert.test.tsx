@@ -56,37 +56,37 @@ describe('Alert Component', () => {
   test('calls onClose when close button is clicked', () => {
     const handleClose = jest.fn();
     render(<Alert type="info" message="Closable alert" closable onClose={handleClose} />);
-    
+
     const closeButton = screen.getByTestId('alert-close-button');
     fireEvent.click(closeButton);
-    
+
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
   test('renders alert with actions', () => {
     const handleAction1 = jest.fn();
     const handleAction2 = jest.fn();
-    
+
     render(
-      <Alert 
-        type="info" 
-        message="Alert with actions" 
+      <Alert
+        type="info"
+        message="Alert with actions"
         actions={[
           { label: 'Action 1', onClick: handleAction1 },
-          { label: 'Action 2', onClick: handleAction2, variant: 'primary' }
+          { label: 'Action 2', onClick: handleAction2, variant: 'primary' },
         ]}
       />
     );
-    
+
     const action1Button = screen.getByText('Action 1');
     const action2Button = screen.getByText('Action 2');
-    
+
     expect(action1Button).toBeInTheDocument();
     expect(action2Button).toBeInTheDocument();
-    
+
     fireEvent.click(action1Button);
     expect(handleAction1).toHaveBeenCalledTimes(1);
-    
+
     fireEvent.click(action2Button);
     expect(handleAction2).toHaveBeenCalledTimes(1);
   });
@@ -94,26 +94,26 @@ describe('Alert Component', () => {
   test('auto-closes after specified time', async () => {
     jest.useFakeTimers();
     const handleClose = jest.fn();
-    
+
     render(<Alert type="info" message="Auto-close alert" autoClose={1000} onClose={handleClose} />);
-    
+
     expect(handleClose).not.toHaveBeenCalled();
-    
+
     jest.advanceTimersByTime(1000);
-    
+
     await waitFor(() => {
       expect(handleClose).toHaveBeenCalledTimes(1);
     });
-    
+
     jest.useRealTimers();
   });
 
   test('closes on Escape key press', () => {
     const handleClose = jest.fn();
     render(<Alert type="info" message="Escape to close" onClose={handleClose} />);
-    
+
     fireEvent.keyDown(screen.getByRole('alert'), { key: 'Escape' });
-    
+
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
@@ -144,14 +144,18 @@ describe('Alert Component', () => {
 
   test('renders with description for screenreader', () => {
     render(
-      <Alert 
-        type="info" 
-        message="Alert with description" 
+      <Alert
+        type="info"
+        message="Alert with description"
         description="This is a detailed description for screenreaders"
       />
     );
-    
-    expect(screen.getByText('This is a detailed description for screenreaders')).toBeInTheDocument();
-    expect(screen.getByText('This is a detailed description for screenreaders')).toHaveClass('sr-only');
+
+    expect(
+      screen.getByText('This is a detailed description for screenreaders')
+    ).toBeInTheDocument();
+    expect(screen.getByText('This is a detailed description for screenreaders')).toHaveClass(
+      'sr-only'
+    );
   });
 });

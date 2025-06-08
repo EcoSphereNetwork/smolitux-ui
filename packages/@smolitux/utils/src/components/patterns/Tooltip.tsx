@@ -339,13 +339,33 @@ export const Tooltip: React.FC<TooltipProps> = ({
     };
 
     if (placement.startsWith('top')) {
-      return { ...baseStyle, top: '100%', borderRight: '1px solid rgba(0,0,0,0.1)', borderBottom: '1px solid rgba(0,0,0,0.1)' };
+      return {
+        ...baseStyle,
+        top: '100%',
+        borderRight: '1px solid rgba(0,0,0,0.1)',
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+      };
     } else if (placement.startsWith('bottom')) {
-      return { ...baseStyle, bottom: '100%', borderLeft: '1px solid rgba(0,0,0,0.1)', borderTop: '1px solid rgba(0,0,0,0.1)' };
+      return {
+        ...baseStyle,
+        bottom: '100%',
+        borderLeft: '1px solid rgba(0,0,0,0.1)',
+        borderTop: '1px solid rgba(0,0,0,0.1)',
+      };
     } else if (placement.startsWith('left')) {
-      return { ...baseStyle, left: '100%', borderTop: '1px solid rgba(0,0,0,0.1)', borderRight: '1px solid rgba(0,0,0,0.1)' };
+      return {
+        ...baseStyle,
+        left: '100%',
+        borderTop: '1px solid rgba(0,0,0,0.1)',
+        borderRight: '1px solid rgba(0,0,0,0.1)',
+      };
     } else if (placement.startsWith('right')) {
-      return { ...baseStyle, right: '100%', borderBottom: '1px solid rgba(0,0,0,0.1)', borderLeft: '1px solid rgba(0,0,0,0.1)' };
+      return {
+        ...baseStyle,
+        right: '100%',
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        borderLeft: '1px solid rgba(0,0,0,0.1)',
+      };
     }
 
     return baseStyle;

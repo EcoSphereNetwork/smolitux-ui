@@ -9,101 +9,102 @@ const meta: Meta<typeof Switch.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version der Switch-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version der Switch-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     label: {
       control: 'text',
-      description: 'Label für den Switch'
+      description: 'Label für den Switch',
     },
     checked: {
       control: 'boolean',
-      description: 'Ist der Switch aktiviert?'
+      description: 'Ist der Switch aktiviert?',
     },
     defaultChecked: {
       control: 'boolean',
-      description: 'Standard-Aktivierungsstatus (unkontrollierter Modus)'
+      description: 'Standard-Aktivierungsstatus (unkontrollierter Modus)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Ist der Switch deaktiviert?'
+      description: 'Ist der Switch deaktiviert?',
     },
     size: {
       control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Größe des Switches'
+      description: 'Größe des Switches',
     },
     colorScheme: {
       control: { type: 'select' },
       options: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'neutral'],
-      description: 'Farbschema des Switches'
+      description: 'Farbschema des Switches',
     },
     variant: {
       control: { type: 'select' },
       options: ['solid', 'outline'],
-      description: 'Variante des Switches'
+      description: 'Variante des Switches',
     },
     labelPosition: {
       control: { type: 'select' },
       options: ['left', 'right'],
-      description: 'Position des Labels'
+      description: 'Position des Labels',
     },
     isVertical: {
       control: 'boolean',
-      description: 'Vertikale Ausrichtung'
+      description: 'Vertikale Ausrichtung',
     },
     required: {
       control: 'boolean',
-      description: 'Ist der Switch erforderlich?'
+      description: 'Ist der Switch erforderlich?',
     },
     error: {
       control: 'text',
-      description: 'Fehlermeldung'
+      description: 'Fehlermeldung',
     },
     helperText: {
       control: 'text',
-      description: 'Hilfetext'
+      description: 'Hilfetext',
     },
     ariaLabel: {
       control: 'text',
-      description: 'ARIA-Label für den Switch'
+      description: 'ARIA-Label für den Switch',
     },
     description: {
       control: 'text',
-      description: 'Beschreibung für Screenreader'
+      description: 'Beschreibung für Screenreader',
     },
     checkedStateText: {
       control: 'text',
-      description: 'Text für den aktivierten Zustand (für Screenreader)'
+      description: 'Text für den aktivierten Zustand (für Screenreader)',
     },
     uncheckedStateText: {
       control: 'text',
-      description: 'Text für den deaktivierten Zustand (für Screenreader)'
+      description: 'Text für den deaktivierten Zustand (für Screenreader)',
     },
     liveRegionPoliteness: {
       control: { type: 'select' },
       options: ['polite', 'assertive', 'off'],
-      description: 'Politeness der Live-Region'
+      description: 'Politeness der Live-Region',
     },
     busy: {
       control: 'boolean',
-      description: 'Ist der Switch beschäftigt?'
+      description: 'Ist der Switch beschäftigt?',
     },
     autoFocus: {
       control: 'boolean',
-      description: 'Automatischer Fokus'
+      description: 'Automatischer Fokus',
     },
     icons: {
       control: 'boolean',
-      description: 'Icons anzeigen'
+      description: 'Icons anzeigen',
     },
     labels: {
       control: 'object',
-      description: 'Labels für die Zustände'
-    }
-  }
+      description: 'Labels für die Zustände',
+    },
+  },
 };
 
 export default meta;
@@ -112,16 +113,16 @@ type Story = StoryObj<typeof Switch.A11y>;
 export const Default: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
-    ariaLabel: 'Benachrichtigungen'
-  }
+    ariaLabel: 'Benachrichtigungen',
+  },
 };
 
 export const WithDescription: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    description: 'Aktivieren Sie diese Option, um Benachrichtigungen zu erhalten'
-  }
+    description: 'Aktivieren Sie diese Option, um Benachrichtigungen zu erhalten',
+  },
 };
 
 export const WithCustomStateText: Story = {
@@ -129,40 +130,40 @@ export const WithCustomStateText: Story = {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
     checkedStateText: 'aktiviert',
-    uncheckedStateText: 'deaktiviert'
-  }
+    uncheckedStateText: 'deaktiviert',
+  },
 };
 
 export const WithError: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    error: 'Bitte wählen Sie eine Option'
-  }
+    error: 'Bitte wählen Sie eine Option',
+  },
 };
 
 export const WithHelperText: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    helperText: 'Sie können diese Einstellung jederzeit ändern'
-  }
+    helperText: 'Sie können diese Einstellung jederzeit ändern',
+  },
 };
 
 export const Disabled: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    disabled: true
-  }
+    disabled: true,
+  },
 };
 
 export const Required: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    required: true
-  }
+    required: true,
+  },
 };
 
 export const LabelPositions: Story = {
@@ -170,7 +171,7 @@ export const LabelPositions: Story = {
     <div className="space-y-4">
       <div>
         <h3 className="mb-2">Label links</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           labelPosition="left"
@@ -178,14 +179,14 @@ export const LabelPositions: Story = {
       </div>
       <div>
         <h3 className="mb-2">Label rechts</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           labelPosition="right"
         />
       </div>
     </div>
-  )
+  ),
 };
 
 export const DifferentSizes: Story = {
@@ -193,7 +194,7 @@ export const DifferentSizes: Story = {
     <div className="space-y-4">
       <div>
         <h3 className="mb-2">Extra Small (xs)</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           size="xs"
@@ -201,7 +202,7 @@ export const DifferentSizes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Small (sm)</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           size="sm"
@@ -209,7 +210,7 @@ export const DifferentSizes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Medium (md)</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           size="md"
@@ -217,7 +218,7 @@ export const DifferentSizes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Large (lg)</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           size="lg"
@@ -225,14 +226,14 @@ export const DifferentSizes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Extra Large (xl)</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           size="xl"
         />
       </div>
     </div>
-  )
+  ),
 };
 
 export const DifferentColorSchemes: Story = {
@@ -240,7 +241,7 @@ export const DifferentColorSchemes: Story = {
     <div className="space-y-4">
       <div>
         <h3 className="mb-2">Primary</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           colorScheme="primary"
@@ -249,7 +250,7 @@ export const DifferentColorSchemes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Secondary</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           colorScheme="secondary"
@@ -258,7 +259,7 @@ export const DifferentColorSchemes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Success</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           colorScheme="success"
@@ -267,7 +268,7 @@ export const DifferentColorSchemes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Danger</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           colorScheme="danger"
@@ -276,7 +277,7 @@ export const DifferentColorSchemes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Warning</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           colorScheme="warning"
@@ -285,7 +286,7 @@ export const DifferentColorSchemes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Info</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           colorScheme="info"
@@ -294,7 +295,7 @@ export const DifferentColorSchemes: Story = {
       </div>
       <div>
         <h3 className="mb-2">Neutral</h3>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           colorScheme="neutral"
@@ -302,70 +303,70 @@ export const DifferentColorSchemes: Story = {
         />
       </div>
     </div>
-  )
+  ),
 };
 
 export const WithIcons: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    icons: true
-  }
+    icons: true,
+  },
 };
 
 export const WithLabels: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    labels: { on: 'AN', off: 'AUS' }
-  }
+    labels: { on: 'AN', off: 'AUS' },
+  },
 };
 
 export const VerticalLayout: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    isVertical: true
-  }
+    isVertical: true,
+  },
 };
 
 export const WithLiveRegion: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    liveRegionPoliteness: 'assertive'
-  }
+    liveRegionPoliteness: 'assertive',
+  },
 };
 
 export const Busy: Story = {
   args: {
     label: 'Benachrichtigungen aktivieren',
     ariaLabel: 'Benachrichtigungen',
-    busy: true
-  }
+    busy: true,
+  },
 };
 
 export const Controlled: Story = {
   render: () => {
     const [checked, setChecked] = useState(false);
-    
+
     const handleChange = (isChecked: boolean) => {
       setChecked(isChecked);
     };
-    
+
     return (
       <div>
-        <Switch.A11y 
+        <Switch.A11y
           label="Benachrichtigungen aktivieren"
           ariaLabel="Benachrichtigungen"
           checked={checked}
           onChange={handleChange}
         />
-        
+
         <div className="mt-4">
           <p>Status: {checked ? 'Aktiviert' : 'Deaktiviert'}</p>
         </div>
       </div>
     );
-  }
+  },
 };

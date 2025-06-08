@@ -108,7 +108,7 @@ export interface RadioGroupA11yProps {
 
 /**
  * Barrierefreie RadioGroup-Komponente für die Auswahl einer Option aus mehreren Möglichkeiten
- * 
+ *
  * @example
  * ```tsx
  * <RadioGroupA11y
@@ -177,68 +177,67 @@ export const RadioGroupA11y: React.FC<RadioGroupA11yProps> = ({
   const name = nameProp || `radio-group-${uniqueId}`;
   const descriptionId = `${id}-description`;
   const liveRegionId = `${id}-live-region`;
-  
+
   // State für den ausgewählten Wert
   const [selectedValue, setSelectedValue] = useState<string | undefined>(defaultValue);
   const [announcement, setAnnouncement] = useState<string>('');
-  
+
   // Verwende den kontrollierten Wert, wenn er vorhanden ist
   const currentValue = controlledValue !== undefined ? controlledValue : selectedValue;
-  
+
   // Aktualisiere den State, wenn sich der kontrollierte Wert ändert
   useEffect(() => {
     if (controlledValue !== undefined) {
       setSelectedValue(controlledValue);
     }
   }, [controlledValue]);
-  
+
   // Behandle Änderungen
   const handleChange = (value: string) => {
     setSelectedValue(value);
-    
+
     if (onChange) {
       onChange(value);
     }
-    
+
     // Ankündigung für Screenreader
     if (announceChanges) {
-      const selectedOption = options.find(option => option.value === value);
+      const selectedOption = options.find((option) => option.value === value);
       if (selectedOption) {
         const announcement = announceFormat.replace('{label}', selectedOption.label as string);
         setAnnouncement(announcement);
       }
     }
   };
-  
+
   // Berechne CSS-Klassen
   const groupClasses = [
     'radio-group',
     `radio-group-${orientation}`,
     `radio-group-spacing-${spacing}`,
     isDisabled ? 'radio-group-disabled' : '',
-    className
-  ].filter(Boolean).join(' ');
-  
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // Rendere die Beschreibung
   const renderDescription = () => {
     if (!description) return null;
-    
+
     return (
-      <div 
-        id={descriptionId}
-        className={showDescription ? 'radio-group-description' : 'sr-only'}
-      >
+      <div id={descriptionId} className={showDescription ? 'radio-group-description' : 'sr-only'}>
         {description}
       </div>
     );
   };
-  
+
   // Rendere die Live-Region
   const renderLiveRegion = () => {
     if (!liveRegion) return null;
-    
+
     return (
-      <div 
+      <div
         id={liveRegionId}
         aria-live={liveRegionPoliteness}
         aria-atomic="true"
@@ -248,19 +247,16 @@ export const RadioGroupA11y: React.FC<RadioGroupA11yProps> = ({
       </div>
     );
   };
-  
+
   // Rendere die Radiobuttons
   const renderRadioButtons = () => {
     return options.map((option, index) => {
       const isChecked = currentValue === option.value;
       const isOptionDisabled = isDisabled || option.disabled;
       const radioId = `${id}-${option.value}`;
-      
+
       return (
-        <div 
-          key={option.value}
-          className="radio-option"
-        >
+        <div key={option.value} className="radio-option">
           <Radio
             id={radioId}
             name={name}
@@ -273,7 +269,7 @@ export const RadioGroupA11y: React.FC<RadioGroupA11yProps> = ({
             aria-describedby={option.description ? `${radioId}-description` : undefined}
             autoFocus={autoFocus && index === 0}
           />
-          <label 
+          <label
             htmlFor={radioId}
             className={`radio-label ${isOptionDisabled ? 'radio-label-disabled' : ''}`}
             onClick={clickableLabels ? undefined : (e) => e.preventDefault()}
@@ -281,10 +277,14 @@ export const RadioGroupA11y: React.FC<RadioGroupA11yProps> = ({
             {option.label}
           </label>
           {option.description && (
-            <div 
+            <div
               id={`${radioId}-description`}
               className="radio-description"
-              onClick={clickableDescriptions ? () => !isOptionDisabled && handleChange(option.value) : undefined}
+              onClick={
+                clickableDescriptions
+                  ? () => !isOptionDisabled && handleChange(option.value)
+                  : undefined
+              }
             >
               {option.description}
             </div>
@@ -293,9 +293,9 @@ export const RadioGroupA11y: React.FC<RadioGroupA11yProps> = ({
       );
     });
   };
-  
+
   return (
-    <div 
+    <div
       id={id}
       className={groupClasses}
       role="radiogroup"

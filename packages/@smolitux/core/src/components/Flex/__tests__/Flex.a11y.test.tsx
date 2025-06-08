@@ -15,14 +15,14 @@ describe('Flex Accessibility', () => {
         <div>Item 3</div>
       </Flex>
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   test('should not have accessibility violations with different directions', async () => {
     const directions = ['row', 'column', 'row-reverse', 'column-reverse'] as const;
-    
+
     for (const direction of directions) {
       const { container } = render(
         <Flex direction={direction}>
@@ -31,7 +31,7 @@ describe('Flex Accessibility', () => {
           <div>Item 3</div>
         </Flex>
       );
-      
+
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     }
@@ -39,7 +39,7 @@ describe('Flex Accessibility', () => {
 
   test('should not have accessibility violations with different alignments', async () => {
     const alignItems = ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'] as const;
-    
+
     for (const align of alignItems) {
       const { container } = render(
         <Flex align={align}>
@@ -48,7 +48,7 @@ describe('Flex Accessibility', () => {
           <div>Item 3</div>
         </Flex>
       );
-      
+
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     }
@@ -56,14 +56,14 @@ describe('Flex Accessibility', () => {
 
   test('should not have accessibility violations with different justifications', async () => {
     const justifyContent = [
-      'flex-start', 
-      'flex-end', 
-      'center', 
-      'space-between', 
-      'space-around', 
-      'space-evenly'
+      'flex-start',
+      'flex-end',
+      'center',
+      'space-between',
+      'space-around',
+      'space-evenly',
     ] as const;
-    
+
     for (const justify of justifyContent) {
       const { container } = render(
         <Flex justify={justify}>
@@ -72,7 +72,7 @@ describe('Flex Accessibility', () => {
           <div>Item 3</div>
         </Flex>
       );
-      
+
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     }
@@ -80,7 +80,7 @@ describe('Flex Accessibility', () => {
 
   test('should not have accessibility violations with different wraps', async () => {
     const wraps = ['nowrap', 'wrap', 'wrap-reverse'] as const;
-    
+
     for (const wrap of wraps) {
       const { container } = render(
         <Flex wrap={wrap}>
@@ -89,7 +89,7 @@ describe('Flex Accessibility', () => {
           <div>Item 3</div>
         </Flex>
       );
-      
+
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     }
@@ -97,7 +97,7 @@ describe('Flex Accessibility', () => {
 
   test('should not have accessibility violations with different gaps', async () => {
     const gaps = ['none', 'xs', 'sm', 'md', 'lg', 'xl'] as const;
-    
+
     for (const gap of gaps) {
       const { container } = render(
         <Flex gap={gap}>
@@ -106,7 +106,7 @@ describe('Flex Accessibility', () => {
           <div>Item 3</div>
         </Flex>
       );
-      
+
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     }
@@ -120,7 +120,7 @@ describe('Flex Accessibility', () => {
         <div>Item 3</div>
       </Flex>
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
@@ -138,7 +138,7 @@ describe('Flex Accessibility', () => {
         </Flex>
       </Flex>
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

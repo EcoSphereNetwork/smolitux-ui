@@ -6,18 +6,18 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
-import { 
-  DEFAULT_LOCALE, 
-  SUPPORTED_LOCALES, 
-  FALLBACK_LOCALE, 
-  DEFAULT_NAMESPACES, 
+import {
+  DEFAULT_LOCALE,
+  SUPPORTED_LOCALES,
+  FALLBACK_LOCALE,
+  DEFAULT_NAMESPACES,
   FALLBACK_NAMESPACES,
   LOCAL_STORAGE_KEY,
   BACKEND_URL,
   INTERPOLATION_PREFIX,
   INTERPOLATION_SUFFIX,
   INTERPOLATION_SEPARATOR,
-  PLURAL_RULES
+  PLURAL_RULES,
 } from './constants';
 import { I18nOptions } from './types';
 
@@ -72,22 +72,28 @@ export const initI18n = (options: I18nOptions = {}) => {
     ns: defaultNamespaces,
     defaultNS: defaultNamespaces[0],
     fallbackNS: fallback ? fallbackNamespaces : false,
-    
+
     // Ressourcen
     resources,
-    
+
     // Backend-Konfiguration
-    backend: loadFromBackend && typeof window !== 'undefined' ? {
-      loadPath: backendUrl,
-    } : undefined,
-    
+    backend:
+      loadFromBackend && typeof window !== 'undefined'
+        ? {
+            loadPath: backendUrl,
+          }
+        : undefined,
+
     // Spracherkennung
-    detection: detectLocale && typeof window !== 'undefined' ? {
-      order: ['localStorage', 'navigator', 'htmlTag'],
-      lookupLocalStorage: localStorageKey,
-      caches: cacheInLocalStorage ? ['localStorage'] : [],
-    } : undefined,
-    
+    detection:
+      detectLocale && typeof window !== 'undefined'
+        ? {
+            order: ['localStorage', 'navigator', 'htmlTag'],
+            lookupLocalStorage: localStorageKey,
+            caches: cacheInLocalStorage ? ['localStorage'] : [],
+          }
+        : undefined,
+
     // Interpolation
     interpolation: {
       escapeValue: true, // React escaped bereits
@@ -95,10 +101,10 @@ export const initI18n = (options: I18nOptions = {}) => {
       suffix: interpolationSuffix,
       separator: interpolationSeparator,
     },
-    
+
     // Pluralisierung
     pluralSeparator: '_',
-    
+
     // Debug
     debug,
     saveMissing: logMissingTranslations,
@@ -107,7 +113,7 @@ export const initI18n = (options: I18nOptions = {}) => {
         console.warn(`Missing translation: ${key} (${ns}) in ${lng}`);
       }
     },
-    
+
     // Reaktion auf Sprachänderungen
     react: {
       useSuspense: false,
@@ -115,9 +121,12 @@ export const initI18n = (options: I18nOptions = {}) => {
   });
 
   // Füge Pluralisierungsregeln hinzu
-  if (pluralization && pluralRules && 
-      i18nInstance.services && 
-      i18nInstance.services.pluralResolver) {
+  if (
+    pluralization &&
+    pluralRules &&
+    i18nInstance.services &&
+    i18nInstance.services.pluralResolver
+  ) {
     Object.entries(pluralRules).forEach(([locale, rule]) => {
       try {
         i18nInstance.services.pluralResolver.addRule(locale, rule);

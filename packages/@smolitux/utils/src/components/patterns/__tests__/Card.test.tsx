@@ -14,9 +14,7 @@ describe('Card', () => {
   });
 
   it('applies custom style', () => {
-    const { container } = render(
-      <Card style={{ backgroundColor: 'red' }}>Test Content</Card>
-    );
+    const { container } = render(<Card style={{ backgroundColor: 'red' }}>Test Content</Card>);
     expect(container.firstChild).toHaveStyle('background-color: red');
   });
 

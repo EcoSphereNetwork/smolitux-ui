@@ -10,31 +10,31 @@ export interface A11yDialogProps extends DialogProps {
    * Besonders wichtig für Dialoge ohne sichtbaren Titel
    */
   accessibleLabel?: string;
-  
+
   /**
    * Zusätzliche Beschreibung für Screenreader
    * Wird als aria-describedby verwendet
    */
   accessibleDescription?: string;
-  
+
   /**
    * Ob der Dialog eine Live-Region aktualisiert
    * Setzt aria-live
    */
   live?: 'off' | 'polite' | 'assertive';
-  
+
   /**
    * Ob Änderungen in der Live-Region atomar sind
    * Setzt aria-atomic
    */
   atomic?: boolean;
-  
+
   /**
    * Ob der Dialog relevant ist
    * Setzt aria-relevant
    */
   relevant?: 'additions' | 'removals' | 'text' | 'all';
-  
+
   /**
    * Benutzerdefinierte Texte für Screenreader
    */
@@ -50,27 +50,27 @@ export interface A11yDialogProps extends DialogProps {
     /** Text für die Dialog-Beschreibung */
     dialogDescriptionLabel?: string;
   };
-  
+
   /**
    * Test-ID für automatisierte Tests
    */
   testId?: string;
-  
+
   /**
    * Ob der Dialog automatisch den Fokus auf das erste interaktive Element setzen soll
    */
   autoFocus?: boolean;
-  
+
   /**
    * Ob der Dialog den Fokus einfangen soll (Fokus bleibt im Dialog)
    */
   trapFocus?: boolean;
-  
+
   /**
    * Ob der Dialog eine Rolle als Formular-Dialog haben soll
    */
   isFormDialog?: boolean;
-  
+
   /**
    * Ob der Dialog eine Rolle als Such-Dialog haben soll
    */
@@ -79,11 +79,11 @@ export interface A11yDialogProps extends DialogProps {
 
 /**
  * Dialog-Komponente mit verbesserten Barrierefreiheits-Funktionen
- * 
+ *
  * Diese Komponente erweitert die Standard-Dialog-Komponente um zusätzliche
  * Barrierefreiheits-Funktionen wie verbesserte ARIA-Attribute und anpassbare
  * Screenreader-Texte.
- * 
+ *
  * @example
  * ```tsx
  * <Dialog.A11y
@@ -115,11 +115,11 @@ export const A11yDialog: React.FC<A11yDialogProps> = (props) => {
     isAlertDialog,
     ...rest
   } = props;
-  
+
   // Generiere eindeutige IDs für Komponenten
   const uniqueId = useId();
   const descriptionId = `${uniqueId}-a11y-description`;
-  
+
   // Bestimme die Rolle des Dialogs
   let role: string | undefined;
   if (isAlertDialog) {
@@ -129,19 +129,19 @@ export const A11yDialog: React.FC<A11yDialogProps> = (props) => {
   } else if (isSearchDialog) {
     role = 'search';
   }
-  
+
   // Standard-Texte für Screenreader
   const defaultA11yTexts = {
     closeButtonLabel: 'Schließen',
     confirmButtonLabel: 'Bestätigen',
     cancelButtonLabel: 'Abbrechen',
     dialogTitleLabel: 'Dialog',
-    dialogDescriptionLabel: 'Dialog-Inhalt'
+    dialogDescriptionLabel: 'Dialog-Inhalt',
   };
-  
+
   // Kombiniere Standard-Texte mit benutzerdefinierten Texten
   const mergedA11yTexts = { ...defaultA11yTexts, ...a11yTexts };
-  
+
   return (
     <>
       <Dialog
@@ -159,7 +159,7 @@ export const A11yDialog: React.FC<A11yDialogProps> = (props) => {
         isAlertDialog={isAlertDialog}
         {...rest}
       />
-      
+
       {/* Versteckte Beschreibung für bessere Screenreader-Unterstützung */}
       {accessibleDescription && (
         <span id={descriptionId} className="sr-only">

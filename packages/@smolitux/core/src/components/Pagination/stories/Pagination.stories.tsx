@@ -100,7 +100,7 @@ export const Basic: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(1);
     const totalPages = 10;
-    
+
     return (
       <div className="space-y-4">
         <Pagination
@@ -121,7 +121,7 @@ export const WithTotalItems: Story = {
     const [currentPage, setCurrentPage] = React.useState(1);
     const pageSize = 10;
     const totalItems = 87;
-    
+
     return (
       <div className="space-y-4">
         <Pagination
@@ -133,7 +133,8 @@ export const WithTotalItems: Story = {
         <div className="text-center">
           Aktuelle Seite: {currentPage} von {Math.ceil(totalItems / pageSize)}
           <br />
-          Elemente {(currentPage - 1) * pageSize + 1} bis {Math.min(currentPage * pageSize, totalItems)} von {totalItems}
+          Elemente {(currentPage - 1) * pageSize + 1} bis{' '}
+          {Math.min(currentPage * pageSize, totalItems)} von {totalItems}
         </div>
       </div>
     );
@@ -144,7 +145,7 @@ export const WithSiblingAndBoundaryCount: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(5);
     const totalPages = 20;
-    
+
     return (
       <div className="space-y-8">
         <div>
@@ -157,9 +158,11 @@ export const WithSiblingAndBoundaryCount: Story = {
             boundaryCount={1}
           />
         </div>
-        
+
         <div>
-          <h3 className="text-lg font-medium mb-2">Mehr Geschwister (siblingCount=2, boundaryCount=1)</h3>
+          <h3 className="text-lg font-medium mb-2">
+            Mehr Geschwister (siblingCount=2, boundaryCount=1)
+          </h3>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -168,9 +171,11 @@ export const WithSiblingAndBoundaryCount: Story = {
             boundaryCount={1}
           />
         </div>
-        
+
         <div>
-          <h3 className="text-lg font-medium mb-2">Mehr Randseiten (siblingCount=1, boundaryCount=2)</h3>
+          <h3 className="text-lg font-medium mb-2">
+            Mehr Randseiten (siblingCount=1, boundaryCount=2)
+          </h3>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -179,9 +184,11 @@ export const WithSiblingAndBoundaryCount: Story = {
             boundaryCount={2}
           />
         </div>
-        
+
         <div>
-          <h3 className="text-lg font-medium mb-2">Alle Seiten (siblingCount=8, boundaryCount=0)</h3>
+          <h3 className="text-lg font-medium mb-2">
+            Alle Seiten (siblingCount=8, boundaryCount=0)
+          </h3>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -199,7 +206,7 @@ export const WithoutNavigationButtons: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(5);
     const totalPages = 10;
-    
+
     return (
       <div className="space-y-8">
         <div>
@@ -212,7 +219,7 @@ export const WithoutNavigationButtons: Story = {
             showLastButton={false}
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Ohne Vorherige/Nächste-Buttons</h3>
           <Pagination
@@ -223,7 +230,7 @@ export const WithoutNavigationButtons: Story = {
             showNextButton={false}
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Nur Seitenzahlen</h3>
           <Pagination
@@ -245,7 +252,7 @@ export const Sizes: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(5);
     const totalPages = 10;
-    
+
     return (
       <div className="space-y-8">
         <div>
@@ -257,7 +264,7 @@ export const Sizes: Story = {
             size="sm"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Medium (Standard)</h3>
           <Pagination
@@ -267,7 +274,7 @@ export const Sizes: Story = {
             size="md"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Large</h3>
           <Pagination
@@ -286,7 +293,7 @@ export const Variants: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(5);
     const totalPages = 10;
-    
+
     return (
       <div className="space-y-8">
         <div>
@@ -298,7 +305,7 @@ export const Variants: Story = {
             variant="outline"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Solid</h3>
           <Pagination
@@ -308,7 +315,7 @@ export const Variants: Story = {
             variant="solid"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Ghost</h3>
           <Pagination
@@ -327,7 +334,7 @@ export const Shapes: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(5);
     const totalPages = 10;
-    
+
     return (
       <div className="space-y-8">
         <div>
@@ -339,7 +346,7 @@ export const Shapes: Story = {
             shape="rounded"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Circular</h3>
           <Pagination
@@ -358,7 +365,7 @@ export const ColorSchemes: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(5);
     const totalPages = 10;
-    
+
     return (
       <div className="space-y-8">
         <div>
@@ -370,7 +377,7 @@ export const ColorSchemes: Story = {
             colorScheme="primary"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Secondary</h3>
           <Pagination
@@ -380,7 +387,7 @@ export const ColorSchemes: Story = {
             colorScheme="secondary"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Success</h3>
           <Pagination
@@ -390,7 +397,7 @@ export const ColorSchemes: Story = {
             colorScheme="success"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Danger</h3>
           <Pagination
@@ -400,7 +407,7 @@ export const ColorSchemes: Story = {
             colorScheme="danger"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Warning</h3>
           <Pagination
@@ -410,7 +417,7 @@ export const ColorSchemes: Story = {
             colorScheme="warning"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Info</h3>
           <Pagination
@@ -426,21 +433,14 @@ export const ColorSchemes: Story = {
 };
 
 export const Disabled: Story = {
-  render: () => (
-    <Pagination
-      currentPage={5}
-      totalPages={10}
-      onPageChange={() => {}}
-      disabled
-    />
-  ),
+  render: () => <Pagination currentPage={5} totalPages={10} onPageChange={() => {}} disabled />,
 };
 
 export const WithCustomStyling: Story = {
   render: () => {
     const [currentPage, setCurrentPage] = React.useState(5);
     const totalPages = 10;
-    
+
     return (
       <Pagination
         currentPage={currentPage}
@@ -459,7 +459,7 @@ export const WithDataTable: Story = {
     const [currentPage, setCurrentPage] = React.useState(1);
     const pageSize = 5;
     const totalItems = 23;
-    
+
     // Beispieldaten für eine Tabelle
     const allData = [
       { id: 1, name: 'Max Mustermann', email: 'max@example.com', role: 'Admin' },
@@ -486,12 +486,12 @@ export const WithDataTable: Story = {
       { id: 22, name: 'Emma Huber', email: 'emma@example.com', role: 'User' },
       { id: 23, name: 'Paul Braun', email: 'paul@example.com', role: 'Editor' },
     ];
-    
+
     // Berechne die aktuellen Daten basierend auf der Seite
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = Math.min(startIndex + pageSize, totalItems);
     const currentData = allData.slice(startIndex, endIndex);
-    
+
     return (
       <div className="w-[700px] space-y-4">
         <div className="border rounded-lg overflow-hidden">
@@ -532,7 +532,7 @@ export const WithDataTable: Story = {
             </tbody>
           </table>
         </div>
-        
+
         <div className="flex justify-between items-center">
           <div className="text-sm text-gray-700 dark:text-gray-300">
             Zeige {startIndex + 1} bis {endIndex} von {totalItems} Einträgen

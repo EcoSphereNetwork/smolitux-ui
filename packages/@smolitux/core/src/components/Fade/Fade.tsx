@@ -8,57 +8,57 @@ export type FadeProps<C extends ElementType = 'div'> = {
    * Ob das Element sichtbar sein soll
    */
   in?: boolean;
-  
+
   /**
    * Die Dauer des Übergangs in Millisekunden
    */
   timeout?: number;
-  
+
   /**
    * Das Übergangs-Preset
    */
   transition?: TransitionPresetName | TransitionPreset;
-  
+
   /**
    * Ob das Element beim ersten Rendern animiert werden soll
    */
   appear?: boolean;
-  
+
   /**
    * Ob das Element erst beim Einblenden in den DOM eingefügt werden soll
    */
   mountOnEnter?: boolean;
-  
+
   /**
    * Ob das Element nach dem Ausblenden aus dem DOM entfernt werden soll
    */
   unmountOnExit?: boolean;
-  
+
   /**
    * Callback, wenn das Element vollständig eingeblendet ist
    */
   onEntered?: () => void;
-  
+
   /**
    * Callback, wenn das Element vollständig ausgeblendet ist
    */
   onExited?: () => void;
-  
+
   /**
    * Die Kinder der Komponente
    */
   children: React.ReactNode;
-  
+
   /**
    * Zusätzliche CSS-Klassen
    */
   className?: string;
-  
+
   /**
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
-  
+
   /**
    * Das zu verwendende Element, wenn kein Kind übergeben wird
    */
@@ -102,7 +102,7 @@ export type FadeProps<C extends ElementType = 'div'> = {
 
 /**
  * Fade-Komponente für Ein- und Ausblendeffekte mit verbesserter Barrierefreiheit
- * 
+ *
  * @example
  * ```tsx
  * <Fade in={isVisible} aria-label="Inhalt" animationDescription="Inhalt wird ein- oder ausgeblendet">
@@ -142,7 +142,12 @@ export const Fade = forwardRef(function Fade(
   const descriptionId = animationDescription ? `fade-desc-${uniqueId}` : undefined;
 
   // Wir verwenden einen generischen Typ für useTransition, um die Typsicherheit zu verbessern
-  const { state, isVisible, ref, style: transitionStyle } = useTransition<HTMLElement>({
+  const {
+    state,
+    isVisible,
+    ref,
+    style: transitionStyle,
+  } = useTransition<HTMLElement>({
     in: inProp,
     timeout,
     transition,
@@ -152,18 +157,18 @@ export const Fade = forwardRef(function Fade(
     onEntered,
     onExited,
   });
-  
+
   if (!isVisible && unmountOnExit) {
     return null;
   }
-  
+
   // Kombiniere den übergebenen Ref mit unserem internen Ref
   const handleRef = (element: HTMLElement | null) => {
     // Setze den internen Ref
     if (ref && 'current' in ref) {
       (ref as React.MutableRefObject<HTMLElement | null>).current = element;
     }
-    
+
     // Setze den übergebenen Ref
     if (forwardedRef) {
       if (typeof forwardedRef === 'function') {
@@ -175,9 +180,10 @@ export const Fade = forwardRef(function Fade(
   };
 
   // Respektiere die Einstellung für reduzierte Bewegung
-  const prefersReducedMotion = respectReducedMotion && typeof window !== 'undefined' 
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
-    : false;
+  const prefersReducedMotion =
+    respectReducedMotion && typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : false;
 
   // Angepasster Style für reduzierte Bewegung
   const accessibleStyle = prefersReducedMotion
@@ -190,7 +196,7 @@ export const Fade = forwardRef(function Fade(
     'aria-live': ariaLive,
     'aria-atomic': ariaAtomic,
     'aria-relevant': ariaRelevant,
-    'aria-busy': ariaBusy || (state === 'entering' || state === 'exiting'),
+    'aria-busy': ariaBusy || state === 'entering' || state === 'exiting',
     'aria-describedby': descriptionId,
   };
 
@@ -210,7 +216,9 @@ export const Fade = forwardRef(function Fade(
             ...style,
             ...(children.props.style || {}),
           },
-          className: className ? `${className} ${children.props.className || ''}` : children.props.className,
+          className: className
+            ? `${className} ${children.props.className || ''}`
+            : children.props.className,
           'data-state': state,
           ...ariaProps,
           // Wir müssen die restlichen Props explizit übergeben, um TypeScript-Fehler zu vermeiden
@@ -218,7 +226,7 @@ export const Fade = forwardRef(function Fade(
       </>
     );
   }
-  
+
   // Ansonsten wrappen wir die Kinder in einem Element
   const Component = as || 'div';
   return (

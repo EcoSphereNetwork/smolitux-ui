@@ -314,6 +314,22 @@ export const Responsive: Story = {
   },
 };
 
+export const Responsive: Story = {
+  args: {
+    title: 'Navigation',
+    ariaLabel: 'Hauptnavigation',
+    isNavigation: true,
+    responsive: true,
+    collapseBreakpoint: 'md',
+    items: [
+      { id: 'home', label: 'Home', icon: <HomeIcon />, active: true },
+      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
+      { id: 'users', label: 'Users', icon: <UsersIcon /> },
+      { id: 'settings', label: 'Settings', icon: <SettingsIcon /> },
+    ],
+  },
+};
+
 export const AsComplementary: Story = {
   args: {
     title: 'Zusätzliche Informationen',

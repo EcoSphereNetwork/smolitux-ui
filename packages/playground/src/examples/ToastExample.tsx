@@ -5,7 +5,7 @@ import { Button, Card, ToastProvider, useToastMethods } from '@smolitux/core';
 // Komponente, die die Toast-Methoden verwendet
 const ToastButtons = () => {
   const toast = useToastMethods();
-  
+
   return (
     <div className="flex flex-wrap gap-3">
       <Button
@@ -14,35 +14,39 @@ const ToastButtons = () => {
       >
         Erfolgs-Toast
       </Button>
-      
+
       <Button
         onClick={() => toast.error('Ein Fehler ist aufgetreten.', { title: 'Fehler' })}
         variant="outline"
       >
         Fehler-Toast
       </Button>
-      
+
       <Button
         onClick={() => toast.warning('Bitte überprüfen Sie Ihre Eingaben.', { duration: 10000 })}
       >
         Warnungs-Toast (10s)
       </Button>
-      
+
       <Button
-        onClick={() => toast.info('Diese Funktion ist noch in Entwicklung.', { position: 'bottom-center' })}
+        onClick={() =>
+          toast.info('Diese Funktion ist noch in Entwicklung.', { position: 'bottom-center' })
+        }
         variant="ghost"
       >
         Info-Toast (unten)
       </Button>
-      
+
       <Button
-        onClick={() => 
+        onClick={() =>
           toast.success('Datei wurde hochgeladen.', {
             actions: (
               <div className="mt-2">
-                <Button size="sm" variant="outline">Anzeigen</Button>
+                <Button size="sm" variant="outline">
+                  Anzeigen
+                </Button>
               </div>
-            )
+            ),
           })
         }
       >
@@ -61,7 +65,7 @@ const ToastExample = () => {
           <p className="text-gray-600 dark:text-gray-300">
             Klicken Sie auf die Buttons, um verschiedene Toast-Benachrichtigungen anzuzeigen.
           </p>
-          
+
           <ToastButtons />
         </div>
       </Card>

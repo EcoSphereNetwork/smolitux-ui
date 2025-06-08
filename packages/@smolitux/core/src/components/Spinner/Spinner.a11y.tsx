@@ -35,166 +35,167 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 /**
  * Barrierefreie Spinner-Komponente für Ladezustände
- * 
+ *
  * @example
  * ```tsx
- * <SpinnerA11y 
- *   size="md" 
- *   variant="border" 
- *   color="primary" 
- *   ariaLabel="Daten werden geladen" 
+ * <SpinnerA11y
+ *   size="md"
+ *   variant="border"
+ *   color="primary"
+ *   ariaLabel="Daten werden geladen"
  * />
  * ```
  */
-export const SpinnerA11y = forwardRef<HTMLDivElement, SpinnerProps>(({
-  size = 'md',
-  variant = 'border',
-  color = 'primary',
-  speed,
-  label = 'Wird geladen...',
-  centered = false,
-  text,
-  fullWidth = false,
-  className = '',
-  style,
-  ariaLabel,
-  description,
-  busy = true,
-  liveRegionPoliteness = 'polite',
-  atomic = true,
-  relevant,
-  ...rest
-}, ref) => {
-  // Generiere eindeutige IDs für ARIA-Attribute
-  const uniqueId = useId();
-  const spinnerId = rest.id || `spinner-${uniqueId}`;
-  const labelId = `label-${spinnerId}`;
-  const descriptionId = description ? `description-${spinnerId}` : undefined;
-  const textId = text ? `text-${spinnerId}` : undefined;
+export const SpinnerA11y = forwardRef<HTMLDivElement, SpinnerProps>(
+  (
+    {
+      size = 'md',
+      variant = 'border',
+      color = 'primary',
+      speed,
+      label = 'Wird geladen...',
+      centered = false,
+      text,
+      fullWidth = false,
+      className = '',
+      style,
+      ariaLabel,
+      description,
+      busy = true,
+      liveRegionPoliteness = 'polite',
+      atomic = true,
+      relevant,
+      ...rest
+    },
+    ref
+  ) => {
+    // Generiere eindeutige IDs für ARIA-Attribute
+    const uniqueId = useId();
+    const spinnerId = rest.id || `spinner-${uniqueId}`;
+    const labelId = `label-${spinnerId}`;
+    const descriptionId = description ? `description-${spinnerId}` : undefined;
+    const textId = text ? `text-${spinnerId}` : undefined;
 
-  // Größen-spezifische Klassen
-  const sizeClasses = {
-    xs: 'smolitux-spinner--xs',
-    sm: 'smolitux-spinner--sm',
-    md: 'smolitux-spinner--md',
-    lg: 'smolitux-spinner--lg',
-    xl: 'smolitux-spinner--xl'
-  };
+    // Größen-spezifische Klassen
+    const sizeClasses = {
+      xs: 'smolitux-spinner--xs',
+      sm: 'smolitux-spinner--sm',
+      md: 'smolitux-spinner--md',
+      lg: 'smolitux-spinner--lg',
+      xl: 'smolitux-spinner--xl',
+    };
 
-  // Varianten-spezifische Klassen
-  const variantClasses = {
-    border: 'smolitux-spinner--border',
-    grow: 'smolitux-spinner--grow',
-    dots: 'smolitux-spinner--dots',
-    ring: 'smolitux-spinner--ring'
-  };
+    // Varianten-spezifische Klassen
+    const variantClasses = {
+      border: 'smolitux-spinner--border',
+      grow: 'smolitux-spinner--grow',
+      dots: 'smolitux-spinner--dots',
+      ring: 'smolitux-spinner--ring',
+    };
 
-  // Farb-spezifische Klassen
-  const colorClasses = {
-    primary: 'smolitux-spinner--primary',
-    secondary: 'smolitux-spinner--secondary',
-    success: 'smolitux-spinner--success',
-    danger: 'smolitux-spinner--danger',
-    warning: 'smolitux-spinner--warning',
-    info: 'smolitux-spinner--info',
-    light: 'smolitux-spinner--light',
-    dark: 'smolitux-spinner--dark'
-  };
+    // Farb-spezifische Klassen
+    const colorClasses = {
+      primary: 'smolitux-spinner--primary',
+      secondary: 'smolitux-spinner--secondary',
+      success: 'smolitux-spinner--success',
+      danger: 'smolitux-spinner--danger',
+      warning: 'smolitux-spinner--warning',
+      info: 'smolitux-spinner--info',
+      light: 'smolitux-spinner--light',
+      dark: 'smolitux-spinner--dark',
+    };
 
-  // Benutzerdefinierte Animation-Geschwindigkeit
-  const customStyle = {
-    ...style,
-    ...(speed ? { '--spinner-animation-duration': `${speed}s` } as React.CSSProperties : {})
-  };
+    // Benutzerdefinierte Animation-Geschwindigkeit
+    const customStyle = {
+      ...style,
+      ...(speed ? ({ '--spinner-animation-duration': `${speed}s` } as React.CSSProperties) : {}),
+    };
 
-  // Container-Klassen
-  const containerClasses = [
-    'smolitux-spinner-container',
-    centered && 'smolitux-spinner-container--centered',
-    fullWidth && 'smolitux-spinner-container--full-width',
-    className
-  ].filter(Boolean).join(' ');
+    // Container-Klassen
+    const containerClasses = [
+      'smolitux-spinner-container',
+      centered && 'smolitux-spinner-container--centered',
+      fullWidth && 'smolitux-spinner-container--full-width',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
 
-  // Spinner-Klassen
-  const spinnerClasses = [
-    'smolitux-spinner',
-    sizeClasses[size],
-    variantClasses[variant],
-    colorClasses[color]
-  ].filter(Boolean).join(' ');
+    // Spinner-Klassen
+    const spinnerClasses = [
+      'smolitux-spinner',
+      sizeClasses[size],
+      variantClasses[variant],
+      colorClasses[color],
+    ]
+      .filter(Boolean)
+      .join(' ');
 
-  // Render-Logik für verschiedene Varianten
-  const renderSpinner = () => {
-    switch (variant) {
-      case 'dots':
-        return (
-          <div className={spinnerClasses} style={customStyle} aria-hidden="true">
-            <div className="smolitux-spinner-dot"></div>
-            <div className="smolitux-spinner-dot"></div>
-            <div className="smolitux-spinner-dot"></div>
-          </div>
-        );
-      case 'ring':
-        return (
-          <div className={spinnerClasses} style={customStyle} aria-hidden="true">
-            <div className="smolitux-spinner-ring"></div>
-          </div>
-        );
-      default:
-        return (
-          <div className={spinnerClasses} style={customStyle} aria-hidden="true"></div>
-        );
-    }
-  };
+    // Render-Logik für verschiedene Varianten
+    const renderSpinner = () => {
+      switch (variant) {
+        case 'dots':
+          return (
+            <div className={spinnerClasses} style={customStyle} aria-hidden="true">
+              <div className="smolitux-spinner-dot"></div>
+              <div className="smolitux-spinner-dot"></div>
+              <div className="smolitux-spinner-dot"></div>
+            </div>
+          );
+        case 'ring':
+          return (
+            <div className={spinnerClasses} style={customStyle} aria-hidden="true">
+              <div className="smolitux-spinner-ring"></div>
+            </div>
+          );
+        default:
+          return <div className={spinnerClasses} style={customStyle} aria-hidden="true"></div>;
+      }
+    };
 
-  // Rendere die versteckte Beschreibung
-  const renderDescription = () => {
-    if (!description) return null;
+    // Rendere die versteckte Beschreibung
+    const renderDescription = () => {
+      if (!description) return null;
+
+      return (
+        <div id={descriptionId} className="sr-only">
+          {description}
+        </div>
+      );
+    };
 
     return (
-      <div id={descriptionId} className="sr-only">
-        {description}
-      </div>
-    );
-  };
-
-  return (
-    <>
-      {renderDescription()}
-      <div 
-        ref={ref} 
-        id={spinnerId}
-        className={containerClasses} 
-        role="status"
-        aria-label={ariaLabel || label}
-        aria-busy={busy}
-        aria-live={liveRegionPoliteness}
-        aria-atomic={atomic}
-        aria-relevant={relevant}
-        aria-describedby={descriptionId}
-        {...rest}
-      >
-        {renderSpinner()}
-        
-        {text && (
-          <div 
-            id={textId}
-            className="smolitux-spinner-text"
-          >
-            {text}
-          </div>
-        )}
-        
-        <span 
-          id={labelId}
-          className="smolitux-spinner-sr-only"
+      <>
+        {renderDescription()}
+        <div
+          ref={ref}
+          id={spinnerId}
+          className={containerClasses}
+          role="status"
+          aria-label={ariaLabel || label}
+          aria-busy={busy}
+          aria-live={liveRegionPoliteness}
+          aria-atomic={atomic}
+          aria-relevant={relevant}
+          aria-describedby={descriptionId}
+          {...rest}
         >
-          {label}
-        </span>
-      </div>
-    </>
-  );
-});
+          {renderSpinner()}
+
+          {text && (
+            <div id={textId} className="smolitux-spinner-text">
+              {text}
+            </div>
+          )}
+
+          <span id={labelId} className="smolitux-spinner-sr-only">
+            {label}
+          </span>
+        </div>
+      </>
+    );
+  }
+);
 
 SpinnerA11y.displayName = 'SpinnerA11y';
 

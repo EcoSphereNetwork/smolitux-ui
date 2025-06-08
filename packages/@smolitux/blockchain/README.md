@@ -29,10 +29,7 @@ const MyComponent = () => {
   };
 
   return (
-    <WalletConnect 
-      onConnect={handleConnect}
-      supportedWallets={['MetaMask', 'WalletConnect']}
-    />
+    <WalletConnect onConnect={handleConnect} supportedWallets={['MetaMask', 'WalletConnect']} />
   );
 };
 ```

@@ -59,28 +59,28 @@ export interface AlertProps {
 
 /**
  * Alert-Komponente für Feedback und Benachrichtigungen
- * 
+ *
  * @example
  * ```tsx
  * <Alert type="success" title="Erfolg" message="Die Aktion wurde erfolgreich ausgeführt." />
  * <Alert type="error" message="Es ist ein Fehler aufgetreten." closable onClose={handleClose} />
  * <Alert type="warning" title="Achtung" message="Diese Aktion kann nicht rückgängig gemacht werden." />
  * <Alert type="info" message="Die Wartungsarbeiten beginnen in 5 Minuten." autoClose={5000} />
- * 
+ *
  * // Mit Varianten
  * <Alert type="success" variant="outline" message="Outline-Variante" />
  * <Alert type="error" variant="filled" message="Filled-Variante" />
  * <Alert type="warning" variant="subtle" message="Subtle-Variante" />
- * 
+ *
  * // Mit Animationen
  * <Alert type="info" animation="slide-right" message="Slide-Right Animation" />
  * <Alert type="success" animation="slide-down" message="Slide-Down Animation" />
- * 
+ *
  * // Mit Aktions-Buttons
- * <Alert 
- *   type="info" 
- *   title="Information" 
- *   message="Möchten Sie fortfahren?" 
+ * <Alert
+ *   type="info"
+ *   title="Information"
+ *   message="Möchten Sie fortfahren?"
  *   actions={[
  *     { label: "Abbrechen", onClick: handleCancel },
  *     { label: "Fortfahren", onClick: handleContinue, variant: "primary" }
@@ -108,7 +108,7 @@ export const Alert: React.FC<AlertProps> = ({
   compact = false,
   bordered = true,
   rounded = true,
-  shadow = false
+  shadow = false,
 }) => {
   const alertRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
@@ -117,7 +117,7 @@ export const Alert: React.FC<AlertProps> = ({
   const titleId = `${alertId}-title`;
   const messageId = `${alertId}-message`;
   const descriptionId = description ? `${alertId}-description` : undefined;
-  
+
   // Animiertes Schließen
   const handleClose = () => {
     if (onClose) {
@@ -133,24 +133,24 @@ export const Alert: React.FC<AlertProps> = ({
       }
     }
   };
-  
+
   // Auto-Close Funktionalität
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-    
+
     if (autoClose > 0 && onClose) {
       timeoutId = setTimeout(() => {
         onClose();
       }, autoClose);
     }
-    
+
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
     };
   }, [autoClose, onClose]);
-  
+
   // Auto-Focus für Screenreader
   useEffect(() => {
     if (autoFocus && alertRef.current) {
@@ -170,16 +170,40 @@ export const Alert: React.FC<AlertProps> = ({
         filledText: 'text-white dark:text-white',
         subtleBg: 'bg-green-100 dark:bg-green-900/30',
         icon: (
-          <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <svg
+            className="w-5 h-5 text-green-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
           </svg>
         ),
         filledIcon: (
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <svg
+            className="w-5 h-5 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
           </svg>
         ),
-        ariaLive: 'polite'
+        ariaLive: 'polite',
       },
       error: {
         background: 'bg-red-50 dark:bg-red-900/20',
@@ -190,16 +214,40 @@ export const Alert: React.FC<AlertProps> = ({
         filledText: 'text-white dark:text-white',
         subtleBg: 'bg-red-100 dark:bg-red-900/30',
         icon: (
-          <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <svg
+            className="w-5 h-5 text-red-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
           </svg>
         ),
         filledIcon: (
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <svg
+            className="w-5 h-5 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
           </svg>
         ),
-        ariaLive: 'assertive'
+        ariaLive: 'assertive',
       },
       warning: {
         background: 'bg-yellow-50 dark:bg-yellow-900/20',
@@ -210,16 +258,40 @@ export const Alert: React.FC<AlertProps> = ({
         filledText: 'text-white dark:text-white',
         subtleBg: 'bg-yellow-100 dark:bg-yellow-900/30',
         icon: (
-          <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          <svg
+            className="w-5 h-5 text-yellow-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            ></path>
           </svg>
         ),
         filledIcon: (
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          <svg
+            className="w-5 h-5 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            ></path>
           </svg>
         ),
-        ariaLive: 'polite'
+        ariaLive: 'polite',
       },
       info: {
         background: 'bg-blue-50 dark:bg-blue-900/20',
@@ -230,21 +302,45 @@ export const Alert: React.FC<AlertProps> = ({
         filledText: 'text-white dark:text-white',
         subtleBg: 'bg-blue-100 dark:bg-blue-900/30',
         icon: (
-          <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <svg
+            className="w-5 h-5 text-blue-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
           </svg>
         ),
         filledIcon: (
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <svg
+            className="w-5 h-5 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
           </svg>
         ),
-        ariaLive: 'polite'
-      }
+        ariaLive: 'polite',
+      },
     };
 
     const typeStyle = baseStyles[type];
-    
+
     // Varianten-spezifische Stile
     switch (variant) {
       case 'outline':
@@ -254,7 +350,7 @@ export const Alert: React.FC<AlertProps> = ({
           titleColor: typeStyle.titleColor,
           textColor: typeStyle.textColor,
           icon: typeStyle.icon,
-          ariaLive: typeStyle.ariaLive
+          ariaLive: typeStyle.ariaLive,
         };
       case 'filled':
         return {
@@ -263,7 +359,7 @@ export const Alert: React.FC<AlertProps> = ({
           titleColor: typeStyle.filledText,
           textColor: typeStyle.filledText,
           icon: typeStyle.filledIcon,
-          ariaLive: typeStyle.ariaLive
+          ariaLive: typeStyle.ariaLive,
         };
       case 'subtle':
         return {
@@ -272,7 +368,7 @@ export const Alert: React.FC<AlertProps> = ({
           titleColor: typeStyle.titleColor,
           textColor: typeStyle.textColor,
           icon: typeStyle.icon,
-          ariaLive: typeStyle.ariaLive
+          ariaLive: typeStyle.ariaLive,
         };
       default:
         return {
@@ -281,17 +377,17 @@ export const Alert: React.FC<AlertProps> = ({
           titleColor: typeStyle.titleColor,
           textColor: typeStyle.textColor,
           icon: typeStyle.icon,
-          ariaLive: typeStyle.ariaLive
+          ariaLive: typeStyle.ariaLive,
         };
     }
   };
 
   const styles = getTypeStyles();
-  
+
   // Animations-Klassen
   const getAnimationClasses = () => {
     if (!animated) return '';
-    
+
     if (isExiting) {
       switch (animation) {
         case 'fade':
@@ -316,7 +412,7 @@ export const Alert: React.FC<AlertProps> = ({
       }
     }
   };
-  
+
   // Keyboard-Handler für Schließen-Button
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape' && onClose) {
@@ -339,10 +435,10 @@ export const Alert: React.FC<AlertProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div 
+    <div
       ref={alertRef}
       id={alertId}
-      className={`${bordered ? 'border' : ''} ${rounded ? 'rounded-lg' : ''} ${shadow ? 'shadow-md' : ''} ${compact ? 'p-3' : 'p-4'} ${styles.background} ${bordered ? styles.border : ''} ${getAnimationClasses()} ${className}`} 
+      className={`${bordered ? 'border' : ''} ${rounded ? 'rounded-lg' : ''} ${shadow ? 'shadow-md' : ''} ${compact ? 'p-3' : 'p-4'} ${styles.background} ${bordered ? styles.border : ''} ${getAnimationClasses()} ${className}`}
       role="alert"
       aria-live={styles.ariaLive}
       aria-labelledby={title ? titleId : undefined}
@@ -353,14 +449,12 @@ export const Alert: React.FC<AlertProps> = ({
       onKeyDown={handleKeyDown}
     >
       <div className="flex">
-        {showIcon && (
-          <div className="flex-shrink-0">
-            {styles.icon}
-          </div>
-        )}
+        {showIcon && <div className="flex-shrink-0">{styles.icon}</div>}
         <div className={`${showIcon ? 'ml-3' : ''} flex-1`}>
           {title && (
-            <h3 id={titleId} className={`text-sm font-medium ${styles.titleColor}`}>{title}</h3>
+            <h3 id={titleId} className={`text-sm font-medium ${styles.titleColor}`}>
+              {title}
+            </h3>
           )}
           <div id={messageId} className={`text-sm ${styles.textColor} ${title ? 'mt-2' : ''}`}>
             {message}
@@ -371,7 +465,7 @@ export const Alert: React.FC<AlertProps> = ({
             </div>
           )}
           {children && <div className="mt-3">{children}</div>}
-          
+
           {/* Aktions-Buttons */}
           {actions.length > 0 && (
             <div className={`flex ${actions.length > 1 ? 'justify-end space-x-2' : ''} mt-3`}>
@@ -397,8 +491,20 @@ export const Alert: React.FC<AlertProps> = ({
             data-testid="alert-close-button"
           >
             <span className="sr-only">Schließen</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
             </svg>
           </button>
         )}

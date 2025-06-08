@@ -128,7 +128,7 @@ export interface ToastA11yProps {
 
 /**
  * Barrierefreie Toast-Komponente für Benachrichtigungen und Statusmeldungen
- * 
+ *
  * @example
  * ```tsx
  * <ToastA11y
@@ -206,7 +206,7 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
   const toastRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   // Bestimme die Rolle basierend auf den Eigenschaften
   const determineRole = () => {
     if (isAlert) return 'alert';
@@ -216,30 +216,30 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
     if (isSnackbar || isNotification) return 'log';
     return role;
   };
-  
+
   // Bestimme die ARIA-Live-Region basierend auf den Eigenschaften
   const determineAriaLive = () => {
     if (isError || isWarning) return 'assertive';
     if (isInfo || isSuccess) return 'polite';
     return ariaLive;
   };
-  
+
   // Bestimme die CSS-Klassen basierend auf den Eigenschaften
   const determineClasses = () => {
     const baseClasses = [
       'toast',
       `toast-${type}`,
       isVisible ? 'toast-visible' : 'toast-hidden',
-      className
+      className,
     ];
-    
+
     return baseClasses.filter(Boolean).join(' ');
   };
-  
+
   // Bestimme das Icon basierend auf dem Typ
   const determineIcon = () => {
     if (icon) return icon;
-    
+
     switch (type) {
       case 'success':
         return <span aria-hidden="true">✓</span>;
@@ -253,11 +253,11 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
         return null;
     }
   };
-  
+
   // Bestimme das Ankündigungsformat basierend auf den Eigenschaften
   const determineAnnounceFormat = () => {
     if (announceFormat) return announceFormat;
-    
+
     if (title && description) {
       return `${title}: ${description}`;
     } else if (title) {
@@ -265,10 +265,10 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
     } else if (description) {
       return `${description}`;
     }
-    
+
     return '';
   };
-  
+
   // Effekt für das automatische Schließen
   useEffect(() => {
     if (!isPersistent && duration > 0 && isVisible) {
@@ -276,42 +276,42 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
         if (onClose) onClose();
       }, duration);
     }
-    
+
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
     };
   }, [duration, isPersistent, isVisible, onClose]);
-  
+
   // Effekt für den Fokus
   useEffect(() => {
     if (isVisible && autoFocus && toastRef.current) {
       previousFocusRef.current = document.activeElement as HTMLElement;
       toastRef.current.focus();
     }
-    
+
     return () => {
       if (!isVisible && returnFocus && previousFocusRef.current) {
         previousFocusRef.current.focus();
       }
     };
   }, [isVisible, autoFocus, returnFocus]);
-  
+
   // Effekt für die Tastaturnavigation
   useEffect(() => {
     if (!isVisible || !keyboardNavigation) return;
-    
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isClosable) {
         if (onClose) onClose();
       }
     };
-    
+
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isVisible, keyboardNavigation, isClosable, onClose]);
-  
+
   // Rendere den Toast
   return (
     <div
@@ -334,33 +334,29 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
             {determineIcon()}
           </div>
         )}
-        
+
         <div className="toast-body">
           {title && (
             <div id={`${id}-title`} className="toast-title">
               {title}
             </div>
           )}
-          
+
           {description && (
             <div id={`${id}-description`} className="toast-description">
               {description}
             </div>
           )}
-          
-          {action && (
-            <div className="toast-action">
-              {action}
-            </div>
-          )}
+
+          {action && <div className="toast-action">{action}</div>}
         </div>
-        
+
         {icon && iconPosition === 'right' && (
           <div className="toast-icon" aria-hidden="true">
             {determineIcon()}
           </div>
         )}
-        
+
         {isClosable && (
           <button
             className="toast-close-button"
@@ -372,7 +368,7 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
           </button>
         )}
       </div>
-      
+
       {/* Screenreader-Ankündigung */}
       {screenReaderSupport && announce && (
         <div className="sr-only" aria-live={determineAriaLive()} aria-atomic="true">

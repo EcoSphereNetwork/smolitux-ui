@@ -73,14 +73,14 @@ export interface MediaPlayerProps {
 
 /**
  * MediaPlayer-Komponente für Audio- und Videowiedergabe
- * 
+ *
  * @example
  * ```tsx
- * <MediaPlayer 
- *   src="https://example.com/video.mp4" 
- *   type="video" 
- *   poster="https://example.com/poster.jpg" 
- *   controls 
+ * <MediaPlayer
+ *   src="https://example.com/video.mp4"
+ *   type="video"
+ *   poster="https://example.com/poster.jpg"
+ *   controls
  * />
  * ```
  */
@@ -187,7 +187,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   // Render sources
   const renderSources = () => {
     if (!sources || sources.length === 0) return null;
-    
+
     return sources.map((source, index) => (
       <source
         key={`source-${index}`}
@@ -201,7 +201,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   // Render tracks
   const renderTracks = () => {
     if (!tracks || tracks.length === 0) return null;
-    
+
     return tracks.map((track, index) => (
       <track
         key={`track-${index}`}
@@ -219,7 +219,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   const playMedia = () => {
     const mediaElement = type === 'audio' ? audioRef.current : videoRef.current;
     if (mediaElement) {
-      mediaElement.play().catch(error => {
+      mediaElement.play().catch((error) => {
         console.error('Error playing media:', error);
       });
     }
@@ -294,10 +294,10 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   // Formatiere Zeit (Sekunden -> MM:SS)
   const formatTime = (seconds: number): string => {
     if (isNaN(seconds)) return '00:00';
-    
+
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
-    
+
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
@@ -307,7 +307,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   if (height) styleProps.height = height;
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`relative ${className}`}
       data-testid={dataTestId}
@@ -360,17 +360,17 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
           Your browser does not support the video element.
         </video>
       )}
-      
+
       {controls && !hideControls && (
-        <div 
-          data-testid={`${dataTestId}-controls`} 
+        <div
+          data-testid={`${dataTestId}-controls`}
           className={`absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 transition-opacity duration-300 ${isPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`}
           aria-label="Media controls"
         >
           {/* Progress bar */}
-          <div 
-            data-testid={`${dataTestId}-progress-bar`} 
-            ref={progressBarRef} 
+          <div
+            data-testid={`${dataTestId}-progress-bar`}
+            ref={progressBarRef}
             className="h-2 bg-gray-600 w-full cursor-pointer"
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -388,108 +388,191 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
             aria-valuemax={100}
             aria-valuenow={duration ? (currentTime / duration) * 100 : 0}
           >
-            <div 
-              className="h-full bg-primary-500" 
+            <div
+              className="h-full bg-primary-500"
               style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
             ></div>
           </div>
-          
+
           {/* Control buttons */}
           <div className="flex items-center justify-between p-2">
             <div className="flex items-center">
               {/* Play/Pause button */}
               {isPlaying ? (
-                <button 
+                <button
                   type="button"
-                  aria-label="Pause" 
+                  aria-label="Pause"
                   className="mr-2 text-white hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded p-1"
                   onClick={pauseMedia}
                   data-testid={`${dataTestId}-pause-button`}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </button>
               ) : (
-                <button 
+                <button
                   type="button"
-                  aria-label="Play" 
+                  aria-label="Play"
                   className="mr-2 text-white hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded p-1"
                   onClick={playMedia}
                   data-testid={`${dataTestId}-play-button`}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </button>
               )}
-              
+
               {/* Mute/Unmute button */}
               {isMuted ? (
-                <button 
+                <button
                   type="button"
-                  aria-label="Unmute" 
+                  aria-label="Unmute"
                   className="mr-2 text-white hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded p-1"
                   onClick={unmuteMedia}
                   data-testid={`${dataTestId}-unmute-button`}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      clipRule="evenodd"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                    />
                   </svg>
                 </button>
               ) : (
-                <button 
+                <button
                   type="button"
-                  aria-label="Mute" 
+                  aria-label="Mute"
                   className="mr-2 text-white hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded p-1"
                   onClick={muteMedia}
                   data-testid={`${dataTestId}-mute-button`}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    />
                   </svg>
                 </button>
               )}
-              
+
               {/* Volume slider */}
               <div className="relative mr-4 w-24">
-                <input 
-                  type="range" 
-                  min="0" 
-                  max="1" 
-                  step="0.01" 
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
                   value={volume}
-                  aria-label="Volume" 
+                  aria-label="Volume"
                   className="w-full h-1 bg-gray-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                   onChange={(e) => changeVolume(parseFloat(e.target.value))}
                   data-testid={`${dataTestId}-volume-slider`}
                 />
               </div>
-              
+
               {/* Time display */}
               <span className="text-white text-sm mr-4" data-testid={`${dataTestId}-time-display`}>
                 {formatTime(currentTime)} / {formatTime(duration)}
               </span>
             </div>
-            
+
             <div className="flex items-center">
               {/* Fullscreen button */}
-              <button 
+              <button
                 type="button"
-                aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
                 className="text-white hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded p-1"
                 onClick={toggleFullscreen}
                 data-testid={`${dataTestId}-fullscreen-button`}
               >
                 {isFullscreen ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 9V4.5M9 9H4.5M15 9H19.5M15 9V4.5M15 15v4.5M15 15h4.5M9 15H4.5M9 15v4.5" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 9V4.5M9 9H4.5M15 9H19.5M15 9V4.5M15 15v4.5M15 15h4.5M9 15H4.5M9 15v4.5"
+                    />
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+                    />
                   </svg>
                 )}
               </button>

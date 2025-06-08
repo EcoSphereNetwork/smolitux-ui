@@ -99,10 +99,7 @@ export const TabView: React.FC<TabViewProps> = ({
   };
 
   // Variant styles
-  const getVariantStyles = (
-    variant: string,
-    isActive: boolean
-  ): React.CSSProperties => {
+  const getVariantStyles = (variant: string, isActive: boolean): React.CSSProperties => {
     switch (variant) {
       case 'line':
         return {

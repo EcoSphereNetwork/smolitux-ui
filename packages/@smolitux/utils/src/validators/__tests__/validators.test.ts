@@ -13,7 +13,7 @@ import {
   isHexColor,
   isJSON,
   isEthereumAddress,
-  isBase64
+  isBase64,
 } from './validators';
 
 describe('validators', () => {

@@ -79,7 +79,7 @@ export interface StepperProps {
 
 /**
  * Stepper-Komponente für mehrstufige Prozesse
- * 
+ *
  * @example
  * ```tsx
  * <Stepper
@@ -103,7 +103,7 @@ export const Stepper: React.FC<StepperProps> = ({
   className = '',
   showConnector = true,
   clickable = true,
-  ariaLabel = 'Stepper'
+  ariaLabel = 'Stepper',
 }) => {
   const nextStep = () => {
     if (activeStep < steps.length - 1) {
@@ -139,7 +139,7 @@ export const Stepper: React.FC<StepperProps> = ({
       nextStep,
       prevStep,
       goToStep,
-      getStepStatus
+      getStepStatus,
     }),
     [activeStep, steps, orientation, variant, size, clickable]
   );
@@ -167,7 +167,7 @@ export const Stepper: React.FC<StepperProps> = ({
                 smolitux-stepper-step--${getStepStatus(index)}
               `}
             >
-              <div 
+              <div
                 className="smolitux-stepper-step-header"
                 onClick={() => !step.disabled && goToStep(index)}
                 role={clickable ? 'button' : undefined}
@@ -184,27 +184,29 @@ export const Stepper: React.FC<StepperProps> = ({
                 }}
               >
                 <div className="smolitux-stepper-step-icon">
-                  {step.icon || (
-                    getStepStatus(index) === 'completed' ? (
-                      <svg className="smolitux-stepper-check-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  {step.icon ||
+                    (getStepStatus(index) === 'completed' ? (
+                      <svg
+                        className="smolitux-stepper-check-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                       </svg>
                     ) : (
                       <span>{index + 1}</span>
-                    )
-                  )}
+                    ))}
                 </div>
                 <div className="smolitux-stepper-step-label">
                   <div className="smolitux-stepper-step-title">{step.title}</div>
                   {step.description && (
                     <div className="smolitux-stepper-step-description">{step.description}</div>
                   )}
-                  {step.optional && (
-                    <div className="smolitux-stepper-step-optional">Optional</div>
-                  )}
+                  {step.optional && <div className="smolitux-stepper-step-optional">Optional</div>}
                 </div>
               </div>
-              
+
               {showConnector && index < steps.length - 1 && (
                 <div className="smolitux-stepper-connector">
                   <span className="smolitux-stepper-connector-line"></span>
@@ -213,12 +215,8 @@ export const Stepper: React.FC<StepperProps> = ({
             </div>
           ))}
         </div>
-        
-        {children && (
-          <div className="smolitux-stepper-content">
-            {children}
-          </div>
-        )}
+
+        {children && <div className="smolitux-stepper-content">{children}</div>}
       </div>
     </StepperContext.Provider>
   );
@@ -234,14 +232,11 @@ export interface StepperContentProps {
 /**
  * StepperContent-Komponente für den Inhalt des aktuellen Schritts
  */
-export const StepperContent: React.FC<StepperContentProps> = ({
-  children,
-  className = ''
-}) => {
+export const StepperContent: React.FC<StepperContentProps> = ({ children, className = '' }) => {
   const { activeStep } = useStepperContext();
-  
+
   return (
-    <div 
+    <div
       className={`smolitux-stepper-content-container ${className}`}
       role="region"
       aria-label={`Inhalt für Schritt ${activeStep + 1}`}
@@ -284,62 +279,63 @@ export const StepperActions: React.FC<StepperActionsProps> = ({
   onBack,
   onNext,
   onComplete,
-  showDefaultButtons = true
+  showDefaultButtons = true,
 }) => {
   const { activeStep, steps, prevStep, nextStep } = useStepperContext();
-  
+
   const handleBack = () => {
     prevStep();
     onBack?.();
   };
-  
+
   const handleNext = () => {
     nextStep();
     onNext?.();
   };
-  
+
   const handleComplete = () => {
     onComplete?.();
   };
-  
+
   const isLastStep = activeStep === steps.length - 1;
-  
+
   return (
-    <div 
+    <div
       className={`smolitux-stepper-actions ${className}`}
       role="group"
       aria-label="Stepper-Aktionen"
     >
-      {children || (showDefaultButtons && (
-        <>
-          <button
-            className="smolitux-stepper-back-button"
-            onClick={handleBack}
-            disabled={activeStep === 0}
-            aria-label={`${backLabel}${activeStep === 0 ? ', deaktiviert' : ''}`}
-          >
-            {backLabel}
-          </button>
-          
-          {isLastStep ? (
+      {children ||
+        (showDefaultButtons && (
+          <>
             <button
-              className="smolitux-stepper-complete-button"
-              onClick={handleComplete}
-              aria-label={completeLabel}
+              className="smolitux-stepper-back-button"
+              onClick={handleBack}
+              disabled={activeStep === 0}
+              aria-label={`${backLabel}${activeStep === 0 ? ', deaktiviert' : ''}`}
             >
-              {completeLabel}
+              {backLabel}
             </button>
-          ) : (
-            <button
-              className="smolitux-stepper-next-button"
-              onClick={handleNext}
-              aria-label={nextLabel}
-            >
-              {nextLabel}
-            </button>
-          )}
-        </>
-      ))}
+
+            {isLastStep ? (
+              <button
+                className="smolitux-stepper-complete-button"
+                onClick={handleComplete}
+                aria-label={completeLabel}
+              >
+                {completeLabel}
+              </button>
+            ) : (
+              <button
+                className="smolitux-stepper-next-button"
+                onClick={handleNext}
+                aria-label={nextLabel}
+              >
+                {nextLabel}
+              </button>
+            )}
+          </>
+        ))}
     </div>
   );
 };

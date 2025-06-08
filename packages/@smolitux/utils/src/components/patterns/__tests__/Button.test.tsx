@@ -14,9 +14,7 @@ describe('Button', () => {
   });
 
   it('applies custom style', () => {
-    const { container } = render(
-      <Button style={{ backgroundColor: 'red' }}>Click Me</Button>
-    );
+    const { container } = render(<Button style={{ backgroundColor: 'red' }}>Click Me</Button>);
     expect(container.firstChild).toHaveStyle('background-color: red');
   });
 
@@ -29,14 +27,22 @@ describe('Button', () => {
 
   it('does not call onClick when disabled', () => {
     const handleClick = jest.fn();
-    render(<Button onClick={handleClick} disabled>Click Me</Button>);
+    render(
+      <Button onClick={handleClick} disabled>
+        Click Me
+      </Button>
+    );
     fireEvent.click(screen.getByText('Click Me'));
     expect(handleClick).not.toHaveBeenCalled();
   });
 
   it('does not call onClick when loading', () => {
     const handleClick = jest.fn();
-    render(<Button onClick={handleClick} loading>Click Me</Button>);
+    render(
+      <Button onClick={handleClick} loading>
+        Click Me
+      </Button>
+    );
     fireEvent.click(screen.getByText('Click Me'));
     expect(handleClick).not.toHaveBeenCalled();
   });
@@ -88,12 +94,16 @@ describe('Button', () => {
     expect(screen.getByText('Solid').closest('button')).toHaveStyle('color: white');
 
     rerender(<Button variant="outline">Outline</Button>);
-    expect(screen.getByText('Outline').closest('button')).toHaveStyle('background-color: transparent');
+    expect(screen.getByText('Outline').closest('button')).toHaveStyle(
+      'background-color: transparent'
+    );
     expect(screen.getByText('Outline').closest('button')).toHaveStyle('color: #3b82f6');
     expect(screen.getByText('Outline').closest('button')).toHaveStyle('border-color: #3b82f6');
 
     rerender(<Button variant="ghost">Ghost</Button>);
-    expect(screen.getByText('Ghost').closest('button')).toHaveStyle('background-color: transparent');
+    expect(screen.getByText('Ghost').closest('button')).toHaveStyle(
+      'background-color: transparent'
+    );
     expect(screen.getByText('Ghost').closest('button')).toHaveStyle('color: #3b82f6');
     expect(screen.getByText('Ghost').closest('button')).toHaveStyle('border-color: transparent');
 

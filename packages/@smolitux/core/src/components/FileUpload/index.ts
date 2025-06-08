@@ -6,7 +6,7 @@ export type { FileUploadProps, FileInfo } from './FileUpload';
 
 // Erweitere FileUpload um die A11y-Komponente
 export const FileUpload = Object.assign(BaseFileUpload, {
-  A11y: FileUploadA11y
+  A11y: FileUploadA11y,
 });
 
 // Fuer Abwaertskompatibilitaet mit dem bestehenden Export

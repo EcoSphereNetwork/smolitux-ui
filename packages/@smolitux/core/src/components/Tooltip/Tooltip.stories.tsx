@@ -14,10 +14,18 @@ const meta: Meta<typeof Tooltip> = {
     placement: {
       control: { type: 'select' },
       options: [
-        'top', 'top-start', 'top-end',
-        'right', 'right-start', 'right-end',
-        'bottom', 'bottom-start', 'bottom-end',
-        'left', 'left-start', 'left-end'
+        'top',
+        'top-start',
+        'top-end',
+        'right',
+        'right-start',
+        'right-end',
+        'bottom',
+        'bottom-start',
+        'bottom-end',
+        'left',
+        'left-start',
+        'left-end',
       ],
     },
     delay: { control: { type: 'number' } },
@@ -71,7 +79,7 @@ export const Placements: Story = {
       <Tooltip content="Top End" placement="top-end">
         <Button className="w-full">Top End</Button>
       </Tooltip>
-      
+
       <Tooltip content="Right" placement="right">
         <Button className="w-full">Right</Button>
       </Tooltip>
@@ -81,7 +89,7 @@ export const Placements: Story = {
       <Tooltip content="Right End" placement="right-end">
         <Button className="w-full">Right End</Button>
       </Tooltip>
-      
+
       <Tooltip content="Bottom" placement="bottom">
         <Button className="w-full">Bottom</Button>
       </Tooltip>
@@ -91,7 +99,7 @@ export const Placements: Story = {
       <Tooltip content="Bottom End" placement="bottom-end">
         <Button className="w-full">Bottom End</Button>
       </Tooltip>
-      
+
       <Tooltip content="Left" placement="left">
         <Button className="w-full">Left</Button>
       </Tooltip>
@@ -110,7 +118,9 @@ export const WithHTMLContent: Story = {
     content: (
       <div>
         <h3 className="font-bold mb-2">Formatierter Tooltip</h3>
-        <p>Tooltips können auch <strong>HTML-Inhalte</strong> enthalten.</p>
+        <p>
+          Tooltips können auch <strong>HTML-Inhalte</strong> enthalten.
+        </p>
         <ul className="list-disc pl-4 mt-2">
           <li>Punkt 1</li>
           <li>Punkt 2</li>

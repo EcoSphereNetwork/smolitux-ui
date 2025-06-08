@@ -1,9 +1,19 @@
-import { SentimentDisplay as BaseSentimentDisplay, SentimentScore, EmotionScore, SentimentTrend, SentimentTopic, SentimentDisplayProps } from './SentimentDisplay';
-import { default as SentimentDisplayA11y, SentimentDisplayA11yProps } from './SentimentDisplay.a11y';
+import {
+  SentimentDisplay as BaseSentimentDisplay,
+  SentimentScore,
+  EmotionScore,
+  SentimentTrend,
+  SentimentTopic,
+  SentimentDisplayProps,
+} from './SentimentDisplay';
+import {
+  default as SentimentDisplayA11y,
+  SentimentDisplayA11yProps,
+} from './SentimentDisplay.a11y';
 
 // Erweitere SentimentDisplay um die A11y-Komponente
 const SentimentDisplay = Object.assign(BaseSentimentDisplay, {
-  A11y: SentimentDisplayA11y
+  A11y: SentimentDisplayA11y,
 });
 
 // Exportiere Komponenten und Typen

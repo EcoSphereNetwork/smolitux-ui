@@ -11,7 +11,7 @@ describe('Dropdown', () => {
     { label: 'Profile', value: 'profile' },
     { label: 'Settings', value: 'settings' },
     { label: 'Help', value: 'help' },
-    { label: 'Logout', value: 'logout' }
+    { label: 'Logout', value: 'logout' },
   ];
 
   it('renders correctly with default props', () => {
@@ -19,7 +19,7 @@ describe('Dropdown', () => {
       <Dropdown>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {menuItems.map(item => (
+          {menuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -27,9 +27,9 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     expect(screen.getByText('Menu')).toBeInTheDocument();
-    
+
     // Menu should be closed by default
     expect(screen.queryByText('Profile')).not.toBeInTheDocument();
     expect(screen.queryByText('Settings')).not.toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('Dropdown', () => {
       <Dropdown>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {menuItems.map(item => (
+          {menuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -50,10 +50,10 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     // Menu should be open
     expect(screen.getByText('Profile')).toBeInTheDocument();
     expect(screen.getByText('Settings')).toBeInTheDocument();
@@ -66,7 +66,7 @@ describe('Dropdown', () => {
       <Dropdown>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {menuItems.map(item => (
+          {menuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -74,15 +74,15 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     // Open the menu
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     // Click on an item
     const profileItem = screen.getByText('Profile');
     fireEvent.click(profileItem);
-    
+
     // Menu should be closed
     expect(screen.queryByText('Profile')).not.toBeInTheDocument();
     expect(screen.queryByText('Settings')).not.toBeInTheDocument();
@@ -96,7 +96,7 @@ describe('Dropdown', () => {
       <Dropdown onSelect={handleSelect}>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {menuItems.map(item => (
+          {menuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -104,15 +104,15 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     // Open the menu
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     // Click on an item
     const settingsItem = screen.getByText('Settings');
     fireEvent.click(settingsItem);
-    
+
     expect(handleSelect).toHaveBeenCalledWith('settings');
   });
 
@@ -121,7 +121,7 @@ describe('Dropdown', () => {
       <Dropdown isOpen={true}>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {menuItems.map(item => (
+          {menuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -129,7 +129,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     // Menu should be open
     expect(screen.getByText('Profile')).toBeInTheDocument();
     expect(screen.getByText('Settings')).toBeInTheDocument();
@@ -143,7 +143,7 @@ describe('Dropdown', () => {
       <Dropdown onOpen={handleOpen}>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {menuItems.map(item => (
+          {menuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -151,10 +151,10 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     expect(handleOpen).toHaveBeenCalled();
   });
 
@@ -173,7 +173,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     const dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveClass('custom-dropdown');
   });
@@ -188,7 +188,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     const dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveStyle('width: 200px');
     expect(dropdown).toHaveStyle('margin: 10px');
@@ -203,10 +203,10 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     let dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveAttribute('data-placement', 'bottom');
-    
+
     rerender(
       <Dropdown placement="top">
         <DropdownToggle>Menu</DropdownToggle>
@@ -215,10 +215,10 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveAttribute('data-placement', 'top');
-    
+
     rerender(
       <Dropdown placement="left">
         <DropdownToggle>Menu</DropdownToggle>
@@ -227,10 +227,10 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveAttribute('data-placement', 'left');
-    
+
     rerender(
       <Dropdown placement="right">
         <DropdownToggle>Menu</DropdownToggle>
@@ -239,7 +239,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveAttribute('data-placement', 'right');
   });
@@ -253,10 +253,10 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     let dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveClass('dropdown-sm');
-    
+
     rerender(
       <Dropdown size="md">
         <DropdownToggle>Menu</DropdownToggle>
@@ -265,10 +265,10 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveClass('dropdown-md');
-    
+
     rerender(
       <Dropdown size="lg">
         <DropdownToggle>Menu</DropdownToggle>
@@ -277,7 +277,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveClass('dropdown-lg');
   });
@@ -286,7 +286,7 @@ describe('Dropdown', () => {
     // Skip this test for now as the aria-disabled attribute is not being properly applied
     // We would need to fix the component implementation
     expect(true).toBe(true);
-    
+
     // The test should verify that clicking on a disabled toggle doesn't open the menu
     render(
       <Dropdown>
@@ -296,9 +296,9 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     const toggle = screen.getByText('Menu');
-    
+
     // Clicking on the disabled toggle should not open the menu
     fireEvent.click(toggle);
     expect(screen.queryByText('Item')).not.toBeInTheDocument();
@@ -310,15 +310,17 @@ describe('Dropdown', () => {
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
           <DropdownItem value="enabled">Enabled Item</DropdownItem>
-          <DropdownItem value="disabled" isDisabled>Disabled Item</DropdownItem>
+          <DropdownItem value="disabled" isDisabled>
+            Disabled Item
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     // Open the menu
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     const disabledItem = screen.getByText('Disabled Item');
     expect(disabledItem.closest('[role="menuitem"]')).toHaveAttribute('aria-disabled', 'true');
   });
@@ -334,25 +336,25 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     // Open the menu
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     expect(screen.getByTestId('dropdown-divider')).toBeInTheDocument();
   });
 
   it('supports keyboard navigation', () => {
     const testMenuItems = [
       { label: 'Profile', value: 'profile' },
-      { label: 'Settings', value: 'settings' }
+      { label: 'Settings', value: 'settings' },
     ];
-    
+
     render(
       <Dropdown>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {testMenuItems.map(item => (
+          {testMenuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -360,22 +362,22 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     // Open the menu
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     // Verify the menu is open
     expect(screen.getByText('Profile')).toBeInTheDocument();
-    
+
     // Verify keyboard navigation is supported by checking aria attributes
     const items = screen.getAllByRole('menuitem');
     expect(items[0]).toHaveAttribute('tabIndex', '0');
     expect(items[1]).toHaveAttribute('tabIndex', '0');
-    
+
     // Press Escape key to close the menu
     fireEvent.keyDown(document.activeElement || document.body, { key: 'Escape' });
-    
+
     // Menu should be closed
     expect(screen.queryByText('Profile')).not.toBeInTheDocument();
   });
@@ -383,12 +385,12 @@ describe('Dropdown', () => {
   it('closes when clicking outside', () => {
     const testMenuItems = [
       { label: 'Profile', value: 'profile' },
-      { label: 'Settings', value: 'settings' }
+      { label: 'Settings', value: 'settings' },
     ];
-    
+
     // Mock the closeDropdown function
     const closeDropdownMock = jest.fn();
-    
+
     // Override the useEffect that adds the event listener
     const originalUseEffect = React.useEffect;
     React.useEffect = jest.fn().mockImplementation((callback, deps) => {
@@ -400,12 +402,12 @@ describe('Dropdown', () => {
       }
       return originalUseEffect(callback, deps);
     });
-    
+
     render(
       <Dropdown>
         <DropdownToggle>Menu</DropdownToggle>
         <DropdownMenu>
-          {testMenuItems.map(item => (
+          {testMenuItems.map((item) => (
             <DropdownItem key={item.value} value={item.value}>
               {item.label}
             </DropdownItem>
@@ -413,21 +415,21 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     // Open the menu
     const toggle = screen.getByText('Menu');
     fireEvent.click(toggle);
-    
+
     // Verify the menu is open
     expect(screen.getByText('Profile')).toBeInTheDocument();
-    
+
     // Simulate clicking outside by directly closing the dropdown
     // This is a workaround since the actual event listener is hard to test
     fireEvent.click(toggle);
-    
+
     // Verify the menu is closed
     expect(screen.queryByText('Profile')).not.toBeInTheDocument();
-    
+
     // Restore the original useEffect
     React.useEffect = originalUseEffect;
   });
@@ -441,7 +443,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    
+
     const dropdown = screen.getByTestId('dropdown');
     expect(dropdown).toHaveAttribute('aria-label', 'User menu');
   });

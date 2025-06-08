@@ -12,17 +12,17 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if all items are rendered
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Products')).toBeInTheDocument();
     expect(screen.getByText('Category')).toBeInTheDocument();
     expect(screen.getByText('Item')).toBeInTheDocument();
-    
+
     // Check if the current page is marked correctly
     expect(screen.getByText('Item').closest('li')).toHaveAttribute('aria-current', 'page');
   });
-  
+
   it('renders with custom separator', () => {
     render(
       <Breadcrumb separator=">">
@@ -31,12 +31,12 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if the custom separator is used
     const separators = screen.getAllByText('>');
     expect(separators).toHaveLength(2); // Two separators for three items
   });
-  
+
   it('renders with custom separator icon', () => {
     render(
       <Breadcrumb separator={<span data-testid="custom-separator">/</span>}>
@@ -45,12 +45,12 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if the custom separator icon is used
     const separators = screen.getAllByTestId('custom-separator');
     expect(separators).toHaveLength(2); // Two separators for three items
   });
-  
+
   it('renders with links', () => {
     render(
       <Breadcrumb>
@@ -63,15 +63,15 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if links are rendered
     expect(screen.getByText('Home').closest('a')).toHaveAttribute('href', '/');
     expect(screen.getByText('Products').closest('a')).toHaveAttribute('href', '/products');
-    
+
     // Current page should not be a link
     expect(screen.getByText('Item').closest('a')).toBeNull();
   });
-  
+
   it('renders with custom spacing', () => {
     render(
       <Breadcrumb spacing="space-x-8">
@@ -80,12 +80,12 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if the breadcrumb has the correct spacing class
     const breadcrumb = screen.getByRole('navigation');
     expect(breadcrumb.firstChild).toHaveClass('space-x-8');
   });
-  
+
   it('renders with custom className', () => {
     render(
       <Breadcrumb className="custom-breadcrumb">
@@ -93,12 +93,12 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if the custom class is applied
     const breadcrumb = screen.getByRole('navigation');
     expect(breadcrumb).toHaveClass('custom-breadcrumb');
   });
-  
+
   it('renders BreadcrumbItem with custom className', () => {
     render(
       <Breadcrumb>
@@ -106,12 +106,12 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if the custom class is applied to the item
     const item = screen.getByText('Home').closest('li');
     expect(item).toHaveClass('custom-item');
   });
-  
+
   it('renders with custom styles', () => {
     render(
       <Breadcrumb style={{ marginTop: '20px' }}>
@@ -119,7 +119,7 @@ describe('Breadcrumb Component', () => {
         <BreadcrumbItem isCurrentPage>Item</BreadcrumbItem>
       </Breadcrumb>
     );
-    
+
     // Check if the custom style is applied
     const breadcrumb = screen.getByRole('navigation');
     expect(breadcrumb).toHaveStyle({ marginTop: '20px' });

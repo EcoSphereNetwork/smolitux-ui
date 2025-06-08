@@ -24,5 +24,7 @@ export interface GridProps {
   /** Ausrichtung der Elemente */
   align?: ResponsiveProperty<'start' | 'center' | 'end' | 'stretch'>;
   /** Ausrichtung der Elemente in der Zeile */
-  justify?: ResponsiveProperty<'start' | 'center' | 'end' | 'stretch' | 'space-between' | 'space-around' | 'space-evenly'>;
+  justify?: ResponsiveProperty<
+    'start' | 'center' | 'end' | 'stretch' | 'space-between' | 'space-around' | 'space-evenly'
+  >;
 }

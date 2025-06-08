@@ -170,17 +170,17 @@ export const FormGroup: Story = {
     <div className="p-4 border rounded-lg">
       <h3 className="text-lg font-medium mb-4">Nutzungsbedingungen</h3>
       <div className="flex flex-col space-y-3">
-        <Checkbox 
-          label="Ich akzeptiere die Nutzungsbedingungen" 
-          required 
+        <Checkbox
+          label="Ich akzeptiere die Nutzungsbedingungen"
+          required
           helperText="Sie müssen die Nutzungsbedingungen akzeptieren, um fortzufahren"
         />
-        <Checkbox 
-          label="Ich möchte Newsletter erhalten" 
+        <Checkbox
+          label="Ich möchte Newsletter erhalten"
           helperText="Wir senden Ihnen gelegentlich Updates zu unseren Produkten"
         />
-        <Checkbox 
-          label="Ich erlaube die Verwendung von Cookies" 
+        <Checkbox
+          label="Ich erlaube die Verwendung von Cookies"
           helperText="Cookies helfen uns, Ihre Erfahrung zu verbessern"
         />
       </div>

@@ -43,17 +43,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       ...style,
     };
 
-    const hoverClass = hoverable
-      ? 'hover:shadow-md hover:transform hover:translate-y-[-2px]'
-      : '';
+    const hoverClass = hoverable ? 'hover:shadow-md hover:transform hover:translate-y-[-2px]' : '';
 
     return (
-      <Box
-        ref={ref}
-        className={`${className} ${hoverClass}`}
-        style={cardStyle}
-        {...rest}
-      >
+      <Box ref={ref} className={`${className} ${hoverClass}`} style={cardStyle} {...rest}>
         {children}
       </Box>
     );

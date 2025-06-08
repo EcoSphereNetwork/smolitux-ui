@@ -46,12 +46,12 @@ describe('TextArea Snapshots', () => {
 
   it('renders textarea with different sizes correctly', () => {
     const sizes = ['sm', 'md', 'lg'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(<TextArea size={size as any} />);
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`TextArea with size ${size}`);
     });
@@ -59,12 +59,12 @@ describe('TextArea Snapshots', () => {
 
   it('renders textarea with different variants correctly', () => {
     const variants = ['outline', 'filled', 'unstyled'];
-    
-    const fragments = variants.map(variant => {
+
+    const fragments = variants.map((variant) => {
       const { asFragment } = render(<TextArea variant={variant as any} />);
       return { variant, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ variant, fragment }) => {
       expect(fragment).toMatchSnapshot(`TextArea with variant ${variant}`);
     });
@@ -127,7 +127,7 @@ describe('TextArea Snapshots', () => {
 
   it('renders textarea with all features enabled correctly', () => {
     const { asFragment } = render(
-      <TextArea 
+      <TextArea
         label="Description"
         helperText="Enter a description"
         placeholder="Enter description here"

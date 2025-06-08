@@ -4,45 +4,47 @@ Die Input-Komponente ist ein grundlegendes Formular-Element für die Texteingabe
 
 ## Eigenschaften
 
-| Eigenschaft | Typ | Standard | Beschreibung |
-|-------------|-----|----------|--------------|
-| `label` | `ReactNode` | - | Text-Label für das Input-Feld |
-| `helperText` | `ReactNode` | - | Hilfetext unter dem Input-Feld |
-| `error` | `ReactNode` | - | Fehlermeldung |
-| `successMessage` | `ReactNode` | - | Erfolgsmeldung |
-| `leftIcon` | `ReactNode` | - | Icon links im Input-Feld |
-| `rightIcon` | `ReactNode` | - | Icon rechts im Input-Feld |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Größe des Input-Felds |
-| `variant` | `'outline' \| 'filled' \| 'flushed' \| 'unstyled'` | `'outline'` | Visuelle Variante |
-| `type` | `InputType` | `'text'` | HTML-Input-Typ (text, password, email, etc.) |
-| `fullWidth` | `boolean` | `false` | Input nimmt die volle verfügbare Breite ein |
-| `isLoading` | `boolean` | `false` | Zeigt einen Ladezustand an |
-| `isValid` | `boolean` | `false` | Zeigt einen gültigen Zustand an |
-| `isInvalid` | `boolean` | `false` | Zeigt einen ungültigen Zustand an |
-| `isSuccess` | `boolean` | `false` | Zeigt einen erfolgreichen Zustand an |
-| `isDisabled` | `boolean` | `false` | Deaktiviert das Input-Feld |
-| `isRequired` | `boolean` | `false` | Markiert das Input-Feld als erforderlich |
-| `isReadOnly` | `boolean` | `false` | Macht das Input-Feld schreibgeschützt |
-| `showPasswordToggle` | `boolean` | `false` | Zeigt einen Button zum Umschalten der Passwort-Sichtbarkeit |
-| `isClearable` | `boolean` | `false` | Zeigt einen Button zum Löschen des Inhalts |
-| `prefix` | `ReactNode` | - | Präfix vor dem Text (z.B. Währungssymbol) |
-| `suffix` | `ReactNode` | - | Suffix nach dem Text (z.B. Einheit) |
-| `showCounter` | `boolean` | `false` | Zeigt einen Zeichenzähler an |
-| `maxLength` | `number` | - | Maximale Anzahl von Zeichen |
-| `showProgressBar` | `boolean` | `false` | Zeigt einen Fortschrittsbalken an |
-| `onChange` | `(e: React.ChangeEvent<HTMLInputElement>) => void` | - | Callback bei Wertänderung |
-| `onFocus` | `(e: React.FocusEvent<HTMLInputElement>) => void` | - | Callback bei Fokussierung |
-| `onBlur` | `(e: React.FocusEvent<HTMLInputElement>) => void` | - | Callback bei Fokusverlust |
+| Eigenschaft          | Typ                                                | Standard    | Beschreibung                                                |
+| -------------------- | -------------------------------------------------- | ----------- | ----------------------------------------------------------- |
+| `label`              | `ReactNode`                                        | -           | Text-Label für das Input-Feld                               |
+| `helperText`         | `ReactNode`                                        | -           | Hilfetext unter dem Input-Feld                              |
+| `error`              | `ReactNode`                                        | -           | Fehlermeldung                                               |
+| `successMessage`     | `ReactNode`                                        | -           | Erfolgsmeldung                                              |
+| `leftIcon`           | `ReactNode`                                        | -           | Icon links im Input-Feld                                    |
+| `rightIcon`          | `ReactNode`                                        | -           | Icon rechts im Input-Feld                                   |
+| `size`               | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`             | `'md'`      | Größe des Input-Felds                                       |
+| `variant`            | `'outline' \| 'filled' \| 'flushed' \| 'unstyled'` | `'outline'` | Visuelle Variante                                           |
+| `type`               | `InputType`                                        | `'text'`    | HTML-Input-Typ (text, password, email, etc.)                |
+| `fullWidth`          | `boolean`                                          | `false`     | Input nimmt die volle verfügbare Breite ein                 |
+| `isLoading`          | `boolean`                                          | `false`     | Zeigt einen Ladezustand an                                  |
+| `isValid`            | `boolean`                                          | `false`     | Zeigt einen gültigen Zustand an                             |
+| `isInvalid`          | `boolean`                                          | `false`     | Zeigt einen ungültigen Zustand an                           |
+| `isSuccess`          | `boolean`                                          | `false`     | Zeigt einen erfolgreichen Zustand an                        |
+| `isDisabled`         | `boolean`                                          | `false`     | Deaktiviert das Input-Feld                                  |
+| `isRequired`         | `boolean`                                          | `false`     | Markiert das Input-Feld als erforderlich                    |
+| `isReadOnly`         | `boolean`                                          | `false`     | Macht das Input-Feld schreibgeschützt                       |
+| `showPasswordToggle` | `boolean`                                          | `false`     | Zeigt einen Button zum Umschalten der Passwort-Sichtbarkeit |
+| `isClearable`        | `boolean`                                          | `false`     | Zeigt einen Button zum Löschen des Inhalts                  |
+| `prefix`             | `ReactNode`                                        | -           | Präfix vor dem Text (z.B. Währungssymbol)                   |
+| `suffix`             | `ReactNode`                                        | -           | Suffix nach dem Text (z.B. Einheit)                         |
+| `leftAddon`          | `ReactNode`                                        | -           | Element links neben dem Eingabefeld                         |
+| `rightAddon`         | `ReactNode`                                        | -           | Element rechts neben dem Eingabefeld                        |
+| `showCounter`        | `boolean`                                          | `false`     | Zeigt einen Zeichenzähler an                                |
+| `maxLength`          | `number`                                           | -           | Maximale Anzahl von Zeichen                                 |
+| `showProgressBar`    | `boolean`                                          | `false`     | Zeigt einen Fortschrittsbalken an                           |
+| `onChange`           | `(e: React.ChangeEvent<HTMLInputElement>) => void` | -           | Callback bei Wertänderung                                   |
+| `onFocus`            | `(e: React.FocusEvent<HTMLInputElement>) => void`  | -           | Callback bei Fokussierung                                   |
+| `onBlur`             | `(e: React.FocusEvent<HTMLInputElement>) => void`  | -           | Callback bei Fokusverlust                                   |
 
 ## Beispiele
 
 ### Grundlegende Verwendung
 
 ```jsx
-<Input 
-  label="Email" 
-  placeholder="name@example.com" 
-  type="email" 
+<Input
+  label="Email"
+  placeholder="name@example.com"
+  type="email"
   helperText="Wir werden Ihre Email niemals teilen."
 />
 ```
@@ -50,7 +52,7 @@ Die Input-Komponente ist ein grundlegendes Formular-Element für die Texteingabe
 ### Mit Icons
 
 ```jsx
-<Input 
+<Input
   label="Suche"
   placeholder="Suchbegriff eingeben"
   leftIcon={<SearchIcon />}
@@ -63,25 +65,19 @@ Die Input-Komponente ist ein grundlegendes Formular-Element für die Texteingabe
 ### Passwort-Feld mit Toggle
 
 ```jsx
-<Input 
-  label="Passwort"
-  type="password"
-  showPasswordToggle
-  showCounter
-  maxLength={20}
-/>
+<Input label="Passwort" type="password" showPasswordToggle showCounter maxLength={20} />
 ```
 
 ### Validierungszustände
 
 ```jsx
-<Input 
+<Input
   label="Benutzername"
   isValid
   successMessage="Benutzername ist verfügbar"
 />
 
-<Input 
+<Input
   label="Email"
   type="email"
   isInvalid
@@ -92,19 +88,27 @@ Die Input-Komponente ist ein grundlegendes Formular-Element für die Texteingabe
 ### Mit Präfix und Suffix
 
 ```jsx
-<Input 
+<Input
   label="Preis"
   type="number"
   prefix="€"
   placeholder="0.00"
 />
 
-<Input 
+<Input
   label="Gewicht"
   type="number"
   suffix="kg"
   placeholder="0"
 />
+```
+
+### Mit Addons
+
+```jsx
+<Input placeholder="Website" leftAddon="https://" />
+<Input placeholder="Benutzername" rightAddon="@example.com" />
+<Input placeholder="Preis" leftAddon="€" rightAddon=".00" />
 ```
 
 ### Größenvarianten
@@ -152,6 +156,7 @@ Die Input-Komponente wurde mit besonderem Fokus auf Barrierefreiheit entwickelt:
 ## Implementierungsdetails
 
 Die Input-Komponente verwendet intern:
+
 - Flexbox für die Ausrichtung von Text und Icons
 - CSS-Transitions für Hover- und Fokus-Effekte
 - React.forwardRef für Ref-Weiterleitung

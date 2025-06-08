@@ -42,7 +42,7 @@ export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
 
 /**
  * Menu-Komponente für Navigationsmenüs und Dropdown-Menus
- * 
+ *
  * @example
  * ```tsx
  * <Menu>
@@ -52,93 +52,96 @@ export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
  * </Menu>
  * ```
  */
-export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(({
-  children,
-  variant = 'default',
-  direction = 'vertical',
-  fullWidth = false,
-  indented = false,
-  size = 'md',
-  activeItem,
-  closeOnSelect = true,
-  onItemSelect,
-  className = '',
-  ...rest
-}, ref) => {
-  const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
-  const itemsMap = useRef(new Map<string, number>());
-  const itemsCounter = useRef(0);
-  
-  // Registrieren eines neuen Items
-  const registerItem = (id: string) => {
-    if (!itemsMap.current.has(id)) {
-      itemsMap.current.set(id, itemsCounter.current);
-      return itemsCounter.current++;
-    }
-    return itemsMap.current.get(id)!;
-  };
-  
-  // Varianten-spezifische Klassen
-  const variantClasses = {
-    default: 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200',
-    primary: 'bg-primary-50 dark:bg-primary-900/20 text-primary-800 dark:text-primary-300',
-    secondary: 'bg-secondary-50 dark:bg-secondary-900/20 text-secondary-800 dark:text-secondary-300',
-    minimal: 'bg-transparent text-current'
-  };
-  
-  // Richtungs-spezifische Klassen
-  const directionClasses = {
-    horizontal: 'flex flex-row',
-    vertical: 'flex flex-col'
-  };
-  
-  // Größen-spezifische Klassen
-  const sizeClasses = {
-    sm: 'text-xs',
-    md: 'text-sm',
-    lg: 'text-base'
-  };
-  
-  // CSS-Klassen zusammenstellen
-  const classes = [
-    // Basis-Klassen
-    'rounded-md overflow-hidden',
-    
-    // Variante
-    variantClasses[variant],
-    
-    // Richtung
-    directionClasses[direction],
-    
-    // Größe
-    sizeClasses[size],
-    
-    // Weitere Optionen
-    fullWidth ? 'w-full' : '',
-    
-    // Benutzerdefinierte Klassen
-    className
-  ].filter(Boolean).join(' ');
-  
-  return (
-    <MenuContext.Provider
-      value={{ 
-        activeItemIndex, 
-        registerItem, 
-        setActiveItemIndex 
-      }}
-    >
-      <div
-        ref={ref}
-        role="menu"
-        className={classes}
-        {...rest}
+export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
+  (
+    {
+      children,
+      variant = 'default',
+      direction = 'vertical',
+      fullWidth = false,
+      indented = false,
+      size = 'md',
+      activeItem,
+      closeOnSelect = true,
+      onItemSelect,
+      className = '',
+      ...rest
+    },
+    ref
+  ) => {
+    const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
+    const itemsMap = useRef(new Map<string, number>());
+    const itemsCounter = useRef(0);
+
+    // Registrieren eines neuen Items
+    const registerItem = (id: string) => {
+      if (!itemsMap.current.has(id)) {
+        itemsMap.current.set(id, itemsCounter.current);
+        return itemsCounter.current++;
+      }
+      return itemsMap.current.get(id)!;
+    };
+
+    // Varianten-spezifische Klassen
+    const variantClasses = {
+      default: 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200',
+      primary: 'bg-primary-50 dark:bg-primary-900/20 text-primary-800 dark:text-primary-300',
+      secondary:
+        'bg-secondary-50 dark:bg-secondary-900/20 text-secondary-800 dark:text-secondary-300',
+      minimal: 'bg-transparent text-current',
+    };
+
+    // Richtungs-spezifische Klassen
+    const directionClasses = {
+      horizontal: 'flex flex-row',
+      vertical: 'flex flex-col',
+    };
+
+    // Größen-spezifische Klassen
+    const sizeClasses = {
+      sm: 'text-xs',
+      md: 'text-sm',
+      lg: 'text-base',
+    };
+
+    // CSS-Klassen zusammenstellen
+    const classes = [
+      // Basis-Klassen
+      'rounded-md overflow-hidden',
+
+      // Variante
+      variantClasses[variant],
+
+      // Richtung
+      directionClasses[direction],
+
+      // Größe
+      sizeClasses[size],
+
+      // Weitere Optionen
+      fullWidth ? 'w-full' : '',
+
+      // Benutzerdefinierte Klassen
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return (
+      <MenuContext.Provider
+        value={{
+          activeItemIndex,
+          registerItem,
+          setActiveItemIndex,
+        }}
       >
-        {children}
-      </div>
-    </MenuContext.Provider>
-  );
-});
+        <div ref={ref} role="menu" className={classes} {...rest}>
+          {children}
+        </div>
+      </MenuContext.Provider>
+    );
+  }
+);
 
 Menu.displayName = 'Menu';
 

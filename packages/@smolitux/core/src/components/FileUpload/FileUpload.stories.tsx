@@ -114,21 +114,9 @@ export const AutoUpload: Story = {
 export const DifferentSizes: Story = {
   render: () => (
     <div className="flex flex-col space-y-8">
-      <FileUpload 
-        label="Small" 
-        size="sm" 
-        variant="default"
-      />
-      <FileUpload 
-        label="Medium (Default)" 
-        size="md" 
-        variant="default"
-      />
-      <FileUpload 
-        label="Large" 
-        size="lg" 
-        variant="default"
-      />
+      <FileUpload label="Small" size="sm" variant="default" />
+      <FileUpload label="Medium (Default)" size="md" variant="default" />
+      <FileUpload label="Large" size="lg" variant="default" />
     </div>
   ),
 };
@@ -136,31 +124,31 @@ export const DifferentSizes: Story = {
 export const ControlledComponent: Story = {
   render: () => {
     const [files, setFiles] = useState<FileInfo[]>([]);
-    
+
     const handleChange = (newFiles: FileInfo[]) => {
       setFiles(newFiles);
     };
-    
+
     const handleUploadStart = (filesToUpload: FileInfo[]) => {
       console.log('Upload gestartet für:', filesToUpload);
     };
-    
+
     const handleUploadProgress = (file: FileInfo, progress: number) => {
       console.log(`Upload-Fortschritt für ${file.name}: ${progress}%`);
     };
-    
+
     const handleUploadComplete = (file: FileInfo) => {
       console.log(`Upload abgeschlossen für ${file.name}`);
     };
-    
+
     const handleUploadError = (file: FileInfo, error: any) => {
       console.error(`Upload-Fehler für ${file.name}:`, error);
     };
-    
+
     return (
       <div className="space-y-4">
-        <FileUpload 
-          label="Kontrollierter FileUpload" 
+        <FileUpload
+          label="Kontrollierter FileUpload"
           value={files}
           onChange={handleChange}
           onUploadStart={handleUploadStart}
@@ -171,14 +159,14 @@ export const ControlledComponent: Story = {
           showPreview
           showProgress
         />
-        
+
         <div className="p-4 bg-gray-100 rounded">
           <h3 className="font-medium mb-2">Ausgewählte Dateien:</h3>
           {files.length === 0 ? (
             <p className="text-gray-500">Keine Dateien ausgewählt</p>
           ) : (
             <ul className="list-disc pl-5">
-              {files.map(file => (
+              {files.map((file) => (
                 <li key={file.id}>
                   {file.name} ({(file.size / 1024).toFixed(2)} KB)
                 </li>
@@ -203,9 +191,25 @@ export const CustomPreviewRenderer: Story = {
           <div className="relative">
             <img src={file.previewUrl} alt={file.name} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
               </svg>
             </div>
           </div>
@@ -213,16 +217,38 @@ export const CustomPreviewRenderer: Story = {
       } else if (file.type === 'application/pdf') {
         return (
           <div className="w-full h-full flex items-center justify-center bg-red-100">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-red-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+              />
             </svg>
           </div>
         );
       } else {
         return (
           <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
           </div>
         );

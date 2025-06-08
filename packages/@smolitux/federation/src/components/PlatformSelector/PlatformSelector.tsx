@@ -62,140 +62,142 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [showTrustedOnly, setShowTrustedOnly] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Verfügbare Kategorien aus den Plattformen extrahieren
   const categories = Array.from(
-    new Set(
-      platforms
-        .map(platform => platform.category)
-        .filter(Boolean) as string[]
-    )
+    new Set(platforms.map((platform) => platform.category).filter(Boolean) as string[])
   ).sort();
-  
+
   // Aktualisiere die Auswahl, wenn sich die Props ändern
   useEffect(() => {
     setSelection(selectedPlatforms);
   }, [selectedPlatforms]);
-  
+
   // Plattformen filtern
-  const filteredPlatforms = platforms.filter(platform => {
+  const filteredPlatforms = platforms.filter((platform) => {
     // Nach Name oder URL filtern
     const matchesSearch =
       !searchQuery ||
       platform.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       platform.url.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     // Nach Kategorie filtern
     const matchesCategory = !activeCategory || platform.category === activeCategory;
-    
+
     // Nach Vertrauenswürdigkeit filtern
     const matchesTrust = !showTrustedOnly || platform.isTrusted;
-    
+
     return matchesSearch && matchesCategory && matchesTrust;
   });
-  
+
   // Plattform auswählen/abwählen
   const togglePlatform = (platformId: string) => {
     let newSelection: string[];
-    
+
     if (multiSelect) {
       // Mehrfachauswahl: Plattform hinzufügen oder entfernen
       newSelection = selection.includes(platformId)
-        ? selection.filter(id => id !== platformId)
+        ? selection.filter((id) => id !== platformId)
         : [...selection, platformId];
     } else {
       // Einzelauswahl: Nur diese Plattform auswählen oder Auswahl aufheben
       newSelection = selection.includes(platformId) ? [] : [platformId];
     }
-    
+
     setSelection(newSelection);
     onSelectionChange(newSelection);
   };
-  
+
   // Alle Plattformen auswählen
   const selectAll = () => {
-    const allIds = filteredPlatforms.map(platform => platform.id);
+    const allIds = filteredPlatforms.map((platform) => platform.id);
     setSelection(allIds);
     onSelectionChange(allIds);
   };
-  
+
   // Alle Plattformen abwählen
   const deselectAll = () => {
     setSelection([]);
     onSelectionChange([]);
   };
-  
+
   // Nur vertrauenswürdige Plattformen auswählen
   const selectTrusted = () => {
     const trustedIds = filteredPlatforms
-      .filter(platform => platform.isTrusted)
-      .map(platform => platform.id);
-    
+      .filter((platform) => platform.isTrusted)
+      .map((platform) => platform.id);
+
     setSelection(trustedIds);
     onSelectionChange(trustedIds);
   };
-  
+
   // Neue Plattform hinzufügen
   const handleAddPlatform = async () => {
     if (!onAddPlatform || !newPlatformUrl.trim()) return;
-    
+
     setIsAdding(true);
     setError(null);
-    
+
     try {
       await onAddPlatform(newPlatformUrl);
       setNewPlatformUrl('');
       setShowAddForm(false);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Fehler beim Hinzufügen der Plattform.';
+      const errorMessage =
+        err instanceof Error ? err.message : 'Fehler beim Hinzufügen der Plattform.';
       setError(errorMessage);
     } finally {
       setIsAdding(false);
     }
   };
-  
+
   // Plattform entfernen
   const handleRemovePlatform = async (platformId: string) => {
     if (!onRemovePlatform) return;
-    
+
     setIsRemoving(platformId);
-    
+
     try {
       await onRemovePlatform(platformId);
       // Aus der Auswahl entfernen
       if (selection.includes(platformId)) {
-        const newSelection = selection.filter(id => id !== platformId);
+        const newSelection = selection.filter((id) => id !== platformId);
         setSelection(newSelection);
         onSelectionChange(newSelection);
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Fehler beim Entfernen der Plattform.';
+      const errorMessage =
+        err instanceof Error ? err.message : 'Fehler beim Entfernen der Plattform.';
       console.error(errorMessage);
     } finally {
       setIsRemoving(null);
     }
   };
-  
+
   // Plattformliste aktualisieren
   const handleRefresh = async () => {
     if (!onRefresh) return;
-    
+
     setIsRefreshing(true);
-    
+
     try {
       await onRefresh();
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Fehler beim Aktualisieren der Plattformliste.';
+      const errorMessage =
+        err instanceof Error ? err.message : 'Fehler beim Aktualisieren der Plattformliste.';
       console.error(errorMessage);
     } finally {
       setIsRefreshing(false);
     }
   };
-  
+
   // Platzhalter für den Ladezustand
   const renderPlaceholders = () => {
     return Array.from({ length: 3 }).map((_, index) => (
-      <div key={`placeholder-${index}`} className="p-4 border-b border-gray-200 dark:border-gray-700 animate-pulse">
+      <div
+        key={`placeholder-${index}`}
+        className="p-4 border-b border-gray-200 dark:border-gray-700 animate-pulse"
+      >
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700" />
           <div className="ml-4 flex-1">
@@ -207,7 +209,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
       </div>
     ));
   };
-  
+
   return (
     <Card className={`overflow-hidden ${className}`}>
       {/* Header */}
@@ -215,7 +217,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           Föderierte Plattformen
         </h3>
-        
+
         <div className="flex space-x-2">
           {onRefresh && (
             <Button
@@ -242,30 +244,26 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
               </svg>
             </Button>
           )}
-          
+
           {allowAddNew && (
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => setShowAddForm(!showAddForm)}
-            >
+            <Button variant="primary" size="sm" onClick={() => setShowAddForm(!showAddForm)}>
               {showAddForm ? 'Abbrechen' : 'Plattform hinzufügen'}
             </Button>
           )}
         </div>
       </div>
-      
+
       {/* Formular zum Hinzufügen einer neuen Plattform */}
       {showAddForm && (
         <div className="p-4 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
             <Input
               value={newPlatformUrl}
-              onChange={e => setNewPlatformUrl(e.target.value)}
+              onChange={(e) => setNewPlatformUrl(e.target.value)}
               placeholder="https://example.com"
               className="flex-1"
             />
-            
+
             <Button
               variant="primary"
               onClick={handleAddPlatform}
@@ -274,20 +272,20 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
               {isAdding ? 'Wird hinzugefügt...' : 'Hinzufügen'}
             </Button>
           </div>
-          
+
           {error && (
             <div className="mt-2 p-2 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-md text-sm">
               {error}
             </div>
           )}
-          
+
           <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-            Geben Sie die URL einer föderierten Plattform ein, um sie hinzuzufügen.
-            Die Plattform muss das ActivityPub-Protokoll unterstützen.
+            Geben Sie die URL einer föderierten Plattform ein, um sie hinzuzufügen. Die Plattform
+            muss das ActivityPub-Protokoll unterstützen.
           </p>
         </div>
       )}
-      
+
       {/* Filter */}
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 space-y-4">
         {/* Suchfeld */}
@@ -295,13 +293,13 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
           <div>
             <Input
               value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Plattformen durchsuchen..."
               className="w-full"
             />
           </div>
         )}
-        
+
         {/* Filteroptionen */}
         <div className="flex flex-wrap items-center justify-between gap-2">
           {/* Kategoriefilter */}
@@ -317,8 +315,8 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
               >
                 Alle
               </button>
-              
-              {categories.map(category => (
+
+              {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(activeCategory === category ? null : category)}
@@ -333,7 +331,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
               ))}
             </div>
           )}
-          
+
           {/* Vertrauenswürdigkeitsfilter */}
           {showTrustFilter && (
             <div className="flex items-center">
@@ -349,7 +347,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
             </div>
           )}
         </div>
-        
+
         {/* Auswahloptionen */}
         {multiSelect && (
           <div className="flex flex-wrap gap-2">
@@ -374,15 +372,26 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
           </div>
         )}
       </div>
-      
+
       {/* Plattformliste */}
       <div className="divide-y divide-gray-200 dark:divide-gray-700 max-h-96 overflow-y-auto">
         {loading ? (
           renderPlaceholders()
         ) : filteredPlatforms.length === 0 ? (
           <div className="py-12 text-center text-gray-500 dark:text-gray-400">
-            <svg className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
             <p className="text-lg font-medium">Keine Plattformen gefunden</p>
             <p className="mt-2">
@@ -392,7 +401,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
             </p>
           </div>
         ) : (
-          filteredPlatforms.map(platform => (
+          filteredPlatforms.map((platform) => (
             <div
               key={platform.id}
               className={`p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors ${
@@ -409,7 +418,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
                     className="h-5 w-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                   />
                 </div>
-                
+
                 {/* Logo */}
                 <div className="flex-shrink-0 mr-3">
                   {platform.logoUrl ? (
@@ -424,37 +433,44 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
                     </div>
                   )}
                 </div>
-                
+
                 {/* Informationen */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center">
                     <h4 className="text-sm font-medium text-gray-900 dark:text-white">
                       {platform.name}
                     </h4>
-                    
+
                     {platform.isTrusted && (
-                      <svg className="w-4 h-4 ml-1 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      <svg
+                        className="w-4 h-4 ml-1 text-green-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        />
                       </svg>
                     )}
-                    
+
                     {platform.category && (
                       <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
                         {platform.category}
                       </span>
                     )}
                   </div>
-                  
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                    {platform.url}
-                  </p>
-                  
+
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{platform.url}</p>
+
                   {platform.description && (
                     <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 line-clamp-2">
                       {platform.description}
                     </p>
                   )}
-                  
+
                   {/* Statistiken */}
                   <div className="flex items-center mt-2 space-x-4">
                     {platform.contentCount !== undefined && (
@@ -462,21 +478,19 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
                         {platform.contentCount.toLocaleString()} Inhalte
                       </span>
                     )}
-                    
+
                     {platform.userCount !== undefined && (
                       <span className="text-xs text-gray-500 dark:text-gray-400">
                         {platform.userCount.toLocaleString()} Benutzer
                       </span>
                     )}
-                    
+
                     {!platform.isActive && (
-                      <span className="text-xs text-red-500 dark:text-red-400">
-                        Inaktiv
-                      </span>
+                      <span className="text-xs text-red-500 dark:text-red-400">Inaktiv</span>
                     )}
                   </div>
                 </div>
-                
+
                 {/* Aktionen */}
                 {allowRemove && onRemovePlatform && (
                   <button
@@ -486,13 +500,40 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
                     aria-label="Plattform entfernen"
                   >
                     {isRemoving === platform.id ? (
-                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                     ) : (
-                      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
                       </svg>
                     )}
                   </button>
@@ -502,7 +543,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
           ))
         )}
       </div>
-      
+
       {/* Footer */}
       <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-500 dark:text-gray-400">
         {selection.length > 0 ? (
