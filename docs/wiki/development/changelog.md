@@ -3,30 +3,37 @@
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
 ## [0.2.3] - 2025-06-08
-- Updated TypeScript docs configuration
+Updated TypeScript docs configuration
 
+## [0.2.4] - 2025-06-08
+
+- Added documentation overhaul section to the implementation roadmap
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.2.2] - 2023-03-26
 
 ### Hinzugefügt
+
 - Button-Komponente: Unterstützung für `solid`-Variante als Alias für `primary`
 - Button-Komponente: Unterstützung für `outline`-Variante als Alias für `ghost`
 - Button-Komponente: Unterstützung für `isLoading`-Prop als Alias für `loading`
 - TabView-Komponente: Unterstützung für `onChange`-Prop als Alias für `onTabChange`
 
 ### Geändert
+
 - Verbesserte Exportstruktur in der Utils-Bibliothek für einfachere Importe
 - Aktualisierte Dokumentation mit neuen Varianten und Props
 
 ### Behoben
+
 - Typfehler in der Button-Komponente
 - Typfehler in der TabView-Komponente
 
 ## [0.2.1] - 2025-03-26
 
 ### Hinzugefügt
+
 - Neue Komponenten für ResonanceLink:
   - Governance-Komponenten:
     - GovernanceDashboard: Übersicht über Community-Governance
@@ -54,6 +61,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - SmartContractInteraction: Interaktion mit Smart Contracts
 
 ### Verbessert
+
 - Verbesserte Typendefinitionen für alle Komponenten
 - Bessere Dokumentation mit JSDoc-Kommentaren
 - Optimierte Leistung bei komplexen Komponenten
@@ -62,6 +70,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Hinzugefügt: Test-App zur Demonstration der Komponenten
 
 ### Fehlerbehebungen
+
 - Behoben: Syntaxfehler in Charts-Komponenten
 - Behoben: Fehlerhafte Snapshot-Tests
 - Behoben: Probleme mit der Formularvalidierung
@@ -72,6 +81,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.2.0] - 2025-03-25
 
 ### Hinzugefügt
+
 - Erste Version der erweiterten Komponenten-Bibliothek
 - Neue Pakete für spezifische Anwendungsbereiche:
   - @smolitux/ai: KI-bezogene Komponenten
@@ -84,6 +94,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.1.0] - 2025-03-24
 
 ### Hinzugefügt
+
 - Erste Version der Smolitux UI Komponenten-Bibliothek
 - Core-Komponenten:
   - Alert: Für Benachrichtigungen und Warnungen
@@ -108,10 +119,12 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - useTheme: Hook für Theme-Zugriff
 
 ### Geändert
+
 - Alle Komponenten haben jetzt default exports
 - TypeScript-Deklarationsdateien (DTS) wurden vorübergehend deaktiviert
 
 ### Bekannte Probleme
+
 - Charts-Komponenten haben Syntaxfehler und sind noch nicht nutzbar
 - Einige Tests schlagen fehl aufgrund von Snapshot-Änderungen
 - Formularvalidierung und Internationalisierung sind noch nicht vollständig implementiert
