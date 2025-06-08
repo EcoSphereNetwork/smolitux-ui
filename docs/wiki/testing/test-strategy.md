@@ -394,6 +394,7 @@ Nach jedem Testlauf werden Berichte generiert:
 - Axe Accessibility Report
 - Visual Regression Report
 - E2E Test Report
+- Test Coverage Dashboard (docs/wiki/testing/test-coverage-dashboard.md)
 
 ## Best Practices
 
