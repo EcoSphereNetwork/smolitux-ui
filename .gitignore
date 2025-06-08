@@ -1,31 +1,68 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
 
-# Virtual Environment
+# Dependencies
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+
+# Package files
+*.tgz
+*.tar.gz
+packages/**/*.tgz
+
+# Testing
+coverage/
+.coverage
+.nyc_output
+.jest/
+__coverage__/
+.pytest_cache/
+htmlcov/
+
+# Linting & Formatting
+.eslintcache
+.stylelintcache
+
+# TypeScript
+*.tsbuildinfo
+.tsbuildinfo
+
+# Storybook
+storybook-static/
+.storybook/dist/
+
+# Environment variables
 .env
-.venv
-env/
-venv/
-ENV/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cache directories
+.cache/
+.parcel-cache/
+.turbo/
+.swc/
+.nx/
 
 # IDE
 .idea/
@@ -34,51 +71,55 @@ ENV/
 *.swo
 *~
 
-# Testing
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-htmlcov/
-
-# Documentation
-/site
-docs/_build/
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Ruff
-.ruff_cache/
-
-# Poetry
-poetry.lock
-
-# Logs
-*.log
-logs/
-log/
-
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Node.js
-node_modules/
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# Documentation build
+docs/_build/
+docs/build/
+/site
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Docker
+.dockerignore
+
+# Monorepo specific
+lerna-debug.log*
+
+# Development
+*.local
+.local
+
+# Python (if any Python tooling is used)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+
+# Misc
+.history/
+.vscode/settings.json
