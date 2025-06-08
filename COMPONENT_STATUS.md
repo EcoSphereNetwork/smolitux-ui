@@ -54,3 +54,9 @@
 _Updated by Codex AI_
 _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback. Updated documentation and dashboards.
 - 2025-06-08: Analyzer run - 120 validation issues remaining
+### Update 2025-06-11
+- Removed 'as any' casts in List, List.a11y, Zoom, Zoom.a11y, LanguageSwitcher.
+- Updated Dialog story typing.
+- Analyzer reports 126 validation issues.
+### Update 2025-06-08
+- Improved chunk helper input validation.
