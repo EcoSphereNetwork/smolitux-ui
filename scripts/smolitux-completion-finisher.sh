@@ -32,7 +32,8 @@ for pkg in "${PACKAGES[@]}"; do
     find "$PKG_DIR/src" -name "*.tsx" -type f | while read component; do
         # Skip if it's a test file, story file, or in __tests__ directory
         if [[ "$component" =~ \.test\.tsx$ ]] || \
-           [[ "$component" =~ \.stories\.tsx$ ]] || \
+               [[ "$component" =~ \.stories\.tsx$ ]] || \
+               [[ "$component" =~ \.a11y\.tsx$ ]] || \
            [[ "$component" =~ /__tests__/ ]] || \
            [[ "$component" =~ /stories/ ]] || \
            [[ "$(basename "$component")" =~ ^(index|types|constants|utils|hooks)\.tsx$ ]]; then

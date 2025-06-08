@@ -40,6 +40,7 @@ for pkg in "${PACKAGES[@]}"; do
             # Skip if it's a test file, story file, or utility file
             if [[ "$component" =~ \.test\.tsx$ ]] || \
                [[ "$component" =~ \.stories\.tsx$ ]] || \
+               [[ "$component" =~ \.a11y\.tsx$ ]] || \
                [[ "$component" =~ /__tests__/ ]] || \
                [[ "$component" =~ /stories/ ]] || \
                [[ "$(basename "$component")" =~ ^(index|types|constants|utils|hooks)\.tsx$ ]]; then

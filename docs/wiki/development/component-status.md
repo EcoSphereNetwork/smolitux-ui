@@ -258,3 +258,6 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 ### Updates 2025-06-09
 - Fixed TypeScript issues in Button, useAnimation, and transitions
 - Continuing work on @smolitux/core for strict compliance
+
+### Update 2025-06-08
+Analyzer adjusted: a11y files ignored. Coverage now 100%. Next: fix remaining validation issues.
