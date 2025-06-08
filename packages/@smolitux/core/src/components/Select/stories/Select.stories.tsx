@@ -52,9 +52,13 @@ const meta: Meta<typeof Select> = {
       control: 'boolean',
       description: 'Gibt an, ob das Select-Feld erforderlich ist',
     },
-    multiple: {
+    isMulti: {
       control: 'boolean',
-      description: 'Gibt an, ob mehrere Optionen ausgewählt werden können',
+      description: 'Aktiviert Mehrfachauswahl',
+    },
+    maxSelections: {
+      control: 'number',
+      description: 'Begrenzt die Anzahl auswählbarer Optionen',
     },
     onChange: {
       action: 'changed',
@@ -208,7 +212,7 @@ export const WithGroups: Story = {
 
 export const Multiple: Story = {
   render: () => (
-    <Select multiple size={4} className="h-auto">
+    <Select isMulti maxSelections={3} size={4} className="h-auto">
       <option value="option1">Option 1</option>
       <option value="option2">Option 2</option>
       <option value="option3">Option 3</option>
@@ -224,8 +228,17 @@ export const WithCustomIcon: Story = {
     <Select
       placeholder="Mit benutzerdefiniertem Icon"
       icon={
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clipRule="evenodd"
+          />
         </svg>
       }
     >
@@ -240,13 +253,13 @@ export const WithValidation: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     const [isValid, setIsValid] = React.useState(false);
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const newValue = e.target.value;
       setValue(newValue);
       setIsValid(newValue !== '');
     };
-    
+
     return (
       <div className="flex flex-col space-y-2 w-80">
         <Select
@@ -259,11 +272,7 @@ export const WithValidation: Story = {
           <option value="option2">Option 2</option>
           <option value="option3">Option 3</option>
         </Select>
-        {!isValid && (
-          <div className="text-red-500 text-sm">
-            Bitte wählen Sie eine Option aus
-          </div>
-        )}
+        {!isValid && <div className="text-red-500 text-sm">Bitte wählen Sie eine Option aus</div>}
       </div>
     );
   },
@@ -272,7 +281,7 @@ export const WithValidation: Story = {
 export const Controlled: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
-    
+
     return (
       <div className="flex flex-col space-y-4 w-80">
         <Select
@@ -284,9 +293,7 @@ export const Controlled: Story = {
           <option value="option2">Option 2</option>
           <option value="option3">Option 3</option>
         </Select>
-        <div>
-          Ausgewählter Wert: {value || '(keiner)'}
-        </div>
+        <div>Ausgewählter Wert: {value || '(keiner)'}</div>
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           onClick={() => setValue('')}

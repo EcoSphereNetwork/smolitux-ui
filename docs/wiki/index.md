@@ -132,6 +132,10 @@ Our component library is organized into functional categories for easy navigatio
   - [CI/CD Integration](testing/testplan/08-CI-CD-Integration.md)
   - [Implementation Plan](testing/testplan/09-Implementierungsplan.md)
 
+### Features
+
+- **[Voice Control](features/voice-control/README.md)** - Grundinfrastruktur und Integration der Sprachsteuerung
+
 ### Guides & Examples
 
 - **[Integration Guides](guides/quickstart.md)** - How to integrate components
