@@ -1,4 +1,5 @@
 import React from 'react';
+import * as ReactDOM from 'react-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -7,13 +8,15 @@ import Modal from './Modal';
 describe('Modal Component', () => {
   // Mock für createPortal
   beforeAll(() => {
-    // @ts-ignore
-    jest.spyOn(React, 'createPortal').mockImplementation((children) => children);
+    jest
+      .spyOn(ReactDOM, 'createPortal')
+      .mockImplementation(
+        (node: React.ReactNode) => node as unknown as React.ReactPortal
+      );
   });
 
   afterAll(() => {
-    // @ts-ignore
-    React.createPortal.mockRestore();
+    (ReactDOM.createPortal as jest.Mock).mockRestore();
   });
 
   test('renders modal when isOpen is true', () => {
