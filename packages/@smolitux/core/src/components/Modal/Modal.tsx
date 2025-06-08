@@ -27,6 +27,8 @@ export interface ModalProps {
   closeOnEsc?: boolean;
   /** Zusätzliche CSS-Klassen */
   className?: string;
+  /** Zusätzliche CSS-Klassen für das Modal-Element selbst */
+  contentClassName?: string;
   /** Zusätzliche CSS-Klassen für den Header */
   headerClassName?: string;
   /** Zusätzliche CSS-Klassen für den Body */
@@ -53,6 +55,8 @@ export interface ModalProps {
   initialFocus?: boolean;
   /** Ob der Modal beim Schließen den vorherigen Fokus wiederherstellen soll */
   returnFocus?: boolean;
+  /** Alias für returnFocus, entspricht restoreFocus in der Dokumentation */
+  restoreFocus?: boolean;
   /** Ob der Modal ein Portal verwenden soll */
   usePortal?: boolean;
   /** Ob der Modal blockierend sein soll (kein Klick außerhalb möglich) */
@@ -175,6 +179,7 @@ export const Modal: React.FC<ModalProps> = ({
   closeOnOverlayClick = true,
   closeOnEsc = true,
   className = '',
+  contentClassName = '',
   headerClassName = '',
   bodyClassName = '',
   footerClassName = '',
@@ -187,6 +192,7 @@ export const Modal: React.FC<ModalProps> = ({
   bordered = true,
   initialFocus = true,
   returnFocus = true,
+  restoreFocus,
   usePortal = true,
   blocking = false,
   scrollable = true,
@@ -228,6 +234,7 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const shouldReturnFocus = restoreFocus ?? returnFocus;
   const [isAnimating, setIsAnimating] = useState(false);
   const [announcement, setAnnouncement] = useState<string | null>(null);
   const modalId = id || `modal-${Math.random().toString(36).substr(2, 9)}`;
@@ -254,7 +261,7 @@ export const Modal: React.FC<ModalProps> = ({
   
   // Speichern des vorherigen Fokus
   useEffect(() => {
-    if (isOpen && returnFocus) {
+    if (isOpen && shouldReturnFocus) {
       previousFocusRef.current = document.activeElement as HTMLElement;
       
       // Ankündigung für Screenreader
@@ -267,11 +274,11 @@ export const Modal: React.FC<ModalProps> = ({
         announceToScreenReader(i18n.modalClosed);
       }
       
-      if (returnFocus && previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
+      if (shouldReturnFocus && previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
         previousFocusRef.current.focus();
       }
     };
-  }, [isOpen, returnFocus, i18n]);
+  }, [isOpen, shouldReturnFocus, i18n]);
   
   // Schließen mit Escape-Taste
   useEffect(() => {
@@ -510,7 +517,7 @@ export const Modal: React.FC<ModalProps> = ({
         <div 
           ref={modalRef}
           id={modalId}
-          className={`relative bg-white dark:bg-gray-800 text-left transform transition-all w-full ${sizeClasses[size]} ${styleClasses.shadow} ${styleClasses.rounded} ${styleClasses.bordered} ${animationClasses.modal} ${className} ${isFullscreenDialog ? 'h-full m-0 max-w-full' : ''}`}
+          className={`relative bg-white dark:bg-gray-800 text-left transform transition-all w-full ${sizeClasses[size]} ${styleClasses.shadow} ${styleClasses.rounded} ${styleClasses.bordered} ${animationClasses.modal} ${className} ${contentClassName} ${isFullscreenDialog ? 'h-full m-0 max-w-full' : ''}`}
           onClick={(e) => e.stopPropagation()}
           tabIndex={tabIndex}
           data-testid="modal-content"

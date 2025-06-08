@@ -11,6 +11,7 @@ const config = {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/packages/@smolitux/testing/mocks/fileMock.js',
     // Alias-Auflösung für '@smolitux/'
     '^@smolitux/(.*)$': '<rootDir>/packages/@smolitux/$1/src',
+    '^jest-matcher-utils$': '<rootDir>/node_modules/jest-matcher-utils',
     // Mock für y18n
     '^y18n$': '<rootDir>/test-utils/y18n.js',
   },
@@ -40,11 +41,6 @@ const config = {
     'default',
   ],
   snapshotSerializers: [],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.json',
-    },
-  },
 };
 
 module.exports = config;

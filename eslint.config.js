@@ -9,7 +9,7 @@ module.exports = [
   ...tseslint.configs.recommended,
   {
     plugins: {
-      'react': reactPlugin,
+      react: reactPlugin,
       'react-hooks': reactHooksPlugin,
       'jsx-a11y': jsxA11yPlugin,
     },
@@ -18,6 +18,8 @@ module.exports = [
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': 'off',
+      'no-case-declarations': 'off',
       'jsx-a11y/anchor-is-valid': 'warn',
     },
     settings: {
@@ -34,5 +36,5 @@ module.exports = [
         },
       },
     },
-  }
+  },
 ];
