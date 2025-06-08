@@ -10,7 +10,7 @@ This document tracks the completion progress of the core package.
 | Tests       | 94/94 (100%)         |
 | Stories     | 94/94 (100%)         |
 
-The latest `smolitux-analyzer` run shows no missing test or story files for the core package. TypeScript strict mode cleanup is ongoing, with several `any` usages still to be removed.
+The latest `smolitux-analyzer` run shows no missing test or story files for the core package. TypeScript strict mode cleanup is ongoing.
 
 ## Review Priority
 
@@ -26,4 +26,4 @@ The latest `smolitux-analyzer` run shows no missing test or story files for the 
 
 ## Last Update
 
-- 2025-06-08 – Analyzer confirms full coverage for all core components.
+- 2025-06-08 – Analyzer confirms full coverage for all core components. `Card`, `Modal`, `Table` and `Form` now use `forwardRef`.

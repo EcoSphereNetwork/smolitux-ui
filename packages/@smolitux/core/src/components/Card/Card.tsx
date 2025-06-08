@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, forwardRef, memo } from 'react';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Karteninhalt */
@@ -52,12 +52,14 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * Card-Komponente für abgegrenzte Inhalte
  */
-export const Card: React.FC<CardProps> = ({
-  children,
-  title,
-  subtitle,
-  className = '',
-  footer,
+export const Card = memo(
+  forwardRef<HTMLDivElement, CardProps>(
+    ({
+      children,
+      title,
+      subtitle,
+      className = '',
+      footer,
   header,
   image,
   noPadding = false,
@@ -75,9 +77,11 @@ export const Card: React.FC<CardProps> = ({
   size,
   shadow = false,
   rounded = false,
-  bgColor,
-  ...rest
-}) => {
+      bgColor,
+      ...rest
+    },
+    ref
+  ) => {
   // Varianten-Klassen
   const variantClasses = {
     elevated: 'shadow-md',
@@ -245,6 +249,8 @@ export const Card: React.FC<CardProps> = ({
       )}
     </div>
   );
-};
+}));
+
+Card.displayName = 'Card';
 
 export default Card;
