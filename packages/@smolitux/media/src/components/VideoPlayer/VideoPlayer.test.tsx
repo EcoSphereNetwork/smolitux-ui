@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { VideoPlayer } from '../VideoPlayer';
+import { VideoPlayer } from './VideoPlayer';
 
 beforeAll(() => {
   window.HTMLMediaElement.prototype.play = jest.fn();
@@ -24,5 +24,12 @@ describe('VideoPlayer', () => {
   it('shows controls when provided', () => {
     render(<VideoPlayer src={src} controls />);
     expect(screen.getByRole('slider')).toBeInTheDocument();
+  });
+
+  it('supports File src', () => {
+    const file = new File(['data'], 'video.mp4', { type: 'video/mp4' });
+    render(<VideoPlayer src={file} />);
+    const video = document.querySelector('video') as HTMLVideoElement;
+    expect(video.src).toContain('blob:');
   });
 });

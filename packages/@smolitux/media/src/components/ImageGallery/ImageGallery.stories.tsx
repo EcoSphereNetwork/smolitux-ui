@@ -30,3 +30,10 @@ export const WithClick: Story = {
     onImageClick: (img) => alert(img.alt),
   },
 };
+
+export const Responsive: Story = {
+  args: {
+    images: demoImages,
+    responsive: true,
+  },
+};

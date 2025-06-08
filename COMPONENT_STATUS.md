@@ -17,7 +17,7 @@
 - [ ] **@smolitux/charts** (AreaChart, BarChart, PieChart, etc.)
 
 ### Tier 3: Advanced Features
-- [ ] **@smolitux/media** (AudioPlayer, VideoPlayer)
+- [x] **@smolitux/media** (AudioPlayer, VideoPlayer, ImageGallery, MediaGrid)
 - [ ] **@smolitux/community** (ActivityFeed, UserProfile)
 
 ### Tier 4: Specialized
@@ -48,4 +48,4 @@
 - Voice control package completed with Speech API types, accessibility tests and demo stories.
 
 ---
-*Updated by Codex AI*
+_Updated by Codex AI_

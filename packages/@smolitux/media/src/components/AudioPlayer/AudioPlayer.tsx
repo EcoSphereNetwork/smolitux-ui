@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import type { MediaSrc } from '../../types';
 
 export interface AudioPlayerProps {
-  /** URL der Audiodatei */
-  src: string;
+  /** Quelle der Audiodatei */
+  src: MediaSrc;
   /** Titel des Tracks */
   title?: string;
   /** Künstler */
@@ -53,8 +54,22 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [currentVolume, setCurrentVolume] = useState(volume);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [srcUrl, setSrcUrl] = useState<string>('');
 
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Quelle aufbereiten (String oder File)
+  useEffect(() => {
+    if (typeof src === 'string') {
+      setSrcUrl(src);
+      return;
+    }
+    const url = URL.createObjectURL(src);
+    setSrcUrl(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [src]);
 
   // Initialisierung
   useEffect(() => {
@@ -159,7 +174,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       className={`flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 ${className}`}
     >
       {/* Audio-Element */}
-      <audio ref={audioRef} src={src} preload="metadata" autoPlay={autoPlay} loop={loop} />
+      <audio ref={audioRef} src={srcUrl} preload="metadata" autoPlay={autoPlay} loop={loop} />
 
       {/* Cover und Metadaten */}
       <div className="flex items-center mb-4">

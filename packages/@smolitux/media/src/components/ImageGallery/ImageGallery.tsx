@@ -17,6 +17,8 @@ export interface ImageGalleryProps extends Partial<GalleryConfig> {
   onImageClick?: (image: ImageItem) => void;
   /** Zusätzliche CSS-Klassen */
   className?: string;
+  /** Responsives Layout aktivieren */
+  responsive?: boolean;
 }
 
 export const ImageGallery: React.FC<ImageGalleryProps> = ({
@@ -25,6 +27,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
   gap = 'medium',
   onImageClick,
   className = '',
+  responsive = false,
 }) => {
   const gridClasses = {
     1: 'grid-cols-1',
@@ -42,10 +45,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
     large: 'gap-6',
   }[gap];
 
+  const responsiveClasses = responsive ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : '';
+
   return (
     <div
       data-testid="image-gallery"
-      className={`grid ${gridClasses} ${gapClasses} ${className}`}
+      className={`grid ${gridClasses} ${gapClasses} ${responsiveClasses} ${className}`}
     >
       {images.map((img) => (
         <button
@@ -54,11 +59,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
           onClick={() => onImageClick?.(img)}
           className="focus:outline-none"
         >
-          <img
-            src={img.src}
-            alt={img.alt}
-            className="w-full h-full object-cover"
-          />
+          <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
         </button>
       ))}
     </div>

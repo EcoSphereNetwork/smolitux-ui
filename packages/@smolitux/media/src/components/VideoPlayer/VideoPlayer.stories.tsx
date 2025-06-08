@@ -19,3 +19,10 @@ export const Basic: Story = {
     controls: true,
   },
 };
+
+export const FileSource: Story = {
+  render: () => {
+    const file = new File([], 'movie.mp4', { type: 'video/mp4' });
+    return <VideoPlayer src={file} title="Local File" controls />;
+  },
+};

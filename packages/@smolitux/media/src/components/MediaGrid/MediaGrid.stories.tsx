@@ -52,3 +52,11 @@ export const WithFilters: Story = {
     showFilters: true,
   },
 };
+
+export const Responsive: Story = {
+  args: {
+    items: demoItems,
+    columns: 3,
+    gap: 'medium',
+  },
+};
