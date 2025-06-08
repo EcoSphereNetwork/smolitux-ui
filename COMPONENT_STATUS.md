@@ -22,7 +22,7 @@
 
 ### Tier 4: Specialized
 - [ ] **@smolitux/ai** (ContentAnalytics, SentimentDisplay)
-- [ ] **@smolitux/blockchain** (WalletConnect, TokenDisplay) - Focus on WalletConnect, TokenDisplay, TransactionHistory
+- [x] **@smolitux/blockchain** (WalletConnect, TokenDisplay, TransactionHistory)
 - [ ] **@smolitux/resonance** (governance, monetization, platform integration)
 - [ ] **@smolitux/federation** (cross-platform)
 - [x] **@smolitux/voice-control** (voice engines)

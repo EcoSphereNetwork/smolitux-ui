@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from '@smolitux/core';
-
-interface EthereumProvider {
-  request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
-  on: (event: string, handler: (...args: unknown[]) => void) => void;
-  removeListener: (event: string, handler: (...args: unknown[]) => void) => void;
-}
+import { EthereumProvider } from '../types';
 
 export interface WalletConnectProps {
   /** Callback bei erfolgreicher Verbindung */
