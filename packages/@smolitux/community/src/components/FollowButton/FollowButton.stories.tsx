@@ -16,20 +16,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'FollowButton',
+    userId: 'u1',
+    onFollowChange: async () => {},
   },
 };
 
-export const CustomStyle: Story = {
+export const Following: Story = {
   args: {
-    children: 'Custom FollowButton',
-    className: 'custom-style',
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    children: 'Interactive FollowButton',
-    onClick: () => alert('Clicked!'),
+    userId: 'u1',
+    isFollowing: true,
+    onFollowChange: async () => {},
   },
 };

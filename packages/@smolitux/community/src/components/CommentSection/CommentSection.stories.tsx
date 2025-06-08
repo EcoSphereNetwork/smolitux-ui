@@ -14,22 +14,29 @@ const meta: Meta<typeof CommentSection> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const comments = [
+  {
+    id: 'c1',
+    content: 'Great post!',
+    author: { id: 'u2', name: 'Bob' },
+    createdAt: new Date(),
+    likes: 2,
+    replies: [],
+  },
+  {
+    id: 'c2',
+    content: 'Thanks for sharing.',
+    author: { id: 'u3', name: 'Clara' },
+    createdAt: new Date(),
+    likes: 0,
+    replies: [],
+  },
+];
+
 export const Default: Story = {
   args: {
-    children: 'CommentSection',
-  },
-};
-
-export const CustomStyle: Story = {
-  args: {
-    children: 'Custom CommentSection',
-    className: 'custom-style',
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    children: 'Interactive CommentSection',
-    onClick: () => alert('Clicked!'),
+    comments,
+    onAddComment: async () => {},
+    onLikeComment: async () => {},
   },
 };

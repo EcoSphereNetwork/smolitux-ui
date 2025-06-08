@@ -1,21 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import { FollowButton } from './FollowButton';
 
-describe('FollowButton', () => {
-  it('renders without crashing', () => {
-    render(<FollowButton />);
-    expect(screen.getByRole('button', { name: /FollowButton/i })).toBeInTheDocument();
-  });
-
-  it('applies custom className', () => {
-    render(<FollowButton className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
-  });
-
-  it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
-    render(<FollowButton ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
-  });
+test('triggers onFollowChange on click', async () => {
+  const onFollowChange = jest.fn().mockResolvedValue(undefined);
+  render(<FollowButton userId="u1" onFollowChange={onFollowChange} />);
+  await userEvent.click(screen.getByRole('button'));
+  expect(onFollowChange).toHaveBeenCalledWith('u1', true);
 });
