@@ -12,14 +12,14 @@
   "scripts": {
     "install-deps": "npm install && lerna exec -- npm install",
     "clean": "lerna clean --yes && rm -rf node_modules",
-    "build": "./build-all.sh",
+    "build": "lerna run build --parallel",
     "build:utils": "cd packages/@smolitux/utils && npm run build",
     "build:core": "cd packages/@smolitux/core && npm run build",
     "build:ai": "cd packages/@smolitux/ai && npm run build",
     "build:blockchain": "cd packages/@smolitux/blockchain && npm run build",
     "build:resonance": "cd packages/@smolitux/resonance && npm run build",
     "build:testing": "cd packages/@smolitux/testing && npm run build",
-    "build:all": "./build-all.sh",
+    "build:all": "lerna run build --parallel",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -34,16 +34,26 @@
     "test:visual:local": "./scripts/run-visual-tests.sh",
     "test:storybook:a11y": "test-storybook --config-dir .storybook/test-runner",
     "test:coverage-report": "node scripts/generate-coverage-report.js",
-    "lint": "eslint --config eslint.config.js \"packages/**/*.{ts,tsx}\"",
-    "lint:fix": "eslint --config eslint.config.js \"packages/**/*.{ts,tsx}\" --fix",
+    "lint": "eslint \"packages/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"packages/**/*.{ts,tsx}\" --fix",
     "format": "prettier --write \"packages/**/*.{ts,tsx,json,md}\"",
     "format:check": "prettier --check \"packages/**/*.{ts,tsx,json,md}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "dev": "lerna run dev --parallel",
     "prepare": "husky install",
-"docs:api": "typedoc",
+    "docs:api": "typedoc",
     "docs:generate": "typedoc --options typedoc.json"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "jest --findRelatedTests"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
