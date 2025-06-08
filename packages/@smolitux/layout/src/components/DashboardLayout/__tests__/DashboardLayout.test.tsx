@@ -4,19 +4,19 @@ import { DashboardLayout } from '../DashboardLayout';
 
 jest.mock('../../Header/Header', () => ({
   __esModule: true,
-  default: ({ children }: any) => <header>{children}</header>,
+  default: ({ children }: { children?: React.ReactNode }) => <header>{children}</header>,
 }));
 jest.mock('../../Sidebar/Sidebar', () => ({
   __esModule: true,
-  default: ({ children }: any) => <aside>{children}</aside>,
+  default: ({ children }: { children?: React.ReactNode }) => <aside>{children}</aside>,
 }));
 jest.mock('../../Footer/Footer', () => ({
   __esModule: true,
-  default: ({ children }: any) => <footer>{children}</footer>,
+  default: ({ children }: { children?: React.ReactNode }) => <footer>{children}</footer>,
 }));
 jest.mock('../../Container/Container', () => ({
   __esModule: true,
-  default: ({ children }: any) => <div>{children}</div>,
+  default: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
 }));
 
 describe('DashboardLayout', () => {

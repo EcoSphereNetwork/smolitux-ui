@@ -1,6 +1,7 @@
 # Smolitux UI - Codex Progress
 
-**Started:** Sun Jun  8 21:56:14 UTC 2025
+**Started:** Sun Jun  8 22:02:01 UTC 2025
+**Last Updated:** Tue Jun 10 00:00:00 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -40,10 +41,7 @@
 5. Add missing stories (*.stories.tsx)  
 6. Ensure accessibility compliance
 7. Update this file after each session
+8. Remove remaining `any` casts in components
 
 ---
 *Updated by Codex AI*
-### Update 2025-06-11
-- Removed 'as any' casts in List, List.a11y, Zoom, Zoom.a11y, LanguageSwitcher.
-- Updated Dialog story typing.
-- Analyzer reports 126 validation issues.

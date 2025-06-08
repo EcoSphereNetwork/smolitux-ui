@@ -141,7 +141,15 @@ export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
 
 GridItem.displayName = 'Grid.Item';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(Grid as any).Item = GridItem;
+export interface GridComponent extends React.ForwardRefExoticComponent<
+  GridProps & React.RefAttributes<HTMLDivElement>
+> {
+  Item: React.ForwardRefExoticComponent<
+    GridItemProps & React.RefAttributes<HTMLDivElement>
+  >;
+}
 
-export default Grid;
+const GridWithItem = Grid as GridComponent;
+GridWithItem.Item = GridItem;
+
+export default GridWithItem;

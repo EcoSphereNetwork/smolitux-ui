@@ -97,7 +97,7 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
   };
 
   // Button-Variante basierend auf Status
-  const getButtonVariant = () => {
+  const getButtonVariant = (): FollowButtonProps['variant'] => {
     if (variant !== 'primary' && variant !== 'outline') {
       return variant;
     }
@@ -274,7 +274,7 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
   // Standard-Button (primary oder outline)
   return (
     <Button
-      variant={getButtonVariant() as any}
+      variant={getButtonVariant()}
       size={size}
       onClick={handleFollowClick}
       disabled={isLoading || isSelf}
