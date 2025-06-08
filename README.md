@@ -1,253 +1,173 @@
-# Smolitux UI Bibliothek
+<div align="center">
+  <img src="./docs/static/img/logo.svg" alt="Smolitux UI Logo" width="200">
+  <h1>Smolitux UI</h1>
+  <p>Eine umfassende Komponentenbibliothek im EcoSphere Network.</p>
 
-e15d7ccd-6c61-4079-b8f4-ffa7d1814e69
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Stars][stars-shield]][stars-url]
+  [![Coverage][coverage-shield]][coverage-url]
+  [![MIT License][license-shield]][license-url]
+  <br/>
+  [![Discord][discord-shield]][discord-url]
+  [![Documentation][docs-shield]][docs-url]
+  [![Project Credits][credits-shield]][credits-url]
 
-Eine moderne React-Komponentenbibliothek für die einheitliche Gestaltung von MVPs.
+  [Start Documentation](https://ecospherenetwork.github.io/smolitux-ui/wiki/) •
+  [Report Bug](https://github.com/EcoSphereNetwork/smolitux-ui/issues) •
+  [Request Feature](https://github.com/EcoSphereNetwork/smolitux-ui/issues)
+</div>
 
-> **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](https://ecospherenetwork.github.io/smolitux-ui/wiki/). Informationen zur Barrierefreiheit finden Sie in der [Barrierefreiheits-Dokumentation](/docs/wiki/accessibility/README.md). Weitere Hinweise zur Pflege und Struktur der Doku gibt es im [Guide](https://ecospherenetwork.github.io/smolitux-ui/guide/).
+## 📋 Table of Contents
+- [About](#-about)
+- [Key Features](#-key-features)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Development](#-development)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [Support](#-support)
+- [License](#-license)
 
-## 📦 Packages
+## 🎯 About
+Smolitux UI stellt standardisierte UI-Komponenten für Webanwendungen bereit und wird im gesamten *EcoSphere Network* eingesetzt.
 
-- **@smolitux/core**: Grundlegende UI-Komponenten
-- **@smolitux/theme**: Theming und Styling
-- **@smolitux/icons**: Icon-Bibliothek
-- **@smolitux/layout**: Layout-Komponenten
-- **@smolitux/charts**: Diagramm-Komponenten
-- **@smolitux/voice-control**: Sprachsteuerung für UI-Elemente
-- **@smolitux/types**: Gemeinsame TypeScript-Typen
+### Why Use This Library?
+- 🚀 **Quick Start**: Sofort einsatzbereite Komponenten
+- 🔄 **CI/CD Ready**: GitHub Actions Workflows für Tests und Builds
+- 📊 **Quality Focused**: Linting und Test-Framework
+- 🛡️ **Security First**: Automatisierte Security-Checks
+- 📚 **Well Documented**: Umfangreiche Dokumentation im Wiki und Storybook
 
-## ⚙️ Voraussetzungen
+## ✨ Key Features
 
-Diese Bibliothek benötigt **Node.js 20** oder höher.
+### Core Features
+- 🔧 **Komponentenvielfalt**: Umfangreiche Paketsammlung unter `packages/@smolitux/`
+- 📝 **Dokumentation**: Docusaurus-Wiki und Storybook
+- 🔄 **Workflows**: GitHub Actions für CI/CD
+- 🧪 **Testing**: Beispieltests und Playwright E2E-Setup
+- 🛡️ **Security**: Abhängigkeitsprüfungen und Best Practices
 
-## 🚀 Installation
+### Development Tools
+- 📊 **Code Quality**: Prettier und ESLint-Konfiguration
+- 🐳 **Docker Support**: Container-Setups und Build-Skripte
+- 🔄 **Dependency Management**: Automatische Updates
+- 🧪 **Testing Framework**: Jest und Playwright
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 20 oder höher
+- Git
+
+### Installation
 
 ```bash
-# Mit npm
 npm install @smolitux/core @smolitux/theme
-
-# Mit yarn
-yarn add @smolitux/core @smolitux/theme
 ```
 
-## 🔧 Einrichtung
-
-Zuerst müssen Sie den ThemeProvider in Ihrer App einrichten:
-
-```jsx
-import { ThemeProvider } from '@smolitux/theme';
-
-function App() {
-  return <ThemeProvider>{/* Ihre App-Komponenten hier */}</ThemeProvider>;
-}
+## 📁 Project Structure
+```
+smolitux-ui/
+├── packages/@smolitux/    # Bibliothekspakete
+├── docs/                 # Dokumentationsseite
+├── examples/             # Beispielprojekte
+├── test-app/             # Demo-Applikation
+├── scripts/              # Hilfsskripte
+└── README.md             # Dieses Dokument
 ```
 
-## 💡 Verwendung
+## 💻 Development
 
-### Buttons
+### Setting Up for Development
+1. Abhängigkeiten installieren:
+   ```bash
+   npm install
+   ```
+2. Pre-commit Hooks einrichten:
+   ```bash
+   npx husky install
+   ```
+3. Umgebungsdatei kopieren:
+   ```bash
+   cp .env.example .env
+   ```
 
-```jsx
-import { Button } from '@smolitux/core';
+### Code Quality Tools
+- **Formatierung**: `npm run format`
+- **Linting**: `npm run lint`
+- **Type Checking**: `npm run typecheck`
 
-function MyComponent() {
-  return (
-    <div>
-      <Button variant="primary">Primärer Button</Button>
-      <Button variant="secondary">Sekundärer Button</Button>
-      <Button variant="ghost">Ghost Button</Button>
-      <Button variant="link">Link Button</Button>
-      <Button variant="solid">Solid Button (Alias für primary)</Button>
-      <Button variant="outline">Outline Button (Alias für ghost)</Button>
-      <Button isLoading>Lädt...</Button>
-    </div>
-  );
-}
-```
+## 🧪 Testing
 
-### Formulare
-
-```jsx
-import { Input, Select } from '@smolitux/core';
-
-function MyForm() {
-  return (
-    <form>
-      <Input
-        label="E-Mail"
-        type="email"
-        placeholder="beispiel@domain.de"
-        helperText="Wir werden Ihre E-Mail niemals weitergeben."
-      />
-
-      <Select
-        label="Kategorie"
-        options={[
-          { value: 'option1', label: 'Option 1' },
-          { value: 'option2', label: 'Option 2' },
-        ]}
-      />
-    </form>
-  );
-}
-```
-
-### Dark Mode
-
-Die Bibliothek unterstützt automatisch Light und Dark Mode. Um zwischen den Modi zu wechseln:
-
-```jsx
-import { useTheme } from '@smolitux/theme';
-
-function ThemeSwitcher() {
-  const { themeMode, toggleTheme } = useTheme();
-
-  return (
-    <button onClick={toggleTheme}>
-      {themeMode === 'light' ? 'Zu Dark Mode wechseln' : 'Zu Light Mode wechseln'}
-    </button>
-  );
-}
-```
-
-## 🧩 Komponenten
-
-Die smolitux UI Bibliothek enthält folgende Komponenten:
-
-### Core
-
-- Alert
-- Badge
-- Button
-- Card
-- Input
-- Modal
-- Select
-- TabView
-- (weitere in Entwicklung)
-
-### Layout
-
-- Container
-- Grid
-- Flexbox
-- Sidebar
-- (weitere in Entwicklung)
-
-### Charts (in Entwicklung)
-
-- LineChart
-- BarChart
-- PieChart
-- AreaChart
-
-### Voice
-
-- VoiceButton
-- VoiceInput
-- VoiceSelect
-- VoiceCard
-- VoiceModal
-
-## 🎨 Theme Anpassung
-
-Sie können das Standard-Theme anpassen:
-
-```jsx
-import { ThemeProvider } from '@smolitux/theme';
-
-// Eigene Theme-Konfiguration
-const customTheme = {
-  colors: {
-    primary: {
-      500: '#0075E1', // Hauptfarbe anpassen
-      // ...andere Farbwerte
-    },
-    // ...weitere Farben
-  },
-  // ...weitere Theme-Eigenschaften
-};
-
-function App() {
-  return <ThemeProvider theme={customTheme}>{/* Ihre App-Komponenten hier */}</ThemeProvider>;
-}
-```
-
-## 🧪 Beispiel-App
-
-Um die Beispiel-App zu starten:
-
+### Running Tests
 ```bash
-# Monorepo-Setup
-npm run bootstrap
-
-# Starten der Beispiel-App
-npm run dev
+npm run test          # Unit-Tests
+npm run test:e2e      # End-to-End-Tests mit Playwright
 ```
 
-## 📚 Dokumentation
+## 🚢 Deployment
 
-Für die vollständige Dokumentation nutzen Sie Storybook:
+### Using GitHub Actions
+1. Secrets im Repository anlegen
+2. Push ausführen, um den Workflow zu starten
+3. Deployment in der Actions-Ansicht überwachen
 
+### Manual Deployment
 ```bash
-npm run storybook
+./scripts/deploy.sh [environment]
 ```
 
-Besuchen Sie dann http://localhost:6006
+## 🤝 Contributing
 
-## 🛠️ Entwicklung
+Beiträge sind willkommen! Siehe [CONTRIBUTING.md](CONTRIBUTING.md) für Details.
 
-```bash
-# Alle Abhängigkeiten installieren
-yarn install
+1. Fork das Repository
+2. Feature-Branch erstellen:
+   ```bash
+   git checkout -b feature/neues-feature
+   ```
+3. Änderungen committen:
+   ```bash
+   git commit -m 'feat: implement neues feature'
+   ```
+4. Branch pushen und Pull Request öffnen
 
-# Entwicklungsmodus für alle Pakete starten
-npm run dev
+## 💬 Support
 
-# Pakete bauen
-npm run build
+- [Issue Tracker](https://github.com/EcoSphereNetwork/smolitux-ui/issues)
+- [Discussions](https://github.com/EcoSphereNetwork/smolitux-ui/discussions)
+- [Discord Community][discord-url]
+- [Documentation][docs-url]
 
-# Tests ausführen
-npm run test
+## 📄 License
 
-# Linting durchführen
-npm run lint
-```
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
-### Neue Komponenten hinzufügen
+---
 
-1. Erstellen Sie eine neue Komponente im entsprechenden Paket unter `/src/components/`
-2. Folgen Sie dem Stil und der Struktur vorhandener Komponenten
-3. Fügen Sie Exports zur `index.ts` des Pakets hinzu
-4. Schreiben Sie Tests für Ihre Komponente
-5. Erstellen Sie eine Storybook-Story für die Dokumentation
+<div align="center">
 
-### Beitragen
+### Repository Activity
 
-Wir freuen uns über Beiträge zur smolitux UI Bibliothek! Bitte beachten Sie folgende Richtlinien:
+[![Repository Activity][activity-graph]][activity-url]
 
-1. Forken Sie das Repository
-2. Erstellen Sie einen Feature-Branch (`git checkout -b feature/awesome-feature`)
-3. Committen Sie Ihre Änderungen (`git commit -m 'Add some awesome feature'`)
-4. Pushen Sie den Branch (`git push origin feature/awesome-feature`)
-5. Erstellen Sie einen Pull Request
+</div>
 
-### Coding-Standards
-
-- Verwenden Sie TypeScript für alle Komponenten
-- Schreiben Sie JSDoc-Kommentare für Komponenten und Props
-- Folgen Sie den Barrierefreiheits-Richtlinien (WCAG 2.1 AA)
-- Halten Sie die Komponenten atomar und wiederverwendbar
-
-## 📋 ToDo-Liste
-
-- [x] Button-Komponente mit zusätzlichen Varianten (solid, outline) erweitern
-- [x] TabView-Komponente mit onChange-Prop für bessere Kompatibilität erweitern
-- [ ] Weitere Kern-Komponenten implementieren
-- [ ] Diagramm-Bibliothek ausbauen
-- [ ] Beispiel-App erweitern
-- [ ] E2E-Tests hinzufügen
-- [ ] Dokumentation verbessern
-
-## 📄 Lizenz
-
-MIT
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[contributors-url]: https://github.com/EcoSphereNetwork/smolitux-ui/graphs/contributors
+[stars-shield]: https://img.shields.io/github/stars/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[stars-url]: https://github.com/EcoSphereNetwork/smolitux-ui/stargazers
+[coverage-shield]: https://img.shields.io/codecov/c/github/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[coverage-url]: https://codecov.io/github/EcoSphereNetwork/smolitux-ui
+[license-shield]: https://img.shields.io/github/license/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[license-url]: https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/LICENSE
+[discord-shield]: https://img.shields.io/badge/Discord-Join%20Us-purple?logo=discord&logoColor=white&style=for-the-badge
+[discord-url]: https://discord.gg/cTWBHGkn
+[docs-shield]: https://img.shields.io/badge/Documentation-000?logo=googledocs&logoColor=FFE165&style=for-the-badge
+[docs-url]: https://ecospherenetwork.github.io/smolitux-ui/wiki/
+[credits-shield]: https://img.shields.io/badge/Project-Credits-blue?style=for-the-badge&color=FFE165&logo=github&logoColor=white
+[credits-url]: https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/CREDITS.md
+[activity-graph]: https://repobeats.axiom.co/api/embed/8d1a53c73cf5523d0e52a6cc5b74bce75eecc801.svg
+[activity-url]: https://repobeats.axiom.co
