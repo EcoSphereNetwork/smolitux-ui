@@ -1,7 +1,11 @@
 # Smolitux UI - Codex Progress
 
+<<<<<<< HEAD
 **Started:** Sun Jun  8 22:54:15 UTC 2025
 **Last Updated:** Sun Jun  8 22:50:29 UTC 2025
+=======
+**Started:** Sun Jun  8 22:48:31 UTC 2025
+>>>>>>> 53fa47a0 (feat(testing): add custom matchers and docs)
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -16,9 +20,15 @@
 - [ ] **@smolitux/layout** (Container, Grid, Flex)
 - [ ] **@smolitux/charts** (AreaChart, BarChart, PieChart, etc.)
 
+<<<<<<< HEAD
 ### Tier 3: Advanced Features
 - [x] **@smolitux/media** (AudioPlayer, VideoPlayer, ImageGallery, MediaGrid)
 - [x] **@smolitux/community** (ActivityFeed, UserProfile)
+=======
+### Tier 3: Advanced Features  
+- [ ] **@smolitux/media** (AudioPlayer, VideoPlayer)
+- [ ] **@smolitux/community** (ActivityFeed, UserProfile)
+>>>>>>> 53fa47a0 (feat(testing): add custom matchers and docs)
 
 ### Tier 4: Specialized
 - [ ] **@smolitux/ai** (ContentAnalytics, SentimentDisplay)
@@ -34,6 +44,7 @@
 - **Focus:** TypeScript + Tests + Stories + Accessibility
 
 ## 🚀 Next Actions:
+<<<<<<< HEAD
 1. Verify @smolitux/testing utilities across packages
 2. Analyze packages/@smolitux/core structure
 3. Identify missing/incomplete components
@@ -78,3 +89,20 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 
 ---
 _Updated by Codex AI_
+=======
+1. Analyze packages/@smolitux/core structure
+2. Identify missing/incomplete components
+3. Fix TypeScript errors
+4. Add missing tests (*.test.tsx)
+5. Add missing stories (*.stories.tsx)  
+6. Ensure accessibility compliance
+7. Update this file after each session
+
+---
+*Updated by Codex AI*
+
+### Update 2025-06-13
+- Reviewed **@smolitux/testing** utilities and added custom Jest matchers.
+- Created `component-status-testing.md` documenting package status.
+- Verified integration of testing helpers across packages.
+>>>>>>> 53fa47a0 (feat(testing): add custom matchers and docs)

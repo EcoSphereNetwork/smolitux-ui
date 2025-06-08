@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { a11y } from '../src';
+import { a11y, customMatchers } from '../src';
 import { Button } from '@smolitux/core';
 
 describe('a11y utilities', () => {
@@ -36,5 +36,18 @@ describe('a11y utilities', () => {
 
   it('hasAdequateColorContrast returns true for high contrast', () => {
     expect(a11y.hasAdequateColorContrast('#000', '#fff')).toBe(true);
+  });
+
+  it('custom matcher toBeFocusable works', () => {
+    const { getByRole } = render(<Button>Ok</Button>);
+    const btn = getByRole('button');
+    expect(btn).toBeFocusable();
+  });
+
+  it('custom matcher toHaveVisibleFocusIndicator works', () => {
+    const { getByRole } = render(<Button style={{ outline: '1px solid red' }}>Ok</Button>);
+    const btn = getByRole('button');
+    btn.focus();
+    expect(btn).toHaveVisibleFocusIndicator();
   });
 });
