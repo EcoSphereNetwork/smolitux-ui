@@ -1,8 +1,19 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { VoiceControlProvider } from './VoiceControlProvider';
+import { VoiceControlProvider, useVoiceControl } from './VoiceControlProvider';
+
+const Demo = () => {
+  const { isListening, recognizedText } = useVoiceControl();
+  return (
+    <div>
+      <p>Listening: {String(isListening)}</p>
+      <p>Recognized: {recognizedText}</p>
+    </div>
+  );
+};
 
 const meta: Meta<typeof VoiceControlProvider> = {
-  title: 'Components/VoiceControlProvider',
+  title: 'VoiceControl/VoiceControlProvider',
   component: VoiceControlProvider,
   parameters: {
     layout: 'centered',
@@ -14,21 +25,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    children: 'VoiceControlProvider',
-  },
+  render: () => (
+    <VoiceControlProvider>
+      <Demo />
+    </VoiceControlProvider>
+  ),
 };
 
-export const CustomStyle: Story = {
-  args: {
-    children: 'Custom VoiceControlProvider',
-    className: 'custom-style',
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    children: 'Interactive VoiceControlProvider',
-    onClick: () => alert('Clicked!'),
-  },
-};
