@@ -229,10 +229,10 @@ export const LanguageSwitcherA11y: React.FC<LanguageSwitcherProps> = ({
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown as any);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown as any);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen]);
 
