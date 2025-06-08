@@ -48,7 +48,7 @@ export type MotionProps = {
   /**
    * Die Keyframe-Animation, die angewendet werden soll
    */
-  animate?: KeyframeAnimation | Record<string, any>;
+  animate?: KeyframeAnimation | Record<string, unknown>;
 
   /**
    * Die Übergangseinstellungen

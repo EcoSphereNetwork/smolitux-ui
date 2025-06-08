@@ -11,7 +11,7 @@ export interface TokenDistributionSegment {
   /** Beschreibung des Segments */
   description?: string;
   /** Zusätzliche Metadaten zum Segment */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface TokenDistributionChartProps {

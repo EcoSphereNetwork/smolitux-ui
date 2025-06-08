@@ -48,7 +48,7 @@ export interface FederatedPlatform {
   /** Maximale Textlänge */
   maxTextLength?: number;
   /** Zusätzliche Metadaten zur Plattform */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 // Search related types
@@ -83,7 +83,7 @@ export interface SearchResult {
   /** Relevanz des Suchergebnisses (0-100) */
   relevance?: number;
   /** Zusätzliche Metadaten zum Suchergebnis */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface FederatedSearchProps {
@@ -93,7 +93,7 @@ export interface FederatedSearchProps {
   onSearch: (
     query: string,
     platforms: string[],
-    filters: Record<string, any>
+    filters: Record<string, unknown>
   ) => Promise<SearchResult[]>;
   /** Callback beim Klicken auf ein Suchergebnis */
   onResultClick?: (result: SearchResult) => void;
@@ -106,5 +106,5 @@ export interface FederatedSearchProps {
   /** Standardmäßig aktive Plattformen */
   defaultActivePlatforms?: string[];
   /** Standardmäßige Suchfilter */
-  defaultFilters?: Record<string, any>;
+  defaultFilters?: Record<string, unknown>;
 }

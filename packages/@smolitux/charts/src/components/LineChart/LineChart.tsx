@@ -16,7 +16,7 @@ export interface LineChartDataPoint {
   /** Optional: Kategorie für Multi-Serien Charts */
   category?: string;
   /** Optional: Metadata für Tooltips etc. */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface LineChartSeries {

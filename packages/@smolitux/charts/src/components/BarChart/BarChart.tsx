@@ -10,7 +10,7 @@ export interface BarChartDataPoint {
   /** Optional: Farbe des Balkens */
   color?: string;
   /** Optional: Metadata für Tooltips etc. */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface BarChartSeries {

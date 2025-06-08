@@ -1,6 +1,6 @@
 # Smolitux UI - Codex Progress
 
-**Started:** Sun Jun  8 21:09:03 UTC 2025
+**Started:** Sun Jun  8 21:14:50 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -43,8 +43,7 @@
 
 ---
 *Updated by Codex AI*
-
-### Update 2025-06-08
-Repository analyzer confirms **100%** test and story coverage across all packages.
-However, **156 validation issues** remain (missing exports, `any` types, missing test IDs).
-Next focus: resolve these validation issues and ensure strict TypeScript compliance.
+## Update 2025-06-09
+- Replaced Record<string, any> with Record<string, unknown> for strict typing.
+- Updated ActivityStream and FederatedSearch components.
+- Next: fix validation issues in core.

@@ -267,3 +267,7 @@ Latest analyzer run reports **100%** test and story coverage for all packages.
 Identified **156 validation issues**: missing exports, `any` types and missing
 `data-testid` attributes. Manual refinements are required to achieve strict
 TypeScript compliance and resolve all validation warnings.
+### Update 2025-06-09 (Codex Session)
+- Replaced `Record<string, any>` with `Record<string, unknown>` for stricter typing.
+- Updated ActivityStream and FederatedSearch components to avoid 'any'.
+- Next: address remaining validation issues in core package.

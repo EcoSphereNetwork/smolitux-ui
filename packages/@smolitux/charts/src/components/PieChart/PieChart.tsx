@@ -16,7 +16,7 @@ export interface PieChartDataPoint {
   /** Optional: Farbe des Segments */
   color?: string;
   /** Optional: Metadata für Tooltips etc. */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface PieChartProps extends React.SVGProps<SVGSVGElement> {
