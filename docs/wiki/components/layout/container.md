@@ -28,28 +28,13 @@ import { Container } from '@smolitux/layout';
 
 ### Container mit Padding
 
-```jsx
-<Container padding="lg">
-  <p>Dieser Container hat ein großes Padding.</p>
-</Container>
-```
-
-### Fluid Container (volle Breite)
-
-```jsx
-<Container fluid>
-  <p>Dieser Container erstreckt sich über die volle Breite des Bildschirms.</p>
-</Container>
-```
 
 ## Props
 
 | Prop | Typ | Standard | Beschreibung |
 |------|-----|----------|-------------|
 | `children` | `ReactNode` | - | Der Inhalt des Containers |
-| `maxWidth` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| string` | `'lg'` | Die maximale Breite des Containers |
-| `fluid` | `boolean` | `false` | Wenn `true`, erstreckt sich der Container über die volle Breite |
-| `padding` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Das Padding innerhalb des Containers |
+| `maxWidth` | `ResponsiveProp<'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full' \| 'none'>` | `'lg'` | Maximale Breite, optional responsive |
 | `className` | `string` | - | Zusätzliche CSS-Klasse |
 | `style` | `CSSProperties` | - | Inline-Styles für den Container |
 
@@ -79,20 +64,12 @@ Die vordefinierten maximalen Breiten sind:
 </Container>
 ```
 
-### Container mit Hintergrundfarbe
-
-```jsx
-<Container style={{ backgroundColor: '#f5f5f5' }} padding="lg">
-  <h1>Container mit Hintergrund</h1>
-  <p>Dieser Container hat eine Hintergrundfarbe und größeres Padding.</p>
-</Container>
-```
 
 ### Responsive Container
 
 ```jsx
-<Container maxWidth={{ xs: '100%', sm: '540px', md: '720px', lg: '960px', xl: '1140px' }}>
-  <p>Dieser Container passt seine maximale Breite an verschiedene Breakpoints an.</p>
+<Container maxWidth={{ sm: 'sm', lg: 'xl' }}>
+  <p>Dieser Container passt seine Breite an verschiedene Breakpoints an.</p>
 </Container>
 ```
 
