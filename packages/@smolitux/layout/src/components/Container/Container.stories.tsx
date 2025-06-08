@@ -157,3 +157,14 @@ export const CenteredContent: Story = {
     fullHeight: true,
   },
 };
+
+export const Responsive: Story = {
+  render: (args) => (
+    <ContainerWithBorder {...args}>
+      <ExampleContent />
+    </ContainerWithBorder>
+  ),
+  args: {
+    maxWidth: { sm: 'sm', lg: 'xl' },
+  },
+};
