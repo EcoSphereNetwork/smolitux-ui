@@ -59,3 +59,9 @@ export const Text: React.FC<TextProps> = ({ children, as = 'p', ...props }) => {
   const Component = as;
   return <Component {...props}>{children}</Component>;
 };
+
+export default {
+  Box,
+  Flex,
+  Text,
+};

@@ -259,6 +259,13 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 - Fixed TypeScript issues in Button, useAnimation, and transitions
 - Continuing work on @smolitux/core for strict compliance
 
+### Update 2025-06-08 (Codex Session)
+- Addressed validation issues in several Resonance components
+- Added missing `export default` statements in Theme and primitives modules
+- Replaced `any` types with `Record<string, unknown>` in PostCreator
+- Added `data-testid` attributes to PostCreator, RevenueModel, CreatorDashboard and RewardSystem
+- Analyzer still reports 140 validation issues overall
+
 ### Update 2025-06-08
 Analyzer adjusted: a11y files ignored. Coverage now 100%. Next: fix remaining validation issues.
 

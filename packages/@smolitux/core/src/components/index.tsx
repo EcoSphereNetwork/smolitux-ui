@@ -11,3 +11,5 @@ export { default as TabView, type TabViewProps, type TabItem } from './component
 // Export common hooks, contexts and utils as needed
 // export { useFormControl } from './hooks/useFormControl';
 // export { FormProvider } from './contexts/FormContext';
+
+export default {};

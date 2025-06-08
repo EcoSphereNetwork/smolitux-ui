@@ -47,3 +47,8 @@
 - Replaced Record<string, any> with Record<string, unknown> for strict typing.
 - Updated ActivityStream and FederatedSearch components.
 - Next: fix validation issues in core.
+
+## Update 2025-06-08 (Codex Session)
+- Fixed missing default exports in various theme and primitives files
+- Removed several `any` casts in Resonance components
+- Added `data-testid` attributes to key monetization components
