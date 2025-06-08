@@ -9,11 +9,10 @@
     "skipLibCheck": true,
     "types": ["node", "@docusaurus/module-type-aliases"]
   },
-  "include": ["docs"],
+  "include": ["packages", "docs"],
   "exclude": [
     "node_modules",
     "dist",
-    "packages",
     "packages/playground"
   ]
 }

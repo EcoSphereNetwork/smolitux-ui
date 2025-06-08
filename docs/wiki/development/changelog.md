@@ -115,3 +115,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Charts-Komponenten haben Syntaxfehler und sind noch nicht nutzbar
 - Einige Tests schlagen fehl aufgrund von Snapshot-Änderungen
 - Formularvalidierung und Internationalisierung sind noch nicht vollständig implementiert
+## [0.3.0] - 2025-06-08
+- Repository reinitialized without Lerna
+- Minimal TypeScript, ESLint and Jest setup
+

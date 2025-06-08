@@ -28,7 +28,7 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 1.2 Entwicklungsstand (Version 0.2.2)
 
 - **Komponenten**: Alle geplanten Komponenten sind implementiert, mit Verbesserungen an Button, Card, Input, Checkbox, Alert, Badge, Accordion, Avatar, Breadcrumb, Carousel, TextArea, Container und Flex
-- **Tests**:
+- **Tests**: 
   - Unit-Tests: 100% der Komponenten haben Unit-Tests
   - A11y-Tests: 25% der Komponenten haben Barrierefreiheitstests
   - Snapshot-Tests: 10% der Komponenten haben Snapshot-Tests
@@ -48,7 +48,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 1.4 Stärken und Schwächen (Version 0.2.2)
 
 #### Stärken
-
 - Vollständige Komponentensammlung mit allen geplanten Komponenten
 - Gut strukturiertes Monorepo mit klarer Paketaufteilung
 - Solide Testinfrastruktur mit 100% Unit-Test-Abdeckung
@@ -57,7 +56,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Funktionierendes Storybook mit Dokumentation für Kernkomponenten
 
 #### Schwächen
-
 - Unzureichende Barrierefreiheitstests (nur 25% Abdeckung)
 - Geringe Snapshot-Testabdeckung (nur 10%)
 - Geringe Integrationstestabdeckung (nur 15%)
@@ -70,7 +68,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 2.1 Komponenten mit Barrierefreiheitstests
 
 #### Hohe Priorität
-
 - ColorPicker (Implementierung von A11y-Tests)
 - Dialog (Implementierung von A11y-Tests)
 - Drawer (Implementierung von A11y-Tests)
@@ -81,7 +78,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Pagination (Implementierung von A11y-Tests)
 
 #### Mittlere Priorität
-
 - Popover (Implementierung von A11y-Tests)
 - ProgressBar (Implementierung von A11y-Tests)
 - RadioGroup (Implementierung von A11y-Tests)
@@ -92,7 +88,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Toast (Implementierung von A11y-Tests)
 
 #### Niedrige Priorität
-
 - Tooltip (Implementierung von A11y-Tests)
 - Grid (Implementierung von A11y-Tests)
 - Sidebar (Implementierung von A11y-Tests)
@@ -137,42 +132,36 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ## 3. Phasen und Meilensteine für Version 0.3.0
 
 ### Phase 1: A11y-Tests für Kernkomponenten (KW 18-19)
-
 - Implementierung von A11y-Tests für ColorPicker, Dialog, Drawer, FileUpload
 - Implementierung von A11y-Tests für FormControl, Menu, Modal, Pagination
 - Verbesserung der Barrierefreiheit für diese Komponenten
 - Aktualisierung der Dokumentation
 
 ### Phase 2: A11y-Tests für Layout-Komponenten (KW 20-21)
-
 - Implementierung von A11y-Tests für Popover, ProgressBar, RadioGroup, Select
 - Implementierung von A11y-Tests für Skeleton, Switch, TabView, Toast
 - Verbesserung der Barrierefreiheit für diese Komponenten
 - Aktualisierung der Dokumentation
 
 ### Phase 3: Snapshot-Tests (KW 22-23)
-
 - Implementierung von Snapshot-Tests für alle Kernkomponenten
 - Implementierung von Snapshot-Tests für alle Layout-Komponenten
 - Implementierung von Snapshot-Tests für alle Diagramm-Komponenten
 - Aktualisierung der visuellen Regressionstests
 
 ### Phase 4: Integrationstests (KW 24-25)
-
 - Implementierung von Integrationstests für komplexe Komponenten
 - Implementierung von Integrationstests für Komponenteninteraktionen
 - Verbesserung der Testabdeckung für alle Komponenten
 - Aktualisierung der Dokumentation
 
 ### Phase 5: Performance-Tests (KW 26-27)
-
 - Implementierung von Performance-Tests für komplexe Komponenten
 - Optimierung der Komponenten für bessere Leistung
 - Verbesserung der Build-Zeiten
 - Aktualisierung der Dokumentation
 
 ### Phase 6: Dokumentation und Finalisierung (KW 28-29)
-
 - Vervollständigung der Komponentendokumentation
 - Vervollständigung der Storybook-Dokumentation
 - Vervollständigung der API-Dokumentation
@@ -180,22 +169,21 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 
 ### Meilensteine für Version 0.3.0
 
-| Meilenstein             | Beschreibung                               | Geplantes Datum |
-| ----------------------- | ------------------------------------------ | --------------- |
-| M1: A11y-Tests (Kern)   | A11y-Tests für Kernkomponenten             | Ende KW 19      |
-| M2: A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten          | Ende KW 21      |
-| M3: Snapshot-Tests      | Snapshot-Tests für alle Komponenten        | Ende KW 23      |
-| M4: Integrationstests   | Integrationstests für komplexe Komponenten | Ende KW 25      |
-| M5: Performance-Tests   | Performance-Tests für komplexe Komponenten | Ende KW 27      |
-| M6: Dokumentation       | Dokumentation vervollständigt              | Ende KW 29      |
-| M7: Release 0.3.0       | Stabile Version 0.3.0 veröffentlicht       | Ende KW 30      |
+| Meilenstein | Beschreibung | Geplantes Datum |
+|-------------|--------------|-----------------|
+| M1: A11y-Tests (Kern) | A11y-Tests für Kernkomponenten | Ende KW 19 |
+| M2: A11y-Tests (Layout) | A11y-Tests für Layout-Komponenten | Ende KW 21 |
+| M3: Snapshot-Tests | Snapshot-Tests für alle Komponenten | Ende KW 23 |
+| M4: Integrationstests | Integrationstests für komplexe Komponenten | Ende KW 25 |
+| M5: Performance-Tests | Performance-Tests für komplexe Komponenten | Ende KW 27 |
+| M6: Dokumentation | Dokumentation vervollständigt | Ende KW 29 |
+| M7: Release 0.3.0 | Stabile Version 0.3.0 veröffentlicht | Ende KW 30 |
 
 ## 4. Detaillierter Implementierungsplan für Version 0.3.0
 
 ### 4.1 Phase 1: A11y-Tests für Kernkomponenten
 
 #### 4.1.1 ColorPicker-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -203,7 +191,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Aktualisierung der Dokumentation
 
 #### 4.1.2 Dialog-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -211,7 +198,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Aktualisierung der Dokumentation
 
 #### 4.1.3 Drawer-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -219,7 +205,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Aktualisierung der Dokumentation
 
 #### 4.1.4 FileUpload-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -229,7 +214,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 4.2 Phase 2: A11y-Tests für Layout-Komponenten
 
 #### 4.2.1 Popover-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -237,7 +221,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Aktualisierung der Dokumentation
 
 #### 4.2.2 ProgressBar-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -245,7 +228,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Aktualisierung der Dokumentation
 
 #### 4.2.3 RadioGroup-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -253,7 +235,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Aktualisierung der Dokumentation
 
 #### 4.2.4 Select-Komponente
-
 - Analyse der aktuellen Barrierefreiheit
 - Implementierung von A11y-Tests
 - Verbesserung der ARIA-Attribute
@@ -263,7 +244,6 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 4.3 Phase 3: Snapshot-Tests
 
 #### 4.3.1 Kernkomponenten
-
 - Implementierung von Snapshot-Tests für Button
 - Implementierung von Snapshot-Tests für Card
 - Implementierung von Snapshot-Tests für Input
@@ -271,14 +251,12 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 - Implementierung von Snapshot-Tests für Alert
 
 #### 4.3.2 Layout-Komponenten
-
 - Implementierung von Snapshot-Tests für Container
 - Implementierung von Snapshot-Tests für Grid
 - Implementierung von Snapshot-Tests für Flex
 - Implementierung von Snapshot-Tests für Sidebar
 
 #### 4.3.3 Diagramm-Komponenten
-
 - Implementierung von Snapshot-Tests für LineChart
 - Implementierung von Snapshot-Tests für BarChart
 - Implementierung von Snapshot-Tests für PieChart
@@ -287,21 +265,18 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 4.4 Phase 4: Integrationstests
 
 #### 4.4.1 Formular-Komponenten
-
 - Implementierung von Integrationstests für Formular-Komponenten
 - Testen der Interaktion zwischen Input, Select, Checkbox und Button
 - Testen der Formularvalidierung
 - Testen der Formularübermittlung
 
 #### 4.4.2 Layout-Komponenten
-
 - Implementierung von Integrationstests für Layout-Komponenten
 - Testen der Interaktion zwischen Container, Grid und Flex
 - Testen des responsiven Verhaltens
 - Testen der Anpassung an verschiedene Bildschirmgrößen
 
 #### 4.4.3 Dialog-Komponenten
-
 - Implementierung von Integrationstests für Dialog-Komponenten
 - Testen der Interaktion zwischen Modal, Dialog und Drawer
 - Testen der Tastaturnavigation
@@ -310,21 +285,18 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 4.5 Phase 5: Performance-Tests
 
 #### 4.5.1 Tabellen und Listen
-
 - Implementierung von Performance-Tests für Tabellen
 - Implementierung von Performance-Tests für Listen
 - Optimierung der Rendering-Leistung
 - Implementierung von virtualisiertem Scrolling
 
 #### 4.5.2 Diagramme
-
 - Implementierung von Performance-Tests für Diagramme
 - Optimierung der Rendering-Leistung
 - Optimierung der Datenverarbeitung
 - Implementierung von Lazy-Loading
 
 #### 4.5.3 Komplexe Komponenten
-
 - Implementierung von Performance-Tests für komplexe Komponenten
 - Optimierung der Rendering-Leistung
 - Optimierung der Zustandsverwaltung
@@ -333,21 +305,18 @@ Die Smolitux UI Bibliothek ist als Monorepo mit mehreren Paketen unter `packages
 ### 4.6 Phase 6: Dokumentation und Finalisierung
 
 #### 4.6.1 Komponentendokumentation
-
 - Vervollständigung der Komponentendokumentation
 - Hinzufügen von Barrierefreiheitsrichtlinien
 - Hinzufügen von Best Practices
 - Hinzufügen von Beispielen
 
 #### 4.6.2 Storybook-Dokumentation
-
 - Vervollständigung der Storybook-Stories
 - Hinzufügen von Barrierefreiheits-Addons
 - Hinzufügen von Interaktiven Beispielen
 - Hinzufügen von Dokumentation zu Props
 
 #### 4.6.3 API-Dokumentation
-
 - Vervollständigung der API-Dokumentation
 - Hinzufügen von TypeScript-Typdefinitionen
 - Hinzufügen von Beispielen
@@ -365,26 +334,24 @@ Für die Umsetzung des Plans für Version 0.3.0 werden folgende Ressourcen benö
 
 ### 5.2 Risikomanagement
 
-| Risiko                                         | Wahrscheinlichkeit | Auswirkung | Abhilfemaßnahme                                                                                                |
-| ---------------------------------------------- | ------------------ | ---------- | -------------------------------------------------------------------------------------------------------------- |
-| Komplexe Barrierefreiheitsprobleme             | Mittel             | Hoch       | Frühzeitige Konsultation von Barrierefreiheitsexperten, schrittweise Verbesserungen                            |
-| Snapshot-Test-Instabilität                     | Hoch               | Mittel     | Verwendung von deterministischen Rendering-Methoden, Ausschluss von dynamischen Inhalten                       |
-| Performance-Probleme bei komplexen Komponenten | Mittel             | Hoch       | Frühzeitige Performance-Tests, Implementierung von Optimierungen wie Virtualisierung und Memoization           |
-| Browserkompatibilitätsprobleme                 | Niedrig            | Mittel     | Umfassende Tests in verschiedenen Browsern, Verwendung von Polyfills                                           |
-| Zeitüberschreitung                             | Mittel             | Hoch       | Regelmäßige Fortschrittsüberprüfung, Anpassung des Plans bei Bedarf, Priorisierung der wichtigsten Komponenten |
+| Risiko | Wahrscheinlichkeit | Auswirkung | Abhilfemaßnahme |
+|--------|-------------------|------------|-----------------|
+| Komplexe Barrierefreiheitsprobleme | Mittel | Hoch | Frühzeitige Konsultation von Barrierefreiheitsexperten, schrittweise Verbesserungen |
+| Snapshot-Test-Instabilität | Hoch | Mittel | Verwendung von deterministischen Rendering-Methoden, Ausschluss von dynamischen Inhalten |
+| Performance-Probleme bei komplexen Komponenten | Mittel | Hoch | Frühzeitige Performance-Tests, Implementierung von Optimierungen wie Virtualisierung und Memoization |
+| Browserkompatibilitätsprobleme | Niedrig | Mittel | Umfassende Tests in verschiedenen Browsern, Verwendung von Polyfills |
+| Zeitüberschreitung | Mittel | Hoch | Regelmäßige Fortschrittsüberprüfung, Anpassung des Plans bei Bedarf, Priorisierung der wichtigsten Komponenten |
 
 ## 6. Nächste Schritte für Version 0.3.0
 
 Die unmittelbar nächsten Schritte sind:
 
 1. **Vorbereitung der A11y-Tests für Kernkomponenten**
-
    - Einrichtung der A11y-Testinfrastruktur
    - Analyse der aktuellen Barrierefreiheit der Kernkomponenten
    - Erstellung von A11y-Test-Templates
 
 2. **Vorbereitung der Snapshot-Tests**
-
    - Einrichtung der Snapshot-Testinfrastruktur
    - Analyse der aktuellen visuellen Darstellung der Komponenten
    - Erstellung von Snapshot-Test-Templates
@@ -403,13 +370,3 @@ Für detailliertere Informationen zu bestimmten Aspekten des Plans siehe die fol
 - **[Teststrategie](../testing/test-strategy.md)**: Umfassende Strategie für alle Arten von Tests
 - **[Release-Notes v0.2.2](../development/releases/v0.2.2.md)**: Informationen zur aktuellen Version
 - **[Barrierefreiheitsrichtlinien](../guidelines/accessibility.md)**: Richtlinien für die Implementierung von barrierefreien Komponenten
-
-## 8. Dokumentationsüberarbeitung 2025-06
-
-Im Rahmen dieses PRs wurde eine erste Analyse der bestehenden Dokumentation durchgeführt. Die folgenden Schritte fassen die geplante Überarbeitung zusammen:
-
-1. **Bestandsaufnahme**: Sämtliche Markdown-Dateien unter `docs/wiki/` wurden auf veraltete Informationen, Redundanzen und fehlende Inhalte geprüft.
-2. **Verbesserungsplan**: Eine strukturierte Gliederung in Benutzer-, Entwickler-, Test- und Guideline-Dokumentation wurde ausgearbeitet.
-3. **Roadmap-Integration**: Der bisher eigenständige Improvement-Plan wird künftig hier im Roadmap-Dokument gepflegt, um Doppelungen zu vermeiden.
-4. **Docusaurus-Konfiguration**: Sidebars und Navigation werden aktualisiert, sodass alle Bereiche leicht auffindbar sind.
-5. **Nächste Schritte**: Die überarbeiteten Dokumente werden iterativ ergänzt und mit automatisierten Tools wie Storybook Docs und Typedoc synchronisiert.
