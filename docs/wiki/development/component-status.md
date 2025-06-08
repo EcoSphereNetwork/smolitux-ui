@@ -16,7 +16,7 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/core | Avatar | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/core | Breadcrumb | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/core | Carousel | ✅ | ✅ | ❌ | ❌ | Ready |
-| @smolitux/core | ColorPicker | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/core | ColorPicker | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/core | Dialog | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Drawer | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | FileUpload | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
