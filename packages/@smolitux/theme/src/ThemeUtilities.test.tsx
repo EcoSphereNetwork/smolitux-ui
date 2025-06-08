@@ -1,21 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { ThemeUtilities } from './ThemeUtilities';
+import { getColorByTheme, getSpacing } from './ThemeUtilities';
+import { defaultTheme } from './Default';
 
-describe('ThemeUtilities', () => {
-  it('renders without crashing', () => {
-    render(<ThemeUtilities />);
-    expect(screen.getByRole('button', { name: /ThemeUtilities/i })).toBeInTheDocument();
+describe('Theme utilities', () => {
+  test('resolves color by theme', () => {
+    const color = getColorByTheme(defaultTheme, 'primary', '500');
+    expect(color).toBe('#0075E1');
   });
 
-  it('applies custom className', () => {
-    render(<ThemeUtilities className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
-  });
-
-  it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
-    render(<ThemeUtilities ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+  test('calculates numeric spacing', () => {
+    expect(getSpacing(defaultTheme, 2)).toBe('2rem');
   });
 });

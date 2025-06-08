@@ -8,7 +8,7 @@
 
 ### Tier 1: Foundation (START HERE)
 - [ ] **@smolitux/core** (60+ components) - Button, Modal, Table, Input, etc.
-- [ ] **@smolitux/theme** (design tokens)
+- [ ] **@smolitux/theme** (design tokens) - done
 - [ ] **@smolitux/utils** (utilities)
 - [x] **@smolitux/testing** (test helpers) - custom matchers added
 
