@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from '@smolitux/core';
 
+interface EthereumProvider {
+  request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
+  on: (event: string, handler: (...args: unknown[]) => void) => void;
+  removeListener: (event: string, handler: (...args: unknown[]) => void) => void;
+}
+
 export interface WalletConnectProps {
   /** Callback bei erfolgreicher Verbindung */
-  onConnect: (address: string, provider: any) => void;
+  onConnect: (address: string, provider: EthereumProvider) => void;
   /** Callback bei Trennung der Verbindung */
   onDisconnect: () => void;
   /** Unterstützte Wallet-Typen */
@@ -28,18 +34,22 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
   const [showWalletOptions, setShowWalletOptions] = useState(false);
 
   // Prüfen, ob Ethereum verfügbar ist
-  const isEthereumAvailable = typeof window !== 'undefined' && (window as any).ethereum;
+  const ethereum =
+    typeof window !== 'undefined'
+      ? (window as unknown as { ethereum?: EthereumProvider }).ethereum
+      : undefined;
+  const isEthereumAvailable = Boolean(ethereum);
 
   // Verbindungsstatus beim Laden prüfen
   useEffect(() => {
     const checkConnection = async () => {
       if (isEthereumAvailable) {
         try {
-          const accounts = await (window as any).ethereum.request({ method: 'eth_accounts' });
+          const accounts = await ethereum!.request({ method: 'eth_accounts' });
           if (accounts.length > 0) {
             setWalletAddress(accounts[0]);
             setIsConnected(true);
-            onConnect(accounts[0], (window as any).ethereum);
+            onConnect(accounts[0], ethereum!);
           }
         } catch (err) {
           console.error('Fehler beim Prüfen der Verbindung:', err);
@@ -63,7 +73,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
           // Benutzer hat das Konto gewechselt
           setWalletAddress(accounts[0]);
           setIsConnected(true);
-          onConnect(accounts[0], (window as any).ethereum);
+          onConnect(accounts[0], ethereum!);
         }
       };
 
@@ -72,12 +82,12 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
         window.location.reload();
       };
 
-      (window as any).ethereum.on('accountsChanged', handleAccountsChanged);
-      (window as any).ethereum.on('chainChanged', handleChainChanged);
+      ethereum!.on('accountsChanged', handleAccountsChanged);
+      ethereum!.on('chainChanged', handleChainChanged);
 
       return () => {
-        (window as any).ethereum.removeListener('accountsChanged', handleAccountsChanged);
-        (window as any).ethereum.removeListener('chainChanged', handleChainChanged);
+        ethereum!.removeListener('accountsChanged', handleAccountsChanged);
+        ethereum!.removeListener('chainChanged', handleChainChanged);
       };
     }
   }, [isEthereumAvailable, onConnect, onDisconnect]);
@@ -95,10 +105,10 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
     setError(null);
 
     try {
-      const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = await ethereum!.request({ method: 'eth_requestAccounts' });
       setWalletAddress(accounts[0]);
       setIsConnected(true);
-      onConnect(accounts[0], (window as any).ethereum);
+      onConnect(accounts[0], ethereum!);
     } catch (err) {
       console.error('Fehler beim Verbinden mit MetaMask:', err);
       setError('Verbindung mit MetaMask fehlgeschlagen. Bitte versuchen Sie es erneut.');
@@ -127,7 +137,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
   };
 
   return (
-    <div className={className}>
+    <div className={className} data-testid="wallet-connect">
       {isConnected ? (
         <div className="flex items-center space-x-2">
           <div className="flex items-center bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-3 py-1 rounded-full text-sm">

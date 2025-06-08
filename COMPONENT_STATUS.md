@@ -1,6 +1,6 @@
 # Smolitux UI - Codex Progress
 
-**Started:** Sun Jun  8 19:47:27 UTC 2025
+**Started:** Sun Jun  8 20:13:59 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -37,9 +37,15 @@
 2. Identify missing/incomplete components
 3. Fix TypeScript errors
 4. Add missing tests (*.test.tsx)
-5. Add missing stories (*.stories.tsx)  
+5. Add missing stories (*.stories.tsx)
 6. Ensure accessibility compliance
 7. Update this file after each session
+
+### Session Update (2025-06-08)
+- Refactored `WalletConnect` to remove `any` types and added `EthereumProvider` interface
+- Added `data-testid` attribute for easier testing
+- Fixed `Modal.test.tsx` to remove `@ts-ignore` by mocking `ReactDOM.createPortal`
+- Lint/test/build commands attempted but failed due to missing tools
 
 ---
 *Updated by Codex AI*
