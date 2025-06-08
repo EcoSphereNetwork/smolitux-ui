@@ -354,12 +354,12 @@ export const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>((props
 
   // Funktion zum Aktualisieren des Eingabefelds basierend auf dem Format
   const updateInputValue = useCallback(
-    (newColor?: string, newAlpha?: number) => {
+    (newColor?: string, newAlpha?: number, formatOverride: ColorFormat = format) => {
       const colorToUse = newColor || color;
       const alphaToUse = newAlpha !== undefined ? newAlpha : alpha;
 
       try {
-        switch (format) {
+        switch (formatOverride) {
           case 'hex':
             if (colorToUse.startsWith('#')) {
               setInputValue(colorToUse);
@@ -719,18 +719,9 @@ export const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>((props
                   key={fmt}
                   type="button"
                   onClick={() => {
-                    // Aktualisiere das Format und den Eingabewert
                     const newFormat = fmt as ColorFormat;
-                    // Wir müssen das Format direkt aktualisieren
-                    const currentFormat = format;
-                    // @ts-ignore - Wir aktualisieren eine Prop direkt
-                    format = newFormat;
-                    updateInputValue();
-                    // Rufe onChange mit dem neuen Format auf
+                    updateInputValue(undefined, undefined, newFormat);
                     onChange?.(color, newFormat);
-                    // Setze das Format zurück
-                    // @ts-ignore - Wir setzen die Prop zurück
-                    format = currentFormat;
                   }}
                   className={`
                     px-3 py-1 rounded-md text-sm
