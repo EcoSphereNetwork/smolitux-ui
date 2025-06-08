@@ -237,7 +237,7 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 | @smolitux/layout | Container | ✅ Fertig |
 | @smolitux/layout | DashboardLayout | ❌ Offen |
 | @smolitux/layout | Flex | ✅ Fertig |
-| @smolitux/layout | Footer | ❌ Offen |
+| @smolitux/layout | Footer | ✅ Fertig |
 | @smolitux/layout | Grid | ✅ Fertig |
 | @smolitux/layout | Header | ❌ Offen |
 | @smolitux/layout | Sidebar | ✅ Fertig |

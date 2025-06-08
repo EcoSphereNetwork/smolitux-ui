@@ -37,9 +37,12 @@
 2. Identify missing/incomplete components
 3. Fix TypeScript errors
 4. Add missing tests (*.test.tsx)
-5. Add missing stories (*.stories.tsx)  
+5. Add missing stories (*.stories.tsx)
 6. Ensure accessibility compliance
 7. Update this file after each session
+
+### Recent Updates
+- ✅ @smolitux/layout Footer: tests and stories improved (2025-06-09)
 
 ---
 *Updated by Codex AI*
