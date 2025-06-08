@@ -38,25 +38,18 @@ const meta: Meta<typeof Modal> = {
       control: 'boolean',
       description: 'Schließt das Modal, wenn auf den Overlay geklickt wird',
     },
-    isCentered: {
+    centered: {
       control: 'boolean',
       description: 'Zentriert das Modal vertikal',
     },
-    scrollBehavior: {
-      control: {
-        type: 'select',
-        options: ['inside', 'outside'],
-      },
-      description: 'Das Scrollverhalten des Modals',
-    },
-    blockScrollOnMount: {
+    scrollable: {
       control: 'boolean',
-      description: 'Blockiert das Scrollen der Seite, wenn das Modal geöffnet ist',
+      description: 'Erlaubt Scrollen innerhalb des Modals',
     },
-    motionPreset: {
+    animation: {
       control: {
         type: 'select',
-        options: ['fade', 'scale', 'slide-in-bottom', 'slide-in-right', 'none'],
+        options: ['fade', 'scale', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'none'],
       },
       description: 'Die Animationsart des Modals',
     },
@@ -211,15 +204,15 @@ export const WithForm: Story = {
 export const WithScrollableContent: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const [scrollBehavior, setScrollBehavior] = React.useState<'inside' | 'outside'>('inside');
+    const [scrollable, setScrollable] = React.useState(true);
     
     return (
       <>
         <div className="flex flex-col space-y-2">
-          <Button onClick={() => { setScrollBehavior('inside'); setIsOpen(true); }}>
+          <Button onClick={() => { setScrollable(true); setIsOpen(true); }}>
             Scroll innerhalb des Modals
           </Button>
-          <Button onClick={() => { setScrollBehavior('outside'); setIsOpen(true); }}>
+          <Button onClick={() => { setScrollable(false); setIsOpen(true); }}>
             Scroll außerhalb des Modals
           </Button>
         </div>
@@ -227,7 +220,7 @@ export const WithScrollableContent: Story = {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           title="Modal mit langem Inhalt"
-          scrollBehavior={scrollBehavior}
+          scrollable={scrollable}
         >
           <div>
             {Array.from({ length: 20 }).map((_, i) => (
@@ -251,22 +244,22 @@ export const WithScrollableContent: Story = {
 export const WithCustomAnimation: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const [motionPreset, setMotionPreset] = React.useState<'fade' | 'scale' | 'slide-in-bottom' | 'slide-in-right' | 'none'>('fade');
+    const [animation, setAnimation] = React.useState<'fade' | 'scale' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'none'>('fade');
     
     return (
       <>
         <div className="flex flex-wrap gap-2">
-          <Button onClick={() => { setMotionPreset('fade'); setIsOpen(true); }}>Fade</Button>
-          <Button onClick={() => { setMotionPreset('scale'); setIsOpen(true); }}>Scale</Button>
-          <Button onClick={() => { setMotionPreset('slide-in-bottom'); setIsOpen(true); }}>Slide Bottom</Button>
-          <Button onClick={() => { setMotionPreset('slide-in-right'); setIsOpen(true); }}>Slide Right</Button>
-          <Button onClick={() => { setMotionPreset('none'); setIsOpen(true); }}>No Animation</Button>
+          <Button onClick={() => { setAnimation('fade'); setIsOpen(true); }}>Fade</Button>
+          <Button onClick={() => { setAnimation('scale'); setIsOpen(true); }}>Scale</Button>
+          <Button onClick={() => { setAnimation('slide-up'); setIsOpen(true); }}>Slide Up</Button>
+          <Button onClick={() => { setAnimation('slide-right'); setIsOpen(true); }}>Slide Right</Button>
+          <Button onClick={() => { setAnimation('none'); setIsOpen(true); }}>No Animation</Button>
         </div>
         <Modal
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
-          title={`Modal mit ${motionPreset} Animation`}
-          motionPreset={motionPreset}
+          title={`Modal mit ${animation} Animation`}
+          animation={animation}
         >
           <p>Dies ist ein Modal mit einer benutzerdefinierten Animation.</p>
           <div className="mt-4 flex justify-end">

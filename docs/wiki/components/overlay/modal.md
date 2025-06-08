@@ -155,6 +155,7 @@ function Example() {
 | `bodyClassName` | `string` | `''` | Zusätzliche CSS-Klassen für den Body |
 | `footerClassName` | `string` | `''` | Zusätzliche CSS-Klassen für den Footer |
 | `overlayClassName` | `string` | `''` | Zusätzliche CSS-Klassen für das Overlay |
+| `contentClassName` | `string` | `''` | Zusätzliche CSS-Klassen für das Modal-Element |
 | `id` | `string` | - | ID für Barrierefreiheit |
 | `animated` | `boolean` | `true` | Ob das Modal beim Öffnen animiert werden soll |
 | `showCloseButton` | `boolean` | `true` | Ob das Modal einen Schließen-Button haben soll |

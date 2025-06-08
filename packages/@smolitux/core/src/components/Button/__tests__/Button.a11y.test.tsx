@@ -150,10 +150,11 @@ describe('Button Accessibility', () => {
 
   it('should render as link with correct accessibility attributes', () => {
     render(
-      <Button 
-        isLink 
+      <Button
+        isLink
         href="https://example.com"
         target="_blank"
+        isExternal
       >
         Link Button
       </Button>
