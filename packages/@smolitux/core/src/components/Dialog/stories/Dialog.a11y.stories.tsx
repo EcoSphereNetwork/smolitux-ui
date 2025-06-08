@@ -10,9 +10,10 @@ const meta: Meta<typeof Dialog.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version des Dialogs mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version des Dialogs mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     isOpen: { control: 'boolean' },
@@ -21,16 +22,16 @@ const meta: Meta<typeof Dialog.A11y> = {
     onCancel: { action: 'cancelled' },
     variant: {
       control: { type: 'select' },
-      options: ['info', 'success', 'warning', 'error', 'confirm']
+      options: ['info', 'success', 'warning', 'error', 'confirm'],
     },
     size: {
       control: { type: 'select' },
-      options: ['sm', 'md', 'lg', 'xl', 'full']
+      options: ['sm', 'md', 'lg', 'xl', 'full'],
     },
     accessibleLabel: { control: 'text' },
     accessibleDescription: { control: 'text' },
-    a11yTexts: { control: 'object' }
-  }
+    a11yTexts: { control: 'object' },
+  },
 };
 
 export default meta;
@@ -42,8 +43,8 @@ export const Default: Story = {
     title: 'Dialog Titel',
     children: <p>Dialog Inhalt</p>,
     accessibleLabel: 'Informations-Dialog',
-    accessibleDescription: 'Dieser Dialog enthaelt wichtige Informationen'
-  }
+    accessibleDescription: 'Dieser Dialog enthaelt wichtige Informationen',
+  },
 };
 
 export const AlertDialog: Story = {
@@ -56,8 +57,8 @@ export const AlertDialog: Story = {
     confirmLabel: 'Loeschen',
     cancelLabel: 'Abbrechen',
     accessibleLabel: 'Warnung: Loeschbestaetigung',
-    accessibleDescription: 'Diese Aktion kann nicht rueckgaengig gemacht werden'
-  }
+    accessibleDescription: 'Diese Aktion kann nicht rueckgaengig gemacht werden',
+  },
 };
 
 export const FormDialog: Story = {
@@ -67,7 +68,9 @@ export const FormDialog: Story = {
     children: (
       <form>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Name
+          </label>
           <input
             type="text"
             id="name"
@@ -75,7 +78,9 @@ export const FormDialog: Story = {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">E-Mail</label>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            E-Mail
+          </label>
           <input
             type="email"
             id="email"
@@ -88,8 +93,8 @@ export const FormDialog: Story = {
     confirmLabel: 'Speichern',
     cancelLabel: 'Abbrechen',
     accessibleLabel: 'Formular: Benutzerdaten eingeben',
-    accessibleDescription: 'Bitte geben Sie Ihre Daten ein und klicken Sie auf Speichern'
-  }
+    accessibleDescription: 'Bitte geben Sie Ihre Daten ein und klicken Sie auf Speichern',
+  },
 };
 
 export const SearchDialog: Story = {
@@ -99,7 +104,9 @@ export const SearchDialog: Story = {
     children: (
       <div>
         <div className="mb-4">
-          <label htmlFor="search" className="block text-sm font-medium text-gray-700">Suchbegriff</label>
+          <label htmlFor="search" className="block text-sm font-medium text-gray-700">
+            Suchbegriff
+          </label>
           <input
             type="search"
             id="search"
@@ -108,7 +115,9 @@ export const SearchDialog: Story = {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="category" className="block text-sm font-medium text-gray-700">Kategorie</label>
+          <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+            Kategorie
+          </label>
           <select
             id="category"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
@@ -125,8 +134,9 @@ export const SearchDialog: Story = {
     confirmLabel: 'Suchen',
     cancelLabel: 'Abbrechen',
     accessibleLabel: 'Suchfunktion',
-    accessibleDescription: 'Geben Sie einen Suchbegriff ein und waehlen Sie optional eine Kategorie aus'
-  }
+    accessibleDescription:
+      'Geben Sie einen Suchbegriff ein und waehlen Sie optional eine Kategorie aus',
+  },
 };
 
 export const CustomA11yTexts: Story = {
@@ -139,21 +149,21 @@ export const CustomA11yTexts: Story = {
       confirmButtonLabel: 'Akzeptieren',
       cancelButtonLabel: 'Verwerfen',
       dialogTitleLabel: 'Wichtige Information',
-      dialogDescriptionLabel: 'Bitte lesen Sie die folgenden Informationen sorgfaeltig'
+      dialogDescriptionLabel: 'Bitte lesen Sie die folgenden Informationen sorgfaeltig',
     },
     accessibleLabel: 'Dialog mit angepassten Screenreader-Texten',
-    accessibleDescription: 'Dieser Dialog demonstriert die Anpassung von Screenreader-Texten'
-  }
+    accessibleDescription: 'Dieser Dialog demonstriert die Anpassung von Screenreader-Texten',
+  },
 };
 
 export const Interactive: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    
+
     return (
       <div className="p-4">
         <Button onClick={() => setIsOpen(true)}>Dialog oeffnen</Button>
-        
+
         <Dialog.A11y
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -174,9 +184,12 @@ export const Interactive: Story = {
           autoFocus={true}
         >
           <p>Dieser Dialog demonstriert die Interaktion mit der A11y-Version des Dialogs.</p>
-          <p>Er enthaelt verbesserte Barrierefreiheits-Funktionen wie Fokus-Einfangen und automatischen Fokus.</p>
+          <p>
+            Er enthaelt verbesserte Barrierefreiheits-Funktionen wie Fokus-Einfangen und
+            automatischen Fokus.
+          </p>
         </Dialog.A11y>
       </div>
     );
-  }
+  },
 };

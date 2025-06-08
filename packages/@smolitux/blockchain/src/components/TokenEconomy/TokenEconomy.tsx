@@ -131,7 +131,9 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
     <Box style={{ marginBottom: '24px' }}>
       <Flex justify="space-between" align="center" style={{ marginBottom: '16px' }}>
         <Box>
-          <Text weight="bold" size="xl">{tokenInfo.name} ({tokenInfo.symbol})</Text>
+          <Text weight="bold" size="xl">
+            {tokenInfo.name} ({tokenInfo.symbol})
+          </Text>
           <Text weight="bold" size="2xl" color="#3b82f6">
             {formatCurrency(tokenInfo.price)}
           </Text>
@@ -151,11 +153,15 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
       <Flex justify="space-between">
         <Box>
           <Text color="#6b7280">Total Supply</Text>
-          <Text weight="medium">{formatNumber(tokenInfo.totalSupply)} {tokenInfo.symbol}</Text>
+          <Text weight="medium">
+            {formatNumber(tokenInfo.totalSupply)} {tokenInfo.symbol}
+          </Text>
         </Box>
         <Box>
           <Text color="#6b7280">Circulating Supply</Text>
-          <Text weight="medium">{formatNumber(tokenInfo.circulatingSupply)} {tokenInfo.symbol}</Text>
+          <Text weight="medium">
+            {formatNumber(tokenInfo.circulatingSupply)} {tokenInfo.symbol}
+          </Text>
         </Box>
       </Flex>
     </Box>
@@ -164,7 +170,7 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
   const renderPriceChart = () => {
     // In a real implementation, this would use a chart library
     // For this example, we'll create a simple visual representation
-    
+
     if (historicalData.length === 0) {
       return (
         <Box
@@ -181,10 +187,10 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
       );
     }
 
-    const maxPrice = Math.max(...historicalData.map(d => d.price));
-    const minPrice = Math.min(...historicalData.map(d => d.price));
+    const maxPrice = Math.max(...historicalData.map((d) => d.price));
+    const minPrice = Math.min(...historicalData.map((d) => d.price));
     const range = maxPrice - minPrice;
-    
+
     return (
       <Box style={{ marginBottom: '24px' }}>
         <Text weight="medium" style={{ marginBottom: '8px' }}>
@@ -208,7 +214,7 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
             {historicalData.map((data, index) => {
               const height = range === 0 ? 50 : ((data.price - minPrice) / range) * 100;
               const width = `${100 / historicalData.length}%`;
-              
+
               return (
                 <Box
                   key={index}
@@ -298,24 +304,23 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
             {/* Simplified pie chart */}
             <svg width="150" height="150" viewBox="0 0 100 100">
               {distribution.map((segment, index) => {
-                const startAngle = distribution
-                  .slice(0, index)
-                  .reduce((sum, s) => sum + s.percentage, 0) * 3.6;
+                const startAngle =
+                  distribution.slice(0, index).reduce((sum, s) => sum + s.percentage, 0) * 3.6;
                 const endAngle = startAngle + segment.percentage * 3.6;
-                
+
                 // Convert angles to radians
-                const startRad = (startAngle - 90) * Math.PI / 180;
-                const endRad = (endAngle - 90) * Math.PI / 180;
-                
+                const startRad = ((startAngle - 90) * Math.PI) / 180;
+                const endRad = ((endAngle - 90) * Math.PI) / 180;
+
                 // Calculate coordinates
                 const x1 = 50 + 50 * Math.cos(startRad);
                 const y1 = 50 + 50 * Math.sin(startRad);
                 const x2 = 50 + 50 * Math.cos(endRad);
                 const y2 = 50 + 50 * Math.sin(endRad);
-                
+
                 // Determine if the arc should be drawn as a large arc
                 const largeArcFlag = segment.percentage > 50 ? 1 : 0;
-                
+
                 return (
                   <path
                     key={index}
@@ -342,8 +347,12 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
                   <Text>{segment.category}</Text>
                 </Box>
                 <Box style={{ textAlign: 'right' }}>
-                  <Text weight="medium">{formatNumber(segment.value)} {tokenInfo.symbol}</Text>
-                  <Text size="sm" color="#6b7280">{formatPercentage(segment.percentage)}</Text>
+                  <Text weight="medium">
+                    {formatNumber(segment.value)} {tokenInfo.symbol}
+                  </Text>
+                  <Text size="sm" color="#6b7280">
+                    {formatPercentage(segment.percentage)}
+                  </Text>
                 </Box>
               </Flex>
             ))}
@@ -362,7 +371,9 @@ export const TokenEconomy: React.FC<TokenEconomyProps> = ({
     >
       <Box style={{ padding: '16px' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: '16px' }}>
-          <Text weight="bold" size="xl">Token Economy</Text>
+          <Text weight="bold" size="xl">
+            Token Economy
+          </Text>
           {renderPeriodSelector()}
         </Flex>
 

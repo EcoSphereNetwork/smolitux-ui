@@ -6,13 +6,13 @@ describe('Table', () => {
   const sampleData = [
     { id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
     { id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com' },
-    { id: 3, name: 'Bob Johnson', age: 40, email: 'bob@example.com' }
+    { id: 3, name: 'Bob Johnson', age: 40, email: 'bob@example.com' },
   ];
 
   const columns = [
     { id: 'name', label: 'Name' },
     { id: 'age', label: 'Age' },
-    { id: 'email', label: 'Email' }
+    { id: 'email', label: 'Email' },
   ];
 
   it('renders correctly with default props', () => {
@@ -20,13 +20,13 @@ describe('Table', () => {
       <Table>
         <TableHead>
           <TableRow>
-            {columns.map(column => (
+            {columns.map((column) => (
               <TableCell key={column.id}>{column.label}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {sampleData.map(row => (
+          {sampleData.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.age}</TableCell>
@@ -36,19 +36,19 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('Age')).toBeInTheDocument();
     expect(screen.getByText('Email')).toBeInTheDocument();
-    
+
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('30')).toBeInTheDocument();
     expect(screen.getByText('john@example.com')).toBeInTheDocument();
-    
+
     expect(screen.getByText('Jane Smith')).toBeInTheDocument();
     expect(screen.getByText('25')).toBeInTheDocument();
     expect(screen.getByText('jane@example.com')).toBeInTheDocument();
-    
+
     expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
     expect(screen.getByText('40')).toBeInTheDocument();
     expect(screen.getByText('bob@example.com')).toBeInTheDocument();
@@ -69,7 +69,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const table = screen.getByRole('table');
     expect(table).toHaveClass('custom-table');
   });
@@ -90,7 +90,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const table = screen.getByRole('table');
     expect(table).toHaveStyle('width: 100%');
     expect(table).toHaveStyle('border-collapse: collapse');
@@ -111,10 +111,10 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     let table = screen.getByRole('table');
     expect(table).toHaveClass('table-simple');
-    
+
     rerender(
       <Table variant="striped">
         <TableHead>
@@ -129,10 +129,10 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     table = screen.getByRole('table');
     expect(table).toHaveClass('table-striped');
-    
+
     rerender(
       <Table variant="bordered">
         <TableHead>
@@ -147,7 +147,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     table = screen.getByRole('table');
     expect(table).toHaveClass('table-bordered');
   });
@@ -167,10 +167,10 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     let table = screen.getByRole('table');
     expect(table).toHaveClass('table-sm');
-    
+
     rerender(
       <Table size="md">
         <TableHead>
@@ -185,10 +185,10 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     table = screen.getByRole('table');
     expect(table).toHaveClass('table-md');
-    
+
     rerender(
       <Table size="lg">
         <TableHead>
@@ -203,7 +203,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     table = screen.getByRole('table');
     expect(table).toHaveClass('table-lg');
   });
@@ -231,7 +231,7 @@ describe('Table', () => {
         </TableFooter>
       </Table>
     );
-    
+
     const footerCells = screen.getAllByText(/total|30/i);
     expect(footerCells.length).toBe(2);
   });
@@ -242,8 +242,12 @@ describe('Table', () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell sortable onSort={() => onSort('name')}>Name</TableCell>
-            <TableCell sortable onSort={() => onSort('age')}>Age</TableCell>
+            <TableCell sortable onSort={() => onSort('name')}>
+              Name
+            </TableCell>
+            <TableCell sortable onSort={() => onSort('age')}>
+              Age
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -254,11 +258,11 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const sortableHeaders = screen.getAllByRole('columnheader');
     expect(sortableHeaders[0]).toHaveClass('sortable');
     expect(sortableHeaders[1]).toHaveClass('sortable');
-    
+
     fireEvent.click(sortableHeaders[0]);
     expect(onSort).toHaveBeenCalledWith('name');
   });
@@ -283,10 +287,10 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const selectableRow = screen.getByText('John Doe').closest('tr');
     expect(selectableRow).toHaveClass('selectable');
-    
+
     fireEvent.click(selectableRow);
     expect(onSelect).toHaveBeenCalledWith(1);
   });
@@ -306,7 +310,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const table = screen.getByRole('table');
     expect(table).toHaveClass('table-hoverable');
   });
@@ -326,7 +330,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const tableHead = screen.getByText('Name').closest('thead');
     expect(tableHead).toHaveClass('sticky-header');
   });
@@ -346,7 +350,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const tableContainer = screen.getByRole('table').parentElement;
     expect(tableContainer).toHaveClass('table-responsive');
   });
@@ -366,7 +370,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     expect(screen.getByText('Employee List')).toBeInTheDocument();
   });
 
@@ -385,7 +389,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const table = screen.getByRole('table');
     expect(table).toHaveAttribute('aria-label', 'Employee data');
     expect(table).toHaveAttribute('aria-describedby', 'table-description');
@@ -406,7 +410,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     const table = screen.getByRole('table');
     expect(table).toHaveStyle('width: 800px');
   });
@@ -426,7 +430,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     expect(screen.getByTestId('table-loading-overlay')).toBeInTheDocument();
   });
 
@@ -439,7 +443,7 @@ describe('Table', () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {[].map(row => (
+          {[].map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.name}</TableCell>
             </TableRow>
@@ -447,7 +451,7 @@ describe('Table', () => {
         </TableBody>
       </Table>
     );
-    
+
     expect(screen.getByText('No data available')).toBeInTheDocument();
   });
 });

@@ -5,19 +5,30 @@ Diese Dokumentation enthält wichtige Informationen für Entwickler, die an der 
 ## Inhaltsverzeichnis
 
 ### Release-Informationen
+
 - [Release Notes v0.2.1](./v0.2.1-release-notes.md) - Detaillierte Informationen zum aktuellen Release
 
 ### Analyse und Verbesserung
+
 - [Build-Analyse](./build-analysis.md) - Analyse der Probleme beim Build-Prozess
 - [Verbesserungsplan](./roadmap.md) - Plan zur Verbesserung der Bibliothek
 - [Build-Fix-Anleitung](./build-fix-guide.md) - Anleitung zur Behebung der Build-Probleme
 
+### Projektplanung
+
+- [Implementierungsplan](./roadmap/implementation-plan.md) - Schrittweise Umsetzung der weiteren Entwicklung
+- [Kalkulation v0.2.2](./Finanzierung/Kalkulation-v0.2.2.md) - Übersicht der geplanten Aufwände
+- [Entwickler-Prompt](./Entwickler-Prompt.md) - Leitfaden für neue Entwickler
+- [Roadmap](./roadmap.md) - Gesamte Entwicklungs-Roadmap
+
 ### Entwicklungsrichtlinien
+
 - [Coding Standards](../guidelines/coding-standards.md) - Richtlinien für die Codequalität
 - [Komponenten-Struktur](../guidelines/component-structure.md) - Struktur und Organisation von Komponenten
 - [Testing-Strategie](../guidelines/testing-strategy.md) - Strategie für Tests und Qualitätssicherung
 
 ### Architektur
+
 - [Paketstruktur](../architecture/package-structure.md) - Übersicht über die Paketstruktur
 - [Abhängigkeiten](../architecture/dependencies.md) - Verwaltung von Abhängigkeiten
 - [Build-Prozess](../architecture/build-process.md) - Übersicht über den Build-Prozess
@@ -27,17 +38,20 @@ Diese Dokumentation enthält wichtige Informationen für Entwickler, die an der 
 Um mit der Entwicklung zu beginnen, folgen Sie diesen Schritten:
 
 1. Repository klonen:
+
    ```bash
    git clone https://github.com/EcoSphereNetwork/smolitux-ui.git
    cd smolitux-ui
    ```
 
 2. Abhängigkeiten installieren:
+
    ```bash
    npm install
    ```
 
 3. Build ausführen:
+
    ```bash
    npm run build
    ```

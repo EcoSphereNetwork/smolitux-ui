@@ -16,14 +16,14 @@ describe('TokenEconomy', () => {
       { name: 'Community', value: 40 },
       { name: 'Team', value: 15 },
       { name: 'Foundation', value: 25 },
-      { name: 'Investors', value: 20 }
+      { name: 'Investors', value: 20 },
     ],
     tokenomics: {
       inflation: '2.5',
       stakingRewards: '8.0',
       burnRate: '1.2',
-      transactionFee: '0.5'
-    }
+      transactionFee: '0.5',
+    },
   };
 
   const mockOnRefresh = jest.fn();
@@ -35,7 +35,7 @@ describe('TokenEconomy', () => {
 
   it('renders correctly with token data', () => {
     render(<TokenEconomy tokenData={mockTokenData} />);
-    
+
     expect(screen.getByText('EcoSphere Token (ECO)')).toBeInTheDocument();
     expect(screen.getByText('$0.02')).toBeInTheDocument();
     expect(screen.getByText('+5.2%')).toBeInTheDocument();
@@ -47,22 +47,22 @@ describe('TokenEconomy', () => {
 
   it('renders loading state when no token data is provided', () => {
     render(<TokenEconomy />);
-    
+
     expect(screen.getByText(/loading token data/i)).toBeInTheDocument();
   });
 
   it('calls onRefresh when refresh button is clicked', async () => {
     render(<TokenEconomy tokenData={mockTokenData} onRefresh={mockOnRefresh} />);
-    
+
     const refreshButton = screen.getByRole('button', { name: /refresh/i });
     fireEvent.click(refreshButton);
-    
+
     expect(mockOnRefresh).toHaveBeenCalled();
   });
 
   it('displays token distribution chart', () => {
     render(<TokenEconomy tokenData={mockTokenData} />);
-    
+
     expect(screen.getByText(/token distribution/i)).toBeInTheDocument();
     expect(screen.getByText('Community: 40%')).toBeInTheDocument();
     expect(screen.getByText('Team: 15%')).toBeInTheDocument();
@@ -72,24 +72,21 @@ describe('TokenEconomy', () => {
 
   it('calls onDistributionSelect when a distribution segment is clicked', () => {
     render(
-      <TokenEconomy 
-        tokenData={mockTokenData} 
-        onDistributionSelect={mockOnDistributionSelect} 
-      />
+      <TokenEconomy tokenData={mockTokenData} onDistributionSelect={mockOnDistributionSelect} />
     );
-    
+
     const communitySegment = screen.getByText('Community: 40%');
     fireEvent.click(communitySegment);
-    
+
     expect(mockOnDistributionSelect).toHaveBeenCalledWith({
       name: 'Community',
-      value: 40
+      value: 40,
     });
   });
 
   it('displays tokenomics information', () => {
     render(<TokenEconomy tokenData={mockTokenData} />);
-    
+
     expect(screen.getByText(/tokenomics/i)).toBeInTheDocument();
     expect(screen.getByText(/inflation rate/i)).toBeInTheDocument();
     expect(screen.getByText('2.5%')).toBeInTheDocument();
@@ -103,43 +100,38 @@ describe('TokenEconomy', () => {
 
   it('toggles between chart and table view', () => {
     render(<TokenEconomy tokenData={mockTokenData} />);
-    
+
     // Initially in chart view
     expect(screen.getByText(/token distribution/i)).toBeInTheDocument();
-    
+
     // Switch to table view
     const tableViewButton = screen.getByRole('button', { name: /table view/i });
     fireEvent.click(tableViewButton);
-    
+
     expect(screen.getByText(/distribution table/i)).toBeInTheDocument();
     expect(screen.getByRole('table')).toBeInTheDocument();
-    
+
     // Switch back to chart view
     const chartViewButton = screen.getByRole('button', { name: /chart view/i });
     fireEvent.click(chartViewButton);
-    
+
     expect(screen.getByText(/token distribution/i)).toBeInTheDocument();
   });
 
   it('displays error message when token data fails to load', () => {
     render(<TokenEconomy error="Failed to load token data" />);
-    
+
     expect(screen.getByText(/error/i)).toBeInTheDocument();
     expect(screen.getByText(/failed to load token data/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /retry/i })).toBeInTheDocument();
   });
 
   it('calls onRefresh when retry button is clicked after error', () => {
-    render(
-      <TokenEconomy 
-        error="Failed to load token data" 
-        onRefresh={mockOnRefresh} 
-      />
-    );
-    
+    render(<TokenEconomy error="Failed to load token data" onRefresh={mockOnRefresh} />);
+
     const retryButton = screen.getByRole('button', { name: /retry/i });
     fireEvent.click(retryButton);
-    
+
     expect(mockOnRefresh).toHaveBeenCalled();
   });
 });

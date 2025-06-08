@@ -13,7 +13,15 @@ export interface MenuDropdownProps {
   /** Callback beim Öffnen/Schließen */
   onOpenChange?: (isOpen: boolean) => void;
   /** Position des Dropdowns relativ zum Trigger */
-  placement?: 'bottom-start' | 'bottom-end' | 'bottom' | 'top-start' | 'top-end' | 'top' | 'right' | 'left';
+  placement?:
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'bottom'
+    | 'top-start'
+    | 'top-end'
+    | 'top'
+    | 'right'
+    | 'left';
   /** Offset vom Trigger (in px) */
   offset?: number;
   /** Beim Auswählen eines Items automatisch schließen */
@@ -38,10 +46,10 @@ export interface MenuDropdownProps {
 
 /**
  * MenuDropdown-Komponente für Dropdown-Menüs
- * 
+ *
  * @example
  * ```tsx
- * <MenuDropdown 
+ * <MenuDropdown
  *   trigger={<Button>Options</Button>}
  * >
  *   <MenuItem id="edit">Edit</MenuItem>
@@ -73,11 +81,11 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   // Das Dropdown wird durch externe Props oder internen State gesteuert
   const isControlled = controlledIsOpen !== undefined;
   const dropdownIsOpen = isControlled ? controlledIsOpen : isOpen;
-  
+
   // State-Änderungen propagieren
   const updateOpenState = (newIsOpen: boolean) => {
     if (!isControlled) {
@@ -87,24 +95,24 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       onOpenChange(newIsOpen);
     }
   };
-  
+
   // Position des Dropdowns berechnen
   const calculatePosition = () => {
     if (!triggerRef.current || !dropdownRef.current) return;
-    
+
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const dropdownRect = dropdownRef.current.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-    
+
     // Viewport-Dimensionen
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    
+
     // Default-Position
     let top = 0;
     let left = 0;
-    
+
     // Position basierend auf Placement berechnen
     switch (placement) {
       case 'bottom-start':
@@ -117,7 +125,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
         break;
       case 'bottom':
         top = triggerRect.bottom + scrollTop + offset;
-        left = triggerRect.left + scrollLeft + (triggerRect.width / 2) - (dropdownRect.width / 2);
+        left = triggerRect.left + scrollLeft + triggerRect.width / 2 - dropdownRect.width / 2;
         break;
       case 'top-start':
         top = triggerRect.top + scrollTop - dropdownRect.height - offset;
@@ -129,42 +137,42 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
         break;
       case 'top':
         top = triggerRect.top + scrollTop - dropdownRect.height - offset;
-        left = triggerRect.left + scrollLeft + (triggerRect.width / 2) - (dropdownRect.width / 2);
+        left = triggerRect.left + scrollLeft + triggerRect.width / 2 - dropdownRect.width / 2;
         break;
       case 'right':
-        top = triggerRect.top + scrollTop + (triggerRect.height / 2) - (dropdownRect.height / 2);
+        top = triggerRect.top + scrollTop + triggerRect.height / 2 - dropdownRect.height / 2;
         left = triggerRect.right + scrollLeft + offset;
         break;
       case 'left':
-        top = triggerRect.top + scrollTop + (triggerRect.height / 2) - (dropdownRect.height / 2);
+        top = triggerRect.top + scrollTop + triggerRect.height / 2 - dropdownRect.height / 2;
         left = triggerRect.left + scrollLeft - dropdownRect.width - offset;
         break;
       default:
         break;
     }
-    
+
     // Sicherstellen, dass das Dropdown im Viewport bleibt
     if (left < 10) left = 10;
     if (left + dropdownRect.width > viewportWidth - 10) {
       left = viewportWidth - dropdownRect.width - 10;
     }
-    
+
     if (top < 10) top = 10;
     if (top + dropdownRect.height > viewportHeight + scrollTop - 10) {
       // Falls nicht genug Platz unten, oben positionieren
       top = triggerRect.top + scrollTop - dropdownRect.height - offset;
     }
-    
+
     setPosition({ top, left });
   };
-  
+
   // Dropdown öffnen und positionieren
   const openDropdown = () => {
     if (openTimeoutRef.current) {
       clearTimeout(openTimeoutRef.current);
       openTimeoutRef.current = null;
     }
-    
+
     if (openDelay > 0) {
       openTimeoutRef.current = setTimeout(() => {
         updateOpenState(true);
@@ -177,14 +185,14 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       requestAnimationFrame(calculatePosition);
     }
   };
-  
+
   // Dropdown schließen
   const closeDropdown = () => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
     }
-    
+
     if (closeDelay > 0) {
       closeTimeoutRef.current = setTimeout(() => {
         updateOpenState(false);
@@ -193,7 +201,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       updateOpenState(false);
     }
   };
-  
+
   // Dropdown umschalten
   const toggleDropdown = () => {
     if (dropdownIsOpen) {
@@ -202,7 +210,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       openDropdown();
     }
   };
-  
+
   // Trigger-Element klonen und Refs/Handler hinzufügen
   const triggerElement = React.cloneElement(trigger, {
     ref: (el: HTMLElement | null) => {
@@ -217,59 +225,59 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
     },
     onClick: (e: React.MouseEvent) => {
       toggleDropdown();
-      
+
       // Den ursprünglichen onClick-Handler aufrufen
       if (trigger.props.onClick) {
         trigger.props.onClick(e);
       }
     },
   });
-  
+
   // Bei Klick außerhalb schließen
   useEffect(() => {
     if (!closeOnClickOutside || !dropdownIsOpen) return;
-    
+
     const handleClickOutside = (e: MouseEvent) => {
       if (
-        dropdownRef.current && 
+        dropdownRef.current &&
         !dropdownRef.current.contains(e.target as Node) &&
-        triggerRef.current && 
+        triggerRef.current &&
         !triggerRef.current.contains(e.target as Node)
       ) {
         closeDropdown();
       }
     };
-    
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [dropdownIsOpen, closeOnClickOutside]);
-  
+
   // Bei ESC-Taste schließen
   useEffect(() => {
     if (!closeOnEscape || !dropdownIsOpen) return;
-    
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault();
         closeDropdown();
       }
     };
-    
+
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [dropdownIsOpen, closeOnEscape]);
-  
+
   // Bei Fenstergröße neu positionieren
   useEffect(() => {
     if (!dropdownIsOpen) return;
-    
+
     const handleResize = () => calculatePosition();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [dropdownIsOpen]);
-  
+
   // Timeouts aufräumen
   useEffect(() => {
     return () => {
@@ -277,7 +285,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
   }, []);
-  
+
   // Style für Dropdown-Breite
   const getDropdownStyle = (): React.CSSProperties => {
     const style: React.CSSProperties = {
@@ -286,20 +294,20 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       left: position.left,
       zIndex,
     };
-    
+
     if (maxWidth !== 'auto') {
       style.maxWidth = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
     }
-    
+
     if (minWidth === 'trigger' && triggerRef.current) {
       style.minWidth = `${triggerRef.current.offsetWidth}px`;
     } else if (minWidth !== 'trigger') {
       style.minWidth = typeof minWidth === 'number' ? `${minWidth}px` : minWidth;
     }
-    
+
     return style;
   };
-  
+
   // Dropdown-Inhalt rendern
   const renderDropdown = () => {
     const dropdown = (
@@ -308,20 +316,23 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
         className="rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
         style={getDropdownStyle()}
       >
-        <Menu closeOnSelect={closeOnSelect} onItemSelect={closeOnSelect ? closeDropdown : undefined}>
+        <Menu
+          closeOnSelect={closeOnSelect}
+          onItemSelect={closeOnSelect ? closeDropdown : undefined}
+        >
           {children}
         </Menu>
       </div>
     );
-    
+
     // In Portal rendern, falls angegeben
     if (portalTo) {
       return ReactDOM.createPortal(dropdown, portalTo);
     }
-    
+
     return dropdown;
   };
-  
+
   return (
     <>
       {triggerElement}

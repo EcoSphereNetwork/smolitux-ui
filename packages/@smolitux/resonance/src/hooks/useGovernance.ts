@@ -16,11 +16,11 @@ export function useGovernance(options: any = {}) {
   const fetchProposals = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       // In einer realen Implementierung würde hier ein API-Aufruf stehen
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Simulierte Daten
       setProposals([]);
       setStats({
@@ -65,9 +65,9 @@ export function useGovernance(options: any = {}) {
       voteCount: 0,
       commentCount: 0,
     };
-    
-    setProposals(prev => [newProposal, ...prev]);
-    setStats(prev => ({
+
+    setProposals((prev) => [newProposal, ...prev]);
+    setStats((prev) => ({
       ...prev,
       activeProposals: prev.activeProposals + 1,
     }));
@@ -75,30 +75,34 @@ export function useGovernance(options: any = {}) {
 
   // Funktion zum Unterstützen eines Vorschlags
   const supportProposal = (proposalId: string) => {
-    setProposals(prev => prev.map(proposal => {
-      if (proposal.id === proposalId) {
-        return {
-          ...proposal,
-          supportCount: proposal.supportCount + 1,
-        };
-      }
-      return proposal;
-    }));
+    setProposals((prev) =>
+      prev.map((proposal) => {
+        if (proposal.id === proposalId) {
+          return {
+            ...proposal,
+            supportCount: proposal.supportCount + 1,
+          };
+        }
+        return proposal;
+      })
+    );
   };
 
   // Funktion zum Abstimmen über einen Vorschlag
   const voteOnProposal = (proposalId: string, voteOption: string) => {
-    setProposals(prev => prev.map(proposal => {
-      if (proposal.id === proposalId) {
-        return {
-          ...proposal,
-          voteCount: proposal.voteCount + 1,
-        };
-      }
-      return proposal;
-    }));
-    
-    setStats(prev => ({
+    setProposals((prev) =>
+      prev.map((proposal) => {
+        if (proposal.id === proposalId) {
+          return {
+            ...proposal,
+            voteCount: proposal.voteCount + 1,
+          };
+        }
+        return proposal;
+      })
+    );
+
+    setStats((prev) => ({
       ...prev,
       totalVotes: prev.totalVotes + 1,
     }));

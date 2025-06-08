@@ -32,49 +32,34 @@ describe('RecommendationCarousel', () => {
 
   it('renders without crashing', () => {
     render(
-      <RecommendationCarousel
-        recommendations={mockRecommendations}
-        title="Test Recommendations"
-      />
+      <RecommendationCarousel recommendations={mockRecommendations} title="Test Recommendations" />
     );
-    
+
     expect(screen.getByText('Test Recommendations')).toBeInTheDocument();
   });
 
   it('displays recommendations', () => {
     render(
-      <RecommendationCarousel
-        recommendations={mockRecommendations}
-        title="Test Recommendations"
-      />
+      <RecommendationCarousel recommendations={mockRecommendations} title="Test Recommendations" />
     );
-    
+
     expect(screen.getByText('Test Recommendation 1')).toBeInTheDocument();
     expect(screen.getByText('Test Recommendation 2')).toBeInTheDocument();
   });
 
   it('displays loading state', () => {
     render(
-      <RecommendationCarousel
-        recommendations={[]}
-        title="Test Recommendations"
-        loading={true}
-      />
+      <RecommendationCarousel recommendations={[]} title="Test Recommendations" loading={true} />
     );
-    
+
     // Check for loading indicators
     const loadingElements = document.querySelectorAll('.animate-pulse');
     expect(loadingElements.length).toBeGreaterThan(0);
   });
 
   it('displays empty state when no recommendations', () => {
-    render(
-      <RecommendationCarousel
-        recommendations={[]}
-        title="Test Recommendations"
-      />
-    );
-    
+    render(<RecommendationCarousel recommendations={[]} title="Test Recommendations" />);
+
     expect(screen.getByText('Keine Empfehlungen verfügbar')).toBeInTheDocument();
   });
 });

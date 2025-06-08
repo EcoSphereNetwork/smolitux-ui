@@ -4,7 +4,7 @@ import {
   extractBoxProps,
   filterBoxProps,
   isBoxProp,
-  getBoxStyleProps
+  getBoxStyleProps,
 } from '../box';
 
 describe('Box Component Type Utilities', () => {
@@ -18,9 +18,9 @@ describe('Box Component Type Utilities', () => {
         color: 'red',
         bg: 'white',
         borderRadius: '4px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       };
-      
+
       expect(createBoxStyles(props)).toEqual({
         width: '100px',
         height: '50px',
@@ -29,79 +29,79 @@ describe('Box Component Type Utilities', () => {
         color: 'red',
         backgroundColor: 'white',
         borderRadius: '4px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       });
     });
-    
+
     it('handles responsive values', () => {
       const props: BoxProps = {
         width: {
           base: '100px',
-          md: '200px'
+          md: '200px',
         },
         padding: {
           base: '10px',
-          md: '20px'
-        }
+          md: '20px',
+        },
       };
-      
+
       expect(createBoxStyles(props)).toEqual({
         width: {
           base: '100px',
-          md: '200px'
+          md: '200px',
         },
         padding: {
           base: '10px',
-          md: '20px'
-        }
+          md: '20px',
+        },
       });
     });
-    
+
     it('handles shorthand properties', () => {
       const props: BoxProps = {
         p: '10px',
         m: '5px',
         pt: '15px',
-        mx: '20px'
+        mx: '20px',
       };
-      
+
       expect(createBoxStyles(props)).toEqual({
         padding: '10px',
         margin: '5px',
         paddingTop: '15px',
         marginLeft: '20px',
-        marginRight: '20px'
+        marginRight: '20px',
       });
     });
-    
+
     it('handles theme-based values', () => {
       const theme = {
         colors: {
           primary: 'blue',
-          secondary: 'green'
+          secondary: 'green',
         },
         space: {
           sm: '8px',
-          md: '16px'
-        }
+          md: '16px',
+        },
       };
-      
+
       const props: BoxProps = {
         color: 'primary',
         bg: 'secondary',
         p: 'md',
-        m: 'sm'
+        m: 'sm',
       };
-      
+
       expect(createBoxStyles(props, theme)).toEqual({
         color: 'blue',
         backgroundColor: 'green',
         padding: '16px',
-        margin: '8px'
+        margin: '8px',
       });
     });
   });
-  
+
   describe('extractBoxProps', () => {
     it('extracts box props from object', () => {
       const props = {
@@ -109,26 +109,26 @@ describe('Box Component Type Utilities', () => {
         height: '50px',
         color: 'red',
         onClick: () => {},
-        children: 'Text'
+        children: 'Text',
       };
-      
+
       expect(extractBoxProps(props)).toEqual({
         width: '100px',
         height: '50px',
-        color: 'red'
+        color: 'red',
       });
     });
-    
+
     it('returns empty object when no box props are found', () => {
       const props = {
         onClick: () => {},
-        children: 'Text'
+        children: 'Text',
       };
-      
+
       expect(extractBoxProps(props)).toEqual({});
     });
   });
-  
+
   describe('filterBoxProps', () => {
     it('removes box props from object', () => {
       const props = {
@@ -136,25 +136,25 @@ describe('Box Component Type Utilities', () => {
         height: '50px',
         color: 'red',
         onClick: () => {},
-        children: 'Text'
+        children: 'Text',
       };
-      
+
       expect(filterBoxProps(props)).toEqual({
         onClick: props.onClick,
-        children: 'Text'
+        children: 'Text',
       });
     });
-    
+
     it('returns original object when no box props are found', () => {
       const props = {
         onClick: () => {},
-        children: 'Text'
+        children: 'Text',
       };
-      
+
       expect(filterBoxProps(props)).toEqual(props);
     });
   });
-  
+
   describe('isBoxProp', () => {
     it('returns true for valid box props', () => {
       expect(isBoxProp('width')).toBe(true);
@@ -168,18 +168,18 @@ describe('Box Component Type Utilities', () => {
       expect(isBoxProp('pt')).toBe(true);
       expect(isBoxProp('mx')).toBe(true);
     });
-    
+
     it('returns false for non-box props', () => {
       expect(isBoxProp('onClick')).toBe(false);
       expect(isBoxProp('children')).toBe(false);
       expect(isBoxProp('ref')).toBe(false);
     });
   });
-  
+
   describe('getBoxStyleProps', () => {
     it('returns all box style prop names', () => {
       const boxStyleProps = getBoxStyleProps();
-      
+
       expect(boxStyleProps).toContain('width');
       expect(boxStyleProps).toContain('height');
       expect(boxStyleProps).toContain('padding');

@@ -145,18 +145,45 @@ export const WithIcons: Story = {
   render: () => (
     <div className="flex space-x-4">
       <Badge>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clipRule="evenodd"
+          />
         </svg>
       </Badge>
       <Badge>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+            clipRule="evenodd"
+          />
         </svg>
       </Badge>
       <Badge>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4 mr-1"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clipRule="evenodd"
+          />
         </svg>
         Info
       </Badge>
@@ -168,13 +195,7 @@ export const WithAvatar: Story = {
   render: () => (
     <div className="relative inline-flex">
       <Avatar name="JD" size="md" />
-      <Badge
-        placement="bottom-right"
-        color="success"
-        size="xs"
-        overlap
-        pill
-      />
+      <Badge placement="bottom-right" color="success" size="xs" overlap pill />
     </div>
   ),
 };
@@ -186,12 +207,7 @@ export const Placements: Story = {
         <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center">
           Box
         </div>
-        <Badge
-          placement="top-right"
-          color="primary"
-          size="sm"
-          overlap
-        >
+        <Badge placement="top-right" color="primary" size="sm" overlap>
           TR
         </Badge>
       </div>
@@ -199,12 +215,7 @@ export const Placements: Story = {
         <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center">
           Box
         </div>
-        <Badge
-          placement="top-left"
-          color="secondary"
-          size="sm"
-          overlap
-        >
+        <Badge placement="top-left" color="secondary" size="sm" overlap>
           TL
         </Badge>
       </div>
@@ -212,12 +223,7 @@ export const Placements: Story = {
         <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center">
           Box
         </div>
-        <Badge
-          placement="bottom-right"
-          color="success"
-          size="sm"
-          overlap
-        >
+        <Badge placement="bottom-right" color="success" size="sm" overlap>
           BR
         </Badge>
       </div>
@@ -225,12 +231,7 @@ export const Placements: Story = {
         <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center">
           Box
         </div>
-        <Badge
-          placement="bottom-left"
-          color="danger"
-          size="sm"
-          overlap
-        >
+        <Badge placement="bottom-left" color="danger" size="sm" overlap>
           BL
         </Badge>
       </div>
@@ -244,13 +245,7 @@ export const WithOffset: Story = {
       <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center">
         Box
       </div>
-      <Badge
-        placement="top-right"
-        color="primary"
-        size="sm"
-        overlap
-        offset={[10, -10]}
-      >
+      <Badge placement="top-right" color="primary" size="sm" overlap offset={[10, -10]}>
         Offset
       </Badge>
     </div>
@@ -268,8 +263,6 @@ export const Invisible: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-      Custom
-    </Badge>
+    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">Custom</Badge>
   ),
 };

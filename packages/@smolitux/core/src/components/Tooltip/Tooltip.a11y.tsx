@@ -553,7 +553,7 @@ export interface TooltipA11yProps {
 
 /**
  * Barrierefreie Tooltip-Komponente, die zusätzliche Informationen anzeigt, wenn über ein Element gehovert wird
- * 
+ *
  * @example
  * ```tsx
  * <TooltipA11y content="Hilfeinformation" ariaLabel="Hilfe">
@@ -839,95 +839,95 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
   // State
   const [isVisible, setIsVisible] = useState(isOpen !== undefined ? isOpen : false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
-  
+
   // Refs
   const triggerRef = useRef<HTMLElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
-  
+
   // Generiere eine eindeutige ID, wenn keine angegeben wurde
   const tooltipId = id || `tooltip-${Math.random().toString(36).substr(2, 9)}`;
-  
+
   // Berechne die Position des Tooltips
   const calculatePosition = useCallback(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
-    
+
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
-    
+
     let top = 0;
     let left = 0;
-    
+
     switch (position) {
       case 'top':
         top = triggerRect.top - tooltipRect.height - 8;
-        left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+        left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
         break;
       case 'right':
-        top = triggerRect.top + (triggerRect.height / 2) - (tooltipRect.height / 2);
+        top = triggerRect.top + triggerRect.height / 2 - tooltipRect.height / 2;
         left = triggerRect.right + 8;
         break;
       case 'bottom':
         top = triggerRect.bottom + 8;
-        left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+        left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
         break;
       case 'left':
-        top = triggerRect.top + (triggerRect.height / 2) - (tooltipRect.height / 2);
+        top = triggerRect.top + triggerRect.height / 2 - tooltipRect.height / 2;
         left = triggerRect.left - tooltipRect.width - 8;
         break;
     }
-    
+
     // Stelle sicher, dass der Tooltip im sichtbaren Bereich bleibt
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    
+
     if (left < 0) left = 0;
     if (left + tooltipRect.width > viewportWidth) left = viewportWidth - tooltipRect.width;
     if (top < 0) top = 0;
     if (top + tooltipRect.height > viewportHeight) top = viewportHeight - tooltipRect.height;
-    
+
     setTooltipPosition({ top, left });
   }, [position]);
-  
+
   // Zeige den Tooltip an
   const showTooltip = useCallback(() => {
     if (disabled) return;
-    
+
     // Speichere den aktuellen Fokus
     if (returnFocus) {
       previousFocusRef.current = document.activeElement as HTMLElement;
     }
-    
+
     // Lösche alle Timeouts
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
       showTimeoutRef.current = null;
     }
-    
+
     if (hideTimeoutRef.current) {
       clearTimeout(hideTimeoutRef.current);
       hideTimeoutRef.current = null;
     }
-    
+
     // Setze einen Timeout zum Anzeigen des Tooltips
     showTimeoutRef.current = setTimeout(() => {
       setIsVisible(true);
-      
+
       // Berechne die Position des Tooltips
       setTimeout(() => {
         calculatePosition();
       }, 0);
-      
+
       // Fokussiere den Tooltip, wenn er fokussierbar ist
       if (focusable && tooltipRef.current) {
         tooltipRef.current.focus();
       }
-      
+
       // Rufe den onShow-Callback auf
       if (onShow) onShow();
-      
+
       // Setze einen Timeout zum automatischen Schließen des Tooltips
       if (dismissibleByTimeout && dismissTimeout > 0) {
         hideTimeoutRef.current = setTimeout(() => {
@@ -935,8 +935,17 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
         }, dismissTimeout);
       }
     }, delay);
-  }, [disabled, delay, calculatePosition, focusable, onShow, dismissibleByTimeout, dismissTimeout, returnFocus]);
-  
+  }, [
+    disabled,
+    delay,
+    calculatePosition,
+    focusable,
+    onShow,
+    dismissibleByTimeout,
+    dismissTimeout,
+    returnFocus,
+  ]);
+
   // Verstecke den Tooltip
   const hideTooltip = useCallback(() => {
     // Lösche alle Timeouts
@@ -944,87 +953,100 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
       clearTimeout(showTimeoutRef.current);
       showTimeoutRef.current = null;
     }
-    
+
     if (hideTimeoutRef.current) {
       clearTimeout(hideTimeoutRef.current);
       hideTimeoutRef.current = null;
     }
-    
+
     // Setze einen Timeout zum Verstecken des Tooltips
     hideTimeoutRef.current = setTimeout(() => {
       setIsVisible(false);
-      
+
       // Rufe den onHide-Callback auf
       if (onHide) onHide();
-      
+
       // Setze den Fokus zurück
       if (returnFocus && previousFocusRef.current) {
         previousFocusRef.current.focus();
       }
     }, hideDelay);
   }, [hideDelay, onHide, returnFocus]);
-  
+
   // Behandle Escape-Taste
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (!isVisible) return;
-    
-    if (event.key === 'Escape' && dismissibleByEscape) {
-      hideTooltip();
-    } else if (event.key === 'Tab' && dismissibleByTab) {
-      hideTooltip();
-    } else if (event.key === 'Enter' && dismissibleByEnter) {
-      hideTooltip();
-    } else if (event.key === ' ' && dismissibleBySpace) {
-      hideTooltip();
-    }
-  }, [isVisible, dismissibleByEscape, dismissibleByTab, dismissibleByEnter, dismissibleBySpace, hideTooltip]);
-  
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (!isVisible) return;
+
+      if (event.key === 'Escape' && dismissibleByEscape) {
+        hideTooltip();
+      } else if (event.key === 'Tab' && dismissibleByTab) {
+        hideTooltip();
+      } else if (event.key === 'Enter' && dismissibleByEnter) {
+        hideTooltip();
+      } else if (event.key === ' ' && dismissibleBySpace) {
+        hideTooltip();
+      }
+    },
+    [
+      isVisible,
+      dismissibleByEscape,
+      dismissibleByTab,
+      dismissibleByEnter,
+      dismissibleBySpace,
+      hideTooltip,
+    ]
+  );
+
   // Behandle Klicks außerhalb des Tooltips
-  const handleClickOutside = useCallback((event: MouseEvent) => {
-    if (!isVisible) return;
-    
-    if (
-      dismissibleByOutsideClick &&
-      tooltipRef.current &&
-      triggerRef.current &&
-      !tooltipRef.current.contains(event.target as Node) &&
-      !triggerRef.current.contains(event.target as Node)
-    ) {
-      hideTooltip();
-    }
-  }, [isVisible, dismissibleByOutsideClick, hideTooltip]);
-  
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (!isVisible) return;
+
+      if (
+        dismissibleByOutsideClick &&
+        tooltipRef.current &&
+        triggerRef.current &&
+        !tooltipRef.current.contains(event.target as Node) &&
+        !triggerRef.current.contains(event.target as Node)
+      ) {
+        hideTooltip();
+      }
+    },
+    [isVisible, dismissibleByOutsideClick, hideTooltip]
+  );
+
   // Behandle Scrollen
   const handleScroll = useCallback(() => {
     if (!isVisible) return;
-    
+
     if (dismissibleByScroll) {
       hideTooltip();
     } else {
       calculatePosition();
     }
   }, [isVisible, dismissibleByScroll, hideTooltip, calculatePosition]);
-  
+
   // Behandle Größenänderungen des Fensters
   const handleResize = useCallback(() => {
     if (!isVisible) return;
-    
+
     if (dismissibleByResize) {
       hideTooltip();
     } else {
       calculatePosition();
     }
   }, [isVisible, dismissibleByResize, hideTooltip, calculatePosition]);
-  
+
   // Behandle Navigation
   const handleNavigation = useCallback(() => {
     if (!isVisible) return;
-    
+
     if (dismissibleByNavigation) {
       hideTooltip();
     }
   }, [isVisible, dismissibleByNavigation, hideTooltip]);
-  
+
   // Effekt für die Steuerung der Sichtbarkeit durch die isOpen-Prop
   useEffect(() => {
     if (isOpen !== undefined) {
@@ -1035,41 +1057,41 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
       }
     }
   }, [isOpen, showTooltip, hideTooltip]);
-  
+
   // Effekt für Event-Listener
   useEffect(() => {
     if (dismissibleByEscape || dismissibleByTab || dismissibleByEnter || dismissibleBySpace) {
       document.addEventListener('keydown', handleKeyDown);
     }
-    
+
     if (dismissibleByOutsideClick) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-    
+
     if (dismissibleByScroll || !dismissibleByScroll) {
       window.addEventListener('scroll', handleScroll);
     }
-    
+
     if (dismissibleByResize || !dismissibleByResize) {
       window.addEventListener('resize', handleResize);
     }
-    
+
     if (dismissibleByNavigation) {
       window.addEventListener('popstate', handleNavigation);
     }
-    
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('popstate', handleNavigation);
-      
+
       // Lösche alle Timeouts
       if (showTimeoutRef.current) {
         clearTimeout(showTimeoutRef.current);
       }
-      
+
       if (hideTimeoutRef.current) {
         clearTimeout(hideTimeoutRef.current);
       }
@@ -1087,14 +1109,14 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
     handleClickOutside,
     handleScroll,
     handleResize,
-    handleNavigation
+    handleNavigation,
   ]);
-  
+
   // Klone das Kind und füge Event-Handler hinzu
   const triggerElement = React.cloneElement(children, {
     ref: (node: HTMLElement) => {
       triggerRef.current = node;
-      
+
       // Wenn das Kind bereits eine ref hat, rufe diese auf
       const { ref } = children;
       if (typeof ref === 'function') {
@@ -1108,7 +1130,7 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
       if (showOnHover) {
         showTooltip();
       }
-      
+
       // Wenn das Kind bereits einen onMouseEnter-Handler hat, rufe diesen auf
       if (children.props.onMouseEnter) {
         children.props.onMouseEnter(event);
@@ -1118,7 +1140,7 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
       if (hideOnMouseLeave) {
         hideTooltip();
       }
-      
+
       // Wenn das Kind bereits einen onMouseLeave-Handler hat, rufe diesen auf
       if (children.props.onMouseLeave) {
         children.props.onMouseLeave(event);
@@ -1128,7 +1150,7 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
       if (showOnFocus) {
         showTooltip();
       }
-      
+
       // Wenn das Kind bereits einen onFocus-Handler hat, rufe diesen auf
       if (children.props.onFocus) {
         children.props.onFocus(event);
@@ -1138,7 +1160,7 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
       if (hideOnBlur) {
         hideTooltip();
       }
-      
+
       // Wenn das Kind bereits einen onBlur-Handler hat, rufe diesen auf
       if (children.props.onBlur) {
         children.props.onBlur(event);
@@ -1148,41 +1170,45 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
       if (showOnClick) {
         showTooltip();
       }
-      
+
       if (dismissibleByTrigger && isVisible) {
         hideTooltip();
       }
-      
+
       // Wenn das Kind bereits einen onClick-Handler hat, rufe diesen auf
       if (children.props.onClick) {
         children.props.onClick(event);
       }
-    }
+    },
   });
-  
+
   // Berechne die CSS-Klassen für den Tooltip
   const tooltipClasses = [
     'tooltip',
     `tooltip-${position}`,
     isVisible ? 'tooltip-visible' : 'tooltip-hidden',
-    className
-  ].filter(Boolean).join(' ');
-  
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // Berechne die CSS-Styles für den Tooltip
   const tooltipStyles: React.CSSProperties = {
-    ...hasMaxWidth ? { maxWidth: `${maxWidth}px` } : {},
-    ...hasPosition ? { position: 'fixed', top: `${tooltipPosition.top}px`, left: `${tooltipPosition.left}px` } : {},
-    ...hasZIndex ? { zIndex: 9999 } : {},
-    ...hasPointerEvents ? { pointerEvents: interactive ? 'auto' : 'none' } : {},
-    ...hasUserSelect ? { userSelect: 'none' } : {},
-    ...hasCursor ? { cursor: 'default' } : {}
+    ...(hasMaxWidth ? { maxWidth: `${maxWidth}px` } : {}),
+    ...(hasPosition
+      ? { position: 'fixed', top: `${tooltipPosition.top}px`, left: `${tooltipPosition.left}px` }
+      : {}),
+    ...(hasZIndex ? { zIndex: 9999 } : {}),
+    ...(hasPointerEvents ? { pointerEvents: interactive ? 'auto' : 'none' } : {}),
+    ...(hasUserSelect ? { userSelect: 'none' } : {}),
+    ...(hasCursor ? { cursor: 'default' } : {}),
   };
-  
+
   // Rendere den Tooltip
   return (
     <>
       {triggerElement}
-      
+
       {/* Backdrop */}
       {hasBackdrop && isVisible && (
         <div
@@ -1198,14 +1224,14 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
             opacity: backdropVisible ? backdropOpacity : 0,
             backdropFilter: backdropBlurred ? 'blur(2px)' : 'none',
             pointerEvents: backdropClickable ? 'auto' : 'none',
-            cursor: backdropClickable ? 'pointer' : 'default'
+            cursor: backdropClickable ? 'pointer' : 'default',
           }}
           onClick={backdropDismissible ? hideTooltip : undefined}
           tabIndex={backdropFocusable ? 0 : -1}
           aria-hidden="true"
         />
       )}
-      
+
       {/* Tooltip */}
       <div
         ref={tooltipRef}
@@ -1230,33 +1256,23 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
               {icon}
             </div>
           )}
-          
+
           {/* Titel */}
-          {hasTitle && title && (
-            <div className="tooltip-title">
-              {title}
-            </div>
-          )}
-          
+          {hasTitle && title && <div className="tooltip-title">{title}</div>}
+
           {/* Inhalt */}
-          <div className="tooltip-text">
-            {content}
-          </div>
-          
+          <div className="tooltip-text">{content}</div>
+
           {/* Beschreibung */}
           {hasDescription && description && (
-            <div className="tooltip-description">
-              {description}
-            </div>
+            <div className="tooltip-description">{description}</div>
           )}
-          
+
           {/* Status */}
           {hasStatus && status && (
-            <div className={`tooltip-status tooltip-status-${status}`}>
-              {status}
-            </div>
+            <div className={`tooltip-status tooltip-status-${status}`}>{status}</div>
           )}
-          
+
           {/* Schließen-Button */}
           {hasCloseButton && (
             <button
@@ -1269,13 +1285,11 @@ export const TooltipA11y: React.FC<TooltipA11yProps> = ({
             </button>
           )}
         </div>
-        
+
         {/* Pfeil */}
-        {arrow && (
-          <div className={`tooltip-arrow tooltip-arrow-${position}`} aria-hidden="true" />
-        )}
+        {arrow && <div className={`tooltip-arrow tooltip-arrow-${position}`} aria-hidden="true" />}
       </div>
-      
+
       {/* Screenreader-Ankündigung */}
       {announce && liveRegion && isVisible && (
         <div className="sr-only" aria-live={announcePoliteness} aria-atomic="true">

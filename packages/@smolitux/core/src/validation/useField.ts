@@ -35,7 +35,8 @@ export const useField = <T = unknown>(options: FieldOptions<T> = {}) => {
   const initialValueRef = useRef(initialValue);
 
   // Validierung
-  const { validate, errors, isValidating, isValid, resetValidation } = useValidation<T>(validationRules);
+  const { validate, errors, isValidating, isValid, resetValidation } =
+    useValidation<T>(validationRules);
 
   // Feldstatus
   const fieldState: FieldState<T> = {
@@ -94,7 +95,7 @@ export const useField = <T = unknown>(options: FieldOptions<T> = {}) => {
     if (validateOnMount) {
       validate(value, isInForm ? formContext.formState.values : undefined);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Wert ändern
@@ -108,7 +109,11 @@ export const useField = <T = unknown>(options: FieldOptions<T> = {}) => {
         setDirty(newValue !== initialValueRef.current);
 
         // Validiere, falls erforderlich
-        if (validateOnChange && (!validateOnlyTouched || touched) && (!validateOnlyDirty || dirty)) {
+        if (
+          validateOnChange &&
+          (!validateOnlyTouched || touched) &&
+          (!validateOnlyDirty || dirty)
+        ) {
           validate(newValue);
         }
 
@@ -176,18 +181,15 @@ export const useField = <T = unknown>(options: FieldOptions<T> = {}) => {
   ]);
 
   // Validiere das Feld
-  const validateField = useCallback(
-    async (): Promise<boolean> => {
-      return validate(value, isInForm ? formContext.formState.values : undefined);
-    },
-    [isInForm, formContext, validate, value]
-  );
+  const validateField = useCallback(async (): Promise<boolean> => {
+    return validate(value, isInForm ? formContext.formState.values : undefined);
+  }, [isInForm, formContext, validate, value]);
 
   // Setze das Feld zurück
   const resetField = useCallback(
     (newValue?: T) => {
       const resetValue = newValue !== undefined ? newValue : initialValueRef.current;
-      
+
       if (isInForm) {
         formContext.setFieldValue(name, resetValue as T);
         formContext.setFieldTouched(name, false);
@@ -214,21 +216,31 @@ export const useField = <T = unknown>(options: FieldOptions<T> = {}) => {
       const formValues = formContext.formState.values;
       const formTouched = formContext.formState.touched;
       // const formErrors = formContext.formState.errors;
-      
+
       // Synchronisiere den Wert
       if (name in formValues && formValues[name] !== value) {
         setValue(formValues[name]);
       }
-      
+
       // Synchronisiere den berührt-Status
       if (name in formTouched && formTouched[name] !== touched) {
         setTouched(formTouched[name]);
       }
-      
+
       // Synchronisiere den schmutzig-Status
       setDirty(formValues[name] !== initialValueRef.current);
     }
-  }, [isInForm, formContext, name, value, touched, setTouched, setValue, setDirty, initialValueRef]);
+  }, [
+    isInForm,
+    formContext,
+    name,
+    value,
+    touched,
+    setTouched,
+    setValue,
+    setDirty,
+    initialValueRef,
+  ]);
 
   return {
     value,

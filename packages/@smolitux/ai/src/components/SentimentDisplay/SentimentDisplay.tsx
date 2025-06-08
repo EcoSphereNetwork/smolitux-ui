@@ -132,11 +132,11 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [selectedTimeRange, setSelectedTimeRange] = useState(currentTimeRange);
   const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
-  
+
   // Zeitraum ändern
   const handleTimeRangeChange = async (range: string) => {
     setSelectedTimeRange(range);
-    
+
     if (onTimeRangeChange) {
       try {
         await onTimeRangeChange(range);
@@ -145,13 +145,13 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
       }
     }
   };
-  
+
   // Analyse aktualisieren
   const handleRefresh = async () => {
     if (!onRefresh || isRefreshing) return;
-    
+
     setIsRefreshing(true);
-    
+
     try {
       await onRefresh();
     } catch (error) {
@@ -160,7 +160,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
       setIsRefreshing(false);
     }
   };
-  
+
   // Stimmungswert in Text umwandeln
   const getSentimentText = (value: number): string => {
     if (value >= 0.6) return 'Sehr positiv';
@@ -169,7 +169,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
     if (value >= -0.6) return 'Negativ';
     return 'Sehr negativ';
   };
-  
+
   // Stimmungswert in Farbe umwandeln
   const getSentimentColor = (value: number): string => {
     if (value >= 0.6) return 'bg-green-500';
@@ -178,7 +178,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
     if (value >= -0.6) return 'bg-red-400';
     return 'bg-red-500';
   };
-  
+
   // Stimmungswert in Textfarbe umwandeln
   const getSentimentTextColor = (value: number): string => {
     if (value >= 0.6) return 'text-green-500';
@@ -187,19 +187,19 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
     if (value >= -0.6) return 'text-red-400';
     return 'text-red-500';
   };
-  
+
   // Stimmungsänderung formatieren
   const formatSentimentChange = (change?: number): string => {
     if (change === undefined) return '';
-    
+
     const sign = change >= 0 ? '+' : '';
     return `${sign}${(change * 100).toFixed(1)}%`;
   };
-  
+
   // Datum formatieren
   const formatDate = (date?: Date): string => {
     if (!date) return '';
-    
+
     return new Intl.DateTimeFormat('de-DE', {
       year: 'numeric',
       month: 'short',
@@ -208,24 +208,22 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
       minute: '2-digit',
     }).format(date);
   };
-  
+
   // Stimmungstrend rendern
   const renderTrendChart = () => {
     // Hier würde normalerweise ein Chart-Rendering stattfinden
     // Da wir keine Chart-Bibliothek einbinden, zeigen wir einen Platzhalter an
-    
+
     if (!trend || trend.length === 0) return null;
-    
-    const minValue = Math.min(...trend.map(t => t.value));
-    const maxValue = Math.max(...trend.map(t => t.value));
+
+    const minValue = Math.min(...trend.map((t) => t.value));
+    const maxValue = Math.max(...trend.map((t) => t.value));
     const avgValue = trend.reduce((sum, t) => sum + t.value, 0) / trend.length;
-    
+
     return (
       <div className="h-48 bg-gray-50 dark:bg-gray-800 rounded-md flex items-center justify-center">
         <div className="text-center">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Stimmungstrend
-          </p>
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Stimmungstrend</p>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
             {trend.length} Datenpunkte
           </p>
@@ -240,7 +238,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
       </div>
     );
   };
-  
+
   // Platzhalter für den Ladezustand
   const renderPlaceholders = () => {
     return (
@@ -249,12 +247,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
           <div className="md:w-1/3 p-4 bg-gray-200 dark:bg-gray-700 rounded-lg h-32" />
           <div className="md:w-2/3 p-4 bg-gray-200 dark:bg-gray-700 rounded-lg h-32" />
         </div>
-        
+
         <div className="mb-6">
           <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-2" />
           <div className="h-48 bg-gray-200 dark:bg-gray-700 rounded" />
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="h-48 bg-gray-200 dark:bg-gray-700 rounded" />
           <div className="h-48 bg-gray-200 dark:bg-gray-700 rounded" />
@@ -262,21 +260,18 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
       </div>
     );
   };
-  
+
   // Gesamtstimmung berechnen, falls nicht angegeben
-  const calculatedOverallSentiment = overallSentiment !== undefined
-    ? overallSentiment
-    : sentiment.positive - sentiment.negative;
-  
+  const calculatedOverallSentiment =
+    overallSentiment !== undefined ? overallSentiment : sentiment.positive - sentiment.negative;
+
   return (
     <Card className={`overflow-hidden ${className}`}>
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            {title}
-          </h3>
-          
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+
           <div className="flex space-x-2">
             {onRefresh && (
               <Button
@@ -305,13 +300,9 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
             )}
           </div>
         </div>
-        
-        {description && (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            {description}
-          </p>
-        )}
-        
+
+        {description && <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>}
+
         {/* Inhaltsinformationen */}
         {contentTitle && (
           <div className="flex items-center mt-4">
@@ -324,19 +315,17 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                 />
               </div>
             )}
-            
+
             <div>
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">
-                {contentTitle}
-              </h4>
-              
+              <h4 className="text-sm font-medium text-gray-900 dark:text-white">{contentTitle}</h4>
+
               <div className="flex items-center mt-1">
                 {contentType && (
                   <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">
                     {contentType}
                   </span>
                 )}
-                
+
                 {contentId && (
                   <>
                     <span className="mx-1 text-gray-300 dark:text-gray-600">•</span>
@@ -350,12 +339,12 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
           </div>
         )}
       </div>
-      
+
       {/* Zeitraumauswahl */}
       {timeRanges.length > 0 && showTrend && (
         <div className="px-6 py-3 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
           <div className="flex space-x-2">
-            {timeRanges.map(range => (
+            {timeRanges.map((range) => (
               <button
                 key={range}
                 onClick={() => handleTimeRangeChange(range)}
@@ -376,7 +365,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
           </div>
         </div>
       )}
-      
+
       {/* Inhalt */}
       <div className="p-6">
         {loading ? (
@@ -391,45 +380,54 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                   <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Gesamtstimmung
                   </h4>
-                  
+
                   <div className="flex items-center justify-center mb-4">
                     <div className="relative w-32 h-32">
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className={`w-24 h-24 rounded-full ${getSentimentColor(calculatedOverallSentiment)} opacity-20`} />
+                        <div
+                          className={`w-24 h-24 rounded-full ${getSentimentColor(calculatedOverallSentiment)} opacity-20`}
+                        />
                       </div>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <p className={`text-2xl font-bold ${getSentimentTextColor(calculatedOverallSentiment)}`}>
+                        <p
+                          className={`text-2xl font-bold ${getSentimentTextColor(calculatedOverallSentiment)}`}
+                        >
                           {(calculatedOverallSentiment * 100).toFixed(0)}%
                         </p>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
                           {getSentimentText(calculatedOverallSentiment)}
                         </p>
-                        
+
                         {sentimentChange !== undefined && (
-                          <p className={`text-xs mt-1 ${
-                            sentimentChange >= 0
-                              ? 'text-green-600 dark:text-green-400'
-                              : 'text-red-600 dark:text-red-400'
-                          }`}>
+                          <p
+                            className={`text-xs mt-1 ${
+                              sentimentChange >= 0
+                                ? 'text-green-600 dark:text-green-400'
+                                : 'text-red-600 dark:text-red-400'
+                            }`}
+                          >
                             {formatSentimentChange(sentimentChange)}
                           </p>
                         )}
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="text-center text-xs text-gray-500 dark:text-gray-400">
                     {analyzedCount !== undefined && (
-                      <p>Basierend auf {analyzedCount} {contentType === 'comments' ? 'Kommentaren' : 'Elementen'}</p>
+                      <p>
+                        Basierend auf {analyzedCount}{' '}
+                        {contentType === 'comments' ? 'Kommentaren' : 'Elementen'}
+                      </p>
                     )}
-                    
+
                     {analysisTimestamp && (
                       <p className="mt-1">Analysiert am {formatDate(analysisTimestamp)}</p>
                     )}
                   </div>
                 </div>
               </div>
-              
+
               {/* Stimmungsverteilung */}
               {showDistribution && (
                 <div className="md:w-2/3">
@@ -437,13 +435,15 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                     <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
                       Stimmungsverteilung
                     </h4>
-                    
+
                     <div className="space-y-4">
                       {/* Positive Stimmung */}
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Positiv</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.positive * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(sentiment.positive * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={sentiment.positive * 100}
@@ -452,12 +452,14 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           progressClassName="bg-green-500"
                         />
                       </div>
-                      
+
                       {/* Neutrale Stimmung */}
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Neutral</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.neutral * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(sentiment.neutral * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={sentiment.neutral * 100}
@@ -466,12 +468,14 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           progressClassName="bg-gray-400"
                         />
                       </div>
-                      
+
                       {/* Negative Stimmung */}
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Negativ</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.negative * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(sentiment.negative * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={sentiment.negative * 100}
@@ -480,13 +484,17 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           progressClassName="bg-red-500"
                         />
                       </div>
-                      
+
                       {/* Gemischte Stimmung */}
                       {sentiment.mixed !== undefined && (
                         <div>
                           <div className="flex justify-between mb-1">
-                            <span className="text-sm text-gray-700 dark:text-gray-300">Gemischt</span>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">{(sentiment.mixed * 100).toFixed(1)}%</span>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">
+                              Gemischt
+                            </span>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">
+                              {(sentiment.mixed * 100).toFixed(1)}%
+                            </span>
                           </div>
                           <ProgressBar
                             value={sentiment.mixed * 100}
@@ -501,7 +509,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                 </div>
               )}
             </div>
-            
+
             {/* Stimmungstrend */}
             {showTrend && trend && trend.length > 0 && (
               <div className="mb-8">
@@ -511,7 +519,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                 {renderTrendChart()}
               </div>
             )}
-            
+
             {/* Emotionen und Themen */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Emotionen */}
@@ -521,13 +529,15 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                     <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
                       Emotionen
                     </h4>
-                    
+
                     <div className="space-y-4">
                       {/* Freude */}
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Freude</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.joy * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(emotions.joy * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={emotions.joy * 100}
@@ -536,12 +546,16 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           progressClassName="bg-yellow-400"
                         />
                       </div>
-                      
+
                       {/* Traurigkeit */}
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-sm text-gray-700 dark:text-gray-300">Traurigkeit</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.sadness * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            Traurigkeit
+                          </span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(emotions.sadness * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={emotions.sadness * 100}
@@ -550,12 +564,14 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           progressClassName="bg-blue-400"
                         />
                       </div>
-                      
+
                       {/* Angst */}
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Angst</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.fear * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(emotions.fear * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={emotions.fear * 100}
@@ -564,12 +580,14 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           progressClassName="bg-purple-400"
                         />
                       </div>
-                      
+
                       {/* Wut */}
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className="text-sm text-gray-700 dark:text-gray-300">Wut</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.anger * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(emotions.anger * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={emotions.anger * 100}
@@ -578,12 +596,16 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                           progressClassName="bg-red-400"
                         />
                       </div>
-                      
+
                       {/* Überraschung */}
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-sm text-gray-700 dark:text-gray-300">Überraschung</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{(emotions.surprise * 100).toFixed(1)}%</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            Überraschung
+                          </span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {(emotions.surprise * 100).toFixed(1)}%
+                          </span>
                         </div>
                         <ProgressBar
                           value={emotions.surprise * 100}
@@ -596,7 +618,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                   </div>
                 </div>
               )}
-              
+
               {/* Themen */}
               {showTopics && topics && topics.length > 0 && (
                 <div>
@@ -604,7 +626,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                     <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
                       Themen und Stimmung
                     </h4>
-                    
+
                     <div className="space-y-3">
                       {topics.map((topic, index) => (
                         <div
@@ -617,11 +639,13 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                               {topic.name}
                             </span>
-                            <span className={`text-xs font-medium ${getSentimentTextColor(topic.sentiment)}`}>
+                            <span
+                              className={`text-xs font-medium ${getSentimentTextColor(topic.sentiment)}`}
+                            >
                               {getSentimentText(topic.sentiment)}
                             </span>
                           </div>
-                          
+
                           <div className="flex items-center">
                             <div className="flex-1 mr-2">
                               <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
@@ -635,7 +659,7 @@ export const SentimentDisplay: React.FC<SentimentDisplayProps> = ({
                               {(topic.frequency * 100).toFixed(0)}%
                             </span>
                           </div>
-                          
+
                           {hoveredTopic === topic.name && (
                             <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                               Relevanz: {(topic.relevance * 100).toFixed(0)}%

@@ -36,7 +36,7 @@ export const FeedFilter: React.FC<FeedFilterProps> = ({
   style,
 }) => {
   // Konvertiere die Filter in das TabView-Format
-  const tabs = filters.map(filter => ({
+  const tabs = filters.map((filter) => ({
     id: filter.id,
     label: (
       <Flex align="center">
@@ -48,7 +48,7 @@ export const FeedFilter: React.FC<FeedFilterProps> = ({
   }));
 
   return (
-    <Flex 
+    <Flex
       className={`feed-filter ${className}`}
       style={{
         marginBottom: '16px',

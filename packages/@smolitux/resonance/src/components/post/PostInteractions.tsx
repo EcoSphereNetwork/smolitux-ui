@@ -66,11 +66,7 @@ export const PostInteractions: React.FC<PostInteractionsProps> = ({
       }}
     >
       {/* Statistiken */}
-      <Flex
-        justify="space-between"
-        align="center"
-        style={{ marginBottom: '12px' }}
-      >
+      <Flex justify="space-between" align="center" style={{ marginBottom: '12px' }}>
         <Flex>
           <Flex align="center" style={{ marginRight: '16px' }}>
             <svg
@@ -245,14 +241,10 @@ export const PostInteractions: React.FC<PostInteractionsProps> = ({
 
         <Flex>
           {actions}
-          
+
           {onBookmark && (
             <Tooltip content={isBookmarked ? 'Remove Bookmark' : 'Bookmark'}>
-              <Button
-                variant="ghost"
-                onClick={onBookmark}
-                disabled={disabled}
-              >
+              <Button variant="ghost" onClick={onBookmark} disabled={disabled}>
                 <svg
                   width="20"
                   height="20"

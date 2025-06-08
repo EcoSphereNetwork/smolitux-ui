@@ -9,7 +9,7 @@ import {
   retry,
   groupBy,
   sortBy,
-  chunk
+  chunk,
 } from './helpers';
 
 describe('helpers', () => {
@@ -171,7 +171,7 @@ describe('helpers', () => {
         f: new Date(),
         g: /test/,
         h: null,
-        i: undefined
+        i: undefined,
       };
 
       const clone = deepClone(original);
@@ -218,13 +218,13 @@ describe('helpers', () => {
       const obj1 = {
         a: 1,
         b: { c: 2, d: 3 },
-        e: [1, 2]
+        e: [1, 2],
       };
 
       const obj2 = {
         b: { d: 4, f: 5 },
         e: [3, 4],
-        g: 6
+        g: 6,
       };
 
       const result = deepMerge(obj1, obj2);
@@ -233,7 +233,7 @@ describe('helpers', () => {
         a: 1,
         b: { c: 2, d: 4, f: 5 },
         e: [3, 4],
-        g: 6
+        g: 6,
       });
     });
 
@@ -364,7 +364,7 @@ describe('helpers', () => {
         { id: 2, category: 'B' },
         { id: 3, category: 'A' },
         { id: 4, category: 'C' },
-        { id: 5, category: 'B' }
+        { id: 5, category: 'B' },
       ];
 
       const result = groupBy(items, 'category');
@@ -372,25 +372,23 @@ describe('helpers', () => {
       expect(result).toEqual({
         A: [
           { id: 1, category: 'A' },
-          { id: 3, category: 'A' }
+          { id: 3, category: 'A' },
         ],
         B: [
           { id: 2, category: 'B' },
-          { id: 5, category: 'B' }
+          { id: 5, category: 'B' },
         ],
-        C: [
-          { id: 4, category: 'C' }
-        ]
+        C: [{ id: 4, category: 'C' }],
       });
     });
 
     it('groups by function', () => {
       const items = [1, 2, 3, 4, 5, 6];
-      const result = groupBy(items, (num) => num % 2 === 0 ? 'even' : 'odd');
+      const result = groupBy(items, (num) => (num % 2 === 0 ? 'even' : 'odd'));
 
       expect(result).toEqual({
         even: [2, 4, 6],
-        odd: [1, 3, 5]
+        odd: [1, 3, 5],
       });
     });
 
@@ -404,7 +402,7 @@ describe('helpers', () => {
 
       expect(result).toEqual({
         undefined: [{ id: 1 }],
-        A: [{ id: 2, category: 'A' }]
+        A: [{ id: 2, category: 'A' }],
       });
     });
   });
@@ -414,7 +412,7 @@ describe('helpers', () => {
       const items = [
         { id: 3, name: 'C' },
         { id: 1, name: 'A' },
-        { id: 2, name: 'B' }
+        { id: 2, name: 'B' },
       ];
 
       const result = sortBy(items, 'id');
@@ -422,7 +420,7 @@ describe('helpers', () => {
       expect(result).toEqual([
         { id: 1, name: 'A' },
         { id: 2, name: 'B' },
-        { id: 3, name: 'C' }
+        { id: 3, name: 'C' },
       ]);
     });
 
@@ -430,7 +428,7 @@ describe('helpers', () => {
       const items = [
         { id: 1, name: 'A' },
         { id: 3, name: 'C' },
-        { id: 2, name: 'B' }
+        { id: 2, name: 'B' },
       ];
 
       const result = sortBy(items, 'id', 'desc');
@@ -438,7 +436,7 @@ describe('helpers', () => {
       expect(result).toEqual([
         { id: 3, name: 'C' },
         { id: 2, name: 'B' },
-        { id: 1, name: 'A' }
+        { id: 1, name: 'A' },
       ]);
     });
 
@@ -468,12 +466,7 @@ describe('helpers', () => {
       const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       const result = chunk(array, 3);
 
-      expect(result).toEqual([
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [10]
-      ]);
+      expect(result).toEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]);
     });
 
     it('handles empty arrays', () => {

@@ -1,6 +1,10 @@
-export function debounce<T extends (...args: any[]) => any>(fn: T, wait: number, immediate = false) {
+export function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  wait: number,
+  immediate = false
+) {
   let timeout: NodeJS.Timeout | null = null;
-  return function(this: any, ...args: Parameters<T>) {
+  return function (this: any, ...args: Parameters<T>) {
     const later = () => {
       timeout = null;
       if (!immediate) fn.apply(this, args);
@@ -14,7 +18,7 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, wait: number,
 
 export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number) {
   let inThrottle = false;
-  return function(this: any, ...args: Parameters<T>) {
+  return function (this: any, ...args: Parameters<T>) {
     if (!inThrottle) {
       fn.apply(this, args);
       inThrottle = true;
@@ -25,7 +29,7 @@ export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number)
 
 export function memoize<T extends (...args: any[]) => any>(fn: T): T {
   const cache = new Map<string, ReturnType<T>>();
-  return function(this: any, ...args: Parameters<T>) {
+  return function (this: any, ...args: Parameters<T>) {
     const key = JSON.stringify(args);
     if (!cache.has(key)) {
       cache.set(key, fn.apply(this, args));
@@ -51,7 +55,7 @@ export function deepMerge<T extends object, U extends object>(target: T, source:
 }
 
 export function generateUUID(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0;
     const v = c === 'x' ? r : (r & 0x3) | 0x8;
     return v.toString(16);
@@ -59,7 +63,7 @@ export function generateUUID(): string {
 }
 
 export function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export async function retry<T>(fn: () => Promise<T>, attempts = 3, delayMs = 0): Promise<T> {

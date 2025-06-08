@@ -7,7 +7,7 @@ import { Drawer } from '../';
 const a11y = {
   testA11y: async () => ({ violations: [] }),
   isFocusable: () => true,
-  hasVisibleFocusIndicator: () => true
+  hasVisibleFocusIndicator: () => true,
 };
 
 describe('Drawer Accessibility', () => {
@@ -25,15 +25,15 @@ describe('Drawer Accessibility', () => {
           <p>Drawer content</p>
         </Drawer.A11y>
       );
-      
+
       const drawer = screen.getByRole('dialog');
       expect(drawer).toHaveAttribute('aria-label', 'Accessible Drawer');
-      
+
       // Beschreibung sollte als verstecktes Element vorhanden sein
       const description = screen.getByText('This is an accessible description');
       expect(description).toHaveClass('sr-only');
     });
-    
+
     it('should support custom a11y texts', () => {
       render(
         <Drawer.A11y
@@ -43,39 +43,38 @@ describe('Drawer Accessibility', () => {
           a11yTexts={{
             closeButtonLabel: 'Custom Close',
             drawerTitleLabel: 'Custom Drawer Title',
-            overlayLabel: 'Custom Overlay'
+            overlayLabel: 'Custom Overlay',
           }}
         >
           <p>Drawer content</p>
         </Drawer.A11y>
       );
-      
+
       // Close button sollte den benutzerdefinierten Text haben
       const closeButton = screen.getByLabelText('Custom Close');
       expect(closeButton).toBeInTheDocument();
     });
-    
+
     it('should support navigation role', () => {
       render(
-        <Drawer.A11y
-          isOpen={true}
-          onClose={() => {}}
-          title="Navigation Drawer"
-          isNavigation={true}
-        >
+        <Drawer.A11y isOpen={true} onClose={() => {}} title="Navigation Drawer" isNavigation={true}>
           <nav>
             <ul>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 2</a></li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 2</a>
+              </li>
             </ul>
           </nav>
         </Drawer.A11y>
       );
-      
+
       const drawer = screen.getByRole('navigation');
       expect(drawer).toBeInTheDocument();
     });
-    
+
     it('should support complementary role', () => {
       render(
         <Drawer.A11y
@@ -87,45 +86,35 @@ describe('Drawer Accessibility', () => {
           <div>Complementary content</div>
         </Drawer.A11y>
       );
-      
+
       const drawer = screen.getByRole('complementary');
       expect(drawer).toBeInTheDocument();
     });
-    
+
     it('should support form role', () => {
       render(
-        <Drawer.A11y
-          isOpen={true}
-          onClose={() => {}}
-          title="Form Drawer"
-          isForm={true}
-        >
+        <Drawer.A11y isOpen={true} onClose={() => {}} title="Form Drawer" isForm={true}>
           <form>
             <input type="text" />
           </form>
         </Drawer.A11y>
       );
-      
+
       const drawer = screen.getByRole('form');
       expect(drawer).toBeInTheDocument();
     });
-    
+
     it('should support search role', () => {
       render(
-        <Drawer.A11y
-          isOpen={true}
-          onClose={() => {}}
-          title="Search Drawer"
-          isSearch={true}
-        >
+        <Drawer.A11y isOpen={true} onClose={() => {}} title="Search Drawer" isSearch={true}>
           <input type="search" />
         </Drawer.A11y>
       );
-      
+
       const drawer = screen.getByRole('search');
       expect(drawer).toBeInTheDocument();
     });
-    
+
     it('should support aria-live attributes', () => {
       render(
         <Drawer.A11y
@@ -139,14 +128,14 @@ describe('Drawer Accessibility', () => {
           <p>Drawer content</p>
         </Drawer.A11y>
       );
-      
+
       const drawer = screen.getByTestId('a11y-drawer');
       expect(drawer).toHaveAttribute('aria-live', 'polite');
       expect(drawer).toHaveAttribute('aria-atomic', 'true');
       expect(drawer).toHaveAttribute('aria-relevant', 'additions');
     });
   });
-  
+
   it('should not have accessibility violations in basic state', async () => {
     const { violations } = await a11y.testA11y(
       <Drawer isOpen={true} onClose={() => {}} title="Test Drawer">
@@ -158,27 +147,27 @@ describe('Drawer Accessibility', () => {
 
   it('should have correct ARIA attributes for dialog', () => {
     render(
-      <Drawer 
-        isOpen={true} 
-        onClose={() => {}} 
+      <Drawer
+        isOpen={true}
+        onClose={() => {}}
         title="Test Drawer"
         ariaDescription="This is a test drawer description"
       >
         <p>Drawer content</p>
       </Drawer>
     );
-    
+
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-modal', 'true');
     expect(dialog).toHaveAttribute('aria-labelledby');
     expect(dialog).toHaveAttribute('aria-describedby');
-    
+
     // Title should be present and referenced by aria-labelledby
     const titleId = dialog.getAttribute('aria-labelledby');
     const title = document.getElementById(titleId || '');
     expect(title).toBeInTheDocument();
     expect(title?.textContent).toBe('Test Drawer');
-    
+
     // Description should be present and referenced by aria-describedby
     const descriptionId = dialog.getAttribute('aria-describedby');
     const description = document.getElementById(descriptionId || '');
@@ -188,15 +177,11 @@ describe('Drawer Accessibility', () => {
 
   it('should use aria-label when no title is provided', () => {
     render(
-      <Drawer 
-        isOpen={true} 
-        onClose={() => {}} 
-        ariaLabel="Custom Drawer Label"
-      >
+      <Drawer isOpen={true} onClose={() => {}} ariaLabel="Custom Drawer Label">
         <p>Drawer content</p>
       </Drawer>
     );
-    
+
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-label', 'Custom Drawer Label');
     expect(dialog).not.toHaveAttribute('aria-labelledby');
@@ -208,7 +193,7 @@ describe('Drawer Accessibility', () => {
         <p>Drawer content</p>
       </Drawer>
     );
-    
+
     const closeButton = screen.getByLabelText('Schließen');
     expect(closeButton).toHaveAttribute('type', 'button');
     expect(closeButton).toBeVisible();
@@ -221,7 +206,7 @@ describe('Drawer Accessibility', () => {
         <p>Drawer content</p>
       </Drawer>
     );
-    
+
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(onClose).toHaveBeenCalledTimes(1);
   });
@@ -233,7 +218,7 @@ describe('Drawer Accessibility', () => {
         <p>Drawer content</p>
       </Drawer>
     );
-    
+
     const overlay = screen.getByTestId('drawer-overlay');
     fireEvent.click(overlay);
     expect(onClose).toHaveBeenCalledTimes(1);
@@ -246,7 +231,7 @@ describe('Drawer Accessibility', () => {
         <p>Drawer content</p>
       </Drawer>
     );
-    
+
     const overlay = screen.getByTestId('drawer-overlay');
     fireEvent.click(overlay);
     expect(onClose).not.toHaveBeenCalled();
@@ -258,21 +243,21 @@ describe('Drawer Accessibility', () => {
         <button data-testid="test-button">Test Button</button>
       </Drawer>
     );
-    
+
     const button = screen.getByTestId('test-button');
     button.focus();
-    
+
     expect(a11y.hasVisibleFocusIndicator(button)).toBe(true);
   });
 
   it('should render with different placements without accessibility issues', async () => {
     const placements = ['left', 'right', 'top', 'bottom'] as const;
-    
+
     for (const placement of placements) {
       const { violations } = await a11y.testA11y(
-        <Drawer 
-          isOpen={true} 
-          onClose={() => {}} 
+        <Drawer
+          isOpen={true}
+          onClose={() => {}}
           title={`${placement} Drawer`}
           placement={placement}
         >
@@ -285,9 +270,9 @@ describe('Drawer Accessibility', () => {
 
   it('should render footer with accessible elements', () => {
     render(
-      <Drawer 
-        isOpen={true} 
-        onClose={() => {}} 
+      <Drawer
+        isOpen={true}
+        onClose={() => {}}
         title="Test Drawer"
         footer={
           <div>
@@ -299,10 +284,10 @@ describe('Drawer Accessibility', () => {
         <p>Drawer content</p>
       </Drawer>
     );
-    
+
     const cancelButton = screen.getByTestId('cancel-button');
     const saveButton = screen.getByTestId('save-button');
-    
+
     expect(cancelButton).toBeInTheDocument();
     expect(saveButton).toBeInTheDocument();
   });

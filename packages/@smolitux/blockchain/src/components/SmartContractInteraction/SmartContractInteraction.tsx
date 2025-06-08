@@ -68,7 +68,7 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
   const [activeTab, setActiveTab] = useState<string>('methods');
 
   const handleParamChange = (methodName: string, paramName: string, value: string) => {
-    setMethodParams(prev => ({
+    setMethodParams((prev) => ({
       ...prev,
       [methodName]: {
         ...(prev[methodName] || {}),
@@ -78,12 +78,12 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
   };
 
   const handleCallMethod = (methodName: string) => {
-    const method = methods.find(m => m.name === methodName);
+    const method = methods.find((m) => m.name === methodName);
     if (!method) return;
 
-    const params = method.inputs.map(input => {
+    const params = method.inputs.map((input) => {
       const value = methodParams[methodName]?.[input.name];
-      
+
       // Convert value based on type
       switch (input.type) {
         case 'uint256':
@@ -180,7 +180,7 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
   );
 
   const renderMethodDetails = () => {
-    const method = methods.find(m => m.name === selectedMethod);
+    const method = methods.find((m) => m.name === selectedMethod);
     if (!method) {
       return (
         <Box style={{ padding: '16px', textAlign: 'center' }}>
@@ -192,10 +192,10 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
     return (
       <Box>
         <Box style={{ marginBottom: '16px' }}>
-          <Text weight="bold" size="lg">{method.name}</Text>
-          {method.description && (
-            <Text style={{ marginTop: '4px' }}>{method.description}</Text>
-          )}
+          <Text weight="bold" size="lg">
+            {method.name}
+          </Text>
+          {method.description && <Text style={{ marginTop: '4px' }}>{method.description}</Text>}
           <Box
             style={{
               display: 'inline-block',
@@ -287,7 +287,11 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
           colorScheme={method.isTransaction ? 'danger' : 'primary'}
           fullWidth
         >
-          {isLoading ? 'Processing...' : method.isTransaction ? 'Execute Transaction' : 'Call Method'}
+          {isLoading
+            ? 'Processing...'
+            : method.isTransaction
+              ? 'Execute Transaction'
+              : 'Call Method'}
         </Button>
       </Box>
     );
@@ -346,7 +350,9 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
     >
       <Box style={{ padding: '16px' }}>
         <Box style={{ marginBottom: '16px' }}>
-          <Text weight="bold" size="xl">Smart Contract Interaction</Text>
+          <Text weight="bold" size="xl">
+            Smart Contract Interaction
+          </Text>
           <Text color="#6b7280">
             Contract: <code>{contractAddress}</code>
           </Text>
@@ -359,23 +365,15 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
               label: 'Methods',
               content: (
                 <Flex style={{ marginTop: '16px' }}>
-                  <Box style={{ width: '240px', marginRight: '16px' }}>
-                    {renderMethodsList()}
-                  </Box>
-                  <Box style={{ flex: 1 }}>
-                    {renderMethodDetails()}
-                  </Box>
+                  <Box style={{ width: '240px', marginRight: '16px' }}>{renderMethodsList()}</Box>
+                  <Box style={{ flex: 1 }}>{renderMethodDetails()}</Box>
                 </Flex>
               ),
             },
             {
               id: 'result',
               label: 'Result',
-              content: (
-                <Box style={{ marginTop: '16px' }}>
-                  {renderResult()}
-                </Box>
-              ),
+              content: <Box style={{ marginTop: '16px' }}>{renderResult()}</Box>,
             },
           ]}
           activeTab={activeTab}

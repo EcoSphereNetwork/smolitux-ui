@@ -7,7 +7,7 @@ export type { A11yDialogProps } from './Dialog.a11y';
 
 // Erweitere Dialog um die A11y-Komponente
 export const Dialog = Object.assign(BaseDialog, {
-  A11y: A11yDialog
+  A11y: A11yDialog,
 });
 
 // Fuer Abwaertskompatibilitaet mit dem bestehenden Export

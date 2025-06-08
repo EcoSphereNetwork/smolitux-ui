@@ -21,11 +21,13 @@ const meta: Meta<typeof Zoom> = {
     },
     unmountOnExit: {
       control: 'boolean',
-      description: 'Gibt an, ob das Element aus dem DOM entfernt werden soll, wenn es ausgeblendet ist',
+      description:
+        'Gibt an, ob das Element aus dem DOM entfernt werden soll, wenn es ausgeblendet ist',
     },
     mountOnEnter: {
       control: 'boolean',
-      description: 'Gibt an, ob das Element erst in das DOM eingefügt werden soll, wenn es eingeblendet wird',
+      description:
+        'Gibt an, ob das Element erst in das DOM eingefügt werden soll, wenn es eingeblendet wird',
     },
     appear: {
       control: 'boolean',
@@ -71,20 +73,18 @@ type Story = StoryObj<typeof Zoom>;
 export const Basic: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Zoom in={isVisible}>
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Zoom-Animation</h3>
-              <p>
-                Dieser Inhalt wird mit einer Zoom-Animation ein- und ausgeblendet.
-              </p>
+              <p>Dieser Inhalt wird mit einer Zoom-Animation ein- und ausgeblendet.</p>
             </div>
           </Zoom>
         </div>
@@ -96,20 +96,18 @@ export const Basic: Story = {
 export const WithCustomDuration: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Zoom in={isVisible} timeout={2000}>
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Langsame Zoom-Animation</h3>
-              <p>
-                Diese Zoom-Animation dauert 2 Sekunden (2000ms).
-              </p>
+              <p>Diese Zoom-Animation dauert 2 Sekunden (2000ms).</p>
             </div>
           </Zoom>
         </div>
@@ -121,20 +119,20 @@ export const WithCustomDuration: Story = {
 export const WithUnmountOnExit: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Zoom in={isVisible} unmountOnExit>
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Unmount bei Exit</h3>
               <p>
-                Dieser Inhalt wird aus dem DOM entfernt, wenn er ausgeblendet ist.
-                Der umgebende Rahmen bleibt sichtbar.
+                Dieser Inhalt wird aus dem DOM entfernt, wenn er ausgeblendet ist. Der umgebende
+                Rahmen bleibt sichtbar.
               </p>
             </div>
           </Zoom>
@@ -147,20 +145,20 @@ export const WithUnmountOnExit: Story = {
 export const WithMountOnEnter: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(false);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Zoom in={isVisible} mountOnEnter>
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Mount bei Enter</h3>
               <p>
-                Dieser Inhalt wird erst in das DOM eingefügt, wenn er eingeblendet wird.
-                Anfangs ist er nicht im DOM vorhanden.
+                Dieser Inhalt wird erst in das DOM eingefügt, wenn er eingeblendet wird. Anfangs ist
+                er nicht im DOM vorhanden.
               </p>
             </div>
           </Zoom>
@@ -174,23 +172,21 @@ export const WithCallbacks: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
     const [status, setStatus] = React.useState('Sichtbar');
-    
+
     const handleEnter = () => setStatus('Wird eingeblendet...');
     const handleEntered = () => setStatus('Sichtbar');
     const handleExit = () => setStatus('Wird ausgeblendet...');
     const handleExited = () => setStatus('Unsichtbar');
-    
+
     return (
       <div className="space-y-4">
         <div className="flex justify-between items-center">
           <Button onClick={() => setIsVisible(!isVisible)}>
             {isVisible ? 'Ausblenden' : 'Einblenden'}
           </Button>
-          <div className="ml-4 p-2 bg-gray-100 dark:bg-gray-800 rounded">
-            Status: {status}
-          </div>
+          <div className="ml-4 p-2 bg-gray-100 dark:bg-gray-800 rounded">Status: {status}</div>
         </div>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Zoom
             in={isVisible}
@@ -201,9 +197,7 @@ export const WithCallbacks: Story = {
           >
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Mit Callbacks</h3>
-              <p>
-                Dieser Inhalt verwendet Callbacks, um den Status der Animation anzuzeigen.
-              </p>
+              <p>Dieser Inhalt verwendet Callbacks, um den Status der Animation anzuzeigen.</p>
             </div>
           </Zoom>
         </div>
@@ -215,23 +209,18 @@ export const WithCallbacks: Story = {
 export const WithCustomEasing: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
-          <Zoom
-            in={isVisible}
-            easing="cubic-bezier(0.68, -0.55, 0.27, 1.55)"
-          >
+          <Zoom in={isVisible} easing="cubic-bezier(0.68, -0.55, 0.27, 1.55)">
             <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
               <h3 className="text-lg font-medium mb-2">Benutzerdefinierte Beschleunigung</h3>
-              <p>
-                Diese Zoom-Animation verwendet eine benutzerdefinierte Beschleunigungsfunktion.
-              </p>
+              <p>Diese Zoom-Animation verwendet eine benutzerdefinierte Beschleunigungsfunktion.</p>
             </div>
           </Zoom>
         </div>
@@ -248,8 +237,8 @@ export const WithInitialAnimation: Story = {
           <div className="p-6 bg-blue-100 dark:bg-blue-900 rounded-md">
             <h3 className="text-lg font-medium mb-2">Initiale Animation</h3>
             <p>
-              Dieser Inhalt wird mit einer Zoom-Animation eingeblendet, wenn die Komponente
-              zum ersten Mal gerendert wird.
+              Dieser Inhalt wird mit einer Zoom-Animation eingeblendet, wenn die Komponente zum
+              ersten Mal gerendert wird.
             </p>
           </div>
         </Zoom>
@@ -261,7 +250,7 @@ export const WithInitialAnimation: Story = {
 export const WithCustomStyling: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button
@@ -270,7 +259,7 @@ export const WithCustomStyling: Story = {
         >
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md">
           <Zoom in={isVisible}>
             <div className="p-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-md shadow-lg">
@@ -292,13 +281,13 @@ export const WithCustomStyling: Story = {
 export const MultipleElements: Story = {
   render: () => {
     const [isVisible, setIsVisible] = React.useState(true);
-    
+
     return (
       <div className="space-y-4">
         <Button onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? 'Ausblenden' : 'Einblenden'}
         </Button>
-        
+
         <div className="grid grid-cols-2 gap-4">
           <Zoom in={isVisible} timeout={500}>
             <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-md">
@@ -306,21 +295,21 @@ export const MultipleElements: Story = {
               <p>Schnelle Animation (500ms)</p>
             </div>
           </Zoom>
-          
+
           <Zoom in={isVisible} timeout={1000}>
             <div className="p-4 bg-green-100 dark:bg-green-900 rounded-md">
               <h3 className="text-md font-medium mb-2">Element 2</h3>
               <p>Mittlere Animation (1000ms)</p>
             </div>
           </Zoom>
-          
+
           <Zoom in={isVisible} timeout={1500}>
             <div className="p-4 bg-yellow-100 dark:bg-yellow-900 rounded-md">
               <h3 className="text-md font-medium mb-2">Element 3</h3>
               <p>Langsame Animation (1500ms)</p>
             </div>
           </Zoom>
-          
+
           <Zoom in={isVisible} timeout={2000}>
             <div className="p-4 bg-red-100 dark:bg-red-900 rounded-md">
               <h3 className="text-md font-medium mb-2">Element 4</h3>
@@ -336,7 +325,7 @@ export const MultipleElements: Story = {
 export const ImageGallery: Story = {
   render: () => {
     const [selectedImage, setSelectedImage] = React.useState<number | null>(null);
-    
+
     const images = [
       'https://via.placeholder.com/150/3498db/ffffff?text=Bild+1',
       'https://via.placeholder.com/150/e74c3c/ffffff?text=Bild+2',
@@ -345,7 +334,7 @@ export const ImageGallery: Story = {
       'https://via.placeholder.com/150/9b59b6/ffffff?text=Bild+5',
       'https://via.placeholder.com/150/1abc9c/ffffff?text=Bild+6',
     ];
-    
+
     return (
       <div className="space-y-4">
         <div className="grid grid-cols-3 gap-2">
@@ -359,7 +348,7 @@ export const ImageGallery: Story = {
             />
           ))}
         </div>
-        
+
         {selectedImage !== null && (
           <div
             className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
@@ -384,7 +373,7 @@ export const ImageGallery: Story = {
 export const ZoomOnHover: Story = {
   render: () => {
     const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
-    
+
     const cards = [
       {
         title: 'Karte 1',
@@ -402,7 +391,7 @@ export const ZoomOnHover: Story = {
         color: 'bg-yellow-100 dark:bg-yellow-900',
       },
     ];
-    
+
     return (
       <div className="grid grid-cols-3 gap-4">
         {cards.map((card, index) => (
@@ -416,7 +405,7 @@ export const ZoomOnHover: Story = {
               <h3 className="text-lg font-medium mb-2">{card.title}</h3>
               <p>{card.description}</p>
             </div>
-            
+
             <Zoom in={hoveredCard === index}>
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <button className="px-4 py-2 bg-white text-gray-900 rounded-full font-medium">

@@ -5,7 +5,13 @@ export interface FlexProps extends BoxProps {
   /** Direction of the flex container */
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   /** Alignment of items along the main axis */
-  justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  justify?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
   /** Alignment of items along the cross axis */
   align?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
   /** Wrapping behavior */

@@ -1,15 +1,6 @@
 // packages/playground/src/App.tsx
 import React, { useState } from 'react';
-import { 
-  Button, 
-  Card, 
-  Alert, 
-  Input, 
-  Select, 
-  Badge, 
-  TabView, 
-  Modal 
-} from '@smolitux/core';
+import { Button, Card, Alert, Input, Select, Badge, TabView, Modal } from '@smolitux/core';
 import { ThemeProvider, useTheme } from '@smolitux/theme';
 import LoginForm from './components/LoginForm';
 
@@ -30,7 +21,7 @@ const tabItems = [
           Hier können Sie allgemeine Einstellungen für Ihre Anwendung vornehmen.
         </p>
       </div>
-    )
+    ),
   },
   {
     id: 'tab2',
@@ -44,7 +35,7 @@ const tabItems = [
           Verwalten Sie Benutzerkonten und Berechtigungen.
         </p>
       </div>
-    )
+    ),
   },
   {
     id: 'tab3',
@@ -56,19 +47,16 @@ const tabItems = [
           Konfigurieren Sie Systemparameter und Leistungsoptionen.
         </p>
       </div>
-    )
-  }
+    ),
+  },
 ];
 
 // Theme-Switcher-Komponente
 const ThemeSwitcher: React.FC = () => {
   const { themeMode, toggleTheme } = useTheme();
-  
+
   return (
-    <Button 
-      variant="outline" 
-      onClick={toggleTheme}
-    >
+    <Button variant="outline" onClick={toggleTheme}>
       {themeMode === 'light' ? '🌙 Dunkles Theme' : '☀️ Helles Theme'}
     </Button>
   );
@@ -80,14 +68,14 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('option1');
   const [showAlert, setShowAlert] = useState(true);
-  
+
   const handleLogin = async (values: { email: string; password: string }) => {
     console.log('Login with:', values);
-    return new Promise<void>(resolve => {
+    return new Promise<void>((resolve) => {
       setTimeout(resolve, 2000);
     });
   };
-  
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
@@ -97,7 +85,7 @@ const App: React.FC = () => {
             <ThemeSwitcher />
           </div>
         </header>
-        
+
         <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Linke Spalte */}
@@ -114,16 +102,24 @@ const App: React.FC = () => {
                       closable
                     />
                   )}
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Alert type="success" title="Erfolg" message="Aktion erfolgreich durchgeführt." />
+                    <Alert
+                      type="success"
+                      title="Erfolg"
+                      message="Aktion erfolgreich durchgeführt."
+                    />
                     <Alert type="error" title="Fehler" message="Etwas ist schiefgelaufen." />
-                    <Alert type="warning" title="Warnung" message="Achtung, bevor Sie fortfahren." />
+                    <Alert
+                      type="warning"
+                      title="Warnung"
+                      message="Achtung, bevor Sie fortfahren."
+                    />
                     <Alert type="info" message="Wussten Sie schon? Tooltips verbessern die UX." />
                   </div>
                 </div>
               </Card>
-              
+
               {/* Forms Demo */}
               <Card title="Formularkomponenten">
                 <div className="space-y-4">
@@ -132,21 +128,21 @@ const App: React.FC = () => {
                     placeholder="Text eingeben..."
                     helperText="Diese Hilfe erläutert die Eingabe."
                   />
-                  
+
                   <Select
                     label="Dropdown-Auswahl"
                     options={selectOptions}
                     value={selectedOption}
                     onChange={(e) => setSelectedOption(e.target.value)}
                   />
-                  
+
                   <div className="flex space-x-4">
                     <Button variant="primary">Primär</Button>
                     <Button variant="secondary">Sekundär</Button>
                     <Button variant="outline">Outline</Button>
                     <Button variant="ghost">Ghost</Button>
                   </div>
-                  
+
                   <div className="flex space-x-4">
                     <Button size="sm">Klein</Button>
                     <Button>Mittel</Button>
@@ -155,7 +151,7 @@ const App: React.FC = () => {
                   </div>
                 </div>
               </Card>
-              
+
               {/* Login Form Demo */}
               <LoginForm
                 onSubmit={handleLogin}
@@ -163,7 +159,7 @@ const App: React.FC = () => {
                 onRegister={() => console.log('Register')}
               />
             </div>
-            
+
             {/* Rechte Spalte */}
             <div className="space-y-8">
               {/* Badges Demo */}
@@ -177,16 +173,26 @@ const App: React.FC = () => {
                     <Badge variant="error">Fehler</Badge>
                     <Badge variant="info">Info</Badge>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-3">
                     <Badge rounded>Standard</Badge>
-                    <Badge variant="primary" rounded>Primär</Badge>
-                    <Badge variant="success" rounded>Erfolg</Badge>
-                    <Badge variant="warning" rounded>Warnung</Badge>
-                    <Badge variant="error" rounded>Fehler</Badge>
-                    <Badge variant="info" rounded>Info</Badge>
+                    <Badge variant="primary" rounded>
+                      Primär
+                    </Badge>
+                    <Badge variant="success" rounded>
+                      Erfolg
+                    </Badge>
+                    <Badge variant="warning" rounded>
+                      Warnung
+                    </Badge>
+                    <Badge variant="error" rounded>
+                      Fehler
+                    </Badge>
+                    <Badge variant="info" rounded>
+                      Info
+                    </Badge>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-3">
                     <Badge size="sm">Klein</Badge>
                     <Badge>Mittel</Badge>
@@ -194,85 +200,74 @@ const App: React.FC = () => {
                   </div>
                 </div>
               </Card>
-              
+
               {/* TabView Demo */}
               <Card title="Tabs">
-                <TabView 
-                  tabs={tabItems} 
+                <TabView
+                  tabs={tabItems}
                   activeTabId={activeTab}
                   onTabChange={setActiveTab}
                   className="mt-4"
                 />
-                
+
                 <div className="mt-6">
                   <h4 className="font-medium mb-2">Tab-Varianten:</h4>
                   <div className="space-y-6">
-                    <TabView 
-                      tabs={tabItems.map(tab => ({ ...tab, content: null }))} 
+                    <TabView
+                      tabs={tabItems.map((tab) => ({ ...tab, content: null }))}
                       variant="pills"
                       showContent={false}
                     />
-                    
-                    <TabView 
-                      tabs={tabItems.map(tab => ({ ...tab, content: null }))} 
+
+                    <TabView
+                      tabs={tabItems.map((tab) => ({ ...tab, content: null }))}
                       variant="buttons"
                       showContent={false}
                     />
-                    
-                    <TabView 
-                      tabs={tabItems.map(tab => ({ ...tab, content: null }))} 
+
+                    <TabView
+                      tabs={tabItems.map((tab) => ({ ...tab, content: null }))}
                       variant="underline"
                       showContent={false}
                     />
                   </div>
                 </div>
               </Card>
-              
+
               {/* Modal Demo */}
               <Card title="Modal">
-                <Button 
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full"
-                >
+                <Button onClick={() => setIsModalOpen(true)} className="w-full">
                   Modal öffnen
                 </Button>
-                
+
                 <Modal
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}
                   title="Beispiel-Modal"
                   footer={
                     <div className="flex justify-end space-x-2">
-                      <Button 
-                        variant="outline" 
-                        onClick={() => setIsModalOpen(false)}
-                      >
+                      <Button variant="outline" onClick={() => setIsModalOpen(false)}>
                         Abbrechen
                       </Button>
-                      <Button 
-                        variant="primary" 
-                        onClick={() => setIsModalOpen(false)}
-                      >
+                      <Button variant="primary" onClick={() => setIsModalOpen(false)}>
                         Bestätigen
                       </Button>
                     </div>
                   }
                 >
                   <p className="text-gray-700 dark:text-gray-300">
-                    Dies ist ein Beispiel für ein Modal-Fenster. Es kann für Dialoge, Formulare, Bestätigungen und mehr verwendet werden.
+                    Dies ist ein Beispiel für ein Modal-Fenster. Es kann für Dialoge, Formulare,
+                    Bestätigungen und mehr verwendet werden.
                   </p>
                   <div className="mt-4">
-                    <Input
-                      label="Beispieleingabe im Modal"
-                      placeholder="Text eingeben..."
-                    />
+                    <Input label="Beispieleingabe im Modal" placeholder="Text eingeben..." />
                   </div>
                 </Modal>
               </Card>
             </div>
           </div>
         </main>
-        
+
         <footer className="bg-white dark:bg-gray-800 mt-12 py-6 border-t border-gray-200 dark:border-gray-700">
           <div className="max-w-7xl mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
             <p>smolitux UI Demo © {new Date().getFullYear()}</p>

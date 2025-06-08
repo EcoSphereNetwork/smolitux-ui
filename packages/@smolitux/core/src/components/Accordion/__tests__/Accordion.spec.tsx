@@ -37,7 +37,9 @@ describe('Accordion Snapshots', () => {
     const { asFragment } = render(
       <Accordion>
         <AccordionItem title="Section 1">Content 1</AccordionItem>
-        <AccordionItem title="Section 2" isDisabled>Content 2</AccordionItem>
+        <AccordionItem title="Section 2" isDisabled>
+          Content 2
+        </AccordionItem>
       </Accordion>
     );
     expect(asFragment()).toMatchSnapshot();
@@ -46,10 +48,7 @@ describe('Accordion Snapshots', () => {
   it('renders with custom icon correctly', () => {
     const { asFragment } = render(
       <Accordion>
-        <AccordionItem 
-          title="Section 1" 
-          icon={<span>+</span>}
-        >
+        <AccordionItem title="Section 1" icon={<span>+</span>}>
           Content 1
         </AccordionItem>
       </Accordion>

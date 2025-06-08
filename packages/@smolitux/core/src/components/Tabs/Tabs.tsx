@@ -3,7 +3,14 @@ import React, { useState, useEffect, useRef, createContext, useContext, useMemo 
 import './Tabs.css';
 
 export type TabsVariant = 'line' | 'enclosed' | 'soft-rounded' | 'solid-rounded' | 'unstyled';
-export type TabsColorScheme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+export type TabsColorScheme =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'neutral';
 export type TabsSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type TabsAlign = 'start' | 'center' | 'end';
 export type TabsOrientation = 'horizontal' | 'vertical';
@@ -102,7 +109,7 @@ export interface TabsProps {
 
 /**
  * Tabs-Komponente für tabulare Inhalte
- * 
+ *
  * @example
  * ```tsx
  * <Tabs>
@@ -137,22 +144,22 @@ export const Tabs: React.FC<TabsProps> = ({
   keyboardNavigation = 'both',
   i18n = {
     tabSelected: 'Tab ausgewählt',
-    tabDisabled: 'Tab deaktiviert'
-  }
+    tabDisabled: 'Tab deaktiviert',
+  },
 }) => {
   const [activeIndex, setActiveIndexState] = useState(index ?? defaultIndex);
   const [activeValue, setActiveValue] = useState('');
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
   const tabsId = useMemo(() => id || `tabs-${Math.random().toString(36).substr(2, 9)}`, [id]);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  
+
   // Wenn der Index von außen gesteuert wird
   useEffect(() => {
     if (index !== undefined) {
       setActiveIndexState(index);
     }
   }, [index]);
-  
+
   // Automatische Fokussierung des aktiven Tabs
   useEffect(() => {
     if (autoFocus && activeIndex >= 0 && tabRefs.current[activeIndex]) {
@@ -162,25 +169,25 @@ export const Tabs: React.FC<TabsProps> = ({
 
   const setActiveIndex = (newIndex: number) => {
     if (isDisabled) return;
-    
+
     if (index === undefined) {
       setActiveIndexState(newIndex);
     }
-    
+
     onChange?.(newIndex);
   };
-  
+
   // Tastaturnavigation
   const handleKeyDown = (event: React.KeyboardEvent, tabIndex: number) => {
     if (isDisabled || keyboardNavigation === 'none') return;
-    
+
     const isHorizontalNav = keyboardNavigation === 'horizontal' || keyboardNavigation === 'both';
     const isVerticalNav = keyboardNavigation === 'vertical' || keyboardNavigation === 'both';
     const isHorizontal = orientation === 'horizontal';
-    
+
     const tabCount = tabRefs.current.filter(Boolean).length;
     let nextIndex = tabIndex;
-    
+
     switch (event.key) {
       case 'ArrowRight':
         if (isHorizontalNav && isHorizontal) {
@@ -217,62 +224,65 @@ export const Tabs: React.FC<TabsProps> = ({
       default:
         return;
     }
-    
+
     if (nextIndex !== tabIndex) {
       tabRefs.current[nextIndex]?.focus();
       setFocusedIndex(nextIndex);
-      
+
       if (!isManual) {
         setActiveIndex(nextIndex);
       }
     }
   };
 
-  const contextValue = useMemo(() => ({
-    activeIndex,
-    activeValue,
-    setActiveIndex,
-    setActiveValue,
-    variant,
-    colorScheme,
-    size,
-    align,
-    orientation,
-    isDisabled,
-    isManual,
-    id: tabsId,
-    isLazy,
-    animated,
-    keyboardNavigation,
-    i18n: {
-      tabSelected: i18n.tabSelected || 'Tab ausgewählt',
-      tabDisabled: i18n.tabDisabled || 'Tab deaktiviert'
-    },
-    handleKeyDown,
-    tabRefs,
-    focusedIndex,
-    setFocusedIndex
-  }), [
-    activeIndex, 
-    activeValue, 
-    variant, 
-    colorScheme, 
-    size, 
-    align, 
-    orientation, 
-    isDisabled, 
-    isManual, 
-    tabsId, 
-    isLazy, 
-    animated, 
-    keyboardNavigation, 
-    i18n,
-    focusedIndex
-  ]);
+  const contextValue = useMemo(
+    () => ({
+      activeIndex,
+      activeValue,
+      setActiveIndex,
+      setActiveValue,
+      variant,
+      colorScheme,
+      size,
+      align,
+      orientation,
+      isDisabled,
+      isManual,
+      id: tabsId,
+      isLazy,
+      animated,
+      keyboardNavigation,
+      i18n: {
+        tabSelected: i18n.tabSelected || 'Tab ausgewählt',
+        tabDisabled: i18n.tabDisabled || 'Tab deaktiviert',
+      },
+      handleKeyDown,
+      tabRefs,
+      focusedIndex,
+      setFocusedIndex,
+    }),
+    [
+      activeIndex,
+      activeValue,
+      variant,
+      colorScheme,
+      size,
+      align,
+      orientation,
+      isDisabled,
+      isManual,
+      tabsId,
+      isLazy,
+      animated,
+      keyboardNavigation,
+      i18n,
+      focusedIndex,
+    ]
+  );
 
   return (
     <TabsContext.Provider value={contextValue}>
-      <div 
+      <div
         className={`
           smolitux-tabs 
           smolitux-tabs--${variant} 
@@ -303,15 +313,11 @@ export interface TabListProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * TabList-Komponente für die Tab-Buttons
  */
-export const TabList: React.FC<TabListProps> = ({
-  children,
-  className = '',
-  ...rest
-}) => {
+export const TabList: React.FC<TabListProps> = ({ children, className = '', ...rest }) => {
   const { align, orientation } = useTabsContext();
 
   return (
-    <div 
+    <div
       className={`
         smolitux-tab-list 
         smolitux-tab-list--${align}
@@ -354,16 +360,16 @@ export const Tab: React.FC<TabProps> = ({
   className = '',
   ...rest
 }) => {
-  const { 
-    activeIndex, 
-    setActiveIndex, 
+  const {
+    activeIndex,
+    setActiveIndex,
     setActiveValue,
     isDisabled: tabsIsDisabled,
     isManual,
     id,
     handleKeyDown,
     tabRefs,
-    i18n
+    i18n,
   } = useTabsContext();
   const ref = useRef<HTMLButtonElement>(null);
   const index = useRef(-1);
@@ -375,17 +381,17 @@ export const Tab: React.FC<TabProps> = ({
       const parent = ref.current.parentElement;
       if (parent) {
         const tabs = Array.from(parent.children).filter(
-          child => child.getAttribute('role') === 'tab'
+          (child) => child.getAttribute('role') === 'tab'
         );
         index.current = tabs.indexOf(ref.current);
-        
+
         // Speichere die Referenz im Array
         if (tabRefs.current && index.current !== -1) {
           tabRefs.current[index.current] = ref.current;
         }
       }
     }
-    
+
     return () => {
       // Entferne die Referenz beim Unmount
       if (index.current !== -1 && tabRefs.current) {
@@ -405,13 +411,13 @@ export const Tab: React.FC<TabProps> = ({
       if (value) {
         setActiveValue(value);
       }
-      
+
       // Setze Live-Text für Screenreader
       setLiveText(i18n.tabSelected);
       setTimeout(() => setLiveText(null), 1000);
     }
   };
-  
+
   const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     handleKeyDown(event, index.current);
   };
@@ -441,7 +447,9 @@ export const Tab: React.FC<TabProps> = ({
       >
         {leftIcon && <span className="smolitux-tab-icon smolitux-tab-icon--left">{leftIcon}</span>}
         <span className="smolitux-tab-text">{children}</span>
-        {rightIcon && <span className="smolitux-tab-icon smolitux-tab-icon--right">{rightIcon}</span>}
+        {rightIcon && (
+          <span className="smolitux-tab-icon smolitux-tab-icon--right">{rightIcon}</span>
+        )}
       </button>
       {liveText && (
         <div className="sr-only" aria-live="polite">
@@ -462,11 +470,7 @@ export interface TabPanelsProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * TabPanels-Komponente für die Tab-Inhalte
  */
-export const TabPanels: React.FC<TabPanelsProps> = ({
-  children,
-  className = '',
-  ...rest
-}) => {
+export const TabPanels: React.FC<TabPanelsProps> = ({ children, className = '', ...rest }) => {
   return (
     <div className={`smolitux-tab-panels ${className}`} {...rest}>
       {children}
@@ -484,11 +488,7 @@ export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * TabPanel-Komponente für einen einzelnen Tab-Inhalt
  */
-export const TabPanel: React.FC<TabPanelProps> = ({
-  children,
-  className = '',
-  ...rest
-}) => {
+export const TabPanel: React.FC<TabPanelProps> = ({ children, className = '', ...rest }) => {
   const { activeIndex, id, isLazy, animated } = useTabsContext();
   const ref = useRef<HTMLDivElement>(null);
   const index = useRef(-1);
@@ -504,7 +504,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({
       }
     }
   }, []);
-  
+
   // Markiere Panel als gerendert, wenn es aktiv ist
   useEffect(() => {
     if (index.current === activeIndex && !hasBeenRendered) {
@@ -515,7 +515,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({
   const isActive = index.current === activeIndex;
   const panelId = `${id}-panel-${index.current}`;
   const tabId = `${id}-tab-${index.current}`;
-  
+
   // Bestimme, ob der Inhalt gerendert werden soll
   const shouldRenderContent = isActive || !isLazy || hasBeenRendered;
 
@@ -537,7 +537,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({
       {...rest}
     >
       {shouldRenderContent && (
-        <div 
+        <div
           className={`
             smolitux-tab-panel-content
             ${animated && isActive ? 'smolitux-tab-panel-content--enter' : ''}

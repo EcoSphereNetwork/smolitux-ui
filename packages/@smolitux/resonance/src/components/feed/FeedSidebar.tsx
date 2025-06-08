@@ -60,7 +60,7 @@ export const FeedSidebar: React.FC<FeedSidebarProps> = ({
   style,
 }) => {
   // Konvertiere die Trending-Themen in das Format der TrendingTopics-Komponente
-  const formattedTopics = trendingTopics.map(topic => ({
+  const formattedTopics = trendingTopics.map((topic) => ({
     id: topic.id,
     name: topic.name,
     description: topic.description || '',
@@ -71,7 +71,7 @@ export const FeedSidebar: React.FC<FeedSidebarProps> = ({
   }));
 
   return (
-    <Box 
+    <Box
       className={`feed-sidebar ${className}`}
       style={{
         width: '300px',
@@ -94,26 +94,28 @@ export const FeedSidebar: React.FC<FeedSidebarProps> = ({
       <Card style={{ marginBottom: '24px' }}>
         <Box style={{ padding: '16px' }}>
           <Flex justify="space-between" align="center" style={{ marginBottom: '16px' }}>
-            <Text weight="bold" size="lg">Suggested Users</Text>
+            <Text weight="bold" size="lg">
+              Suggested Users
+            </Text>
             {isLoadingUsers ? (
               <Box style={{ width: '20px', height: '20px' }}>
-                <svg 
-                  className="animate-spin" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
+                <svg
+                  className="animate-spin"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
                   viewBox="0 0 24 24"
                 >
-                  <circle 
-                    className="opacity-25" 
-                    cx="12" 
-                    cy="12" 
-                    r="10" 
-                    stroke="currentColor" 
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
                     strokeWidth="4"
                   ></circle>
-                  <path 
-                    className="opacity-75" 
-                    fill="currentColor" 
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
@@ -125,12 +127,12 @@ export const FeedSidebar: React.FC<FeedSidebarProps> = ({
             <Text color="#6b7280">No suggestions available</Text>
           ) : (
             <Box>
-              {suggestedUsers.map(user => (
-                <Flex 
-                  key={user.id} 
-                  align="center" 
+              {suggestedUsers.map((user) => (
+                <Flex
+                  key={user.id}
+                  align="center"
                   justify="space-between"
-                  style={{ 
+                  style={{
                     marginBottom: '12px',
                     padding: '8px',
                     borderRadius: '8px',
@@ -141,19 +143,19 @@ export const FeedSidebar: React.FC<FeedSidebarProps> = ({
                   onClick={() => onUserClick && onUserClick(user.id)}
                 >
                   <Flex align="center">
-                    <Box 
-                      style={{ 
-                        width: '40px', 
-                        height: '40px', 
-                        borderRadius: '50%', 
+                    <Box
+                      style={{
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '50%',
                         overflow: 'hidden',
                         marginRight: '12px',
                       }}
                     >
-                      <img 
-                        src={user.avatar} 
-                        alt={user.name} 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                      <img
+                        src={user.avatar}
+                        alt={user.name}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                     </Box>
                     <Box>
@@ -165,8 +167,8 @@ export const FeedSidebar: React.FC<FeedSidebarProps> = ({
                       )}
                     </Box>
                   </Flex>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     variant="outline"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -185,7 +187,14 @@ export const FeedSidebar: React.FC<FeedSidebarProps> = ({
       {/* Footer */}
       <Box>
         <Text size="sm" color="#6b7280">
-          © 2023 ResonanceLink • <a href="#" style={{ color: 'inherit' }}>Privacy</a> • <a href="#" style={{ color: 'inherit' }}>Terms</a>
+          © 2023 ResonanceLink •{' '}
+          <a href="#" style={{ color: 'inherit' }}>
+            Privacy
+          </a>{' '}
+          •{' '}
+          <a href="#" style={{ color: 'inherit' }}>
+            Terms
+          </a>
         </Text>
       </Box>
     </Box>

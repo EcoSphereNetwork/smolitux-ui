@@ -11,13 +11,9 @@ describe('Pagination Accessibility', () => {
   it('should have no accessibility violations', async () => {
     const handleChange = jest.fn();
     const { container } = render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={1}
-        onChange={handleChange}
-      />
+      <Pagination.A11y pageCount={10} currentPage={1} onChange={handleChange} />
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
@@ -33,27 +29,29 @@ describe('Pagination Accessibility', () => {
         id="test-pagination"
       />
     );
-    
+
     // Überprüfe die Pagination-Komponente
     const pagination = screen.getByRole('navigation');
     expect(pagination).toHaveAttribute('aria-label', 'Seitennavigation');
     expect(pagination).toHaveAttribute('aria-controls');
-    
+
     // Überprüfe die Beschreibung
     const description = screen.getByText('Navigieren Sie durch die Ergebnisse');
     expect(description).toHaveClass('sr-only');
-    
+
     // Überprüfe die Seitennummern
     const pageButtons = screen.getAllByRole('button');
-    const currentPageButton = pageButtons.find(button => button.getAttribute('aria-current') === 'page');
+    const currentPageButton = pageButtons.find(
+      (button) => button.getAttribute('aria-current') === 'page'
+    );
     expect(currentPageButton).toBeInTheDocument();
     expect(currentPageButton).toHaveAttribute('aria-label', 'Seite 3 von 10');
-    
+
     // Überprüfe die Navigation-Buttons
     const prevButton = screen.getByTitle('Zurück');
     expect(prevButton).toHaveAttribute('aria-label', 'Zurück');
     expect(prevButton).toHaveAttribute('aria-disabled', 'false');
-    
+
     const nextButton = screen.getByTitle('Weiter');
     expect(nextButton).toHaveAttribute('aria-label', 'Weiter');
     expect(nextButton).toHaveAttribute('aria-disabled', 'false');
@@ -61,25 +59,19 @@ describe('Pagination Accessibility', () => {
 
   it('should handle keyboard navigation correctly', () => {
     const handleChange = jest.fn();
-    render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={3}
-        onChange={handleChange}
-      />
-    );
-    
+    render(<Pagination.A11y pageCount={10} currentPage={3} onChange={handleChange} />);
+
     // Finde die Seitennummern-Buttons
     const pageButtons = screen.getAllByRole('button');
-    const page4Button = pageButtons.find(button => button.textContent === '4');
-    
+    const page4Button = pageButtons.find((button) => button.textContent === '4');
+
     // Fokussiere den Button und drücke Enter
     fireEvent.focus(page4Button!);
     fireEvent.keyDown(page4Button!, { key: 'Enter' });
-    
+
     // Überprüfe, ob der onChange-Handler aufgerufen wurde
     expect(handleChange).toHaveBeenCalledWith(4);
-    
+
     // Teste auch die Leertaste
     fireEvent.keyDown(page4Button!, { key: ' ' });
     expect(handleChange).toHaveBeenCalledTimes(2);
@@ -87,25 +79,18 @@ describe('Pagination Accessibility', () => {
 
   it('should handle disabled state correctly', () => {
     const handleChange = jest.fn();
-    render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={1}
-        onChange={handleChange}
-        disabled
-      />
-    );
-    
+    render(<Pagination.A11y pageCount={10} currentPage={1} onChange={handleChange} disabled />);
+
     // Überprüfe, ob alle Buttons deaktiviert sind
     const buttons = screen.getAllByRole('button');
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       expect(button).toBeDisabled();
       expect(button).toHaveAttribute('aria-disabled', 'true');
     });
-    
+
     // Versuche, einen Button zu klicken
     fireEvent.click(buttons[2]); // Seite 2
-    
+
     // Der onChange-Handler sollte nicht aufgerufen werden
     expect(handleChange).not.toHaveBeenCalled();
   });
@@ -113,22 +98,17 @@ describe('Pagination Accessibility', () => {
   it('should handle first/last page navigation correctly', () => {
     const handleChange = jest.fn();
     render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={5}
-        onChange={handleChange}
-        showFirstLast
-      />
+      <Pagination.A11y pageCount={10} currentPage={5} onChange={handleChange} showFirstLast />
     );
-    
+
     // Finde die erste/letzte Seite Buttons
     const firstButton = screen.getByTitle('Erste');
     const lastButton = screen.getByTitle('Letzte');
-    
+
     // Klicke auf den ersten Seite Button
     fireEvent.click(firstButton);
     expect(handleChange).toHaveBeenCalledWith(1);
-    
+
     // Klicke auf den letzten Seite Button
     fireEvent.click(lastButton);
     expect(handleChange).toHaveBeenCalledWith(10);
@@ -136,23 +116,16 @@ describe('Pagination Accessibility', () => {
 
   it('should handle prev/next navigation correctly', () => {
     const handleChange = jest.fn();
-    render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={5}
-        onChange={handleChange}
-        showPrevNext
-      />
-    );
-    
+    render(<Pagination.A11y pageCount={10} currentPage={5} onChange={handleChange} showPrevNext />);
+
     // Finde die vorherige/nächste Seite Buttons
     const prevButton = screen.getByTitle('Zurück');
     const nextButton = screen.getByTitle('Weiter');
-    
+
     // Klicke auf den vorherigen Seite Button
     fireEvent.click(prevButton);
     expect(handleChange).toHaveBeenCalledWith(4);
-    
+
     // Klicke auf den nächsten Seite Button
     fireEvent.click(nextButton);
     expect(handleChange).toHaveBeenCalledWith(6);
@@ -160,48 +133,36 @@ describe('Pagination Accessibility', () => {
 
   it('should disable prev button on first page', () => {
     const handleChange = jest.fn();
-    render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={1}
-        onChange={handleChange}
-      />
-    );
-    
+    render(<Pagination.A11y pageCount={10} currentPage={1} onChange={handleChange} />);
+
     // Finde die vorherige Seite Button
     const prevButton = screen.getByTitle('Zurück');
-    
+
     // Überprüfe, ob der Button deaktiviert ist
     expect(prevButton).toHaveAttribute('aria-disabled', 'true');
     expect(prevButton).toBeDisabled();
-    
+
     // Versuche, den Button zu klicken
     fireEvent.click(prevButton);
-    
+
     // Der onChange-Handler sollte nicht aufgerufen werden
     expect(handleChange).not.toHaveBeenCalled();
   });
 
   it('should disable next button on last page', () => {
     const handleChange = jest.fn();
-    render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={10}
-        onChange={handleChange}
-      />
-    );
-    
+    render(<Pagination.A11y pageCount={10} currentPage={10} onChange={handleChange} />);
+
     // Finde die nächste Seite Button
     const nextButton = screen.getByTitle('Weiter');
-    
+
     // Überprüfe, ob der Button deaktiviert ist
     expect(nextButton).toHaveAttribute('aria-disabled', 'true');
     expect(nextButton).toBeDisabled();
-    
+
     // Versuche, den Button zu klicken
     fireEvent.click(nextButton);
-    
+
     // Der onChange-Handler sollte nicht aufgerufen werden
     expect(handleChange).not.toHaveBeenCalled();
   });
@@ -209,18 +170,13 @@ describe('Pagination Accessibility', () => {
   it('should handle ellipsis correctly', () => {
     const handleChange = jest.fn();
     render(
-      <Pagination.A11y
-        pageCount={20}
-        currentPage={10}
-        onChange={handleChange}
-        siblingCount={1}
-      />
+      <Pagination.A11y pageCount={20} currentPage={10} onChange={handleChange} siblingCount={1} />
     );
-    
+
     // Überprüfe, ob die Ellipsen vorhanden sind
     const ellipses = screen.getAllByText('…', { selector: 'span[aria-hidden="true"]' });
     expect(ellipses).toHaveLength(2);
-    
+
     // Überprüfe, ob die Screenreader-Texte vorhanden sind
     const ellipsisTexts = screen.getAllByText('Weitere Seiten', { selector: '.sr-only' });
     expect(ellipsisTexts).toHaveLength(2);
@@ -229,14 +185,9 @@ describe('Pagination Accessibility', () => {
   it('should show page count when enabled', () => {
     const handleChange = jest.fn();
     render(
-      <Pagination.A11y
-        pageCount={10}
-        currentPage={5}
-        onChange={handleChange}
-        showPageCount
-      />
+      <Pagination.A11y pageCount={10} currentPage={5} onChange={handleChange} showPageCount />
     );
-    
+
     // Überprüfe, ob die Seitenzahl angezeigt wird
     const pageCount = screen.getByText('Seite 5 von 10');
     expect(pageCount).toBeInTheDocument();
@@ -257,30 +208,30 @@ describe('Pagination Accessibility', () => {
           next: 'Nächste',
           first: 'Anfang',
           last: 'Ende',
-          pageTemplate: 'Blatt {page} von {total}'
+          pageTemplate: 'Blatt {page} von {total}',
         }}
       />
     );
-    
+
     // Überprüfe, ob die benutzerdefinierten Labels verwendet werden
     const navigation = screen.getByRole('navigation');
     expect(navigation).toHaveAttribute('aria-label', 'Blättern');
-    
+
     const prevButton = screen.getByTitle('Vorherige');
     expect(prevButton).toHaveAttribute('aria-label', 'Vorherige');
-    
+
     const nextButton = screen.getByTitle('Nächste');
     expect(nextButton).toHaveAttribute('aria-label', 'Nächste');
-    
+
     const firstButton = screen.getByTitle('Anfang');
     expect(firstButton).toHaveAttribute('aria-label', 'Anfang');
-    
+
     const lastButton = screen.getByTitle('Ende');
     expect(lastButton).toHaveAttribute('aria-label', 'Ende');
-    
+
     // Überprüfe, ob das benutzerdefinierte Seitentemplate verwendet wird
     const pageButtons = screen.getAllByRole('button');
-    const page5Button = pageButtons.find(button => button.textContent === '5');
+    const page5Button = pageButtons.find((button) => button.textContent === '5');
     expect(page5Button).toHaveAttribute('aria-label', 'Blatt 5 von 10');
   });
 });

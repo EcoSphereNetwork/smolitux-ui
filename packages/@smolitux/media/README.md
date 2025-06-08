@@ -33,13 +33,7 @@ const MyComponent = () => {
     duration: 180, // in seconds
   };
 
-  return (
-    <AudioPlayer 
-      audio={audio}
-      autoPlay={false}
-      showControls={true}
-    />
-  );
+  return <AudioPlayer audio={audio} autoPlay={false} showControls={true} />;
 };
 ```
 

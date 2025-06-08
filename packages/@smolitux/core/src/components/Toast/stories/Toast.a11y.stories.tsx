@@ -10,96 +10,98 @@ const meta: Meta<typeof Toast.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version der Toast-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version der Toast-Komponente mit verbesserten ARIA-Attributen und Screenreader-Unterstuetzung.',
+      },
+    },
   },
   argTypes: {
     id: {
       control: 'text',
-      description: 'Eindeutige ID des Toasts'
+      description: 'Eindeutige ID des Toasts',
     },
     type: {
       control: { type: 'select' },
       options: ['info', 'success', 'warning', 'error'],
-      description: 'Typ des Toasts'
+      description: 'Typ des Toasts',
     },
     title: {
       control: 'text',
-      description: 'Titel des Toasts'
+      description: 'Titel des Toasts',
     },
     description: {
       control: 'text',
-      description: 'Inhalt des Toasts'
+      description: 'Inhalt des Toasts',
     },
     duration: {
       control: { type: 'number' },
-      description: 'Dauer in Millisekunden, nach der der Toast automatisch geschlossen wird (0 = kein automatisches Schließen)'
+      description:
+        'Dauer in Millisekunden, nach der der Toast automatisch geschlossen wird (0 = kein automatisches Schließen)',
     },
     isClosable: {
       control: 'boolean',
-      description: 'Ist der Toast schließbar?'
+      description: 'Ist der Toast schließbar?',
     },
     isPersistent: {
       control: 'boolean',
-      description: 'Ist der Toast persistent?'
+      description: 'Ist der Toast persistent?',
     },
     isVisible: {
       control: 'boolean',
-      description: 'Ist der Toast aktuell sichtbar?'
+      description: 'Ist der Toast aktuell sichtbar?',
     },
     icon: {
       control: 'boolean',
-      description: 'Icon für den Toast anzeigen?'
+      description: 'Icon für den Toast anzeigen?',
     },
     iconPosition: {
       control: { type: 'select' },
       options: ['left', 'right'],
-      description: 'Position des Icons'
+      description: 'Position des Icons',
     },
     ariaLabel: {
       control: 'text',
-      description: 'ARIA-Label für den Toast'
+      description: 'ARIA-Label für den Toast',
     },
     ariaLive: {
       control: { type: 'select' },
       options: ['polite', 'assertive', 'off'],
-      description: 'ARIA-Live für den Toast'
+      description: 'ARIA-Live für den Toast',
     },
     role: {
       control: { type: 'select' },
       options: ['alert', 'status', 'log', 'banner', 'dialog'],
-      description: 'Rolle für den Toast'
+      description: 'Rolle für den Toast',
     },
     isLiveRegion: {
       control: 'boolean',
-      description: 'Ob der Toast eine Live-Region sein soll'
+      description: 'Ob der Toast eine Live-Region sein soll',
     },
     autoFocus: {
       control: 'boolean',
-      description: 'Ob der Toast automatisch fokussiert werden soll'
+      description: 'Ob der Toast automatisch fokussiert werden soll',
     },
     returnFocus: {
       control: 'boolean',
-      description: 'Ob der Fokus beim Schließen zurückgesetzt werden soll'
+      description: 'Ob der Fokus beim Schließen zurückgesetzt werden soll',
     },
     keyboardNavigation: {
       control: 'boolean',
-      description: 'Ob der Toast eine Tastaturnavigation haben soll'
+      description: 'Ob der Toast eine Tastaturnavigation haben soll',
     },
     screenReaderSupport: {
       control: 'boolean',
-      description: 'Ob der Toast eine Screenreader-Unterstützung haben soll'
+      description: 'Ob der Toast eine Screenreader-Unterstützung haben soll',
     },
     announce: {
       control: 'boolean',
-      description: 'Ob der Toast eine Ankündigung haben soll'
+      description: 'Ob der Toast eine Ankündigung haben soll',
     },
     announceFormat: {
       control: 'text',
-      description: 'Format der Ankündigung'
-    }
-  }
+      description: 'Format der Ankündigung',
+    },
+  },
 };
 
 export default meta;
@@ -112,8 +114,8 @@ export const Default: Story = {
     description: 'Dies ist eine Benachrichtigung.',
     type: 'info',
     isClosable: true,
-    duration: 5000
-  }
+    duration: 5000,
+  },
 };
 
 export const Success: Story = {
@@ -123,8 +125,8 @@ export const Success: Story = {
     description: 'Die Aktion wurde erfolgreich ausgeführt.',
     type: 'success',
     isClosable: true,
-    duration: 5000
-  }
+    duration: 5000,
+  },
 };
 
 export const Warning: Story = {
@@ -134,8 +136,8 @@ export const Warning: Story = {
     description: 'Bitte beachten Sie die folgenden Hinweise.',
     type: 'warning',
     isClosable: true,
-    duration: 5000
-  }
+    duration: 5000,
+  },
 };
 
 export const Error: Story = {
@@ -145,8 +147,8 @@ export const Error: Story = {
     description: 'Es ist ein Fehler aufgetreten.',
     type: 'error',
     isClosable: true,
-    duration: 5000
-  }
+    duration: 5000,
+  },
 };
 
 export const WithIcon: Story = {
@@ -157,8 +159,8 @@ export const WithIcon: Story = {
     type: 'info',
     isClosable: true,
     duration: 5000,
-    icon: true
-  }
+    icon: true,
+  },
 };
 
 export const WithAction: Story = {
@@ -169,8 +171,8 @@ export const WithAction: Story = {
     type: 'info',
     isClosable: true,
     duration: 5000,
-    action: <Button size="sm">Aktion</Button>
-  }
+    action: <Button size="sm">Aktion</Button>,
+  },
 };
 
 export const Persistent: Story = {
@@ -180,8 +182,8 @@ export const Persistent: Story = {
     description: 'Diese Benachrichtigung verschwindet nicht automatisch.',
     type: 'info',
     isClosable: true,
-    isPersistent: true
-  }
+    isPersistent: true,
+  },
 };
 
 export const WithCustomRole: Story = {
@@ -192,8 +194,8 @@ export const WithCustomRole: Story = {
     type: 'info',
     isClosable: true,
     duration: 5000,
-    role: 'status'
-  }
+    role: 'status',
+  },
 };
 
 export const WithAssertiveAnnouncement: Story = {
@@ -205,8 +207,8 @@ export const WithAssertiveAnnouncement: Story = {
     isClosable: true,
     duration: 5000,
     ariaLive: 'assertive',
-    announce: true
-  }
+    announce: true,
+  },
 };
 
 export const WithAutoFocus: Story = {
@@ -217,64 +219,64 @@ export const WithAutoFocus: Story = {
     type: 'info',
     isClosable: true,
     duration: 5000,
-    autoFocus: true
-  }
+    autoFocus: true,
+  },
 };
 
 // Komponente für die ToastProvider-Demo
 const ToastDemo = () => {
   const toast = useToastA11y();
-  
+
   const showInfoToast = () => {
     toast.show({
       title: 'Information',
       description: 'Dies ist eine Informationsmeldung.',
       type: 'info',
       ariaLive: 'polite',
-      announce: true
+      announce: true,
     });
   };
-  
+
   const showSuccessToast = () => {
     toast.show({
       title: 'Erfolg',
       description: 'Die Aktion wurde erfolgreich ausgeführt.',
       type: 'success',
       ariaLive: 'polite',
-      announce: true
+      announce: true,
     });
   };
-  
+
   const showWarningToast = () => {
     toast.show({
       title: 'Warnung',
       description: 'Bitte beachten Sie die folgenden Hinweise.',
       type: 'warning',
       ariaLive: 'assertive',
-      announce: true
+      announce: true,
     });
   };
-  
+
   const showErrorToast = () => {
     toast.show({
       title: 'Fehler',
       description: 'Es ist ein Fehler aufgetreten.',
       type: 'error',
       ariaLive: 'assertive',
-      announce: true
+      announce: true,
     });
   };
-  
+
   const showPersistentToast = () => {
     toast.show({
       title: 'Persistent',
       description: 'Diese Benachrichtigung verschwindet nicht automatisch.',
       type: 'info',
       isPersistent: true,
-      announce: true
+      announce: true,
     });
   };
-  
+
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-4">
@@ -301,13 +303,15 @@ export const WithToastProvider: Story = {
     >
       <ToastDemo />
     </ToastProvider.A11y>
-  )
+  ),
 };
 
 export const WithDifferentPositions: Story = {
   render: () => {
-    const [position, setPosition] = useState<'top' | 'top-right' | 'top-left' | 'bottom' | 'bottom-right' | 'bottom-left'>('bottom-right');
-    
+    const [position, setPosition] = useState<
+      'top' | 'top-right' | 'top-left' | 'bottom' | 'bottom-right' | 'bottom-left'
+    >('bottom-right');
+
     return (
       <div className="space-y-4">
         <div className="flex flex-wrap gap-4">
@@ -318,15 +322,15 @@ export const WithDifferentPositions: Story = {
           <Button onClick={() => setPosition('bottom-right')}>Unten rechts</Button>
           <Button onClick={() => setPosition('bottom-left')}>Unten links</Button>
         </div>
-        
+
         <div className="mt-4">
           <p>Aktuelle Position: {position}</p>
         </div>
-        
+
         <ToastProvider.A11y position={position}>
           <ToastDemo />
         </ToastProvider.A11y>
       </div>
     );
-  }
+  },
 };

@@ -14,14 +14,14 @@ export function useProfile(userId: string) {
   // Simulierte Daten-Fetch-Funktion
   const fetchProfile = async () => {
     if (!userId) return;
-    
+
     setLoading(true);
     setError(null);
-    
+
     try {
       // In einer realen Implementierung würde hier ein API-Aufruf stehen
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Simulierte Daten
       setProfile({
         id: userId,
@@ -31,7 +31,7 @@ export function useProfile(userId: string) {
         followers: 100,
         following: 50,
       });
-      
+
       setPosts([]);
     } catch (err) {
       setError(err);
@@ -47,7 +47,7 @@ export function useProfile(userId: string) {
 
   // Funktion zum Aktualisieren des Profils
   const updateProfile = (data: any) => {
-    setProfile(prev => ({
+    setProfile((prev) => ({
       ...prev,
       ...data,
     }));
@@ -55,7 +55,7 @@ export function useProfile(userId: string) {
 
   // Funktion zum Folgen eines Benutzers
   const followUser = () => {
-    setProfile(prev => ({
+    setProfile((prev) => ({
       ...prev,
       followers: prev.followers + 1,
     }));
@@ -63,7 +63,7 @@ export function useProfile(userId: string) {
 
   // Funktion zum Entfolgen eines Benutzers
   const unfollowUser = () => {
-    setProfile(prev => ({
+    setProfile((prev) => ({
       ...prev,
       followers: Math.max(0, prev.followers - 1),
     }));

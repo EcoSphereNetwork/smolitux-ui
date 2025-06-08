@@ -87,13 +87,7 @@ describe('Avatar', () => {
   });
 
   it('renders custom badge when specified', () => {
-    render(
-      <Avatar 
-        name="John Doe" 
-        badge="custom" 
-        badgeColor="purple-500"
-      />
-    );
+    render(<Avatar name="John Doe" badge="custom" badgeColor="purple-500" />);
     const badge = screen.getByTestId('avatar-badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveClass('bg-purple-500');

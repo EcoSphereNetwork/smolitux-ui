@@ -78,18 +78,9 @@ export const WithSecondaryText: Story = {
 export const WithIcons: Story = {
   render: () => (
     <List>
-      <ListItem 
-        icon={<span style={{ fontSize: '1.2em' }}>📥</span>}
-        primary="Inbox" 
-      />
-      <ListItem 
-        icon={<span style={{ fontSize: '1.2em' }}>📤</span>}
-        primary="Gesendet" 
-      />
-      <ListItem 
-        icon={<span style={{ fontSize: '1.2em' }}>📝</span>}
-        primary="Entwürfe" 
-      />
+      <ListItem icon={<span style={{ fontSize: '1.2em' }}>📥</span>} primary="Inbox" />
+      <ListItem icon={<span style={{ fontSize: '1.2em' }}>📤</span>} primary="Gesendet" />
+      <ListItem icon={<span style={{ fontSize: '1.2em' }}>📝</span>} primary="Entwürfe" />
     </List>
   ),
 };
@@ -97,26 +88,50 @@ export const WithIcons: Story = {
 export const WithActions: Story = {
   render: () => (
     <List>
-      <ListItem 
-        primary="Dokument 1" 
+      <ListItem
+        primary="Dokument 1"
         action={
-          <button style={{ padding: '4px 8px', background: 'transparent', border: 'none', color: 'blue', cursor: 'pointer' }}>
+          <button
+            style={{
+              padding: '4px 8px',
+              background: 'transparent',
+              border: 'none',
+              color: 'blue',
+              cursor: 'pointer',
+            }}
+          >
             Öffnen
           </button>
         }
       />
-      <ListItem 
-        primary="Dokument 2" 
+      <ListItem
+        primary="Dokument 2"
         action={
-          <button style={{ padding: '4px 8px', background: 'transparent', border: 'none', color: 'blue', cursor: 'pointer' }}>
+          <button
+            style={{
+              padding: '4px 8px',
+              background: 'transparent',
+              border: 'none',
+              color: 'blue',
+              cursor: 'pointer',
+            }}
+          >
             Öffnen
           </button>
         }
       />
-      <ListItem 
-        primary="Dokument 3" 
+      <ListItem
+        primary="Dokument 3"
         action={
-          <button style={{ padding: '4px 8px', background: 'transparent', border: 'none', color: 'blue', cursor: 'pointer' }}>
+          <button
+            style={{
+              padding: '4px 8px',
+              background: 'transparent',
+              border: 'none',
+              color: 'blue',
+              cursor: 'pointer',
+            }}
+          >
             Öffnen
           </button>
         }
@@ -200,12 +215,12 @@ export const Sizes: Story = {
         <ListItem primary="Kleine Liste" />
         <ListItem primary="Mit kleiner Schrift" />
       </List>
-      
+
       <List size="md">
         <ListItem primary="Mittlere Liste" />
         <ListItem primary="Mit mittlerer Schrift" />
       </List>
-      
+
       <List size="lg">
         <ListItem primary="Große Liste" />
         <ListItem primary="Mit großer Schrift" />
@@ -221,12 +236,12 @@ export const Density: Story = {
         <ListItem primary="Kompakte Liste" />
         <ListItem primary="Mit weniger Abstand" />
       </List>
-      
+
       <List density="default">
         <ListItem primary="Standard-Liste" />
         <ListItem primary="Mit normalem Abstand" />
       </List>
-      
+
       <List density="comfortable">
         <ListItem primary="Komfortable Liste" />
         <ListItem primary="Mit mehr Abstand" />
@@ -265,12 +280,17 @@ export const CustomComponents: Story = {
         <ListItemIcon>
           <span style={{ fontSize: '1.2em' }}>👤</span>
         </ListItemIcon>
-        <ListItemText 
-          primary="Benutzerprofil" 
-          secondary="Persönliche Informationen verwalten" 
-        />
+        <ListItemText primary="Benutzerprofil" secondary="Persönliche Informationen verwalten" />
         <ListItemAction>
-          <button style={{ padding: '4px 8px', background: '#f0f0f0', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer' }}>
+          <button
+            style={{
+              padding: '4px 8px',
+              background: '#f0f0f0',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+          >
             Bearbeiten
           </button>
         </ListItemAction>
@@ -279,12 +299,17 @@ export const CustomComponents: Story = {
         <ListItemIcon>
           <span style={{ fontSize: '1.2em' }}>⚙️</span>
         </ListItemIcon>
-        <ListItemText 
-          primary="Einstellungen" 
-          secondary="Konto- und App-Einstellungen" 
-        />
+        <ListItemText primary="Einstellungen" secondary="Konto- und App-Einstellungen" />
         <ListItemAction>
-          <button style={{ padding: '4px 8px', background: '#f0f0f0', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer' }}>
+          <button
+            style={{
+              padding: '4px 8px',
+              background: '#f0f0f0',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+          >
             Öffnen
           </button>
         </ListItemAction>

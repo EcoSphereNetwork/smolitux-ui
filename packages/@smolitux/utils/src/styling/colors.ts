@@ -14,7 +14,7 @@ export const colors = {
     900: '#1e3a8a',
     950: '#172554',
   },
-  
+
   // Gray colors
   gray: {
     50: '#f9fafb',
@@ -29,7 +29,7 @@ export const colors = {
     900: '#111827',
     950: '#030712',
   },
-  
+
   // Success colors
   success: {
     50: '#ecfdf5',
@@ -44,7 +44,7 @@ export const colors = {
     900: '#064e3b',
     950: '#022c22',
   },
-  
+
   // Danger colors
   danger: {
     50: '#fef2f2',
@@ -59,7 +59,7 @@ export const colors = {
     900: '#7f1d1d',
     950: '#450a0a',
   },
-  
+
   // Warning colors
   warning: {
     50: '#fffbeb',
@@ -74,7 +74,7 @@ export const colors = {
     900: '#78350f',
     950: '#451a03',
   },
-  
+
   // Info colors
   info: {
     50: '#eff6ff',
@@ -93,14 +93,14 @@ export const colors = {
 
 // Get color value from theme
 export const getColor = (color: string, shade: number = 500): string => {
-  const [colorName, colorShade] = color.includes('.') 
-    ? color.split('.') 
+  const [colorName, colorShade] = color.includes('.')
+    ? color.split('.')
     : [color, shade.toString()];
-  
+
   // Typensichere Version mit expliziter Typumwandlung
   const colorObj = colors[colorName as keyof typeof colors];
   if (!colorObj) return color;
-  
+
   return (colorObj as Record<string, string>)[colorShade] || color;
 };
 
@@ -114,7 +114,7 @@ export const lighten = (color: string, amount: number): string => {
 
   // Lighten
   const lightenColor = (c: number) => Math.round(c + (255 - c) * amount);
-  
+
   // Convert back to hex
   return `#${lightenColor(r).toString(16).padStart(2, '0')}${lightenColor(g).toString(16).padStart(2, '0')}${lightenColor(b).toString(16).padStart(2, '0')}`;
 };
@@ -129,7 +129,7 @@ export const darken = (color: string, amount: number): string => {
 
   // Darken
   const darkenColor = (c: number) => Math.round(c * (1 - amount));
-  
+
   // Convert back to hex
   return `#${darkenColor(r).toString(16).padStart(2, '0')}${darkenColor(g).toString(16).padStart(2, '0')}${darkenColor(b).toString(16).padStart(2, '0')}`;
 };
@@ -141,6 +141,6 @@ export const alpha = (color: string, value: number): string => {
   const r = parseInt(hex.substring(0, 2), 16);
   const g = parseInt(hex.substring(2, 4), 16);
   const b = parseInt(hex.substring(4, 6), 16);
-  
+
   return `rgba(${r}, ${g}, ${b}, ${value})`;
 };

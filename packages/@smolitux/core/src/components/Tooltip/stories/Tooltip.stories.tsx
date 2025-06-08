@@ -18,7 +18,20 @@ const meta: Meta<typeof Tooltip> = {
     placement: {
       control: {
         type: 'select',
-        options: ['top', 'right', 'bottom', 'left', 'top-start', 'top-end', 'right-start', 'right-end', 'bottom-start', 'bottom-end', 'left-start', 'left-end'],
+        options: [
+          'top',
+          'right',
+          'bottom',
+          'left',
+          'top-start',
+          'top-end',
+          'right-start',
+          'right-end',
+          'bottom-start',
+          'bottom-end',
+          'left-start',
+          'left-end',
+        ],
       },
       description: 'Die Platzierung des Tooltips relativ zum Trigger-Element',
     },
@@ -208,7 +221,8 @@ export const WithOffset: Story = {
 
 export const WithMaxWidth: Story = {
   args: {
-    content: 'Dies ist ein Tooltip mit einem sehr langen Text, der auf mehrere Zeilen umgebrochen werden sollte, um die maximale Breite zu demonstrieren.',
+    content:
+      'Dies ist ein Tooltip mit einem sehr langen Text, der auf mehrere Zeilen umgebrochen werden sollte, um die maximale Breite zu demonstrieren.',
     maxWidth: '200px',
     children: <Button>Hover über mich</Button>,
   },
@@ -217,7 +231,7 @@ export const WithMaxWidth: Story = {
 export const Controlled: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    
+
     return (
       <div className="flex flex-col items-center space-y-4">
         <Button onClick={() => setIsOpen(!isOpen)}>
@@ -236,9 +250,9 @@ export const Interactive: Story = {
     content: (
       <div>
         <p className="mb-2">Interaktiver Tooltip mit einem Link</p>
-        <a 
-          href="https://example.com" 
-          target="_blank" 
+        <a
+          href="https://example.com"
+          target="_blank"
           rel="noopener noreferrer"
           className="text-blue-500 hover:underline"
         >

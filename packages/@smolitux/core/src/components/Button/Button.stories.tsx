@@ -4,40 +4,40 @@ import { Button } from './Button';
 /**
  * Die Button-Komponente ist ein grundlegendes UI-Element für Benutzerinteraktionen.
  * Sie unterstützt verschiedene Varianten, Größen und Zustände.
- * 
+ *
  * ## Verwendung
- * 
+ *
  * ```tsx
  * import { Button } from '@smolitux/core';
- * 
+ *
  * // Einfacher Button
  * <Button>Klick mich</Button>
- * 
+ *
  * // Button mit Variante und Größe
  * <Button variant="primary" size="lg">Großer Button</Button>
- * 
+ *
  * // Button mit Icon
  * <Button leftIcon={<Icon />}>Mit Icon</Button>
- * 
+ *
  * // Button als Link
  * <Button isLink href="https://example.com" target="_blank">Link Button</Button>
- * 
+ *
  * // Button mit Zuständen
  * <Button loading>Wird geladen...</Button>
  * <Button disabled>Deaktiviert</Button>
  * ```
- * 
+ *
  * ## Barrierefreiheit
- * 
+ *
  * - Verwendet semantisches `<button>`-Element (oder `<a>` für Links)
  * - Unterstützt Keyboard-Navigation (Enter/Space)
  * - Enthält ARIA-Attribute für verschiedene Zustände (aria-disabled, aria-busy, aria-pressed)
  * - Icons sind mit `aria-hidden="true"` markiert
  * - Icon-Buttons ohne Text erfordern ein `aria-label`
  * - Externe Links erhalten automatisch `rel="noopener noreferrer"` und `target="_blank"`
- * 
+ *
  * ## Best Practices
- * 
+ *
  * - Verwende klare, handlungsorientierte Beschriftungen
  * - Wähle die Variante entsprechend der Wichtigkeit der Aktion
  * - Verwende `loading` für asynchrone Aktionen
@@ -51,12 +51,23 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'outline', 'ghost', 'link', 'unstyled'],
+      options: [
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'outline',
+        'ghost',
+        'link',
+        'unstyled',
+      ],
       description: 'Die visuelle Variante des Buttons',
       table: {
         category: 'Aussehen',
         defaultValue: { summary: 'primary' },
-      }
+      },
     },
     size: {
       control: 'select',
@@ -65,7 +76,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Aussehen',
         defaultValue: { summary: 'md' },
-      }
+      },
     },
     shape: {
       control: 'select',
@@ -74,7 +85,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Aussehen',
         defaultValue: { summary: 'rounded' },
-      }
+      },
     },
     fullWidth: {
       control: 'boolean',
@@ -82,7 +93,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Aussehen',
         defaultValue: { summary: false },
-      }
+      },
     },
     shadow: {
       control: 'boolean',
@@ -90,7 +101,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Aussehen',
         defaultValue: { summary: false },
-      }
+      },
     },
     loading: {
       control: 'boolean',
@@ -98,7 +109,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Zustand',
         defaultValue: { summary: false },
-      }
+      },
     },
     isLoading: {
       control: 'boolean',
@@ -106,7 +117,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Zustand',
         defaultValue: { summary: false },
-      }
+      },
     },
     disabled: {
       control: 'boolean',
@@ -114,7 +125,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Zustand',
         defaultValue: { summary: false },
-      }
+      },
     },
     active: {
       control: 'boolean',
@@ -122,7 +133,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Zustand',
         defaultValue: { summary: false },
-      }
+      },
     },
     isSuccess: {
       control: 'boolean',
@@ -130,7 +141,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Zustand',
         defaultValue: { summary: false },
-      }
+      },
     },
     isError: {
       control: 'boolean',
@@ -138,21 +149,21 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Zustand',
         defaultValue: { summary: false },
-      }
+      },
     },
     leftIcon: {
       control: { type: null },
       description: 'Icon vor dem Text',
       table: {
         category: 'Inhalt',
-      }
+      },
     },
     rightIcon: {
       control: { type: null },
       description: 'Icon nach dem Text',
       table: {
         category: 'Inhalt',
-      }
+      },
     },
     loadingText: {
       control: 'text',
@@ -160,7 +171,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Inhalt',
         defaultValue: { summary: 'Loading...' },
-      }
+      },
     },
     type: {
       control: 'select',
@@ -169,7 +180,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Verhalten',
         defaultValue: { summary: 'button' },
-      }
+      },
     },
     isLink: {
       control: 'boolean',
@@ -177,7 +188,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Verhalten',
         defaultValue: { summary: false },
-      }
+      },
     },
     href: {
       control: 'text',
@@ -185,7 +196,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Verhalten',
         defaultValue: { summary: undefined },
-      }
+      },
     },
     isExternal: {
       control: 'boolean',
@@ -193,7 +204,7 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Verhalten',
         defaultValue: { summary: false },
-      }
+      },
     },
     isIconButton: {
       control: 'boolean',
@@ -201,14 +212,14 @@ const meta: Meta<typeof Button> = {
       table: {
         category: 'Aussehen',
         defaultValue: { summary: false },
-      }
+      },
     },
     onClick: {
       action: 'clicked',
       description: 'Callback-Funktion, die beim Klicken ausgeführt wird',
       table: {
         category: 'Ereignisse',
-      }
+      },
     },
   },
 };
@@ -340,40 +351,28 @@ export const Accessibility: Story = {
     <div className="space-y-4">
       <div>
         <h3 className="text-sm font-medium mb-2">Keyboard-Navigation</h3>
-        <Button 
-          onClick={() => alert('Button wurde aktiviert!')}
-          aria-describedby="keyboard-hint"
-        >
+        <Button onClick={() => alert('Button wurde aktiviert!')} aria-describedby="keyboard-hint">
           Fokussieren und Enter/Space drücken
         </Button>
         <p id="keyboard-hint" className="text-xs text-gray-500 mt-1">
           Dieser Button kann mit der Tastatur (Enter oder Space) aktiviert werden
         </p>
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-2">ARIA-Attribute</h3>
-        <Button 
-          loading 
-          aria-describedby="loading-hint"
-        >
+        <Button loading aria-describedby="loading-hint">
           Loading-Zustand
         </Button>
         <p id="loading-hint" className="text-xs text-gray-500 mt-1">
           Dieser Button hat aria-busy="true" und aria-disabled="true"
         </p>
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-2">Icon-Button mit aria-label</h3>
-        <Button 
-          isIconButton
-          aria-label="Suchen"
-          leftIcon={<span>🔍</span>}
-        />
-        <span className="text-xs text-gray-500 ml-2">
-          Icon-Buttons benötigen ein aria-label
-        </span>
+        <Button isIconButton aria-label="Suchen" leftIcon={<span>🔍</span>} />
+        <span className="text-xs text-gray-500 ml-2">Icon-Buttons benötigen ein aria-label</span>
       </div>
     </div>
   ),
@@ -394,7 +393,9 @@ export const Shapes: Story = {
 export const LinkButtons: Story = {
   render: () => (
     <div className="space-y-2">
-      <Button isLink href="#">Interner Link</Button>
+      <Button isLink href="#">
+        Interner Link
+      </Button>
       <Button isLink href="https://example.com" isExternal>
         Externer Link
       </Button>
@@ -412,7 +413,9 @@ export const States: Story = {
       <Button isSuccess>Erfolg</Button>
       <Button isError>Fehler</Button>
       <Button active>Aktiv</Button>
-      <Button isToggle isToggleOn>Toggle (An)</Button>
+      <Button isToggle isToggleOn>
+        Toggle (An)
+      </Button>
       <Button isToggle>Toggle (Aus)</Button>
     </div>
   ),

@@ -56,15 +56,6 @@ const meta: Meta<typeof Sidebar.A11y> = {
       options: ['sm', 'md', 'lg', 'xl', '2xl'],
       description: 'Breakpoint zum automatischen Einklappen',
     },
-    responsive: {
-      control: 'boolean',
-      description: 'Automatisch einklappen bei kleinem Bildschirm'
-    },
-    collapseBreakpoint: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg', 'xl', '2xl'],
-      description: 'Breakpoint zum automatischen Einklappen'
-    },
     ariaLabel: {
       control: 'text',
       description: 'ARIA-Label für die Sidebar',
@@ -334,9 +325,9 @@ export const Responsive: Story = {
       { id: 'home', label: 'Home', icon: <HomeIcon />, active: true },
       { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
       { id: 'users', label: 'Users', icon: <UsersIcon /> },
-      { id: 'settings', label: 'Settings', icon: <SettingsIcon /> }
-    ]
-  }
+      { id: 'settings', label: 'Settings', icon: <SettingsIcon /> },
+    ],
+  },
 };
 
 export const AsComplementary: Story = {

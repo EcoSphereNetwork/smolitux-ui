@@ -118,11 +118,7 @@ export const ReadOnly: Story = {
     <div className="w-[400px]">
       <FormControl isReadOnly>
         <FormField label="Benutzername" htmlFor="username">
-          <Input
-            id="username"
-            defaultValue="max.mustermann"
-            placeholder="Benutzername eingeben"
-          />
+          <Input id="username" defaultValue="max.mustermann" placeholder="Benutzername eingeben" />
         </FormField>
       </FormControl>
     </div>
@@ -137,13 +133,13 @@ export const WithDifferentInputs: Story = {
           <Input id="name" placeholder="Ihr Name" />
         </FormField>
       </FormControl>
-      
+
       <FormControl>
         <FormField label="Beschreibung" htmlFor="description">
           <Textarea id="description" placeholder="Beschreibung eingeben" rows={3} />
         </FormField>
       </FormControl>
-      
+
       <FormControl>
         <FormField label="Land" htmlFor="country">
           <Select id="country">
@@ -154,7 +150,7 @@ export const WithDifferentInputs: Story = {
           </Select>
         </FormField>
       </FormControl>
-      
+
       <FormControl>
         <FormField label="Geschlecht" htmlFor="gender">
           <div className="space-y-2">
@@ -176,12 +172,10 @@ export const WithDifferentInputs: Story = {
           </div>
         </FormField>
       </FormControl>
-      
+
       <FormControl>
         <div>
-          <Checkbox id="terms">
-            Ich akzeptiere die AGB
-          </Checkbox>
+          <Checkbox id="terms">Ich akzeptiere die AGB</Checkbox>
         </div>
       </FormControl>
     </div>
@@ -216,11 +210,11 @@ export const WithValidation: Story = {
     const [value, setValue] = React.useState('');
     const [isValid, setIsValid] = React.useState(true);
     const [errorMessage, setErrorMessage] = React.useState('');
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
       setValue(newValue);
-      
+
       if (!newValue) {
         setIsValid(false);
         setErrorMessage('E-Mail ist erforderlich');
@@ -232,15 +226,11 @@ export const WithValidation: Story = {
         setErrorMessage('');
       }
     };
-    
+
     return (
       <div className="w-[400px]">
         <FormControl isInvalid={!isValid}>
-          <FormField
-            label="E-Mail"
-            htmlFor="email"
-            errorMessage={errorMessage}
-          >
+          <FormField label="E-Mail" htmlFor="email" errorMessage={errorMessage}>
             <Input
               id="email"
               type="email"
@@ -270,7 +260,7 @@ export const WithHorizontalLayout: Story = {
           <Input id="username" placeholder="Benutzername eingeben" />
         </FormField>
       </FormControl>
-      
+
       <FormControl className="mt-4">
         <FormField
           label="E-Mail"
@@ -282,7 +272,7 @@ export const WithHorizontalLayout: Story = {
           <Input id="email" type="email" placeholder="E-Mail-Adresse eingeben" />
         </FormField>
       </FormControl>
-      
+
       <FormControl className="mt-4">
         <FormField
           label="Passwort"
@@ -304,21 +294,21 @@ export const WithNestedControls: Story = {
       <FormControl>
         <FormField label="Adresse" htmlFor="address">
           <Input id="address" placeholder="Straße und Hausnummer" className="mb-2" />
-          
+
           <div className="grid grid-cols-2 gap-2">
             <FormControl>
               <FormField label="PLZ" htmlFor="zip" labelClassName="text-sm">
                 <Input id="zip" placeholder="PLZ" />
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="Stadt" htmlFor="city" labelClassName="text-sm">
                 <Input id="city" placeholder="Stadt" />
               </FormField>
             </FormControl>
           </div>
-          
+
           <FormControl className="mt-2">
             <FormField label="Land" htmlFor="country" labelClassName="text-sm">
               <Select id="country">

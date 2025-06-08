@@ -148,14 +148,8 @@ export const FakeNewsDetector: React.FC<FakeNewsDetectorProps> = ({
     if (content.length > 200 && !isExpanded) {
       return (
         <Box>
-          <Text style={{ marginBottom: '8px' }}>
-            {content.substring(0, 200)}...
-          </Text>
-          <Button
-            variant="link"
-            size="sm"
-            onClick={() => setIsExpanded(true)}
-          >
+          <Text style={{ marginBottom: '8px' }}>{content.substring(0, 200)}...</Text>
+          <Button variant="link" size="sm" onClick={() => setIsExpanded(true)}>
             Show more
           </Button>
         </Box>
@@ -172,10 +166,7 @@ export const FakeNewsDetector: React.FC<FakeNewsDetectorProps> = ({
         <Box style={{ marginBottom: '16px' }}>
           <Flex justify="space-between" align="center" style={{ marginBottom: '8px' }}>
             <Text weight="medium">Trustworthiness</Text>
-            <Text
-              weight="bold"
-              color={getTrustLevelColor(result.trustworthiness)}
-            >
+            <Text weight="bold" color={getTrustLevelColor(result.trustworthiness)}>
               {getTrustLevelText(result.trustworthiness)}
             </Text>
           </Flex>
@@ -186,8 +177,8 @@ export const FakeNewsDetector: React.FC<FakeNewsDetectorProps> = ({
               result.trustworthiness >= 70
                 ? 'success'
                 : result.trustworthiness >= 40
-                ? 'warning'
-                : 'danger'
+                  ? 'warning'
+                  : 'danger'
             }
             size="md"
             style={{ marginBottom: '4px' }}
@@ -253,18 +244,10 @@ export const FakeNewsDetector: React.FC<FakeNewsDetectorProps> = ({
         )}
 
         <Flex justify="space-between">
-          <Button
-            variant="outline"
-            onClick={onAnalyze}
-            disabled={isAnalyzing}
-          >
+          <Button variant="outline" onClick={onAnalyze} disabled={isAnalyzing}>
             Re-analyze
           </Button>
-          <Button
-            variant="outline"
-            colorScheme="danger"
-            onClick={onReport}
-          >
+          <Button variant="outline" colorScheme="danger" onClick={onReport}>
             Report Content
           </Button>
         </Flex>
@@ -296,7 +279,9 @@ export const FakeNewsDetector: React.FC<FakeNewsDetectorProps> = ({
     >
       <Box style={{ padding: '16px' }}>
         <Flex justify="space-between" align="center" style={{ marginBottom: '16px' }}>
-          <Text weight="bold" size="lg">Content Verification</Text>
+          <Text weight="bold" size="lg">
+            Content Verification
+          </Text>
           <Tooltip content="This tool analyzes content for potential misinformation using AI">
             <Box style={{ cursor: 'help' }}>
               <svg
@@ -326,7 +311,7 @@ export const FakeNewsDetector: React.FC<FakeNewsDetectorProps> = ({
         </Flex>
 
         {renderContent()}
-        
+
         {isAnalyzing && !result && (
           <Box
             style={{

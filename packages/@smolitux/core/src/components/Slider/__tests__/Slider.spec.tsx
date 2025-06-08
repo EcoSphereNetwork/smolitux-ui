@@ -22,8 +22,8 @@ jest.mock('../../FormControl', () => ({
     isValid: false,
     isInvalid: false,
     isSuccess: false,
-    isLoading: false
-  })
+    isLoading: false,
+  }),
 }));
 
 describe('Slider Snapshots', () => {
@@ -69,40 +69,45 @@ describe('Slider Snapshots', () => {
 
   it('renders slider with different sizes correctly', () => {
     const sizes: Array<'xs' | 'sm' | 'md' | 'lg' | 'xl'> = ['xs', 'sm', 'md', 'lg', 'xl'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(<Slider size={size} />);
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`Slider with size ${size}`);
     });
   });
 
   it('renders slider with different variants correctly', () => {
-    const variants: Array<'solid' | 'outline' | 'filled' | 'minimal'> = ['solid', 'outline', 'filled', 'minimal'];
-    
-    const fragments = variants.map(variant => {
+    const variants: Array<'solid' | 'outline' | 'filled' | 'minimal'> = [
+      'solid',
+      'outline',
+      'filled',
+      'minimal',
+    ];
+
+    const fragments = variants.map((variant) => {
       const { asFragment } = render(<Slider variant={variant} />);
       return { variant, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ variant, fragment }) => {
       expect(fragment).toMatchSnapshot(`Slider with variant ${variant}`);
     });
   });
 
   it('renders slider with different color schemes correctly', () => {
-    const colorSchemes: Array<'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral'> = [
-      'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'neutral'
-    ];
-    
-    const fragments = colorSchemes.map(colorScheme => {
+    const colorSchemes: Array<
+      'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'neutral'
+    > = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'neutral'];
+
+    const fragments = colorSchemes.map((colorScheme) => {
       const { asFragment } = render(<Slider colorScheme={colorScheme} value={50} />);
       return { colorScheme, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ colorScheme, fragment }) => {
       expect(fragment).toMatchSnapshot(`Slider with color scheme ${colorScheme}`);
     });
@@ -125,12 +130,12 @@ describe('Slider Snapshots', () => {
 
   it('renders slider with marks correctly', () => {
     const { asFragment } = render(
-      <Slider 
-        showMarks 
+      <Slider
+        showMarks
         marks={[
           { value: 0, label: 'Min' },
           { value: 50, label: '50%' },
-          { value: 100, label: 'Max' }
+          { value: 100, label: 'Max' },
         ]}
       />
     );
@@ -144,23 +149,24 @@ describe('Slider Snapshots', () => {
 
   it('renders slider with custom value format correctly', () => {
     const { asFragment } = render(
-      <Slider 
-        showValue 
-        value={50} 
-        valueFormat={(value) => `${value}%`} 
-      />
+      <Slider showValue value={50} valueFormat={(value) => `${value}%`} />
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders slider with different thumb shapes correctly', () => {
-    const thumbShapes: Array<'circle' | 'square' | 'rectangle' | 'diamond'> = ['circle', 'square', 'rectangle', 'diamond'];
-    
-    const fragments = thumbShapes.map(thumbShape => {
+    const thumbShapes: Array<'circle' | 'square' | 'rectangle' | 'diamond'> = [
+      'circle',
+      'square',
+      'rectangle',
+      'diamond',
+    ];
+
+    const fragments = thumbShapes.map((thumbShape) => {
       const { asFragment } = render(<Slider thumbShape={thumbShape} />);
       return { thumbShape, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ thumbShape, fragment }) => {
       expect(fragment).toMatchSnapshot(`Slider with thumb shape ${thumbShape}`);
     });
@@ -168,12 +174,12 @@ describe('Slider Snapshots', () => {
 
   it('renders slider with different track shapes correctly', () => {
     const trackShapes: Array<'rounded' | 'square'> = ['rounded', 'square'];
-    
-    const fragments = trackShapes.map(trackShape => {
+
+    const fragments = trackShapes.map((trackShape) => {
       const { asFragment } = render(<Slider trackShape={trackShape} />);
       return { trackShape, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ trackShape, fragment }) => {
       expect(fragment).toMatchSnapshot(`Slider with track shape ${trackShape}`);
     });
@@ -186,7 +192,9 @@ describe('Slider Snapshots', () => {
   });
 
   it('renders slider with highlight range correctly', () => {
-    const { asFragment } = render(<Slider highlightRange={[20, 80]} highlightColor="rgba(0, 0, 255, 0.2)" />);
+    const { asFragment } = render(
+      <Slider highlightRange={[20, 80]} highlightColor="rgba(0, 0, 255, 0.2)" />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 

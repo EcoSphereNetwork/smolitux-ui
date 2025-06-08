@@ -7,707 +7,707 @@ export interface WalletConnectA11yProps extends WalletConnectProps {
    * ARIA-Label für die Komponente
    */
   ariaLabel?: string;
-  
+
   /**
    * ARIA-Labelledby für die Komponente
    */
   ariaLabelledby?: string;
-  
+
   /**
    * ARIA-Describedby für die Komponente
    */
   ariaDescribedby?: string;
-  
+
   /**
    * ARIA-Live für die Komponente
    */
   ariaLive?: 'polite' | 'assertive' | 'off';
-  
+
   /**
    * ARIA-Atomic für die Komponente
    */
   ariaAtomic?: boolean;
-  
+
   /**
    * ARIA-Relevant für die Komponente
    */
   ariaRelevant?: 'additions' | 'removals' | 'text' | 'all' | 'additions text';
-  
+
   /**
    * ARIA-Busy für die Komponente
    */
   ariaBusy?: boolean;
-  
+
   /**
    * Ob die Komponente eine Live-Region ist
    */
   isLiveRegion?: boolean;
-  
+
   /**
    * Ob die Komponente eine Region ist
    */
   isRegion?: boolean;
-  
+
   /**
    * Ob die Komponente eine Landmark ist
    */
   isLandmark?: boolean;
-  
+
   /**
    * Ob die Komponente ein Dialog ist
    */
   isDialog?: boolean;
-  
+
   /**
    * Ob die Komponente ein Alert ist
    */
   isAlert?: boolean;
-  
+
   /**
    * Ob die Komponente ein Status ist
    */
   isStatus?: boolean;
-  
+
   /**
    * Ob die Komponente ein Form ist
    */
   isForm?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menu ist
    */
   isMenu?: boolean;
-  
+
   /**
    * Ob die Komponente eine Listbox ist
    */
   isListbox?: boolean;
-  
+
   /**
    * Ob die Komponente ein Radiogroup ist
    */
   isRadiogroup?: boolean;
-  
+
   /**
    * Ob die Komponente ein Toolbar ist
    */
   isToolbar?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tree ist
    */
   isTree?: boolean;
-  
+
   /**
    * Ob die Komponente ein Grid ist
    */
   isGrid?: boolean;
-  
+
   /**
    * Ob die Komponente ein Table ist
    */
   isTable?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tablist ist
    */
   isTablist?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tabpanel ist
    */
   isTabpanel?: boolean;
-  
+
   /**
    * Ob die Komponente ein Combobox ist
    */
   isCombobox?: boolean;
-  
+
   /**
    * Ob die Komponente ein Textbox ist
    */
   isTextbox?: boolean;
-  
+
   /**
    * Ob die Komponente ein Searchbox ist
    */
   isSearchbox?: boolean;
-  
+
   /**
    * Ob die Komponente ein Spinbutton ist
    */
   isSpinbutton?: boolean;
-  
+
   /**
    * Ob die Komponente ein Slider ist
    */
   isSlider?: boolean;
-  
+
   /**
    * Ob die Komponente ein Scrollbar ist
    */
   isScrollbar?: boolean;
-  
+
   /**
    * Ob die Komponente ein Separator ist
    */
   isSeparator?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tooltip ist
    */
   isTooltip?: boolean;
-  
+
   /**
    * Ob die Komponente ein Alertdialog ist
    */
   isAlertdialog?: boolean;
-  
+
   /**
    * Ob die Komponente ein Banner ist
    */
   isBanner?: boolean;
-  
+
   /**
    * Ob die Komponente ein Complementary ist
    */
   isComplementary?: boolean;
-  
+
   /**
    * Ob die Komponente ein Contentinfo ist
    */
   isContentinfo?: boolean;
-  
+
   /**
    * Ob die Komponente ein Main ist
    */
   isMain?: boolean;
-  
+
   /**
    * Ob die Komponente ein Navigation ist
    */
   isNavigation?: boolean;
-  
+
   /**
    * Ob die Komponente ein Search ist
    */
   isSearch?: boolean;
-  
+
   /**
    * Ob die Komponente ein Application ist
    */
   isApplication?: boolean;
-  
+
   /**
    * Ob die Komponente ein Document ist
    */
   isDocument?: boolean;
-  
+
   /**
    * Ob die Komponente ein Feed ist
    */
   isFeed?: boolean;
-  
+
   /**
    * Ob die Komponente ein Figure ist
    */
   isFigure?: boolean;
-  
+
   /**
    * Ob die Komponente ein Group ist
    */
   isGroup?: boolean;
-  
+
   /**
    * Ob die Komponente ein Img ist
    */
   isImg?: boolean;
-  
+
   /**
    * Ob die Komponente ein List ist
    */
   isList?: boolean;
-  
+
   /**
    * Ob die Komponente ein Listitem ist
    */
   isListitem?: boolean;
-  
+
   /**
    * Ob die Komponente ein Math ist
    */
   isMath?: boolean;
-  
+
   /**
    * Ob die Komponente ein Note ist
    */
   isNote?: boolean;
-  
+
   /**
    * Ob die Komponente ein Presentation ist
    */
   isPresentation?: boolean;
-  
+
   /**
    * Ob die Komponente ein Widget ist
    */
   isWidget?: boolean;
-  
+
   /**
    * Ob die Komponente ein Window ist
    */
   isWindow?: boolean;
-  
+
   /**
    * Ob die Komponente ein Article ist
    */
   isArticle?: boolean;
-  
+
   /**
    * Ob die Komponente ein Columnheader ist
    */
   isColumnheader?: boolean;
-  
+
   /**
    * Ob die Komponente ein Definition ist
    */
   isDefinition?: boolean;
-  
+
   /**
    * Ob die Komponente ein Directory ist
    */
   isDirectory?: boolean;
-  
+
   /**
    * Ob die Komponente ein Gridcell ist
    */
   isGridcell?: boolean;
-  
+
   /**
    * Ob die Komponente ein Heading ist
    */
   isHeading?: boolean;
-  
+
   /**
    * Ob die Komponente ein Link ist
    */
   isLink?: boolean;
-  
+
   /**
    * Ob die Komponente ein Row ist
    */
   isRow?: boolean;
-  
+
   /**
    * Ob die Komponente ein Rowgroup ist
    */
   isRowgroup?: boolean;
-  
+
   /**
    * Ob die Komponente ein Rowheader ist
    */
   isRowheader?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tab ist
    */
   isTab?: boolean;
-  
+
   /**
    * Ob die Komponente ein Term ist
    */
   isTerm?: boolean;
-  
+
   /**
    * Ob die Komponente ein Time ist
    */
   isTime?: boolean;
-  
+
   /**
    * Ob die Komponente ein Timer ist
    */
   isTimer?: boolean;
-  
+
   /**
    * Ob die Komponente ein Marquee ist
    */
   isMarquee?: boolean;
-  
+
   /**
    * Ob die Komponente ein Progressbar ist
    */
   isProgressbar?: boolean;
-  
+
   /**
    * Ob die Komponente ein Meter ist
    */
   isMeter?: boolean;
-  
+
   /**
    * Ob die Komponente ein Log ist
    */
   isLog?: boolean;
-  
+
   /**
    * Ob die Komponente ein Treegrid ist
    */
   isTreegrid?: boolean;
-  
+
   /**
    * Ob die Komponente ein Treeitem ist
    */
   isTreeitem?: boolean;
-  
+
   /**
    * Ob die Komponente ein Switch ist
    */
   isSwitch?: boolean;
-  
+
   /**
    * Ob die Komponente ein Option ist
    */
   isOption?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menuitem ist
    */
   isMenuitem?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menuitemcheckbox ist
    */
   isMenuitemcheckbox?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menuitemradio ist
    */
   isMenuitemradio?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menubar ist
    */
   isMenubar?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menubutton ist
    */
   isMenubutton?: boolean;
-  
+
   /**
    * Ob die Komponente ein Checkbox ist
    */
   isCheckbox?: boolean;
-  
+
   /**
    * Ob die Komponente ein Radio ist
    */
   isRadio?: boolean;
-  
+
   /**
    * Ob die Komponente ein Button ist
    */
   isButton?: boolean;
-  
+
   /**
    * Ob die Komponente ein Link ist
    */
   isLink2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Progressbar ist
    */
   isProgressbar2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Meter ist
    */
   isMeter2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Slider ist
    */
   isSlider2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Spinbutton ist
    */
   isSpinbutton2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Scrollbar ist
    */
   isScrollbar2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Separator ist
    */
   isSeparator2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tooltip ist
    */
   isTooltip2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Dialog ist
    */
   isDialog2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Alertdialog ist
    */
   isAlertdialog2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Banner ist
    */
   isBanner2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Complementary ist
    */
   isComplementary2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Contentinfo ist
    */
   isContentinfo2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Form ist
    */
   isForm2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Main ist
    */
   isMain2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Navigation ist
    */
   isNavigation2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Search ist
    */
   isSearch2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Application ist
    */
   isApplication2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Document ist
    */
   isDocument2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Feed ist
    */
   isFeed2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Figure ist
    */
   isFigure2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Group ist
    */
   isGroup2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Img ist
    */
   isImg2?: boolean;
-  
+
   /**
    * Ob die Komponente ein List ist
    */
   isList2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Listitem ist
    */
   isListitem2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Math ist
    */
   isMath2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Note ist
    */
   isNote2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Presentation ist
    */
   isPresentation2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tabpanel ist
    */
   isTabpanel2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Toolbar ist
    */
   isToolbar2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tree ist
    */
   isTree2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Treegrid ist
    */
   isTreegrid2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Treeitem ist
    */
   isTreeitem2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Widget ist
    */
   isWidget2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Window ist
    */
   isWindow2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Article ist
    */
   isArticle2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Columnheader ist
    */
   isColumnheader2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Definition ist
    */
   isDefinition2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Directory ist
    */
   isDirectory2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Grid ist
    */
   isGrid2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Gridcell ist
    */
   isGridcell2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Heading ist
    */
   isHeading2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Row ist
    */
   isRow2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Rowgroup ist
    */
   isRowgroup2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Rowheader ist
    */
   isRowheader2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tablist ist
    */
   isTablist2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Tab ist
    */
   isTab2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Term ist
    */
   isTerm2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Time ist
    */
   isTime2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Textbox ist
    */
   isTextbox2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Searchbox ist
    */
   isSearchbox2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Switch ist
    */
   isSwitch2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Option ist
    */
   isOption2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menuitem ist
    */
   isMenuitem2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menuitemcheckbox ist
    */
   isMenuitemcheckbox2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menuitemradio ist
    */
   isMenuitemradio2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menubar ist
    */
   isMenubar2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Menubutton ist
    */
   isMenubutton2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Checkbox ist
    */
   isCheckbox2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Radio ist
    */
   isRadio2?: boolean;
-  
+
   /**
    * Ob die Komponente ein Button ist
    */
@@ -716,7 +716,7 @@ export interface WalletConnectA11yProps extends WalletConnectProps {
 
 /**
  * Barrierefreie WalletConnect-Komponente für die Verbindung mit Krypto-Wallets
- * 
+ *
  * @example
  * ```tsx
  * <WalletConnectA11y
@@ -881,10 +881,10 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showWalletOptions, setShowWalletOptions] = useState(false);
-  
+
   // Prüfen, ob Ethereum verfügbar ist
   const isEthereumAvailable = typeof window !== 'undefined' && (window as any).ethereum;
-  
+
   // Verbindungsstatus beim Laden prüfen
   useEffect(() => {
     const checkConnection = async () => {
@@ -901,10 +901,10 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
         }
       }
     };
-    
+
     checkConnection();
   }, [isEthereumAvailable, onConnect]);
-  
+
   // Ethereum-Events überwachen
   useEffect(() => {
     if (isEthereumAvailable) {
@@ -921,32 +921,34 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
           onConnect(accounts[0], (window as any).ethereum);
         }
       };
-      
+
       const handleChainChanged = () => {
         // Seite neu laden, wenn sich die Chain ändert
         window.location.reload();
       };
-      
+
       (window as any).ethereum.on('accountsChanged', handleAccountsChanged);
       (window as any).ethereum.on('chainChanged', handleChainChanged);
-      
+
       return () => {
         (window as any).ethereum.removeListener('accountsChanged', handleAccountsChanged);
         (window as any).ethereum.removeListener('chainChanged', handleChainChanged);
       };
     }
   }, [isEthereumAvailable, onConnect, onDisconnect]);
-  
+
   // Mit MetaMask verbinden
   const connectMetaMask = async () => {
     if (!isEthereumAvailable) {
-      setError('MetaMask ist nicht installiert. Bitte installieren Sie MetaMask und versuchen Sie es erneut.');
+      setError(
+        'MetaMask ist nicht installiert. Bitte installieren Sie MetaMask und versuchen Sie es erneut.'
+      );
       return;
     }
-    
+
     setIsConnecting(true);
     setError(null);
-    
+
     try {
       const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
       setWalletAddress(accounts[0]);
@@ -960,25 +962,25 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
       setShowWalletOptions(false);
     }
   };
-  
+
   // Mit WalletConnect verbinden
   const connectWalletConnect = async () => {
     setError('WalletConnect-Integration ist noch nicht implementiert.');
     setShowWalletOptions(false);
   };
-  
+
   // Verbindung trennen
   const disconnect = () => {
     setIsConnected(false);
     setWalletAddress(null);
     onDisconnect();
   };
-  
+
   // Wallet-Adresse formatieren
   const formatAddress = (address: string): string => {
     return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
   };
-  
+
   // Bestimme die Rolle basierend auf den Eigenschaften
   const determineRole = () => {
     if (isRegion) return 'region';
@@ -1056,7 +1058,7 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
     if (isButton) return 'button';
     return undefined;
   };
-  
+
   // Screenreader-Ankündigung für den Verbindungsstatus
   const getConnectionStatusAnnouncement = () => {
     if (isConnected) {
@@ -1071,9 +1073,9 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
       return 'Wallet nicht verbunden.';
     }
   };
-  
+
   return (
-    <div 
+    <div
       className={className}
       role={determineRole()}
       aria-label={ariaLabel || 'Wallet-Verbindung'}
@@ -1090,10 +1092,10 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
           {getConnectionStatusAnnouncement()}
         </div>
       )}
-      
+
       {isConnected ? (
         <div className="flex items-center space-x-2">
-          <div 
+          <div
             className="flex items-center bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-3 py-1 rounded-full text-sm"
             role="status"
             aria-label={`Wallet verbunden: ${formatAddress(walletAddress!)}`}
@@ -1101,7 +1103,7 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
             <span className="w-2 h-2 bg-green-500 rounded-full mr-2" aria-hidden="true"></span>
             <span>{formatAddress(walletAddress!)}</span>
           </div>
-          
+
           <Button
             variant="outline"
             size="sm"
@@ -1114,23 +1116,25 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
       ) : (
         <div>
           {showWalletOptions ? (
-            <Card 
+            <Card
               className="p-4"
               role={isDialog ? 'dialog' : undefined}
               aria-labelledby="wallet-connect-title"
               aria-describedby={error ? 'wallet-connect-error' : undefined}
               aria-modal={isDialog ? 'true' : undefined}
             >
-              <h3 
+              <h3
                 className="text-lg font-medium text-gray-900 dark:text-white mb-4"
                 id="wallet-connect-title"
               >
                 Wallet verbinden
               </h3>
-              
-              <div 
+
+              <div
                 className="space-y-2"
-                role={isListbox ? 'listbox' : isList ? 'list' : isRadiogroup ? 'radiogroup' : undefined}
+                role={
+                  isListbox ? 'listbox' : isList ? 'list' : isRadiogroup ? 'radiogroup' : undefined
+                }
                 aria-label="Verfügbare Wallets"
               >
                 {supportedWallets.includes('metamask') && (
@@ -1138,7 +1142,15 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
                     onClick={connectMetaMask}
                     disabled={isConnecting}
                     className="w-full flex items-center justify-between p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                    role={isOption ? 'option' : isMenuitem ? 'menuitem' : isListitem ? 'listitem' : undefined}
+                    role={
+                      isOption
+                        ? 'option'
+                        : isMenuitem
+                          ? 'menuitem'
+                          : isListitem
+                            ? 'listitem'
+                            : undefined
+                    }
                     aria-label="Mit MetaMask verbinden"
                     aria-disabled={isConnecting ? 'true' : undefined}
                   >
@@ -1167,13 +1179,21 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
                     </svg>
                   </button>
                 )}
-                
+
                 {supportedWallets.includes('walletconnect') && (
                   <button
                     onClick={connectWalletConnect}
                     disabled={isConnecting}
                     className="w-full flex items-center justify-between p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                    role={isOption ? 'option' : isMenuitem ? 'menuitem' : isListitem ? 'listitem' : undefined}
+                    role={
+                      isOption
+                        ? 'option'
+                        : isMenuitem
+                          ? 'menuitem'
+                          : isListitem
+                            ? 'listitem'
+                            : undefined
+                    }
                     aria-label="Mit WalletConnect verbinden"
                     aria-disabled={isConnecting ? 'true' : undefined}
                   >
@@ -1203,9 +1223,9 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
                   </button>
                 )}
               </div>
-              
+
               {error && (
-                <div 
+                <div
                   className="mt-3 p-2 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-md text-sm"
                   role="alert"
                   id="wallet-connect-error"
@@ -1213,7 +1233,7 @@ export const WalletConnectA11y: React.FC<WalletConnectA11yProps> = ({
                   {error}
                 </div>
               )}
-              
+
               <div className="mt-4 flex justify-end">
                 <Button
                   variant="outline"

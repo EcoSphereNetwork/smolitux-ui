@@ -43,7 +43,8 @@ const meta: Meta<typeof Form> = {
     },
     validateOnBlur: {
       control: 'boolean',
-      description: 'Gibt an, ob die Validierung beim Verlassen eines Feldes durchgeführt werden soll',
+      description:
+        'Gibt an, ob die Validierung beim Verlassen eines Feldes durchgeführt werden soll',
     },
     validateOnSubmit: {
       control: 'boolean',
@@ -64,7 +65,7 @@ export const Basic: Story = {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };
-    
+
     return (
       <Form
         onSubmit={handleSubmit}
@@ -88,7 +89,7 @@ export const Basic: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="E-Mail" htmlFor="email">
                 <Input
@@ -101,7 +102,7 @@ export const Basic: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="Nachricht" htmlFor="message">
                 <Textarea
@@ -114,7 +115,7 @@ export const Basic: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <Button type="submit" className="w-full">
               Absenden
             </Button>
@@ -128,36 +129,36 @@ export const Basic: Story = {
 export const WithValidation: Story = {
   render: () => {
     const [errors, setErrors] = React.useState<Record<string, string>>({});
-    
+
     const validate = (values: any) => {
       const newErrors: Record<string, string> = {};
-      
+
       if (!values.name) {
         newErrors.name = 'Name ist erforderlich';
       }
-      
+
       if (!values.email) {
         newErrors.email = 'E-Mail ist erforderlich';
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
         newErrors.email = 'Ungültige E-Mail-Adresse';
       }
-      
+
       if (!values.password) {
         newErrors.password = 'Passwort ist erforderlich';
       } else if (values.password.length < 8) {
         newErrors.password = 'Passwort muss mindestens 8 Zeichen lang sein';
       }
-      
+
       if (values.password !== values.confirmPassword) {
         newErrors.confirmPassword = 'Passwörter stimmen nicht überein';
       }
-      
+
       return newErrors;
     };
-    
+
     const handleSubmit = (values: any) => {
       const validationErrors = validate(values);
-      
+
       if (Object.keys(validationErrors).length === 0) {
         console.log('Form submitted:', values);
         alert('Formular erfolgreich abgesendet:\n' + JSON.stringify(values, null, 2));
@@ -165,16 +166,16 @@ export const WithValidation: Story = {
         setErrors(validationErrors);
       }
     };
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      
+
       // Löschen des Fehlers für das geänderte Feld
       if (errors[name]) {
         setErrors({ ...errors, [name]: '' });
       }
     };
-    
+
     return (
       <Form
         onSubmit={handleSubmit}
@@ -201,7 +202,7 @@ export const WithValidation: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <FormControl isInvalid={!!errors.email}>
               <FormField label="E-Mail" htmlFor="email" errorMessage={errors.email}>
                 <Input
@@ -215,7 +216,7 @@ export const WithValidation: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <FormControl isInvalid={!!errors.password}>
               <FormField label="Passwort" htmlFor="password" errorMessage={errors.password}>
                 <Input
@@ -229,9 +230,13 @@ export const WithValidation: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <FormControl isInvalid={!!errors.confirmPassword}>
-              <FormField label="Passwort bestätigen" htmlFor="confirmPassword" errorMessage={errors.confirmPassword}>
+              <FormField
+                label="Passwort bestätigen"
+                htmlFor="confirmPassword"
+                errorMessage={errors.confirmPassword}
+              >
                 <Input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -243,7 +248,7 @@ export const WithValidation: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <Button type="submit" className="w-full">
               Registrieren
             </Button>
@@ -260,7 +265,7 @@ export const WithDifferentControls: Story = {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };
-    
+
     return (
       <Form
         onSubmit={handleSubmit}
@@ -288,7 +293,7 @@ export const WithDifferentControls: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="E-Mail" htmlFor="email">
                 <Input
@@ -301,15 +306,10 @@ export const WithDifferentControls: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="Land" htmlFor="country">
-                <Select
-                  id="country"
-                  name="country"
-                  value={values.country}
-                  onChange={handleChange}
-                >
+                <Select id="country" name="country" value={values.country} onChange={handleChange}>
                   <option value="">Bitte wählen</option>
                   <option value="de">Deutschland</option>
                   <option value="at">Österreich</option>
@@ -318,7 +318,7 @@ export const WithDifferentControls: Story = {
                 </Select>
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="Geschlecht" htmlFor="gender">
                 <div className="space-y-2">
@@ -358,7 +358,7 @@ export const WithDifferentControls: Story = {
                 </div>
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="Interessen" htmlFor="interests">
                 <div className="space-y-2">
@@ -409,7 +409,7 @@ export const WithDifferentControls: Story = {
                 </div>
               </FormField>
             </FormControl>
-            
+
             <FormControl>
               <div>
                 <Checkbox
@@ -422,7 +422,7 @@ export const WithDifferentControls: Story = {
                 </Checkbox>
               </div>
             </FormControl>
-            
+
             <FormControl>
               <FormField label="Nachricht" htmlFor="message">
                 <Textarea
@@ -435,7 +435,7 @@ export const WithDifferentControls: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <div className="flex space-x-4">
               <Button type="reset" variant="outline" className="flex-1">
                 Zurücksetzen
@@ -457,7 +457,7 @@ export const WithFormLayout: Story = {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };
-    
+
     return (
       <Form
         onSubmit={handleSubmit}
@@ -487,7 +487,7 @@ export const WithFormLayout: Story = {
                   />
                 </FormField>
               </FormControl>
-              
+
               <FormControl>
                 <FormField label="Nachname" htmlFor="lastName">
                   <Input
@@ -500,7 +500,7 @@ export const WithFormLayout: Story = {
                 </FormField>
               </FormControl>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormControl>
                 <FormField label="E-Mail" htmlFor="email">
@@ -514,7 +514,7 @@ export const WithFormLayout: Story = {
                   />
                 </FormField>
               </FormControl>
-              
+
               <FormControl>
                 <FormField label="Telefon" htmlFor="phone">
                   <Input
@@ -528,7 +528,7 @@ export const WithFormLayout: Story = {
                 </FormField>
               </FormControl>
             </div>
-            
+
             <FormControl>
               <FormField label="Adresse" htmlFor="address">
                 <Input
@@ -540,7 +540,7 @@ export const WithFormLayout: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <FormControl>
                 <FormField label="Stadt" htmlFor="city">
@@ -553,7 +553,7 @@ export const WithFormLayout: Story = {
                   />
                 </FormField>
               </FormControl>
-              
+
               <FormControl>
                 <FormField label="PLZ" htmlFor="zip">
                   <Input
@@ -565,7 +565,7 @@ export const WithFormLayout: Story = {
                   />
                 </FormField>
               </FormControl>
-              
+
               <FormControl>
                 <FormField label="Land" htmlFor="country">
                   <Select
@@ -583,14 +583,12 @@ export const WithFormLayout: Story = {
                 </FormField>
               </FormControl>
             </div>
-            
+
             <div className="flex justify-end space-x-4">
               <Button type="reset" variant="outline">
                 Zurücksetzen
               </Button>
-              <Button type="submit">
-                Absenden
-              </Button>
+              <Button type="submit">Absenden</Button>
             </div>
           </form>
         )}
@@ -602,32 +600,33 @@ export const WithFormLayout: Story = {
 export const WithDynamicFields: Story = {
   render: () => {
     const [fields, setFields] = React.useState([{ id: 1, value: '' }]);
-    
+
     const handleSubmit = (values: any) => {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };
-    
+
     const addField = () => {
       setFields([...fields, { id: fields.length + 1, value: '' }]);
     };
-    
+
     const removeField = (id: number) => {
-      setFields(fields.filter(field => field.id !== id));
+      setFields(fields.filter((field) => field.id !== id));
     };
-    
+
     const handleFieldChange = (id: number, value: string) => {
-      setFields(fields.map(field => 
-        field.id === id ? { ...field, value } : field
-      ));
+      setFields(fields.map((field) => (field.id === id ? { ...field, value } : field)));
     };
-    
+
     return (
       <Form
         onSubmit={handleSubmit}
         initialValues={{
           title: '',
-          fields: fields.reduce((acc, field) => ({ ...acc, [`field-${field.id}`]: field.value }), {}),
+          fields: fields.reduce(
+            (acc, field) => ({ ...acc, [`field-${field.id}`]: field.value }),
+            {}
+          ),
         }}
         className="w-[500px]"
       >
@@ -644,10 +643,10 @@ export const WithDynamicFields: Story = {
                 />
               </FormField>
             </FormControl>
-            
+
             <div className="space-y-2">
               <div className="font-medium">Dynamische Felder</div>
-              
+
               {fields.map((field) => (
                 <div key={field.id} className="flex space-x-2">
                   <Input
@@ -671,17 +670,12 @@ export const WithDynamicFields: Story = {
                   </Button>
                 </div>
               ))}
-              
-              <Button
-                type="button"
-                variant="outline"
-                onClick={addField}
-                className="w-full"
-              >
+
+              <Button type="button" variant="outline" onClick={addField} className="w-full">
                 Feld hinzufügen
               </Button>
             </div>
-            
+
             <Button type="submit" className="w-full">
               Absenden
             </Button>

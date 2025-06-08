@@ -114,7 +114,9 @@ export const CustomSpeed: Story = {
 
 export const Centered: Story = {
   render: () => (
-    <div style={{ position: 'relative', height: '200px', border: '1px dashed #ccc', width: '100%' }}>
+    <div
+      style={{ position: 'relative', height: '200px', border: '1px dashed #ccc', width: '100%' }}
+    >
       <Spinner centered />
     </div>
   ),

@@ -86,13 +86,11 @@ type Story = StoryObj<typeof ColorPicker>;
 export const Basic: Story = {
   render: () => {
     const [color, setColor] = React.useState('#3498db');
-    
+
     return (
       <div className="space-y-4">
         <ColorPicker value={color} onChange={setColor} />
-        <div className="text-center">
-          Ausgewählte Farbe: {color}
-        </div>
+        <div className="text-center">Ausgewählte Farbe: {color}</div>
       </div>
     );
   },
@@ -109,7 +107,7 @@ export const WithDifferentFormats: Story = {
     const [hexColor, setHexColor] = React.useState('#3498db');
     const [rgbColor, setRgbColor] = React.useState('rgb(52, 152, 219)');
     const [hslColor, setHslColor] = React.useState('hsl(204, 70%, 53%)');
-    
+
     return (
       <div className="space-y-8">
         <div className="space-y-2">
@@ -117,13 +115,13 @@ export const WithDifferentFormats: Story = {
           <ColorPicker value={hexColor} onChange={setHexColor} format="hex" />
           <div>Wert: {hexColor}</div>
         </div>
-        
+
         <div className="space-y-2">
           <h3 className="font-medium">RGB Format</h3>
           <ColorPicker value={rgbColor} onChange={setRgbColor} format="rgb" />
           <div>Wert: {rgbColor}</div>
         </div>
-        
+
         <div className="space-y-2">
           <h3 className="font-medium">HSL Format</h3>
           <ColorPicker value={hslColor} onChange={setHslColor} format="hsl" />
@@ -137,17 +135,12 @@ export const WithDifferentFormats: Story = {
 export const WithAlphaChannel: Story = {
   render: () => {
     const [color, setColor] = React.useState('rgba(52, 152, 219, 0.5)');
-    
+
     return (
       <div className="space-y-4">
         <ColorPicker value={color} onChange={setColor} showAlpha format="rgb" />
-        <div className="text-center">
-          Ausgewählte Farbe: {color}
-        </div>
-        <div
-          className="w-full h-20 rounded border"
-          style={{ backgroundColor: color }}
-        />
+        <div className="text-center">Ausgewählte Farbe: {color}</div>
+        <div className="w-full h-20 rounded border" style={{ backgroundColor: color }} />
       </div>
     );
   },
@@ -157,21 +150,22 @@ export const WithSwatches: Story = {
   render: () => {
     const [color, setColor] = React.useState('#3498db');
     const swatches = [
-      '#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#e74c3c',
-      '#f39c12', '#d35400', '#c0392b', '#bdc3c7', '#7f8c8d',
+      '#1abc9c',
+      '#2ecc71',
+      '#3498db',
+      '#9b59b6',
+      '#e74c3c',
+      '#f39c12',
+      '#d35400',
+      '#c0392b',
+      '#bdc3c7',
+      '#7f8c8d',
     ];
-    
+
     return (
       <div className="space-y-4">
-        <ColorPicker
-          value={color}
-          onChange={setColor}
-          showSwatches
-          swatches={swatches}
-        />
-        <div className="text-center">
-          Ausgewählte Farbe: {color}
-        </div>
+        <ColorPicker value={color} onChange={setColor} showSwatches swatches={swatches} />
+        <div className="text-center">Ausgewählte Farbe: {color}</div>
       </div>
     );
   },
@@ -184,12 +178,12 @@ export const Sizes: Story = {
         <h3 className="font-medium">Small</h3>
         <ColorPicker defaultValue="#3498db" size="sm" />
       </div>
-      
+
       <div className="space-y-2">
         <h3 className="font-medium">Medium (Standard)</h3>
         <ColorPicker defaultValue="#3498db" size="md" />
       </div>
-      
+
       <div className="space-y-2">
         <h3 className="font-medium">Large</h3>
         <ColorPicker defaultValue="#3498db" size="lg" />
@@ -205,17 +199,17 @@ export const Placements: Story = {
         <h3 className="font-medium">Top</h3>
         <ColorPicker defaultValue="#3498db" placement="top" />
       </div>
-      
+
       <div className="space-y-2">
         <h3 className="font-medium">Right</h3>
         <ColorPicker defaultValue="#3498db" placement="right" />
       </div>
-      
+
       <div className="space-y-2">
         <h3 className="font-medium">Bottom</h3>
         <ColorPicker defaultValue="#3498db" placement="bottom" />
       </div>
-      
+
       <div className="space-y-2">
         <h3 className="font-medium">Left</h3>
         <ColorPicker defaultValue="#3498db" placement="left" />
@@ -227,18 +221,11 @@ export const Placements: Story = {
 export const WithInput: Story = {
   render: () => {
     const [color, setColor] = React.useState('#3498db');
-    
+
     return (
       <div className="space-y-4">
-        <ColorPicker
-          value={color}
-          onChange={setColor}
-          showInput
-        />
-        <div
-          className="w-full h-20 rounded border"
-          style={{ backgroundColor: color }}
-        />
+        <ColorPicker value={color} onChange={setColor} showInput />
+        <div className="w-full h-20 rounded border" style={{ backgroundColor: color }} />
       </div>
     );
   },
@@ -247,14 +234,10 @@ export const WithInput: Story = {
 export const WithPreview: Story = {
   render: () => {
     const [color, setColor] = React.useState('#3498db');
-    
+
     return (
       <div className="space-y-4">
-        <ColorPicker
-          value={color}
-          onChange={setColor}
-          showPreview
-        />
+        <ColorPicker value={color} onChange={setColor} showPreview />
       </div>
     );
   },
@@ -277,7 +260,7 @@ export const ReadOnly: Story = {
 export const CustomTrigger: Story = {
   render: () => {
     const [color, setColor] = React.useState('#3498db');
-    
+
     return (
       <div className="space-y-4">
         <ColorPicker
@@ -287,9 +270,7 @@ export const CustomTrigger: Story = {
             className: 'w-12 h-12 rounded-full border-4 border-white shadow-lg',
           }}
         />
-        <div className="text-center">
-          Ausgewählte Farbe: {color}
-        </div>
+        <div className="text-center">Ausgewählte Farbe: {color}</div>
       </div>
     );
   },
@@ -298,7 +279,7 @@ export const CustomTrigger: Story = {
 export const WithCustomPopover: Story = {
   render: () => {
     const [color, setColor] = React.useState('#3498db');
-    
+
     return (
       <div className="space-y-4">
         <ColorPicker
@@ -309,9 +290,7 @@ export const WithCustomPopover: Story = {
             closeOnBlur: false,
           }}
         />
-        <div className="text-center">
-          Ausgewählte Farbe: {color}
-        </div>
+        <div className="text-center">Ausgewählte Farbe: {color}</div>
       </div>
     );
   },
@@ -322,55 +301,34 @@ export const ColorPalette: Story = {
     const [primaryColor, setPrimaryColor] = React.useState('#3498db');
     const [secondaryColor, setSecondaryColor] = React.useState('#e74c3c');
     const [accentColor, setAccentColor] = React.useState('#2ecc71');
-    
+
     return (
       <div className="space-y-6 p-6 border rounded-lg w-[400px]">
         <h2 className="text-xl font-bold mb-4">Farbpalette anpassen</h2>
-        
+
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <label className="font-medium">Primärfarbe:</label>
-            <ColorPicker
-              value={primaryColor}
-              onChange={setPrimaryColor}
-              size="sm"
-            />
+            <ColorPicker value={primaryColor} onChange={setPrimaryColor} size="sm" />
           </div>
-          
+
           <div className="flex items-center justify-between">
             <label className="font-medium">Sekundärfarbe:</label>
-            <ColorPicker
-              value={secondaryColor}
-              onChange={setSecondaryColor}
-              size="sm"
-            />
+            <ColorPicker value={secondaryColor} onChange={setSecondaryColor} size="sm" />
           </div>
-          
+
           <div className="flex items-center justify-between">
             <label className="font-medium">Akzentfarbe:</label>
-            <ColorPicker
-              value={accentColor}
-              onChange={setAccentColor}
-              size="sm"
-            />
+            <ColorPicker value={accentColor} onChange={setAccentColor} size="sm" />
           </div>
         </div>
-        
+
         <div className="mt-6">
           <h3 className="font-medium mb-2">Vorschau:</h3>
           <div className="flex space-x-2">
-            <div
-              className="w-1/3 h-20 rounded"
-              style={{ backgroundColor: primaryColor }}
-            />
-            <div
-              className="w-1/3 h-20 rounded"
-              style={{ backgroundColor: secondaryColor }}
-            />
-            <div
-              className="w-1/3 h-20 rounded"
-              style={{ backgroundColor: accentColor }}
-            />
+            <div className="w-1/3 h-20 rounded" style={{ backgroundColor: primaryColor }} />
+            <div className="w-1/3 h-20 rounded" style={{ backgroundColor: secondaryColor }} />
+            <div className="w-1/3 h-20 rounded" style={{ backgroundColor: accentColor }} />
           </div>
         </div>
       </div>

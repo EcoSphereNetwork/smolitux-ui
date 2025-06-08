@@ -9,7 +9,7 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     // Content should be hidden by default
     expect(screen.queryByText('Collapse content')).not.toBeVisible();
   });
@@ -20,7 +20,7 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     expect(screen.getByText('Collapse content')).toBeVisible();
   });
 
@@ -30,15 +30,15 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     expect(screen.queryByText('Collapse content')).not.toBeVisible();
-    
+
     rerender(
       <Collapse isOpen={true}>
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     expect(screen.getByText('Collapse content')).toBeVisible();
   });
 
@@ -48,7 +48,7 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     const collapseElement = screen.getByTestId('collapse-container');
     expect(collapseElement).toHaveStyle('transition-duration: 500ms');
   });
@@ -59,7 +59,7 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     const collapseElement = screen.getByTestId('collapse-container');
     expect(collapseElement).toHaveStyle('background-color: red');
   });
@@ -70,7 +70,7 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     const collapseElement = screen.getByTestId('collapse-container');
     expect(collapseElement).toHaveClass('custom-collapse');
   });
@@ -82,10 +82,10 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     const collapseElement = screen.getByTestId('collapse-container');
     fireEvent.transitionStart(collapseElement);
-    
+
     expect(handleAnimationStart).toHaveBeenCalled();
   });
 
@@ -96,10 +96,10 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     const collapseElement = screen.getByTestId('collapse-container');
     fireEvent.transitionEnd(collapseElement);
-    
+
     expect(handleAnimationEnd).toHaveBeenCalled();
   });
 
@@ -109,7 +109,7 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     const collapseElement = screen.getByTestId('collapse-container');
     expect(collapseElement).toHaveStyle('height: 20px');
   });
@@ -120,7 +120,7 @@ describe('Collapse', () => {
         <div>Collapse content</div>
       </Collapse>
     );
-    
+
     const collapseContent = screen.getByTestId('collapse-content');
     expect(collapseContent).toHaveStyle('opacity: 1');
   });

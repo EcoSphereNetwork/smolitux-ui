@@ -3,7 +3,7 @@ import { default as WalletConnectA11y, WalletConnectA11yProps } from './WalletCo
 
 // Erweitere WalletConnect um die A11y-Komponente
 const WalletConnect = Object.assign(BaseWalletConnect, {
-  A11y: WalletConnectA11y
+  A11y: WalletConnectA11y,
 });
 
 // Exportiere Komponenten und Typen

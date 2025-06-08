@@ -29,7 +29,9 @@ export type TransitionResult<T extends HTMLElement = HTMLElement> = {
  * Hook zum Erstellen von Übergangseffekten für das Erscheinen/Verschwinden von Elementen
  * @template T - Der HTML-Element-Typ, standardmäßig HTMLElement
  */
-export const useTransition = <T extends HTMLElement = HTMLElement>(options: TransitionOptions): TransitionResult<T> => {
+export const useTransition = <T extends HTMLElement = HTMLElement>(
+  options: TransitionOptions
+): TransitionResult<T> => {
   const {
     in: inProp,
     timeout = 300,
@@ -44,27 +46,25 @@ export const useTransition = <T extends HTMLElement = HTMLElement>(options: Tran
     onExiting,
     onExited,
   } = options;
-  
+
   const [state, setState] = useState<TransitionState>(() => {
     if (inProp) {
       return appear ? 'entering' : 'entered';
     }
     return mountOnEnter ? 'exited' : 'exited';
   });
-  
+
   const [mounted, setMounted] = useState(() => {
     if (inProp) return true;
     return !mountOnEnter;
   });
-  
+
   const ref = useRef<T>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   // Transition-Optionen auflösen
-  const transitionPreset = typeof transition === 'string' 
-    ? transitions[transition] 
-    : transition;
-  
+  const transitionPreset = typeof transition === 'string' ? transitions[transition] : transition;
+
   // Timeout-Werte auflösen
   const getTimeout = (type: 'enter' | 'exit'): number => {
     if (typeof timeout === 'number') {
@@ -72,7 +72,7 @@ export const useTransition = <T extends HTMLElement = HTMLElement>(options: Tran
     }
     return timeout[type] !== undefined ? timeout[type]! : transitionPreset.duration;
   };
-  
+
   // Zustandsübergänge verwalten
   useEffect(() => {
     // Timeout löschen, wenn die Komponente unmountet
@@ -82,46 +82,46 @@ export const useTransition = <T extends HTMLElement = HTMLElement>(options: Tran
       }
     };
   }, []);
-  
+
   useEffect(() => {
     let nextState: TransitionState | null = null;
     let timeout: NodeJS.Timeout | null = null;
     let callback: (() => void) | null = null;
-    
+
     const performStateChange = () => {
       if (nextState === null) return;
-      
+
       // Aktuellen Timeout löschen
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
       }
-      
+
       // Zustand aktualisieren
       setState(nextState);
-      
+
       // Callback ausführen
       if (callback) {
         callback();
       }
     };
-    
+
     if (inProp) {
       // Eintrittsübergang
       if (!mounted) {
         setMounted(true);
       }
-      
+
       if (state === 'exited' || state === 'exiting') {
         nextState = 'entering';
         callback = onEnter || null;
-        
+
         timeoutRef.current = setTimeout(() => {
           nextState = 'entered';
           callback = onEntered || null;
           performStateChange();
         }, getTimeout('enter'));
-        
+
         performStateChange();
         onEntering?.();
       }
@@ -130,31 +130,31 @@ export const useTransition = <T extends HTMLElement = HTMLElement>(options: Tran
       if (state === 'entering' || state === 'entered') {
         nextState = 'exiting';
         callback = onExit || null;
-        
+
         timeoutRef.current = setTimeout(() => {
           nextState = 'exited';
           callback = onExited || null;
-          
+
           if (unmountOnExit) {
             setMounted(false);
           }
-          
+
           performStateChange();
         }, getTimeout('exit'));
-        
+
         performStateChange();
         onExiting?.();
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inProp, state]);
-  
+
   // CSS-Stil basierend auf dem aktuellen Zustand
   const getStyle = (): React.CSSProperties => {
     const baseStyle: React.CSSProperties = {
       transition: `opacity ${transitionPreset.duration}ms ${transitionPreset.easing}`,
     };
-    
+
     switch (state) {
       case 'entering':
         return {
@@ -181,7 +181,7 @@ export const useTransition = <T extends HTMLElement = HTMLElement>(options: Tran
         return baseStyle;
     }
   };
-  
+
   return {
     state,
     isVisible: mounted,

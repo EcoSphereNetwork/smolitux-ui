@@ -119,11 +119,13 @@ export const ContentModerator: React.FC<ContentModeratorProps> = ({
           }}
         >
           {content.text && (
-            <Text style={{ marginBottom: content.media && content.media.length > 0 ? '12px' : '0' }}>
+            <Text
+              style={{ marginBottom: content.media && content.media.length > 0 ? '12px' : '0' }}
+            >
               {content.text}
             </Text>
           )}
-          
+
           {content.media && content.media.length > 0 && (
             <Flex wrap="wrap" gap="8px">
               {content.media.map((media, index) => {
@@ -150,7 +152,7 @@ export const ContentModerator: React.FC<ContentModeratorProps> = ({
                     </Box>
                   );
                 }
-                
+
                 if (media.type === 'video') {
                   return (
                     <Box
@@ -184,7 +186,7 @@ export const ContentModerator: React.FC<ContentModeratorProps> = ({
                     </Box>
                   );
                 }
-                
+
                 if (media.type === 'audio') {
                   return (
                     <Box
@@ -225,7 +227,7 @@ export const ContentModerator: React.FC<ContentModeratorProps> = ({
                     </Box>
                   );
                 }
-                
+
                 return null;
               })}
             </Flex>
@@ -250,10 +252,7 @@ export const ContentModerator: React.FC<ContentModeratorProps> = ({
         >
           <Flex justify="space-between" align="center">
             <Text weight="medium">Overall Rating</Text>
-            <Text
-              weight="bold"
-              color={getRatingColor(result.overallRating)}
-            >
+            <Text weight="bold" color={getRatingColor(result.overallRating)}>
               {getRatingText(result.overallRating)}
             </Text>
           </Flex>
@@ -276,11 +275,7 @@ export const ContentModerator: React.FC<ContentModeratorProps> = ({
               <Flex justify="space-between" align="center">
                 <Text>{category.name}</Text>
                 <Flex align="center">
-                  <Text
-                    size="sm"
-                    color="#6b7280"
-                    style={{ marginRight: '8px' }}
-                  >
+                  <Text size="sm" color="#6b7280" style={{ marginRight: '8px' }}>
                     {Math.round(category.confidence * 100)}%
                   </Text>
                   <Box
@@ -385,7 +380,7 @@ export const ContentModerator: React.FC<ContentModeratorProps> = ({
         </Text>
 
         {renderContentPreview()}
-        
+
         {isModerating && !result && (
           <Box
             style={{

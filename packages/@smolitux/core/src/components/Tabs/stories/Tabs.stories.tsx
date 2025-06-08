@@ -25,7 +25,14 @@ const meta: Meta<typeof Tabs> = {
     variant: {
       control: {
         type: 'select',
-        options: ['line', 'enclosed', 'enclosed-colored', 'soft-rounded', 'solid-rounded', 'unstyled'],
+        options: [
+          'line',
+          'enclosed',
+          'enclosed-colored',
+          'soft-rounded',
+          'solid-rounded',
+          'unstyled',
+        ],
       },
       description: 'Die Variante der Tabs',
     },
@@ -60,7 +67,8 @@ const meta: Meta<typeof Tabs> = {
     },
     isManual: {
       control: 'boolean',
-      description: 'Gibt an, ob die Tabs manuell aktiviert werden sollen (nur bei Klick, nicht bei Fokus)',
+      description:
+        'Gibt an, ob die Tabs manuell aktiviert werden sollen (nur bei Klick, nicht bei Fokus)',
     },
   },
 };
@@ -115,7 +123,7 @@ export const Variants: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Enclosed</h3>
         <Tabs variant="enclosed">
@@ -137,7 +145,7 @@ export const Variants: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Enclosed Colored</h3>
         <Tabs variant="enclosed-colored">
@@ -159,7 +167,7 @@ export const Variants: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Soft Rounded</h3>
         <Tabs variant="soft-rounded">
@@ -181,7 +189,7 @@ export const Variants: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Solid Rounded</h3>
         <Tabs variant="solid-rounded">
@@ -203,7 +211,7 @@ export const Variants: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Unstyled</h3>
         <Tabs variant="unstyled">
@@ -250,7 +258,7 @@ export const ColorSchemes: Story = {
           </TabPanel>
         </TabPanels>
       </Tabs>
-      
+
       <Tabs colorScheme="secondary" variant="solid-rounded">
         <TabList>
           <Tab>Secondary</Tab>
@@ -269,7 +277,7 @@ export const ColorSchemes: Story = {
           </TabPanel>
         </TabPanels>
       </Tabs>
-      
+
       <Tabs colorScheme="success" variant="solid-rounded">
         <TabList>
           <Tab>Success</Tab>
@@ -288,7 +296,7 @@ export const ColorSchemes: Story = {
           </TabPanel>
         </TabPanels>
       </Tabs>
-      
+
       <Tabs colorScheme="danger" variant="solid-rounded">
         <TabList>
           <Tab>Danger</Tab>
@@ -335,7 +343,7 @@ export const Sizes: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Medium</h3>
         <Tabs size="md">
@@ -357,7 +365,7 @@ export const Sizes: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Large</h3>
         <Tabs size="lg">
@@ -407,7 +415,7 @@ export const Orientation: Story = {
           </TabPanels>
         </Tabs>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Vertical</h3>
         <Tabs orientation="vertical">
@@ -463,20 +471,43 @@ export const WithIcons: Story = {
     <Tabs>
       <TabList>
         <Tab>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
           </svg>
           Home
         </Tab>
         <Tab>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+              clipRule="evenodd"
+            />
           </svg>
           Info
         </Tab>
         <Tab>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z" clipRule="evenodd" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
+              clipRule="evenodd"
+            />
           </svg>
           Support
         </Tab>
@@ -522,7 +553,7 @@ export const WithDisabledTab: Story = {
 export const Controlled: Story = {
   render: () => {
     const [tabIndex, setTabIndex] = React.useState(0);
-    
+
     return (
       <div className="flex flex-col space-y-4">
         <Tabs index={tabIndex} onChange={setTabIndex}>
@@ -543,7 +574,7 @@ export const Controlled: Story = {
             </TabPanel>
           </TabPanels>
         </Tabs>
-        
+
         <div className="flex space-x-2">
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -564,7 +595,7 @@ export const Controlled: Story = {
             Tab 3 anzeigen
           </button>
         </div>
-        
+
         <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded">
           Aktueller Tab-Index: {tabIndex}
         </div>

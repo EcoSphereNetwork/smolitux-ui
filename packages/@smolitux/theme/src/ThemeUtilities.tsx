@@ -5,7 +5,7 @@ import { Theme } from './types';
  */
 export function getColorByTheme(
   theme: Theme,
-  colorName: keyof Theme['colors'], 
+  colorName: keyof Theme['colors'],
   shade: keyof Theme['colors']['primary']
 ): string {
   const colorScale = theme.colors[colorName];
@@ -13,7 +13,7 @@ export function getColorByTheme(
     console.warn(`Color ${String(colorName)} not found in theme or is not a color scale`);
     return '';
   }
-  
+
   return colorScale[shade];
 }
 
@@ -26,11 +26,13 @@ export function getContrastColor(backgroundColor: string): string {
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     const fullHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : { r: 0, g: 0, b: 0 };
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : { r: 0, g: 0, b: 0 };
   }
 
   const rgb = hexToRgb(backgroundColor);
@@ -41,10 +43,14 @@ export function getContrastColor(backgroundColor: string): string {
 /**
  * Ermittelt eine Medien-Query für einen Breakpoint
  */
-export function getBreakpointMediaQuery(theme: Theme, breakpoint: keyof Theme['breakpoints'], comparison: 'min' | 'max' = 'min'): string {
+export function getBreakpointMediaQuery(
+  theme: Theme,
+  breakpoint: keyof Theme['breakpoints'],
+  comparison: 'min' | 'max' = 'min'
+): string {
   const value = theme.breakpoints[breakpoint];
   const unit = 'px';
-  
+
   if (comparison === 'min') {
     return `@media (min-width: ${value}${unit})`;
   } else {
@@ -68,7 +74,7 @@ export function getSpacing(theme: Theme, size: keyof Theme['spacing'] | number):
     const baseSpacing = parseFloat(theme.spacing[4].replace('rem', ''));
     return `${baseSpacing * size}rem`;
   }
-  
+
   // Wenn size ein Schlüssel ist, gib den entsprechenden Wert zurück
   return theme.spacing[size];
 }
@@ -83,14 +89,17 @@ export function getFontSize(theme: Theme, size: keyof Theme['typography']['fontS
 /**
  * Generiert ein CSS-Objekt für responsives Design
  */
-export function responsive<T>(theme: Theme, styles: Record<keyof Theme['breakpoints'], T>): Record<string, T> {
+export function responsive<T>(
+  theme: Theme,
+  styles: Record<keyof Theme['breakpoints'], T>
+): Record<string, T> {
   const result: Record<string, T> = {};
-  
+
   // Styles für alle Breakpoints hinzufügen
   Object.entries(styles).forEach(([breakpoint, style]) => {
     const mediaQuery = getBreakpointMediaQuery(theme, breakpoint as keyof Theme['breakpoints']);
     result[mediaQuery] = style;
   });
-  
+
   return result;
 }

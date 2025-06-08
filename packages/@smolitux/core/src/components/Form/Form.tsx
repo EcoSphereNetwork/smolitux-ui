@@ -6,137 +6,137 @@ export type FormProps = ValidationFormProps & {
    * Die Ausrichtung der Formularelemente
    */
   layout?: 'vertical' | 'horizontal' | 'inline';
-  
+
   /**
    * Der Abstand zwischen den Formularelementen
    */
   spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  
+
   /**
    * Die Größe der Formularelemente
    */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  
+
   /**
    * Die Variante der Formularelemente
    */
   variant?: 'outline' | 'filled' | 'flushed' | 'unstyled';
-  
+
   /**
    * Ob das Formular eine Legende haben soll
    */
   legend?: React.ReactNode;
-  
+
   /**
    * Ob das Formular einen Rahmen haben soll
    */
   bordered?: boolean;
-  
+
   /**
    * Ob das Formular einen Schatten haben soll
    */
   shadow?: boolean;
-  
+
   /**
    * Ob das Formular abgerundete Ecken haben soll
    */
   rounded?: boolean;
-  
+
   /**
    * Ob das Formular einen Hintergrund haben soll
    */
   background?: boolean;
-  
+
   /**
    * Ob das Formular gepolstert sein soll
    */
   padding?: boolean;
-  
+
   /**
    * Ob das Formular die volle Breite einnehmen soll
    */
   fullWidth?: boolean;
-  
+
   /**
    * Ob das Formular deaktiviert sein soll
    */
   disabled?: boolean;
-  
+
   /**
    * Ob das Formular schreibgeschützt sein soll
    */
   readOnly?: boolean;
-  
+
   /**
    * Ob das Formular im Ladezustand sein soll
    */
   loading?: boolean;
-  
+
   /**
    * Ob das Formular einen Ladeindikator anzeigen soll
    */
   showLoadingIndicator?: boolean;
-  
+
   /**
    * Ob das Formular einen Erfolgsindikator anzeigen soll
    */
   showSuccessIndicator?: boolean;
-  
+
   /**
    * Ob das Formular einen Fehlerindikator anzeigen soll
    */
   showErrorIndicator?: boolean;
-  
+
   /**
    * Ob das Formular einen Fortschrittsbalken anzeigen soll
    */
   showProgressBar?: boolean;
-  
+
   /**
    * Der aktuelle Fortschritt des Formulars
    */
   progress?: number;
-  
+
   /**
    * Der maximale Fortschritt des Formulars
    */
   progressMax?: number;
-  
+
   /**
    * Ob das Formular einen Zurücksetzen-Button anzeigen soll
    */
   showResetButton?: boolean;
-  
+
   /**
    * Ob das Formular einen Abbrechen-Button anzeigen soll
    */
   showCancelButton?: boolean;
-  
+
   /**
    * Ob das Formular einen Absenden-Button anzeigen soll
    */
   showSubmitButton?: boolean;
-  
+
   /**
    * Der Text des Zurücksetzen-Buttons
    */
   resetButtonText?: string;
-  
+
   /**
    * Der Text des Abbrechen-Buttons
    */
   cancelButtonText?: string;
-  
+
   /**
    * Der Text des Absenden-Buttons
    */
   submitButtonText?: string;
-  
+
   /**
    * Callback, wenn das Formular zurückgesetzt wird
    */
   onReset?: () => void;
-  
+
   /**
    * Callback, wenn das Formular abgebrochen wird
    */
@@ -186,7 +186,7 @@ export const Form: React.FC<FormProps> = ({
     horizontal: 'sm:flex sm:flex-row sm:items-start',
     inline: 'flex flex-row items-center',
   };
-  
+
   // CSS-Klassen für den Abstand
   const spacingClasses = {
     xs: 'space-y-1 sm:space-x-1',
@@ -195,7 +195,7 @@ export const Form: React.FC<FormProps> = ({
     lg: 'space-y-6 sm:space-x-6',
     xl: 'space-y-8 sm:space-x-8',
   };
-  
+
   // Basis-Klassen für das Formular
   const formClasses = [
     layoutClasses[layout],
@@ -210,8 +210,10 @@ export const Form: React.FC<FormProps> = ({
     fullWidth ? 'w-full' : '',
     disabled ? 'opacity-60 pointer-events-none' : '',
     className,
-  ].filter(Boolean).join(' ');
-  
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // Zurücksetzen-Handler
   const handleReset = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -221,33 +223,29 @@ export const Form: React.FC<FormProps> = ({
       props.resetForm();
     }
   };
-  
+
   // Abbrechen-Handler
   const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     onCancel?.();
   };
-  
+
   // Extrahiere nur die Eigenschaften, die von ValidationForm unterstützt werden
   const validationProps = props as ValidationFormProps;
-  
+
   // Erstelle die ValidationForm-Props
   const validationFormProps = {
     ...validationProps,
     className: formClasses,
-    style
+    style,
   };
-  
+
   return (
-    <ValidationForm
-      {...validationFormProps}
-    >
+    <ValidationForm {...validationFormProps}>
       {legend && (
-        <legend className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-          {legend}
-        </legend>
+        <legend className="text-lg font-medium text-gray-900 dark:text-white mb-4">{legend}</legend>
       )}
-      
+
       {showProgressBar && (
         <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full mb-4">
           <div
@@ -256,12 +254,10 @@ export const Form: React.FC<FormProps> = ({
           />
         </div>
       )}
-      
+
       {/* Formularinhalt */}
-      <div className={layout === 'vertical' ? 'space-y-4' : ''}>
-        {children}
-      </div>
-      
+      <div className={layout === 'vertical' ? 'space-y-4' : ''}>{children}</div>
+
       {/* Formular-Buttons */}
       {(showResetButton || showCancelButton || showSubmitButton) && (
         <div className="flex justify-end space-x-2 mt-6">
@@ -274,7 +270,7 @@ export const Form: React.FC<FormProps> = ({
                 const formEvent = {
                   ...e,
                   currentTarget: e.currentTarget.form || e.currentTarget,
-                  preventDefault: e.preventDefault.bind(e)
+                  preventDefault: e.preventDefault.bind(e),
                 } as unknown as React.FormEvent<HTMLFormElement>;
                 handleReset(formEvent);
               }}
@@ -282,7 +278,7 @@ export const Form: React.FC<FormProps> = ({
               {resetButtonText}
             </button>
           )}
-          
+
           {showCancelButton && (
             <button
               type="button"
@@ -292,7 +288,7 @@ export const Form: React.FC<FormProps> = ({
               {cancelButtonText}
             </button>
           )}
-          
+
           {showSubmitButton && (
             <button
               type="submit"
@@ -301,9 +297,25 @@ export const Form: React.FC<FormProps> = ({
             >
               {loading && showLoadingIndicator ? (
                 <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   {submitButtonText}
                 </span>

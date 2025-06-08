@@ -29,7 +29,7 @@ export interface ToastProviderProps {
 
 /**
  * Provider für Toast-Benachrichtigungen
- * 
+ *
  * @example
  * ```tsx
  * function App() {
@@ -44,29 +44,32 @@ export interface ToastProviderProps {
 export const ToastProvider: React.FC<ToastProviderProps> = ({
   limit = 5,
   position = 'top-right',
-  children
+  children,
 }) => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   // Toast hinzufügen
-  const addToast = useCallback((props: Omit<ToastProps, 'onClose' | 'isOpen'>): string => {
-    const id = `toast-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-    
-    setToasts(prevToasts => {
-      // Bei Überschreitung des Limits die ältesten entfernen
-      const newToasts = [...prevToasts, { ...props, id }];
-      if (newToasts.length > limit) {
-        return newToasts.slice(newToasts.length - limit);
-      }
-      return newToasts;
-    });
-    
-    return id;
-  }, [limit]);
+  const addToast = useCallback(
+    (props: Omit<ToastProps, 'onClose' | 'isOpen'>): string => {
+      const id = `toast-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+      setToasts((prevToasts) => {
+        // Bei Überschreitung des Limits die ältesten entfernen
+        const newToasts = [...prevToasts, { ...props, id }];
+        if (newToasts.length > limit) {
+          return newToasts.slice(newToasts.length - limit);
+        }
+        return newToasts;
+      });
+
+      return id;
+    },
+    [limit]
+  );
 
   // Toast entfernen
   const removeToast = useCallback((id: string) => {
-    setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   }, []);
 
   // Alle Toasts entfernen
@@ -77,9 +80,9 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   return (
     <ToastContext.Provider value={{ addToast, removeToast, removeAllToasts }}>
       {children}
-      
+
       {/* Toast-Container */}
-      {toasts.map(toast => (
+      {toasts.map((toast) => (
         <Toast
           key={toast.id}
           isOpen={true}
@@ -94,12 +97,12 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
 
 /**
  * Hook für den Zugriff auf Toast-Funktionen
- * 
+ *
  * @example
  * ```tsx
  * function MyComponent() {
  *   const { addToast } = useToast();
- *   
+ *
  *   const handleClick = () => {
  *     addToast({
  *       type: 'success',
@@ -107,7 +110,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
  *       message: 'Aktion erfolgreich durchgeführt'
  *     });
  *   };
- *   
+ *
  *   return <Button onClick={handleClick}>Toast anzeigen</Button>;
  * }
  * ```
@@ -123,19 +126,23 @@ export const useToast = () => {
 // Hilfsfunktionen für verschiedene Toast-Typen
 export const useToastMethods = () => {
   const { addToast } = useToast();
-  
+
   return {
-    success: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
-      addToast({ type: 'success', message, ...props }),
-      
-    error: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
+    success: (
+      message: string,
+      props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>
+    ) => addToast({ type: 'success', message, ...props }),
+
+    error: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) =>
       addToast({ type: 'error', message, ...props }),
-      
-    warning: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
-      addToast({ type: 'warning', message, ...props }),
-      
-    info: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) => 
-      addToast({ type: 'info', message, ...props })
+
+    warning: (
+      message: string,
+      props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>
+    ) => addToast({ type: 'warning', message, ...props }),
+
+    info: (message: string, props?: Omit<ToastProps, 'type' | 'message' | 'onClose' | 'isOpen'>) =>
+      addToast({ type: 'info', message, ...props }),
   };
 };
 

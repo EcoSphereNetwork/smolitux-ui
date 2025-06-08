@@ -12,7 +12,7 @@ export const defaultTheme: Theme = {
       600: '#005BB3',
       700: '#004285',
       800: '#002957',
-      900: '#001429'
+      900: '#001429',
     },
     secondary: {
       50: '#F0FDF4',
@@ -24,7 +24,7 @@ export const defaultTheme: Theme = {
       600: '#16A34A',
       700: '#15803D',
       800: '#166534',
-      900: '#14532D'
+      900: '#14532D',
     },
     gray: {
       50: '#F9FAFB',
@@ -36,7 +36,7 @@ export const defaultTheme: Theme = {
       600: '#4B5563',
       700: '#374151',
       800: '#1F2937',
-      900: '#111827'
+      900: '#111827',
     },
     success: {
       50: '#ECFDF5',
@@ -48,7 +48,7 @@ export const defaultTheme: Theme = {
       600: '#059669',
       700: '#047857',
       800: '#065F46',
-      900: '#064E3B'
+      900: '#064E3B',
     },
     warning: {
       50: '#FFFBEB',
@@ -60,7 +60,7 @@ export const defaultTheme: Theme = {
       600: '#D97706',
       700: '#B45309',
       800: '#92400E',
-      900: '#78350F'
+      900: '#78350F',
     },
     error: {
       50: '#FEF2F2',
@@ -72,7 +72,7 @@ export const defaultTheme: Theme = {
       600: '#DC2626',
       700: '#B91C1C',
       800: '#991B1B',
-      900: '#7F1D1D'
+      900: '#7F1D1D',
     },
     info: {
       50: '#EFF6FF',
@@ -84,16 +84,16 @@ export const defaultTheme: Theme = {
       600: '#2563EB',
       700: '#1D4ED8',
       800: '#1E40AF',
-      900: '#1E3A8A'
+      900: '#1E3A8A',
     },
     white: '#FFFFFF',
-    black: '#000000'
+    black: '#000000',
   },
   typography: {
     fontFamily: {
       sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       serif: ['Merriweather', 'Georgia', 'serif'],
-      mono: ['Fira Code', 'monospace']
+      mono: ['Fira Code', 'monospace'],
     },
     fontSize: {
       xs: '0.75rem',
@@ -104,21 +104,21 @@ export const defaultTheme: Theme = {
       '2xl': '1.5rem',
       '3xl': '1.875rem',
       '4xl': '2.25rem',
-      '5xl': '3rem'
+      '5xl': '3rem',
     },
     fontWeight: {
       light: 300,
       normal: 400,
       medium: 500,
       semibold: 600,
-      bold: 700
+      bold: 700,
     },
     lineHeight: {
       none: 1,
       tight: 1.25,
       normal: 1.5,
-      loose: 2
-    }
+      loose: 2,
+    },
   },
   spacing: {
     px: '1px',
@@ -143,7 +143,7 @@ export const defaultTheme: Theme = {
     40: '10rem',
     48: '12rem',
     56: '14rem',
-    64: '16rem'
+    64: '16rem',
   },
   borderRadius: {
     none: '0',
@@ -154,7 +154,7 @@ export const defaultTheme: Theme = {
     xl: '0.75rem',
     '2xl': '1rem',
     '3xl': '1.5rem',
-    full: '9999px'
+    full: '9999px',
   },
   shadows: {
     sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -164,7 +164,7 @@ export const defaultTheme: Theme = {
     xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
     inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-    none: 'none'
+    none: 'none',
   },
   breakpoints: {
     xs: 0,
@@ -172,7 +172,7 @@ export const defaultTheme: Theme = {
     md: 768,
     lg: 1024,
     xl: 1280,
-    '2xl': 1536
+    '2xl': 1536,
   },
   zIndices: {
     auto: 'auto',
@@ -181,6 +181,6 @@ export const defaultTheme: Theme = {
     20: '20',
     30: '30',
     40: '40',
-    50: '50'
-  }
+    50: '50',
+  },
 };

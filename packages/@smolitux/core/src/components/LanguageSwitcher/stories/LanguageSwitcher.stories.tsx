@@ -69,7 +69,7 @@ const languages = {
 export const Basic: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -88,7 +88,7 @@ export const Basic: Story = {
 export const DropdownVariant: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -108,7 +108,7 @@ export const DropdownVariant: Story = {
 export const ButtonsVariant: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -128,7 +128,7 @@ export const ButtonsVariant: Story = {
 export const FlagsVariant: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -148,7 +148,7 @@ export const FlagsVariant: Story = {
 export const Sizes: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-8">
         <div>
@@ -160,7 +160,7 @@ export const Sizes: Story = {
             size="sm"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Medium (Standard)</h3>
           <LanguageSwitcher
@@ -170,7 +170,7 @@ export const Sizes: Story = {
             size="md"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Large</h3>
           <LanguageSwitcher
@@ -188,7 +188,7 @@ export const Sizes: Story = {
 export const WithoutLabels: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -209,7 +209,7 @@ export const WithoutLabels: Story = {
 export const WithoutFlags: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -229,19 +229,14 @@ export const WithoutFlags: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <LanguageSwitcher
-      languages={languages}
-      currentLanguage="de"
-      onChange={() => {}}
-      disabled
-    />
+    <LanguageSwitcher languages={languages} currentLanguage="de" onChange={() => {}} disabled />
   ),
 };
 
 export const WithCustomStyling: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -265,7 +260,7 @@ export const WithLimitedLanguages: Story = {
       de: { name: 'Deutsch', flag: '🇩🇪' },
       en: { name: 'English', flag: '🇬🇧' },
     };
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -274,7 +269,8 @@ export const WithLimitedLanguages: Story = {
           onChange={setCurrentLanguage}
         />
         <div className="text-center">
-          Aktuelle Sprache: {limitedLanguages[currentLanguage as keyof typeof limitedLanguages].name}
+          Aktuelle Sprache:{' '}
+          {limitedLanguages[currentLanguage as keyof typeof limitedLanguages].name}
         </div>
       </div>
     );
@@ -308,7 +304,12 @@ export const WithCustomFlags: Story = {
             <g clipPath="url(#s)">
               <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
               <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
-              <path d="M0,0 L60,30 M60,0 L0,30" clipPath="url(#t)" stroke="#C8102E" strokeWidth="4" />
+              <path
+                d="M0,0 L60,30 M60,0 L0,30"
+                clipPath="url(#t)"
+                stroke="#C8102E"
+                strokeWidth="4"
+              />
               <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10" />
               <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6" />
             </g>
@@ -316,7 +317,7 @@ export const WithCustomFlags: Story = {
         ),
       },
     };
-    
+
     return (
       <div className="space-y-4">
         <LanguageSwitcher
@@ -335,17 +336,25 @@ export const WithCustomFlags: Story = {
 export const InNavbar: Story = {
   render: () => {
     const [currentLanguage, setCurrentLanguage] = React.useState('de');
-    
+
     return (
       <div className="w-full">
         <div className="bg-gray-800 text-white p-4">
           <div className="container mx-auto flex justify-between items-center">
             <div className="font-bold text-xl">Logo</div>
             <div className="flex items-center space-x-6">
-              <a href="#" className="hover:text-gray-300">Home</a>
-              <a href="#" className="hover:text-gray-300">About</a>
-              <a href="#" className="hover:text-gray-300">Services</a>
-              <a href="#" className="hover:text-gray-300">Contact</a>
+              <a href="#" className="hover:text-gray-300">
+                Home
+              </a>
+              <a href="#" className="hover:text-gray-300">
+                About
+              </a>
+              <a href="#" className="hover:text-gray-300">
+                Services
+              </a>
+              <a href="#" className="hover:text-gray-300">
+                Contact
+              </a>
               <LanguageSwitcher
                 languages={languages}
                 currentLanguage={currentLanguage}

@@ -14,7 +14,8 @@ export function withVoiceControl<P extends object>(
   return React.forwardRef<unknown, P & VoiceControlProps>((props, ref) => {
     const { voiceCommands = defaultCommands, voiceEnabled = true, onVoiceCommand, ...rest } = props;
     const id = useId();
-    const { registerComponent, unregisterComponent, targetComponent, lastCommand } = useVoiceControl();
+    const { registerComponent, unregisterComponent, targetComponent, lastCommand } =
+      useVoiceControl();
     const componentRef = useRef<HTMLElement>(null);
 
     useEffect(() => {

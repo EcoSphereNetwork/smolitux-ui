@@ -87,7 +87,7 @@ export const useForm = (options: FormOptions = {}) => {
       // Feld als schmutzig markieren, wenn der Wert sich geändert hat
       const initialValue = initialValuesRef.current[name];
       const isDirty = value !== initialValue;
-      
+
       setDirty((prev) => ({
         ...prev,
         [name]: isDirty,
@@ -141,7 +141,7 @@ export const useForm = (options: FormOptions = {}) => {
       // Validiere jede Regel
       for (const rule of field.validationRules) {
         const isEmpty = fieldValue === undefined || fieldValue === null || fieldValue === '';
-        
+
         // Überspringe die Validierung, wenn das Feld leer ist und validateEmpty nicht gesetzt ist
         if (isEmpty && !rule.validateEmpty) {
           continue;
@@ -149,7 +149,7 @@ export const useForm = (options: FormOptions = {}) => {
 
         // Führe die Validierung aus
         const isValid = rule.validator(fieldValue, values);
-        
+
         if (!isValid) {
           fieldErrors.push(rule.message);
         }
@@ -202,63 +202,55 @@ export const useForm = (options: FormOptions = {}) => {
   // Formular validieren
   const validateForm = useCallback(async (): Promise<boolean> => {
     setIsValidating(true);
-    
+
     const fieldNames = Object.keys(fieldsRef.current);
-    const validationResults = await Promise.all(
-      fieldNames.map((name) => validateField(name))
-    );
-    
+    const validationResults = await Promise.all(fieldNames.map((name) => validateField(name)));
+
     const isFormValid = validationResults.every((isValid) => isValid);
-    
+
     setIsValid(isFormValid);
     setIsValidating(false);
-    
+
     return isFormValid;
   }, [validateField]);
 
   // Formular zurücksetzen
-  const resetForm = useCallback(
-    (newValues?: Record<string, unknown>) => {
-      const resetValues = newValues || initialValuesRef.current;
-      
-      setValues(resetValues);
-      setErrors({});
-      setTouched({});
-      setDirty({});
-      setIsSubmitted(false);
-      setIsValid(true);
-    },
-    []
-  );
+  const resetForm = useCallback((newValues?: Record<string, unknown>) => {
+    const resetValues = newValues || initialValuesRef.current;
+
+    setValues(resetValues);
+    setErrors({});
+    setTouched({});
+    setDirty({});
+    setIsSubmitted(false);
+    setIsValid(true);
+  }, []);
 
   // Formular absenden
-  const submitForm = useCallback(
-    async (): Promise<void> => {
-      setIsSubmitting(true);
-      setIsSubmitted(true);
+  const submitForm = useCallback(async (): Promise<void> => {
+    setIsSubmitting(true);
+    setIsSubmitted(true);
 
-      // Validiere das Formular, falls erforderlich
-      let isFormValid = true;
-      if (validateOnSubmit) {
-        isFormValid = await validateForm();
+    // Validiere das Formular, falls erforderlich
+    let isFormValid = true;
+    if (validateOnSubmit) {
+      isFormValid = await validateForm();
+    }
+
+    if (isFormValid) {
+      // Rufe den Submit-Callback auf, falls vorhanden
+      if (onSubmit) {
+        await onSubmit(values, formState);
       }
-
-      if (isFormValid) {
-        // Rufe den Submit-Callback auf, falls vorhanden
-        if (onSubmit) {
-          await onSubmit(values, formState);
-        }
-      } else {
-        // Rufe den Fehler-Callback auf, falls vorhanden
-        if (onError) {
-          onError(errors, formState);
-        }
+    } else {
+      // Rufe den Fehler-Callback auf, falls vorhanden
+      if (onError) {
+        onError(errors, formState);
       }
+    }
 
-      setIsSubmitting(false);
-    },
-    [validateOnSubmit, validateForm, onSubmit, values, formState, onError, errors]
-  );
+    setIsSubmitting(false);
+  }, [validateOnSubmit, validateForm, onSubmit, values, formState, onError, errors]);
 
   // Formularstatus aktualisieren
   useEffect(() => {
@@ -277,7 +269,6 @@ export const useForm = (options: FormOptions = {}) => {
     if (validateOnMount) {
       validateForm();
     }
-   
   }, []);
 
   return {

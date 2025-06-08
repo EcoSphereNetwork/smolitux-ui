@@ -10,7 +10,7 @@ export type { SelectA11yProps } from './Select.a11y';
 // Erweitere Select um die A11y-Komponente und Option
 export const Select = Object.assign(BaseSelect, {
   A11y: SelectA11y,
-  Option: Option
+  Option: Option,
 });
 
 // Fuer Abwaertskompatibilitaet mit dem bestehenden Export

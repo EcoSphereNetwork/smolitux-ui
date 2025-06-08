@@ -103,7 +103,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   // Render sources
   const renderSources = () => {
     if (!sources || sources.length === 0) return null;
-    
+
     return sources.map((source, index) => (
       <source
         key={`source-${index}`}
@@ -117,7 +117,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   // Render tracks
   const renderTracks = () => {
     if (!tracks || tracks.length === 0) return null;
-    
+
     return tracks.map((track, index) => (
       <track
         key={`track-${index}`}
@@ -137,7 +137,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
   if (height) styleProps.height = height;
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`relative ${className}`}
       data-testid="media-player"
@@ -186,17 +186,17 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
           {renderTracks()}
         </video>
       )}
-      
+
       {controls && !hideControls && (
         <div data-testid="media-controls" className="absolute bottom-0 left-0 right-0">
-          <div 
-            data-testid="progress-bar" 
-            ref={progressBarRef} 
+          <div
+            data-testid="progress-bar"
+            ref={progressBarRef}
             className="h-1 bg-gray-600 w-full"
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const clickPosition = (e.clientX - rect.left) / rect.width;
-              
+
               if (type === 'audio' && audioRef.current) {
                 audioRef.current.currentTime = clickPosition * (audioRef.current.duration || 0);
               } else if (videoRef.current) {
@@ -206,7 +206,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
             onMouseDown={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const clickPosition = (e.clientX - rect.left) / rect.width;
-              
+
               if (type === 'audio' && audioRef.current) {
                 audioRef.current.currentTime = clickPosition * (audioRef.current.duration || 0);
               } else if (videoRef.current) {
@@ -217,8 +217,8 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
             <div className="h-full bg-primary-500" style={{ width: '0%' }}></div>
           </div>
           <div className="flex items-center p-2">
-            <button 
-              aria-label="Play" 
+            <button
+              aria-label="Play"
               className="mr-2"
               onClick={() => {
                 if (type === 'audio' && audioRef.current) {
@@ -227,9 +227,11 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
                   videoRef.current.play();
                 }
               }}
-            >▶</button>
-            <button 
-              aria-label="Pause" 
+            >
+              ▶
+            </button>
+            <button
+              aria-label="Pause"
               className="mr-2"
               onClick={() => {
                 if (type === 'audio' && audioRef.current) {
@@ -238,9 +240,11 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
                   videoRef.current.pause();
                 }
               }}
-            >⏸</button>
-            <button 
-              aria-label="Mute" 
+            >
+              ⏸
+            </button>
+            <button
+              aria-label="Mute"
               className="mr-2"
               onClick={() => {
                 if (type === 'audio' && audioRef.current) {
@@ -249,9 +253,11 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
                   videoRef.current.muted = true;
                 }
               }}
-            >🔇</button>
-            <button 
-              aria-label="Unmute" 
+            >
+              🔇
+            </button>
+            <button
+              aria-label="Unmute"
               className="mr-2 hidden"
               onClick={() => {
                 if (type === 'audio' && audioRef.current) {
@@ -260,14 +266,16 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
                   videoRef.current.muted = false;
                 }
               }}
-            >🔊</button>
-            <input 
-              type="range" 
-              min="0" 
-              max="1" 
-              step="0.1" 
-              defaultValue="1" 
-              aria-label="Volume" 
+            >
+              🔊
+            </button>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              defaultValue="1"
+              aria-label="Volume"
               className="w-24 mr-2"
               onChange={(e) => {
                 const value = parseFloat(e.target.value);
@@ -278,14 +286,16 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>((props, 
                 }
               }}
             />
-            <button 
+            <button
               aria-label="Enter fullscreen"
               onClick={() => {
                 if (containerRef.current) {
                   containerRef.current.requestFullscreen();
                 }
               }}
-            >⛶</button>
+            >
+              ⛶
+            </button>
           </div>
         </div>
       )}

@@ -9,9 +9,10 @@ const meta: Meta<typeof ColorPicker.A11y> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Eine barrierefreie Version des ColorPickers mit verbesserten ARIA-Attributen und Screenreader-Unterstützung.'
-      }
-    }
+        component:
+          'Eine barrierefreie Version des ColorPickers mit verbesserten ARIA-Attributen und Screenreader-Unterstützung.',
+      },
+    },
   },
   argTypes: {
     value: { control: 'color' },
@@ -20,20 +21,20 @@ const meta: Meta<typeof ColorPicker.A11y> = {
     disabled: { control: 'boolean' },
     popupPosition: {
       control: { type: 'select' },
-      options: ['top', 'bottom', 'left', 'right']
+      options: ['top', 'bottom', 'left', 'right'],
     },
     format: {
       control: { type: 'select' },
-      options: ['hex', 'rgb', 'hsl']
+      options: ['hex', 'rgb', 'hsl'],
     },
     size: {
       control: { type: 'select' },
-      options: ['xs', 'sm', 'md', 'lg', 'xl']
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     accessibleLabel: { control: 'text' },
     accessibleDescription: { control: 'text' },
-    a11yTexts: { control: 'object' }
-  }
+    a11yTexts: { control: 'object' },
+  },
 };
 
 export default meta;
@@ -44,8 +45,8 @@ export const Default: Story = {
     label: 'Wähle eine Farbe',
     value: '#3182ce',
     accessibleLabel: 'Farbauswahl für den Hintergrund',
-    accessibleDescription: 'Klicken Sie, um den Farbwähler zu öffnen'
-  }
+    accessibleDescription: 'Klicken Sie, um den Farbwähler zu öffnen',
+  },
 };
 
 export const WithAlpha: Story = {
@@ -54,18 +55,29 @@ export const WithAlpha: Story = {
     value: 'rgba(49, 130, 206, 0.5)',
     allowAlpha: true,
     accessibleLabel: 'Farbauswahl mit Transparenz',
-    accessibleDescription: 'Klicken Sie, um den Farbwähler zu öffnen und die Transparenz einzustellen'
-  }
+    accessibleDescription:
+      'Klicken Sie, um den Farbwähler zu öffnen und die Transparenz einzustellen',
+  },
 };
 
 export const WithPresetColors: Story = {
   args: {
     label: 'Wähle eine Farbe aus den Voreinstellungen',
     value: '#3182ce',
-    presetColors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#000000', '#ffffff'],
+    presetColors: [
+      '#ff0000',
+      '#00ff00',
+      '#0000ff',
+      '#ffff00',
+      '#ff00ff',
+      '#00ffff',
+      '#000000',
+      '#ffffff',
+    ],
     accessibleLabel: 'Farbauswahl aus Voreinstellungen',
-    accessibleDescription: 'Klicken Sie, um den Farbwähler zu öffnen und eine voreingestellte Farbe auszuwählen'
-  }
+    accessibleDescription:
+      'Klicken Sie, um den Farbwähler zu öffnen und eine voreingestellte Farbe auszuwählen',
+  },
 };
 
 export const WithError: Story = {
@@ -74,8 +86,8 @@ export const WithError: Story = {
     value: '#3182ce',
     error: 'Bitte wähle eine andere Farbe',
     accessibleLabel: 'Farbauswahl mit Fehler',
-    accessibleDescription: 'Es ist ein Fehler aufgetreten. Bitte wählen Sie eine andere Farbe.'
-  }
+    accessibleDescription: 'Es ist ein Fehler aufgetreten. Bitte wählen Sie eine andere Farbe.',
+  },
 };
 
 export const Required: Story = {
@@ -84,8 +96,8 @@ export const Required: Story = {
     value: '#3182ce',
     required: true,
     accessibleLabel: 'Erforderliche Farbauswahl',
-    accessibleDescription: 'Dieses Feld ist erforderlich. Bitte wählen Sie eine Farbe aus.'
-  }
+    accessibleDescription: 'Dieses Feld ist erforderlich. Bitte wählen Sie eine Farbe aus.',
+  },
 };
 
 export const Disabled: Story = {
@@ -94,8 +106,9 @@ export const Disabled: Story = {
     value: '#3182ce',
     disabled: true,
     accessibleLabel: 'Deaktivierte Farbauswahl',
-    accessibleDescription: 'Diese Farbauswahl ist derzeit deaktiviert und kann nicht geändert werden.'
-  }
+    accessibleDescription:
+      'Diese Farbauswahl ist derzeit deaktiviert und kann nicht geändert werden.',
+  },
 };
 
 export const CustomA11yTexts: Story = {
@@ -112,9 +125,9 @@ export const CustomA11yTexts: Story = {
       closeButtonLabel: 'Farbwähler schließen',
       currentColorLabel: 'Gewählte Farbe',
       colorValueLabel: 'Farbcode',
-      requiredLabel: 'Pflichtfeld'
-    }
-  }
+      requiredLabel: 'Pflichtfeld',
+    },
+  },
 };
 
 export const Interactive: Story = {
@@ -144,8 +157,8 @@ export const Interactive: Story = {
   args: {
     label: 'Wähle eine Farbe',
     accessibleLabel: 'Interaktive Farbauswahl',
-    accessibleDescription: 'Wählen Sie eine Farbe aus. Die Vorschau wird automatisch aktualisiert.'
-  }
+    accessibleDescription: 'Wählen Sie eine Farbe aus. Die Vorschau wird automatisch aktualisiert.',
+  },
 };
 
 export const DifferentSizes: Story = {
@@ -182,7 +195,7 @@ export const DifferentSizes: Story = {
         accessibleLabel="Sehr große Farbauswahl"
       />
     </div>
-  )
+  ),
 };
 
 export const DifferentFormats: Story = {
@@ -210,5 +223,5 @@ export const DifferentFormats: Story = {
         accessibleDescription="Zeigt den Farbwert im HSL-Format an (z.B. hsl(210, 64%, 50%))"
       />
     </div>
-  )
+  ),
 };

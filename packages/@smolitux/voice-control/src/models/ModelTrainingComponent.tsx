@@ -72,7 +72,10 @@ const ModelTrainingComponent: React.FC = () => {
             {customWords.map((word) => (
               <li key={word}>
                 {word} ({exampleCounts[word] || 0} examples)
-                <button onClick={() => handleRecordExample(word)} disabled={isRecording || isTraining}>
+                <button
+                  onClick={() => handleRecordExample(word)}
+                  disabled={isRecording || isTraining}
+                >
                   {isRecording && currentWord === word ? 'Recording...' : 'Record Example'}
                 </button>
               </li>
@@ -81,7 +84,10 @@ const ModelTrainingComponent: React.FC = () => {
         )}
       </div>
       <div className="training">
-        <button onClick={handleTrain} disabled={customWords.length === 0 || isRecording || isTraining}>
+        <button
+          onClick={handleTrain}
+          disabled={customWords.length === 0 || isRecording || isTraining}
+        >
           {isTraining ? 'Training...' : 'Train Model'}
         </button>
         {isTraining && (

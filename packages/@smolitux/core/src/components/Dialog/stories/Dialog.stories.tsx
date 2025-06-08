@@ -32,11 +32,13 @@ const meta: Meta<typeof Dialog> = {
     },
     closeOnOverlayClick: {
       control: 'boolean',
-      description: 'Gibt an, ob der Dialog geschlossen werden soll, wenn auf den Overlay geklickt wird',
+      description:
+        'Gibt an, ob der Dialog geschlossen werden soll, wenn auf den Overlay geklickt wird',
     },
     closeOnEsc: {
       control: 'boolean',
-      description: 'Gibt an, ob der Dialog geschlossen werden soll, wenn die Escape-Taste gedrückt wird',
+      description:
+        'Gibt an, ob der Dialog geschlossen werden soll, wenn die Escape-Taste gedrückt wird',
     },
     isCentered: {
       control: 'boolean',
@@ -51,7 +53,8 @@ const meta: Meta<typeof Dialog> = {
     },
     returnFocusOnClose: {
       control: 'boolean',
-      description: 'Gibt an, ob der Fokus zurückgesetzt werden soll, wenn der Dialog geschlossen wird',
+      description:
+        'Gibt an, ob der Fokus zurückgesetzt werden soll, wenn der Dialog geschlossen wird',
     },
     initialFocusRef: {
       description: 'Ref zum Element, das den initialen Fokus erhalten soll',
@@ -66,7 +69,14 @@ const meta: Meta<typeof Dialog> = {
     motionPreset: {
       control: {
         type: 'select',
-        options: ['fade', 'scale', 'slide-from-top', 'slide-from-bottom', 'slide-from-left', 'slide-from-right'],
+        options: [
+          'fade',
+          'scale',
+          'slide-from-top',
+          'slide-from-bottom',
+          'slide-from-left',
+          'slide-from-right',
+        ],
       },
       description: 'Die Animations-Voreinstellung für den Dialog',
     },
@@ -79,16 +89,12 @@ type Story = StoryObj<typeof Dialog>;
 export const Basic: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    
+
     return (
       <>
         <Button onClick={() => setIsOpen(true)}>Dialog öffnen</Button>
-        
-        <Dialog
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          title="Beispiel-Dialog"
-        >
+
+        <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)} title="Beispiel-Dialog">
           <div className="p-6">
             <p className="mb-4">
               Dies ist ein einfacher Dialog mit einem Titel und einem Schließen-Button.
@@ -97,9 +103,7 @@ export const Basic: Story = {
               <Button variant="ghost" onClick={() => setIsOpen(false)}>
                 Abbrechen
               </Button>
-              <Button onClick={() => setIsOpen(false)}>
-                Bestätigen
-              </Button>
+              <Button onClick={() => setIsOpen(false)}>Bestätigen</Button>
             </div>
           </div>
         </Dialog>
@@ -112,18 +116,60 @@ export const Sizes: Story = {
   render: () => {
     const [size, setSize] = React.useState<'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'>('md');
     const [isOpen, setIsOpen] = React.useState(false);
-    
+
     return (
       <>
         <div className="flex flex-wrap gap-2">
-          <Button onClick={() => { setSize('xs'); setIsOpen(true); }}>XS</Button>
-          <Button onClick={() => { setSize('sm'); setIsOpen(true); }}>SM</Button>
-          <Button onClick={() => { setSize('md'); setIsOpen(true); }}>MD</Button>
-          <Button onClick={() => { setSize('lg'); setIsOpen(true); }}>LG</Button>
-          <Button onClick={() => { setSize('xl'); setIsOpen(true); }}>XL</Button>
-          <Button onClick={() => { setSize('full'); setIsOpen(true); }}>Full</Button>
+          <Button
+            onClick={() => {
+              setSize('xs');
+              setIsOpen(true);
+            }}
+          >
+            XS
+          </Button>
+          <Button
+            onClick={() => {
+              setSize('sm');
+              setIsOpen(true);
+            }}
+          >
+            SM
+          </Button>
+          <Button
+            onClick={() => {
+              setSize('md');
+              setIsOpen(true);
+            }}
+          >
+            MD
+          </Button>
+          <Button
+            onClick={() => {
+              setSize('lg');
+              setIsOpen(true);
+            }}
+          >
+            LG
+          </Button>
+          <Button
+            onClick={() => {
+              setSize('xl');
+              setIsOpen(true);
+            }}
+          >
+            XL
+          </Button>
+          <Button
+            onClick={() => {
+              setSize('full');
+              setIsOpen(true);
+            }}
+          >
+            Full
+          </Button>
         </div>
-        
+
         <Dialog
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -131,13 +177,9 @@ export const Sizes: Story = {
           size={size}
         >
           <div className="p-6">
-            <p className="mb-4">
-              Dies ist ein Dialog mit der Größe {size.toUpperCase()}.
-            </p>
+            <p className="mb-4">Dies ist ein Dialog mit der Größe {size.toUpperCase()}.</p>
             <div className="flex justify-end">
-              <Button onClick={() => setIsOpen(false)}>
-                Schließen
-              </Button>
+              <Button onClick={() => setIsOpen(false)}>Schließen</Button>
             </div>
           </div>
         </Dialog>
@@ -150,18 +192,28 @@ export const WithScrollContent: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [scrollBehavior, setScrollBehavior] = React.useState<'inside' | 'outside'>('inside');
-    
+
     return (
       <>
         <div className="flex flex-wrap gap-2">
-          <Button onClick={() => { setScrollBehavior('inside'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setScrollBehavior('inside');
+              setIsOpen(true);
+            }}
+          >
             Scroll Inside
           </Button>
-          <Button onClick={() => { setScrollBehavior('outside'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setScrollBehavior('outside');
+              setIsOpen(true);
+            }}
+          >
             Scroll Outside
           </Button>
         </div>
-        
+
         <Dialog
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -170,20 +222,18 @@ export const WithScrollContent: Story = {
         >
           <div className="p-6">
             <p className="mb-4">
-              Dieser Dialog hat einen langen Inhalt, der gescrollt werden muss.
-              Scroll-Verhalten: {scrollBehavior}
+              Dieser Dialog hat einen langen Inhalt, der gescrollt werden muss. Scroll-Verhalten:{' '}
+              {scrollBehavior}
             </p>
             {Array.from({ length: 20 }).map((_, i) => (
               <p key={i} className="mb-4">
-                Absatz {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                Absatz {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris.
               </p>
             ))}
             <div className="flex justify-end">
-              <Button onClick={() => setIsOpen(false)}>
-                Schließen
-              </Button>
+              <Button onClick={() => setIsOpen(false)}>Schließen</Button>
             </div>
           </div>
         </Dialog>
@@ -195,11 +245,11 @@ export const WithScrollContent: Story = {
 export const WithCustomHeader: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    
+
     return (
       <>
         <Button onClick={() => setIsOpen(true)}>Dialog mit benutzerdefiniertem Header</Button>
-        
+
         <Dialog
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -211,13 +261,9 @@ export const WithCustomHeader: Story = {
           }
         >
           <div className="p-6">
-            <p className="mb-4">
-              Dieser Dialog hat einen benutzerdefinierten Header.
-            </p>
+            <p className="mb-4">Dieser Dialog hat einen benutzerdefinierten Header.</p>
             <div className="flex justify-end">
-              <Button onClick={() => setIsOpen(false)}>
-                Schließen
-              </Button>
+              <Button onClick={() => setIsOpen(false)}>Schließen</Button>
             </div>
           </div>
         </Dialog>
@@ -229,11 +275,11 @@ export const WithCustomHeader: Story = {
 export const WithCustomFooter: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    
+
     return (
       <>
         <Button onClick={() => setIsOpen(true)}>Dialog mit benutzerdefiniertem Footer</Button>
-        
+
         <Dialog
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -247,17 +293,13 @@ export const WithCustomFooter: Story = {
                 <Button variant="ghost" onClick={() => setIsOpen(false)}>
                   Abbrechen
                 </Button>
-                <Button onClick={() => setIsOpen(false)}>
-                  Speichern
-                </Button>
+                <Button onClick={() => setIsOpen(false)}>Speichern</Button>
               </div>
             </div>
           }
         >
           <div className="p-6">
-            <p className="mb-4">
-              Dieser Dialog hat einen benutzerdefinierten Footer.
-            </p>
+            <p className="mb-4">Dieser Dialog hat einen benutzerdefinierten Footer.</p>
           </div>
         </Dialog>
       </>
@@ -269,11 +311,11 @@ export const WithForm: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const initialRef = React.useRef<HTMLInputElement>(null);
-    
+
     return (
       <>
         <Button onClick={() => setIsOpen(true)}>Formular-Dialog</Button>
-        
+
         <Dialog
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -281,7 +323,12 @@ export const WithForm: Story = {
           initialFocusRef={initialRef}
         >
           <div className="p-6">
-            <form onSubmit={(e) => { e.preventDefault(); setIsOpen(false); }}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setIsOpen(false);
+              }}
+            >
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-1" htmlFor="name">
                   Name
@@ -309,9 +356,7 @@ export const WithForm: Story = {
                 <Button type="button" variant="ghost" onClick={() => setIsOpen(false)}>
                   Abbrechen
                 </Button>
-                <Button type="submit">
-                  Speichern
-                </Button>
+                <Button type="submit">Speichern</Button>
               </div>
             </form>
           </div>
@@ -325,30 +370,60 @@ export const WithAnimations: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [motionPreset, setMotionPreset] = React.useState<string>('scale');
-    
+
     return (
       <>
         <div className="flex flex-wrap gap-2 mb-4">
-          <Button onClick={() => { setMotionPreset('fade'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setMotionPreset('fade');
+              setIsOpen(true);
+            }}
+          >
             Fade
           </Button>
-          <Button onClick={() => { setMotionPreset('scale'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setMotionPreset('scale');
+              setIsOpen(true);
+            }}
+          >
             Scale
           </Button>
-          <Button onClick={() => { setMotionPreset('slide-from-top'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setMotionPreset('slide-from-top');
+              setIsOpen(true);
+            }}
+          >
             Slide from Top
           </Button>
-          <Button onClick={() => { setMotionPreset('slide-from-bottom'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setMotionPreset('slide-from-bottom');
+              setIsOpen(true);
+            }}
+          >
             Slide from Bottom
           </Button>
-          <Button onClick={() => { setMotionPreset('slide-from-left'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setMotionPreset('slide-from-left');
+              setIsOpen(true);
+            }}
+          >
             Slide from Left
           </Button>
-          <Button onClick={() => { setMotionPreset('slide-from-right'); setIsOpen(true); }}>
+          <Button
+            onClick={() => {
+              setMotionPreset('slide-from-right');
+              setIsOpen(true);
+            }}
+          >
             Slide from Right
           </Button>
         </div>
-        
+
         <Dialog
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
@@ -356,13 +431,9 @@ export const WithAnimations: Story = {
           motionPreset={motionPreset as any}
         >
           <div className="p-6">
-            <p className="mb-4">
-              Dieser Dialog verwendet die Animation "{motionPreset}".
-            </p>
+            <p className="mb-4">Dieser Dialog verwendet die Animation "{motionPreset}".</p>
             <div className="flex justify-end">
-              <Button onClick={() => setIsOpen(false)}>
-                Schließen
-              </Button>
+              <Button onClick={() => setIsOpen(false)}>Schließen</Button>
             </div>
           </div>
         </Dialog>
@@ -375,44 +446,32 @@ export const NestedDialogs: Story = {
   render: () => {
     const [isFirstOpen, setIsFirstOpen] = React.useState(false);
     const [isSecondOpen, setIsSecondOpen] = React.useState(false);
-    
+
     return (
       <>
         <Button onClick={() => setIsFirstOpen(true)}>Ersten Dialog öffnen</Button>
-        
-        <Dialog
-          isOpen={isFirstOpen}
-          onClose={() => setIsFirstOpen(false)}
-          title="Erster Dialog"
-        >
+
+        <Dialog isOpen={isFirstOpen} onClose={() => setIsFirstOpen(false)} title="Erster Dialog">
           <div className="p-6">
             <p className="mb-4">
               Dies ist der erste Dialog. Sie können einen weiteren Dialog öffnen.
             </p>
             <div className="flex justify-between">
-              <Button onClick={() => setIsSecondOpen(true)}>
-                Zweiten Dialog öffnen
-              </Button>
+              <Button onClick={() => setIsSecondOpen(true)}>Zweiten Dialog öffnen</Button>
               <Button variant="ghost" onClick={() => setIsFirstOpen(false)}>
                 Schließen
               </Button>
             </div>
           </div>
         </Dialog>
-        
-        <Dialog
-          isOpen={isSecondOpen}
-          onClose={() => setIsSecondOpen(false)}
-          title="Zweiter Dialog"
-        >
+
+        <Dialog isOpen={isSecondOpen} onClose={() => setIsSecondOpen(false)} title="Zweiter Dialog">
           <div className="p-6">
             <p className="mb-4">
               Dies ist der zweite Dialog, der über dem ersten Dialog geöffnet wurde.
             </p>
             <div className="flex justify-end">
-              <Button onClick={() => setIsSecondOpen(false)}>
-                Schließen
-              </Button>
+              <Button onClick={() => setIsSecondOpen(false)}>Schließen</Button>
             </div>
           </div>
         </Dialog>

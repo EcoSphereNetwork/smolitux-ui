@@ -121,11 +121,11 @@ export const WithDifferentInputs: Story = {
       <FormField label="Name" htmlFor="name">
         <Input id="name" placeholder="Ihr Name" />
       </FormField>
-      
+
       <FormField label="Beschreibung" htmlFor="description">
         <Textarea id="description" placeholder="Beschreibung eingeben" rows={3} />
       </FormField>
-      
+
       <FormField label="Land" htmlFor="country">
         <Select id="country">
           <option value="">Bitte wählen</option>
@@ -172,7 +172,7 @@ export const WithHorizontalLayout: Story = {
       >
         <Input id="username" placeholder="Benutzername eingeben" />
       </FormField>
-      
+
       <FormField
         label="E-Mail"
         htmlFor="email"
@@ -182,7 +182,7 @@ export const WithHorizontalLayout: Story = {
       >
         <Input id="email" type="email" placeholder="E-Mail-Adresse eingeben" />
       </FormField>
-      
+
       <FormField
         label="Passwort"
         htmlFor="password"
@@ -201,11 +201,11 @@ export const WithValidation: Story = {
     const [value, setValue] = React.useState('');
     const [isValid, setIsValid] = React.useState(true);
     const [errorMessage, setErrorMessage] = React.useState('');
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
       setValue(newValue);
-      
+
       if (!newValue) {
         setIsValid(false);
         setErrorMessage('E-Mail ist erforderlich');
@@ -217,7 +217,7 @@ export const WithValidation: Story = {
         setErrorMessage('');
       }
     };
-    
+
     return (
       <div className="w-[400px]">
         <FormField
@@ -261,8 +261,17 @@ export const WithLabelTooltip: Story = {
           <div className="flex items-center">
             <span>Steuer-ID</span>
             <div className="relative ml-1 group">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-gray-500"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                  clipRule="evenodd"
+                />
               </svg>
               <div className="absolute left-0 bottom-full mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
                 Die Steuer-ID ist eine 11-stellige Nummer, die Ihnen vom Finanzamt zugewiesen wurde.
@@ -283,17 +292,17 @@ export const WithNestedFields: Story = {
     <div className="w-[400px]">
       <FormField label="Adresse" htmlFor="address">
         <Input id="address" placeholder="Straße und Hausnummer" className="mb-2" />
-        
+
         <div className="grid grid-cols-2 gap-2">
           <FormField label="PLZ" htmlFor="zip" labelClassName="text-sm">
             <Input id="zip" placeholder="PLZ" />
           </FormField>
-          
+
           <FormField label="Stadt" htmlFor="city" labelClassName="text-sm">
             <Input id="city" placeholder="Stadt" />
           </FormField>
         </div>
-        
+
         <FormField label="Land" htmlFor="country" labelClassName="text-sm" className="mt-2">
           <Select id="country">
             <option value="">Bitte wählen</option>

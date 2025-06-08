@@ -59,17 +59,23 @@ describe('Card Snapshots', () => {
   });
 
   test('renders correctly with small border radius', () => {
-    const tree = renderer.create(<Card borderRadius="small">Small Border Radius Card</Card>).toJSON();
+    const tree = renderer
+      .create(<Card borderRadius="small">Small Border Radius Card</Card>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with medium border radius', () => {
-    const tree = renderer.create(<Card borderRadius="medium">Medium Border Radius Card</Card>).toJSON();
+    const tree = renderer
+      .create(<Card borderRadius="medium">Medium Border Radius Card</Card>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with large border radius', () => {
-    const tree = renderer.create(<Card borderRadius="large">Large Border Radius Card</Card>).toJSON();
+    const tree = renderer
+      .create(<Card borderRadius="large">Large Border Radius Card</Card>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -84,7 +90,13 @@ describe('Card Snapshots', () => {
   });
 
   test('renders correctly with custom width and height', () => {
-    const tree = renderer.create(<Card width="300px" height="200px">Custom Size Card</Card>).toJSON();
+    const tree = renderer
+      .create(
+        <Card width="300px" height="200px">
+          Custom Size Card
+        </Card>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -94,19 +106,23 @@ describe('Card Snapshots', () => {
   });
 
   test('renders correctly with custom border color', () => {
-    const tree = renderer.create(<Card borderColor="border-red-500">Red Border Card</Card>).toJSON();
+    const tree = renderer
+      .create(<Card borderColor="border-red-500">Red Border Card</Card>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with header and footer', () => {
-    const tree = renderer.create(
-      <Card
-        header={<div data-testid="card-header">Card Header</div>}
-        footer={<div data-testid="card-footer">Card Footer</div>}
-      >
-        Card Body
-      </Card>
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Card
+          header={<div data-testid="card-header">Card Header</div>}
+          footer={<div data-testid="card-footer">Card Footer</div>}
+        >
+          Card Body
+        </Card>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 

@@ -9,7 +9,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     expect(screen.getByText('Username')).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
@@ -20,7 +20,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const label = screen.getByText('Username');
     expect(label).toBeInTheDocument();
     expect(screen.getByText('*')).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     expect(screen.getByText('Enter your username')).toBeInTheDocument();
   });
 
@@ -42,7 +42,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     expect(screen.getByText('Username is required')).toBeInTheDocument();
   });
 
@@ -52,7 +52,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const formField = screen.getByTestId('form-field');
     expect(formField).toHaveClass('is-invalid');
   });
@@ -63,7 +63,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const formField = screen.getByTestId('form-field');
     expect(formField).toHaveClass('custom-field');
   });
@@ -74,7 +74,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const formField = screen.getByTestId('form-field');
     expect(formField).toHaveStyle('margin-bottom: 20px');
   });
@@ -85,7 +85,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const formField = screen.getByTestId('form-field');
     expect(formField).toHaveClass('label-right');
   });
@@ -96,7 +96,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const label = screen.getByTestId('label');
     expect(label).toHaveStyle('width: 150px');
   });
@@ -107,40 +107,40 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const label = screen.getByTestId('label');
     expect(label).toHaveClass('custom-label');
   });
 
   it('renders with custom helper text className', () => {
     render(
-      <FormField 
-        label="Username" 
-        helperText="Enter your username" 
+      <FormField
+        label="Username"
+        helperText="Enter your username"
         helperTextClassName="custom-helper"
         data-testid="helper-text"
       >
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const helperText = screen.getByTestId('helper-text');
     expect(helperText).toHaveClass('custom-helper');
   });
 
   it('renders with custom error message className', () => {
     render(
-      <FormField 
-        label="Username" 
-        isInvalid 
-        errorMessage="Username is required" 
+      <FormField
+        label="Username"
+        isInvalid
+        errorMessage="Username is required"
         errorClassName="custom-error"
         data-testid="error-message"
       >
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const errorMessage = screen.getByTestId('error-message');
     expect(errorMessage).toHaveClass('custom-error');
   });
@@ -151,7 +151,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     expect(screen.queryByText('Username')).not.toBeVisible();
   });
 
@@ -161,7 +161,7 @@ describe('FormField', () => {
         <input type="text" name="username" />
       </FormField>
     );
-    
+
     const label = screen.getByText('Username');
     expect(label).toHaveAttribute('for', 'username-field');
   });

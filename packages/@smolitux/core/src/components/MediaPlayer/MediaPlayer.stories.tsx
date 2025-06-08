@@ -37,9 +37,11 @@ export default meta;
 type Story = StoryObj<typeof MediaPlayer>;
 
 // Beispiel-Video-URLs
-const videoSrc = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+const videoSrc =
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 const audioSrc = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
-const posterSrc = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg';
+const posterSrc =
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg';
 
 export const DefaultVideo: Story = {
   args: {
@@ -163,7 +165,9 @@ export const WithCustomOverlay: Story = {
       <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity">
         <div className="text-white text-center p-4">
           <h3 className="text-xl font-bold">Big Buck Bunny</h3>
-          <p className="mt-2">Ein kurzer Film über einen Hasen, der sich an drei Nagetieren rächt.</p>
+          <p className="mt-2">
+            Ein kurzer Film über einen Hasen, der sich an drei Nagetieren rächt.
+          </p>
         </div>
       </div>
     ),
@@ -213,10 +217,10 @@ export const ControlledPlayer: Story = {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
-    
+
     return (
       <div className="space-y-4">
-        <MediaPlayer 
+        <MediaPlayer
           src={videoSrc}
           type="video"
           poster={posterSrc}
@@ -230,15 +234,15 @@ export const ControlledPlayer: Story = {
           onLoadedMetadata={setDuration}
           onVolumeChange={setVolume}
         />
-        
+
         <div className="p-4 bg-gray-100 rounded">
           <div className="flex justify-between mb-2">
             <span>Status: {isPlaying ? 'Spielt' : 'Pausiert'}</span>
             <span>Lautstärke: {Math.round(volume * 100)}%</span>
           </div>
           <div className="w-full bg-gray-300 rounded-full h-2.5">
-            <div 
-              className="bg-blue-600 h-2.5 rounded-full" 
+            <div
+              className="bg-blue-600 h-2.5 rounded-full"
               style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
             ></div>
           </div>

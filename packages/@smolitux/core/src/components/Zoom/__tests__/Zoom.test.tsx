@@ -9,7 +9,7 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     // Content should be hidden by default
     expect(screen.queryByText('Zoom content')).not.toBeVisible();
   });
@@ -20,7 +20,7 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     expect(screen.getByText('Zoom content')).toBeVisible();
   });
 
@@ -30,15 +30,15 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     expect(screen.queryByText('Zoom content')).not.toBeVisible();
-    
+
     rerender(
       <Zoom in={true}>
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     expect(screen.getByText('Zoom content')).toBeVisible();
   });
 
@@ -48,7 +48,7 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     expect(zoomElement).toHaveStyle('transition-duration: 500ms');
   });
@@ -59,7 +59,7 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     expect(zoomElement).toHaveStyle('background-color: red');
   });
@@ -70,7 +70,7 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     expect(zoomElement).toHaveClass('custom-zoom');
   });
@@ -82,10 +82,10 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     fireEvent.transitionStart(zoomElement);
-    
+
     expect(handleEnter).toHaveBeenCalled();
   });
 
@@ -96,10 +96,10 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     fireEvent.transitionEnd(zoomElement);
-    
+
     expect(handleEntered).toHaveBeenCalled();
   });
 
@@ -110,16 +110,16 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     rerender(
       <Zoom in={false} onExit={handleExit}>
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     fireEvent.transitionStart(zoomElement);
-    
+
     expect(handleExit).toHaveBeenCalled();
   });
 
@@ -130,16 +130,16 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     rerender(
       <Zoom in={false} onExited={handleExited}>
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     fireEvent.transitionEnd(zoomElement);
-    
+
     expect(handleExited).toHaveBeenCalled();
   });
 
@@ -149,7 +149,7 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     expect(zoomElement).toHaveStyle('--zoom-scale: 1.5');
   });
@@ -160,7 +160,7 @@ describe('Zoom', () => {
         <div>Zoom content</div>
       </Zoom>
     );
-    
+
     const zoomElement = screen.getByTestId('zoom-container');
     expect(zoomElement).toHaveStyle('transform-origin: top left');
   });

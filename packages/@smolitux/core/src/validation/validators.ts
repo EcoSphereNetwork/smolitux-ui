@@ -21,7 +21,9 @@ export const required = (message = 'Dieses Feld ist erforderlich'): ValidationRu
 /**
  * Prüft, ob ein Wert eine gültige E-Mail-Adresse ist
  */
-export const email = (message = 'Bitte geben Sie eine gültige E-Mail-Adresse ein'): ValidationRule<string> => ({
+export const email = (
+  message = 'Bitte geben Sie eine gültige E-Mail-Adresse ein'
+): ValidationRule<string> => ({
   validator: (value) => {
     if (!value) return true;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -33,7 +35,10 @@ export const email = (message = 'Bitte geben Sie eine gültige E-Mail-Adresse ei
 /**
  * Prüft, ob ein Wert eine Mindestlänge hat
  */
-export const minLength = (min: number, message = `Mindestens ${min} Zeichen erforderlich`): ValidationRule<string> => ({
+export const minLength = (
+  min: number,
+  message = `Mindestens ${min} Zeichen erforderlich`
+): ValidationRule<string> => ({
   validator: (value) => {
     if (!value) return true;
     return value.length >= min;
@@ -44,7 +49,10 @@ export const minLength = (min: number, message = `Mindestens ${min} Zeichen erfo
 /**
  * Prüft, ob ein Wert eine Maximallänge hat
  */
-export const maxLength = (max: number, message = `Maximal ${max} Zeichen erlaubt`): ValidationRule<string> => ({
+export const maxLength = (
+  max: number,
+  message = `Maximal ${max} Zeichen erlaubt`
+): ValidationRule<string> => ({
   validator: (value) => {
     if (!value) return true;
     return value.length <= max;
@@ -91,7 +99,10 @@ export const integer = (message = 'Bitte geben Sie eine Ganzzahl ein'): Validati
 /**
  * Prüft, ob ein Wert größer als ein Mindestwert ist
  */
-export const min = (minValue: number, message = `Muss mindestens ${minValue} sein`): ValidationRule<number> => ({
+export const min = (
+  minValue: number,
+  message = `Muss mindestens ${minValue} sein`
+): ValidationRule<number> => ({
   validator: (value) => {
     if (value === undefined || value === null) return true;
     return Number(value) >= minValue;
@@ -102,7 +113,10 @@ export const min = (minValue: number, message = `Muss mindestens ${minValue} sei
 /**
  * Prüft, ob ein Wert kleiner als ein Maximalwert ist
  */
-export const max = (maxValue: number, message = `Darf höchstens ${maxValue} sein`): ValidationRule<number> => ({
+export const max = (
+  maxValue: number,
+  message = `Darf höchstens ${maxValue} sein`
+): ValidationRule<number> => ({
   validator: (value) => {
     if (value === undefined || value === null) return true;
     return Number(value) <= maxValue;
@@ -217,7 +231,9 @@ export const matches = (
 /**
  * Prüft, ob ein Wert eine gültige Telefonnummer ist
  */
-export const phone = (message = 'Bitte geben Sie eine gültige Telefonnummer ein'): ValidationRule<string> => ({
+export const phone = (
+  message = 'Bitte geben Sie eine gültige Telefonnummer ein'
+): ValidationRule<string> => ({
   validator: (value) => {
     if (!value) return true;
     // Einfache Telefonvalidierung: mindestens 6 Ziffern, kann +, -, Leerzeichen und Klammern enthalten
@@ -230,7 +246,9 @@ export const phone = (message = 'Bitte geben Sie eine gültige Telefonnummer ein
 /**
  * Prüft, ob ein Wert eine gültige Postleitzahl ist (deutsches Format)
  */
-export const zipCode = (message = 'Bitte geben Sie eine gültige Postleitzahl ein'): ValidationRule<string> => ({
+export const zipCode = (
+  message = 'Bitte geben Sie eine gültige Postleitzahl ein'
+): ValidationRule<string> => ({
   validator: (value) => {
     if (!value) return true;
     // Deutsches PLZ-Format: 5 Ziffern

@@ -91,16 +91,16 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
 
   const getTimeRemaining = (endDateString?: string) => {
     if (!endDateString) return '';
-    
+
     const endDate = new Date(endDateString);
     const now = new Date();
-    
+
     if (now > endDate) return 'Ended';
-    
+
     const diffMs = endDate.getTime() - now.getTime();
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    
+
     if (diffDays > 0) {
       return `${diffDays}d ${diffHours}h remaining`;
     } else {
@@ -118,9 +118,10 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
   ];
 
   // Filtere die Vorschläge basierend auf dem aktiven Filter
-  const filteredProposals = activeFilter === 'all'
-    ? proposals
-    : proposals.filter(proposal => proposal.status.code === activeFilter);
+  const filteredProposals =
+    activeFilter === 'all'
+      ? proposals
+      : proposals.filter((proposal) => proposal.status.code === activeFilter);
 
   const renderProposalCard = (proposal: ProposalSummary) => (
     <Card
@@ -135,7 +136,9 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
     >
       <Box style={{ padding: '16px' }}>
         <Flex justify="space-between" align="start" style={{ marginBottom: '12px' }}>
-          <Text weight="bold" size="lg" style={{ flex: 1 }}>{proposal.title}</Text>
+          <Text weight="bold" size="lg" style={{ flex: 1 }}>
+            {proposal.title}
+          </Text>
           <Box
             style={{
               padding: '4px 8px',
@@ -151,9 +154,9 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
             {proposal.status.label}
           </Box>
         </Flex>
-        
-        <Text 
-          style={{ 
+
+        <Text
+          style={{
             marginBottom: '12px',
             display: '-webkit-box',
             WebkitLineClamp: 2,
@@ -164,28 +167,28 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
         >
           {proposal.summary}
         </Text>
-        
+
         <Flex align="center" style={{ marginBottom: '12px' }}>
-          <Box 
-            style={{ 
-              width: '24px', 
-              height: '24px', 
-              borderRadius: '50%', 
+          <Box
+            style={{
+              width: '24px',
+              height: '24px',
+              borderRadius: '50%',
               overflow: 'hidden',
               marginRight: '8px',
             }}
           >
-            <img 
-              src={proposal.author.avatar} 
-              alt={proposal.author.name} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            <img
+              src={proposal.author.avatar}
+              alt={proposal.author.name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </Box>
           <Text size="sm" color="#6b7280">
             by {proposal.author.name} on {formatDate(proposal.createdAt)}
           </Text>
         </Flex>
-        
+
         <Flex justify="space-between" align="center">
           <Flex>
             <Flex align="center" style={{ marginRight: '12px' }}>
@@ -205,7 +208,9 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
                   strokeLinejoin="round"
                 />
               </svg>
-              <Text size="xs" color="#6b7280">{proposal.supportCount}</Text>
+              <Text size="xs" color="#6b7280">
+                {proposal.supportCount}
+              </Text>
             </Flex>
             <Flex align="center" style={{ marginRight: '12px' }}>
               <svg
@@ -224,7 +229,9 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
                   strokeLinejoin="round"
                 />
               </svg>
-              <Text size="xs" color="#6b7280">{proposal.voteCount}</Text>
+              <Text size="xs" color="#6b7280">
+                {proposal.voteCount}
+              </Text>
             </Flex>
             <Flex align="center">
               <svg
@@ -243,10 +250,12 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
                   strokeLinejoin="round"
                 />
               </svg>
-              <Text size="xs" color="#6b7280">{proposal.commentCount}</Text>
+              <Text size="xs" color="#6b7280">
+                {proposal.commentCount}
+              </Text>
             </Flex>
           </Flex>
-          
+
           {proposal.endDate && proposal.status.code === 'active' && (
             <Text size="xs" color="#6b7280">
               {getTimeRemaining(proposal.endDate)}
@@ -267,18 +276,16 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
       {/* Header */}
       <Flex justify="space-between" align="center" style={{ marginBottom: '24px' }}>
         <Box>
-          <Text weight="bold" size="2xl">Governance Dashboard</Text>
+          <Text weight="bold" size="2xl">
+            Governance Dashboard
+          </Text>
           <Text color="#6b7280">Community proposals and voting</Text>
         </Box>
         <Button onClick={onCreateProposal}>Create Proposal</Button>
       </Flex>
 
       {/* Stats */}
-      <Grid
-        columns={3}
-        gap={16}
-        style={{ marginBottom: '24px' }}
-      >
+      <Grid columns={3} gap={16} style={{ marginBottom: '24px' }}>
         <Card>
           <Box style={{ padding: '16px', textAlign: 'center' }}>
             <Text weight="bold" size="3xl" color="#3b82f6">
@@ -308,7 +315,7 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
       {/* Filters */}
       <Box style={{ marginBottom: '24px' }}>
         <Flex style={{ overflowX: 'auto', paddingBottom: '8px' }}>
-          {filters.map(filter => (
+          {filters.map((filter) => (
             <Box
               key={filter.id}
               style={{
@@ -332,7 +339,7 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
       {/* Proposals */}
       {isLoading ? (
         <Grid columns={1} gap={16} style={{ marginBottom: '24px' }}>
-          {[1, 2, 3].map(i => (
+          {[1, 2, 3].map((i) => (
             <Card key={i}>
               <Box style={{ padding: '16px' }}>
                 <Box
@@ -383,11 +390,7 @@ export const GovernanceDashboard: React.FC<GovernanceDashboardProps> = ({
           </Box>
         </Card>
       ) : (
-        <Grid
-          columns={{ base: 1, md: 2, lg: 3 }}
-          gap={16}
-          style={{ marginBottom: '24px' }}
-        >
+        <Grid columns={{ base: 1, md: 2, lg: 3 }} gap={16} style={{ marginBottom: '24px' }}>
           {filteredProposals.map(renderProposalCard)}
         </Grid>
       )}

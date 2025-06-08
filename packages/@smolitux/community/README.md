@@ -32,12 +32,7 @@ const MyComponent = () => {
     console.log('New comment:', comment);
   };
 
-  return (
-    <CommentSection 
-      comments={comments}
-      onAddComment={handleAddComment}
-    />
-  );
+  return <CommentSection comments={comments} onAddComment={handleAddComment} />;
 };
 ```
 

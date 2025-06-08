@@ -5,7 +5,11 @@
  * @param options Optionen für die Formatierung
  * @returns Formatierter Währungsbetrag
  */
-export function formatCurrency(value: number, currency: string = 'USD', options: Intl.NumberFormatOptions = {}) {
+export function formatCurrency(
+  value: number,
+  currency: string = 'USD',
+  options: Intl.NumberFormatOptions = {}
+) {
   return new Intl.NumberFormat(undefined, {
     style: 'currency',
     currency,
@@ -64,13 +68,13 @@ export function formatDate(dateString: string, options: Intl.DateTimeFormatOptio
 export function formatTimeRemaining(dateString: string) {
   const endDate = new Date(dateString);
   const now = new Date();
-  
+
   if (now > endDate) return 'Ended';
-  
+
   const diffMs = endDate.getTime() - now.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
   const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  
+
   if (diffDays > 0) {
     return `${diffDays}d ${diffHours}h remaining`;
   } else {

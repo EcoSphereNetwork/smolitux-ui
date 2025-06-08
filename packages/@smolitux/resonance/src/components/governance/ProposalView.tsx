@@ -123,7 +123,7 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
   };
 
   // Konvertiere die Kommentare in das Format der CommentSection-Komponente
-  const formattedComments = comments.map(comment => ({
+  const formattedComments = comments.map((comment) => ({
     id: comment.id,
     author: {
       id: comment.author.id,
@@ -134,7 +134,7 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
     createdAt: comment.createdAt,
     likes: comment.likes,
     isLiked: comment.isLiked,
-    replies: comment.replies?.map(reply => ({
+    replies: comment.replies?.map((reply) => ({
       id: reply.id,
       author: {
         id: reply.author.id,
@@ -183,8 +183,12 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
       content: (
         <Box style={{ padding: '16px' }}>
           <Box style={{ padding: '16px' }}>
-            <Text weight="bold" size="lg">Comments</Text>
-            <Text size="sm" color="#6b7280">Comments functionality temporarily disabled</Text>
+            <Text weight="bold" size="lg">
+              Comments
+            </Text>
+            <Text size="sm" color="#6b7280">
+              Comments functionality temporarily disabled
+            </Text>
           </Box>
         </Box>
       ),
@@ -264,7 +268,9 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
           {/* Header */}
           <Box style={{ marginBottom: '16px' }}>
             <Flex justify="space-between" align="start">
-              <Text weight="bold" size="2xl">{title}</Text>
+              <Text weight="bold" size="2xl">
+                {title}
+              </Text>
               <Box
                 style={{
                   padding: '4px 8px',
@@ -279,24 +285,26 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
               </Box>
             </Flex>
             <Flex align="center" style={{ marginTop: '12px' }}>
-              <Box 
-                style={{ 
-                  width: '32px', 
-                  height: '32px', 
-                  borderRadius: '50%', 
+              <Box
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
                   overflow: 'hidden',
                   marginRight: '8px',
                 }}
               >
-                <img 
-                  src={author.avatar} 
-                  alt={author.name} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                <img
+                  src={author.avatar}
+                  alt={author.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </Box>
               <Box>
                 <Text weight="medium">{author.name}</Text>
-                <Text size="sm" color="#6b7280">Created on {formatDate(createdAt)}</Text>
+                <Text size="sm" color="#6b7280">
+                  Created on {formatDate(createdAt)}
+                </Text>
               </Box>
             </Flex>
           </Box>
@@ -318,10 +326,7 @@ export const ProposalView: React.FC<ProposalViewProps> = ({
         </Box>
 
         {/* Tabs */}
-        <TabView
-          tabs={tabs}
-          activeTab="details"
-        />
+        <TabView tabs={tabs} activeTab="details" />
       </Card>
     </Box>
   );

@@ -13,7 +13,21 @@ const meta: Meta<typeof Input> = {
     type: {
       control: {
         type: 'select',
-        options: ['text', 'password', 'email', 'number', 'tel', 'url', 'search', 'date', 'time', 'datetime-local', 'month', 'week', 'color'],
+        options: [
+          'text',
+          'password',
+          'email',
+          'number',
+          'tel',
+          'url',
+          'search',
+          'date',
+          'time',
+          'datetime-local',
+          'month',
+          'week',
+          'color',
+        ],
       },
       description: 'Der Typ des Eingabefelds',
     },
@@ -142,7 +156,11 @@ export const States: Story = {
     <div className="flex flex-col space-y-4 w-80">
       <Input placeholder="Standard" />
       <Input placeholder="Disabled" disabled />
-      <Input placeholder="Read Only" readOnly defaultValue="Dieser Text kann nicht geändert werden" />
+      <Input
+        placeholder="Read Only"
+        readOnly
+        defaultValue="Dieser Text kann nicht geändert werden"
+      />
       <Input placeholder="Invalid" isInvalid />
       <Input placeholder="Required" isRequired />
     </div>
@@ -161,8 +179,17 @@ export const WithLeftElement: Story = {
     <Input
       placeholder="Suchen..."
       leftElement={
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-gray-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            clipRule="evenodd"
+          />
         </svg>
       }
     />
@@ -176,9 +203,18 @@ export const WithRightElement: Story = {
       placeholder="Passwort eingeben"
       rightElement={
         <button className="text-gray-400 hover:text-gray-500 focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-            <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+            <path
+              fillRule="evenodd"
+              d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+              clipRule="evenodd"
+            />
           </svg>
         </button>
       }
@@ -189,19 +225,9 @@ export const WithRightElement: Story = {
 export const WithAddons: Story = {
   render: () => (
     <div className="flex flex-col space-y-4 w-80">
-      <Input
-        placeholder="Website"
-        leftAddon="https://"
-      />
-      <Input
-        placeholder="Benutzername"
-        rightAddon="@example.com"
-      />
-      <Input
-        placeholder="Preis"
-        leftAddon="€"
-        rightAddon=".00"
-      />
+      <Input placeholder="Website" leftAddon="https://" />
+      <Input placeholder="Benutzername" rightAddon="@example.com" />
+      <Input placeholder="Preis" leftAddon="€" rightAddon=".00" />
     </div>
   ),
 };
@@ -210,13 +236,13 @@ export const WithValidation: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     const [isValid, setIsValid] = React.useState(true);
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
       setValue(newValue);
       setIsValid(newValue.includes('@'));
     };
-    
+
     return (
       <div className="flex flex-col space-y-2 w-80">
         <Input
@@ -239,7 +265,7 @@ export const WithValidation: Story = {
 export const Controlled: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
-    
+
     return (
       <div className="flex flex-col space-y-4 w-80">
         <Input
@@ -247,9 +273,7 @@ export const Controlled: Story = {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <div>
-          Aktueller Wert: {value || '(leer)'}
-        </div>
+        <div>Aktueller Wert: {value || '(leer)'}</div>
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           onClick={() => setValue('')}

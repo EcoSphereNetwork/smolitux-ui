@@ -22,7 +22,7 @@ export const transitions = {
     easing: 'linear',
     delay: 0,
   },
-  
+
   // Geschwindigkeits-Varianten
   fast: {
     duration: 150,
@@ -32,7 +32,7 @@ export const transitions = {
     duration: 500,
     easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
   },
-  
+
   // Easing-Varianten
   easeIn: {
     duration: 300,
@@ -46,7 +46,7 @@ export const transitions = {
     duration: 300,
     easing: 'cubic-bezier(0.4, 0, 0.2, 1)', // Material Design Standard
   },
-  
+
   // Spezielle Übergänge
   bounce: {
     duration: 500,
@@ -60,14 +60,14 @@ export const transitions = {
     duration: 500,
     easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
   },
-  
+
   // Verzögerte Übergänge
   delayed: {
     duration: 300,
     easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
     delay: 150,
   },
-  
+
   // Komponenten-spezifische Übergänge
   modal: {
     duration: 250,
@@ -116,7 +116,7 @@ export const createTransition = (
   const { duration, easing } = config;
   const delay = (config as any).delay || 0;
   const props = Array.isArray(properties) ? properties.join(', ') : properties;
-  
+
   return `${props} ${duration}ms ${easing}${delay > 0 ? ` ${delay}ms` : ''}`;
 };
 

@@ -1,6 +1,6 @@
 /**
  * Barrierefreiheits-Testutilities für Smolitux UI Komponenten
- * 
+ *
  * Diese Utilities helfen bei der Implementierung von Barrierefreiheitstests
  * für Smolitux UI Komponenten.
  */
@@ -21,12 +21,12 @@ export interface A11yTestOptions {
    * @default true
    */
   failOnViolation?: boolean;
-  
+
   /**
    * Regeln, die ignoriert werden sollen
    */
   disabledRules?: string[];
-  
+
   /**
    * Zusätzliche axe-Konfiguration
    */
@@ -35,11 +35,11 @@ export interface A11yTestOptions {
 
 /**
  * Führt einen Barrierefreiheitstest für eine Komponente durch
- * 
+ *
  * @param component Die zu testende React-Komponente
  * @param options Optionen für den Test
  * @returns Das Ergebnis des Tests
- * 
+ *
  * @example
  * ```tsx
  * test('Button ist barrierefrei', async () => {
@@ -57,47 +57,46 @@ export async function testA11y(
   incomplete: any[];
   renderResult: RenderResult;
 }> {
-  const { 
-    failOnViolation = true,
-    disabledRules = [],
-    axeOptions = {} 
-  } = options;
-  
+  const { failOnViolation = true, disabledRules = [], axeOptions = {} } = options;
+
   // Rendere die Komponente
   const renderResult = render(component);
-  
+
   // Konfiguriere axe
   const axeConfig = {
-    rules: disabledRules.reduce((acc, rule) => {
-      acc[rule] = { enabled: false };
-      return acc;
-    }, {} as Record<string, { enabled: boolean }>),
-    ...axeOptions
+    rules: disabledRules.reduce(
+      (acc, rule) => {
+        acc[rule] = { enabled: false };
+        return acc;
+      },
+      {} as Record<string, { enabled: boolean }>
+    ),
+    ...axeOptions,
   };
-  
+
   // Führe axe aus
   const results = await axe(renderResult.container, axeConfig);
-  
+
   // Wenn failOnViolation aktiviert ist und Verstöße gefunden wurden, lasse den Test fehlschlagen
   if (failOnViolation && results.violations.length > 0) {
     expect(results).toHaveNoViolations();
   }
-  
+
   return {
     violations: results.violations,
     passes: results.passes,
     incomplete: results.incomplete,
-    renderResult
+    renderResult,
   };
 }
 
 /**
  * Prüft, ob ein Element die korrekten ARIA-Attribute hat
- * 
+ *
  * @param element Das zu prüfende Element
  * @param attributes Die erwarteten ARIA-Attribute
  * @returns true, wenn alle Attribute korrekt sind
- * 
+ *
  * @example
  * ```tsx
  * test('Button hat korrekte ARIA-Attribute', () => {
@@ -120,11 +119,11 @@ export function hasCorrectAriaAttributes(
 
 /**
  * Prüft, ob ein Element die korrekte Rolle hat
- * 
+ *
  * @param element Das zu prüfende Element
  * @param role Die erwartete Rolle
  * @returns true, wenn die Rolle korrekt ist
- * 
+ *
  * @example
  * ```tsx
  * test('Button hat korrekte Rolle', () => {
@@ -140,10 +139,10 @@ export function hasCorrectRole(element: Element, role: string): boolean {
 
 /**
  * Prüft, ob ein Element fokussierbar ist
- * 
+ *
  * @param element Das zu prüfende Element
  * @returns true, wenn das Element fokussierbar ist
- * 
+ *
  * @example
  * ```tsx
  * test('Button ist fokussierbar', () => {
@@ -162,10 +161,10 @@ export function isFocusable(element: Element): boolean {
     'textarea:not([disabled])',
     'button:not([disabled])',
     '[tabindex]:not([tabindex="-1"])',
-    '[contenteditable]'
+    '[contenteditable]',
   ];
-  
-  return focusableElements.some(selector => {
+
+  return focusableElements.some((selector) => {
     try {
       return element.matches(selector);
     } catch (e) {
@@ -176,10 +175,10 @@ export function isFocusable(element: Element): boolean {
 
 /**
  * Prüft, ob ein Element einen sichtbaren Fokusindikator hat
- * 
+ *
  * @param element Das zu prüfende Element
  * @returns true, wenn das Element einen sichtbaren Fokusindikator hat
- * 
+ *
  * @example
  * ```tsx
  * test('Button hat sichtbaren Fokusindikator', () => {
@@ -192,28 +191,27 @@ export function isFocusable(element: Element): boolean {
  */
 export function hasVisibleFocusIndicator(element: Element): boolean {
   const computedStyle = window.getComputedStyle(element);
-  
+
   // Prüfe auf outline
-  const hasOutline = computedStyle.outline !== 'none' && 
-                     computedStyle.outlineWidth !== '0px';
-  
+  const hasOutline = computedStyle.outline !== 'none' && computedStyle.outlineWidth !== '0px';
+
   // Prüfe auf box-shadow
   const hasBoxShadow = computedStyle.boxShadow !== 'none';
-  
+
   // Prüfe auf border
   const hasBorder = computedStyle.borderWidth !== '0px';
-  
+
   return hasOutline || hasBoxShadow || hasBorder;
 }
 
 /**
  * Prüft, ob ein Element einen ausreichenden Farbkontrast hat
- * 
+ *
  * @param foregroundColor Die Vordergrundfarbe (Text)
  * @param backgroundColor Die Hintergrundfarbe
  * @param isLargeText Ob es sich um großen Text handelt (>= 18pt oder >= 14pt und fett)
  * @returns true, wenn der Kontrast ausreichend ist (WCAG AA)
- * 
+ *
  * @example
  * ```tsx
  * test('Button hat ausreichenden Farbkontrast', () => {
@@ -233,26 +231,27 @@ export function hasAdequateColorContrast(
     const b = parseInt(hex.slice(5, 7), 16);
     return [r, g, b];
   };
-  
+
   // Berechne relative Luminanz
   const calculateLuminance = (rgb: [number, number, number]): number => {
-    const [r, g, b] = rgb.map(c => {
+    const [r, g, b] = rgb.map((c) => {
       c = c / 255;
       return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
     });
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   };
-  
+
   // Berechne Kontrastverhältnis
   const foregroundRgb = hexToRgb(foregroundColor);
   const backgroundRgb = hexToRgb(backgroundColor);
-  
+
   const foregroundLuminance = calculateLuminance(foregroundRgb);
   const backgroundLuminance = calculateLuminance(backgroundRgb);
-  
-  const contrastRatio = (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
-                        (Math.min(foregroundLuminance, backgroundLuminance) + 0.05);
-  
+
+  const contrastRatio =
+    (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+    (Math.min(foregroundLuminance, backgroundLuminance) + 0.05);
+
   // WCAG AA: 4.5:1 für normalen Text, 3:1 für großen Text
   return isLargeText ? contrastRatio >= 3 : contrastRatio >= 4.5;
 }
@@ -263,5 +262,5 @@ export default {
   hasCorrectRole,
   isFocusable,
   hasVisibleFocusIndicator,
-  hasAdequateColorContrast
+  hasAdequateColorContrast,
 };

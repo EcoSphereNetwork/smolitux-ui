@@ -19,7 +19,7 @@ describe('Collapse Accessibility', () => {
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     const collapse = screen.getByTestId('collapse');
     expect(collapse).toHaveAttribute('role', 'region');
     expect(collapse).toHaveAttribute('aria-expanded', 'false');
@@ -35,7 +35,7 @@ describe('Collapse Accessibility', () => {
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     const collapse = screen.getByTestId('collapse');
     expect(collapse).toHaveAttribute('role', 'region');
     expect(collapse).toHaveAttribute('aria-expanded', 'true');
@@ -45,18 +45,18 @@ describe('Collapse Accessibility', () => {
 
   it('should support custom ARIA attributes', () => {
     render(
-      <Collapse 
+      <Collapse
         in={true}
         ariaProps={{
           'aria-labelledby': 'header-id',
           'aria-describedby': 'description-id',
-          role: 'tabpanel'
+          role: 'tabpanel',
         }}
       >
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     const collapse = screen.getByTestId('collapse');
     expect(collapse).toHaveAttribute('role', 'tabpanel');
     expect(collapse).toHaveAttribute('aria-labelledby', 'header-id');
@@ -66,16 +66,16 @@ describe('Collapse Accessibility', () => {
 
   it('should support custom ID', () => {
     render(
-      <Collapse 
+      <Collapse
         in={true}
         ariaProps={{
-          id: 'custom-collapse-id'
+          id: 'custom-collapse-id',
         }}
       >
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     const collapse = screen.getByTestId('collapse');
     expect(collapse).toHaveAttribute('id', 'custom-collapse-id');
   });
@@ -86,16 +86,16 @@ describe('Collapse Accessibility', () => {
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     let collapse = screen.getByTestId('collapse');
     expect(collapse).toHaveAttribute('data-orientation', 'vertical');
-    
+
     rerender(
       <Collapse in={true} orientation="horizontal">
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     collapse = screen.getByTestId('collapse');
     expect(collapse).toHaveAttribute('data-orientation', 'horizontal');
   });
@@ -106,17 +106,17 @@ describe('Collapse Accessibility', () => {
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     const collapse = screen.getByTestId('collapse');
     expect(collapse).toHaveAttribute('aria-expanded', 'false');
     expect(collapse).toHaveAttribute('aria-hidden', 'true');
-    
+
     rerender(
       <Collapse in={true}>
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     await waitFor(() => {
       expect(collapse).toHaveAttribute('aria-expanded', 'true');
       expect(collapse).toHaveAttribute('aria-hidden', 'false');
@@ -129,15 +129,15 @@ describe('Collapse Accessibility', () => {
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     expect(screen.getByTestId('collapse')).toBeInTheDocument();
-    
+
     rerender(
       <Collapse in={false} unmountOnExit={true}>
         <div>Collapse Content</div>
       </Collapse>
     );
-    
+
     expect(screen.queryByTestId('collapse')).not.toBeInTheDocument();
   });
 });

@@ -1,7 +1,19 @@
 // packages/@smolitux/core/src/components/Popover/Popover.a11y.tsx
 import React, { useState, useRef, useEffect, useId } from 'react';
 
-export type PopoverPlacement = 'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end';
+export type PopoverPlacement =
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'left'
+  | 'top-start'
+  | 'top-end'
+  | 'right-start'
+  | 'right-end'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left-start'
+  | 'left-end';
 
 export interface PopoverProps {
   /** Inhalt des Popovers */
@@ -94,10 +106,10 @@ export interface PopoverProps {
 
 /**
  * Barrierefreie Popover-Komponente für kontextuelle Informationen
- * 
+ *
  * @example
  * ```tsx
- * <PopoverA11y 
+ * <PopoverA11y
  *   content="Details zu diesem Element"
  *   ariaLabel="Mehr Informationen"
  * >
@@ -155,12 +167,12 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
   const popoverId = ariaControls || `popover-${uniqueId}`;
   const titleId = `popover-title-${uniqueId}`;
   const descriptionId = `popover-description-${uniqueId}`;
-  
+
   // State für den Popover
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
   const [announceMessage, setAnnounceMessage] = useState('');
-  
+
   // Refs
   const triggerRef = useRef<HTMLElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -169,29 +181,29 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const firstFocusableElementRef = useRef<HTMLElement | null>(null);
   const lastFocusableElementRef = useRef<HTMLElement | null>(null);
-  
+
   // Verwende den kontrollierten Wert, wenn er vorhanden ist
   const isOpenState = controlledIsOpen !== undefined ? controlledIsOpen : isOpen;
-  
+
   // Aktualisiere den State, wenn sich der kontrollierte Wert ändert
   useEffect(() => {
     if (controlledIsOpen !== undefined) {
       setIsOpen(controlledIsOpen);
     }
   }, [controlledIsOpen]);
-  
+
   // Öffne den Popover
   const open = () => {
     if (openTimeoutRef.current) {
       clearTimeout(openTimeoutRef.current);
       openTimeoutRef.current = null;
     }
-    
+
     if (openDelay > 0) {
       openTimeoutRef.current = setTimeout(() => {
         setIsOpen(true);
         if (onOpenChange) onOpenChange(true);
-        
+
         // Ankündige das Öffnen für Screenreader
         if (announce) {
           setAnnounceMessage('Popover geöffnet');
@@ -200,31 +212,31 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
     } else {
       setIsOpen(true);
       if (onOpenChange) onOpenChange(true);
-      
+
       // Ankündige das Öffnen für Screenreader
       if (announce) {
         setAnnounceMessage('Popover geöffnet');
       }
     }
   };
-  
+
   // Schließe den Popover
   const close = () => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
     }
-    
+
     if (closeDelay > 0) {
       closeTimeoutRef.current = setTimeout(() => {
         setIsOpen(false);
         if (onOpenChange) onOpenChange(false);
-        
+
         // Ankündige das Schließen für Screenreader
         if (announce) {
           setAnnounceMessage('Popover geschlossen');
         }
-        
+
         // Setze den Fokus zurück auf den Trigger
         if (returnFocus && triggerRef.current && document.activeElement !== triggerRef.current) {
           triggerRef.current.focus();
@@ -233,19 +245,19 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
     } else {
       setIsOpen(false);
       if (onOpenChange) onOpenChange(false);
-      
+
       // Ankündige das Schließen für Screenreader
       if (announce) {
         setAnnounceMessage('Popover geschlossen');
       }
-      
+
       // Setze den Fokus zurück auf den Trigger
       if (returnFocus && triggerRef.current && document.activeElement !== triggerRef.current) {
         triggerRef.current.focus();
       }
     }
   };
-  
+
   // Toggle den Popover
   const toggle = () => {
     if (isOpenState) {
@@ -254,19 +266,19 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       open();
     }
   };
-  
+
   // Berechne die Position des Popovers
   const calculatePosition = () => {
     if (!triggerRef.current || !popoverRef.current) return;
-    
+
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const popoverRect = popoverRef.current.getBoundingClientRect();
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
-    
+
     let top = 0;
     let left = 0;
-    
+
     switch (placement) {
       case 'top':
         top = triggerRect.top - popoverRect.height - offset + scrollTop;
@@ -320,37 +332,37 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
         top = triggerRect.bottom + offset + scrollTop;
         left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2 + scrollLeft;
     }
-    
+
     // Stelle sicher, dass der Popover im Viewport bleibt
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    
+
     if (left < 0) {
       left = 0;
     } else if (left + popoverRect.width > viewportWidth) {
       left = viewportWidth - popoverRect.width;
     }
-    
+
     if (top < 0) {
       top = 0;
     } else if (top + popoverRect.height > viewportHeight + scrollTop) {
       top = viewportHeight + scrollTop - popoverRect.height;
     }
-    
+
     setPopoverPosition({ top, left });
   };
-  
+
   // Finde alle fokussierbaren Elemente im Popover
   const getFocusableElements = () => {
     if (!popoverRef.current) return [];
-    
+
     return Array.from(
       popoverRef.current.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       )
     ) as HTMLElement[];
   };
-  
+
   // Setze den Fokus auf das erste fokussierbare Element im Popover
   const focusFirstElement = () => {
     const focusableElements = getFocusableElements();
@@ -362,25 +374,25 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       popoverRef.current.focus();
     }
   };
-  
+
   // Behandle Escape-Taste
   useEffect(() => {
     if (!isOpenState || !closeOnEsc) return;
-    
+
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         close();
       }
     };
-    
+
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpenState, closeOnEsc]);
-  
+
   // Behandle Klick außerhalb
   useEffect(() => {
     if (!isOpenState || !closeOnClickOutside) return;
-    
+
     const handleClick = (event: MouseEvent) => {
       if (
         popoverRef.current &&
@@ -391,18 +403,18 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
         close();
       }
     };
-    
+
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, [isOpenState, closeOnClickOutside]);
-  
+
   // Behandle Fokus-Trap
   useEffect(() => {
     if (!isOpenState || !trapFocus) return;
-    
+
     const handleTabKey = (event: KeyboardEvent) => {
       if (event.key !== 'Tab') return;
-      
+
       if (!firstFocusableElementRef.current || !lastFocusableElementRef.current) {
         const focusableElements = getFocusableElements();
         if (focusableElements.length > 0) {
@@ -412,7 +424,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
           return;
         }
       }
-      
+
       if (event.shiftKey) {
         if (document.activeElement === firstFocusableElementRef.current) {
           event.preventDefault();
@@ -425,20 +437,20 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
         }
       }
     };
-    
+
     document.addEventListener('keydown', handleTabKey);
     return () => document.removeEventListener('keydown', handleTabKey);
   }, [isOpenState, trapFocus]);
-  
+
   // Berechne die Position des Popovers, wenn er geöffnet wird
   useEffect(() => {
     if (isOpenState) {
       // Speichere das aktuelle fokussierte Element
       previousFocusRef.current = document.activeElement as HTMLElement;
-      
+
       // Berechne die Position
       calculatePosition();
-      
+
       // Setze den Fokus auf den Popover oder das erste fokussierbare Element
       if (autoFocus) {
         setTimeout(() => {
@@ -447,42 +459,42 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       }
     }
   }, [isOpenState]);
-  
+
   // Aktualisiere die Position bei Resize und Scroll
   useEffect(() => {
     if (!isOpenState) return;
-    
+
     const handleResize = () => calculatePosition();
     const handleScroll = () => calculatePosition();
-    
+
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
     };
   }, [isOpenState]);
-  
+
   // Rendere die Beschreibung für Screenreader
   const renderDescription = () => {
     if (!description || !screenReaderSupport) return null;
-    
+
     return (
       <div className="sr-only" id={descriptionId}>
         {description}
       </div>
     );
   };
-  
+
   // Rendere die Live-Region für Ankündigungen
   const renderLiveRegion = () => {
     if (!liveRegion || !screenReaderSupport) return null;
-    
+
     return (
-      <div 
-        aria-live={ariaLive} 
-        aria-atomic={ariaAtomic} 
+      <div
+        aria-live={ariaLive}
+        aria-atomic={ariaAtomic}
         aria-relevant={ariaRelevant}
         className="sr-only"
       >
@@ -490,11 +502,11 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       </div>
     );
   };
-  
+
   // Rendere den Pfeil
   const renderArrow = () => {
     if (!showArrow) return null;
-    
+
     let arrowStyle: React.CSSProperties = {
       position: 'absolute',
       width: '10px',
@@ -504,7 +516,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       borderWidth: '1px',
       transform: 'rotate(45deg)',
     };
-    
+
     switch (placement) {
       case 'top':
       case 'top-start':
@@ -551,7 +563,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
         };
         break;
     }
-    
+
     // Positioniere den Pfeil horizontal
     if (placement === 'top' || placement === 'bottom') {
       arrowStyle.left = 'calc(50% - 5px)';
@@ -560,7 +572,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
     } else if (placement === 'top-end' || placement === 'bottom-end') {
       arrowStyle.right = '16px';
     }
-    
+
     // Positioniere den Pfeil vertikal
     if (placement === 'left' || placement === 'right') {
       arrowStyle.top = 'calc(50% - 5px)';
@@ -569,16 +581,16 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
     } else if (placement === 'left-end' || placement === 'right-end') {
       arrowStyle.bottom = '16px';
     }
-    
+
     return <div style={arrowStyle} aria-hidden="true" />;
   };
-  
+
   // Hole die Props für den Trigger
   const getTriggerProps = () => {
     const triggerProps: any = {
       ref: (node: any) => {
         triggerRef.current = node;
-        
+
         // Wenn das Kind ein Ref hat, setze es
         const { ref } = children as any;
         if (typeof ref === 'function') {
@@ -594,82 +606,79 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       'aria-owns': ariaOwns,
       'aria-pressed': ariaPressed,
     };
-    
+
     if (trigger === 'click' || trigger === 'manual') {
       triggerProps.onClick = (event: React.MouseEvent) => {
         if (trigger === 'click') {
           toggle();
         }
-        
+
         // Rufe den ursprünglichen onClick-Handler auf, wenn vorhanden
         if (children.props.onClick) {
           children.props.onClick(event);
         }
       };
     }
-    
+
     if (trigger === 'hover' || trigger === 'focus') {
       triggerProps.onMouseEnter = (event: React.MouseEvent) => {
         if (trigger === 'hover') {
           open();
         }
-        
+
         // Rufe den ursprünglichen onMouseEnter-Handler auf, wenn vorhanden
         if (children.props.onMouseEnter) {
           children.props.onMouseEnter(event);
         }
       };
-      
+
       triggerProps.onMouseLeave = (event: React.MouseEvent) => {
         if (trigger === 'hover') {
           close();
         }
-        
+
         // Rufe den ursprünglichen onMouseLeave-Handler auf, wenn vorhanden
         if (children.props.onMouseLeave) {
           children.props.onMouseLeave(event);
         }
       };
     }
-    
+
     if (trigger === 'focus') {
       triggerProps.onFocus = (event: React.FocusEvent) => {
         open();
-        
+
         // Rufe den ursprünglichen onFocus-Handler auf, wenn vorhanden
         if (children.props.onFocus) {
           children.props.onFocus(event);
         }
       };
-      
+
       triggerProps.onBlur = (event: React.FocusEvent) => {
         // Schließe nur, wenn der Fokus nicht auf den Popover geht
         if (!popoverRef.current?.contains(event.relatedTarget as Node)) {
           close();
         }
-        
+
         // Rufe den ursprünglichen onBlur-Handler auf, wenn vorhanden
         if (children.props.onBlur) {
           children.props.onBlur(event);
         }
       };
     }
-    
+
     return triggerProps;
   };
-  
+
   // Klone das Trigger-Element mit den zusätzlichen Props
-  const triggerElement = React.cloneElement(
-    children,
-    getTriggerProps()
-  );
-  
+  const triggerElement = React.cloneElement(children, getTriggerProps());
+
   return (
     <>
       {renderDescription()}
       {renderLiveRegion()}
       {triggerElement}
-      
+
       {isOpenState && (
         <div
           ref={popoverRef}
@@ -684,7 +693,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
           style={{
             top: popoverPosition.top,
             left: popoverPosition.left,
-            maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth
+            maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
           }}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby || (title ? titleId : undefined)}
@@ -705,9 +714,9 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
               {title}
             </div>
           )}
-          
+
           <div>{content}</div>
-          
+
           {renderArrow()}
         </div>
       )}

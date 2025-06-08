@@ -32,19 +32,20 @@ export const useAnimation = (
   const ref = useRef<HTMLElement>(null);
   const [isRunning, setIsRunning] = useState(false);
   const animationRef = useRef<Animation | null>(null);
-  
+
   // Keyframes auflösen
-  const keyframeValue = typeof options.keyframe === 'string' 
-    ? keyframes[options.keyframe as KeyframeAnimation] 
-    : options.keyframe;
-  
+  const keyframeValue =
+    typeof options.keyframe === 'string'
+      ? keyframes[options.keyframe as KeyframeAnimation]
+      : options.keyframe;
+
   // Transition-Optionen auflösen
-  const transitionPreset = options.transition 
-    ? (typeof options.transition === 'string' 
-      ? transitions[options.transition] 
-      : options.transition)
+  const transitionPreset = options.transition
+    ? typeof options.transition === 'string'
+      ? transitions[options.transition]
+      : options.transition
     : transitions.default;
-  
+
   // Animation-Optionen erstellen
   const getAnimationOptions = (): KeyframeAnimationOptions => {
     return {
@@ -56,30 +57,27 @@ export const useAnimation = (
       fill: options.fillMode || 'both',
     };
   };
-  
+
   // Animation starten
   const start = () => {
     if (!ref.current) return;
-    
+
     // Bestehende Animation stoppen
     if (animationRef.current) {
       animationRef.current.cancel();
     }
-    
+
     // Neue Animation erstellen und starten
-    animationRef.current = ref.current.animate(
-      keyframeValue as Keyframe[],
-      getAnimationOptions()
-    );
-    
+    animationRef.current = ref.current.animate(keyframeValue as Keyframe[], getAnimationOptions());
+
     // Event-Listener für Animation-Ende
     animationRef.current.onfinish = () => {
       setIsRunning(false);
     };
-    
+
     setIsRunning(true);
   };
-  
+
   // Animation stoppen
   const stop = () => {
     if (animationRef.current) {
@@ -87,7 +85,7 @@ export const useAnimation = (
       setIsRunning(false);
     }
   };
-  
+
   // Animation pausieren
   const pause = () => {
     if (animationRef.current) {
@@ -95,7 +93,7 @@ export const useAnimation = (
       setIsRunning(false);
     }
   };
-  
+
   // Animation fortsetzen
   const resume = () => {
     if (animationRef.current) {
@@ -103,21 +101,21 @@ export const useAnimation = (
       setIsRunning(true);
     }
   };
-  
+
   // Animation bei Änderung der Dependencies neu starten
   useEffect(() => {
     if (ref.current) {
       start();
     }
-    
+
     return () => {
       if (animationRef.current) {
         animationRef.current.cancel();
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
-  
+
   return [ref, { start, stop, pause, resume, isRunning }];
 };
 

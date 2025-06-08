@@ -28,12 +28,7 @@ const MyComponent = () => {
     // recommendation objects
   ];
 
-  return (
-    <RecommendationCarousel 
-      recommendations={recommendations}
-      title="Recommended for you"
-    />
-  );
+  return <RecommendationCarousel recommendations={recommendations} title="Recommended for you" />;
 };
 ```
 

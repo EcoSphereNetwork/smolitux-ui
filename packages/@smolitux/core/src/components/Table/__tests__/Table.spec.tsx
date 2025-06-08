@@ -60,48 +60,33 @@ describe('Table Snapshots', () => {
         cell: (value: any) => <button data-testid={`action-${value}`}>Edit</button>,
       },
     ];
-    
+
     const { asFragment } = render(<Table data={mockData} columns={columnsWithRenderer} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders table with pagination correctly', () => {
     const { asFragment } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        pagination 
-        pageSize={2}
-      />
+      <Table data={mockData} columns={mockColumns} pagination pageSize={2} />
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders table with search correctly', () => {
-    const { asFragment } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        search 
-      />
-    );
+    const { asFragment } = render(<Table data={mockData} columns={mockColumns} search />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders table with different variants correctly', () => {
     const variants = ['striped', 'bordered', 'borderless', 'hover', 'compact'];
-    
-    const fragments = variants.map(variant => {
+
+    const fragments = variants.map((variant) => {
       const { asFragment } = render(
-        <Table 
-          data={mockData} 
-          columns={mockColumns} 
-          variant={variant as any} 
-        />
+        <Table data={mockData} columns={mockColumns} variant={variant as any} />
       );
       return { variant, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ variant, fragment }) => {
       expect(fragment).toMatchSnapshot(`Table with variant ${variant}`);
     });
@@ -109,50 +94,36 @@ describe('Table Snapshots', () => {
 
   it('renders table with different sizes correctly', () => {
     const sizes = ['sm', 'md', 'lg'];
-    
-    const fragments = sizes.map(size => {
+
+    const fragments = sizes.map((size) => {
       const { asFragment } = render(
-        <Table 
-          data={mockData} 
-          columns={mockColumns} 
-          size={size as any} 
-        />
+        <Table data={mockData} columns={mockColumns} size={size as any} />
       );
       return { size, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ size, fragment }) => {
       expect(fragment).toMatchSnapshot(`Table with size ${size}`);
     });
   });
 
   it('renders table with selectable rows correctly', () => {
-    const { asFragment } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        selectable 
-      />
-    );
+    const { asFragment } = render(<Table data={mockData} columns={mockColumns} selectable />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders table with custom className correctly', () => {
     const { asFragment } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
-        className="custom-table" 
-      />
+      <Table data={mockData} columns={mockColumns} className="custom-table" />
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders table with sorting correctly', () => {
     const { asFragment } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
+      <Table
+        data={mockData}
+        columns={mockColumns}
         defaultSortColumn="name"
         defaultSortDirection="asc"
       />
@@ -162,9 +133,9 @@ describe('Table Snapshots', () => {
 
   it('renders table with custom header and footer correctly', () => {
     const { asFragment } = render(
-      <Table 
-        data={mockData} 
-        columns={mockColumns} 
+      <Table
+        data={mockData}
+        columns={mockColumns}
         header={<div>Custom Header</div>}
         footer={<div>Custom Footer</div>}
       />

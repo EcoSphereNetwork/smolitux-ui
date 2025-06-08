@@ -113,7 +113,7 @@ export interface TabViewProps {
 
 /**
  * Barrierefreie TabView-Komponente zur Organisation von Inhalten in Registerkarten
- * 
+ *
  * @example
  * ```tsx
  * <TabViewA11y
@@ -186,110 +186,110 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
   // Generiere eindeutige IDs für ARIA-Attribute
   const uniqueId = useId();
   const tablistId = `tablist-${uniqueId}`;
-  
+
   // Bestimme den aktiven Tab
   const [activeTab, setActiveTab] = useState<string>(() => {
     if (controlledActiveTabId) {
       return controlledActiveTabId;
     }
-    
+
     if (defaultTabId) {
       return defaultTabId;
     }
-    
+
     // Wenn kein Tab angegeben ist, verwende den ersten nicht deaktivierten Tab
-    const firstEnabledTab = tabs.find(tab => !tab.disabled);
+    const firstEnabledTab = tabs.find((tab) => !tab.disabled);
     return firstEnabledTab ? firstEnabledTab.id : '';
   });
-  
+
   // Aktualisiere den aktiven Tab, wenn sich die Props ändern
   useEffect(() => {
     if (controlledActiveTabId !== undefined) {
       setActiveTab(controlledActiveTabId);
     }
   }, [controlledActiveTabId]);
-  
+
   // Refs für Fokus-Management
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [focusedTabIndex, setFocusedTabIndex] = useState<number>(-1);
   const [announceMessage, setAnnounceMessage] = useState<string>('');
-  
+
   // Initialisiere die Refs für die Tabs
   useEffect(() => {
     tabRefs.current = tabRefs.current.slice(0, tabs.length);
   }, [tabs]);
-  
+
   // Finde den Index des aktiven Tabs
-  const activeTabIndex = tabs.findIndex(tab => tab.id === activeTab);
-  
+  const activeTabIndex = tabs.findIndex((tab) => tab.id === activeTab);
+
   // Behandle Tab-Wechsel
   const handleTabChange = (tabId: string) => {
     if (controlledActiveTabId === undefined) {
       setActiveTab(tabId);
     }
-    
+
     if (onTabChange) {
       onTabChange(tabId);
     }
-    
+
     if (onChange) {
       onChange(tabId);
     }
-    
+
     // Ankündige den Tab-Wechsel für Screenreader
     if (announce) {
-      const tab = tabs.find(t => t.id === tabId);
+      const tab = tabs.find((t) => t.id === tabId);
       if (tab) {
         const tabLabel = typeof tab.label === 'string' ? tab.label : 'Tab';
         setAnnounceMessage(`${tabLabel} ausgewählt`);
       }
     }
   };
-  
+
   // Behandle Tastaturnavigation
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (!keyboardNavigation || focusedTabIndex === -1) return;
-    
-    const enabledTabs = tabs.filter(tab => !tab.disabled);
+
+    const enabledTabs = tabs.filter((tab) => !tab.disabled);
     const enabledTabsCount = enabledTabs.length;
-    
+
     if (enabledTabsCount === 0) return;
-    
+
     let newIndex = focusedTabIndex;
-    
+
     switch (event.key) {
       case 'ArrowRight':
       case 'ArrowDown':
         if (vertical && event.key === 'ArrowRight') break;
         if (!vertical && event.key === 'ArrowDown') break;
-        
+
         newIndex = circular
           ? (focusedTabIndex + 1) % enabledTabsCount
           : Math.min(focusedTabIndex + 1, enabledTabsCount - 1);
         event.preventDefault();
         break;
-        
+
       case 'ArrowLeft':
       case 'ArrowUp':
         if (vertical && event.key === 'ArrowLeft') break;
         if (!vertical && event.key === 'ArrowUp') break;
-        
+
         newIndex = circular
           ? (focusedTabIndex - 1 + enabledTabsCount) % enabledTabsCount
           : Math.max(focusedTabIndex - 1, 0);
         event.preventDefault();
         break;
-        
+
       case 'Home':
         newIndex = 0;
         event.preventDefault();
         break;
-        
+
       case 'End':
         newIndex = enabledTabsCount - 1;
         event.preventDefault();
         break;
-        
+
       case 'Enter':
       case ' ':
         if (manual) {
@@ -300,7 +300,7 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
           event.preventDefault();
         }
         break;
-        
+
       default:
         // Implementiere Tastaturkürzel für die Tabs (1-9)
         if (keyboardShortcuts && /^[1-9]$/.test(event.key)) {
@@ -317,12 +317,12 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
         }
         break;
     }
-    
+
     // Fokussiere den neuen Tab
     if (newIndex !== focusedTabIndex) {
       setFocusedTabIndex(newIndex);
       tabRefs.current[newIndex]?.focus();
-      
+
       // Aktiviere den Tab automatisch, wenn autoActivate aktiviert ist
       if (autoActivate) {
         const enabledTabId = enabledTabs[newIndex]?.id;
@@ -332,19 +332,19 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
       }
     }
   };
-  
+
   // Behandle Fokus auf Tab
   const handleTabFocus = (index: number) => {
     setFocusedTabIndex(index);
   };
-  
+
   // Behandle Klick auf Tab
   const handleTabClick = (tabId: string) => {
     if (!manual) {
       handleTabChange(tabId);
     }
   };
-  
+
   // Rendere die Tabs
   const renderTabs = () => {
     // Bestimme die Klassen für die Tabliste basierend auf der Variante und Position
@@ -353,62 +353,72 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
       pills: 'space-x-1',
       buttons: 'space-x-1',
       underline: 'border-b border-gray-200 dark:border-gray-700',
-      minimal: ''
+      minimal: '',
     };
-    
+
     // Bestimme die Klassen für die Tabs basierend auf der Variante
     const getTabClasses = (isActive: boolean, isDisabled: boolean) => {
-      const baseClasses = 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500';
+      const baseClasses =
+        'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500';
       const sizeClasses = {
         sm: 'px-2 py-1 text-sm',
         md: 'px-3 py-2',
-        lg: 'px-4 py-3 text-lg'
+        lg: 'px-4 py-3 text-lg',
       };
-      
+
       const variantClasses = {
-        default: `${isActive 
-          ? 'border-b-2 border-primary-500 text-primary-600 dark:text-primary-400' 
-          : 'border-b-2 border-transparent text-gray-500 hover:border-gray-300 dark:text-gray-400 dark:hover:border-gray-600'} ${sizeClasses[tabSize]}`,
-        pills: `${isActive 
-          ? 'bg-primary-500 text-white' 
-          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'} rounded-full ${sizeClasses[tabSize]}`,
-        buttons: `${isActive 
-          ? 'bg-primary-500 text-white' 
-          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'} rounded-md ${sizeClasses[tabSize]}`,
-        underline: `${isActive 
-          ? 'border-b-2 border-primary-500 text-primary-600 dark:text-primary-400' 
-          : 'border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'} ${sizeClasses[tabSize]}`,
-        minimal: `${isActive 
-          ? 'text-primary-600 dark:text-primary-400' 
-          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'} ${sizeClasses[tabSize]}`
+        default: `${
+          isActive
+            ? 'border-b-2 border-primary-500 text-primary-600 dark:text-primary-400'
+            : 'border-b-2 border-transparent text-gray-500 hover:border-gray-300 dark:text-gray-400 dark:hover:border-gray-600'
+        } ${sizeClasses[tabSize]}`,
+        pills: `${
+          isActive
+            ? 'bg-primary-500 text-white'
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+        } rounded-full ${sizeClasses[tabSize]}`,
+        buttons: `${
+          isActive
+            ? 'bg-primary-500 text-white'
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+        } rounded-md ${sizeClasses[tabSize]}`,
+        underline: `${
+          isActive
+            ? 'border-b-2 border-primary-500 text-primary-600 dark:text-primary-400'
+            : 'border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+        } ${sizeClasses[tabSize]}`,
+        minimal: `${
+          isActive
+            ? 'text-primary-600 dark:text-primary-400'
+            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+        } ${sizeClasses[tabSize]}`,
       };
-      
-      const disabledClasses = isDisabled 
-        ? 'opacity-50 cursor-not-allowed' 
-        : 'cursor-pointer';
-      
+
+      const disabledClasses = isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';
+
       return `${baseClasses} ${variantClasses[variant]} ${disabledClasses}`;
     };
-    
+
     // Bestimme die Ausrichtung der Tabs
-    const tabsAlignment = centered 
-      ? 'justify-center' 
-      : fullWidth 
-        ? 'justify-between' 
+    const tabsAlignment = centered
+      ? 'justify-center'
+      : fullWidth
+        ? 'justify-between'
         : 'justify-start';
-    
+
     // Bestimme die Orientierung der Tabs
-    const tabsOrientation = vertical || position === 'left' || position === 'right'
-      ? 'flex-col'
-      : 'flex-row';
-    
+    const tabsOrientation =
+      vertical || position === 'left' || position === 'right' ? 'flex-col' : 'flex-row';
+
     return (
-      <div 
+      <div
         className={`${tabsClassName}`}
         role="tablist"
         id={tablistId}
         aria-label={ariaLabel || 'Tabs'}
-        aria-orientation={vertical || position === 'left' || position === 'right' ? 'vertical' : 'horizontal'}
+        aria-orientation={
+          vertical || position === 'left' || position === 'right' ? 'vertical' : 'horizontal'
+        }
         onKeyDown={handleKeyDown}
       >
         <div className={`flex ${tabsOrientation} ${tabsAlignment} ${tablistClasses[variant]}`}>
@@ -417,17 +427,19 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
             const isDisabled = !!tab.disabled;
             const tabId = `tab-${tab.id}-${uniqueId}`;
             const panelId = `panel-${tab.id}-${uniqueId}`;
-            
+
             return (
               <button
                 key={tab.id}
-                ref={el => tabRefs.current[index] = el}
+                ref={(el) => (tabRefs.current[index] = el)}
                 id={tabId}
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={tab.ariaControls || panelId}
                 aria-disabled={isDisabled}
-                aria-label={tab.ariaLabel || (typeof tab.label === 'string' ? tab.label : undefined)}
+                aria-label={
+                  tab.ariaLabel || (typeof tab.label === 'string' ? tab.label : undefined)
+                }
                 tabIndex={isActive ? 0 : -1}
                 className={getTabClasses(isActive, isDisabled)}
                 onClick={() => !isDisabled && handleTabClick(tab.id)}
@@ -439,7 +451,9 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
                   {tab.icon && <span className="mr-2">{tab.icon}</span>}
                   <span>{tab.label}</span>
                   {tab.badge && (
-                    <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${getBadgeColorClass(tab.badgeColor)}`}>
+                    <span
+                      className={`ml-2 px-2 py-0.5 text-xs rounded-full ${getBadgeColorClass(tab.badgeColor)}`}
+                    >
                       {tab.badge}
                     </span>
                   )}
@@ -451,21 +465,21 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
       </div>
     );
   };
-  
+
   // Rendere den Inhalt
   const renderContent = () => {
     if (!showContent) return null;
-    
+
     return (
       <div className={`mt-4 ${contentClassName}`}>
-        {tabs.map(tab => {
+        {tabs.map((tab) => {
           const isActive = tab.id === activeTab;
           const panelId = `panel-${tab.id}-${uniqueId}`;
           const tabId = `tab-${tab.id}-${uniqueId}`;
-          
+
           // Wenn lazy aktiviert ist, rendere nur den aktiven Tab
           if (lazy && !isActive) return null;
-          
+
           return (
             <div
               key={tab.id}
@@ -482,40 +496,36 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
       </div>
     );
   };
-  
+
   // Rendere die Beschreibung für Screenreader
   const renderDescription = () => {
     if (!description) return null;
-    
+
     return (
       <div id={`${tablistId}-description`} className="sr-only">
         {description}
       </div>
     );
   };
-  
+
   // Rendere die Live-Region für Ankündigungen
   const renderLiveRegion = () => {
     if (!liveRegion) return null;
-    
+
     return (
-      <div 
-        aria-live="polite" 
-        aria-atomic="true" 
-        className="sr-only"
-      >
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
         {announceMessage}
       </div>
     );
   };
-  
+
   // Rendere den Fehler
   const renderError = () => {
     if (!error) return null;
-    
+
     return (
-      <div 
-        id={`${tablistId}-error`} 
+      <div
+        id={`${tablistId}-error`}
         className="text-red-600 dark:text-red-400 mt-2 text-sm"
         role="alert"
       >
@@ -523,42 +533,36 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
       </div>
     );
   };
-  
+
   // Rendere den Erfolg
   const renderSuccess = () => {
     if (!success) return null;
-    
+
     return (
-      <div 
-        id={`${tablistId}-success`} 
-        className="text-green-600 dark:text-green-400 mt-2 text-sm"
-      >
+      <div id={`${tablistId}-success`} className="text-green-600 dark:text-green-400 mt-2 text-sm">
         {success}
       </div>
     );
   };
-  
+
   // Rendere den Hilfetext
   const renderHelperText = () => {
     if (!helperText) return null;
-    
+
     return (
-      <div 
-        id={`${tablistId}-helper`} 
-        className="text-gray-500 dark:text-gray-400 mt-2 text-sm"
-      >
+      <div id={`${tablistId}-helper`} className="text-gray-500 dark:text-gray-400 mt-2 text-sm">
         {helperText}
       </div>
     );
   };
-  
+
   // Rendere den Ladeindikator
   const renderLoading = () => {
     if (!loading) return null;
-    
+
     return (
-      <div 
-        id={`${tablistId}-loading`} 
+      <div
+        id={`${tablistId}-loading`}
         className="text-gray-500 dark:text-gray-400 mt-2 text-sm"
         aria-live="polite"
       >
@@ -566,7 +570,7 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
       </div>
     );
   };
-  
+
   // Hilfsfunktion für Badge-Farben
   const getBadgeColorClass = (color?: string) => {
     switch (color) {
@@ -584,45 +588,49 @@ export const TabViewA11y: React.FC<TabViewProps> = ({
         return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300';
     }
   };
-  
+
   // Bestimme die ARIA-Attribute für die TabView
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {};
-    
+
     if (description) {
       attributes['aria-describedby'] = `${tablistId}-description`;
     }
-    
+
     if (error) {
       attributes['aria-errormessage'] = `${tablistId}-error`;
       attributes['aria-invalid'] = 'true';
     }
-    
+
     if (helperText && !error) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${tablistId}-helper` : `${tablistId}-helper`);
+      attributes['aria-describedby'] = attributes['aria-describedby']
+        ? `${attributes['aria-describedby']} ${tablistId}-helper`
+        : `${tablistId}-helper`;
     }
-    
+
     if (success) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${tablistId}-success` : `${tablistId}-success`);
+      attributes['aria-describedby'] = attributes['aria-describedby']
+        ? `${attributes['aria-describedby']} ${tablistId}-success`
+        : `${tablistId}-success`;
     }
-    
+
     if (loading) {
       attributes['aria-busy'] = 'true';
     }
-    
+
     return attributes;
   };
-  
+
   // Layout the tabs and content based on position
   return (
-    <div 
-      className={`w-full ${position === 'left' || position === 'right' ? 'flex' : ''} ${className}`} 
+    <div
+      className={`w-full ${position === 'left' || position === 'right' ? 'flex' : ''} ${className}`}
       style={style}
       {...getAriaAttributes()}
     >
       {renderDescription()}
       {renderLiveRegion()}
-      
+
       {position === 'top' && (
         <>
           {renderTabs()}

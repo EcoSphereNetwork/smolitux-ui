@@ -7,62 +7,62 @@ export type ZoomProps<C extends ElementType = 'div'> = {
    * Ob das Element sichtbar sein soll
    */
   in?: boolean;
-  
+
   /**
    * Die Dauer des Übergangs in Millisekunden
    */
   timeout?: number;
-  
+
   /**
    * Das Übergangs-Preset
    */
   transition?: TransitionPresetName | TransitionPreset;
-  
+
   /**
    * Der Skalierungsfaktor im ausgeblendeten Zustand
    */
   scale?: number;
-  
+
   /**
    * Ob das Element beim ersten Rendern animiert werden soll
    */
   appear?: boolean;
-  
+
   /**
    * Ob das Element erst beim Einblenden in den DOM eingefügt werden soll
    */
   mountOnEnter?: boolean;
-  
+
   /**
    * Ob das Element nach dem Ausblenden aus dem DOM entfernt werden soll
    */
   unmountOnExit?: boolean;
-  
+
   /**
    * Callback, wenn das Element vollständig eingeblendet ist
    */
   onEntered?: () => void;
-  
+
   /**
    * Callback, wenn das Element vollständig ausgeblendet ist
    */
   onExited?: () => void;
-  
+
   /**
    * Die Kinder der Komponente
    */
   children: React.ReactNode;
-  
+
   /**
    * Zusätzliche CSS-Klassen
    */
   className?: string;
-  
+
   /**
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
-  
+
   /**
    * Das zu verwendende Element, wenn kein Kind übergeben wird
    */
@@ -93,7 +93,12 @@ export const Zoom = forwardRef(function Zoom(
     ...rest
   } = props;
   // Wir verwenden einen generischen Typ für useTransition, um die Typsicherheit zu verbessern
-  const { state, isVisible, ref, style: transitionStyle } = useTransition<HTMLElement>({
+  const {
+    state,
+    isVisible,
+    ref,
+    style: transitionStyle,
+  } = useTransition<HTMLElement>({
     in: inProp,
     timeout,
     transition,
@@ -103,29 +108,29 @@ export const Zoom = forwardRef(function Zoom(
     onEntered,
     onExited,
   });
-  
+
   if (!isVisible && unmountOnExit) {
     return null;
   }
-  
+
   // Transformations-Werte basierend auf dem Zustand
   const getScale = (): number => {
     return state === 'entering' || state === 'entered' ? 1 : scale;
   };
-  
+
   const zoomStyle: React.CSSProperties = {
     ...transitionStyle,
     transform: `scale(${getScale()})`,
     transformOrigin: 'center',
   };
-  
+
   // Kombiniere den übergebenen Ref mit unserem internen Ref
   const handleRef = (element: HTMLElement | null) => {
     // Setze den internen Ref
     if (ref && 'current' in ref) {
       (ref as React.MutableRefObject<HTMLElement | null>).current = element;
     }
-    
+
     // Setze den übergebenen Ref
     if (forwardedRef) {
       if (typeof forwardedRef === 'function') {
@@ -145,12 +150,14 @@ export const Zoom = forwardRef(function Zoom(
         ...style,
         ...(children.props.style || {}),
       },
-      className: className ? `${className} ${children.props.className || ''}` : children.props.className,
+      className: className
+        ? `${className} ${children.props.className || ''}`
+        : children.props.className,
       'data-state': state,
       // Wir müssen die restlichen Props explizit übergeben, um TypeScript-Fehler zu vermeiden
     } as any);
   }
-  
+
   // Ansonsten wrappen wir die Kinder in einem Element
   const Component = as || 'div';
   return (

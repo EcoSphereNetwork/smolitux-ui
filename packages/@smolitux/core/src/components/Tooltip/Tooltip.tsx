@@ -44,45 +44,45 @@ export const Tooltip: React.FC<TooltipProps> = ({
   // State
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
-  
+
   // Refs
   const triggerRef = useRef<HTMLElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   // Generate unique ID for accessibility
   const tooltipId = id || `tooltip-${Math.random().toString(36).substring(2, 10)}`;
-  
+
   // Calculate tooltip position
   const calculatePosition = () => {
     if (!triggerRef.current || !tooltipRef.current) return;
-    
+
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
-    
+
     let top = 0;
     let left = 0;
-    
+
     switch (position) {
       case 'top':
         top = triggerRect.top - tooltipRect.height - 10;
-        left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+        left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
         break;
       case 'right':
-        top = triggerRect.top + (triggerRect.height / 2) - (tooltipRect.height / 2);
+        top = triggerRect.top + triggerRect.height / 2 - tooltipRect.height / 2;
         left = triggerRect.right + 10;
         break;
       case 'bottom':
         top = triggerRect.bottom + 10;
-        left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+        left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
         break;
       case 'left':
-        top = triggerRect.top + (triggerRect.height / 2) - (tooltipRect.height / 2);
+        top = triggerRect.top + triggerRect.height / 2 - tooltipRect.height / 2;
         left = triggerRect.left - tooltipRect.width - 10;
         break;
     }
-    
+
     // Ensure tooltip stays within viewport
     if (left < 0) left = 0;
     if (top < 0) top = 0;
@@ -92,20 +92,20 @@ export const Tooltip: React.FC<TooltipProps> = ({
     if (top + tooltipRect.height > window.innerHeight) {
       top = window.innerHeight - tooltipRect.height;
     }
-    
+
     setTooltipPosition({ top, left });
   };
-  
+
   // Show tooltip
   const showTooltip = () => {
     if (disabled) return;
-    
+
     // Clear any existing timeouts
     if (hideTimeoutRef.current) {
       clearTimeout(hideTimeoutRef.current);
       hideTimeoutRef.current = null;
     }
-    
+
     // Set timeout to show tooltip
     showTimeoutRef.current = setTimeout(() => {
       setIsVisible(true);
@@ -113,7 +113,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       setTimeout(calculatePosition, 0);
     }, delay);
   };
-  
+
   // Hide tooltip
   const hideTooltip = () => {
     // Clear any existing timeouts
@@ -121,13 +121,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
       clearTimeout(showTimeoutRef.current);
       showTimeoutRef.current = null;
     }
-    
+
     // Set timeout to hide tooltip
     hideTimeoutRef.current = setTimeout(() => {
       setIsVisible(false);
     }, hideDelay);
   };
-  
+
   // Clean up timeouts on unmount
   useEffect(() => {
     return () => {
@@ -135,24 +135,24 @@ export const Tooltip: React.FC<TooltipProps> = ({
       if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
     };
   }, []);
-  
+
   // Update position when window is resized
   useEffect(() => {
     if (!isVisible) return;
-    
+
     const handleResize = () => calculatePosition();
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [isVisible]);
-  
+
   // Clone trigger element with event listeners
   const triggerElement = React.cloneElement(children, {
     ref: (node: HTMLElement | null) => {
       triggerRef.current = node;
-      
+
       // Forward ref if the original element has one
       const { ref } = children as any;
       if (typeof ref === 'function') {
@@ -179,11 +179,11 @@ export const Tooltip: React.FC<TooltipProps> = ({
     },
     'aria-describedby': isVisible ? tooltipId : undefined,
   });
-  
+
   return (
     <>
       {triggerElement}
-      
+
       {/* Tooltip - only render when visible */}
       {isVisible && (
         <div
@@ -199,7 +199,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
           data-testid="tooltip"
         >
           {content}
-          
+
           {arrow && (
             <div
               data-testid="tooltip-arrow"

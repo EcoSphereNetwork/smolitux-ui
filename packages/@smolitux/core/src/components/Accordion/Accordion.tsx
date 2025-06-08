@@ -67,7 +67,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
 
 /**
  * Accordion-Komponente für ausklappbare Inhalte
- * 
+ *
  * @example
  * ```tsx
  * <Accordion>
@@ -91,7 +91,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   id,
   i18n = {
     expand: 'Erweitern',
-    collapse: 'Einklappen'
+    collapse: 'Einklappen',
   },
   animated = true,
   keyboardNavigation = true,
@@ -99,40 +99,36 @@ export const Accordion: React.FC<AccordionProps> = ({
   ...rest
 }) => {
   // Umwandlung von String zu Array für defaultOpenItems
-  const defaultItems = typeof defaultOpenItems === 'string' 
-    ? [defaultOpenItems] 
-    : defaultOpenItems;
-  
+  const defaultItems = typeof defaultOpenItems === 'string' ? [defaultOpenItems] : defaultOpenItems;
+
   // Generiere eine eindeutige ID für das Accordion
   const accordionId = id || `accordion-${Math.random().toString(36).substr(2, 9)}`;
-  
+
   // State für geöffnete Panels
   const [openItems, setOpenItems] = useState<string[]>(defaultItems);
-  
+
   // Panel öffnen/schließen
   const toggleItem = (id: string) => {
-    setOpenItems(prevOpenItems => {
+    setOpenItems((prevOpenItems) => {
       let newOpenItems: string[];
-      
+
       if (prevOpenItems.includes(id)) {
         // Schließen
-        newOpenItems = prevOpenItems.filter(item => item !== id);
+        newOpenItems = prevOpenItems.filter((item) => item !== id);
       } else {
         // Öffnen
-        newOpenItems = allowMultiple 
-          ? [...prevOpenItems, id] 
-          : [id];
+        newOpenItems = allowMultiple ? [...prevOpenItems, id] : [id];
       }
-      
+
       // Callback auslösen
       if (onChange) {
         onChange(newOpenItems);
       }
-      
+
       return newOpenItems;
     });
   };
-  
+
   // Context-Wert erstellen
   const contextValue: AccordionContextProps = {
     openItems,
@@ -143,20 +139,20 @@ export const Accordion: React.FC<AccordionProps> = ({
     id: accordionId,
     i18n: {
       expand: i18n.expand || 'Erweitern',
-      collapse: i18n.collapse || 'Einklappen'
-    }
+      collapse: i18n.collapse || 'Einklappen',
+    },
   };
-  
+
   // Varianten-spezifische Klassen
   const variantClasses = {
     default: '',
     bordered: 'border border-gray-200 dark:border-gray-700 rounded-lg',
-    separated: 'space-y-2'
+    separated: 'space-y-2',
   };
-  
+
   return (
     <AccordionContext.Provider value={contextValue}>
-      <div 
+      <div
         className={`${variantClasses[variant]} ${animated ? 'accordion-animated' : ''} ${className}`}
         id={accordionId}
         role="region"

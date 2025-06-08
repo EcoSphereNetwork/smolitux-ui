@@ -7,7 +7,7 @@ export type { A11yDrawerProps } from './Drawer.a11y';
 
 // Erweitere Drawer um die A11y-Komponente
 export const Drawer = Object.assign(BaseDrawer, {
-  A11y: A11yDrawer
+  A11y: A11yDrawer,
 });
 
 // Fuer Abwaertskompatibilitaet mit dem bestehenden Export

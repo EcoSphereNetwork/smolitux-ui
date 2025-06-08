@@ -104,7 +104,7 @@ export interface ToastProviderA11yProps {
 
 /**
  * Barrierefreier Toast-Provider für die Verwaltung von Toasts
- * 
+ *
  * @example
  * ```tsx
  * <ToastProviderA11y>
@@ -152,134 +152,140 @@ export const ToastProviderA11y: React.FC<ToastProviderA11yProps> = ({
 }) => {
   // State für die Toasts
   const [toasts, setToasts] = useState<ToastA11yProps[]>([]);
-  
+
   // Generiere eine eindeutige ID
   const generateId = useCallback(() => {
     return `toast-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
   }, []);
-  
+
   // Zeige einen Toast an
-  const show = useCallback((options: ToastOptionsA11y): string => {
-    const id = options.id || generateId();
-    
-    setToasts(prevToasts => {
-      // Begrenze die Anzahl der Toasts
-      const limitedToasts = [...prevToasts];
-      if (limitedToasts.length >= maxToasts) {
-        limitedToasts.shift();
-      }
-      
-      // Füge den neuen Toast hinzu
-      return [
-        ...limitedToasts,
-        {
-          id,
-          duration: defaultDuration,
-          isClosable: defaultIsClosable,
-          isPersistent: defaultIsPersistent,
-          role: defaultRole,
-          ariaLive: defaultAriaLive,
-          isLiveRegion: defaultIsLiveRegion,
-          autoFocus: defaultAutoFocus,
-          returnFocus: defaultReturnFocus,
-          keyboardNavigation: defaultKeyboardNavigation,
-          screenReaderSupport: defaultScreenReaderSupport,
-          announce: defaultAnnounce,
-          announceFormat: defaultAnnounceFormat,
-          isVisible: true,
-          ...options
+  const show = useCallback(
+    (options: ToastOptionsA11y): string => {
+      const id = options.id || generateId();
+
+      setToasts((prevToasts) => {
+        // Begrenze die Anzahl der Toasts
+        const limitedToasts = [...prevToasts];
+        if (limitedToasts.length >= maxToasts) {
+          limitedToasts.shift();
         }
-      ];
-    });
-    
-    return id;
-  }, [
-    generateId,
-    maxToasts,
-    defaultDuration,
-    defaultIsClosable,
-    defaultIsPersistent,
-    defaultRole,
-    defaultAriaLive,
-    defaultIsLiveRegion,
-    defaultAutoFocus,
-    defaultReturnFocus,
-    defaultKeyboardNavigation,
-    defaultScreenReaderSupport,
-    defaultAnnounce,
-    defaultAnnounceFormat
-  ]);
-  
+
+        // Füge den neuen Toast hinzu
+        return [
+          ...limitedToasts,
+          {
+            id,
+            duration: defaultDuration,
+            isClosable: defaultIsClosable,
+            isPersistent: defaultIsPersistent,
+            role: defaultRole,
+            ariaLive: defaultAriaLive,
+            isLiveRegion: defaultIsLiveRegion,
+            autoFocus: defaultAutoFocus,
+            returnFocus: defaultReturnFocus,
+            keyboardNavigation: defaultKeyboardNavigation,
+            screenReaderSupport: defaultScreenReaderSupport,
+            announce: defaultAnnounce,
+            announceFormat: defaultAnnounceFormat,
+            isVisible: true,
+            ...options,
+          },
+        ];
+      });
+
+      return id;
+    },
+    [
+      generateId,
+      maxToasts,
+      defaultDuration,
+      defaultIsClosable,
+      defaultIsPersistent,
+      defaultRole,
+      defaultAriaLive,
+      defaultIsLiveRegion,
+      defaultAutoFocus,
+      defaultReturnFocus,
+      defaultKeyboardNavigation,
+      defaultScreenReaderSupport,
+      defaultAnnounce,
+      defaultAnnounceFormat,
+    ]
+  );
+
   // Aktualisiere einen Toast
   const update = useCallback((id: string, options: Partial<ToastOptionsA11y>) => {
-    setToasts(prevToasts => 
-      prevToasts.map(toast => 
-        toast.id === id ? { ...toast, ...options } : toast
-      )
+    setToasts((prevToasts) =>
+      prevToasts.map((toast) => (toast.id === id ? { ...toast, ...options } : toast))
     );
   }, []);
-  
+
   // Schließe einen Toast
   const close = useCallback((id: string) => {
-    setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   }, []);
-  
+
   // Schließe alle Toasts
   const closeAll = useCallback(() => {
     setToasts([]);
   }, []);
-  
+
   // Prüfe, ob ein Toast aktiv ist
-  const isActive = useCallback((id: string) => {
-    return toasts.some(toast => toast.id === id);
-  }, [toasts]);
-  
+  const isActive = useCallback(
+    (id: string) => {
+      return toasts.some((toast) => toast.id === id);
+    },
+    [toasts]
+  );
+
   // Erstelle die Toast-Methoden
-  const methods = useMemo<ToastMethodsA11y>(() => ({
-    show,
-    update,
-    close,
-    closeAll,
-    isActive
-  }), [show, update, close, closeAll, isActive]);
-  
+  const methods = useMemo<ToastMethodsA11y>(
+    () => ({
+      show,
+      update,
+      close,
+      closeAll,
+      isActive,
+    }),
+    [show, update, close, closeAll, isActive]
+  );
+
   // Erstelle den Kontext-Wert
-  const contextValue = useMemo<ToastContextA11y>(() => ({
-    toasts,
-    methods
-  }), [toasts, methods]);
-  
+  const contextValue = useMemo<ToastContextA11y>(
+    () => ({
+      toasts,
+      methods,
+    }),
+    [toasts, methods]
+  );
+
   // Bestimme die CSS-Klassen für den Container
-  const containerClasses = [
-    'toast-container',
-    `toast-container-${position}`,
-    containerClassName
-  ].filter(Boolean).join(' ');
-  
+  const containerClasses = ['toast-container', `toast-container-${position}`, containerClassName]
+    .filter(Boolean)
+    .join(' ');
+
   // Rendere den Provider
   return (
     <ToastContext.Provider value={contextValue}>
       {children}
-      
+
       <div
         className={containerClasses}
-        style={{
-          ...containerStyle,
-          '--toast-spacing': `${spacing}px`
-        } as React.CSSProperties}
+        style={
+          {
+            ...containerStyle,
+            '--toast-spacing': `${spacing}px`,
+          } as React.CSSProperties
+        }
         role={containerRole}
         aria-live={containerAriaLive}
         aria-atomic={containerAriaAtomic}
         aria-relevant={containerAriaRelevant}
       >
-        {toasts.map(toast => (
-          <ToastA11y
-            key={toast.id}
-            {...toast}
-            onClose={() => close(toast.id)}
-          />
+        {toasts.map((toast) => (
+          <ToastA11y key={toast.id} {...toast} onClose={() => close(toast.id)} />
         ))}
-        
+
         {/* Screenreader-Ankündigung für den Container */}
         {containerScreenReaderSupport && containerAnnounce && (
           <div className="sr-only" aria-live={containerAriaLive || 'polite'} aria-atomic="true">
@@ -293,7 +299,7 @@ export const ToastProviderA11y: React.FC<ToastProviderA11yProps> = ({
 
 /**
  * Hook zum Zugriff auf die Toast-Methoden
- * 
+ *
  * @example
  * ```tsx
  * const toast = useToastA11y();
@@ -302,17 +308,17 @@ export const ToastProviderA11y: React.FC<ToastProviderA11yProps> = ({
  */
 export const useToastA11y = () => {
   const context = useContext(ToastContext);
-  
+
   if (!context) {
     throw new Error('useToastA11y must be used within a ToastProviderA11y');
   }
-  
+
   return context.methods;
 };
 
 /**
  * Hook zum Zugriff auf die Toast-Methoden und Toasts
- * 
+ *
  * @example
  * ```tsx
  * const { toasts, methods } = useToastContextA11y();
@@ -320,11 +326,11 @@ export const useToastA11y = () => {
  */
 export const useToastContextA11y = () => {
   const context = useContext(ToastContext);
-  
+
   if (!context) {
     throw new Error('useToastContextA11y must be used within a ToastProviderA11y');
   }
-  
+
   return context;
 };
 

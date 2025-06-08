@@ -5,10 +5,7 @@ import { Avatar } from '../Avatar';
 describe('Avatar Snapshots', () => {
   it('renders with image correctly', () => {
     const { asFragment } = render(
-      <Avatar 
-        src="https://example.com/avatar.jpg" 
-        alt="User Avatar" 
-      />
+      <Avatar src="https://example.com/avatar.jpg" alt="User Avatar" />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -38,19 +35,13 @@ describe('Avatar Snapshots', () => {
   });
 
   it('renders with border correctly', () => {
-    const { asFragment } = render(
-      <Avatar name="John Doe" showBorder borderColor="blue-500" />
-    );
+    const { asFragment } = render(<Avatar name="John Doe" showBorder borderColor="blue-500" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders with custom colors correctly', () => {
     const { asFragment } = render(
-      <Avatar 
-        name="John Doe" 
-        bgColor="purple-500" 
-        textColor="white" 
-      />
+      <Avatar name="John Doe" bgColor="purple-500" textColor="white" />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -69,16 +60,12 @@ describe('Avatar Snapshots', () => {
   });
 
   it('renders with custom className correctly', () => {
-    const { asFragment } = render(
-      <Avatar name="John Doe" className="custom-avatar" />
-    );
+    const { asFragment } = render(<Avatar name="John Doe" className="custom-avatar" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders with square shape correctly', () => {
-    const { asFragment } = render(
-      <Avatar name="John Doe" shape="square" />
-    );
+    const { asFragment } = render(<Avatar name="John Doe" shape="square" />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

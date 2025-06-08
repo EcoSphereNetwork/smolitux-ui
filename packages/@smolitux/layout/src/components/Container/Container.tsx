@@ -17,7 +17,7 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 /**
  * Container-Komponente für konsistentes Layout in verschiedenen Breakpoints
- * 
+ *
  * @example
  * ```tsx
  * <Container maxWidth="lg">
@@ -26,70 +26,73 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
  * </Container>
  * ```
  */
-export const Container = forwardRef<HTMLDivElement, ContainerProps>(({
-  maxWidth = 'lg',
-  disableGutters = false,
-  fullHeight = false,
-  centerContent = false,
-  className = '',
-  children,
-  ...rest
-}, ref) => {
-  const getResponsiveClass = <T extends string | number>(
-    prop: ResponsiveProp<T> | undefined,
-    map: Record<string, string>
+export const Container = forwardRef<HTMLDivElement, ContainerProps>(
+  (
+    {
+      maxWidth = 'lg',
+      disableGutters = false,
+      fullHeight = false,
+      centerContent = false,
+      className = '',
+      children,
+      ...rest
+    },
+    ref
   ) => {
-    if (prop === undefined) return '';
-    if (typeof prop === 'object') {
-      return Object.entries(prop)
-        .map(([bp, val]) => `${bp}:${map[val as string]}`)
-        .join(' ');
-    }
-    return map[prop as string];
-  };
-  // Maximale Breiten-Klassen entsprechend der maxWidth-Prop
-  const maxWidthClasses = {
-    xs: 'max-w-sm', // 640px
-    sm: 'max-w-md', // 768px
-    md: 'max-w-lg', // 1024px
-    lg: 'max-w-3xl', // 1280px
-    xl: 'max-w-5xl', // 1536px
-    '2xl': 'max-w-7xl', // 1920px
-    full: 'max-w-full',
-    none: ''
-  };
+    const getResponsiveClass = <T extends string | number>(
+      prop: ResponsiveProp<T> | undefined,
+      map: Record<string, string>
+    ) => {
+      if (prop === undefined) return '';
+      if (typeof prop === 'object') {
+        return Object.entries(prop)
+          .map(([bp, val]) => `${bp}:${map[val as string]}`)
+          .join(' ');
+      }
+      return map[prop as string];
+    };
+    // Maximale Breiten-Klassen entsprechend der maxWidth-Prop
+    const maxWidthClasses = {
+      xs: 'max-w-sm', // 640px
+      sm: 'max-w-md', // 768px
+      md: 'max-w-lg', // 1024px
+      lg: 'max-w-3xl', // 1280px
+      xl: 'max-w-5xl', // 1536px
+      '2xl': 'max-w-7xl', // 1920px
+      full: 'max-w-full',
+      none: '',
+    };
 
-  // Basis-Klassen
-  const containerClasses = [
-    // Basis-Container-Klassen
-    'w-full mx-auto',
+    // Basis-Klassen
+    const containerClasses = [
+      // Basis-Container-Klassen
+      'w-full mx-auto',
 
-    // Max-Width basierend auf der Prop
-    getResponsiveClass(maxWidth, maxWidthClasses),
-    
-    // Gutters (horizontales Padding)
-    disableGutters ? '' : 'px-4 sm:px-6 md:px-8',
-    
-    // Vollständige Höhe
-    fullHeight ? 'h-full' : '',
-    
-    // Content zentrieren (flexbox)
-    centerContent ? 'flex flex-col items-center justify-center' : '',
-    
-    // Benutzerdefinierte Klassen
-    className
-  ].filter(Boolean).join(' ');
+      // Max-Width basierend auf der Prop
+      getResponsiveClass(maxWidth, maxWidthClasses),
 
-  return (
-    <div
-      ref={ref}
-      className={containerClasses}
-      {...rest}
-    >
-      {children}
-    </div>
-  );
-});
+      // Gutters (horizontales Padding)
+      disableGutters ? '' : 'px-4 sm:px-6 md:px-8',
+
+      // Vollständige Höhe
+      fullHeight ? 'h-full' : '',
+
+      // Content zentrieren (flexbox)
+      centerContent ? 'flex flex-col items-center justify-center' : '',
+
+      // Benutzerdefinierte Klassen
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return (
+      <div ref={ref} className={containerClasses} {...rest}>
+        {children}
+      </div>
+    );
+  }
+);
 
 Container.displayName = 'Container';
 

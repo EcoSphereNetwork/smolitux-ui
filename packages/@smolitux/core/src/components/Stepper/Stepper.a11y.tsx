@@ -1,5 +1,14 @@
 // packages/@smolitux/core/src/components/Stepper/Stepper.a11y.tsx
-import React, { createContext, useContext, useMemo, useState, useEffect, useRef, useId, KeyboardEvent } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  useEffect,
+  useRef,
+  useId,
+  KeyboardEvent,
+} from 'react';
 import './Stepper.css';
 
 export interface Step {
@@ -187,7 +196,7 @@ export interface StepperProps {
 
 /**
  * Barrierefreie Stepper-Komponente zur Anzeige eines mehrstufigen Prozesses
- * 
+ *
  * @example
  * ```tsx
  * <StepperA11y
@@ -266,32 +275,32 @@ export const StepperA11y: React.FC<StepperProps> = ({
   // Generiere eindeutige IDs für ARIA-Attribute
   const uniqueId = useId();
   const stepperId = `stepper-${uniqueId}`;
-  
+
   // State für den aktiven Schritt
   const [internalActiveStep, setInternalActiveStep] = useState(activeStep);
-  
+
   // State für den fokussierten Schritt
   const [focusedStep, setFocusedStep] = useState<number>(-1);
-  
+
   // State für Tastaturnavigation
   const [isKeyboardNavigation, setIsKeyboardNavigation] = useState(false);
-  
+
   // State für Ankündigungen
   const [announceMessage, setAnnounceMessage] = useState<string>('');
-  
+
   // Refs für die Schritte
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
-  
+
   // Aktualisiere den aktiven Schritt, wenn sich die Props ändern
   useEffect(() => {
     setInternalActiveStep(activeStep);
   }, [activeStep]);
-  
+
   // Initialisiere die Refs für die Schritte
   useEffect(() => {
     stepRefs.current = stepRefs.current.slice(0, steps.length);
   }, [steps]);
-  
+
   // Fokussiere den aktiven Schritt beim ersten Rendern
   useEffect(() => {
     if (autoFocus && focusManagement) {
@@ -301,54 +310,58 @@ export const StepperA11y: React.FC<StepperProps> = ({
       }, 0);
     }
   }, [autoFocus, focusManagement, internalActiveStep]);
-  
+
   // Zum nächsten Schritt gehen
   const nextStep = () => {
     if (internalActiveStep < steps.length - 1) {
       const nextStepIndex = internalActiveStep + 1;
       setInternalActiveStep(nextStepIndex);
-      
+
       if (onStepChange) {
         onStepChange(nextStepIndex);
       }
-      
+
       // Ankündige den Schrittwechsel für Screenreader
       if (announce) {
         const step = steps[nextStepIndex];
         const stepTitle = typeof step.title === 'string' ? step.title : 'Schritt';
-        setAnnounceMessage(`${stepTitle} aktiviert. Schritt ${nextStepIndex + 1} von ${steps.length}`);
+        setAnnounceMessage(
+          `${stepTitle} aktiviert. Schritt ${nextStepIndex + 1} von ${steps.length}`
+        );
       }
     }
   };
-  
+
   // Zum vorherigen Schritt gehen
   const prevStep = () => {
     if (internalActiveStep > 0) {
       const prevStepIndex = internalActiveStep - 1;
       setInternalActiveStep(prevStepIndex);
-      
+
       if (onStepChange) {
         onStepChange(prevStepIndex);
       }
-      
+
       // Ankündige den Schrittwechsel für Screenreader
       if (announce) {
         const step = steps[prevStepIndex];
         const stepTitle = typeof step.title === 'string' ? step.title : 'Schritt';
-        setAnnounceMessage(`${stepTitle} aktiviert. Schritt ${prevStepIndex + 1} von ${steps.length}`);
+        setAnnounceMessage(
+          `${stepTitle} aktiviert. Schritt ${prevStepIndex + 1} von ${steps.length}`
+        );
       }
     }
   };
-  
+
   // Zu einem bestimmten Schritt gehen
   const goToStep = (index: number) => {
     if (index >= 0 && index < steps.length && !steps[index].disabled) {
       setInternalActiveStep(index);
-      
+
       if (onStepChange) {
         onStepChange(index);
       }
-      
+
       // Ankündige den Schrittwechsel für Screenreader
       if (announce) {
         const step = steps[index];
@@ -357,7 +370,7 @@ export const StepperA11y: React.FC<StepperProps> = ({
       }
     }
   };
-  
+
   // Status eines Schritts abrufen
   const getStepStatus = (index: number): StepStatus => {
     if (index < internalActiveStep) {
@@ -368,7 +381,7 @@ export const StepperA11y: React.FC<StepperProps> = ({
       return 'upcoming';
     }
   };
-  
+
   // Fokus auf einen bestimmten Schritt setzen
   const focusStep = (index: number) => {
     if (index >= 0 && index < steps.length) {
@@ -376,48 +389,48 @@ export const StepperA11y: React.FC<StepperProps> = ({
       stepRefs.current[index]?.focus();
     }
   };
-  
+
   // Behandle Tastaturnavigation
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (!keyboardNavigation) return;
-    
+
     setIsKeyboardNavigation(true);
-    
+
     switch (event.key) {
       case 'ArrowRight':
       case 'ArrowDown':
         if (orientation === 'horizontal' && event.key === 'ArrowDown') break;
         if (orientation === 'vertical' && event.key === 'ArrowRight') break;
-        
+
         // Finde den nächsten nicht deaktivierten Schritt
         let nextIndex = focusedStep;
         do {
           nextIndex = (nextIndex + 1) % steps.length;
         } while (steps[nextIndex].disabled && nextIndex !== focusedStep);
-        
+
         if (nextIndex !== focusedStep) {
           focusStep(nextIndex);
           event.preventDefault();
         }
         break;
-        
+
       case 'ArrowLeft':
       case 'ArrowUp':
         if (orientation === 'horizontal' && event.key === 'ArrowUp') break;
         if (orientation === 'vertical' && event.key === 'ArrowLeft') break;
-        
+
         // Finde den vorherigen nicht deaktivierten Schritt
         let prevIndex = focusedStep;
         do {
           prevIndex = (prevIndex - 1 + steps.length) % steps.length;
         } while (steps[prevIndex].disabled && prevIndex !== focusedStep);
-        
+
         if (prevIndex !== focusedStep) {
           focusStep(prevIndex);
           event.preventDefault();
         }
         break;
-        
+
       case 'Home':
         // Finde den ersten nicht deaktivierten Schritt
         for (let i = 0; i < steps.length; i++) {
@@ -428,7 +441,7 @@ export const StepperA11y: React.FC<StepperProps> = ({
           }
         }
         break;
-        
+
       case 'End':
         // Finde den letzten nicht deaktivierten Schritt
         for (let i = steps.length - 1; i >= 0; i--) {
@@ -439,7 +452,7 @@ export const StepperA11y: React.FC<StepperProps> = ({
           }
         }
         break;
-        
+
       case 'Enter':
       case ' ':
         if (focusedStep !== -1 && clickable && !steps[focusedStep].disabled) {
@@ -447,7 +460,7 @@ export const StepperA11y: React.FC<StepperProps> = ({
           event.preventDefault();
         }
         break;
-        
+
       default:
         // Implementiere Tastaturkürzel für die Schritte (1-9)
         if (keyboardShortcuts && /^[1-9]$/.test(event.key)) {
@@ -463,90 +476,81 @@ export const StepperA11y: React.FC<StepperProps> = ({
         break;
     }
   };
-  
+
   // Behandle Mausnavigation
   const handleStepClick = (index: number) => {
     if (clickable && !steps[index].disabled) {
       goToStep(index);
     }
   };
-  
+
   // Behandle Fokus auf Schritt
   const handleStepFocus = (index: number) => {
     setFocusedStep(index);
   };
-  
+
   // Behandle Verlust des Fokus
   const handleStepBlur = () => {
     // Setze den fokussierten Schritt zurück, wenn der Fokus den Stepper verlässt
     setTimeout(() => {
       const activeElement = document.activeElement;
-      const isStepFocused = stepRefs.current.some(ref => ref === activeElement);
-      
+      const isStepFocused = stepRefs.current.some((ref) => ref === activeElement);
+
       if (!isStepFocused) {
         setFocusedStep(-1);
         setIsKeyboardNavigation(false);
       }
     }, 0);
   };
-  
+
   // Context-Wert für den Stepper
-  const contextValue = useMemo<StepperContextProps>(() => ({
-    activeStep: internalActiveStep,
-    steps,
-    orientation,
-    variant,
-    size,
-    nextStep,
-    prevStep,
-    goToStep,
-    getStepStatus,
-    focusStep,
-    focusedStep,
-    isKeyboardNavigation
-  }), [
-    internalActiveStep,
-    steps,
-    orientation,
-    variant,
-    size,
-    focusedStep,
-    isKeyboardNavigation
-  ]);
-  
+  const contextValue = useMemo<StepperContextProps>(
+    () => ({
+      activeStep: internalActiveStep,
+      steps,
+      orientation,
+      variant,
+      size,
+      nextStep,
+      prevStep,
+      goToStep,
+      getStepStatus,
+      focusStep,
+      focusedStep,
+      isKeyboardNavigation,
+    }),
+    [internalActiveStep, steps, orientation, variant, size, focusedStep, isKeyboardNavigation]
+  );
+
   // Rendere die Beschreibung für Screenreader
   const renderDescription = () => {
     if (!description) return null;
-    
+
     return (
       <div id={`${stepperId}-description`} className="sr-only">
         {description}
       </div>
     );
   };
-  
+
   // Rendere die Live-Region für Ankündigungen
   const renderLiveRegion = () => {
     if (!liveRegion) return null;
-    
+
     return (
-      <div 
-        aria-live="polite" 
-        aria-atomic="true" 
-        className="sr-only"
-      >
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
         {announceMessage}
       </div>
     );
   };
-  
+
   // Rendere den Fehler
   const renderError = () => {
     if (!error) return null;
-    
+
     return (
-      <div 
-        id={`${stepperId}-error`} 
+      <div
+        id={`${stepperId}-error`}
         className="text-red-600 dark:text-red-400 mt-2 text-sm"
         role="alert"
       >
@@ -554,42 +558,36 @@ export const StepperA11y: React.FC<StepperProps> = ({
       </div>
     );
   };
-  
+
   // Rendere den Erfolg
   const renderSuccess = () => {
     if (!success) return null;
-    
+
     return (
-      <div 
-        id={`${stepperId}-success`} 
-        className="text-green-600 dark:text-green-400 mt-2 text-sm"
-      >
+      <div id={`${stepperId}-success`} className="text-green-600 dark:text-green-400 mt-2 text-sm">
         {success}
       </div>
     );
   };
-  
+
   // Rendere den Hilfetext
   const renderHelperText = () => {
     if (!helperText) return null;
-    
+
     return (
-      <div 
-        id={`${stepperId}-helper`} 
-        className="text-gray-500 dark:text-gray-400 mt-2 text-sm"
-      >
+      <div id={`${stepperId}-helper`} className="text-gray-500 dark:text-gray-400 mt-2 text-sm">
         {helperText}
       </div>
     );
   };
-  
+
   // Rendere den Ladeindikator
   const renderLoading = () => {
     if (!loading) return null;
-    
+
     return (
-      <div 
-        id={`${stepperId}-loading`} 
+      <div
+        id={`${stepperId}-loading`}
         className="text-gray-500 dark:text-gray-400 mt-2 text-sm"
         aria-live="polite"
       >
@@ -597,7 +595,7 @@ export const StepperA11y: React.FC<StepperProps> = ({
       </div>
     );
   };
-  
+
   // Rendere die Schritte
   const renderSteps = () => {
     return steps.map((step, index) => {
@@ -607,7 +605,7 @@ export const StepperA11y: React.FC<StepperProps> = ({
       const isUpcoming = status === 'upcoming';
       const isDisabled = !!step.disabled;
       const isFocused = index === focusedStep;
-      
+
       // Bestimme die Klassen für den Schritt
       const stepClasses = [
         'stepper-step',
@@ -619,9 +617,11 @@ export const StepperA11y: React.FC<StepperProps> = ({
         clickable && !isDisabled ? 'stepper-step-clickable' : '',
         alternativeLabel ? 'stepper-step-alternative' : '',
         orientation === 'vertical' ? 'stepper-step-vertical' : '',
-        stepsClassName
-      ].filter(Boolean).join(' ');
-      
+        stepsClassName,
+      ]
+        .filter(Boolean)
+        .join(' ');
+
       // Bestimme die Klassen für den Connector
       const connectorClasses = [
         'stepper-connector',
@@ -629,9 +629,11 @@ export const StepperA11y: React.FC<StepperProps> = ({
         orientation === 'vertical' ? 'stepper-connector-vertical' : '',
         alternativeLabel ? 'stepper-connector-alternative' : '',
         nonLinear ? 'stepper-connector-nonlinear' : '',
-        connectorClassName
-      ].filter(Boolean).join(' ');
-      
+        connectorClassName,
+      ]
+        .filter(Boolean)
+        .join(' ');
+
       // Bestimme die Klassen für das Label
       const labelClasses = [
         'stepper-label',
@@ -639,9 +641,11 @@ export const StepperA11y: React.FC<StepperProps> = ({
         isCompleted ? 'stepper-label-completed' : '',
         isUpcoming ? 'stepper-label-upcoming' : '',
         isDisabled ? 'stepper-label-disabled' : '',
-        labelClassName
-      ].filter(Boolean).join(' ');
-      
+        labelClassName,
+      ]
+        .filter(Boolean)
+        .join(' ');
+
       // Bestimme die Klassen für die Beschreibung
       const descriptionClasses = [
         'stepper-description',
@@ -649,9 +653,11 @@ export const StepperA11y: React.FC<StepperProps> = ({
         isCompleted ? 'stepper-description-completed' : '',
         isUpcoming ? 'stepper-description-upcoming' : '',
         isDisabled ? 'stepper-description-disabled' : '',
-        descriptionClassName
-      ].filter(Boolean).join(' ');
-      
+        descriptionClassName,
+      ]
+        .filter(Boolean)
+        .join(' ');
+
       // Bestimme die Klassen für das Icon
       const iconClasses = [
         'stepper-icon',
@@ -659,9 +665,11 @@ export const StepperA11y: React.FC<StepperProps> = ({
         isCompleted ? 'stepper-icon-completed' : '',
         isUpcoming ? 'stepper-icon-upcoming' : '',
         isDisabled ? 'stepper-icon-disabled' : '',
-        iconClassName
-      ].filter(Boolean).join(' ');
-      
+        iconClassName,
+      ]
+        .filter(Boolean)
+        .join(' ');
+
       // Bestimme das anzuzeigende Icon
       const renderIcon = () => {
         if (isCompleted && completedIcon) {
@@ -675,85 +683,82 @@ export const StepperA11y: React.FC<StepperProps> = ({
         } else if (numbered) {
           return index + 1;
         }
-        
+
         return null;
       };
-      
+
       // Bestimme die ARIA-Attribute für den Schritt
       const getStepAriaAttributes = () => {
         const attributes: Record<string, string> = {};
-        
+
         attributes['aria-current'] = isActive ? 'step' : 'false';
-        
+
         if (isDisabled) {
           attributes['aria-disabled'] = 'true';
         }
-        
+
         if (step.screenReaderDescription) {
           attributes['aria-describedby'] = `${stepperId}-step-${index}-description`;
         }
-        
+
         return attributes;
       };
-      
+
       // Rendere die versteckte Beschreibung für Screenreader
       const renderStepDescription = () => {
         if (!step.screenReaderDescription) return null;
-        
+
         return (
           <div id={`${stepperId}-step-${index}-description`} className="sr-only">
             {step.screenReaderDescription}
           </div>
         );
       };
-      
+
       return (
         <div key={step.id} className="stepper-step-container">
           {renderStepDescription()}
-          
+
           {/* Connector vor dem Schritt (außer beim ersten Schritt) */}
           {index > 0 && !nonLinear && !alternativeLabel && (
             <div className={connectorClasses}>
               {connector || <div className="stepper-connector-line"></div>}
             </div>
           )}
-          
+
           {/* Schritt */}
           <div
-            ref={el => stepRefs.current[index] = el}
+            ref={(el) => (stepRefs.current[index] = el)}
             className={stepClasses}
             onClick={() => handleStepClick(index)}
             onFocus={() => handleStepFocus(index)}
             onBlur={handleStepBlur}
             tabIndex={isDisabled ? -1 : 0}
             role="button"
-            aria-label={step.ariaLabel || (typeof step.title === 'string' ? step.title : `Schritt ${index + 1}`)}
+            aria-label={
+              step.ariaLabel ||
+              (typeof step.title === 'string' ? step.title : `Schritt ${index + 1}`)
+            }
             {...getStepAriaAttributes()}
           >
             {/* Icon */}
-            <div className={iconClasses}>
-              {renderIcon()}
-            </div>
-            
+            <div className={iconClasses}>{renderIcon()}</div>
+
             {/* Label und Beschreibung */}
             <div className="stepper-content">
               <div className={labelClasses}>
                 {step.title}
                 {step.optional && showOptionalLabel && (
-                  <div className="stepper-optional-label">
-                    {optionalLabel}
-                  </div>
+                  <div className="stepper-optional-label">{optionalLabel}</div>
                 )}
               </div>
-              
+
               {showDescription && step.description && (
-                <div className={descriptionClasses}>
-                  {step.description}
-                </div>
+                <div className={descriptionClasses}>{step.description}</div>
               )}
             </div>
           </div>
-          
+
           {/* Connector nach dem Schritt (außer beim letzten Schritt) */}
           {index < steps.length - 1 && !nonLinear && (
             <div className={connectorClasses}>
@@ -764,35 +769,39 @@ export const StepperA11y: React.FC<StepperProps> = ({
       );
     });
   };
-  
+
   // Bestimme die ARIA-Attribute für den Stepper
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {};
-    
+
     if (description) {
       attributes['aria-describedby'] = `${stepperId}-description`;
     }
-    
+
     if (error) {
       attributes['aria-errormessage'] = `${stepperId}-error`;
       attributes['aria-invalid'] = 'true';
     }
-    
+
     if (helperText && !error) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${stepperId}-helper` : `${stepperId}-helper`);
+      attributes['aria-describedby'] = attributes['aria-describedby']
+        ? `${attributes['aria-describedby']} ${stepperId}-helper`
+        : `${stepperId}-helper`;
     }
-    
+
     if (success) {
-      attributes['aria-describedby'] = (attributes['aria-describedby'] ? `${attributes['aria-describedby']} ${stepperId}-success` : `${stepperId}-success`);
+      attributes['aria-describedby'] = attributes['aria-describedby']
+        ? `${attributes['aria-describedby']} ${stepperId}-success`
+        : `${stepperId}-success`;
     }
-    
+
     if (loading) {
       attributes['aria-busy'] = 'true';
     }
-    
+
     return attributes;
   };
-  
+
   // Bestimme die Klassen für den Stepper
   const stepperClasses = [
     'stepper',
@@ -802,12 +811,14 @@ export const StepperA11y: React.FC<StepperProps> = ({
     alternativeLabel ? 'stepper-alternative-label' : '',
     nonLinear ? 'stepper-non-linear' : '',
     fullWidth ? 'stepper-full-width' : '',
-    className
-  ].filter(Boolean).join(' ');
-  
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <StepperContext.Provider value={contextValue}>
-      <div 
+      <div
         className={stepperClasses}
         id={stepperId}
         role="group"
@@ -817,11 +828,9 @@ export const StepperA11y: React.FC<StepperProps> = ({
       >
         {renderDescription()}
         {renderLiveRegion()}
-        
-        <div className="stepper-steps">
-          {renderSteps()}
-        </div>
-        
+
+        <div className="stepper-steps">{renderSteps()}</div>
+
         {renderError()}
         {renderSuccess()}
         {renderHelperText()}

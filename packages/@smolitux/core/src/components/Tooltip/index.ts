@@ -3,7 +3,7 @@ import { default as TooltipA11y, type TooltipA11yProps } from './Tooltip.a11y';
 
 // Erweitere Tooltip um die A11y-Komponente
 const Tooltip = Object.assign(BaseTooltip, {
-  A11y: TooltipA11y
+  A11y: TooltipA11y,
 });
 
 // Exportiere Komponenten und Typen

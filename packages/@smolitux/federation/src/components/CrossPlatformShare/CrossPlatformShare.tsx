@@ -17,7 +17,7 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
   platforms,
   onShare,
   onClose,
-  isOpen
+  isOpen,
 }) => {
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
   const [isSharing, setIsSharing] = useState(false);
@@ -37,27 +37,25 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
   if (!isOpen) return null;
 
   const handlePlatformToggle = (platformId: string) => {
-    setSelectedPlatforms(prev => 
-      prev.includes(platformId)
-        ? prev.filter(id => id !== platformId)
-        : [...prev, platformId]
+    setSelectedPlatforms((prev) =>
+      prev.includes(platformId) ? prev.filter((id) => id !== platformId) : [...prev, platformId]
     );
   };
 
   const handleShare = async () => {
     setIsSharing(true);
     setShareResult(null);
-    
+
     try {
       const success = await onShare(selectedPlatforms);
-      
+
       setShareResult({
         success,
-        message: success 
+        message: success
           ? 'Inhalt wurde erfolgreich geteilt!'
-          : 'Beim Teilen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.'
+          : 'Beim Teilen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
       });
-      
+
       if (success) {
         // Automatisch schließen nach erfolgreicher Teilung
         setTimeout(() => {
@@ -67,7 +65,7 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
     } catch (error) {
       setShareResult({
         success: false,
-        message: 'Beim Teilen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.'
+        message: 'Beim Teilen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
       });
     } finally {
       setIsSharing(false);
@@ -82,17 +80,17 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
 
   // Prüft, ob der Text für die Plattform zu lang ist
   const checkTextLength = (platformId: string) => {
-    const platform = platforms.find(p => p.id === platformId);
+    const platform = platforms.find((p) => p.id === platformId);
     if (!platform || contentType !== 'text') return true;
-    
+
     return content.length <= (platform.maxTextLength || Infinity);
   };
 
   // Prüft, ob der Inhaltstyp von der Plattform unterstützt wird
   const checkContentType = (platformId: string) => {
-    const platform = platforms.find(p => p.id === platformId);
+    const platform = platforms.find((p) => p.id === platformId);
     if (!platform) return false;
-    
+
     return platform.supportedContentTypes.includes(contentType);
   };
 
@@ -102,49 +100,48 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Auf Plattformen teilen</h2>
         </div>
-        
+
         {shareResult && (
-          <Alert 
+          <Alert
             type={shareResult.success ? 'success' : 'error'}
             message={shareResult.message}
             className="mb-4"
           />
         )}
-        
+
         <div className="mb-6">
           <h3 className="text-sm font-medium text-gray-700 mb-2">Plattformen auswählen</h3>
           <div className="space-y-2">
-            {platforms.map(platform => {
-              const isTextTooLong = contentType === 'text' && content.length > (platform.maxTextLength || Infinity);
+            {platforms.map((platform) => {
+              const isTextTooLong =
+                contentType === 'text' && content.length > (platform.maxTextLength || Infinity);
               const isContentTypeSupported = platform.supportedContentTypes.includes(contentType);
               const isDisabled = isTextTooLong || !isContentTypeSupported;
-              
+
               let tooltipText = '';
               if (isTextTooLong) {
                 tooltipText = `Text überschreitet die maximale Länge (${platform.maxTextLength} Zeichen)`;
               } else if (!isContentTypeSupported) {
                 tooltipText = `${contentType} wird auf dieser Plattform nicht unterstützt`;
               }
-              
+
               return (
                 <div key={platform.id} className="flex items-center">
                   <Tooltip content={tooltipText} isDisabled={!isDisabled}>
-                    <div className={`flex items-center w-full p-2 border rounded ${isDisabled ? 'opacity-50' : 'hover:bg-gray-50'}`}>
+                    <div
+                      className={`flex items-center w-full p-2 border rounded ${isDisabled ? 'opacity-50' : 'hover:bg-gray-50'}`}
+                    >
                       <Checkbox
                         id={`platform-${platform.id}`}
                         checked={selectedPlatforms.includes(platform.id)}
                         onChange={() => handlePlatformToggle(platform.id)}
                         disabled={isDisabled || isSharing}
                       />
-                      <label 
+                      <label
                         htmlFor={`platform-${platform.id}`}
                         className="ml-2 flex items-center cursor-pointer"
                       >
-                        <img 
-                          src={platform.iconUrl} 
-                          alt={platform.name} 
-                          className="w-6 h-6 mr-2"
-                        />
+                        <img src={platform.iconUrl} alt={platform.name} className="w-6 h-6 mr-2" />
                         <span>{platform.name}</span>
                       </label>
                     </div>
@@ -153,7 +150,7 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
               );
             })}
           </div>
-          
+
           {/* Vorschau */}
           <div className="mt-4 p-3 border rounded bg-gray-50">
             <h3 className="text-sm font-medium text-gray-700 mb-2">Vorschau</h3>
@@ -164,23 +161,25 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
               {contentType === 'link' && <div className="text-blue-600 underline">{content}</div>}
             </div>
           </div>
-          
+
           {/* Aktionen */}
           <div className="flex justify-end space-x-2">
-            <Button
-              variant="outline"
-              onClick={handleClose}
-            >
+            <Button variant="outline" onClick={handleClose}>
               Abbrechen
             </Button>
-            
+
             <Button
               variant="primary"
               onClick={handleShare}
-              disabled={isSharing || selectedPlatforms.length === 0 || 
-                selectedPlatforms.some(platformId => !checkTextLength(platformId) || !checkContentType(platformId))}
+              disabled={
+                isSharing ||
+                selectedPlatforms.length === 0 ||
+                selectedPlatforms.some(
+                  (platformId) => !checkTextLength(platformId) || !checkContentType(platformId)
+                )
+              }
             >
-              {isSharing ? "Wird geteilt..." : "Teilen"}
+              {isSharing ? 'Wird geteilt...' : 'Teilen'}
             </Button>
           </div>
         </div>

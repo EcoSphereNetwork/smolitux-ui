@@ -52,7 +52,8 @@ const meta: Meta<typeof Popover> = {
     },
     closeOnEsc: {
       control: 'boolean',
-      description: 'Gibt an, ob der Popover geschlossen werden soll, wenn die Escape-Taste gedrückt wird',
+      description:
+        'Gibt an, ob der Popover geschlossen werden soll, wenn die Escape-Taste gedrückt wird',
     },
     trapFocus: {
       control: 'boolean',
@@ -60,7 +61,8 @@ const meta: Meta<typeof Popover> = {
     },
     returnFocusOnClose: {
       control: 'boolean',
-      description: 'Gibt an, ob der Fokus zurückgesetzt werden soll, wenn der Popover geschlossen wird',
+      description:
+        'Gibt an, ob der Fokus zurückgesetzt werden soll, wenn der Popover geschlossen wird',
     },
     initialFocusRef: {
       description: 'Ref zum Element, das den initialen Fokus erhalten soll',
@@ -79,7 +81,8 @@ const meta: Meta<typeof Popover> = {
     },
     flip: {
       control: 'boolean',
-      description: 'Gibt an, ob der Popover umgedreht werden soll, wenn nicht genügend Platz vorhanden ist',
+      description:
+        'Gibt an, ob der Popover umgedreht werden soll, wenn nicht genügend Platz vorhanden ist',
     },
     preventOverflow: {
       control: 'boolean',
@@ -101,16 +104,12 @@ type Story = StoryObj<typeof Popover>;
 export const Basic: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    
+
     return (
       <Popover
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        trigger={
-          <Button onClick={() => setIsOpen(!isOpen)}>
-            Popover öffnen
-          </Button>
-        }
+        trigger={<Button onClick={() => setIsOpen(!isOpen)}>Popover öffnen</Button>}
       >
         <div className="p-4">
           <h3 className="text-lg font-medium mb-2">Popover-Titel</h3>
@@ -124,31 +123,50 @@ export const Basic: Story = {
 export const Placements: Story = {
   render: () => {
     const [placement, setPlacement] = React.useState<any>('bottom');
-    
+
     return (
       <div className="space-y-4">
         <div className="flex flex-wrap gap-2 justify-center mb-8">
-          <Button size="sm" onClick={() => setPlacement('top')}>Top</Button>
-          <Button size="sm" onClick={() => setPlacement('top-start')}>Top Start</Button>
-          <Button size="sm" onClick={() => setPlacement('top-end')}>Top End</Button>
-          <Button size="sm" onClick={() => setPlacement('right')}>Right</Button>
-          <Button size="sm" onClick={() => setPlacement('right-start')}>Right Start</Button>
-          <Button size="sm" onClick={() => setPlacement('right-end')}>Right End</Button>
-          <Button size="sm" onClick={() => setPlacement('bottom')}>Bottom</Button>
-          <Button size="sm" onClick={() => setPlacement('bottom-start')}>Bottom Start</Button>
-          <Button size="sm" onClick={() => setPlacement('bottom-end')}>Bottom End</Button>
-          <Button size="sm" onClick={() => setPlacement('left')}>Left</Button>
-          <Button size="sm" onClick={() => setPlacement('left-start')}>Left Start</Button>
-          <Button size="sm" onClick={() => setPlacement('left-end')}>Left End</Button>
+          <Button size="sm" onClick={() => setPlacement('top')}>
+            Top
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('top-start')}>
+            Top Start
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('top-end')}>
+            Top End
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('right')}>
+            Right
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('right-start')}>
+            Right Start
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('right-end')}>
+            Right End
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('bottom')}>
+            Bottom
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('bottom-start')}>
+            Bottom Start
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('bottom-end')}>
+            Bottom End
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('left')}>
+            Left
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('left-start')}>
+            Left Start
+          </Button>
+          <Button size="sm" onClick={() => setPlacement('left-end')}>
+            Left End
+          </Button>
         </div>
-        
+
         <div className="flex justify-center">
-          <Popover
-            trigger={
-              <Button>Platzierung: {placement}</Button>
-            }
-            placement={placement}
-          >
+          <Popover trigger={<Button>Platzierung: {placement}</Button>} placement={placement}>
             <div className="p-4">
               <h3 className="text-lg font-medium mb-2">Popover-Titel</h3>
               <p>Platzierung: {placement}</p>
@@ -162,10 +180,7 @@ export const Placements: Story = {
 
 export const WithArrow: Story = {
   render: () => (
-    <Popover
-      trigger={<Button>Mit Pfeil</Button>}
-      showArrow
-    >
+    <Popover trigger={<Button>Mit Pfeil</Button>} showArrow>
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">Popover mit Pfeil</h3>
         <p>Dieser Popover hat einen Pfeil, der auf den Trigger zeigt.</p>
@@ -184,7 +199,10 @@ export const WithCustomArrow: Story = {
     >
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">Popover mit benutzerdefiniertem Pfeil</h3>
-        <p>Dieser Popover hat einen benutzerdefinierten Pfeil mit angepasster Größe und Schattenfarbe.</p>
+        <p>
+          Dieser Popover hat einen benutzerdefinierten Pfeil mit angepasster Größe und
+          Schattenfarbe.
+        </p>
       </div>
     </Popover>
   ),
@@ -192,10 +210,7 @@ export const WithCustomArrow: Story = {
 
 export const WithCloseButton: Story = {
   render: () => (
-    <Popover
-      trigger={<Button>Mit Schließen-Button</Button>}
-      showCloseButton
-    >
+    <Popover trigger={<Button>Mit Schließen-Button</Button>} showCloseButton>
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">Popover mit Schließen-Button</h3>
         <p>Dieser Popover hat einen Schließen-Button in der oberen rechten Ecke.</p>
@@ -227,8 +242,12 @@ export const WithFooter: Story = {
       trigger={<Button>Mit Footer</Button>}
       footer={
         <div className="bg-gray-100 dark:bg-gray-800 p-3 flex justify-end">
-          <Button size="sm" variant="ghost">Abbrechen</Button>
-          <Button size="sm" className="ml-2">Speichern</Button>
+          <Button size="sm" variant="ghost">
+            Abbrechen
+          </Button>
+          <Button size="sm" className="ml-2">
+            Speichern
+          </Button>
         </div>
       }
     >
@@ -243,13 +262,9 @@ export const WithFooter: Story = {
 export const WithForm: Story = {
   render: () => {
     const initialFocusRef = React.useRef<HTMLInputElement>(null);
-    
+
     return (
-      <Popover
-        trigger={<Button>Formular</Button>}
-        initialFocusRef={initialFocusRef}
-        trapFocus
-      >
+      <Popover trigger={<Button>Formular</Button>} initialFocusRef={initialFocusRef} trapFocus>
         <div className="p-4">
           <h3 className="text-lg font-medium mb-4">Anmelden</h3>
           <form className="space-y-4">
@@ -290,16 +305,11 @@ export const WithForm: Story = {
 
 export const WithLazyRender: Story = {
   render: () => (
-    <Popover
-      trigger={<Button>Lazy Rendering</Button>}
-      lazyRendering
-    >
+    <Popover trigger={<Button>Lazy Rendering</Button>} lazyRendering>
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">Lazy Rendering</h3>
         <p>Dieser Popover wird erst gerendert, wenn er geöffnet wird.</p>
-        <p className="text-sm text-gray-500 mt-2">
-          Zeitstempel: {new Date().toLocaleTimeString()}
-        </p>
+        <p className="text-sm text-gray-500 mt-2">Zeitstempel: {new Date().toLocaleTimeString()}</p>
       </div>
     </Popover>
   ),
@@ -324,10 +334,7 @@ export const WithCustomTrigger: Story = {
 
 export const WithHoverTrigger: Story = {
   render: () => (
-    <Popover
-      trigger={<Button>Hover über mich</Button>}
-      triggerEvent="hover"
-    >
+    <Popover trigger={<Button>Hover über mich</Button>} triggerEvent="hover">
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">Hover-Popover</h3>
         <p>Dieser Popover wird beim Hovern über den Trigger angezeigt.</p>
@@ -361,10 +368,7 @@ export const WithCustomStyling: Story = {
 
 export const WithAnimation: Story = {
   render: () => (
-    <Popover
-      trigger={<Button>Mit Animation</Button>}
-      animation="scale"
-    >
+    <Popover trigger={<Button>Mit Animation</Button>} animation="scale">
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">Animierter Popover</h3>
         <p>Dieser Popover wird mit einer Skalierungsanimation angezeigt.</p>
@@ -381,9 +385,7 @@ export const WithTooltipStyle: Story = {
       showArrow
       className="bg-gray-900 text-white"
     >
-      <div className="p-2 text-sm">
-        Dies ist ein Popover im Tooltip-Stil.
-      </div>
+      <div className="p-2 text-sm">Dies ist ein Popover im Tooltip-Stil.</div>
     </Popover>
   ),
 };
@@ -395,7 +397,7 @@ export const WithInteractiveDemo: Story = {
     const [showArrow, setShowArrow] = React.useState(true);
     const [showCloseButton, setShowCloseButton] = React.useState(false);
     const [triggerEvent, setTriggerEvent] = React.useState<'click' | 'hover'>('click');
-    
+
     return (
       <div className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
@@ -412,7 +414,7 @@ export const WithInteractiveDemo: Story = {
               <option value="left">Left</option>
             </select>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium mb-1">Trigger-Event</label>
             <select
@@ -424,7 +426,7 @@ export const WithInteractiveDemo: Story = {
               <option value="hover">Hover</option>
             </select>
           </div>
-          
+
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -437,7 +439,7 @@ export const WithInteractiveDemo: Story = {
               Pfeil anzeigen
             </label>
           </div>
-          
+
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -451,15 +453,13 @@ export const WithInteractiveDemo: Story = {
             </label>
           </div>
         </div>
-        
+
         <div className="flex justify-center pt-8">
           <Popover
             isOpen={triggerEvent === 'click' ? isOpen : undefined}
             onClose={() => setIsOpen(false)}
             trigger={
-              <Button
-                onClick={() => triggerEvent === 'click' && setIsOpen(!isOpen)}
-              >
+              <Button onClick={() => triggerEvent === 'click' && setIsOpen(!isOpen)}>
                 Popover {triggerEvent === 'click' ? (isOpen ? 'schließen' : 'öffnen') : 'anzeigen'}
               </Button>
             }

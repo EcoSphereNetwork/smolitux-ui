@@ -145,8 +145,8 @@ export const CenteredContent: Story = {
       <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md max-w-md">
         <h2 className="text-xl font-bold mb-4 text-center">Zentrierter Inhalt</h2>
         <p className="text-center">
-          Dieser Container verwendet <code>centerContent</code>, um seinen Inhalt
-          horizontal und vertikal zu zentrieren.
+          Dieser Container verwendet <code>centerContent</code>, um seinen Inhalt horizontal und
+          vertikal zu zentrieren.
         </p>
       </div>
     </ContainerWithBorder>

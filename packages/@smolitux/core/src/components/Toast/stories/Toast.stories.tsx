@@ -37,14 +37,7 @@ const meta: Meta<typeof Toast> = {
     position: {
       control: {
         type: 'select',
-        options: [
-          'top',
-          'top-right',
-          'top-left',
-          'bottom',
-          'bottom-right',
-          'bottom-left',
-        ],
+        options: ['top', 'top-right', 'top-left', 'bottom', 'bottom-right', 'bottom-left'],
       },
       description: 'Die Position des Toasts',
     },
@@ -69,11 +62,11 @@ export const Basic: Story = {
   render: () => {
     const ToastExample = () => {
       const [isVisible, setIsVisible] = React.useState(false);
-      
+
       return (
         <div>
           <Button onClick={() => setIsVisible(true)}>Toast anzeigen</Button>
-          
+
           {isVisible && (
             <Toast
               title="Toast-Benachrichtigung"
@@ -86,7 +79,7 @@ export const Basic: Story = {
         </div>
       );
     };
-    
+
     return <ToastExample />;
   },
 };
@@ -95,24 +88,32 @@ export const Statuses: Story = {
   render: () => {
     const ToastExample = () => {
       const [visibleToasts, setVisibleToasts] = React.useState<string[]>([]);
-      
+
       const showToast = (status: 'success' | 'error' | 'warning' | 'info') => {
         setVisibleToasts([...visibleToasts, status]);
       };
-      
+
       const closeToast = (status: string) => {
-        setVisibleToasts(visibleToasts.filter(t => t !== status));
+        setVisibleToasts(visibleToasts.filter((t) => t !== status));
       };
-      
+
       return (
         <div className="space-y-4">
           <div className="flex flex-wrap gap-2">
-            <Button onClick={() => showToast('success')} colorScheme="success">Success Toast</Button>
-            <Button onClick={() => showToast('error')} colorScheme="danger">Error Toast</Button>
-            <Button onClick={() => showToast('warning')} colorScheme="warning">Warning Toast</Button>
-            <Button onClick={() => showToast('info')} colorScheme="info">Info Toast</Button>
+            <Button onClick={() => showToast('success')} colorScheme="success">
+              Success Toast
+            </Button>
+            <Button onClick={() => showToast('error')} colorScheme="danger">
+              Error Toast
+            </Button>
+            <Button onClick={() => showToast('warning')} colorScheme="warning">
+              Warning Toast
+            </Button>
+            <Button onClick={() => showToast('info')} colorScheme="info">
+              Info Toast
+            </Button>
           </div>
-          
+
           <div className="space-y-2">
             {visibleToasts.includes('success') && (
               <Toast
@@ -123,7 +124,7 @@ export const Statuses: Story = {
                 onClose={() => closeToast('success')}
               />
             )}
-            
+
             {visibleToasts.includes('error') && (
               <Toast
                 title="Fehler"
@@ -133,7 +134,7 @@ export const Statuses: Story = {
                 onClose={() => closeToast('error')}
               />
             )}
-            
+
             {visibleToasts.includes('warning') && (
               <Toast
                 title="Warnung"
@@ -143,7 +144,7 @@ export const Statuses: Story = {
                 onClose={() => closeToast('warning')}
               />
             )}
-            
+
             {visibleToasts.includes('info') && (
               <Toast
                 title="Information"
@@ -157,7 +158,7 @@ export const Statuses: Story = {
         </div>
       );
     };
-    
+
     return <ToastExample />;
   },
 };
@@ -166,15 +167,15 @@ export const Variants: Story = {
   render: () => {
     const ToastExample = () => {
       const [visibleToasts, setVisibleToasts] = React.useState<string[]>([]);
-      
+
       const showToast = (variant: 'solid' | 'subtle' | 'left-accent' | 'top-accent') => {
         setVisibleToasts([...visibleToasts, variant]);
       };
-      
+
       const closeToast = (variant: string) => {
-        setVisibleToasts(visibleToasts.filter(t => t !== variant));
+        setVisibleToasts(visibleToasts.filter((t) => t !== variant));
       };
-      
+
       return (
         <div className="space-y-4">
           <div className="flex flex-wrap gap-2">
@@ -183,7 +184,7 @@ export const Variants: Story = {
             <Button onClick={() => showToast('left-accent')}>Left Accent</Button>
             <Button onClick={() => showToast('top-accent')}>Top Accent</Button>
           </div>
-          
+
           <div className="space-y-2">
             {visibleToasts.includes('solid') && (
               <Toast
@@ -195,7 +196,7 @@ export const Variants: Story = {
                 onClose={() => closeToast('solid')}
               />
             )}
-            
+
             {visibleToasts.includes('subtle') && (
               <Toast
                 title="Subtle Variant"
@@ -206,7 +207,7 @@ export const Variants: Story = {
                 onClose={() => closeToast('subtle')}
               />
             )}
-            
+
             {visibleToasts.includes('left-accent') && (
               <Toast
                 title="Left Accent Variant"
@@ -217,7 +218,7 @@ export const Variants: Story = {
                 onClose={() => closeToast('left-accent')}
               />
             )}
-            
+
             {visibleToasts.includes('top-accent') && (
               <Toast
                 title="Top Accent Variant"
@@ -232,7 +233,7 @@ export const Variants: Story = {
         </div>
       );
     };
-    
+
     return <ToastExample />;
   },
 };
@@ -241,8 +242,10 @@ export const Positions: Story = {
   render: () => {
     const ToastExample = () => {
       const toast = useToast();
-      
-      const showToast = (position: 'top' | 'top-right' | 'top-left' | 'bottom' | 'bottom-right' | 'bottom-left') => {
+
+      const showToast = (
+        position: 'top' | 'top-right' | 'top-left' | 'bottom' | 'bottom-right' | 'bottom-left'
+      ) => {
         toast({
           title: `Position: ${position}`,
           description: `Dies ist ein Toast an der Position '${position}'.`,
@@ -252,7 +255,7 @@ export const Positions: Story = {
           position,
         });
       };
-      
+
       return (
         <div className="space-y-4">
           <div className="grid grid-cols-3 gap-2">
@@ -266,7 +269,7 @@ export const Positions: Story = {
         </div>
       );
     };
-    
+
     return (
       <ToastProvider>
         <ToastExample />
@@ -279,7 +282,7 @@ export const WithCustomDuration: Story = {
   render: () => {
     const ToastExample = () => {
       const toast = useToast();
-      
+
       const showToast = (duration: number) => {
         toast({
           title: `Dauer: ${duration}ms`,
@@ -289,7 +292,7 @@ export const WithCustomDuration: Story = {
           isClosable: true,
         });
       };
-      
+
       return (
         <div className="space-y-4">
           <div className="flex flex-wrap gap-2">
@@ -301,7 +304,7 @@ export const WithCustomDuration: Story = {
         </div>
       );
     };
-    
+
     return (
       <ToastProvider>
         <ToastExample />
@@ -314,14 +317,25 @@ export const WithCustomContent: Story = {
   render: () => {
     const ToastExample = () => {
       const toast = useToast();
-      
+
       const showToast = () => {
         toast({
           render: () => (
             <div className="bg-blue-500 text-white p-4 rounded-md shadow-lg">
               <div className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
                 <div>
                   <div className="font-bold">Benutzerdefinierter Toast</div>
@@ -334,12 +348,10 @@ export const WithCustomContent: Story = {
           isClosable: true,
         });
       };
-      
-      return (
-        <Button onClick={showToast}>Benutzerdefinierten Toast anzeigen</Button>
-      );
+
+      return <Button onClick={showToast}>Benutzerdefinierten Toast anzeigen</Button>;
     };
-    
+
     return (
       <ToastProvider>
         <ToastExample />
@@ -352,7 +364,7 @@ export const WithActions: Story = {
   render: () => {
     const ToastExample = () => {
       const toast = useToast();
-      
+
       const showToast = () => {
         toast({
           title: 'Datei gelöscht',
@@ -378,12 +390,10 @@ export const WithActions: Story = {
           ),
         });
       };
-      
-      return (
-        <Button onClick={showToast}>Toast mit Aktion anzeigen</Button>
-      );
+
+      return <Button onClick={showToast}>Toast mit Aktion anzeigen</Button>;
     };
-    
+
     return (
       <ToastProvider>
         <ToastExample />
@@ -396,7 +406,7 @@ export const ToastQueue: Story = {
   render: () => {
     const ToastExample = () => {
       const toast = useToast();
-      
+
       const showToasts = () => {
         toast({
           title: 'Erster Toast',
@@ -404,7 +414,7 @@ export const ToastQueue: Story = {
           status: 'info',
           duration: 3000,
         });
-        
+
         setTimeout(() => {
           toast({
             title: 'Zweiter Toast',
@@ -413,7 +423,7 @@ export const ToastQueue: Story = {
             duration: 3000,
           });
         }, 1000);
-        
+
         setTimeout(() => {
           toast({
             title: 'Dritter Toast',
@@ -423,12 +433,10 @@ export const ToastQueue: Story = {
           });
         }, 2000);
       };
-      
-      return (
-        <Button onClick={showToasts}>Mehrere Toasts anzeigen</Button>
-      );
+
+      return <Button onClick={showToasts}>Mehrere Toasts anzeigen</Button>;
     };
-    
+
     return (
       <ToastProvider>
         <ToastExample />

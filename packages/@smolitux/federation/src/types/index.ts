@@ -90,7 +90,11 @@ export interface FederatedSearchProps {
   /** Verfügbare Plattformen */
   platforms: FederatedPlatform[];
   /** Callback bei der Suche */
-  onSearch: (query: string, platforms: string[], filters: Record<string, any>) => Promise<SearchResult[]>;
+  onSearch: (
+    query: string,
+    platforms: string[],
+    filters: Record<string, any>
+  ) => Promise<SearchResult[]>;
   /** Callback beim Klicken auf ein Suchergebnis */
   onResultClick?: (result: SearchResult) => void;
   /** Callback beim Ändern der aktiven Plattformen */

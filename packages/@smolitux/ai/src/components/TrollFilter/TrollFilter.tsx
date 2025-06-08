@@ -92,10 +92,7 @@ export const TrollFilter: React.FC<TrollFilterProps> = ({
         <Box style={{ marginBottom: '16px' }}>
           <Flex justify="space-between" align="center" style={{ marginBottom: '8px' }}>
             <Text weight="medium">Toxicity Level</Text>
-            <Text
-              weight="bold"
-              color={getToxicityLevelColor(result.toxicity)}
-            >
+            <Text weight="bold" color={getToxicityLevelColor(result.toxicity)}>
               {getToxicityLevelText(result.toxicity)}
             </Text>
           </Flex>
@@ -103,11 +100,7 @@ export const TrollFilter: React.FC<TrollFilterProps> = ({
             value={result.toxicity}
             max={100}
             colorScheme={
-              result.toxicity < 30
-                ? 'success'
-                : result.toxicity < 70
-                ? 'warning'
-                : 'danger'
+              result.toxicity < 30 ? 'success' : result.toxicity < 70 ? 'warning' : 'danger'
             }
             size="md"
             style={{ marginBottom: '4px' }}
@@ -135,10 +128,7 @@ export const TrollFilter: React.FC<TrollFilterProps> = ({
             >
               <Flex justify="space-between" align="center" style={{ marginBottom: '4px' }}>
                 <Text>{category.name}</Text>
-                <Text
-                  weight="medium"
-                  color={getToxicityLevelColor(category.probability * 100)}
-                >
+                <Text weight="medium" color={getToxicityLevelColor(category.probability * 100)}>
                   {Math.round(category.probability * 100)}%
                 </Text>
               </Flex>
@@ -149,8 +139,8 @@ export const TrollFilter: React.FC<TrollFilterProps> = ({
                   category.probability < 0.3
                     ? 'success'
                     : category.probability < 0.7
-                    ? 'warning'
-                    : 'danger'
+                      ? 'warning'
+                      : 'danger'
                 }
                 size="sm"
               />
@@ -250,7 +240,7 @@ export const TrollFilter: React.FC<TrollFilterProps> = ({
         >
           <Text>{comment}</Text>
         </Box>
-        
+
         {isAnalyzing && !result && (
           <Box
             style={{

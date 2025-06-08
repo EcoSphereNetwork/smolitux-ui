@@ -107,18 +107,11 @@ type Story = StoryObj<typeof Slider>;
 export const Basic: Story = {
   render: () => {
     const [value, setValue] = React.useState(50);
-    
+
     return (
       <div className="w-[300px] space-y-4">
-        <Slider
-          value={value}
-          onChange={setValue}
-          min={0}
-          max={100}
-        />
-        <div className="text-center">
-          Wert: {value}
-        </div>
+        <Slider value={value} onChange={setValue} min={0} max={100} />
+        <div className="text-center">Wert: {value}</div>
       </div>
     );
   },
@@ -135,19 +128,11 @@ export const WithDefaultValue: Story = {
 export const WithStep: Story = {
   render: () => {
     const [value, setValue] = React.useState(25);
-    
+
     return (
       <div className="w-[300px] space-y-4">
-        <Slider
-          value={value}
-          onChange={setValue}
-          min={0}
-          max={100}
-          step={25}
-        />
-        <div className="text-center">
-          Wert: {value} (Schrittweite: 25)
-        </div>
+        <Slider value={value} onChange={setValue} min={0} max={100} step={25} />
+        <div className="text-center">Wert: {value} (Schrittweite: 25)</div>
       </div>
     );
   },
@@ -156,7 +141,7 @@ export const WithStep: Story = {
 export const WithMarks: Story = {
   render: () => {
     const [value, setValue] = React.useState(50);
-    
+
     const marks = {
       0: '0°C',
       25: '25°C',
@@ -164,20 +149,11 @@ export const WithMarks: Story = {
       75: '75°C',
       100: '100°C',
     };
-    
+
     return (
       <div className="w-[300px] space-y-4">
-        <Slider
-          value={value}
-          onChange={setValue}
-          min={0}
-          max={100}
-          showMarks
-          marks={marks}
-        />
-        <div className="text-center">
-          Temperatur: {value}°C
-        </div>
+        <Slider value={value} onChange={setValue} min={0} max={100} showMarks marks={marks} />
+        <div className="text-center">Temperatur: {value}°C</div>
       </div>
     );
   },
@@ -186,19 +162,11 @@ export const WithMarks: Story = {
 export const WithTooltip: Story = {
   render: () => {
     const [value, setValue] = React.useState(50);
-    
+
     return (
       <div className="w-[300px] space-y-4">
-        <Slider
-          value={value}
-          onChange={setValue}
-          min={0}
-          max={100}
-          showTooltip
-        />
-        <div className="text-center">
-          Wert: {value}
-        </div>
+        <Slider value={value} onChange={setValue} min={0} max={100} showTooltip />
+        <div className="text-center">Wert: {value}</div>
       </div>
     );
   },
@@ -207,7 +175,7 @@ export const WithTooltip: Story = {
 export const WithCustomTooltipFormat: Story = {
   render: () => {
     const [value, setValue] = React.useState(50);
-    
+
     return (
       <div className="w-[300px] space-y-4">
         <Slider
@@ -218,9 +186,7 @@ export const WithCustomTooltipFormat: Story = {
           showTooltip
           tooltipFormat={(value) => `${value}%`}
         />
-        <div className="text-center">
-          Wert: {value}%
-        </div>
+        <div className="text-center">Wert: {value}%</div>
       </div>
     );
   },
@@ -229,7 +195,7 @@ export const WithCustomTooltipFormat: Story = {
 export const WithValue: Story = {
   render: () => {
     const [value, setValue] = React.useState(50);
-    
+
     return (
       <div className="w-[300px] space-y-8">
         <div>
@@ -243,7 +209,7 @@ export const WithValue: Story = {
             valuePosition="top"
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Wert unten</h3>
           <Slider
@@ -265,26 +231,17 @@ export const Sizes: Story = {
     <div className="w-[300px] space-y-8">
       <div>
         <h3 className="text-lg font-medium mb-2">Small</h3>
-        <Slider
-          defaultValue={50}
-          size="sm"
-        />
+        <Slider defaultValue={50} size="sm" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Medium (Standard)</h3>
-        <Slider
-          defaultValue={50}
-          size="md"
-        />
+        <Slider defaultValue={50} size="md" />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-2">Large</h3>
-        <Slider
-          defaultValue={50}
-          size="lg"
-        />
+        <Slider defaultValue={50} size="lg" />
       </div>
     </div>
   ),
@@ -295,50 +252,32 @@ export const ColorSchemes: Story = {
     <div className="w-[300px] space-y-4">
       <div>
         <h3 className="text-sm font-medium mb-1">Primary</h3>
-        <Slider
-          defaultValue={50}
-          colorScheme="primary"
-        />
+        <Slider defaultValue={50} colorScheme="primary" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Secondary</h3>
-        <Slider
-          defaultValue={50}
-          colorScheme="secondary"
-        />
+        <Slider defaultValue={50} colorScheme="secondary" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Success</h3>
-        <Slider
-          defaultValue={50}
-          colorScheme="success"
-        />
+        <Slider defaultValue={50} colorScheme="success" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Danger</h3>
-        <Slider
-          defaultValue={50}
-          colorScheme="danger"
-        />
+        <Slider defaultValue={50} colorScheme="danger" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Warning</h3>
-        <Slider
-          defaultValue={50}
-          colorScheme="warning"
-        />
+        <Slider defaultValue={50} colorScheme="warning" />
       </div>
-      
+
       <div>
         <h3 className="text-sm font-medium mb-1">Info</h3>
-        <Slider
-          defaultValue={50}
-          colorScheme="info"
-        />
+        <Slider defaultValue={50} colorScheme="info" />
       </div>
     </div>
   ),
@@ -347,20 +286,14 @@ export const ColorSchemes: Story = {
 export const Vertical: Story = {
   render: () => {
     const [value, setValue] = React.useState(50);
-    
+
     return (
       <div className="h-[300px] space-x-8 flex">
         <div>
           <h3 className="text-lg font-medium mb-2">Standard</h3>
-          <Slider
-            value={value}
-            onChange={setValue}
-            min={0}
-            max={100}
-            orientation="vertical"
-          />
+          <Slider value={value} onChange={setValue} min={0} max={100} orientation="vertical" />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Mit Markierungen</h3>
           <Slider
@@ -379,7 +312,7 @@ export const Vertical: Story = {
             }}
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Mit Tooltip</h3>
           <Slider
@@ -391,7 +324,7 @@ export const Vertical: Story = {
             showTooltip
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium mb-2">Mit Wert</h3>
           <Slider
@@ -440,20 +373,14 @@ export const WithCustomStyling: Story = {
 export const RangeSlider: Story = {
   render: () => {
     const [range, setRange] = React.useState([20, 80]);
-    
+
     const handleChange = (values: number[]) => {
       setRange(values);
     };
-    
+
     return (
       <div className="w-[300px] space-y-4">
-        <Slider
-          value={range}
-          onChange={handleChange}
-          min={0}
-          max={100}
-          isRange
-        />
+        <Slider value={range} onChange={handleChange} min={0} max={100} isRange />
         <div className="text-center">
           Bereich: {range[0]} - {range[1]}
         </div>
@@ -465,11 +392,11 @@ export const RangeSlider: Story = {
 export const RangeSliderWithMarks: Story = {
   render: () => {
     const [range, setRange] = React.useState([20, 80]);
-    
+
     const handleChange = (values: number[]) => {
       setRange(values);
     };
-    
+
     const marks = {
       0: '0€',
       25: '25€',
@@ -477,7 +404,7 @@ export const RangeSliderWithMarks: Story = {
       75: '75€',
       100: '100€',
     };
-    
+
     return (
       <div className="w-[300px] space-y-4">
         <Slider
@@ -500,11 +427,11 @@ export const RangeSliderWithMarks: Story = {
 export const RangeSliderWithTooltip: Story = {
   render: () => {
     const [range, setRange] = React.useState([20, 80]);
-    
+
     const handleChange = (values: number[]) => {
       setRange(values);
     };
-    
+
     return (
       <div className="w-[300px] space-y-4">
         <Slider
@@ -529,15 +456,15 @@ export const PriceRangeFilter: Story = {
     const [range, setRange] = React.useState([200, 800]);
     const min = 0;
     const max = 1000;
-    
+
     const handleChange = (values: number[]) => {
       setRange(values);
     };
-    
+
     return (
       <div className="w-[350px] p-4 border rounded-lg">
         <h3 className="text-lg font-medium mb-4">Preisbereich</h3>
-        
+
         <Slider
           value={range}
           onChange={handleChange}
@@ -548,7 +475,7 @@ export const PriceRangeFilter: Story = {
           tooltipFormat={(value) => `${value}€`}
           className="mb-6"
         />
-        
+
         <div className="flex justify-between">
           <div>
             <label className="block text-sm font-medium mb-1" htmlFor="min-price">
@@ -564,7 +491,7 @@ export const PriceRangeFilter: Story = {
               className="w-24 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium mb-1" htmlFor="max-price">
               Max
@@ -580,7 +507,7 @@ export const PriceRangeFilter: Story = {
             />
           </div>
         </div>
-        
+
         <div className="mt-4 pt-4 border-t">
           <button className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
             Filter anwenden
@@ -594,27 +521,66 @@ export const PriceRangeFilter: Story = {
 export const VolumeControl: Story = {
   render: () => {
     const [volume, setVolume] = React.useState(50);
-    
+
     return (
       <div className="w-[300px] p-4 border rounded-lg">
         <div className="flex items-center space-x-4">
           <div className="text-xl">
             {volume === 0 ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                  clipRule="evenodd"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                />
               </svg>
             ) : volume < 50 ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                />
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                />
               </svg>
             )}
           </div>
-          
+
           <Slider
             value={volume}
             onChange={setVolume}

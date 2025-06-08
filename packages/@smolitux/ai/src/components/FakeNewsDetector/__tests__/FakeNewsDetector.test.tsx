@@ -12,20 +12,20 @@ describe('FakeNewsDetector', () => {
 
   it('renders correctly with default props', () => {
     render(<FakeNewsDetector />);
-    
+
     expect(screen.getByPlaceholderText('Enter text to analyze...')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /analyze/i })).toBeInTheDocument();
   });
 
   it('calls onAnalyze when analyze button is clicked', async () => {
     render(<FakeNewsDetector onAnalyze={mockOnAnalyze} />);
-    
+
     const input = screen.getByPlaceholderText('Enter text to analyze...');
     const analyzeButton = screen.getByRole('button', { name: /analyze/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test text' } });
     fireEvent.click(analyzeButton);
-    
+
     await waitFor(() => {
       expect(mockOnAnalyze).toHaveBeenCalledWith('This is a test text', expect.any(Object));
     });
@@ -33,16 +33,16 @@ describe('FakeNewsDetector', () => {
 
   it('displays loading state when analyzing', async () => {
     render(<FakeNewsDetector onAnalyze={mockOnAnalyze} />);
-    
+
     const input = screen.getByPlaceholderText('Enter text to analyze...');
     const analyzeButton = screen.getByRole('button', { name: /analyze/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test text' } });
     fireEvent.click(analyzeButton);
-    
+
     expect(analyzeButton).toBeDisabled();
     expect(screen.getByText(/analyzing/i)).toBeInTheDocument();
-    
+
     await waitFor(() => {
       expect(mockOnAnalyze).toHaveBeenCalled();
     });
@@ -56,18 +56,18 @@ describe('FakeNewsDetector', () => {
         factualityScore: 0.8,
         biasScore: 0.3,
         sourceReliability: 0.9,
-        flags: ['political bias', 'emotional language']
+        flags: ['political bias', 'emotional language'],
       });
     });
 
     render(<FakeNewsDetector onAnalyze={mockAnalyzeImplementation} />);
-    
+
     const input = screen.getByPlaceholderText('Enter text to analyze...');
     const analyzeButton = screen.getByRole('button', { name: /analyze/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test text' } });
     fireEvent.click(analyzeButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/credibility score/i)).toBeInTheDocument();
       expect(screen.getByText(/75%/)).toBeInTheDocument();
@@ -90,25 +90,25 @@ describe('FakeNewsDetector', () => {
         factualityScore: 0.8,
         biasScore: 0.3,
         sourceReliability: 0.9,
-        flags: ['political bias', 'emotional language']
+        flags: ['political bias', 'emotional language'],
       });
     });
 
     render(<FakeNewsDetector onAnalyze={mockAnalyzeImplementation} onReset={mockOnReset} />);
-    
+
     const input = screen.getByPlaceholderText('Enter text to analyze...');
     const analyzeButton = screen.getByRole('button', { name: /analyze/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test text' } });
     fireEvent.click(analyzeButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/credibility score/i)).toBeInTheDocument();
     });
-    
+
     const resetButton = screen.getByRole('button', { name: /reset/i });
     fireEvent.click(resetButton);
-    
+
     expect(mockOnReset).toHaveBeenCalled();
     expect(screen.queryByText(/credibility score/i)).not.toBeInTheDocument();
     expect(input).toHaveValue('');
@@ -121,13 +121,13 @@ describe('FakeNewsDetector', () => {
     });
 
     render(<FakeNewsDetector onAnalyze={mockAnalyzeImplementation} />);
-    
+
     const input = screen.getByPlaceholderText('Enter text to analyze...');
     const analyzeButton = screen.getByRole('button', { name: /analyze/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test text' } });
     fireEvent.click(analyzeButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/error/i)).toBeInTheDocument();
       expect(screen.getByText(/analysis failed/i)).toBeInTheDocument();

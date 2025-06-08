@@ -23,14 +23,22 @@ export const useTranslation = (namespace?: TranslationNamespace | TranslationNam
   /**
    * Übersetzt einen Schlüssel mit Pluralisierung
    */
-  const translatePlural = (key: TranslationKey, count: number, options?: TranslationOptions): string => {
+  const translatePlural = (
+    key: TranslationKey,
+    count: number,
+    options?: TranslationOptions
+  ): string => {
     return t(key, { ...options, count });
   };
 
   /**
    * Übersetzt einen Schlüssel mit Kontext
    */
-  const translateContext = (key: TranslationKey, context: string, options?: TranslationOptions): string => {
+  const translateContext = (
+    key: TranslationKey,
+    context: string,
+    options?: TranslationOptions
+  ): string => {
     return t(`${key}_${context}`, options);
   };
 
@@ -91,7 +99,11 @@ export const useTranslation = (namespace?: TranslationNamespace | TranslationNam
   /**
    * Formatiert eine Währung
    */
-  const formatCurrency = (number: number, currency: string, options?: Intl.NumberFormatOptions): string => {
+  const formatCurrency = (
+    number: number,
+    currency: string,
+    options?: Intl.NumberFormatOptions
+  ): string => {
     return new Intl.NumberFormat(i18n.language, {
       style: 'currency',
       currency,

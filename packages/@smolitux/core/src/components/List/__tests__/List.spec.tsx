@@ -13,7 +13,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with ordered variant', () => {
     const { container } = render(
       <List variant="ordered">
@@ -23,7 +23,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with unordered variant', () => {
     const { container } = render(
       <List variant="unordered">
@@ -33,7 +33,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with description variant', () => {
     const { container } = render(
       <List variant="description">
@@ -43,7 +43,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with dividers', () => {
     const { container } = render(
       <List dividers>
@@ -53,7 +53,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with horizontal layout', () => {
     const { container } = render(
       <List horizontal>
@@ -63,7 +63,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with selectable items', () => {
     const { container } = render(
       <List selectable selectedItem="item2">
@@ -73,7 +73,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with icons and actions', () => {
     const { container } = render(
       <List>
@@ -92,7 +92,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with different sizes', () => {
     const { container } = render(
       <>
@@ -109,7 +109,7 @@ describe('List Snapshot Tests', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  
+
   it('matches snapshot with different densities', () => {
     const { container } = render(
       <>

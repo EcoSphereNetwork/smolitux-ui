@@ -18,7 +18,7 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     expect(screen.getByText('Hover Me')).toBeInTheDocument();
   });
 
@@ -28,18 +28,18 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Tooltip should not be visible initially
     expect(screen.queryByText('Tooltip Content')).not.toBeInTheDocument();
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to trigger the tooltip display
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     // Tooltip should be visible
     expect(screen.getByText('Tooltip Content')).toBeInTheDocument();
   });
@@ -50,26 +50,26 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to trigger the tooltip display
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     // Tooltip should be visible
     expect(screen.getByText('Tooltip Content')).toBeInTheDocument();
-    
+
     // Leave the trigger
     fireEvent.mouseLeave(screen.getByText('Hover Me'));
-    
+
     // Advance timers to trigger the tooltip hiding
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     // Tooltip should be hidden
     expect(screen.queryByText('Tooltip Content')).not.toBeInTheDocument();
   });
@@ -80,18 +80,18 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Tooltip should not be visible immediately
     expect(screen.queryByText('Tooltip Content')).not.toBeInTheDocument();
-    
+
     // Advance timers
     act(() => {
       jest.advanceTimersByTime(500);
     });
-    
+
     // Tooltip should be visible after delay
     expect(screen.getByText('Tooltip Content')).toBeInTheDocument();
   });
@@ -102,29 +102,29 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to show tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     // Tooltip should be visible
     expect(screen.getByText('Tooltip Content')).toBeInTheDocument();
-    
+
     // Leave the trigger
     fireEvent.mouseLeave(screen.getByText('Hover Me'));
-    
+
     // Tooltip should still be visible before delay
     expect(screen.getByText('Tooltip Content')).toBeInTheDocument();
-    
+
     // Advance timers
     act(() => {
       jest.advanceTimersByTime(500);
     });
-    
+
     // Tooltip should be hidden after delay
     expect(screen.queryByText('Tooltip Content')).not.toBeInTheDocument();
   });
@@ -135,35 +135,40 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Tooltip should not be visible
     expect(screen.queryByText('Tooltip Content')).not.toBeInTheDocument();
   });
 
   it('renders with different positions', () => {
-    const positions: Array<'top' | 'right' | 'bottom' | 'left'> = ['top', 'right', 'bottom', 'left'];
-    
-    positions.forEach(position => {
+    const positions: Array<'top' | 'right' | 'bottom' | 'left'> = [
+      'top',
+      'right',
+      'bottom',
+      'left',
+    ];
+
+    positions.forEach((position) => {
       const { unmount } = render(
         <Tooltip content="Tooltip Content" position={position} delay={0}>
           <button>Hover Me</button>
         </Tooltip>
       );
-      
+
       // Hover over the trigger
       fireEvent.mouseEnter(screen.getByText('Hover Me'));
-      
+
       // Advance timers to show tooltip
       act(() => {
         jest.advanceTimersByTime(10);
       });
-      
+
       const tooltip = screen.getByText('Tooltip Content').closest('.tooltip');
       expect(tooltip).toHaveClass(`tooltip-${position}`);
-      
+
       unmount();
     });
   });
@@ -174,15 +179,15 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to show tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     const tooltipArrow = screen.getByTestId('tooltip-arrow');
     expect(tooltipArrow).toBeInTheDocument();
   });
@@ -193,15 +198,15 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to show tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     expect(screen.queryByTestId('tooltip-arrow')).not.toBeInTheDocument();
   });
 
@@ -211,15 +216,15 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to show tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     const tooltip = screen.getByText('Tooltip Content').closest('.tooltip');
     expect(tooltip).toHaveStyle('max-width: 200px');
   });
@@ -230,22 +235,22 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to show tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     const tooltip = screen.getByText('Tooltip Content').closest('.tooltip');
     expect(tooltip).toHaveClass('custom-tooltip');
   });
 
   it('renders with rich content', () => {
     render(
-      <Tooltip 
+      <Tooltip
         content={
           <div>
             <h4>Tooltip Title</h4>
@@ -257,15 +262,15 @@ describe('Tooltip', () => {
         <button>Hover Me</button>
       </Tooltip>
     );
-    
+
     // Hover over the trigger
     fireEvent.mouseEnter(screen.getByText('Hover Me'));
-    
+
     // Advance timers to show tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     expect(screen.getByText('Tooltip Title')).toBeInTheDocument();
     expect(screen.getByText('Tooltip description')).toBeInTheDocument();
   });
@@ -276,26 +281,26 @@ describe('Tooltip', () => {
         <button>Focus Me</button>
       </Tooltip>
     );
-    
+
     // Focus the trigger
     fireEvent.focus(screen.getByText('Focus Me'));
-    
+
     // Advance timers to show tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     // Tooltip should be visible
     expect(screen.getByText('Tooltip Content')).toBeInTheDocument();
-    
+
     // Blur the trigger
     fireEvent.blur(screen.getByText('Focus Me'));
-    
+
     // Advance timers to hide tooltip
     act(() => {
       jest.advanceTimersByTime(10);
     });
-    
+
     // Tooltip should be hidden
     expect(screen.queryByText('Tooltip Content')).not.toBeInTheDocument();
   });

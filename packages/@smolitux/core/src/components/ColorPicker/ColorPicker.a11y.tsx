@@ -10,31 +10,31 @@ export interface A11yColorPickerProps extends ColorPickerProps {
    * Besonders wichtig für Screenreader
    */
   accessibleLabel?: string;
-  
+
   /**
    * Zusätzliche Beschreibung für Screenreader
    * Wird als aria-describedby verwendet
    */
   accessibleDescription?: string;
-  
+
   /**
    * Ob der ColorPicker eine Live-Region aktualisiert
    * Setzt aria-live
    */
   live?: 'off' | 'polite' | 'assertive';
-  
+
   /**
    * Ob Änderungen in der Live-Region atomar sind
    * Setzt aria-atomic
    */
   atomic?: boolean;
-  
+
   /**
    * Ob der ColorPicker relevant ist
    * Setzt aria-relevant
    */
   relevant?: 'additions' | 'removals' | 'text' | 'all';
-  
+
   /**
    * Benutzerdefinierte Texte für Screenreader
    */
@@ -58,7 +58,7 @@ export interface A11yColorPickerProps extends ColorPickerProps {
     /** Text für das Erforderlich-Label */
     requiredLabel?: string;
   };
-  
+
   /**
    * Test-ID für automatisierte Tests
    */
@@ -67,11 +67,11 @@ export interface A11yColorPickerProps extends ColorPickerProps {
 
 /**
  * ColorPicker-Komponente mit verbesserten Barrierefreiheits-Funktionen
- * 
+ *
  * Diese Komponente erweitert die Standard-ColorPicker-Komponente um zusätzliche
  * Barrierefreiheits-Funktionen wie verbesserte ARIA-Attribute und anpassbare
  * Screenreader-Texte.
- * 
+ *
  * @example
  * ```tsx
  * <ColorPicker.A11y
@@ -94,11 +94,11 @@ export const A11yColorPicker = forwardRef<HTMLInputElement, A11yColorPickerProps
     testId,
     ...rest
   } = props;
-  
+
   // Generiere eindeutige IDs für Komponenten
   const uniqueId = useId();
   const descriptionId = `${uniqueId}-a11y-description`;
-  
+
   // Standard-Texte für Screenreader
   const defaultA11yTexts = {
     dialogTitle: 'Farbwähler',
@@ -109,12 +109,12 @@ export const A11yColorPicker = forwardRef<HTMLInputElement, A11yColorPickerProps
     currentColorLabel: 'Aktuelle Farbe',
     colorValueLabel: 'Farbwert',
     errorLabel: 'Fehler',
-    requiredLabel: 'Erforderlich'
+    requiredLabel: 'Erforderlich',
   };
-  
+
   // Kombiniere Standard-Texte mit benutzerdefinierten Texten
   const mergedA11yTexts = { ...defaultA11yTexts, ...a11yTexts };
-  
+
   return (
     <>
       <ColorPicker
@@ -129,7 +129,7 @@ export const A11yColorPicker = forwardRef<HTMLInputElement, A11yColorPickerProps
         data-testid={testId || 'a11y-color-picker'}
         {...rest}
       />
-      
+
       {/* Versteckte Beschreibung für bessere Screenreader-Unterstützung */}
       {accessibleDescription && (
         <span id={descriptionId} className="sr-only">

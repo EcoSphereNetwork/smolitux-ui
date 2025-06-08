@@ -14,7 +14,7 @@ describe('Container Accessibility', () => {
         <p>Beispielinhalt für den Container</p>
       </Container>
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
@@ -30,7 +30,7 @@ describe('Container Accessibility', () => {
         </form>
       </Container>
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
@@ -48,7 +48,7 @@ describe('Container Accessibility', () => {
         </div>
       </Container>
     );
-    
+
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

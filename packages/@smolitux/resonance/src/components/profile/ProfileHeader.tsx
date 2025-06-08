@@ -54,23 +54,25 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       }}
     >
       <Flex align="center" style={{ marginBottom: '16px' }}>
-        <Box 
-          style={{ 
-            width: '80px', 
-            height: '80px', 
-            borderRadius: '50%', 
+        <Box
+          style={{
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
             overflow: 'hidden',
             marginRight: '16px',
           }}
         >
-          <img 
-            src={avatar} 
-            alt={username} 
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+          <img
+            src={avatar}
+            alt={username}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </Box>
         <Box style={{ flex: 1 }}>
-          <Text weight="bold" size="xl">{username}</Text>
+          <Text weight="bold" size="xl">
+            {username}
+          </Text>
           {bio && <Text color="#6b7280">{bio}</Text>}
         </Box>
         {isCurrentUser ? (
@@ -78,15 +80,12 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             Edit Profile
           </Button>
         ) : (
-          <Button 
-            variant={isFollowing ? 'outline' : 'solid'} 
-            onClick={onFollowToggle}
-          >
+          <Button variant={isFollowing ? 'outline' : 'solid'} onClick={onFollowToggle}>
             {isFollowing ? 'Following' : 'Follow'}
           </Button>
         )}
       </Flex>
-      
+
       <Flex justify="space-around" style={{ marginBottom: '16px' }}>
         <Box style={{ textAlign: 'center' }}>
           <Text weight="bold">{postCount}</Text>

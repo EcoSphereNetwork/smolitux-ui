@@ -68,7 +68,7 @@ export const VotingSystem: React.FC<VotingSystemProps> = ({
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return '';
-    
+
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, {
       year: 'numeric',
@@ -89,17 +89,17 @@ export const VotingSystem: React.FC<VotingSystemProps> = ({
 
   const getTimeRemaining = (endDateString?: string) => {
     if (!endDateString) return '';
-    
+
     const endDate = new Date(endDateString);
     const now = new Date();
-    
+
     if (now > endDate) return 'Ended';
-    
+
     const diffMs = endDate.getTime() - now.getTime();
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-    
+
     if (diffDays > 0) {
       return `${diffDays}d ${diffHours}h remaining`;
     } else if (diffHours > 0) {
@@ -122,10 +122,10 @@ export const VotingSystem: React.FC<VotingSystemProps> = ({
       <Box style={{ padding: '16px' }}>
         {/* Header */}
         <Box style={{ marginBottom: '16px' }}>
-          <Text weight="bold" size="xl">{title}</Text>
-          {description && (
-            <Text style={{ marginTop: '8px' }}>{description}</Text>
-          )}
+          <Text weight="bold" size="xl">
+            {title}
+          </Text>
+          {description && <Text style={{ marginTop: '8px' }}>{description}</Text>}
           <Flex justify="space-between" align="center" style={{ marginTop: '12px' }}>
             <Text size="sm" color="#6b7280">
               {formatNumber(totalVotes)} votes
@@ -199,13 +199,9 @@ export const VotingSystem: React.FC<VotingSystemProps> = ({
                       </svg>
                     )
                   )}
-                  <Text weight={userVote === option.id ? 'bold' : 'normal'}>
-                    {option.label}
-                  </Text>
+                  <Text weight={userVote === option.id ? 'bold' : 'normal'}>{option.label}</Text>
                 </Flex>
-                <Text weight="medium">
-                  {formatPercentage(option.percentage)}
-                </Text>
+                <Text weight="medium">{formatPercentage(option.percentage)}</Text>
               </Flex>
               <ProgressBar
                 value={option.percentage}
@@ -242,7 +238,7 @@ export const VotingSystem: React.FC<VotingSystemProps> = ({
           >
             <Text color="#3b82f6">
               You have already voted
-              {userVote && ` for "${options.find(o => o.id === userVote)?.label}"`}
+              {userVote && ` for "${options.find((o) => o.id === userVote)?.label}"`}
             </Text>
           </Box>
         ) : isEnded ? (
@@ -254,9 +250,7 @@ export const VotingSystem: React.FC<VotingSystemProps> = ({
               textAlign: 'center',
             }}
           >
-            <Text color="#ef4444">
-              This vote has ended
-            </Text>
+            <Text color="#ef4444">This vote has ended</Text>
           </Box>
         ) : null}
       </Box>

@@ -12,20 +12,20 @@ describe('TrollFilter', () => {
 
   it('renders correctly with default props', () => {
     render(<TrollFilter />);
-    
+
     expect(screen.getByPlaceholderText('Enter comment to filter...')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /filter/i })).toBeInTheDocument();
   });
 
   it('calls onFilter when filter button is clicked', async () => {
     render(<TrollFilter onFilter={mockOnFilter} />);
-    
+
     const input = screen.getByPlaceholderText('Enter comment to filter...');
     const filterButton = screen.getByRole('button', { name: /filter/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test comment' } });
     fireEvent.click(filterButton);
-    
+
     await waitFor(() => {
       expect(mockOnFilter).toHaveBeenCalledWith('This is a test comment', expect.any(Object));
     });
@@ -33,16 +33,16 @@ describe('TrollFilter', () => {
 
   it('displays loading state when filtering', async () => {
     render(<TrollFilter onFilter={mockOnFilter} />);
-    
+
     const input = screen.getByPlaceholderText('Enter comment to filter...');
     const filterButton = screen.getByRole('button', { name: /filter/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test comment' } });
     fireEvent.click(filterButton);
-    
+
     expect(filterButton).toBeDisabled();
     expect(screen.getByText(/filtering/i)).toBeInTheDocument();
-    
+
     await waitFor(() => {
       expect(mockOnFilter).toHaveBeenCalled();
     });
@@ -58,18 +58,18 @@ describe('TrollFilter', () => {
         identityAttackScore: 0.01,
         isToxic: false,
         filteredText: 'This is a test comment',
-        flags: []
+        flags: [],
       });
     });
 
     render(<TrollFilter onFilter={mockFilterImplementation} />);
-    
+
     const input = screen.getByPlaceholderText('Enter comment to filter...');
     const filterButton = screen.getByRole('button', { name: /filter/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test comment' } });
     fireEvent.click(filterButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/toxicity score/i)).toBeInTheDocument();
       expect(screen.getByText(/15%/)).toBeInTheDocument();
@@ -93,18 +93,18 @@ describe('TrollFilter', () => {
         identityAttackScore: 0.31,
         isToxic: true,
         filteredText: '*** is a *** comment',
-        flags: ['insult', 'profanity']
+        flags: ['insult', 'profanity'],
       });
     });
 
     render(<TrollFilter onFilter={mockFilterImplementation} />);
-    
+
     const input = screen.getByPlaceholderText('Enter comment to filter...');
     const filterButton = screen.getByRole('button', { name: /filter/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a toxic comment' } });
     fireEvent.click(filterButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/toxicity score/i)).toBeInTheDocument();
       expect(screen.getByText(/85%/)).toBeInTheDocument();
@@ -126,25 +126,25 @@ describe('TrollFilter', () => {
         identityAttackScore: 0.01,
         isToxic: false,
         filteredText: 'This is a test comment',
-        flags: []
+        flags: [],
       });
     });
 
     render(<TrollFilter onFilter={mockFilterImplementation} onReset={mockOnReset} />);
-    
+
     const input = screen.getByPlaceholderText('Enter comment to filter...');
     const filterButton = screen.getByRole('button', { name: /filter/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test comment' } });
     fireEvent.click(filterButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/toxicity score/i)).toBeInTheDocument();
     });
-    
+
     const resetButton = screen.getByRole('button', { name: /reset/i });
     fireEvent.click(resetButton);
-    
+
     expect(mockOnReset).toHaveBeenCalled();
     expect(screen.queryByText(/toxicity score/i)).not.toBeInTheDocument();
     expect(input).toHaveValue('');
@@ -157,13 +157,13 @@ describe('TrollFilter', () => {
     });
 
     render(<TrollFilter onFilter={mockFilterImplementation} />);
-    
+
     const input = screen.getByPlaceholderText('Enter comment to filter...');
     const filterButton = screen.getByRole('button', { name: /filter/i });
-    
+
     fireEvent.change(input, { target: { value: 'This is a test comment' } });
     fireEvent.click(filterButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/error/i)).toBeInTheDocument();
       expect(screen.getByText(/filtering failed/i)).toBeInTheDocument();

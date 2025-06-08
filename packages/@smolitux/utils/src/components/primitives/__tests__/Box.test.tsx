@@ -14,9 +14,7 @@ describe('Box', () => {
   });
 
   it('applies custom style', () => {
-    const { container } = render(
-      <Box style={{ backgroundColor: 'red' }}>Test Content</Box>
-    );
+    const { container } = render(<Box style={{ backgroundColor: 'red' }}>Test Content</Box>);
     expect(container.firstChild).toHaveStyle('background-color: red');
   });
 

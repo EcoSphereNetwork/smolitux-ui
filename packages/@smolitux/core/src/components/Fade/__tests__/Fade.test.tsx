@@ -9,7 +9,7 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     // Content should be hidden by default
     expect(screen.queryByText('Fade content')).not.toBeVisible();
   });
@@ -20,7 +20,7 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     expect(screen.getByText('Fade content')).toBeVisible();
   });
 
@@ -30,15 +30,15 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     expect(screen.queryByText('Fade content')).not.toBeVisible();
-    
+
     rerender(
       <Fade in={true}>
         <div>Fade content</div>
       </Fade>
     );
-    
+
     expect(screen.getByText('Fade content')).toBeVisible();
   });
 
@@ -48,7 +48,7 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     expect(fadeElement).toHaveStyle('transition-duration: 500ms');
   });
@@ -59,7 +59,7 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     expect(fadeElement).toHaveStyle('background-color: red');
   });
@@ -70,7 +70,7 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     expect(fadeElement).toHaveClass('custom-fade');
   });
@@ -82,10 +82,10 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     fireEvent.transitionStart(fadeElement);
-    
+
     expect(handleEnter).toHaveBeenCalled();
   });
 
@@ -96,10 +96,10 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     fireEvent.transitionEnd(fadeElement);
-    
+
     expect(handleEntered).toHaveBeenCalled();
   });
 
@@ -110,16 +110,16 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     rerender(
       <Fade in={false} onExit={handleExit}>
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     fireEvent.transitionStart(fadeElement);
-    
+
     expect(handleExit).toHaveBeenCalled();
   });
 
@@ -130,16 +130,16 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     rerender(
       <Fade in={false} onExited={handleExited}>
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     fireEvent.transitionEnd(fadeElement);
-    
+
     expect(handleExited).toHaveBeenCalled();
   });
 
@@ -149,7 +149,7 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     expect(fadeElement).toHaveStyle('opacity: 1');
   });
@@ -160,7 +160,7 @@ describe('Fade', () => {
         <div>Fade content</div>
       </Fade>
     );
-    
+
     const fadeElement = screen.getByTestId('fade-container');
     expect(fadeElement).toHaveStyle('opacity: 0.8');
   });

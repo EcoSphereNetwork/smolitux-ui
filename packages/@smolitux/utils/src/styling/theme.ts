@@ -13,7 +13,7 @@ export const defaultTheme = {
   lineHeight,
   letterSpacing,
   breakpoints,
-  
+
   // Borders
   borderWidth: {
     default: '1px',
@@ -33,7 +33,7 @@ export const defaultTheme = {
     '3xl': '1.5rem',
     full: '9999px',
   },
-  
+
   // Shadows
   boxShadow: {
     sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -45,7 +45,7 @@ export const defaultTheme = {
     inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
     none: 'none',
   },
-  
+
   // Z-index
   zIndex: {
     auto: 'auto',
@@ -56,13 +56,14 @@ export const defaultTheme = {
     40: '40',
     50: '50',
   },
-  
+
   // Transitions
   transition: {
     property: {
       none: 'none',
       all: 'all',
-      default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+      default:
+        'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
       colors: 'background-color, border-color, color, fill, stroke',
       opacity: 'opacity',
       shadow: 'box-shadow',
@@ -125,7 +126,10 @@ export const createTheme = (customTheme: Partial<Theme>): Theme => {
       ...defaultTheme.transition,
       ...customTheme.transition,
       property: { ...defaultTheme.transition.property, ...customTheme.transition?.property },
-      timingFunction: { ...defaultTheme.transition.timingFunction, ...customTheme.transition?.timingFunction },
+      timingFunction: {
+        ...defaultTheme.transition.timingFunction,
+        ...customTheme.transition?.timingFunction,
+      },
       duration: { ...defaultTheme.transition.duration, ...customTheme.transition?.duration },
     },
   };

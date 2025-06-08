@@ -4,7 +4,14 @@ import './animations.css';
 
 export type ModalSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type ModalPosition = 'center' | 'top' | 'right' | 'bottom' | 'left';
-export type ModalAnimation = 'fade' | 'scale' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'none';
+export type ModalAnimation =
+  | 'fade'
+  | 'scale'
+  | 'slide-up'
+  | 'slide-down'
+  | 'slide-left'
+  | 'slide-right'
+  | 'none';
 
 export interface ModalA11yProps {
   /** Ist der Modal sichtbar? */
@@ -510,7 +517,7 @@ export interface ModalA11yProps {
 
 /**
  * Barrierefreie Modal-Komponente
- * 
+ *
  * @example
  * ```tsx
  * <ModalA11y
@@ -606,83 +613,83 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
   const descriptionId = `${modalId}-description`;
   const bodyId = `${modalId}-body`;
   const liveRegionId = `${modalId}-live-region`;
-  
+
   // Refs
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const firstFocusableElementRef = useRef<HTMLElement | null>(null);
   const lastFocusableElementRef = useRef<HTMLElement | null>(null);
-  
+
   // State
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [announceMessage, setAnnounceMessage] = useState<string>('');
-  
+
   // Bestimme die Rolle basierend auf den Props
   const role = isAlertDialog ? 'alertdialog' : isDialog ? 'dialog' : undefined;
-  
+
   // Bestimme die ARIA-Attribute
   const getAriaAttributes = () => {
     const attributes: Record<string, string> = {
       role: role || 'dialog',
       'aria-modal': 'true',
     };
-    
+
     if (ariaLabel) {
       attributes['aria-label'] = ariaLabel;
     }
-    
+
     // Immer aria-labelledby setzen, wenn ein Titel vorhanden ist
     if (title) {
       attributes['aria-labelledby'] = titleId;
     }
-    
+
     if (description || ariaDescription) {
       attributes['aria-describedby'] = descriptionId;
     }
-    
+
     if (busy) {
       attributes['aria-busy'] = 'true';
     }
-    
+
     // Für Tests: Wenn eine ID explizit gesetzt wurde, verwende diese
     if (id) {
       attributes['id'] = id;
     }
-    
+
     return attributes;
   };
-  
+
   // Finde alle fokussierbaren Elemente im Modal
   const getFocusableElements = () => {
     if (!modalRef.current) return [];
-    
+
     const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
-    
+
     return Array.from(focusableElements);
   };
-  
+
   // Setze den Fokus auf das erste fokussierbare Element
   const setInitialFocus = useCallback(() => {
     if (!isOpen) return;
-    
+
     // Wenn initialFocusRef gesetzt ist, fokussiere dieses Element
     if (initialFocusRef?.current) {
       initialFocusRef.current.focus();
       return;
     }
-    
+
     // Finde alle fokussierbaren Elemente
     const focusableElements = getFocusableElements();
-    
+
     if (focusableElements.length > 0) {
       // Speichere das erste und letzte fokussierbare Element
       firstFocusableElementRef.current = focusableElements[0];
       lastFocusableElementRef.current = focusableElements[focusableElements.length - 1];
-      
+
       // Fokussiere das erste Element
       firstFocusableElementRef.current.focus();
     } else if (modalRef.current) {
@@ -690,14 +697,14 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       modalRef.current.focus();
     }
   }, [isOpen, initialFocusRef]);
-  
+
   // Speichere das aktive Element beim Öffnen des Modals
   useEffect(() => {
     if (isOpen && document.activeElement instanceof HTMLElement) {
       previousFocusRef.current = document.activeElement;
     }
   }, [isOpen]);
-  
+
   // Setze den Fokus zurück beim Schließen des Modals
   useEffect(() => {
     if (!isOpen && returnFocus && previousFocusRef.current) {
@@ -709,7 +716,7 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       }
     }
   }, [isOpen, returnFocus, finalFocusRef]);
-  
+
   // Setze den Fokus beim Öffnen des Modals
   useEffect(() => {
     if (isOpen && autoFocus) {
@@ -717,11 +724,11 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       const timer = setTimeout(() => {
         setInitialFocus();
       }, 50);
-      
+
       return () => clearTimeout(timer);
     }
   }, [isOpen, autoFocus, setInitialFocus]);
-  
+
   // Kündige den Modal beim Öffnen an
   useEffect(() => {
     if (isOpen && announceOnOpen) {
@@ -729,18 +736,18 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       setAnnounceMessage(message);
     }
   }, [isOpen, announceOnOpen, openAnnouncement, ariaLabel, title]);
-  
+
   // Kündige den Modal beim Schließen an
   useEffect(() => {
     if (!isOpen && announceOnClose && isClosing) {
       const message = closeAnnouncement || `Dialog geschlossen: ${ariaLabel || title || 'Modal'}`;
       setAnnounceMessage(message);
-      
+
       // Zurücksetzen des isClosing-Status
       setIsClosing(false);
     }
   }, [isOpen, announceOnClose, closeAnnouncement, ariaLabel, title, isClosing]);
-  
+
   // Effekt für Animation
   useEffect(() => {
     if (isOpen) {
@@ -751,21 +758,21 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
         const timer = setTimeout(() => {
           setIsVisible(false);
         }, 300); // Anpassbar an die Dauer der Animation
-        
+
         return () => clearTimeout(timer);
       } else {
         setIsVisible(false);
       }
     }
   }, [isOpen, animated]);
-  
+
   // Für Tests: Wenn wir im Testmodus sind und der Modal geschlossen ist, setze isVisible auf false
   useEffect(() => {
     if (process.env.NODE_ENV === 'test' && !isOpen) {
       setIsVisible(false);
     }
   }, [isOpen]);
-  
+
   // Handler für Escape-Taste
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -775,14 +782,14 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
         onClose();
       }
     };
-    
+
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
     }
-    
+
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, closeOnEsc, onClose]);
-  
+
   // Handler für Klick auf Overlay
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (closeOnOverlayClick && e.target === overlayRef.current && !staticBackdrop) {
@@ -790,34 +797,47 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       onClose();
     }
   };
-  
+
   // Handler für Tab-Taste (Fokus-Falle)
   useEffect(() => {
     const handleTabKey = (e: KeyboardEvent) => {
-      if (!isOpen || !trapFocus || !firstFocusableElementRef.current || !lastFocusableElementRef.current) {
+      if (
+        !isOpen ||
+        !trapFocus ||
+        !firstFocusableElementRef.current ||
+        !lastFocusableElementRef.current
+      ) {
         return;
       }
-      
+
       // Wenn Shift+Tab gedrückt wird und das erste Element fokussiert ist
-      if (e.key === 'Tab' && e.shiftKey && document.activeElement === firstFocusableElementRef.current) {
+      if (
+        e.key === 'Tab' &&
+        e.shiftKey &&
+        document.activeElement === firstFocusableElementRef.current
+      ) {
         e.preventDefault();
         lastFocusableElementRef.current.focus();
       }
-      
+
       // Wenn Tab gedrückt wird und das letzte Element fokussiert ist
-      if (e.key === 'Tab' && !e.shiftKey && document.activeElement === lastFocusableElementRef.current) {
+      if (
+        e.key === 'Tab' &&
+        !e.shiftKey &&
+        document.activeElement === lastFocusableElementRef.current
+      ) {
         e.preventDefault();
         firstFocusableElementRef.current.focus();
       }
     };
-    
+
     if (isOpen && trapFocus) {
       document.addEventListener('keydown', handleTabKey);
     }
-    
+
     return () => document.removeEventListener('keydown', handleTabKey);
   }, [isOpen, trapFocus]);
-  
+
   // Handler für Bestätigen-Button
   const handleConfirm = () => {
     if (onConfirm) {
@@ -826,7 +846,7 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
     setIsClosing(true);
     onClose();
   };
-  
+
   // Handler für Abbrechen-Button
   const handleCancel = () => {
     if (onCancel) {
@@ -835,25 +855,25 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
     setIsClosing(true);
     onClose();
   };
-  
+
   // Rendere die Beschreibung (für Screenreader)
   const renderDescription = () => {
     if (!description && !ariaDescription) return null;
-    
+
     return (
       <div id={descriptionId} className="sr-only">
         {ariaDescription || description}
       </div>
     );
   };
-  
+
   // Rendere die Live-Region für Ankündigungen
   const renderLiveRegion = () => {
     return (
       <div id={liveRegionId} className="sr-only-container">
         <div
-          aria-live={liveRegionPoliteness} 
-          aria-atomic={atomic} 
+          aria-live={liveRegionPoliteness}
+          aria-atomic={atomic}
           aria-relevant={relevant}
           className="sr-only"
         >
@@ -862,7 +882,7 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       </div>
     );
   };
-  
+
   // Größenklassen
   const sizeClasses = {
     xs: 'max-w-xs',
@@ -870,29 +890,39 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
     md: 'max-w-md',
     lg: 'max-w-lg',
     xl: 'max-w-xl',
-    full: 'max-w-full'
+    full: 'max-w-full',
   };
-  
+
   // Positionsklassen
   const positionClasses = {
     center: 'items-center justify-center',
     top: 'items-start justify-center pt-10',
     right: 'items-center justify-end',
     bottom: 'items-end justify-center pb-10',
-    left: 'items-center justify-start'
+    left: 'items-center justify-start',
   };
-  
+
   // Animationsklassen
-  const animationClasses = animated ? {
-    fade: 'animate-fade-in',
-    scale: 'animate-scale-in',
-    'slide-up': 'animate-slide-up',
-    'slide-down': 'animate-slide-down',
-    'slide-left': 'animate-slide-left',
-    'slide-right': 'animate-slide-right',
-    none: ''
-  } : { fade: '', scale: '', 'slide-up': '', 'slide-down': '', 'slide-left': '', 'slide-right': '', none: '' };
-  
+  const animationClasses = animated
+    ? {
+        fade: 'animate-fade-in',
+        scale: 'animate-scale-in',
+        'slide-up': 'animate-slide-up',
+        'slide-down': 'animate-slide-down',
+        'slide-left': 'animate-slide-left',
+        'slide-right': 'animate-slide-right',
+        none: '',
+      }
+    : {
+        fade: '',
+        scale: '',
+        'slide-up': '',
+        'slide-down': '',
+        'slide-left': '',
+        'slide-right': '',
+        none: '',
+      };
+
   // Effekt-spezifische Klassen
   const effectClasses = {
     shadow: shadow ? 'shadow-lg' : '',
@@ -901,9 +931,9 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
     transparent: transparent ? 'bg-transparent' : 'bg-white dark:bg-gray-800',
     hoverable: hoverable ? 'hover:shadow-xl' : '',
     focusable: focusable ? 'focus:outline-none focus:ring-2 focus:ring-primary-500' : '',
-    transition: transition ? 'transition-all duration-300' : ''
+    transition: transition ? 'transition-all duration-300' : '',
   };
-  
+
   // Kombiniere alle Klassen für den Modal
   const modalClasses = [
     'relative',
@@ -917,9 +947,11 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
     effectClasses.focusable,
     effectClasses.transition,
     animationClasses[animation],
-    className
-  ].filter(Boolean).join(' ');
-  
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // Kombiniere alle Klassen für das Overlay
   const overlayClassNames = [
     'fixed',
@@ -934,19 +966,21 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
     'bg-opacity-50',
     'transition-opacity',
     animated ? 'duration-300' : '',
-    overlayClassName
-  ].filter(Boolean).join(' ');
-  
+    overlayClassName,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // Rendere den Modal-Inhalt
   const modalContent = (
-    <div 
+    <div
       className={overlayClassNames}
       style={{ display: isVisible ? 'flex' : 'none' }}
       onClick={handleOverlayClick}
       ref={overlayRef}
       data-testid="modal-overlay"
     >
-      <div 
+      <div
         ref={modalRef}
         className={modalClasses}
         tabIndex={-1}
@@ -956,16 +990,18 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       >
         {renderDescription()}
         {renderLiveRegion()}
-        
+
         {/* Header */}
         {showHeader && (
-          <div className={`flex items-center justify-between p-4 border-b dark:border-gray-600 ${headerClassName}`}>
+          <div
+            className={`flex items-center justify-between p-4 border-b dark:border-gray-600 ${headerClassName}`}
+          >
             {showTitle && title && (
               <h2 id={titleId} className="text-xl font-semibold text-gray-900 dark:text-white">
                 {title}
               </h2>
             )}
-            
+
             {showCloseButton && (
               <button
                 type="button"
@@ -977,22 +1013,33 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
                 aria-label={closeButtonAriaLabel}
                 data-testid="modal-close-button"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  ></path>
                 </svg>
               </button>
             )}
           </div>
         )}
-        
+
         {/* Body */}
         <div id={bodyId} className={`p-6 space-y-6 ${bodyClassName}`} data-testid="modal-body">
           {children}
         </div>
-        
+
         {/* Footer */}
         {(showFooter || footer || showConfirmButton || showCancelButton) && (
-          <div className={`flex items-center justify-end p-4 border-t dark:border-gray-600 ${footerClassName}`}>
+          <div
+            className={`flex items-center justify-end p-4 border-t dark:border-gray-600 ${footerClassName}`}
+          >
             {footer || (
               <div className="flex space-x-2">
                 {showCancelButton && (
@@ -1006,7 +1053,7 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
                     {i18n.cancel || cancelButtonText}
                   </button>
                 )}
-                
+
                 {showConfirmButton && (
                   <button
                     type="button"
@@ -1025,12 +1072,12 @@ export const ModalA11y: React.FC<ModalA11yProps> = ({
       </div>
     </div>
   );
-  
+
   // Portal verwenden, wenn aktiviert und nicht im Testmodus
   if (usePortal && typeof document !== 'undefined' && process.env.NODE_ENV !== 'test') {
     return createPortal(modalContent, document.body);
   }
-  
+
   return modalContent;
 };
 

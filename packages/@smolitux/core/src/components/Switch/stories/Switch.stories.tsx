@@ -103,12 +103,24 @@ export const Sizes: Story = {
 export const ColorSchemes: Story = {
   render: () => (
     <div className="flex flex-col space-y-4">
-      <Switch colorScheme="primary" defaultChecked>Primary Switch</Switch>
-      <Switch colorScheme="secondary" defaultChecked>Secondary Switch</Switch>
-      <Switch colorScheme="success" defaultChecked>Success Switch</Switch>
-      <Switch colorScheme="danger" defaultChecked>Danger Switch</Switch>
-      <Switch colorScheme="warning" defaultChecked>Warning Switch</Switch>
-      <Switch colorScheme="info" defaultChecked>Info Switch</Switch>
+      <Switch colorScheme="primary" defaultChecked>
+        Primary Switch
+      </Switch>
+      <Switch colorScheme="secondary" defaultChecked>
+        Secondary Switch
+      </Switch>
+      <Switch colorScheme="success" defaultChecked>
+        Success Switch
+      </Switch>
+      <Switch colorScheme="danger" defaultChecked>
+        Danger Switch
+      </Switch>
+      <Switch colorScheme="warning" defaultChecked>
+        Warning Switch
+      </Switch>
+      <Switch colorScheme="info" defaultChecked>
+        Info Switch
+      </Switch>
     </div>
   ),
 };
@@ -142,13 +154,31 @@ export const WithIcons: Story = {
   render: () => (
     <Switch
       checkedIcon={
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-3 w-3"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clipRule="evenodd"
+          />
         </svg>
       }
       uncheckedIcon={
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-3 w-3"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+            clipRule="evenodd"
+          />
         </svg>
       }
     >
@@ -173,13 +203,10 @@ export const WithRichContent: Story = {
 export const Controlled: Story = {
   render: () => {
     const [checked, setChecked] = React.useState(false);
-    
+
     return (
       <div className="flex flex-col space-y-4">
-        <Switch
-          checked={checked}
-          onChange={(e) => setChecked(e.target.checked)}
-        >
+        <Switch checked={checked} onChange={(e) => setChecked(e.target.checked)}>
           Controlled Switch {checked ? 'ON' : 'OFF'}
         </Switch>
         <button
@@ -220,42 +247,36 @@ export const Group: Story = {
       newsletter: false,
       darkMode: false,
     });
-    
-    const handleChange = (setting: keyof typeof settings) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSettings({
-        ...settings,
-        [setting]: e.target.checked,
-      });
-    };
-    
+
+    const handleChange =
+      (setting: keyof typeof settings) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSettings({
+          ...settings,
+          [setting]: e.target.checked,
+        });
+      };
+
     return (
       <div className="flex flex-col space-y-4 w-80">
         <div className="font-medium mb-2">Einstellungen:</div>
         <div className="space-y-3">
-          <Switch
-            checked={settings.notifications}
-            onChange={handleChange('notifications')}
-          >
+          <Switch checked={settings.notifications} onChange={handleChange('notifications')}>
             Benachrichtigungen
           </Switch>
-          <Switch
-            checked={settings.newsletter}
-            onChange={handleChange('newsletter')}
-          >
+          <Switch checked={settings.newsletter} onChange={handleChange('newsletter')}>
             Newsletter
           </Switch>
-          <Switch
-            checked={settings.darkMode}
-            onChange={handleChange('darkMode')}
-          >
+          <Switch checked={settings.darkMode} onChange={handleChange('darkMode')}>
             Dark Mode
           </Switch>
         </div>
         <div className="mt-2 p-3 bg-gray-100 dark:bg-gray-800 rounded">
           <div className="font-medium mb-1">Aktuelle Einstellungen:</div>
           <div className="text-sm">
-            Benachrichtigungen: {settings.notifications ? 'Ein' : 'Aus'}<br />
-            Newsletter: {settings.newsletter ? 'Ein' : 'Aus'}<br />
+            Benachrichtigungen: {settings.notifications ? 'Ein' : 'Aus'}
+            <br />
+            Newsletter: {settings.newsletter ? 'Ein' : 'Aus'}
+            <br />
             Dark Mode: {settings.darkMode ? 'Ein' : 'Aus'}
           </div>
         </div>

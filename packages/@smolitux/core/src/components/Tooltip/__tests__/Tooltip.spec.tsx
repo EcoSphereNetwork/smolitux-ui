@@ -13,9 +13,14 @@ describe('Tooltip Snapshots', () => {
   });
 
   it('renders tooltip with different positions correctly', () => {
-    const positions: Array<'top' | 'right' | 'bottom' | 'left'> = ['top', 'right', 'bottom', 'left'];
-    
-    const fragments = positions.map(position => {
+    const positions: Array<'top' | 'right' | 'bottom' | 'left'> = [
+      'top',
+      'right',
+      'bottom',
+      'left',
+    ];
+
+    const fragments = positions.map((position) => {
       const { asFragment } = render(
         <Tooltip content="Tooltip Content" position={position}>
           <button>Hover Me</button>
@@ -23,7 +28,7 @@ describe('Tooltip Snapshots', () => {
       );
       return { position, fragment: asFragment() };
     });
-    
+
     fragments.forEach(({ position, fragment }) => {
       expect(fragment).toMatchSnapshot(`Tooltip with position ${position}`);
     });
@@ -58,7 +63,7 @@ describe('Tooltip Snapshots', () => {
 
   it('renders tooltip with rich content correctly', () => {
     const { asFragment } = render(
-      <Tooltip 
+      <Tooltip
         content={
           <div>
             <h4>Tooltip Title</h4>

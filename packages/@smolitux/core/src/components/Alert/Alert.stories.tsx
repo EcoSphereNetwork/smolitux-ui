@@ -132,7 +132,11 @@ export const WithActions: Story = {
     showIcon: true,
     actions: [
       { label: 'Abbrechen', onClick: () => console.log('Abbrechen geklickt') },
-      { label: 'Fortfahren', onClick: () => console.log('Fortfahren geklickt'), variant: 'primary' },
+      {
+        label: 'Fortfahren',
+        onClick: () => console.log('Fortfahren geklickt'),
+        variant: 'primary',
+      },
     ],
   },
 };

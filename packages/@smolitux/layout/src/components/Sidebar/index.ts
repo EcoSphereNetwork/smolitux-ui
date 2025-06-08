@@ -4,7 +4,7 @@ import { default as SidebarA11y, type SidebarA11yProps } from './Sidebar.a11y';
 
 // Erweitere Sidebar um die A11y-Komponente
 const Sidebar = Object.assign(BaseSidebar, {
-  A11y: SidebarA11y
+  A11y: SidebarA11y,
 });
 
 // Exportiere Komponenten und Typen

@@ -121,13 +121,25 @@ describe('Button Snapshots', () => {
   });
 
   test('renders correctly with custom loading text', () => {
-    const tree = renderer.create(<Button loading loadingText="Please wait...">Loading Button</Button>).toJSON();
+    const tree = renderer
+      .create(
+        <Button loading loadingText="Please wait...">
+          Loading Button
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with custom loading spinner', () => {
     const customSpinner = <span data-testid="custom-spinner">⟳</span>;
-    const tree = renderer.create(<Button loading loadingSpinner={customSpinner}>Loading Button</Button>).toJSON();
+    const tree = renderer
+      .create(
+        <Button loading loadingSpinner={customSpinner}>
+          Loading Button
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -149,30 +161,38 @@ describe('Button Snapshots', () => {
   // Icons
   test('renders correctly with left icon', () => {
     const leftIcon = <span data-testid="left-icon">←</span>;
-    const tree = renderer.create(<Button leftIcon={leftIcon}>Button with Left Icon</Button>).toJSON();
+    const tree = renderer
+      .create(<Button leftIcon={leftIcon}>Button with Left Icon</Button>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with right icon', () => {
     const rightIcon = <span data-testid="right-icon">→</span>;
-    const tree = renderer.create(<Button rightIcon={rightIcon}>Button with Right Icon</Button>).toJSON();
+    const tree = renderer
+      .create(<Button rightIcon={rightIcon}>Button with Right Icon</Button>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with both icons', () => {
     const leftIcon = <span data-testid="left-icon">←</span>;
     const rightIcon = <span data-testid="right-icon">→</span>;
-    const tree = renderer.create(
-      <Button leftIcon={leftIcon} rightIcon={rightIcon}>
-        Button with Both Icons
-      </Button>
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Button leftIcon={leftIcon} rightIcon={rightIcon}>
+          Button with Both Icons
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly as icon button', () => {
     const leftIcon = <span data-testid="icon">★</span>;
-    const tree = renderer.create(<Button isIconButton leftIcon={leftIcon} aria-label="Icon Button" />).toJSON();
+    const tree = renderer
+      .create(<Button isIconButton leftIcon={leftIcon} aria-label="Icon Button" />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -208,7 +228,13 @@ describe('Button Snapshots', () => {
   });
 
   test('renders correctly without border', () => {
-    const tree = renderer.create(<Button variant="outline" bordered={false}>No Border Button</Button>).toJSON();
+    const tree = renderer
+      .create(
+        <Button variant="outline" bordered={false}>
+          No Border Button
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -235,17 +261,35 @@ describe('Button Snapshots', () => {
 
   // Link-Buttons
   test('renders correctly as link', () => {
-    const tree = renderer.create(<Button isLink href="https://example.com">Link Button</Button>).toJSON();
+    const tree = renderer
+      .create(
+        <Button isLink href="https://example.com">
+          Link Button
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly as external link', () => {
-    const tree = renderer.create(<Button isLink isExternal href="https://example.com">External Link Button</Button>).toJSON();
+    const tree = renderer
+      .create(
+        <Button isLink isExternal href="https://example.com">
+          External Link Button
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly as download link', () => {
-    const tree = renderer.create(<Button isLink download href="https://example.com/file.pdf">Download Button</Button>).toJSON();
+    const tree = renderer
+      .create(
+        <Button isLink download href="https://example.com/file.pdf">
+          Download Button
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -261,36 +305,48 @@ describe('Button Snapshots', () => {
   });
 
   test('renders correctly as active toggle button', () => {
-    const tree = renderer.create(<Button isToggle isToggleOn>Toggle Button On</Button>).toJSON();
+    const tree = renderer
+      .create(
+        <Button isToggle isToggleOn>
+          Toggle Button On
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   // Kombinationen
   test('renders correctly with custom class name', () => {
-    const tree = renderer.create(<Button className="custom-class">Button with Custom Class</Button>).toJSON();
+    const tree = renderer
+      .create(<Button className="custom-class">Button with Custom Class</Button>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with tooltip', () => {
-    const tree = renderer.create(<Button tooltip="Tooltip Text">Button with Tooltip</Button>).toJSON();
+    const tree = renderer
+      .create(<Button tooltip="Tooltip Text">Button with Tooltip</Button>)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with multiple props combined', () => {
     const leftIcon = <span data-testid="left-icon">←</span>;
-    const tree = renderer.create(
-      <Button 
-        variant="success"
-        size="lg"
-        shape="pill"
-        shadow
-        leftIcon={leftIcon}
-        fullWidth
-        tooltip="Success Button"
-      >
-        Combined Props Button
-      </Button>
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Button
+          variant="success"
+          size="lg"
+          shape="pill"
+          shadow
+          leftIcon={leftIcon}
+          fullWidth
+          tooltip="Success Button"
+        >
+          Combined Props Button
+        </Button>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

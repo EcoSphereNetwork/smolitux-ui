@@ -9,7 +9,9 @@ describe('Alert Snapshots', () => {
   });
 
   test('renders correctly with title', () => {
-    const tree = renderer.create(<Alert type="info" title="Test Title" message="Test message" />).toJSON();
+    const tree = renderer
+      .create(<Alert type="info" title="Test Title" message="Test message" />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -29,7 +31,9 @@ describe('Alert Snapshots', () => {
   });
 
   test('renders correctly without icon', () => {
-    const tree = renderer.create(<Alert type="info" message="Test message" showIcon={false} />).toJSON();
+    const tree = renderer
+      .create(<Alert type="info" message="Test message" showIcon={false} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -39,26 +43,29 @@ describe('Alert Snapshots', () => {
   });
 
   test('renders correctly with children', () => {
-    const tree = renderer.create(
-      <Alert type="info" message="Test message">
-        <button>Action Button</button>
-      </Alert>
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Alert type="info" message="Test message">
+          <button>Action Button</button>
+        </Alert>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with custom className', () => {
-    const tree = renderer.create(<Alert type="info" message="Test message" className="custom-class" />).toJSON();
+    const tree = renderer
+      .create(<Alert type="info" message="Test message" className="custom-class" />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('renders correctly with ReactNode as message', () => {
-    const tree = renderer.create(
-      <Alert 
-        type="info" 
-        message={<span data-testid="custom-message">Custom Message</span>} 
-      />
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Alert type="info" message={<span data-testid="custom-message">Custom Message</span>} />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
