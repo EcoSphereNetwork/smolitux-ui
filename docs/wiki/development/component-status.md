@@ -252,5 +252,5 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 | @smolitux/resonance | post | ⚠️ Teilweise |
 | @smolitux/resonance | profile | ⚠️ Teilweise |
 | @smolitux/utils | patterns | ⚠️ Teilweise |
-| @smolitux/utils | primitives | ⚠️ Teilweise |
+| @smolitux/utils | primitives | ✅ Fertig |
 
