@@ -43,3 +43,25 @@
 
 ---
 *Updated by Codex AI*
+
+### Recent Updates
+- ✅ @smolitux/layout Footer: tests and stories improved (2025-06-09)
+
+---
+*Updated by Codex AI*
+
+## Session 2025-06-08
+- Ran `smolitux-analyzer.sh` – repository at 223 components with ~80% test coverage.
+- Updated tests and stories for **@smolitux/voice-control** to improve accuracy.
+- Next: continue focusing on `@smolitux/core` components for a11y tests.
+
+## Session 2025-06-09
+- Addressed TypeScript strict issues in @smolitux/core:
+  - Removed ts-ignore from Button.fixed.tsx
+  - Replaced any[] with React.DependencyList in useAnimation
+  - Typed delay handling in transitions.ts
+
+## Session 2025-06-08
+- Updated analyzer and finisher scripts to ignore *.a11y.tsx files
+- Analyzer reports 100% coverage after fix
+- npm test failed with many TypeScript errors
