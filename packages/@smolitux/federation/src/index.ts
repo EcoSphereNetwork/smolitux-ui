@@ -1,6 +1,8 @@
 // Export types
 export * from './types';
 
+// Export protocol helpers
+export * from "./protocols/activityPub";
 // Export components
 export { FederatedSearch } from './components/FederatedSearch';
 export { PlatformSelector } from './components/PlatformSelector';
