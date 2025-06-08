@@ -128,7 +128,9 @@
     "typedoc": "^0.28.5",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.28.0",
-    "typedoc-plugin-markdown": "^3.14.0"
+    "typedoc-plugin-markdown": "^3.14.0",
+    "@types/node": "^22.13.13",
+    "@docusaurus/module-type-aliases": "^3.7.0"
   },
   "dependencies": {
     "esbuild": "^0.19.12",
