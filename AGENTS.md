@@ -1,6 +1,7 @@
 # Smolitux UI Guide for Codex Agents
 
 **READ docs/wiki/Codex.md**
+**READ packages/@smolitux/AGENTS.md**
 
 This repository hosts the **Smolitux UI** component library. Packages live under `packages/@smolitux/` and are written in TypeScript.
 ## Repository Layout
