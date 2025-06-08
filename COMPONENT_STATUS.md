@@ -60,3 +60,4 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 - Analyzer reports 126 validation issues.
 ### Update 2025-06-08
 - Improved chunk helper input validation.
+- Added tests and stories for @smolitux/testing utilities (2025-06-12)

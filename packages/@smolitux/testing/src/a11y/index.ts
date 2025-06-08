@@ -34,6 +34,20 @@ export interface A11yTestOptions {
 }
 
 /**
+ * Ergebnis eines Barrierefreiheitstests
+ */
+export interface A11yTestResult {
+  /** Gefundene Verstöße */
+  violations: any[];
+  /** Bestandene Prüfungen */
+  passes: any[];
+  /** Unvollständige Prüfungen */
+  incomplete: any[];
+  /** Ergebnis des Renderns */
+  renderResult: RenderResult;
+}
+
+/**
  * Führt einen Barrierefreiheitstest für eine Komponente durch
  *
  * @param component Die zu testende React-Komponente
@@ -51,12 +65,7 @@ export interface A11yTestOptions {
 export async function testA11y(
   component: React.ReactElement,
   options: A11yTestOptions = {}
-): Promise<{
-  violations: any[];
-  passes: any[];
-  incomplete: any[];
-  renderResult: RenderResult;
-}> {
+): Promise<A11yTestResult> {
   const { failOnViolation = true, disabledRules = [], axeOptions = {} } = options;
 
   // Rendere die Komponente

@@ -314,3 +314,5 @@ Latest analyzer run shows **100%** test and story coverage across 180 components
 
 ### Update 2025-06-08 (Analyzer Results)
 Latest analyzer run reports **100%** test and story coverage across all packages. **120 validation issues** remain. Continue TypeScript cleanup.
+### Update 2025-06-12 (Codex Session)
+- Added unit tests and stories for @smolitux/testing utilities to validate cross-package usage.
