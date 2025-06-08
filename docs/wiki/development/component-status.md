@@ -261,3 +261,9 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 
 ### Update 2025-06-08
 Analyzer adjusted: a11y files ignored. Coverage now 100%. Next: fix remaining validation issues.
+
+### Update 2025-06-08 (Analyzer Results)
+Latest analyzer run reports **100%** test and story coverage for all packages.
+Identified **156 validation issues**: missing exports, `any` types and missing
+`data-testid` attributes. Manual refinements are required to achieve strict
+TypeScript compliance and resolve all validation warnings.
