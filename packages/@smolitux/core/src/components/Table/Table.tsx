@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 
 export type SortDirection = 'asc' | 'desc' | null;
 
-export interface TableColumn<T = any> {
+export interface TableColumn<T = unknown> {
   /** Eindeutige ID der Spalte */
   id: string;
   /** Anzeigename der Spalte */
@@ -36,7 +36,7 @@ export interface TableFilterOption {
 }
 
 // Typ für Filterkriterien
-export interface TableFilterCriteria<T = any> {
+export interface TableFilterCriteria<T = unknown> {
   columnId: string;
   value: string | string[];
   operator?:
@@ -67,7 +67,7 @@ export interface PaginationOptions {
   onItemsPerPageChange?: (itemsPerPage: number) => void;
 }
 
-export interface TableProps<T = any> {
+export interface TableProps<T = unknown> {
   /** Daten für die Tabelle */
   data: T[];
   /** Spaltendefinitionen */
@@ -174,7 +174,7 @@ export interface TableProps<T = any> {
   onExport?: (format: 'csv' | 'excel' | 'pdf') => void;
 }
 
-const Table = <T extends Record<string, any>>({
+const Table = <T extends Record<string, unknown>>({
   data = [],
   columns = [],
   striped = false,
