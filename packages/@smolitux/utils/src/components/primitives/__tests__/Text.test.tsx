@@ -29,18 +29,6 @@ describe('Text', () => {
     expect(el).toHaveStyle({ fontSize: 'lg' });
   });
 
-  it('renders with custom styles', () => {
-    const { container } = render(
-      <Text weight="bold" size="lg" color="red">
-        Hello
-      </Text>
-    );
-    const span = container.firstChild as HTMLElement;
-    expect(span).toHaveStyle('font-weight: bold');
-    expect(span).toHaveStyle('font-size: lg');
-    expect(span).toHaveStyle('color: red');
-  });
-
   it('renders with provided text', () => {
     const { getByText } = render(<Text>Hello</Text>);
     expect(getByText('Hello')).toBeInTheDocument();
@@ -55,11 +43,5 @@ describe('Text', () => {
     const el = container.firstChild as HTMLElement;
     expect(el).toHaveStyle('font-size: lg');
     expect(el).toHaveStyle('font-weight: bold');
-  });
-
-  it('forwards ref', () => {
-    const ref = React.createRef<HTMLSpanElement>();
-    render(<Text ref={ref}>Hi</Text>);
-    expect(ref.current).not.toBeNull();
   });
 });

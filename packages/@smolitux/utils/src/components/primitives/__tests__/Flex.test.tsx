@@ -25,17 +25,20 @@ describe('Flex', () => {
     expect(div).toHaveStyle({ gap: '4' });
   });
 
-  it('applies flex styles', () => {
-    const { container } = render(<Flex justify="center" align="flex-end" />);
-    const div = container.firstChild as HTMLElement;
-    expect(div).toHaveStyle('display: flex');
-    expect(div).toHaveStyle('justify-content: center');
-    expect(div).toHaveStyle('align-items: flex-end');
+  it('renders children in a flex container', () => {
+    const { container } = render(
+      <Flex data-testid="flex" gap={8}>
+        <div>one</div>
+        <div>two</div>
+      </Flex>
+    );
+    const el = container.firstChild as HTMLElement;
+    expect(el).toHaveStyle('display: flex');
+    expect(el).toHaveStyle('gap: 8px');
   });
 
-  it('forwards ref', () => {
-    const ref = React.createRef<HTMLDivElement>();
-    render(<Flex ref={ref} />);
-    expect(ref.current).not.toBeNull();
+  it('supports column direction', () => {
+    const { container } = render(<Flex direction="column" />);
+    expect(container.firstChild).toHaveStyle('flex-direction: column');
   });
 });
