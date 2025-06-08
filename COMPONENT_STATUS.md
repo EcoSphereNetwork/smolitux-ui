@@ -1,6 +1,6 @@
 # Smolitux UI - Codex Progress
 
-**Started:** Sun Jun  8 21:46:31 UTC 2025
+**Started:** Sun Jun  8 21:56:14 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -43,6 +43,7 @@
 
 ---
 *Updated by Codex AI*
-
-### Update 2025-06-10
-Analyzer reports 180 components with 100% test and story coverage. 126 validation issues remain. Next session will focus on strict TypeScript cleanup in @smolitux/core.
+### Update 2025-06-11
+- Removed 'as any' casts in List, List.a11y, Zoom, Zoom.a11y, LanguageSwitcher.
+- Updated Dialog story typing.
+- Analyzer reports 126 validation issues.

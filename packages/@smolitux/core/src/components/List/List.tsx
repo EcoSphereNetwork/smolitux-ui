@@ -309,8 +309,9 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
 
     // Für description-Listen
     if (variant === 'description') {
+      const divProps = rest as React.HTMLAttributes<HTMLDivElement>;
       return (
-        <div ref={ref as React.Ref<HTMLDivElement>} className={classes} {...(rest as any)}>
+        <div ref={ref as React.Ref<HTMLDivElement>} className={classes} {...divProps}>
           {renderContent()}
         </div>
       );

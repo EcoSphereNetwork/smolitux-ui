@@ -369,7 +369,9 @@ export const WithForm: Story = {
 export const WithAnimations: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const [motionPreset, setMotionPreset] = React.useState<string>('scale');
+    const [motionPreset, setMotionPreset] = React.useState<
+      'fade' | 'scale' | 'slide-from-top' | 'slide-from-bottom' | 'slide-from-left' | 'slide-from-right'
+    >('scale');
 
     return (
       <>
@@ -428,7 +430,7 @@ export const WithAnimations: Story = {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           title={`Animation: ${motionPreset}`}
-          motionPreset={motionPreset as any}
+          motionPreset={motionPreset}
         >
           <div className="p-6">
             <p className="mb-4">Dieser Dialog verwendet die Animation "{motionPreset}".</p>

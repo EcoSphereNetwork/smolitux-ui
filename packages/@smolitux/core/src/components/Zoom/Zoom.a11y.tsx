@@ -261,20 +261,20 @@ export const ZoomA11y = forwardRef(
     };
 
     // Funktion zum Behandeln des Refs
-    const handleRef = (instance: any) => {
+    const handleRef = (instance: HTMLElement | null) => {
       // Wenn ref eine Funktion ist, rufen wir sie mit der Instanz auf
       if (typeof ref === 'function') {
         ref(instance);
       }
       // Wenn ref ein Objekt ist, setzen wir seine current-Eigenschaft
       else if (ref) {
-        (ref as React.MutableRefObject<any>).current = instance;
+        (ref as React.MutableRefObject<HTMLElement | null>).current = instance;
       }
     };
 
     // Wenn das Kind ein einzelnes React-Element ist, klonen wir es und fügen unsere Props hinzu
     if (React.isValidElement(children)) {
-      return React.cloneElement(children, {
+      return React.cloneElement(children as React.ReactElement, {
         ref: handleRef,
         style: {
           ...zoomStyle,
@@ -285,8 +285,8 @@ export const ZoomA11y = forwardRef(
           : children.props.className,
         'data-state': state,
         ...filteredAriaAttributes,
-        // Wir müssen die restlichen Props explizit übergeben, um TypeScript-Fehler zu vermeiden
-      } as any);
+        ...rest,
+      });
     }
 
     // Ansonsten wrappen wir die Kinder in einem Element

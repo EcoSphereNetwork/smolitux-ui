@@ -143,7 +143,7 @@ export const Zoom = forwardRef(function Zoom(
 
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {
-    return React.cloneElement(children, {
+    return React.cloneElement(children as React.ReactElement, {
       ref: handleRef,
       style: {
         ...zoomStyle,
@@ -154,8 +154,8 @@ export const Zoom = forwardRef(function Zoom(
         ? `${className} ${children.props.className || ''}`
         : children.props.className,
       'data-state': state,
-      // Wir müssen die restlichen Props explizit übergeben, um TypeScript-Fehler zu vermeiden
-    } as any);
+      ...rest,
+    });
   }
 
   // Ansonsten wrappen wir die Kinder in einem Element

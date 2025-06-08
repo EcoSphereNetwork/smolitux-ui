@@ -535,7 +535,7 @@ export const ListItemA11y = forwardRef<HTMLLIElement, ListItemProps>(
           className={classes}
           role="listitem"
           aria-describedby={descriptionId}
-          {...(rest as any)}
+          {...(rest as React.HTMLAttributes<HTMLDivElement>)}
         >
           {renderDescription()}
           {renderContent()}

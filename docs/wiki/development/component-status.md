@@ -285,3 +285,8 @@ Latest analyzer run shows **100%** test and story coverage across 180 components
 
 ### Update 2025-06-10 (Analyzer Results)
 Latest analyzer run shows **100%** test and story coverage across 180 components. **126 validation issues** remain, primarily TypeScript "any" usage and missing `data-testid` attributes. Continue strict typing cleanup and fix remaining accessibility IDs.
+### Update 2025-06-11 (Codex Session)
+- Removed several `as any` casts in core components (List, Zoom, LanguageSwitcher).
+- Updated Dialog stories to use typed motion presets.
+- Analyzer still reports 126 validation issues after fixes.
+- Next: Continue TypeScript strict cleanup.
