@@ -14,6 +14,10 @@ const meta: Meta<typeof Card> = {
       control: { type: 'select' },
       options: ['elevated', 'outlined', 'flat'],
     },
+    type: {
+      control: { type: 'select' },
+      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'info'],
+    },
     padding: {
       control: { type: 'select' },
       options: ['none', 'small', 'medium', 'large'],
@@ -54,7 +58,11 @@ export const WithFooter: Story = {
   args: {
     title: 'Kartentitel',
     children: <p>Dies ist eine Karte mit einem Footer.</p>,
-    footer: <div className="flex justify-end"><button className="px-4 py-2 bg-blue-500 text-white rounded">Aktion</button></div>,
+    footer: (
+      <div className="flex justify-end">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded">Aktion</button>
+      </div>
+    ),
   },
 };
 
@@ -83,6 +91,14 @@ export const Flat: Story = {
   },
 };
 
+export const Primary: Story = {
+  args: {
+    type: 'primary',
+    title: 'Primäre Karte',
+    children: <p>Diese Karte verwendet die Primärfarbe.</p>,
+  },
+};
+
 export const Hoverable: Story = {
   args: {
     title: 'Interaktive Karte',
@@ -102,7 +118,9 @@ export const CustomPadding: Story = {
 export const NoPadding: Story = {
   args: {
     title: 'Kein Padding',
-    children: <div className="bg-gray-100 p-4">Diese Karte hat kein Padding im Inhaltsbereich.</div>,
+    children: (
+      <div className="bg-gray-100 p-4">Diese Karte hat kein Padding im Inhaltsbereich.</div>
+    ),
     noPadding: true,
   },
 };
@@ -127,7 +145,9 @@ export const CustomSizing: Story = {
 export const CustomColors: Story = {
   args: {
     title: 'Benutzerdefinierte Farben',
-    children: <p className="text-white">Diese Karte hat benutzerdefinierte Hintergrund- und Randfarben.</p>,
+    children: (
+      <p className="text-white">Diese Karte hat benutzerdefinierte Hintergrund- und Randfarben.</p>
+    ),
     backgroundColor: '#4a5568',
     borderColor: '#2d3748',
   },
@@ -139,7 +159,12 @@ export const WithHeaderAction: Story = {
     children: <p>Diese Karte hat eine Aktion im Header-Bereich.</p>,
     headerAction: (
       <button className="text-gray-500 hover:text-gray-700">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
           <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
         </svg>
       </button>
@@ -153,19 +178,15 @@ export const ComplexContent: Story = {
     children: (
       <div>
         <div className="flex items-center mb-4">
-          <img 
-            src="https://via.placeholder.com/50" 
-            alt="Avatar" 
-            className="rounded-full mr-3"
-          />
+          <img src="https://via.placeholder.com/50" alt="Avatar" className="rounded-full mr-3" />
           <div>
             <h4 className="font-medium">Max Mustermann</h4>
             <p className="text-sm text-gray-500">Produktmanager</p>
           </div>
         </div>
         <p className="mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.
-          Vivamus hendrerit arcu sed erat molestie vehicula.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus
+          hendrerit arcu sed erat molestie vehicula.
         </p>
         <div className="flex justify-between text-sm text-gray-500">
           <span>Vor 2 Stunden</span>
@@ -176,17 +197,40 @@ export const ComplexContent: Story = {
     footer: (
       <div className="flex justify-between">
         <button className="text-gray-500 hover:text-gray-700">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+              clipRule="evenodd"
+            />
           </svg>
         </button>
         <button className="text-gray-500 hover:text-gray-700">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clipRule="evenodd" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+              clipRule="evenodd"
+            />
           </svg>
         </button>
         <button className="text-gray-500 hover:text-gray-700">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
             <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
           </svg>
         </button>
