@@ -9,3 +9,4 @@ Die Resonance-Komponenten bilden das soziale Fundament von Smolitux UI. Sie erm√
 - [PostInteractions](./post-interactions.md)
 - [ProfileHeader](./profile-header.md)
 - [ProfileContent](./profile-content.md)
+- [PlatformIntegration](./platform-integration.md)
