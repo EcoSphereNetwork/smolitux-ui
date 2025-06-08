@@ -1,9 +1,17 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { withVoiceControl } from './withVoiceControl';
+import { VoiceControlProvider } from './VoiceControlProvider';
 
-const meta: Meta<typeof withVoiceControl> = {
-  title: 'Components/withVoiceControl',
-  component: withVoiceControl,
+const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>((props, ref) => (
+  <button ref={ref} {...props} />
+));
+
+const VoiceButton = withVoiceControl(Button, ['hello']);
+
+const meta: Meta<typeof VoiceButton> = {
+  title: 'VoiceControl/withVoiceControl',
+  component: VoiceButton,
   parameters: {
     layout: 'centered',
   },
@@ -14,21 +22,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    children: 'withVoiceControl',
-  },
-};
-
-export const CustomStyle: Story = {
-  args: {
-    children: 'Custom withVoiceControl',
-    className: 'custom-style',
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    children: 'Interactive withVoiceControl',
-    onClick: () => alert('Clicked!'),
-  },
+  render: () => (
+    <VoiceControlProvider>
+      <VoiceButton>Say Hello</VoiceButton>
+    </VoiceControlProvider>
+  ),
 };
