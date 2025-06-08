@@ -114,7 +114,7 @@ export const createTransition = (
 ): string => {
   const config = typeof preset === 'string' ? transitions[preset] : preset;
   const { duration, easing } = config;
-  const delay = (config as any).delay || 0;
+  const delay = 'delay' in config && typeof config.delay === 'number' ? config.delay : 0;
   const props = Array.isArray(properties) ? properties.join(', ') : properties;
 
   return `${props} ${duration}ms ${easing}${delay > 0 ? ` ${delay}ms` : ''}`;

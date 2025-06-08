@@ -48,3 +48,9 @@
 - Ran `smolitux-analyzer.sh` – repository at 223 components with ~80% test coverage.
 - Updated tests and stories for **@smolitux/voice-control** to improve accuracy.
 - Next: continue focusing on `@smolitux/core` components for a11y tests.
+
+## Session 2025-06-09
+- Addressed TypeScript strict issues in @smolitux/core:
+  - Removed ts-ignore from Button.fixed.tsx
+  - Replaced any[] with React.DependencyList in useAnimation
+  - Typed delay handling in transitions.ts
