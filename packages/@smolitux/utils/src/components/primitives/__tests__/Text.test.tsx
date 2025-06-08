@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Text } from '../Text';
 
 describe('Text', () => {
@@ -19,5 +20,12 @@ describe('Text', () => {
     const ref = React.createRef<HTMLSpanElement>();
     render(<Text ref={ref}>Hi</Text>);
     expect(ref.current).not.toBeNull();
+  });
+
+  it('renders with typographic styles', () => {
+    const { container } = render(<Text weight="bold" size="lg">Hello</Text>);
+    const el = container.firstChild as HTMLElement;
+    expect(el).toHaveStyle({ fontWeight: 'bold' });
+    expect(el).toHaveStyle({ fontSize: 'lg' });
   });
 });
