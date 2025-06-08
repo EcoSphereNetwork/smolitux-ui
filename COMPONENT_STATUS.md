@@ -50,5 +50,22 @@
 - Added barrel index files for LineChart and BarChart.
 - Documented chart status in docs/wiki/development/component-status-charts.md.
 
+### Session 2025-06-12
+- Fixed generated layout tests and updated responsive behavior checks.
+
+_Updated by Codex AI_
+_2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback. Updated documentation and dashboards.
+- 2025-06-08: Analyzer run - 120 validation issues remaining
+### Update 2025-06-11
+- Removed 'as any' casts in List, List.a11y, Zoom, Zoom.a11y, LanguageSwitcher.
+- Updated Dialog story typing.
+- Analyzer reports 126 validation issues.
+### Update 2025-06-08
+- Improved chunk helper input validation.
+- Added tests and stories for @smolitux/testing utilities (2025-06-12)
+### Update 2025-06-08 (Federation)
+- Analyzer run for @smolitux/federation. All five components have tests and stories.
+- Accessibility tests still missing. Next step: implement protocol validation and network error handling tests.
+
 ---
 _Updated by Codex AI_
