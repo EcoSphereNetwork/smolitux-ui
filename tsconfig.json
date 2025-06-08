@@ -6,13 +6,14 @@
     "strict": true,
     "jsx": "react-jsx",
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["node", "@docusaurus/module-type-aliases"]
   },
-  "include": ["packages", "docs"],
+  "include": ["docs"],
   "exclude": [
     "node_modules",
     "dist",
-    "packages/@smolitux/charts/src/components/ScatterPlot/ScatterPlot.old.tsx",
-    "packages/@smolitux/core/src/components/Textarea/**/*"
+    "packages",
+    "packages/playground"
   ]
 }
