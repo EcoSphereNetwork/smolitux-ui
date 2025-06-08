@@ -1035,6 +1035,7 @@
 - TypeScript: Compliant
 - Last Updated: 2025-06-08
 
+<<<<<<< HEAD
 
 ### Completed in this session (2025-06-08)
 - @smolitux/utils Box stories added
@@ -1050,12 +1051,14 @@
 | @smolitux/core | Button | Verified TS, tests & stories | 2025-06-08 |
 | @smolitux/core | Input | Verified TS, tests & stories | 2025-06-08 |
 | @smolitux/core | Card | Removed `any` casts | 2025-06-08 |
-| @smolitux/core | Modal | Verified TS, tests & stories | 2025-06-08 |
-| @smolitux/core | Table | Replaced generic `any` with `unknown` | 2025-06-08 |
-
 ### Completed Components
 - **Button**: TypeScript ref cleanup, tests & stories verified
 - **Input**: Verified TS compliance, tests & stories present
 - **Card**: Verified TS compliance, tests & stories present
 - **Modal**: Verified TS compliance, tests & stories present
 - **Table**: Verified TS compliance, tests & stories present
+
+## Validation Summary 2025-06-08
+- Total Components: 256
+- Components with Tests: 181 (70%)
+- Components with Stories: 188 (73%)
