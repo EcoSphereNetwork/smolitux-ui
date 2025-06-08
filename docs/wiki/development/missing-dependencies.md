@@ -1,6 +1,7 @@
 # Fehlende Abhängigkeiten
 
-Aufgrund fehlender Internetverbindung konnten die folgenden Entwicklungsabhängigkeiten nicht installiert werden. Sie werden für Linting und Tests benötigt:
+Folgende Entwicklungsabhängigkeiten konnten aufgrund fehlender Netzwerkverbindung nicht installiert werden. Sie werden für Linting und Tests benötigt:
+
 - @typescript-eslint/eslint-plugin
 - @typescript-eslint/parser
 - @eslint/js
