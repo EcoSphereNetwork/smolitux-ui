@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Footer } from './Footer';
 
 const meta: Meta<typeof Footer> = {
-  title: 'Components/Footer',
+  title: 'Layout/Footer',
   component: Footer,
   parameters: {
     layout: 'centered',
@@ -11,24 +11,34 @@ const meta: Meta<typeof Footer> = {
 };
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Footer',
+    copyright: '© 2025 Smolitux',
+    links: <a href="/impressum">Impressum</a>,
   },
 };
 
-export const CustomStyle: Story = {
+export const Minimal: Story = {
   args: {
-    children: 'Custom Footer',
-    className: 'custom-style',
+    variant: 'minimal',
+    links: <a href="/datenschutz">Datenschutz</a>,
   },
 };
 
-export const Interactive: Story = {
+export const Colored: Story = {
   args: {
-    children: 'Interactive Footer',
-    onClick: () => alert('Clicked!'),
+    variant: 'colored',
+    color: 'secondary',
+    links: <a href="/kontakt">Kontakt</a>,
+  },
+};
+
+export const Fixed: Story = {
+  args: {
+    fixed: true,
+    links: <a href="/faq">FAQ</a>,
   },
 };
