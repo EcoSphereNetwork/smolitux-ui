@@ -4,18 +4,18 @@ import { Flex } from './Flex';
 
 describe('Flex', () => {
   it('renders without crashing', () => {
-    render(<Flex />);
-    expect(screen.getByRole('button', { name: /Flex/i })).toBeInTheDocument();
+    render(<Flex data-testid="flex" />);
+    expect(screen.getByTestId('flex')).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
-    render(<Flex className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
+    render(<Flex data-testid="flex" className="custom-class" />);
+    expect(screen.getByTestId('flex')).toHaveClass('custom-class');
   });
 
   it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
+    const ref = React.createRef<HTMLDivElement>();
     render(<Flex ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 });
