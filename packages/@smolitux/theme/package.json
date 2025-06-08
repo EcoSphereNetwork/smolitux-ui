@@ -1,6 +1,6 @@
 {
   "name": "@smolitux/theme",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Theming system for Smolitux UI",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
