@@ -95,6 +95,9 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/resonance | ProfileHeader | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/resonance | ProfileWallet | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/utils | Various Utilities | ✅ | ❌ | ❌ | ❌ | Ready |
+| @smolitux/voice-control | VoiceControlProvider | ❌ | ❌ | ❌ | ❌ | Missing Tests |
+| @smolitux/voice-control | withVoiceControl | ❌ | ❌ | ❌ | ❌ | Missing Tests |
+| @smolitux/voice-control | ModelTrainingComponent | ❌ | ❌ | ❌ | ❌ | Missing Tests |
 
 ## Summary
 
@@ -116,6 +119,7 @@ This document provides a comprehensive test status report for all components in 
 - **@smolitux/media**: 4 components ready, 1 needs A11y tests
 - **@smolitux/resonance**: 16 components need A11y tests
 - **@smolitux/utils**: Ready
+- **@smolitux/voice-control**: 3 components missing tests
 
 ### Verbesserungen seit Version 0.2.1
 - Erhöhung der A11y-Testabdeckung von 10% auf 25%
