@@ -2,6 +2,11 @@ import React, { useState, useRef } from 'react';
 import { Card, Button, TabView } from '@smolitux/core';
 import { Box, Flex, Text } from '../primitives';
 
+export interface MonetizationConfig {
+  enabled: boolean;
+  settings: Record<string, unknown>;
+}
+
 export interface PostCreatorProps {
   /** Callback für das Erstellen eines Beitrags */
   onCreatePost: (post: {
@@ -13,10 +18,7 @@ export interface PostCreatorProps {
         file: File;
       }[];
     };
-    monetization?: {
-      enabled: boolean;
-      settings: any;
-    };
+    monetization?: MonetizationConfig;
   }) => void;
   /** Ob der Beitrag erstellt wird */
   isSubmitting?: boolean;
@@ -51,7 +53,7 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
       preview: string;
     }[]
   >([]);
-  const [monetizationSettings, setMonetizationSettings] = useState({
+  const [monetizationSettings, setMonetizationSettings] = useState<MonetizationConfig>({
     enabled: false,
     settings: {},
   });
@@ -351,6 +353,7 @@ export const PostCreator: React.FC<PostCreatorProps> = ({
 
   return (
     <Card
+      data-testid="PostCreator"
       className={`post-creator ${className}`}
       style={{
         marginBottom: '24px',

@@ -184,3 +184,5 @@ export const defaultTheme: Theme = {
     50: '50',
   },
 };
+
+export default defaultTheme;

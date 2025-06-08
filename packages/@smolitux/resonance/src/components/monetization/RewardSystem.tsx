@@ -259,9 +259,11 @@ export const RewardSystem: React.FC<RewardSystemProps> = ({
     }
   };
 
+  const periods: RewardSystemProps['period'][] = ['daily', 'weekly', 'monthly', 'yearly', 'all'];
+
   const renderPeriodSelector = () => (
     <Flex style={{ overflowX: 'auto', paddingBottom: '8px', marginBottom: '16px' }}>
-      {['daily', 'weekly', 'monthly', 'yearly', 'all'].map((p) => (
+      {periods.map((p) => (
         <Box
           key={p}
           style={{
@@ -274,7 +276,7 @@ export const RewardSystem: React.FC<RewardSystemProps> = ({
             whiteSpace: 'nowrap',
             marginRight: '8px',
           }}
-          onClick={() => onPeriodChange && onPeriodChange(p as any)}
+          onClick={() => onPeriodChange && onPeriodChange(p)}
         >
           {getPeriodLabel(p)}
         </Box>
@@ -617,6 +619,7 @@ export const RewardSystem: React.FC<RewardSystemProps> = ({
 
   return (
     <Box
+      data-testid="RewardSystem"
       className={`reward-system ${className}`}
       style={{
         ...style,

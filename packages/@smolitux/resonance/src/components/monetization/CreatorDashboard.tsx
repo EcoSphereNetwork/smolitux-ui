@@ -144,9 +144,11 @@ export const CreatorDashboard: React.FC<CreatorDashboardProps> = ({
     }
   };
 
+  const periods: CreatorDashboardProps['period'][] = ['daily', 'weekly', 'monthly', 'yearly', 'all'];
+
   const renderPeriodSelector = () => (
     <Flex style={{ overflowX: 'auto', paddingBottom: '8px', marginBottom: '16px' }}>
-      {['daily', 'weekly', 'monthly', 'yearly', 'all'].map((p) => (
+      {periods.map((p) => (
         <Box
           key={p}
           style={{
@@ -159,7 +161,7 @@ export const CreatorDashboard: React.FC<CreatorDashboardProps> = ({
             whiteSpace: 'nowrap',
             marginRight: '8px',
           }}
-          onClick={() => onPeriodChange && onPeriodChange(p as any)}
+          onClick={() => onPeriodChange && onPeriodChange(p)}
         >
           {getPeriodLabel(p)}
         </Box>
@@ -510,6 +512,7 @@ export const CreatorDashboard: React.FC<CreatorDashboardProps> = ({
 
   return (
     <Box
+      data-testid="CreatorDashboard"
       className={`creator-dashboard ${className}`}
       style={{
         ...style,

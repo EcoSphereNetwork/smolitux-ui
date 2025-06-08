@@ -141,3 +141,5 @@ export interface ThemeOptions {
   mode?: ThemeMode;
   theme?: Partial<Theme>;
 }
+
+export default {};

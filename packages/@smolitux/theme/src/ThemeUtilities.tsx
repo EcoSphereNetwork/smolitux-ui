@@ -103,3 +103,12 @@ export function responsive<T>(
 
   return result;
 }
+
+export default {
+  getColorByTheme,
+  getBreakpointMediaQuery,
+  getShadow,
+  getSpacing,
+  getFontSize,
+  responsive,
+};

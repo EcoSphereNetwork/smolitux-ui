@@ -80,9 +80,11 @@ export const RevenueModel: React.FC<RevenueModelProps> = ({
     }
   };
 
+  const periods: RevenueModelProps['period'][] = ['daily', 'weekly', 'monthly', 'yearly', 'all'];
+
   const renderPeriodSelector = () => (
     <Flex style={{ overflowX: 'auto', paddingBottom: '8px', marginBottom: '16px' }}>
-      {['daily', 'weekly', 'monthly', 'yearly', 'all'].map((p) => (
+      {periods.map((p) => (
         <Box
           key={p}
           style={{
@@ -95,7 +97,7 @@ export const RevenueModel: React.FC<RevenueModelProps> = ({
             whiteSpace: 'nowrap',
             marginRight: '8px',
           }}
-          onClick={() => onPeriodChange && onPeriodChange(p as any)}
+          onClick={() => onPeriodChange && onPeriodChange(p)}
         >
           {getPeriodLabel(p)}
         </Box>
@@ -260,6 +262,7 @@ export const RevenueModel: React.FC<RevenueModelProps> = ({
 
   return (
     <Card
+      data-testid="RevenueModel"
       className={`revenue-model ${className}`}
       style={{
         ...style,
