@@ -181,13 +181,15 @@ export const Card: React.FC<CardProps> = ({
       data-variant={variant}
       data-type={type}
       data-hoverable={hoverable ? 'true' : undefined}
-      onKeyDown={(e) => {
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (rest.onClick && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault();
-          (rest.onClick as React.MouseEventHandler<HTMLDivElement>)(e as any);
+          (rest.onClick as React.MouseEventHandler<HTMLDivElement>)(
+            e as unknown as React.MouseEvent<HTMLDivElement>
+          );
         }
         if (rest.onKeyDown) {
-          rest.onKeyDown(e as any);
+          rest.onKeyDown(e);
         }
       }}
       {...rest}
