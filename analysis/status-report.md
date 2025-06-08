@@ -110,7 +110,7 @@ Die Smolitux UI Bibliothek ist als Monorepo mit Lerna organisiert und enthalt me
 
 ## 4. Dokumentation
 
-- **Wiki**: Umfangreiche Dokumentation im docs/Wiki-Verzeichnis
+- **Wiki**: Umfangreiche Dokumentation im docs/wiki-Verzeichnis
 - **Testplan**: Detaillierter Testplan mit Phasen und Prioritaten
 - **Komponenten-Dokumentation**: Teilweise vorhanden, aber unvollstandig
 - **Barrierefreiheit**: Dokumentation vorhanden

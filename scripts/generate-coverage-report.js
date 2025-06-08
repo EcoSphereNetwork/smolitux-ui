@@ -2,7 +2,7 @@
 
 /**
  * Dieses Skript generiert einen Testabdeckungsbericht für die aktuelle Version
- * und speichert ihn im docs/Wiki/testing/coverage-reports Verzeichnis.
+ * und speichert ihn im docs/wiki/testing/coverage-reports Verzeichnis.
  */
 
 const fs = require('fs');
@@ -18,7 +18,7 @@ console.log(`Generating test coverage report for version ${version}...`);
 execSync('npm run test:coverage', { stdio: 'inherit' });
 
 // Erstelle das Verzeichnis für die Coverage-Berichte, falls es nicht existiert
-const reportsDir = path.join(__dirname, '..', 'docs', 'Wiki', 'testing', 'coverage-reports');
+const reportsDir = path.join(__dirname, '..', 'docs', 'wiki', 'testing', 'coverage-reports');
 if (!fs.existsSync(reportsDir)) {
   fs.mkdirSync(reportsDir, { recursive: true });
 }

@@ -9,7 +9,7 @@
 
 ## Analyse des Umfangs für Version 0.2.2
 
-Basierend auf den Dokumenten lässt sich erkennen, dass Version 0.2.2 hauptsächlich eine kleinere Verbesserung darstellt. Laut [Changelog](https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/docs/Wiki/development/changelog.md) enthält Version 0.2.2 folgende Änderungen:
+Basierend auf den Dokumenten lässt sich erkennen, dass Version 0.2.2 hauptsächlich eine kleinere Verbesserung darstellt. Laut [Changelog](https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/docs/wiki/development/changelog.md) enthält Version 0.2.2 folgende Änderungen:
 
 ### Hinzugefügt
 - Button-Komponente: Unterstützung für `solid`-Variante als Alias für `primary`
