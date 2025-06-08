@@ -10,4 +10,22 @@ describe('Text', () => {
     expect(el).toHaveStyle({ fontWeight: 'bold' });
     expect(el).toHaveStyle({ fontSize: 'lg' });
   });
+
+  it('renders with custom styles', () => {
+    const { container } = render(
+      <Text weight="bold" size="lg" color="red">
+        Hello
+      </Text>
+    );
+    const span = container.firstChild as HTMLElement;
+    expect(span).toHaveStyle('font-weight: bold');
+    expect(span).toHaveStyle('font-size: lg');
+    expect(span).toHaveStyle('color: red');
+  });
+
+  it('forwards ref', () => {
+    const ref = React.createRef<HTMLSpanElement>();
+    render(<Text ref={ref}>Hi</Text>);
+    expect(ref.current).not.toBeNull();
+  });
 });
