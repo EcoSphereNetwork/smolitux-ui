@@ -208,7 +208,7 @@ export const Button = memo(
       const [rippleStyle, setRippleStyle] = useState<React.CSSProperties>({});
       const [showRipple, setShowRipple] = useState(false);
       const buttonRef = useRef<HTMLButtonElement | null>(null);
-      const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
+      const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
       // Unterstützung für isLoading als Alias für loading
       const isButtonLoading = loading || isLoading;
@@ -322,8 +322,8 @@ export const Button = memo(
           if (typeof ref === 'function') {
             ref(element);
           } else if (ref) {
-            // @ts-ignore - Wir ignorieren den Readonly-Fehler hier
-            ref.current = element;
+            (ref as React.MutableRefObject<HTMLButtonElement | null>).current =
+              element;
           }
         },
         [ref]

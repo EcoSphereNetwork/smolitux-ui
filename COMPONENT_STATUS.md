@@ -113,3 +113,12 @@
 | @smolitux/core | Card | Removed `any` casts | 2025-06-08 |
 | @smolitux/core | Modal | Verified TS, tests & stories | 2025-06-08 |
 | @smolitux/core | Table | Replaced generic `any` with `unknown` | 2025-06-08 |
+
+### Completed Components
+- **Button**: TypeScript ref cleanup, tests & stories verified
+- **Input**: Verified TS compliance, tests & stories present
+- **Card**: Verified TS compliance, tests & stories present
+- **Modal**: Verified TS compliance, tests & stories present
+- **Table**: Verified TS compliance, tests & stories present
+
+*Updated by Codex AI*
