@@ -30,6 +30,7 @@ export {
 export { default as Alert, type AlertProps, type AlertType } from './components/Alert/Alert';
 export { default as Badge, type BadgeProps } from './components/Badge/Badge';
 export { default as Button, type ButtonProps } from './components/Button/Button';
+export { default as ButtonA11y, type A11yButtonProps } from './components/Button/Button.a11y';
 export { default as Card, type CardProps } from './components/Card/Card';
 export { default as Input, type InputProps } from './components/Input/Input';
 export { default as Modal, type ModalProps } from './components/Modal/Modal';
