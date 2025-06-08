@@ -8,21 +8,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "types": ["node", "@docusaurus/module-type-aliases"]
-  },
-  "include": ["docs"],
+  "include": ["packages", "docs"],
   "exclude": [
     "node_modules",
     "dist",
-    "packages",
-    "packages/playground"
+    "packages/@smolitux/charts/src/components/ScatterPlot/ScatterPlot.old.tsx",
+    "packages/@smolitux/core/src/components/Textarea/**/*"
   ]
 }
