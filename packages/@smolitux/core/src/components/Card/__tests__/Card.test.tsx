@@ -9,7 +9,7 @@ describe('Card', () => {
         <div>Card Content</div>
       </Card>
     );
-    
+
     expect(screen.getByText('Card Content')).toBeInTheDocument();
     const card = screen.getByTestId('card');
     expect(card).toBeInTheDocument();
@@ -22,10 +22,10 @@ describe('Card', () => {
         <div>Card Content</div>
       </Card>
     );
-    
+
     expect(screen.getByText('Card Title')).toBeInTheDocument();
     expect(screen.getByText('Card Content')).toBeInTheDocument();
-    
+
     const titleElement = screen.getByText('Card Title');
     expect(titleElement).toHaveClass('card-title');
   });
@@ -36,11 +36,11 @@ describe('Card', () => {
         <div>Card Content</div>
       </Card>
     );
-    
+
     expect(screen.getByText('Card Title')).toBeInTheDocument();
     expect(screen.getByText('Card Subtitle')).toBeInTheDocument();
     expect(screen.getByText('Card Content')).toBeInTheDocument();
-    
+
     const subtitleElement = screen.getByText('Card Subtitle');
     expect(subtitleElement).toHaveClass('card-subtitle');
   });
@@ -51,7 +51,7 @@ describe('Card', () => {
         <div>Card Content</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Card Content').closest('.card');
     expect(card).toHaveClass('custom-card');
   });
@@ -63,7 +63,7 @@ describe('Card', () => {
         <div>Card Content</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Card Content').closest('.card');
     expect(card).toHaveStyle('background-color: lightblue');
     expect(card).toHaveStyle('padding: 20px');
@@ -75,76 +75,99 @@ describe('Card', () => {
         <div>Default Card</div>
       </Card>
     );
-    
+
     let card = screen.getByText('Default Card').closest('.card');
     expect(card).toHaveClass('card-default');
-    
+
     rerender(
       <Card variant="outlined">
         <div>Outlined Card</div>
       </Card>
     );
-    
+
     card = screen.getByText('Outlined Card').closest('.card');
     expect(card).toHaveClass('card-outlined');
-    
+
     rerender(
       <Card variant="elevated">
         <div>Elevated Card</div>
       </Card>
     );
-    
+
     card = screen.getByText('Elevated Card').closest('.card');
     expect(card).toHaveClass('card-elevated');
   });
 
+  it('renders with different types', () => {
+    const { rerender } = render(
+      <Card type="primary">
+        <div>Primary Card</div>
+      </Card>
+    );
+
+    let card = screen.getByText('Primary Card').closest('.card');
+    expect(card).toHaveClass('card-primary');
+
+    rerender(
+      <Card type="secondary">
+        <div>Secondary Card</div>
+      </Card>
+    );
+
+    card = screen.getByText('Secondary Card').closest('.card');
+    expect(card).toHaveClass('card-secondary');
+
+    rerender(
+      <Card type="success">
+        <div>Success Card</div>
+      </Card>
+    );
+
+    card = screen.getByText('Success Card').closest('.card');
+    expect(card).toHaveClass('card-success');
+  });
+
   it('renders with header when provided', () => {
     render(
-      <Card
-        header={<div data-testid="custom-header">Custom Header</div>}
-      >
+      <Card header={<div data-testid="custom-header">Custom Header</div>}>
         <div>Card Content</div>
       </Card>
     );
-    
+
     expect(screen.getByTestId('custom-header')).toBeInTheDocument();
     expect(screen.getByText('Custom Header')).toBeInTheDocument();
     expect(screen.getByText('Card Content')).toBeInTheDocument();
-    
+
     const headerContainer = screen.getByTestId('card-header');
     expect(headerContainer).toHaveClass('card-header');
   });
 
   it('renders with footer when provided', () => {
     render(
-      <Card
-        footer={<div data-testid="custom-footer">Custom Footer</div>}
-      >
+      <Card footer={<div data-testid="custom-footer">Custom Footer</div>}>
         <div>Card Content</div>
       </Card>
     );
-    
+
     expect(screen.getByTestId('custom-footer')).toBeInTheDocument();
     expect(screen.getByText('Custom Footer')).toBeInTheDocument();
     expect(screen.getByText('Card Content')).toBeInTheDocument();
-    
+
     const footerContainer = screen.getByTestId('card-footer');
     expect(footerContainer).toHaveClass('card-footer');
   });
 
   it('renders with image when provided', () => {
     render(
-      <Card
-        image={<img src="card-image.jpg" alt="Card Image" data-testid="custom-image" />}
-      >
+      <Card image={<img src="card-image.jpg" alt="Card Image" data-testid="custom-image" />}>
         <div>Card Content</div>
       </Card>
     );
-    
+
     expect(screen.getByTestId('custom-image')).toBeInTheDocument();
     expect(screen.getByRole('img')).toHaveAttribute('alt', 'Card Image');
     expect(screen.getByText('Card Content')).toBeInTheDocument();
-    
+
     const imageContainer = screen.getByTestId('card-image');
     expect(imageContainer).toHaveClass('card-image');
   });
@@ -155,25 +178,25 @@ describe('Card', () => {
         <div>Small Card</div>
       </Card>
     );
-    
+
     let card = screen.getByText('Small Card').closest('.card');
     expect(card).toHaveClass('card-sm');
-    
+
     rerender(
       <Card size="md">
         <div>Medium Card</div>
       </Card>
     );
-    
+
     card = screen.getByText('Medium Card').closest('.card');
     expect(card).toHaveClass('card-md');
-    
+
     rerender(
       <Card size="lg">
         <div>Large Card</div>
       </Card>
     );
-    
+
     card = screen.getByText('Large Card').closest('.card');
     expect(card).toHaveClass('card-lg');
   });
@@ -184,7 +207,7 @@ describe('Card', () => {
         <div>Hoverable Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Hoverable Card').closest('.card');
     expect(card).toHaveClass('card-hoverable');
   });
@@ -196,7 +219,7 @@ describe('Card', () => {
         <div>Clickable Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Clickable Card').closest('.card');
     expect(card).toHaveClass('card-clickable');
   });
@@ -207,7 +230,7 @@ describe('Card', () => {
         <div>Bordered Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Bordered Card').closest('.card');
     expect(card).toHaveClass('card-bordered');
   });
@@ -218,7 +241,7 @@ describe('Card', () => {
         <div>Shadow Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Shadow Card').closest('.card');
     expect(card).toHaveClass('card-shadow');
   });
@@ -229,7 +252,7 @@ describe('Card', () => {
         <div>Rounded Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Rounded Card').closest('.card');
     expect(card).toHaveClass('card-rounded');
   });
@@ -240,7 +263,7 @@ describe('Card', () => {
         <div>Custom Width Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Custom Width Card').closest('.card');
     expect(card).toHaveStyle('width: 300px');
   });
@@ -251,7 +274,7 @@ describe('Card', () => {
         <div>Custom Height Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Custom Height Card').closest('.card');
     expect(card).toHaveStyle('height: 200px');
   });
@@ -262,7 +285,7 @@ describe('Card', () => {
         <div>Custom Padding Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Custom Padding Card').closest('.card');
     expect(card).toHaveStyle('padding: 30px');
   });
@@ -273,7 +296,7 @@ describe('Card', () => {
         <div>Custom Background Card</div>
       </Card>
     );
-    
+
     const card = screen.getByText('Custom Background Card').closest('.card');
     expect(card).toHaveStyle('background-color: #f0f0f0');
   });
