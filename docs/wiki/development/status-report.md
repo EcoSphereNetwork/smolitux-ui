@@ -194,3 +194,5 @@ Die [Build-Analyse](build-analysis.md) dokumentiert fehlende Module (`./layout`,
 ## Update 2025-06-08
 Initial cleanup performed and minimal toolchain configured (v0.3.0).
 
+## Update 2025-06-08
+Offline-Komponentenscan durchgeführt. Siehe component-todo.md und component-status.md für Details.
