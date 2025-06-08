@@ -1,79 +1,179 @@
-# Smolitux UI Bibliothek
+<div align="center">
+  <img src="./docs/static/img/logo.svg" alt="Smolitux UI Logo" width="200">
+  <h1>Smolitux UI</h1>
+  <p>Eine umfassende Komponentenbibliothek im EcoSphere Network.</p>
 
-Eine moderne React-Komponentenbibliothek zur Erstellung konsistenter Benutzeroberflächen.
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Stars][stars-shield]][stars-url]
+  [![Coverage][coverage-shield]][coverage-url]
+  [![MIT License][license-shield]][license-url]
+  <br/>
+  [![Discord][discord-shield]][discord-url]
+  [![Documentation][docs-shield]][docs-url]
+  [![Project Credits][credits-shield]][credits-url]
 
-> **Hinweis:** Die vollständige Dokumentation ist im [Wiki](https://ecospherenetwork.github.io/smolitux-ui/wiki/) zu finden. Informationen zur Barrierefreiheit stehen in der [Barrierefreiheits-Dokumentation](/docs/wiki/accessibility/README.md).
+  [Start Documentation](https://ecospherenetwork.github.io/smolitux-ui/wiki/) •
+  [Report Bug](https://github.com/EcoSphereNetwork/smolitux-ui/issues) •
+  [Request Feature](https://github.com/EcoSphereNetwork/smolitux-ui/issues)
+</div>
 
-## Überblick
+## 📋 Table of Contents
+- [About](#-about)
+- [Key Features](#-key-features)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Development](#-development)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [Support](#-support)
+- [License](#-license)
 
-Smolitux UI ist als Monorepo organisiert. Die wichtigsten Pakete liegen unter `packages/@smolitux/`.
+## 🎯 About
+Smolitux UI stellt standardisierte UI-Komponenten für Webanwendungen bereit und wird im gesamten *EcoSphere Network* eingesetzt.
 
-### Enthaltene Pakete
+### Why Use This Library?
+- 🚀 **Quick Start**: Sofort einsatzbereite Komponenten
+- 🔄 **CI/CD Ready**: GitHub Actions Workflows für Tests und Builds
+- 📊 **Quality Focused**: Linting und Test-Framework
+- 🛡️ **Security First**: Automatisierte Security-Checks
+- 📚 **Well Documented**: Umfangreiche Dokumentation im Wiki und Storybook
 
-- **@smolitux/core** – Basis‑UI‑Komponenten
-- **@smolitux/theme** – Theming und Styling
-- **@smolitux/layout** – Layout‑Helfer
-- **@smolitux/charts** – Diagramme
-- **@smolitux/ai** – KI‑Funktionen
-- **@smolitux/blockchain** – Blockchain‑Komponenten
-- **@smolitux/community** – Community‑Module
-- **@smolitux/federation** – Micro‑Frontend‑Support
-- **@smolitux/media** – Medien‑Komponenten
-- **@smolitux/resonance** – Soziale Funktionen
-- **@smolitux/testing** – Test‑Utilities
-- **@smolitux/utils** – Gemeinsame Hilfsfunktionen
-- **@smolitux/voice-control** – Sprachsteuerung für UI‑Elemente
+## ✨ Key Features
 
-## Installation
+### Core Features
+- 🔧 **Komponentenvielfalt**: Umfangreiche Paketsammlung unter `packages/@smolitux/`
+- 📝 **Dokumentation**: Docusaurus-Wiki und Storybook
+- 🔄 **Workflows**: GitHub Actions für CI/CD
+- 🧪 **Testing**: Beispieltests und Playwright E2E-Setup
+- 🛡️ **Security**: Abhängigkeitsprüfungen und Best Practices
 
-Diese Bibliothek setzt **Node.js 20** oder höher voraus.
+### Development Tools
+- 📊 **Code Quality**: Prettier und ESLint-Konfiguration
+- 🐳 **Docker Support**: Container-Setups und Build-Skripte
+- 🔄 **Dependency Management**: Automatische Updates
+- 🧪 **Testing Framework**: Jest und Playwright
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 20 oder höher
+- Git
+
+### Installation
 
 ```bash
 npm install @smolitux/core @smolitux/theme
-# oder
-yarn add @smolitux/core @smolitux/theme
 ```
 
-## Schnellstart
-
-```tsx
-import { ThemeProvider } from '@smolitux/theme';
-import { Button } from '@smolitux/core';
-
-function App() {
-  return (
-    <ThemeProvider>
-      <Button variant="primary">Los geht's</Button>
-    </ThemeProvider>
-  );
-}
+## 📁 Project Structure
+```
+smolitux-ui/
+├── packages/@smolitux/    # Bibliothekspakete
+├── docs/                 # Dokumentationsseite
+├── examples/             # Beispielprojekte
+├── test-app/             # Demo-Applikation
+├── scripts/              # Hilfsskripte
+└── README.md             # Dieses Dokument
 ```
 
-## Dokumentation
+## 💻 Development
 
-- [Wiki](https://ecospherenetwork.github.io/smolitux-ui/wiki/)
-- Storybook mit `npm run storybook`
-- Beispielprojekte im Ordner `examples/`
+### Setting Up for Development
+1. Abhängigkeiten installieren:
+   ```bash
+   npm install
+   ```
+2. Pre-commit Hooks einrichten:
+   ```bash
+   npx husky install
+   ```
+3. Umgebungsdatei kopieren:
+   ```bash
+   cp .env.example .env
+   ```
 
-## Entwicklung
-
+### Development Commands
 ```bash
-# Abhängigkeiten installieren
-npm install
-
-# Storybook starten
-npm run storybook
-
-# Pakete bauen
-npm run build
-
-# Linting
-npm run lint
-
-# Tests ausführen
-npm run test
+npm run build       # Pakete bauen
+npm run storybook   # Storybook starten
 ```
 
-## Lizenz
+### Code Quality Tools
+- **Formatierung**: `npm run format`
+- **Linting**: `npm run lint`
+- **Type Checking**: `npm run typecheck`
 
-MIT
+## 🧪 Testing
+
+### Running Tests
+```bash
+npm run test          # Unit-Tests
+npm run test:e2e      # End-to-End-Tests mit Playwright
+```
+
+## 🚢 Deployment
+
+### Using GitHub Actions
+1. Secrets im Repository anlegen
+2. Push ausführen, um den Workflow zu starten
+3. Deployment in der Actions-Ansicht überwachen
+
+### Manual Deployment
+```bash
+./scripts/deploy.sh [environment]
+```
+
+## 🤝 Contributing
+
+Beiträge sind willkommen! Siehe [CONTRIBUTING.md](CONTRIBUTING.md) für Details.
+
+1. Fork das Repository
+2. Feature-Branch erstellen:
+   ```bash
+   git checkout -b feature/neues-feature
+   ```
+3. Änderungen committen:
+   ```bash
+   git commit -m 'feat: implement neues feature'
+   ```
+4. Branch pushen und Pull Request öffnen
+
+## 💬 Support
+
+- [Issue Tracker](https://github.com/EcoSphereNetwork/smolitux-ui/issues)
+- [Discussions](https://github.com/EcoSphereNetwork/smolitux-ui/discussions)
+- [Discord Community][discord-url]
+- [Documentation][docs-url]
+
+## 📄 License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+
+---
+
+<div align="center">
+
+### Repository Activity
+
+[![Repository Activity][activity-graph]][activity-url]
+
+</div>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[contributors-url]: https://github.com/EcoSphereNetwork/smolitux-ui/graphs/contributors
+[stars-shield]: https://img.shields.io/github/stars/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[stars-url]: https://github.com/EcoSphereNetwork/smolitux-ui/stargazers
+[coverage-shield]: https://img.shields.io/codecov/c/github/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[coverage-url]: https://codecov.io/github/EcoSphereNetwork/smolitux-ui
+[license-shield]: https://img.shields.io/github/license/EcoSphereNetwork/smolitux-ui?style=for-the-badge&color=blue
+[license-url]: https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/LICENSE
+[discord-shield]: https://img.shields.io/badge/Discord-Join%20Us-purple?logo=discord&logoColor=white&style=for-the-badge
+[discord-url]: https://discord.gg/cTWBHGkn
+[docs-shield]: https://img.shields.io/badge/Documentation-000?logo=googledocs&logoColor=FFE165&style=for-the-badge
+[docs-url]: https://ecospherenetwork.github.io/smolitux-ui/wiki/
+[credits-shield]: https://img.shields.io/badge/Project-Credits-blue?style=for-the-badge&color=FFE165&logo=github&logoColor=white
+[credits-url]: https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/CREDITS.md
+[activity-graph]: https://repobeats.axiom.co/api/embed/8d1a53c73cf5523d0e52a6cc5b74bce75eecc801.svg
+[activity-url]: https://repobeats.axiom.co
