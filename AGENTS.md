@@ -1,7 +1,8 @@
 # Smolitux UI Guide for Codex Agents
 
-This repository hosts the **Smolitux UI** component library. Packages live under `packages/@smolitux/` and are written in TypeScript. A small Python CLI exists in `Trash/src`.
+**READ docs/wiki/Codex.md**
 
+This repository hosts the **Smolitux UI** component library. Packages live under `packages/@smolitux/` and are written in TypeScript.
 ## Repository Layout
 
 - `packages/@smolitux/` – main library packages (`core`, `theme`, `icons`, `layout`, `charts`, `ai`, `blockchain`, `community`, `media`, `resonance`, `testing`, `utils`, `voice-control`, `federation`)
@@ -29,13 +30,6 @@ npm run test --workspace=@smolitux/core
 npm run build --workspace=@smolitux/layout
 npm run lint --workspace=@smolitux/utils
 ```
-
-## Python CLI (`Trash/src`)
-
-- Install dependencies with `poetry install`
-- Format with `poetry run ruff check --fix .` and `poetry run black .`
-- Type‑check using `poetry run mypy .`
-- Run tests through `poetry run pytest` or `make test`
 
 ## Documentation
 
