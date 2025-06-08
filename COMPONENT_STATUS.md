@@ -19,8 +19,7 @@
 - [ ] **@smolitux/charts** (AreaChart, BarChart, PieChart, etc.)
 
 ### Tier 3: Advanced Features
-
-- [ ] **@smolitux/media** (AudioPlayer, VideoPlayer)
+- [ ] **@smolitux/media** (AudioPlayer, VideoPlayer, ImageGallery, MediaGrid)
 - [ ] **@smolitux/community** (ActivityFeed, UserProfile)
 
 ### Tier 4: Specialized
@@ -50,7 +49,6 @@
 8. Remove remaining `any` casts in components
 
 ---
-
 _Updated by Codex AI_
 ### Session 2025-06-12
 - Fixed generated layout tests and updated responsive behavior checks.
@@ -65,3 +63,5 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 ### Update 2025-06-08
 - Improved chunk helper input validation.
 - Added tests and stories for @smolitux/testing utilities (2025-06-12)
+
+*Updated by Codex AI*

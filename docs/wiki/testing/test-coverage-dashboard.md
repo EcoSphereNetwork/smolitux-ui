@@ -10,7 +10,7 @@
 | @smolitux/blockchain    | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/community     | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/federation    | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/media         | ⚠️ Teilweise | –          | –        | –         | –     |
+| @smolitux/media         | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/resonance     | ⚠️ Teilweise | –          | –        | –         | –     |
 | @smolitux/utils         | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/testing         | ✅ Getestet  | –          | –        | –         | –     |
