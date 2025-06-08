@@ -3,6 +3,16 @@
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
 > **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](/docs/wiki/index.md). Die aktuelle Version des Changelogs finden Sie [hier](/docs/wiki/development/changelog.md).
+## [0.3.0] - 2025-06-08
+### Added
+- minimal project setup without Lerna
+- central TypeScript, ESLint and Jest configuration
+
+## [0.2.3] - 2025-06-08
+### Changed
+- updated TypeScript build configuration for docs
+- declared Node.js and Docusaurus module types in root config
+
 
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
