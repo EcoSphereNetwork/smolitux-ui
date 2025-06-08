@@ -163,4 +163,18 @@ describe('BarChart', () => {
     
     expect(redRect).toBeInTheDocument();
   });
+
+  test('applies custom value text color', () => {
+    render(<BarChart data={mockData} showValues valueTextColor="#123456" />);
+
+    const text = document.querySelector('text');
+    expect(text).toHaveAttribute('fill', '#123456');
+  });
+
+  test('applies custom legend text color', () => {
+    render(<BarChart data={mockData} legendTextColor="#654321" />);
+
+    const legendText = screen.getByText('Sales 2025');
+    expect(legendText).toHaveAttribute('fill', '#654321');
+  });
 });

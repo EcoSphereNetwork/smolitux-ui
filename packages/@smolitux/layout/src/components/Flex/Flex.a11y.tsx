@@ -1,25 +1,24 @@
 // packages/@smolitux/layout/src/components/Flex/Flex.a11y.tsx
 import React, { forwardRef } from 'react';
+import type { Breakpoint, ResponsiveProp } from './Flex';
 
 export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Flex-Richtung */
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  direction?: ResponsiveProp<'row' | 'row-reverse' | 'column' | 'column-reverse'>;
   /** Abstand zwischen Flex-Items */
-  gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12;
+  gap?: ResponsiveProp<0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12>;
   /** Ausrichtung der Items entlang der Hauptachse */
-  justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
+  justifyContent?: ResponsiveProp<'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'>;
   /** Ausrichtung der Items entlang der Kreuzachse */
-  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+  alignItems?: ResponsiveProp<'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'>;
   /** Flex-Wrap-Verhalten */
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+  wrap?: ResponsiveProp<'nowrap' | 'wrap' | 'wrap-reverse'>;
   /** Als Inline-Flex anzeigen */
   inline?: boolean;
   /** Volle Breite einnehmen */
   fullWidth?: boolean;
   /** Volle Höhe einnehmen */
   fullHeight?: boolean;
-  /** Responsive Richtung für verschiedene Breakpoints */
-  responsive?: boolean;
   /** Semantisches HTML-Element, das gerendert werden soll */
   as?: 'div' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav' | 'form' | 'fieldset';
   /** ARIA-Rolle für das Element */
@@ -90,7 +89,6 @@ export const FlexA11y = forwardRef<HTMLDivElement, FlexProps>(({
   inline = false,
   fullWidth = false,
   fullHeight = false,
-  responsive = false,
   className = '',
   children,
   as = 'div',
@@ -116,51 +114,44 @@ export const FlexA11y = forwardRef<HTMLDivElement, FlexProps>(({
   tabIndex,
   ...rest
 }, ref) => {
-  // Responsive Richtung (z.B. column auf Mobilgeräten, row auf Desktop)
-  const responsiveClasses = responsive
-    ? direction === 'row'
-      ? 'flex-col md:flex-row'
-      : direction === 'column'
-        ? 'flex-col'
-        : direction === 'row-reverse'
-          ? 'flex-col-reverse md:flex-row-reverse'
-          : 'flex-col-reverse'
-    : '';
+  const getClasses = <T extends string | number>(
+    prop: ResponsiveProp<T> | undefined,
+    prefix: string,
+    map?: Record<string, string>
+  ) => {
+    if (prop === undefined) return '';
+    const convert = (value: any) => (map ? map[value] || value : value);
+    if (typeof prop === 'object') {
+      return Object.entries(prop)
+        .map(([bp, val]) => `${bp}:${prefix}-${convert(val)}`)
+        .join(' ');
+    }
+    return `${prefix}-${convert(prop)}`;
+  };
 
-  // Flex-Richtung
-  const directionClasses = responsive
-    ? ''
-    : direction === 'row'
-      ? 'flex-row'
-      : direction === 'column'
-        ? 'flex-col'
-        : direction === 'row-reverse'
-          ? 'flex-row-reverse'
-          : 'flex-col-reverse';
-
-  // Abstand zwischen Flex-Items
-  const gapClasses = gap === 0 ? '' : `gap-${gap}`;
+  const directionClasses = getClasses(direction, 'flex');
+  const gapClasses = getClasses(gap, 'gap');
 
   // Ausrichtung der Items
-  const justifyClasses = {
-    'flex-start': 'justify-start',
-    'center': 'justify-center',
-    'flex-end': 'justify-end',
-    'space-between': 'justify-between',
-    'space-around': 'justify-around',
-    'space-evenly': 'justify-evenly'
-  }[justifyContent];
+  const justifyClasses = getClasses(justifyContent, 'justify', {
+    'flex-start': 'start',
+    'center': 'center',
+    'flex-end': 'end',
+    'space-between': 'between',
+    'space-around': 'around',
+    'space-evenly': 'evenly',
+  });
 
-  const alignClasses = {
-    'flex-start': 'items-start',
-    'center': 'items-center',
-    'flex-end': 'items-end',
-    'stretch': 'items-stretch',
-    'baseline': 'items-baseline'
-  }[alignItems];
+  const alignClasses = getClasses(alignItems, 'items', {
+    'flex-start': 'start',
+    'center': 'center',
+    'flex-end': 'end',
+    'stretch': 'stretch',
+    'baseline': 'baseline',
+  });
 
   // Flex-Wrap
-  const wrapClasses = wrap === 'nowrap' ? 'flex-nowrap' : wrap === 'wrap' ? 'flex-wrap' : 'flex-wrap-reverse';
+  const wrapClasses = getClasses(wrap, 'flex');
 
   // Kombiniere alle Klassen
   const classes = [
@@ -169,9 +160,6 @@ export const FlexA11y = forwardRef<HTMLDivElement, FlexProps>(({
     
     // Richtung
     directionClasses,
-    
-    // Responsive Klassen
-    responsiveClasses,
     
     // Abstand
     gapClasses,

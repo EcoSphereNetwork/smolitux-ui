@@ -64,10 +64,12 @@ Our component library is organized into functional categories for easy navigatio
   - [Modal](components/overlay/modal.md)
   - [Popover](components/overlay/popover.md)
   - [Tooltip](components/overlay/tooltip.md)
-- **[Media](components/media/carousel.md)** - Media-related components:
+  - **[Media](components/media/carousel.md)** - Media-related components:
   - [Carousel](components/media/carousel.md)
   - [Media Player](components/media/mediaplayer.md)
-- **[Charts](components/charts/line-chart.md)** - Data visualization components
+  - **Charts** - Data visualization components:
+    - [Line Chart](components/charts/line-chart.md)
+    - [Bar Chart](components/charts/bar-chart.md)
 
 ### Development Documentation
 
