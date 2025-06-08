@@ -65,3 +65,8 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 - Added tests and stories for @smolitux/testing utilities (2025-06-12)
 
 *Updated by Codex AI*
+
+### Update 2025-06-08
+- Added SentimentDisplay caching and error handling tests.
+
+>>>>>>> pr-354
