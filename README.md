@@ -102,6 +102,7 @@ npm run storybook   # Storybook starten
 ### Code Quality Tools
 - **Formatierung**: `npm run format`
 - **Linting**: `npm run lint`
+- **Linting manuell**: `npx eslint packages/@smolitux --ext .ts,.tsx`
 - **Type Checking**: `npm run typecheck`
 
 ## 🧪 Testing
