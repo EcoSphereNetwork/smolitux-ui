@@ -26,3 +26,5 @@
 - Fixed ESLint configuration; lint command works.
 ### Update 2025-06-14
 - Documentation updated for Flex component props typing fix.
+### Update 2025-06-15
+- Updated tooling instructions after ESLint flat config migration.

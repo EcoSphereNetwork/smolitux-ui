@@ -289,3 +289,5 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 - No component changes. Fixed ESLint config.
 ### Update 2025-06-14
 - Flex component marked complete; props typed.
+### Update 2025-06-15
+- General tooling upgrade with ESLint flat config.
