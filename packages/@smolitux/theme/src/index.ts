@@ -141,3 +141,4 @@ const ThemeContext = createContext<ThemeOptions>(defaultTheme);
 
 export const ThemeProvider = ThemeContext.Provider;
 export const useTheme = () => useContext(ThemeContext);
+export { createCssVariables, applyCssVariables } from './cssVariables';
