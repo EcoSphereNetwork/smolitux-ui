@@ -28,6 +28,8 @@ export * from './components/governance/GovernanceDashboard';
 export * from './components/monetization/RevenueModel';
 export * from './components/monetization/RewardSystem';
 export * from './components/monetization/CreatorDashboard';
+// Platform integration components
+export * from './components/platform/PlatformIntegration';
 
 // Hooks
 export * from './hooks/useFeed';

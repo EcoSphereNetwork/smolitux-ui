@@ -296,3 +296,5 @@ Latest analyzer run shows **100%** test and story coverage across 180 components
 - Added AI response caching hook and error handling.
 - Updated SentimentDisplay stories with mock data.
 
+See also [Resonance Component Status](./component-status-resonance.md) for package specific progress.
+

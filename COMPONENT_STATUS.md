@@ -66,6 +66,8 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 ### Update 2025-06-08 (Federation)
 - Analyzer run for @smolitux/federation. All five components have tests and stories.
 - Accessibility tests still missing. Next step: implement protocol validation and network error handling tests.
+### Update 2025-06-08 (Resonance)
+- Added `PlatformIntegration` component to **@smolitux/resonance** with tests and stories.
 
 ---
 _Updated by Codex AI_
