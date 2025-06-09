@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 import React from 'react';
 
 export type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';

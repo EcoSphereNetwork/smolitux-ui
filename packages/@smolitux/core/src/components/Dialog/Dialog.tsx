@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 // packages/@smolitux/core/src/components/Dialog/Dialog.improved.tsx
 import React, { useEffect, useRef, useCallback } from 'react';
 

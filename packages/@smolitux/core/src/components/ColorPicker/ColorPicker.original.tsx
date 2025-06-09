@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
 export interface ColorPickerProps {

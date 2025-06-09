@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 import React, { useState, useRef, useEffect } from 'react';
 import type { MediaSrc } from '../../types';
 

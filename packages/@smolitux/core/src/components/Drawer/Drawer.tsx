@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 // packages/@smolitux/core/src/components/Drawer/Drawer.improved.tsx
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 

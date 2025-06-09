@@ -1,3 +1,4 @@
+// TODO: Tests fehlen
 import React, { forwardRef, useMemo } from 'react';
 import BarChart, { type BarChartProps, type BarChartSeries } from '../BarChart/BarChart';
 

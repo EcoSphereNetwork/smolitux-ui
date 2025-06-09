@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 import React, { useState } from 'react';
 import { Card, CardProps } from '../Card';
 import { withVoiceControl, VoiceControlProps } from '@smolitux/voice-control';

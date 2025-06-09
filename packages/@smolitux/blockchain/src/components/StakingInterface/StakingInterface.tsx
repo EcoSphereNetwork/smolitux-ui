@@ -1,3 +1,5 @@
+// TODO: Tests fehlen
+// TODO: forwardRef hinzufügen
 import React, { useState } from 'react';
 import { Card, Button, Input, ProgressBar } from '@smolitux/core';
 

@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 // packages/@smolitux/core/src/components/Dialog/Dialog.tsx
 import React, { useEffect, useRef } from 'react';
 import { Button } from '../Button/Button';

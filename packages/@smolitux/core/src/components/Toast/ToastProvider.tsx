@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 // packages/@smolitux/core/src/components/Toast/ToastProvider.improved.tsx
 import React, { createContext, useContext, useState, useCallback, ReactNode, useId } from 'react';
 import { Toast, ToastProps, ToastType } from './Toast';

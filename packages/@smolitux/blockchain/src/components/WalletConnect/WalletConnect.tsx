@@ -1,3 +1,5 @@
+// TODO: Tests fehlen
+// TODO: forwardRef hinzufügen
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from '@smolitux/core';
 import { EthereumProvider } from '../types';

@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 import React, { useState, useEffect, useRef } from 'react';
 import { Input, Button, Card } from '@smolitux/core';
 import { SearchResult, FederatedSearchProps } from '../../types';

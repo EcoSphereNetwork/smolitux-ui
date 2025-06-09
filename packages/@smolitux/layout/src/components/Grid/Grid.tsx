@@ -1,3 +1,4 @@
+// FIXME: Props nicht typisiert
 import React, { forwardRef } from 'react';
 import type {
   GridBreakpoint,

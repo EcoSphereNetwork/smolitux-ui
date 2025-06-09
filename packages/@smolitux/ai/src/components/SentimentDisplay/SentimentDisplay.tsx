@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 import React, { useState } from 'react';
 import { useResponseCache } from '../../utils/useResponseCache';
 import { Card, Button, ProgressBar } from '@smolitux/core';
