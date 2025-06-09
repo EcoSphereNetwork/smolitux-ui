@@ -25,3 +25,5 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 - Fixed ESLint config to enable linting.
 ### Update 2025-06-14
 - Marked Flex props as typed.
+### Update 2025-06-15
+- Updated linting workflow using ESLint flat configuration.
