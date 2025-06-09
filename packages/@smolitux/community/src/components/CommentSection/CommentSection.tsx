@@ -1,6 +1,7 @@
 // TODO: forwardRef hinzufügen
 import React, { useState, ChangeEvent } from 'react';
 import { Button, Input } from '@smolitux/core';
+import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
 export interface CommentData {
   /** Eindeutige ID des Kommentars */
@@ -61,6 +62,8 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
   const [replyContent, setReplyContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [expandedReplies, setExpandedReplies] = useState<Record<string, boolean>>({});
+  const { preferences } = usePrivacyConsent();
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   // Kommentar hinzufügen
   const handleAddComment = async () => {
@@ -329,51 +332,65 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${className}`}>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-        Kommentare ({comments.length})
-      </h3>
+    <>
+      <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${className}`}>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Kommentare ({comments.length})
+          </h3>
+          <Button variant="text" size="sm" onClick={() => setShowPrivacy(true)}>
+            Privacy
+          </Button>
+        </div>
 
-      {/* Kommentar-Eingabe */}
-      {currentUser ? (
-        <div className="mt-4 flex">
-          <Avatar src={currentUser.avatar} alt={currentUser.name} size="md" className="mr-4" />
+        {!preferences.personalization && (
+          <div className="mt-2 p-2 text-sm bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300 rounded">
+            Personalisierte Inhalte sind deaktiviert. Datenschutzoptionen können angepasst werden.
+          </div>
+        )}
 
-          <div className="flex-1">
-            <Input
-              value={newComment}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setNewComment(e.target.value)}
-              placeholder="Kommentar schreiben..."
-              className="mb-2"
-            />
+        {/* Kommentar-Eingabe */}
+        {currentUser ? (
+          <div className="mt-4 flex">
+            <Avatar src={currentUser.avatar} alt={currentUser.name} size="md" className="mr-4" />
 
-            <div className="flex justify-end">
-              <Button
-                variant="primary"
-                onClick={handleAddComment}
-                disabled={!newComment.trim() || isSubmitting}
-              >
-                Kommentieren
-              </Button>
+            <div className="flex-1">
+              <Input
+                value={newComment}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setNewComment(e.target.value)}
+                placeholder="Kommentar schreiben..."
+                className="mb-2"
+              />
+
+              <div className="flex justify-end">
+                <Button
+                  variant="primary"
+                  onClick={handleAddComment}
+                  disabled={!newComment.trim() || isSubmitting}
+                >
+                  Kommentieren
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-          Bitte melden Sie sich an, um zu kommentieren.
-        </p>
-      )}
-
-      {/* Kommentarliste */}
-      <div className="mt-6 space-y-6">
-        {comments.length === 0 ? (
-          <p className="text-center text-gray-500 dark:text-gray-400 py-4">
-            Noch keine Kommentare. Sei der Erste!
-          </p>
         ) : (
-          comments.map((comment) => <Comment key={comment.id} comment={comment} />)
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+            Bitte melden Sie sich an, um zu kommentieren.
+          </p>
         )}
+
+        {/* Kommentarliste */}
+        <div className="mt-6 space-y-6">
+          {comments.length === 0 ? (
+            <p className="text-center text-gray-500 dark:text-gray-400 py-4">
+              Noch keine Kommentare. Sei der Erste!
+            </p>
+          ) : (
+            comments.map((comment) => <Comment key={comment.id} comment={comment} />)
+          )}
+        </div>
       </div>
-    </div>
+      <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
+    </>
   );
 };

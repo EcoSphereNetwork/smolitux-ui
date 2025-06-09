@@ -315,3 +315,4 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 - Migrated ESLint configuration to flat config and removed legacy `.eslintrc.js`.
 ### Update 2025-06-09
 - Added DeFiDashboard component implementation with tests and stories.
+- Added privacy consent context to community components (2025-06-09)

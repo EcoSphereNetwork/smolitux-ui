@@ -1,6 +1,7 @@
 // TODO: forwardRef hinzufügen
 import React, { useState, useEffect } from 'react';
 import { Button } from '@smolitux/core';
+import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
 export interface FollowButtonProps {
   /** Benutzer-ID des zu folgenden Benutzers */
@@ -50,6 +51,8 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
   const [count, setCount] = useState(followerCount || 0);
   const [isLoading, setIsLoading] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const { preferences } = usePrivacyConsent();
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   // Aktualisiere den Status, wenn sich die Props ändern
   useEffect(() => {
@@ -125,7 +128,7 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
 
   // Icon-Variante
   if (variant === 'icon') {
-    return (
+    const element = (
       <button
         onClick={handleFollowClick}
         disabled={isLoading || isSelf}
@@ -189,14 +192,20 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
           </svg>
         )}
 
-        {showCount && <span className="ml-1 text-xs">{count}</span>}
+        {showCount && preferences.analytics && <span className="ml-1 text-xs">{count}</span>}
       </button>
+    );
+    return (
+      <>
+        {element}
+        <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
+      </>
     );
   }
 
   // Text-Variante
   if (variant === 'text') {
-    return (
+    const element = (
       <button
         onClick={handleFollowClick}
         disabled={isLoading || isSelf}
@@ -265,15 +274,21 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
 
         <span>{getButtonText()}</span>
 
-        {showCount && (
+        {showCount && preferences.analytics && (
           <span className="ml-1 text-xs text-gray-500 dark:text-gray-400">({count})</span>
         )}
       </button>
     );
+    return (
+      <>
+        {element}
+        <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
+      </>
+    );
   }
 
   // Standard-Button (primary oder outline)
-  return (
+  const element = (
     <Button
       variant={getButtonVariant()}
       size={size}
@@ -348,7 +363,13 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
 
       <span>{getButtonText()}</span>
 
-      {showCount && <span className="ml-1 text-xs">({count})</span>}
+      {showCount && preferences.analytics && <span className="ml-1 text-xs">({count})</span>}
     </Button>
+  );
+  return (
+    <>
+      {element}
+      <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
+    </>
   );
 };

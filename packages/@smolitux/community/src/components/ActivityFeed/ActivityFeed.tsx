@@ -1,6 +1,8 @@
 // TODO: forwardRef hinzufügen
 import React, { useState } from 'react';
 import { Card, Button } from '@smolitux/core';
+import { usePrivacyConsent } from '../../privacy';
+import { PrivacySettings } from '../../privacy';
 
 export type ActivityType =
   | 'post'
@@ -73,6 +75,8 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
   hasMore = false,
 }) => {
   const [loadingMore, setLoadingMore] = useState(false);
+  const { preferences } = usePrivacyConsent();
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   // Weitere Aktivitäten laden
   const handleLoadMore = async () => {
@@ -400,156 +404,169 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
   };
 
   return (
-    <Card className={`overflow-hidden ${className}`}>
-      {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Aktivitäten</h3>
-      </div>
-
-      {/* Aktivitätsliste */}
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        {loading && activities.length === 0 ? (
-          renderPlaceholders()
-        ) : activities.length === 0 ? (
-          <div className="py-12 text-center text-gray-500 dark:text-gray-400">
-            <svg
-              className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 10h16M4 14h16M4 18h16"
-              />
-            </svg>
-            <p className="text-lg font-medium">Keine Aktivitäten vorhanden</p>
-            <p className="mt-2">Es wurden noch keine Aktivitäten aufgezeichnet.</p>
-          </div>
-        ) : (
-          activities.map((activity) => (
-            <div
-              key={activity.id}
-              className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors"
-              onClick={() => handleActivityClick(activity)}
-            >
-              <div className="flex items-start">
-                {/* Benutzeravatar oder Aktivitätsicon */}
-                <div className="flex-shrink-0">
-                  {activity.user.avatarUrl ? (
-                    <div
-                      className="w-10 h-10 rounded-full overflow-hidden cursor-pointer"
-                      onClick={(e) => handleUserClick(activity.user.id, e)}
-                    >
-                      <img
-                        src={activity.user.avatarUrl}
-                        alt={activity.user.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ) : (
-                    getActivityIcon(activity.type)
-                  )}
-                </div>
-
-                {/* Aktivitätsinhalt */}
-                <div className="ml-4 flex-1 min-w-0">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="text-sm">
-                        <span
-                          className="font-medium text-gray-900 dark:text-white hover:underline cursor-pointer"
-                          onClick={(e) => handleUserClick(activity.user.id, e)}
-                        >
-                          {activity.user.name}
-                        </span>{' '}
-                        <span className="text-gray-600 dark:text-gray-300">
-                          {getActivityText(activity)}
-                        </span>
-                      </p>
-
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        {formatTimestamp(activity.timestamp)}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Zielinhalt (falls vorhanden) */}
-                  {activity.target && activity.target.content && (
-                    <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
-                      <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">
-                        {activity.target.content}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Mediavorschau (falls vorhanden) */}
-                  {activity.target && activity.target.thumbnailUrl && (
-                    <div className="mt-2 rounded-md overflow-hidden">
-                      <img
-                        src={activity.target.thumbnailUrl}
-                        alt={activity.target.title || 'Medienvorschau'}
-                        className="w-full h-32 object-cover"
-                      />
-                    </div>
-                  )}
-
-                  {/* Metadaten (falls vorhanden) */}
-                  {activity.metadata && activity.type === 'reward' && (
-                    <div className="mt-2 flex items-center text-sm text-gray-600 dark:text-gray-300">
-                      <svg
-                        className="w-4 h-4 mr-1 text-yellow-500"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" />
-                      </svg>
-                      <span>
-                        {activity.metadata.amount} {activity.metadata.tokenSymbol || 'Token'}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))
-        )}
-
-        {/* Lade-Indikator */}
-        {loading && activities.length > 0 && (
-          <div className="p-4 text-center">
-            <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-primary-500 border-r-transparent" />
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Aktivitäten werden geladen...
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Weitere laden */}
-      {!loading && hasMore && (
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-          <Button
-            variant="outline"
-            onClick={handleLoadMore}
-            disabled={loadingMore}
-            className="w-full"
-          >
-            {loadingMore ? (
-              <>
-                <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-primary-500 border-r-transparent mr-2" />
-                Wird geladen...
-              </>
-            ) : (
-              'Weitere Aktivitäten laden'
-            )}
+    <>
+      <Card className={`overflow-hidden ${className}`}>
+        {/* Header */}
+        <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Aktivitäten</h3>
+          <Button variant="text" size="sm" onClick={() => setShowPrivacy(true)}>
+            Privacy
           </Button>
         </div>
-      )}
-    </Card>
+
+        {!preferences.personalization && (
+          <div className="p-4 text-sm bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300">
+            Personalisierte Inhalte sind deaktiviert. Sie können diese Einstellung im
+            Datenschutzmenü ändern.
+          </div>
+        )}
+
+        {/* Aktivitätsliste */}
+        <div className="divide-y divide-gray-200 dark:divide-gray-700">
+          {loading && activities.length === 0 ? (
+            renderPlaceholders()
+          ) : activities.length === 0 ? (
+            <div className="py-12 text-center text-gray-500 dark:text-gray-400">
+              <svg
+                className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                />
+              </svg>
+              <p className="text-lg font-medium">Keine Aktivitäten vorhanden</p>
+              <p className="mt-2">Es wurden noch keine Aktivitäten aufgezeichnet.</p>
+            </div>
+          ) : (
+            activities.map((activity) => (
+              <div
+                key={activity.id}
+                className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors"
+                onClick={() => handleActivityClick(activity)}
+              >
+                <div className="flex items-start">
+                  {/* Benutzeravatar oder Aktivitätsicon */}
+                  <div className="flex-shrink-0">
+                    {activity.user.avatarUrl ? (
+                      <div
+                        className="w-10 h-10 rounded-full overflow-hidden cursor-pointer"
+                        onClick={(e) => handleUserClick(activity.user.id, e)}
+                      >
+                        <img
+                          src={activity.user.avatarUrl}
+                          alt={activity.user.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      getActivityIcon(activity.type)
+                    )}
+                  </div>
+
+                  {/* Aktivitätsinhalt */}
+                  <div className="ml-4 flex-1 min-w-0">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <p className="text-sm">
+                          <span
+                            className="font-medium text-gray-900 dark:text-white hover:underline cursor-pointer"
+                            onClick={(e) => handleUserClick(activity.user.id, e)}
+                          >
+                            {activity.user.name}
+                          </span>{' '}
+                          <span className="text-gray-600 dark:text-gray-300">
+                            {getActivityText(activity)}
+                          </span>
+                        </p>
+
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          {formatTimestamp(activity.timestamp)}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Zielinhalt (falls vorhanden) */}
+                    {activity.target && activity.target.content && (
+                      <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
+                        <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">
+                          {activity.target.content}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Mediavorschau (falls vorhanden) */}
+                    {activity.target && activity.target.thumbnailUrl && (
+                      <div className="mt-2 rounded-md overflow-hidden">
+                        <img
+                          src={activity.target.thumbnailUrl}
+                          alt={activity.target.title || 'Medienvorschau'}
+                          className="w-full h-32 object-cover"
+                        />
+                      </div>
+                    )}
+
+                    {/* Metadaten (falls vorhanden) */}
+                    {activity.metadata && activity.type === 'reward' && (
+                      <div className="mt-2 flex items-center text-sm text-gray-600 dark:text-gray-300">
+                        <svg
+                          className="w-4 h-4 mr-1 text-yellow-500"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" />
+                        </svg>
+                        <span>
+                          {activity.metadata.amount} {activity.metadata.tokenSymbol || 'Token'}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+
+          {/* Lade-Indikator */}
+          {loading && activities.length > 0 && (
+            <div className="p-4 text-center">
+              <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-primary-500 border-r-transparent" />
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Aktivitäten werden geladen...
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Weitere laden */}
+        {!loading && hasMore && (
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <Button
+              variant="outline"
+              onClick={handleLoadMore}
+              disabled={loadingMore}
+              className="w-full"
+            >
+              {loadingMore ? (
+                <>
+                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-primary-500 border-r-transparent mr-2" />
+                  Wird geladen...
+                </>
+              ) : (
+                'Weitere Aktivitäten laden'
+              )}
+            </Button>
+          </div>
+        )}
+      </Card>
+      <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
+    </>
   );
 };

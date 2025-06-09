@@ -1,6 +1,7 @@
 // TODO: forwardRef hinzufügen
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@smolitux/core';
+import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
 export type NotificationType =
   | 'info'
@@ -65,6 +66,8 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'unread'>('all');
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { preferences } = usePrivacyConsent();
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   // Anzahl der ungelesenen Benachrichtigungen
   const unreadCount = notifications.filter((notification) => !notification.read).length;
@@ -371,208 +374,220 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
   };
 
   return (
-    <div className={`relative ${className}`} ref={dropdownRef}>
-      {/* Benachrichtigungsicon */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
-        aria-label="Benachrichtigungen"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+    <>
+      <div className={`relative ${className}`} ref={dropdownRef}>
+        {/* Benachrichtigungsicon */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="relative p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
+          aria-label="Benachrichtigungen"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-          />
-        </svg>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+            />
+          </svg>
 
-        {/* Badge für ungelesene Benachrichtigungen */}
-        {unreadCount > 0 && (
-          <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
-            {unreadCount > 99 ? '99+' : unreadCount}
-          </span>
-        )}
-      </button>
-
-      {/* Dropdown */}
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden z-50">
-          {/* Header */}
-          <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Benachrichtigungen
-            </h3>
-
-            {unreadCount > 0 && (
-              <button
-                onClick={handleMarkAllAsRead}
-                className="text-sm text-primary-600 dark:text-primary-400 hover:underline"
-              >
-                Alle als gelesen markieren
-              </button>
-            )}
-          </div>
-
-          {/* Tabs */}
-          <div className="flex border-b border-gray-200 dark:border-gray-700">
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`flex-1 py-2 text-sm font-medium ${
-                activeTab === 'all'
-                  ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
-              }`}
-            >
-              Alle
-            </button>
-
-            <button
-              onClick={() => setActiveTab('unread')}
-              className={`flex-1 py-2 text-sm font-medium ${
-                activeTab === 'unread'
-                  ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
-              }`}
-            >
-              Ungelesen {unreadCount > 0 && `(${unreadCount})`}
-            </button>
-          </div>
-
-          {/* Benachrichtigungsliste */}
-          <div className="max-h-96 overflow-y-auto">
-            {filteredNotifications.length === 0 ? (
-              <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-                <svg
-                  className="w-12 h-12 mx-auto mb-2 text-gray-400 dark:text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                  />
-                </svg>
-                <p>Keine Benachrichtigungen vorhanden</p>
-              </div>
-            ) : (
-              filteredNotifications.map((notification) => (
-                <div
-                  key={notification.id}
-                  onClick={() => handleClick(notification)}
-                  className={`px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-start hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer ${
-                    !notification.read ? 'bg-blue-50 dark:bg-blue-900/10' : ''
-                  }`}
-                >
-                  {/* Icon oder Avatar */}
-                  {notification.user?.avatar ? (
-                    <div className="w-10 h-10 rounded-full overflow-hidden mr-3 flex-shrink-0">
-                      <img
-                        src={notification.user.avatar}
-                        alt={notification.user.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className="mr-3 flex-shrink-0">
-                      {getNotificationIcon(notification.type)}
-                    </div>
-                  )}
-
-                  {/* Inhalt */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        {notification.title}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 ml-2">
-                        {formatTimestamp(notification.timestamp)}
-                      </p>
-                    </div>
-
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-2">
-                      {notification.content}
-                    </p>
-                  </div>
-
-                  {/* Aktionen */}
-                  <div className="ml-2 flex-shrink-0 flex flex-col space-y-1">
-                    {!notification.read && (
-                      <button
-                        onClick={(e) => handleMarkAsRead(notification.id, e)}
-                        className="p-1 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
-                        aria-label="Als gelesen markieren"
-                      >
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </button>
-                    )}
-
-                    {onDelete && (
-                      <button
-                        onClick={(e) => handleDelete(notification.id, e)}
-                        className="p-1 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
-                        aria-label="Löschen"
-                      >
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* Footer */}
-          {filteredNotifications.length > 0 && (
-            <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 text-center">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsOpen(false)}
-                className="w-full"
-              >
-                Alle Benachrichtigungen anzeigen
-              </Button>
-            </div>
+          {/* Badge für ungelesene Benachrichtigungen */}
+          {unreadCount > 0 && (
+            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
+              {unreadCount > 99 ? '99+' : unreadCount}
+            </span>
           )}
-        </div>
-      )}
-    </div>
+        </button>
+
+        {/* Dropdown */}
+        {isOpen && (
+          <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden z-50">
+            {/* Header */}
+            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Benachrichtigungen
+              </h3>
+              <div className="flex items-center gap-2">
+                <Button variant="text" size="sm" onClick={() => setShowPrivacy(true)}>
+                  Privacy
+                </Button>
+                {unreadCount > 0 && (
+                  <button
+                    onClick={handleMarkAllAsRead}
+                    className="text-sm text-primary-600 dark:text-primary-400 hover:underline"
+                  >
+                    Alle als gelesen markieren
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Tabs */}
+            <div className="flex border-b border-gray-200 dark:border-gray-700">
+              <button
+                onClick={() => setActiveTab('all')}
+                className={`flex-1 py-2 text-sm font-medium ${
+                  activeTab === 'all'
+                    ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                Alle
+              </button>
+
+              <button
+                onClick={() => setActiveTab('unread')}
+                className={`flex-1 py-2 text-sm font-medium ${
+                  activeTab === 'unread'
+                    ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                Ungelesen {unreadCount > 0 && `(${unreadCount})`}
+              </button>
+            </div>
+
+            {/* Benachrichtigungsliste */}
+            <div className="max-h-96 overflow-y-auto">
+              {!preferences.personalization && (
+                <div className="p-2 text-sm bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300">
+                  Personalisierte Inhalte sind deaktiviert.
+                </div>
+              )}
+              {filteredNotifications.length === 0 ? (
+                <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+                  <svg
+                    className="w-12 h-12 mx-auto mb-2 text-gray-400 dark:text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                    />
+                  </svg>
+                  <p>Keine Benachrichtigungen vorhanden</p>
+                </div>
+              ) : (
+                filteredNotifications.map((notification) => (
+                  <div
+                    key={notification.id}
+                    onClick={() => handleClick(notification)}
+                    className={`px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-start hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer ${
+                      !notification.read ? 'bg-blue-50 dark:bg-blue-900/10' : ''
+                    }`}
+                  >
+                    {/* Icon oder Avatar */}
+                    {notification.user?.avatar ? (
+                      <div className="w-10 h-10 rounded-full overflow-hidden mr-3 flex-shrink-0">
+                        <img
+                          src={notification.user.avatar}
+                          alt={notification.user.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="mr-3 flex-shrink-0">
+                        {getNotificationIcon(notification.type)}
+                      </div>
+                    )}
+
+                    {/* Inhalt */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between">
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          {notification.title}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 ml-2">
+                          {formatTimestamp(notification.timestamp)}
+                        </p>
+                      </div>
+
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-2">
+                        {notification.content}
+                      </p>
+                    </div>
+
+                    {/* Aktionen */}
+                    <div className="ml-2 flex-shrink-0 flex flex-col space-y-1">
+                      {!notification.read && (
+                        <button
+                          onClick={(e) => handleMarkAsRead(notification.id, e)}
+                          className="p-1 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+                          aria-label="Als gelesen markieren"
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </button>
+                      )}
+
+                      {onDelete && (
+                        <button
+                          onClick={(e) => handleDelete(notification.id, e)}
+                          className="p-1 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+                          aria-label="Löschen"
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Footer */}
+            {filteredNotifications.length > 0 && (
+              <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 text-center">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full"
+                >
+                  Alle Benachrichtigungen anzeigen
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+      <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
+    </>
   );
 };
