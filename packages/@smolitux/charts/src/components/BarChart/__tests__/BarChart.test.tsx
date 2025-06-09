@@ -169,7 +169,7 @@ describe('BarChart', () => {
   });
 
   test('handles malformed data gracefully', () => {
-    const badData: any = { id: 'bad' };
+    const badData: unknown = { id: 'bad' };
     render(<BarChart data={badData} />);
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();

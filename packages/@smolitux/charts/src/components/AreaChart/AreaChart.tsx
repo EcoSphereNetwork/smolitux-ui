@@ -4,7 +4,7 @@ import { useTheme } from '@smolitux/theme';
 
 interface Theme {
   themeMode?: 'light' | 'dark';
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface AreaChartDataPoint {

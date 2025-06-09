@@ -246,7 +246,7 @@ export const FormField = <T extends any>({
   ...props
 }: FormFieldProps<T>) => {
   // Erstelle ein Wrapper-Komponente, die die Validierungs-FormField-Komponente umschließt
-  const EnhancedComponent = (componentProps: any) => {
+  const EnhancedComponent = (componentProps: unknown) => {
     const { name, value, onChange, onBlur, hasError, errorMessages, touched, dirty, ...restProps } =
       componentProps;
 

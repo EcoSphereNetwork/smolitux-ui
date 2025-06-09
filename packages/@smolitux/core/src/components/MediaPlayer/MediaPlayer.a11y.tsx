@@ -49,7 +49,7 @@ export interface MediaPlayerProps {
   /** Callback bei Ende des Mediums */
   onEnded?: () => void;
   /** Callback bei Fehler */
-  onError?: (error: any) => void;
+  onError?: (error: unknown) => void;
   /** Callback bei Laden des Mediums */
   onLoad?: () => void;
   /** Callback bei Abspielen des Mediums */
@@ -63,7 +63,7 @@ export interface MediaPlayerProps {
   /** Zusätzliche CSS-Klasse */
   className?: string;
   /** Zusätzliche Props */
-  [key: string]: any;
+  [key: string]: unknown;
 
   /** ARIA-Label für den Player */
   ariaLabel?: string;
@@ -405,7 +405,7 @@ export const MediaPlayerA11y = forwardRef<MediaPlayerRef, MediaPlayerProps>(
       }
     };
 
-    const handleError = (error: any) => {
+    const handleError = (error: unknown) => {
       if (onError) {
         onError(error);
       }

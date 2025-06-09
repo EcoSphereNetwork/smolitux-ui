@@ -279,7 +279,7 @@ export const FormFieldA11y = <T extends any>({
   const progressId = showProgressBar ? `progress-${fieldId}` : undefined;
 
   // Erstelle ein Wrapper-Komponente, die die Validierungs-FormField-Komponente umschließt
-  const EnhancedComponent = (componentProps: any) => {
+  const EnhancedComponent = (componentProps: unknown) => {
     const { name, value, onChange, onBlur, hasError, errorMessages, touched, dirty, ...restProps } =
       componentProps;
 

@@ -8,19 +8,19 @@ describe('Table Accessibility', () => {
     {
       id: 'name',
       header: 'Name',
-      cell: (row: any) => row.name,
+      cell: (row: unknown) => row.name,
       sortable: true,
     },
     {
       id: 'age',
       header: 'Alter',
-      cell: (row: any) => row.age,
+      cell: (row: unknown) => row.age,
       sortable: true,
     },
     {
       id: 'city',
       header: 'Stadt',
-      cell: (row: any) => row.city,
+      cell: (row: unknown) => row.city,
       sortable: false,
     },
   ];

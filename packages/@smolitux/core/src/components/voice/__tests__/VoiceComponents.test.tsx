@@ -15,7 +15,7 @@ jest.mock('@smolitux/voice-control', () => {
   };
 });
 
-const context: any = {
+const context: unknown = {
   isListening: false,
   startListening: jest.fn(),
   stopListening: jest.fn(),

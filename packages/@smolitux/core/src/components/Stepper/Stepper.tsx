@@ -17,7 +17,7 @@ export interface Step {
   /** Ist der Schritt deaktiviert? */
   disabled?: boolean;
   /** Benutzerdefinierte Daten für den Schritt */
-  data?: any;
+  data?: unknown;
 }
 
 export type StepStatus = 'upcoming' | 'current' | 'completed' | 'error';

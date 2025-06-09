@@ -141,7 +141,7 @@ export const ControlledComponent: Story = {
       console.log(`Upload abgeschlossen für ${file.name}`);
     };
 
-    const handleUploadError = (file: FileInfo, error: any) => {
+    const handleUploadError = (file: FileInfo, error: unknown) => {
       console.error(`Upload-Fehler für ${file.name}:`, error);
     };
 

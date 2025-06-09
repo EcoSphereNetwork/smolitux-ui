@@ -108,10 +108,10 @@ export const CustomDropzoneText: Story = {
 
 export const WithPreview: Story = {
   render: () => {
-    const [files, setFiles] = useState<any[]>([]);
+    const [files, setFiles] = useState<unknown[]>([]);
 
     // Simuliere einen Datei-Upload
-    const handleChange = (newFiles: any[]) => {
+    const handleChange = (newFiles: unknown[]) => {
       setFiles(newFiles);
     };
 

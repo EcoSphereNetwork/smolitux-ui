@@ -61,7 +61,7 @@ type Story = StoryObj<typeof Form>;
 
 export const Basic: Story = {
   render: () => {
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: unknown) => {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };
@@ -130,7 +130,7 @@ export const WithValidation: Story = {
   render: () => {
     const [errors, setErrors] = React.useState<Record<string, string>>({});
 
-    const validate = (values: any) => {
+    const validate = (values: unknown) => {
       const newErrors: Record<string, string> = {};
 
       if (!values.name) {
@@ -156,7 +156,7 @@ export const WithValidation: Story = {
       return newErrors;
     };
 
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: unknown) => {
       const validationErrors = validate(values);
 
       if (Object.keys(validationErrors).length === 0) {
@@ -261,7 +261,7 @@ export const WithValidation: Story = {
 
 export const WithDifferentControls: Story = {
   render: () => {
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: unknown) => {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };
@@ -453,7 +453,7 @@ export const WithDifferentControls: Story = {
 
 export const WithFormLayout: Story = {
   render: () => {
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: unknown) => {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };
@@ -601,7 +601,7 @@ export const WithDynamicFields: Story = {
   render: () => {
     const [fields, setFields] = React.useState([{ id: 1, value: '' }]);
 
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: unknown) => {
       console.log('Form submitted:', values);
       alert(JSON.stringify(values, null, 2));
     };

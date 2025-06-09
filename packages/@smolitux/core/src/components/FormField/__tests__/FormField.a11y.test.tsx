@@ -7,7 +7,7 @@ import { FormFieldA11y } from '../FormField.a11y';
 expect.extend(toHaveNoViolations);
 
 // Mock-Komponente für Tests
-const MockInput = (props: any) => <input {...props} />;
+const MockInput = (props: unknown) => <input {...props} />;
 
 describe('FormField Accessibility', () => {
   it('should have no accessibility violations', async () => {

@@ -218,7 +218,7 @@ describe('RadarChart', () => {
   });
 
   test('handles malformed data gracefully', () => {
-    const badData: any = { id: 'bad' };
+    const badData: unknown = { id: 'bad' };
     render(<RadarChart data={badData} />);
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();

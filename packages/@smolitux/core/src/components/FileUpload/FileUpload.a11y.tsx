@@ -322,7 +322,7 @@ export const FileUploadA11y = forwardRef<HTMLInputElement, FileUploadProps>(
           // Ankündigung für Screenreader
           announceSuccess(`Upload von ${fileInfo.name} erfolgreich abgeschlossen.`);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Upload fehlgeschlagen
         const errorMessage = error.message || 'Unbekannter Fehler beim Upload.';
         updateFileError(fileInfo.id, errorMessage);

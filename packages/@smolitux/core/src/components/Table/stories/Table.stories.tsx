@@ -106,7 +106,7 @@ const columns = [
   {
     id: 'actions',
     header: 'Aktionen',
-    accessor: (row: any) => (
+    accessor: (row: unknown) => (
       <div className="flex space-x-2">
         <Button size="sm">Bearbeiten</Button>
         <Button size="sm" variant="outlined" color="danger">
@@ -270,7 +270,7 @@ export const CustomCellRendering: Story = {
       {
         id: 'role',
         header: 'Rolle',
-        accessor: (row: any) => {
+        accessor: (row: unknown) => {
           const roleStyles = {
             Admin: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
             Benutzer: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
@@ -289,7 +289,7 @@ export const CustomCellRendering: Story = {
       {
         id: 'status',
         header: 'Status',
-        accessor: (row: any) => {
+        accessor: (row: unknown) => {
           const statusStyles = {
             Aktiv: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
             Inaktiv: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
@@ -307,7 +307,7 @@ export const CustomCellRendering: Story = {
       {
         id: 'actions',
         header: 'Aktionen',
-        accessor: (row: any) => (
+        accessor: (row: unknown) => (
           <div className="flex space-x-2">
             <Button size="sm">Bearbeiten</Button>
             <Button size="sm" variant="outlined" color="danger">
@@ -332,7 +332,7 @@ export const WithFooter: Story = {
       {
         id: 'actions',
         header: 'Aktionen',
-        accessor: (row: any) => (
+        accessor: (row: unknown) => (
           <div className="flex space-x-2">
             <Button size="sm">Bearbeiten</Button>
             <Button size="sm" variant="outlined" color="danger">
@@ -386,9 +386,9 @@ export const WithNestedData: Story = {
     const nestedColumns = [
       { id: 'name', header: 'Name', accessor: 'name' },
       { id: 'email', header: 'E-Mail', accessor: 'email' },
-      { id: 'address', header: 'Adresse', accessor: (row: any) => row.details.address },
-      { id: 'phone', header: 'Telefon', accessor: (row: any) => row.details.phone },
-      { id: 'department', header: 'Abteilung', accessor: (row: any) => row.details.department },
+      { id: 'address', header: 'Adresse', accessor: (row: unknown) => row.details.address },
+      { id: 'phone', header: 'Telefon', accessor: (row: unknown) => row.details.phone },
+      { id: 'department', header: 'Abteilung', accessor: (row: unknown) => row.details.department },
     ];
 
     return <Table columns={nestedColumns} data={nestedData} />;

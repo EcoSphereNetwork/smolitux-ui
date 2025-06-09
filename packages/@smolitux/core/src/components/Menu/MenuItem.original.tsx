@@ -111,7 +111,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       .join(' ');
 
     // Basis-Element definieren (Link oder div)
-    const ItemComponent: any = href && !disabled ? 'a' : 'li';
+    const ItemComponent: unknown = href && !disabled ? 'a' : 'li';
     const itemProps = href && !disabled ? { href } : {};
 
     return (

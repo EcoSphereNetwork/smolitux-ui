@@ -683,7 +683,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
       if (!indicator) return null;
 
-      return <div className="absolute inset-y-0 right-3 flex items-center">{indicator}</div>;
+      return <div className="absolute inset-y-0 right-3 flex items-center" data-testid="Input">{indicator}</div>;
     };
 
     // Rendere den Zähler

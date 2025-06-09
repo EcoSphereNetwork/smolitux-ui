@@ -80,7 +80,7 @@ export interface HeatmapProps extends Omit<React.SVGProps<SVGSVGElement>, 'data'
 // If not available, we can use a more flexible approach
 interface ThemeContext {
   themeMode?: 'light' | 'dark';
-  [key: string]: any; // Allow any other properties
+  [key: string]: unknown; // Allow any other properties
 }
 
 /**
