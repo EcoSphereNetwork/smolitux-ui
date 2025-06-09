@@ -196,7 +196,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | ----------- | ------------ |
 | ChartAxis   | Tests fehlen |
 | ChartLegend | Tests fehlen |
-| DonutChart  | Tests fehlen |
+| DonutChart  | – |
 | Histogram   | Tests fehlen |
 
 ## @smolitux/community
