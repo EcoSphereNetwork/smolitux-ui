@@ -30,4 +30,11 @@ describe('AudioPlayer', () => {
     fireEvent.change(volumeSlider, { target: { value: '0.3' } });
     expect((volumeSlider as HTMLInputElement).value).toBe('0.3');
   });
+
+  it('supports File src', () => {
+    const file = new File(['test'], 'test.mp3', { type: 'audio/mpeg' });
+    render(<AudioPlayer src={file} />);
+    const audioElement = document.querySelector('audio') as HTMLAudioElement;
+    expect(audioElement.src).toContain('blob:');
+  });
 });

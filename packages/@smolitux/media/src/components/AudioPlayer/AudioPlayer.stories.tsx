@@ -19,3 +19,10 @@ export const Basic: Story = {
     artist: 'Smolitux',
   },
 };
+
+export const FileSource: Story = {
+  render: () => {
+    const file = new File([], 'audio.mp3', { type: 'audio/mpeg' });
+    return <AudioPlayer src={file} title="Lokale Datei" />;
+  },
+};

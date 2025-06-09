@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import type { MediaSrc } from '../../types';
 
 export interface VideoPlayerProps {
-  /** URL der Videodatei */
-  src: string;
+  /** Quelle der Videodatei */
+  src: MediaSrc;
   /** Poster-Bild URL */
   poster?: string;
   /** Titel des Videos */
@@ -56,10 +57,24 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [isControlsVisible, setIsControlsVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [isBuffering, setIsBuffering] = useState(false);
+  const [srcUrl, setSrcUrl] = useState<string>('');
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Quelle aufbereiten (String oder File)
+  useEffect(() => {
+    if (typeof src === 'string') {
+      setSrcUrl(src);
+      return;
+    }
+    const url = URL.createObjectURL(src);
+    setSrcUrl(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [src]);
 
   // Initialisierung
   useEffect(() => {
@@ -254,7 +269,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Video-Element */}
       <video
         ref={videoRef}
-        src={src}
+        src={srcUrl}
         poster={poster}
         preload="metadata"
         className="w-full h-full"

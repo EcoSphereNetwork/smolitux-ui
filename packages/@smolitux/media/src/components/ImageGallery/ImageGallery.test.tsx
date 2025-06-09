@@ -19,4 +19,10 @@ describe('ImageGallery', () => {
     fireEvent.click(screen.getAllByRole('img')[0]);
     expect(onClick).toHaveBeenCalledWith(images[0]);
   });
+
+  it('uses responsive layout', () => {
+    render(<ImageGallery images={images} responsive />);
+    const gallery = screen.getByTestId('image-gallery');
+    expect(gallery.className).toContain('grid');
+  });
 });
