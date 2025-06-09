@@ -284,3 +284,6 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 |------------|-------|
 | patterns | forwardRef hinzufügen |
 
+
+### Update 2025-06-09
+- No component changes. Fixed ESLint config.

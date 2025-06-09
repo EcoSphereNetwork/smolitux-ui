@@ -22,3 +22,5 @@
 - Added annotation script entry in docs.
 
 ### Update 2025-06-09 - Automated TODO/FIXME scan executed.
+### Update 2025-06-09
+- Fixed ESLint configuration; lint command works.

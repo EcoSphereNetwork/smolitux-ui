@@ -20,3 +20,6 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 |------------|-------|
 | Grid | Props nicht typisiert |
 
+
+### Update 2025-06-09
+- Fixed ESLint config to enable linting.
