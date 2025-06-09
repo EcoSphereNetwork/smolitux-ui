@@ -12,6 +12,9 @@ This page tracks the progress and quality of the **federation** package. Compone
 | FederationStatus | ✅ | ❌ | ❌ | Needs A11y Tests |
 | PlatformSelector | ✅ | ❌ | ❌ | Needs A11y Tests |
 | ProtocolHandler | ✅ | ❌ | ❌ | Needs A11y Tests |
+| ActivityPubViewer | ✅ | ❌ | ❌ | Needs A11y Tests |
+| IdentityBridge | ✅ | ❌ | ❌ | Needs A11y Tests |
+| FederationSettings | ✅ | ❌ | ❌ | Needs A11y Tests |
 
 ## Next Steps
 

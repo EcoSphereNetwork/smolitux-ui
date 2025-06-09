@@ -46,6 +46,7 @@
 10. Added guard utilities in @smolitux/utils.
 11. Added DonutChart tests in charts package
 12. Added global config utility for @smolitux/testing.
+13. Added ActivityPubViewer, IdentityBridge and FederationSettings components.
 
 ---
 *Updated by Codex AI*
