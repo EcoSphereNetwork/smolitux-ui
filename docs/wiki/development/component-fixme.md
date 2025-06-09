@@ -33,3 +33,6 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 - Added privacy preference hooks; no FIXMEs
 - Added ChatInterface component without FIXMEs.
 - SpeechSynthesis component added; no FIXMEs.
+
+### Update 2025-06-16
+- Added guards utility entry.

@@ -20,6 +20,9 @@ export * from './helpers';
 // Validation utilities
 export * from './validators';
 
+// Type guard utilities
+export * from './guards';
+
 // Formatting utilities
 export * from './formatters';
 

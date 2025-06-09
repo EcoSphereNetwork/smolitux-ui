@@ -320,3 +320,6 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 - Added privacy consent context to community components (2025-06-09)
 - Added ChatInterface component in @smolitux/ai package.
 - Added SpeechSynthesis component to voice-control package.
+
+### Update 2025-06-16
+- Added guard utilities to @smolitux/utils package.
