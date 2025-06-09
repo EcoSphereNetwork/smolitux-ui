@@ -46,6 +46,9 @@
 
 ### Update 2025-06-12
 - Voice control package completed with Speech API types, accessibility tests and demo stories.
+- Ran repository analyzer and focused on @smolitux/charts.
+- Added barrel index files for LineChart and BarChart.
+- Documented chart status in docs/wiki/development/component-status-charts.md.
 
 ---
 _Updated by Codex AI_

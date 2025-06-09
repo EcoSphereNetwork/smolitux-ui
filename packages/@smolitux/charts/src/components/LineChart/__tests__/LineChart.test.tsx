@@ -193,4 +193,10 @@ describe('LineChart', () => {
     const legendText = document.querySelector('.chart-legend text');
     expect(legendText).toHaveAttribute('fill', '#654321');
   });
+  test('handles malformed data gracefully', () => {
+    const badData: any = { id: "bad" };
+    render(<LineChart data={badData} />);
+    const svg = document.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+  });
 });

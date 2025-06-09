@@ -69,4 +69,11 @@ describe('AreaChart', () => {
 
     expect(screen.getByText('Test Chart Title')).toBeInTheDocument();
   });
+
+  test('handles malformed data gracefully', () => {
+    const badData: any = { id: 'bad' };
+    render(<AreaChart data={badData} />);
+    const svg = document.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+  });
 });
