@@ -10,5 +10,6 @@ This document tracks the current implementation and test status for the `@smolit
 | Header | ✅ | ❌ | ✅ | Needs A11y Tests |
 | Footer | ✅ | ❌ | ✅ | Needs A11y Tests |
 | Sidebar | ✅ | ✅ | ✅ | Ready |
+| Stack | ✅ | ❌ | ✅ | Pending |
 
-*Updated: 2025-06-12*
+*Updated: 2025-06-09*

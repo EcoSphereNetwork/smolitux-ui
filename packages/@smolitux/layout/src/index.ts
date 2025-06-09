@@ -13,6 +13,7 @@ export {
   default as DashboardLayout,
   type DashboardLayoutProps,
 } from './components/DashboardLayout/DashboardLayout';
+export { default as Stack, type StackProps } from './components/Stack/Stack';
 export type {
   Breakpoint,
   ResponsiveProp,
