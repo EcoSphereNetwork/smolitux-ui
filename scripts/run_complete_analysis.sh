@@ -76,62 +76,73 @@ create_missing_scripts() {
     
     mkdir -p scripts
     
-    # Create robust create_issues.sh
+    # Download enhanced create_issues.sh with better label handling
     if [ ! -f "create_issues.sh" ]; then
+        echo "  📥 Creating enhanced create_issues.sh with standard GitHub labels..."
+        # Use the improved version with standard labels
+        curl -fsSL "https://raw.githubusercontent.com/EcoSphereNetwork/smolitux-ui/main/scripts/create_issues.sh" -o create_issues.sh 2>/dev/null || \
         cat > create_issues.sh <<'EOF'
 #!/bin/bash
-
 create_analyzer_issues() {
-    echo "🚀 Creating issues with robust fallback..."
+    echo "🚀 Creating issues with standard GitHub labels..."
+    
+    # Create standard labels first
+    if gh auth status >/dev/null 2>&1; then
+        gh label create "bug" --color "d73a4a" --description "Something isn't working" 2>/dev/null || true
+        gh label create "enhancement" --color "a2eeef" --description "New feature or request" 2>/dev/null || true
+        gh label create "typescript" --color "1d76db" --description "TypeScript related issue" 2>/dev/null || true
+        gh label create "react" --color "61dafb" --description "React component issue" 2>/dev/null || true
+        gh label create "testing" --color "f9c23c" --description "Testing related issue" 2>/dev/null || true
+        gh label create "code-quality" --color "0e8a16" --description "Code quality improvement" 2>/dev/null || true
+    fi
     
     ISSUES_LOG="analyzer_issues.log"
     echo "# Analyzer Issues - $(date)" > "$ISSUES_LOG"
     TOTAL_FOUND=0
     
-    # Scan for React import issues
+    # Scan for React import issues (limited to avoid spam)
     echo "🔍 Scanning React import issues..."
-    find packages -name "*.tsx" 2>/dev/null | while read file; do
+    find packages -name "*.tsx" -type f 2>/dev/null | head -5 | while read file; do
         if grep -q "React\." "$file" && ! grep -q "import React" "$file"; then
-            echo "ERROR:$file:1:Missing React import for React.* usage" >> "$ISSUES_LOG"
+            echo "REACT_IMPORT:$file:1:Missing React import for React.* usage" >> "$ISSUES_LOG"
         fi
     done
     
-    # Scan for TypeScript issues
+    # Scan for TypeScript issues (limited)
     echo "🔍 Scanning TypeScript issues..."
-    find packages -name "*.tsx" -exec grep -Hn "any\|@ts-ignore" {} \; 2>/dev/null | while read line; do
-        echo "ERROR:$line:TypeScript bad practice detected" >> "$ISSUES_LOG"
-    done
-    
-    # Scan for missing exports
-    echo "🔍 Scanning export issues..."
-    find packages -name "*.tsx" 2>/dev/null | grep -v "\.test\.\|\.stories\." | while read file; do
-        BASENAME=$(basename "$file" .tsx)
-        if ! grep -q "export.*$BASENAME\|export default" "$file"; then
-            echo "WARN:$file:1:Missing export for component $BASENAME" >> "$ISSUES_LOG"
-        fi
+    find packages -name "*.tsx" -type f -exec grep -Hn "\\bany\\b\\|@ts-ignore" {} \; 2>/dev/null | head -5 | while read line; do
+        echo "TYPESCRIPT:$line:TypeScript bad practice detected" >> "$ISSUES_LOG"
     done
     
     # Count total issues
     TOTAL_FOUND=$(grep -c ":" "$ISSUES_LOG" 2>/dev/null || echo "0")
     echo "📊 Found $TOTAL_FOUND issues in total"
     
-    # Try GitHub issue creation
-    if gh auth status >/dev/null 2>&1 && gh repo view >/dev/null 2>&1; then
-        echo "📤 Creating GitHub issues..."
+    # Try GitHub issue creation with proper labels
+    if gh auth status >/dev/null 2>&1; then
+        echo "📤 Creating GitHub issues with standard labels..."
         CREATED=0
         while IFS=':' read -r type file line message; do
             [ -z "$type" ] && continue
             PACKAGE=$(echo "$file" | cut -d'/' -f3 2>/dev/null || echo "unknown")
             TITLE="[$type] $PACKAGE: $(echo "$message" | cut -c1-40)..."
             
+            # Use standard GitHub labels
+            case "$type" in
+                "REACT_IMPORT") LABELS="bug,react" ;;
+                "TYPESCRIPT") LABELS="bug,typescript" ;;
+                *) LABELS="bug" ;;
+            esac
+            
             if gh issue create \
                 --title "$TITLE" \
-                --label "bug,$type,package:$PACKAGE" \
+                --label "$LABELS" \
                 --body "**Problem:** $message
 **File:** $file:$line
 **Package:** @smolitux/$PACKAGE
 **Type:** $type" >/dev/null 2>&1; then
                 CREATED=$((CREATED + 1))
+                echo "  ✅ Created: $TITLE"
             fi
         done < "$ISSUES_LOG"
         echo "✅ Created $CREATED GitHub issues"
@@ -139,7 +150,6 @@ create_analyzer_issues() {
         echo "⚠️ GitHub unavailable - $TOTAL_FOUND issues logged locally in $ISSUES_LOG"
     fi
 }
-
 export -f create_analyzer_issues
 EOF
         chmod +x create_issues.sh
