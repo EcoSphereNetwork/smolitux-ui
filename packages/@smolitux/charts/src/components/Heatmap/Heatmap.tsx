@@ -76,12 +76,7 @@ export interface HeatmapProps extends Omit<React.SVGProps<SVGSVGElement>, 'data'
   onCellClick?: (cell: HeatmapDataPoint) => void;
 }
 
-// Import the correct type from theme package if available
-// If not available, we can use a more flexible approach
-interface ThemeContext {
-  themeMode?: 'light' | 'dark';
-  [key: string]: unknown; // Allow any other properties
-}
+
 
 /**
  * Heatmap-Komponente für zweidimensionale Datenvisualisierung
@@ -136,10 +131,7 @@ export const Heatmap = forwardRef<SVGSVGElement, HeatmapProps>(
     },
     ref
   ) => {
-    // Access the theme object without strict typing
-    const theme = useTheme();
-    // Safely access themeMode with a fallback
-    const themeMode = (theme as any)?.themeMode || 'light';
+    const { mode: themeMode } = useTheme();
 
     // Hover state for tooltips
     const [hoveredCell, setHoveredCell] = useState<HeatmapDataPoint | null>(null);
