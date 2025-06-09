@@ -10,3 +10,10 @@ export { ModelTrainer } from './models/ModelTrainer';
 export { default as ModelTrainingComponent } from './models/ModelTrainingComponent';
 export { SpeechSynthesizer } from './SpeechSynthesizer';
 export type { SpeechSynthesizerOptions } from "./SpeechSynthesizer";
+export type {
+  SpeechRecognitionConstructor,
+  SpeechAPISupport,
+  VoiceCommandRegistration,
+  FeedbackType,
+  RecognizerParams,
+} from './types';

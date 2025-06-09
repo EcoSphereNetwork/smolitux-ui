@@ -1,7 +1,8 @@
 import { RecognitionEngine } from './RecognitionEngine';
+import type { SpeechAPISupport, SpeechRecognitionConstructor } from '../types';
 
 export class WebSpeechRecognitionEngine implements RecognitionEngine {
-  private recognition: any = null;
+  private recognition: SpeechRecognition | null = null;
   private listening = false;
   private supported = false;
 
@@ -9,8 +10,9 @@ export class WebSpeechRecognitionEngine implements RecognitionEngine {
   public onStateChange: (isListening: boolean) => void = () => {};
 
   constructor(language = 'de-DE') {
-    const SpeechRecognitionConstructor =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const support = window as unknown as SpeechAPISupport;
+    const SpeechRecognitionConstructor: SpeechRecognitionConstructor | undefined =
+      support.SpeechRecognition || support.webkitSpeechRecognition;
     if (SpeechRecognitionConstructor) {
       this.supported = true;
       this.recognition = new SpeechRecognitionConstructor();
@@ -26,7 +28,7 @@ export class WebSpeechRecognitionEngine implements RecognitionEngine {
 
   private setupEventListeners() {
     if (!this.recognition) return;
-    this.recognition.onresult = (event: any) => {
+    this.recognition.onresult = (event: SpeechRecognitionEvent) => {
       const last = event.results.length - 1;
       const text = event.results[last][0].transcript;
       this.onResult(text);
@@ -42,7 +44,7 @@ export class WebSpeechRecognitionEngine implements RecognitionEngine {
       this.onStateChange(false);
     };
 
-    this.recognition.onerror = (event: any) => {
+    this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
       console.error('Speech recognition error', event.error);
       this.listening = false;
       this.onStateChange(false);

@@ -1,6 +1,7 @@
 # Smolitux UI - Codex Progress
 
 **Started:** Sun Jun  8 22:54:15 UTC 2025
+**Last Updated:** Sun Jun  8 22:50:29 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -24,7 +25,7 @@
 - [ ] **@smolitux/blockchain** (WalletConnect, TokenDisplay) - Focus on WalletConnect, TokenDisplay, TransactionHistory
 - [ ] **@smolitux/resonance** (governance, monetization)
 - [ ] **@smolitux/federation** (cross-platform)
-- [ ] **@smolitux/voice-control** (voice engines)
+- [x] **@smolitux/voice-control** (voice engines)
 
 ## 📊 Current Status:
 - **Total Packages:** 13
@@ -42,6 +43,9 @@
 7. Ensure accessibility compliance
 8. Update this file after each session
 9. Card, Modal, Table, and Form updated with forwardRef support
+
+### Update 2025-06-12
+- Voice control package completed with Speech API types, accessibility tests and demo stories.
 
 ---
 *Updated by Codex AI*
