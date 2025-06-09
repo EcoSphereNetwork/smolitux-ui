@@ -185,7 +185,7 @@ describe('ProfileContent', () => {
   it('displays formatted dates for posts', () => {
     render(<ProfileContent posts={mockPosts} />);
 
-    // Note: The exact format might depend on the date formatting library used
+    // 🔍 NOTE [Codex]: The exact format might depend on the date formatting library used – prüfen
     expect(screen.getByText(/may 15, 2023/i)).toBeInTheDocument();
     expect(screen.getByText(/may 10, 2023/i)).toBeInTheDocument();
   });

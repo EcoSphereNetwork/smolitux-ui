@@ -297,3 +297,6 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 
 ### Update 2025-06-12
 - Added ActivityPub protocol utilities and tests in @smolitux/federation.
+
+### Update 2025-06-09 (Comment Tasks Scan)
+- Standardized NOTE comments in tests using Codex format.
