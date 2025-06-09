@@ -32,3 +32,20 @@ export const Interactive: Story = {
     onClick: () => alert('Clicked!'),
   },
 };
+
+export const WithActivityPub: Story = {
+  args: {
+    platforms: [
+      { id: 'mastodon', name: 'Mastodon', url: 'https://mastodon.social', isActive: true },
+    ],
+    onSearch: async (q) => [
+      {
+        id: '1',
+        title: `Result for ${q}`,
+        url: 'https://mastodon.social',
+        type: 'post',
+        platform: { id: 'mastodon', name: 'Mastodon', url: 'https://mastodon.social' },
+      },
+    ],
+  },
+};

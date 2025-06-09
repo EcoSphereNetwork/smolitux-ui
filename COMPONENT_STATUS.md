@@ -1,11 +1,7 @@
 # Smolitux UI - Codex Progress
 
-<<<<<<< HEAD
 **Started:** Sun Jun  8 22:54:15 UTC 2025
 **Last Updated:** Sun Jun  8 22:50:29 UTC 2025
-=======
-**Started:** Sun Jun  8 22:48:31 UTC 2025
->>>>>>> 53fa47a0 (feat(testing): add custom matchers and docs)
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -20,15 +16,9 @@
 - [ ] **@smolitux/layout** (Container, Grid, Flex)
 - [ ] **@smolitux/charts** (AreaChart, BarChart, PieChart, etc.)
 
-<<<<<<< HEAD
 ### Tier 3: Advanced Features
 - [x] **@smolitux/media** (AudioPlayer, VideoPlayer, ImageGallery, MediaGrid)
 - [x] **@smolitux/community** (ActivityFeed, UserProfile)
-=======
-### Tier 3: Advanced Features  
-- [ ] **@smolitux/media** (AudioPlayer, VideoPlayer)
-- [ ] **@smolitux/community** (ActivityFeed, UserProfile)
->>>>>>> 53fa47a0 (feat(testing): add custom matchers and docs)
 
 ### Tier 4: Specialized
 - [ ] **@smolitux/ai** (ContentAnalytics, SentimentDisplay)
@@ -44,7 +34,6 @@
 - **Focus:** TypeScript + Tests + Stories + Accessibility
 
 ## 🚀 Next Actions:
-<<<<<<< HEAD
 1. Verify @smolitux/testing utilities across packages
 2. Analyze packages/@smolitux/core structure
 3. Identify missing/incomplete components
@@ -60,6 +49,9 @@
 - Ran repository analyzer and focused on @smolitux/charts.
 - Added barrel index files for LineChart and BarChart.
 - Documented chart status in docs/wiki/development/component-status-charts.md.
+
+### Update 2025-06-12 (Federation Helpers)
+- Implemented ActivityPub protocol helpers and cross-platform tests for federation package.
 
 ### Session 2025-06-12
 - Fixed generated layout tests and updated responsive behavior checks.
@@ -86,23 +78,10 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 ### Update 2025-06-08 (AI)
 - Analyzer run focused on @smolitux/ai. All AI components fully tested with caching and error handling.
 - Updated docs/wiki/development/component-status-ai.md
-
----
-_Updated by Codex AI_
-=======
-1. Analyze packages/@smolitux/core structure
-2. Identify missing/incomplete components
-3. Fix TypeScript errors
-4. Add missing tests (*.test.tsx)
-5. Add missing stories (*.stories.tsx)  
-6. Ensure accessibility compliance
-7. Update this file after each session
-
----
-*Updated by Codex AI*
-
 ### Update 2025-06-13
 - Reviewed **@smolitux/testing** utilities and added custom Jest matchers.
 - Created `component-status-testing.md` documenting package status.
 - Verified integration of testing helpers across packages.
->>>>>>> 53fa47a0 (feat(testing): add custom matchers and docs)
+
+---
+_Updated by Codex AI_
