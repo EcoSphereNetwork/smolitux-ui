@@ -12,5 +12,6 @@ This page tracks the implementation status for the `@smolitux/blockchain` packag
 | TokenDistributionChart | Complete |
 | TokenEconomy | Complete |
 | NFTGallery | Complete |
+| DeFiDashboard | Complete |
 
 *Last updated: 2025-06-09*

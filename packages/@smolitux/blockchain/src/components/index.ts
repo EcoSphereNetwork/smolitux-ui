@@ -7,3 +7,4 @@ export * from './TransactionHistory';
 export * from './TokenEconomy';
 export * from './SmartContractInteraction';
 export * from './NFTGallery';
+export * from './DeFiDashboard';

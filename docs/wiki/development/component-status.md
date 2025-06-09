@@ -311,3 +311,5 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 - Marked Flex component as fixed in documentation.
 ### Update 2025-06-15
 - Migrated ESLint configuration to flat config and removed legacy `.eslintrc.js`.
+### Update 2025-06-09
+- Added DeFiDashboard component implementation with tests and stories.

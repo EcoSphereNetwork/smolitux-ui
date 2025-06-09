@@ -29,6 +29,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | TokenEconomy | a11y-Test fehlt, Kein Storybook vorhanden |
 | TransactionHistory | a11y-Test fehlt, Kein Storybook vorhanden |
 | WalletConnect | Kein Storybook vorhanden |
+| DeFiDashboard | a11y-Test fehlt, Kein Storybook vorhanden |
 
 ## @smolitux/charts
 
@@ -291,3 +292,5 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 - Flex component marked complete; props typed.
 ### Update 2025-06-15
 - General tooling upgrade with ESLint flat config.
+### Update 2025-06-09
+- Added DeFiDashboard to blockchain TODO list.
