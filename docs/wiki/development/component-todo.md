@@ -162,3 +162,125 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 ### Update 2025-06-13
 - Added automate TODO/FIXME annotator script `scripts/annotate-components.js`.
 
+
+### Update 2025-06-09 - Automated annotations
+## @smolitux/ai
+
+| Komponente | TODOs |
+|------------|-------|
+| ContentAnalytics | forwardRef hinzufügen |
+| ContentModerator | forwardRef hinzufügen |
+| EngagementScore | forwardRef hinzufügen |
+| FakeNewsDetector | forwardRef hinzufügen |
+| RecommendationCarousel | forwardRef hinzufügen |
+| SentimentDisplay | forwardRef hinzufügen |
+| TrendingTopics | forwardRef hinzufügen |
+| TrollFilter | forwardRef hinzufügen |
+
+## @smolitux/blockchain
+
+| Komponente | TODOs |
+|------------|-------|
+| NFTGallery | forwardRef hinzufügen, Tests fehlen |
+| SmartContractInteraction | forwardRef hinzufügen, Tests fehlen |
+| StakingInterface | forwardRef hinzufügen, Tests fehlen |
+| TokenDisplay | forwardRef hinzufügen, Tests fehlen |
+| TokenDistributionChart | forwardRef hinzufügen, Tests fehlen |
+| TokenEconomy | forwardRef hinzufügen, Tests fehlen |
+| TransactionHistory | forwardRef hinzufügen, Tests fehlen |
+| WalletConnect | forwardRef hinzufügen, Tests fehlen |
+
+## @smolitux/charts
+
+| Komponente | TODOs |
+|------------|-------|
+| ChartAxis | Tests fehlen |
+| ChartLegend | Tests fehlen |
+| DonutChart | Tests fehlen |
+| Histogram | Tests fehlen |
+
+## @smolitux/community
+
+| Komponente | TODOs |
+|------------|-------|
+| ActivityFeed | forwardRef hinzufügen |
+| CommentSection | forwardRef hinzufügen |
+| FollowButton | forwardRef hinzufügen |
+| NotificationCenter | forwardRef hinzufügen |
+| UserProfile | forwardRef hinzufügen |
+
+## @smolitux/core
+
+| Komponente | TODOs |
+|------------|-------|
+| Accordion | forwardRef hinzufügen |
+| Alert | forwardRef hinzufügen |
+| Avatar | forwardRef hinzufügen |
+| Badge | forwardRef hinzufügen |
+| Collapse | forwardRef hinzufügen |
+| ColorPicker | forwardRef hinzufügen |
+| Dialog | forwardRef hinzufügen |
+| Drawer | forwardRef hinzufügen |
+| Form | forwardRef hinzufügen |
+| FormField | forwardRef hinzufügen |
+| LanguageSwitcher | forwardRef hinzufügen |
+| Menu | forwardRef hinzufügen |
+| Modal | forwardRef hinzufügen |
+| Popover | forwardRef hinzufügen |
+| RadioGroup | forwardRef hinzufügen |
+| Select | forwardRef hinzufügen |
+| Slide | forwardRef hinzufügen |
+| Stepper | forwardRef hinzufügen |
+| TabView | forwardRef hinzufügen |
+| Table | forwardRef hinzufügen |
+| Tabs | forwardRef hinzufügen |
+| Textarea | forwardRef hinzufügen |
+| Toast | forwardRef hinzufügen |
+| Tooltip | forwardRef hinzufügen |
+| voice | forwardRef hinzufügen |
+
+## @smolitux/federation
+
+| Komponente | TODOs |
+|------------|-------|
+| ActivityStream | forwardRef hinzufügen |
+| CrossPlatformShare | forwardRef hinzufügen |
+| FederatedSearch | forwardRef hinzufügen |
+| FederationStatus | forwardRef hinzufügen |
+| PlatformSelector | forwardRef hinzufügen |
+| ProtocolHandler | forwardRef hinzufügen |
+
+## @smolitux/layout
+
+| Komponente | TODOs |
+|------------|-------|
+| DashboardLayout | forwardRef hinzufügen |
+
+## @smolitux/media
+
+| Komponente | TODOs |
+|------------|-------|
+| AudioPlayer | forwardRef hinzufügen |
+| ImageGallery | forwardRef hinzufügen |
+| MediaCarousel | forwardRef hinzufügen |
+| MediaGrid | forwardRef hinzufügen |
+| MediaUploader | forwardRef hinzufügen |
+| VideoPlayer | forwardRef hinzufügen |
+
+## @smolitux/resonance
+
+| Komponente | TODOs |
+|------------|-------|
+| feed | forwardRef hinzufügen |
+| governance | forwardRef hinzufügen |
+| monetization | forwardRef hinzufügen |
+| platform | forwardRef hinzufügen |
+| post | forwardRef hinzufügen |
+| profile | forwardRef hinzufügen |
+
+## @smolitux/utils
+
+| Komponente | TODOs |
+|------------|-------|
+| patterns | forwardRef hinzufügen |
+

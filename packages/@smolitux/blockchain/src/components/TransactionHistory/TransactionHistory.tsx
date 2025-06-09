@@ -1,3 +1,5 @@
+// TODO: Tests fehlen
+// TODO: forwardRef hinzufügen
 import React, { useState } from 'react';
 import { Card, Button } from '@smolitux/core';
 import { TransactionType, Transaction } from '../types';

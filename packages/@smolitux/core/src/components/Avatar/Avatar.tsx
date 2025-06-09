@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 // packages/@smolitux/core/src/components/Avatar/Avatar.tsx
 import React, { useState } from 'react';
 

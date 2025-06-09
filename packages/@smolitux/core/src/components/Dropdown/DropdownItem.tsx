@@ -1,3 +1,4 @@
+// FIXME: Props nicht typisiert
 // packages/@smolitux/core/src/components/Dropdown/DropdownItem.tsx
 import React, { useRef, useEffect } from 'react';
 import { useDropdownContext } from './Dropdown';

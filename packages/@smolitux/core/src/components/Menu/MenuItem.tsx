@@ -1,3 +1,4 @@
+// FIXME: Props nicht typisiert
 // packages/@smolitux/core/src/components/Menu/MenuItem.improved.tsx
 import React, { useState, useEffect, useRef, useId } from 'react';
 import { useMenuContext } from './Menu';

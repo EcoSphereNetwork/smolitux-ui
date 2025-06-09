@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 // packages/@smolitux/core/src/components/Stepper/Stepper.tsx
 import React, { createContext, useContext, useMemo } from 'react';
 import './Stepper.css';

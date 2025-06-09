@@ -1,3 +1,5 @@
+// TODO: Tests fehlen
+// TODO: forwardRef hinzufügen
 import React, { useState, useEffect, useRef } from 'react';
 import { Card } from '@smolitux/core';
 

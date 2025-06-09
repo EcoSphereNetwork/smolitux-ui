@@ -1,3 +1,4 @@
+// TODO: forwardRef hinzufügen
 // packages/@smolitux/core/src/components/Accordion/Accordion.tsx
 import React, { useState, createContext, useContext } from 'react';
 
