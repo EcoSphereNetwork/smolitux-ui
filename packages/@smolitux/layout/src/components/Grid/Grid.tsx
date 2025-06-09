@@ -1,4 +1,4 @@
-// FIXME: Props nicht typisiert
+// 🛠 FIXME [Codex]: Props nicht typisiert – Fehlerbehebung erforderlich
 import React, { forwardRef } from 'react';
 import type {
   GridBreakpoint,

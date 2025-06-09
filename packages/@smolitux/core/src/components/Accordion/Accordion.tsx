@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/core/src/components/Accordion/Accordion.tsx
 import React, { useState, createContext, useContext } from 'react';
 

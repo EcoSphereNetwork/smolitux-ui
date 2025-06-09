@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/core/src/components/Toast/ToastProvider.tsx
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { Toast, ToastProps, ToastType } from './Toast';

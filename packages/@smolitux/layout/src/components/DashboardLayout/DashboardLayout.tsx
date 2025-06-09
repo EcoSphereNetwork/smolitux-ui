@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/layout/src/components/DashboardLayout/DashboardLayout.tsx
 import React, { useState, useEffect } from 'react';
 import Header, { HeaderProps } from '../Header/Header';

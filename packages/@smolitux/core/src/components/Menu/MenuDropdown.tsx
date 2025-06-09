@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/core/src/components/Menu/MenuDropdown.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';

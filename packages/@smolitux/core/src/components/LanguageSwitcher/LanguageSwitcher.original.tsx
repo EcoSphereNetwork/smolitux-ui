@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../../i18n/I18nProvider';
 import { LOCALE_NAMES, LOCALE_CODES, LOCALE_DIRECTIONS } from '../../i18n/constants';

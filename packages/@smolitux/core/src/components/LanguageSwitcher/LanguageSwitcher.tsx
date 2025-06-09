@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/core/src/components/LanguageSwitcher/LanguageSwitcher.improved.tsx
 import React, { useState, useEffect } from 'react';
 

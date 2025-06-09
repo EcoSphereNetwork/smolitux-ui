@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/core/src/components/Tabs/Tabs.tsx
 import React, { useState, useEffect, useRef, createContext, useContext, useMemo } from 'react';
 import './Tabs.css';
