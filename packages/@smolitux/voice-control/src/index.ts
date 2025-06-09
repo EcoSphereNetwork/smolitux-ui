@@ -17,3 +17,5 @@ export type {
   FeedbackType,
   RecognizerParams,
 } from './types';
+export { VoiceRecognition } from './components/VoiceRecognition';
+export type { VoiceRecognitionProps } from './components/VoiceRecognition';
