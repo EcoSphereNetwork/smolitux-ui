@@ -8,5 +8,6 @@ This page tracks the current completion state of the `@smolitux/utils` package.
 | Helpers      | ✅ Complete |
 | Validators   | ✅ Complete |
 | Styling      | ✅ Complete |
+| ClassName (cn) | ✅ Added |
 
 All utilities are tested with extensive edge cases and are used across other packages.
