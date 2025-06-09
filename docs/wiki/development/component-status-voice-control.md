@@ -5,6 +5,7 @@
 | VoiceControlProvider | ✅ | ✅ | ✅ | Ready |
 | withVoiceControl | ✅ | ✅ | ✅ | Ready |
 | SpeechSynthesizer | ✅ | ✅ | ✅ | Ready |
+| VoiceRecognition | ✅ | ✅ | ✅ | Ready |
 | FeedbackManager | ✅ | – | – | Ready |
 | VoiceControlManager | ✅ | – | – | Ready |
 | WebSpeechRecognitionEngine | ✅ | – | – | Ready |
