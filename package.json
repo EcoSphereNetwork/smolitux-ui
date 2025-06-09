@@ -7,7 +7,7 @@
     "packages/@smolitux/*"
   ],
   "scripts": {
-    "lint": "eslint packages/@smolitux --ext .ts,.tsx",
+    "lint": "eslint packages/@smolitux --ext .ts,.tsx --fix",
     "test": "jest",
     "build": "tsup"
   },
@@ -29,7 +29,10 @@
     "ts-jest": "^29.3.0",
     "tsup": "^8.0.0",
     "typescript": "^5.8.2",
-    "eslint-config-prettier": "^10.1.5"
+    "eslint-config-prettier": "^10.1.5",
+    "@eslint/compat": "^1.2.9"
+  },
+  "eslintConfig": {
+    "extends": "./.eslintrc.js"
   }
-  
 }
