@@ -1,256 +1,413 @@
-# 🚀 OPTIMIZED CODEX - Quick Reference
+# 🚀 OPTIMIZED CODEX - Quick Reference Guide
 
-**Zero-setup, maximum productivity guide for Codex agents**
+**Zero-setup, maximum productivity guide for completing Smolitux UI**
 
-## ⚡ **Quick Start (Choose Your Approach)**
+## ⚡ **Quick Start Decision Tree**
 
-### **🎯 Approach A: Direct Component Work** 
-*Best when: Dependencies work, want immediate results*
-
-```bash
-# 30-second assessment
-find packages/@smolitux/core/src/components -maxdepth 1 -type d | head -5
-
-# 8-minute per-component workflow
-COMPONENT="Button"  # Iterate through each
-echo "🧩 FIXING: $COMPONENT"
-# → Analyze → Fix TypeScript → Tests → Stories → Validate → Next
+```
+START HERE
+    ↓
+Run Analyzer → Check Coverage → Choose Approach
+    ↓              ↓                ↓
+High Missing   Medium Missing   Low Missing
+Files (>50%)   Files (20-50%)   Files (<20%)
+    ↓              ↓                ↓
+Bulk Approach  Targeted Work    Quality Focus
 ```
 
-**Session Goal:** 5 components fixed per session (~45 minutes)
-
-### **🔧 Approach B: Systematic Analysis + Bulk** 
-*Best when: Many missing files, want comprehensive completion*
+### **🎯 Approach A: Bulk Completion** 
+*Best when: Many missing files (>50%)*
 
 ```bash
-# 1. Assess repository state
+# 1. Analyze current state (30 seconds)
 bash scripts/smolitux-analyzer.sh
 
-# 2. Bulk completion (if needed)
-bash scripts/smolitux-completion-finisher.sh
+# 2. Bulk completion (5-10 minutes)
+bash scripts/smolitux-completion-finisher.sh --detailed
 
-# 3. Quality enhancement
+# 3. Quality enhancement (remainder of session)
 # Focus on improving generated files
 ```
 
-**Session Goal:** Complete package analysis + targeted improvements
+### **🔧 Approach B: Targeted Development**
+*Best when: Medium missing files (20-50%)*
+
+```bash
+# 1. Quick assessment
+bash scripts/smolitux-analyzer.sh
+
+# 2. Focus on highest priority packages
+PACKAGES=("core" "theme" "utils" "layout")
+
+# 3. Component-by-component workflow (5-8 min each)
+for pkg in "${PACKAGES[@]}"; do
+    echo "🔧 Working on @smolitux/$pkg"
+    # Apply 5-8 minute workflow per component
+done
+```
+
+### **🎨 Approach C: Quality Enhancement**
+*Best when: Low missing files (<20%)*
+
+```bash
+# Focus on quality improvements:
+# - TypeScript strict compliance
+# - Enhanced test coverage
+# - Performance optimization
+# - Accessibility improvements
+```
 
 ---
 
-## 🎯 **Per-Component Workflow (8 minutes)**
+## 🎯 **5-8 Minute Component Workflow**
 
 ### **Minute 0-1: Quick Analysis**
 ```bash
 COMPONENT="Button"
 PACKAGE="core"
 
-# Check current state
+# Inspect current state
 ls packages/@smolitux/$PACKAGE/src/components/$COMPONENT/
-head -10 packages/@smolitux/$PACKAGE/src/components/$COMPONENT/$COMPONENT.tsx
+echo "Files found: $(ls packages/@smolitux/$PACKAGE/src/components/$COMPONENT/ | wc -l)"
+
+# Check for missing files
+[ ! -f "packages/@smolitux/$PACKAGE/src/components/$COMPONENT/$COMPONENT.test.tsx" ] && echo "❌ Missing test"
+[ ! -f "packages/@smolitux/$PACKAGE/src/components/$COMPONENT/$COMPONENT.stories.tsx" ] && echo "❌ Missing story"
 ```
 
-### **Minute 1-3: TypeScript Implementation**
+### **Minute 1-3: Implementation**
+**Essential component structure:**
+
 ```typescript
-// Ensure proper structure
+// ComponentName.tsx
+import React, { forwardRef } from 'react';
+import { clsx } from 'clsx';
+
 interface ComponentProps {
   children?: React.ReactNode;
   className?: string;
-  // ... other props with JSDoc
+  variant?: 'primary' | 'secondary';
+  disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export const Component = forwardRef<HTMLElement, ComponentProps>((props, ref) => {
-  return <element ref={ref} data-testid="Component" {...props} />;
-});
+export const Component = forwardRef<HTMLElement, ComponentProps>(
+  ({ children, className, variant = 'primary', disabled, onClick, ...props }, ref) => {
+    return (
+      <element
+        ref={ref}
+        className={clsx('component', `component--${variant}`, className)}
+        disabled={disabled}
+        onClick={onClick}
+        data-testid="Component"
+        {...props}
+      >
+        {children}
+      </element>
+    );
+  }
+);
+
+Component.displayName = 'Component';
+export default Component;
 ```
 
-### **Minute 3-6: Test Implementation**
+### **Minute 3-5: Testing**
+**Essential test structure:**
+
 ```typescript
-// Essential tests only
+// ComponentName.test.tsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { Component } from './Component';
+
+expect.extend(toHaveNoViolations);
+
 describe('Component', () => {
-  it('renders correctly', () => { /* basic render */ });
-  it('handles props correctly', () => { /* props test */ });
-  it('has no accessibility violations', async () => { /* jest-axe */ });
+  it('renders correctly', () => {
+    render(<Component>Test</Component>);
+    expect(screen.getByTestId('Component')).toBeInTheDocument();
+  });
+
+  it('handles interactions', async () => {
+    const user = userEvent.setup();
+    const handleClick = jest.fn();
+    render(<Component onClick={handleClick}>Test</Component>);
+    await user.click(screen.getByTestId('Component'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('forwards ref', () => {
+    const ref = React.createRef<HTMLElement>();
+    render(<Component ref={ref}>Test</Component>);
+    expect(ref.current).toBeTruthy();
+  });
+
+  it('has no a11y violations', async () => {
+    const { container } = render(<Component>Test</Component>);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
 });
 ```
 
-### **Minute 6-8: Story Implementation**
+### **Minute 5-7: Documentation**
+**Essential story structure:**
+
 ```typescript
-// Basic stories
-export default { title: 'Core/Component', component: Component };
-export const Default = {};
-export const WithProps = { args: { prop: 'value' } };
-export const AllVariants = { /* variant showcase */ };
+// ComponentName.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { Component } from './Component';
+
+const meta: Meta<typeof Component> = {
+  title: 'Components/[Package]/Component',
+  component: Component,
+  parameters: { layout: 'centered' },
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: { children: 'Default Component' },
+};
+
+export const AllVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <Component variant="primary">Primary</Component>
+      <Component variant="secondary">Secondary</Component>
+      <Component disabled>Disabled</Component>
+    </div>
+  ),
+};
 ```
 
-### **Minute 8: Validation**
+### **Minute 7-8: Validation**
 ```bash
-# Quick check
+# Quick validation
+npm run lint --workspace=@smolitux/$PACKAGE
 npm test --workspace=@smolitux/$PACKAGE -- --testPathPattern="$COMPONENT" --passWithNoTests
-echo "✅ $COMPONENT: Complete" >> COMPONENT_STATUS.md
+
+# Update progress
+echo "✅ $COMPONENT: Complete ($(date))" >> COMPONENT_STATUS.md
+```
+
+---
+
+## 📊 **Package Priority Matrix**
+
+| Priority | Package | Focus | Time Estimate |
+|----------|---------|-------|---------------|
+| **P0** | `@smolitux/core` | Foundation components | 2-3 hours |
+| **P0** | `@smolitux/theme` | Design system | 1 hour |
+| **P1** | `@smolitux/utils` | Utility functions | 1-2 hours |
+| **P1** | `@smolitux/testing` | Test utilities | 30 min |
+| **P1** | `@smolitux/layout` | Layout components | 1 hour |
+| **P2** | `@smolitux/charts` | Data visualization | 2-3 hours |
+| **P2** | `@smolitux/media` | Media components | 1-2 hours |
+| **P3** | `@smolitux/ai` | AI components | 2-3 hours |
+| **P3** | `@smolitux/blockchain` | Crypto components | 2-3 hours |
+| **P3** | `@smolitux/community` | Social features | 1-2 hours |
+| **P4** | `@smolitux/resonance` | Platform features | 3-4 hours |
+| **P4** | `@smolitux/federation` | Cross-platform | 2-3 hours |
+| **P4** | `@smolitux/voice-control` | Voice interfaces | 2-3 hours |
+
+---
+
+## 🛠️ **Essential Tools & Commands**
+
+### **Analysis Tools**
+```bash
+# Repository state analysis
+bash scripts/smolitux-analyzer.sh
+
+# Component annotation
+node scripts/annotate-components.js
+
+# Coverage dashboard
+./generate-coverage-dashboard.sh
+```
+
+### **Development Commands**
+```bash
+# Lint specific package
+npm run lint --workspace=@smolitux/core
+
+# Test specific package
+npm test --workspace=@smolitux/core
+
+# Build specific package
+npm run build --workspace=@smolitux/core
+
+# Run all tests
+npm test
+
+# Build all packages
+npm run build
+```
+
+### **Quick Fixes**
+```bash
+# Fix missing React imports
+find packages -name "*.tsx" -exec grep -l "React\." {} \; | while read file; do
+  [[ ! $(head -1 "$file") =~ ^import.*React ]] && sed -i '1i import React from '\''react'\'';' "$file"
+done
+
+# Add missing exports
+find packages -name "*.tsx" | grep -v "\.test\.\|\.stories\." | while read file; do
+  BASENAME=$(basename "$file" .tsx)
+  grep -q "export.*$BASENAME\|export default" "$file" || echo "export default $BASENAME;" >> "$file"
+done
+
+# Fix TypeScript any types
+find packages -name "*.tsx" -exec sed -i 's/: any\b/: unknown/g' {} \;
 ```
 
 ---
 
 ## 📋 **Session Templates**
 
-### **Template A: Direct Component Session**
+### **Template A: Quick Sprint (1-2 hours)**
 ```markdown
-## Session [X] - $(date +%Y-%m-%d)
+## Quick Sprint Session - $(date +%Y-%m-%d)
 
-### 🎯 Target (5 components, 45 min):
-1. [ ] Button (8 min)
-2. [ ] Input (8 min)  
-3. [ ] Card (8 min)
-4. [ ] Modal (8 min)
-5. [ ] Table (8 min)
+### 🎯 Goal: Complete @smolitux/[package] package
+
+### 📋 Components to Fix:
+- [ ] Component1 (8 min)
+- [ ] Component2 (8 min)
+- [ ] Component3 (8 min)
+- [ ] Component4 (8 min)
+- [ ] Component5 (8 min)
 
 ### ✅ Results:
-- Components Fixed: X/5
-- Average Time: X min per component
-- Issues: [any problems encountered]
-
-### 🎯 Next:
-Continue with [next 5 components]
-```
-
-### **Template B: Analysis + Bulk Session**
-```markdown
-## Analysis Session [X] - $(date +%Y-%m-%d)
-
-### 📊 Repository Analysis:
-- Total Components: [X]
-- Missing Tests: [X] 
-- Missing Stories: [X]
+- Components: [X]/5 completed
+- Tests: [X] passing
 - Coverage: [X]%
+- Build: ✅/❌
 
-### 🔧 Actions Taken:
-- Ran completion finisher: Generated [X] tests, [Y] stories
-- Fixed [Z] validation issues
-- Updated COMPONENT_STATUS.md
-
-### 🎯 Next:
-Quality enhancement of generated files in @smolitux/[package]
+### 🎯 Next: [Next package or focus area]
 ```
 
----
+### **Template B: Quality Focus (2-3 hours)**
+```markdown
+## Quality Enhancement Session - $(date +%Y-%m-%d)
 
-## 🛠️ **Essential Tools**
+### 🎯 Goal: Improve quality across [X] packages
 
-### **Repository Analyzer**
-```bash
-bash scripts/smolitux-analyzer.sh
-# Shows: coverage %, missing files, validation issues
-```
+### 📊 Starting Metrics:
+- TypeScript Errors: [X]
+- ESLint Errors: [X]
+- Test Coverage: [X]%
+- A11y Issues: [X]
 
-### **Completion Finisher** 
-```bash
-bash scripts/smolitux-completion-finisher.sh [--detailed]
-# Generates: missing tests/stories, fixes validation issues
-```
+### 🔧 Focus Areas:
+- [ ] TypeScript strict compliance
+- [ ] Enhanced test coverage
+- [ ] Accessibility improvements
+- [ ] Performance optimization
 
-### **Quick Component Check**
-```bash
-# Component analysis one-liner
-COMP="Button"; ls packages/@smolitux/core/src/components/$COMP/ && echo "Files: $(ls packages/@smolitux/core/src/components/$COMP/ | wc -l)"
+### ✅ Results:
+- TypeScript Errors: [X] → 0
+- ESLint Errors: [X] → 0
+- Test Coverage: [X]% → [Y]%
+- A11y Issues: [X] → 0
+
+### 🎯 Next: [Next quality improvement area]
 ```
 
 ---
 
 ## ⚠️ **Critical Dos & Don'ts**
 
-### **✅ DO:**
-- Run analyzer first to understand current state
-- Work systematically through packages (core → theme → layout → ...)
-- Use 8-minute per-component target
-- Validate each component before moving on
-- Update COMPONENT_STATUS.md after each component
+### **✅ ALWAYS DO**
+1. **Run analyzer first** - understand current state
+2. **Work systematically** - follow package priority order
+3. **Validate each step** - test before moving on
+4. **Use proper typing** - no `any` types allowed
+5. **Include accessibility** - jest-axe tests required
+6. **Forward refs** - use forwardRef pattern
+7. **Add test-ids** - data-testid for all components
+8. **Update progress** - maintain status files
 
-### **❌ DON'T:**
-- Generate duplicate files (use improved scripts only)
-- Work on test/story files as if they were components  
-- Skip TypeScript strict mode compliance
-- Ignore accessibility testing
-- Work without understanding current state
-
----
-
-## 🎯 **Success Metrics**
-
-### **Per Session:**
-- **Components Fixed:** 5 per direct session
-- **Time per Component:** ~8 minutes average
-- **Quality Gate:** TypeScript + ESLint + Tests passing
-
-### **Per Package:**
-- **Test Coverage:** ≥90%
-- **Story Coverage:** 100% 
-- **Build Status:** Clean with no errors
-- **Accessibility:** All jest-axe tests passing
+### **❌ NEVER DO**
+1. **Skip validation** - always test changes
+2. **Generate duplicates** - check existing files first
+3. **Use any types** - maintain TypeScript strict mode
+4. **Ignore accessibility** - a11y is mandatory
+5. **Work without context** - always understand current state
+6. **Skip documentation** - stories are required
+7. **Ignore performance** - monitor bundle size
+8. **Make breaking changes** - maintain backward compatibility
 
 ---
 
-## 🔄 **Iteration Strategy**
+## 🎯 **Success Metrics Dashboard**
 
-### **Package Order:**
-1. `@smolitux/core` (foundation)
-2. `@smolitux/theme` (styling)
-3. `@smolitux/layout` (layout)
-4. `@smolitux/utils` (utilities)
-5. Continue through specialized packages...
+### **Quality Gates**
+- ✅ **Build Status**: Zero TypeScript/ESLint errors
+- ✅ **Test Coverage**: ≥95% across all packages
+- ✅ **Accessibility**: 100% jest-axe compliance
+- ✅ **Documentation**: Complete Storybook stories
+- ✅ **Performance**: <16ms render time
 
-### **Component Priority per Package:**
-1. Basic components (Button, Input, Card)
-2. Layout components (Container, Grid, Flex)
-3. Form components (Form, Field, Select)
-4. Complex components (Table, Modal, Carousel)
-
----
-
-## 💡 **Productivity Hacks**
-
-### **Time Savers:**
-- Copy proven test patterns between similar components
-- Use completion finisher for bulk missing files
-- Template reuse for consistent story structures
-- Quick validation commands per component
-
-### **Quality Shortcuts:**
-- Start with accessibility in mind (saves rework)
-- Use TypeScript strict mode from beginning
-- Include data-testid in initial implementation
-- Write JSDoc as you code (not later)
-
-### **Common Fixes:**
+### **Completion Tracking**
 ```bash
-# Missing React import
-sed -i '1i import React from '\''react'\'';' ComponentFile.tsx
+# Quick status check
+echo "📊 Current Status:"
+echo "Packages: $(find packages/@smolitux -name "package.json" | wc -l)"
+echo "Components: $(find packages/@smolitux -name "*.tsx" | grep -v "\.test\.\|\.stories\." | wc -l)"
+echo "Tests: $(find packages/@smolitux -name "*.test.tsx" | wc -l)"
+echo "Stories: $(find packages/@smolitux -name "*.stories.tsx" | wc -l)"
+```
 
-# Add missing export
-echo "export default ComponentName;" >> ComponentFile.tsx
-
-# Quick test-id addition
-sed -i 's/<div/<div data-testid="ComponentName"/g' ComponentFile.tsx
+### **Progress Formula**
+```
+Completion % = (Functional Components + Passing Tests + Complete Stories) / (Total Components * 3) * 100
 ```
 
 ---
 
-## 🚀 **Optimized Starting Prompts**
+## 🚀 **Productivity Hacks**
 
-### **For Direct Component Work:**
-```
-Fix 5 core components systematically: packages/@smolitux/core/src/components/[Button|Input|Card|Modal|Table] - ensure TypeScript compliance, create missing *.test.tsx and *.stories.tsx files, 8 minutes per component target, document progress in COMPONENT_STATUS.md, skip setup/dependencies
-```
+### **Time Savers**
+- Use analyzer before starting any session
+- Copy proven patterns between similar components
+- Leverage bulk completion for missing files
+- Use VS Code snippets for common patterns
+- Batch similar tasks (all tests, then all stories)
 
-### **For Systematic Completion:**
-```
-Analyze Smolitux UI repository state using scripts/smolitux-analyzer.sh, identify packages with low coverage, run completion finisher for bulk file generation, then focus on quality enhancement of generated files, prioritize @smolitux/core package
-```
+### **Quality Shortcuts**
+- Start with accessibility in mind (saves rework)
+- Write tests as you implement (TDD approach)
+- Use TypeScript strict mode from beginning
+- Include performance considerations early
+- Document as you code (JSDoc comments)
 
-### **For Quality Enhancement:**
-```
-Review and enhance generated test/story files in @smolitux/[package], improve component-specific test logic, add realistic story scenarios, ensure ≥90% coverage, validate accessibility compliance, focus on [specific components]
+### **Automation Helpers**
+```bash
+# Create component boilerplate
+create_component() {
+  local name=$1
+  local package=$2
+  local dir="packages/@smolitux/$package/src/components/$name"
+  mkdir -p "$dir"
+  # Generate component, test, and story files
+}
+
+# Batch validation
+validate_package() {
+  local package=$1
+  npm run lint --workspace=@smolitux/$package
+  npm test --workspace=@smolitux/$package
+  npm run build --workspace=@smolitux/$package
+}
 ```
 
 ---
 
-**🎯 This quick reference enables immediate productivity while maintaining quality standards. Choose the approach that fits your current repository state and session goals.**
+**🎯 This quick reference guide enables immediate productivity while maintaining the highest quality standards. Choose the appropriate approach based on your current repository state and session goals.**
