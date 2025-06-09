@@ -1,187 +1,239 @@
 #!/bin/bash
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 🚀 CREATE_PACKAGE_ISSUES.SH - Package Testing Issues to GitHub
+# 🚀 RUN_COMPLETE_ANALYSIS.SH - Vollständige Smolitux UI Analyse & Issue Creation
 # ═══════════════════════════════════════════════════════════════════════════════
 
-PACKAGE=${1:-core}
-CREATED_COUNT=0
+set -euo pipefail
 
-create_package_issues() {
-    local PACKAGE=$1
-    echo "🔍 Creating issues for @smolitux/$PACKAGE..."
+echo "🚀 SMOLITUX UI COMPLETE ANALYSIS & ISSUE CREATION"
+echo "================================================="
+echo ""
+
+# ───────────────────────────────────────────────
+# Configuration
+# ───────────────────────────────────────────────
+PACKAGES=("core" "theme" "utils" "testing" "layout" "charts" "media" "community" "ai" "blockchain" "resonance" "federation" "voice-control")
+TOTAL_ISSUES=0
+START_TIME=$(date +%s)
+
+# Check prerequisites
+check_prerequisites() {
+    echo "🔍 Checking prerequisites..."
     
-    # ───────────────────────────────────────────────
-    # ESLint Issues
-    # ───────────────────────────────────────────────
-    if [ -f "lint.log" ] && grep -q "error" lint.log; then
-        echo "  📋 Processing ESLint errors..."
-        
-        grep "error" lint.log | head -10 | while read line; do
-            # Parse ESLint output: file:line:col error message rule
-            FILE=$(echo "$line" | awk -F: '{print $1}')
-            LINE=$(echo "$line" | awk -F: '{print $2}')
-            RULE=$(echo "$line" | grep -o '[a-zA-Z-/@]*$' | tail -1)
-            MESSAGE=$(echo "$line" | sed 's/.*error[[:space:]]*//' | sed "s/[[:space:]]*$RULE[[:space:]]*$//")
-            
-            TITLE="ESLint $RULE violation in @smolitux/$PACKAGE"
-            BODY="**ESLint Rule:** \`$RULE\`
-**File:** \`$FILE:$LINE\`
-**Package:** @smolitux/$PACKAGE
-**Message:** $MESSAGE
-
-**Reproduction:**
-\`\`\`bash
-cd packages/@smolitux/$PACKAGE
-npm run lint
-\`\`\`
-
-**Fix:**
-Update the code to comply with ESLint rule \`$RULE\`.
-
-**Resources:**
-- [ESLint Rule Documentation](https://eslint.org/docs/rules/$RULE)"
-
-            echo "    📝 ESLint: $RULE in $FILE"
-            gh issue create \
-                --title "$TITLE" \
-                --label "code-quality,eslint,package:$PACKAGE" \
-                --body "$BODY" >/dev/null 2>&1 && CREATED_COUNT=$((CREATED_COUNT + 1))
-        done
+    # GitHub CLI
+    if ! command -v gh &> /dev/null; then
+        echo "❌ GitHub CLI not found. Installing..."
+        apt-get update > /dev/null 2>&1
+        apt-get install -y gh > /dev/null 2>&1
     fi
     
-    # ───────────────────────────────────────────────
-    # Test Failures
-    # ───────────────────────────────────────────────
-    if [ -f "test.log" ] && grep -qE "(FAIL|Error|Failed)" test.log; then
-        echo "  🧪 Processing test failures..."
-        
-        grep -E "(FAIL|Error|Failed)" test.log | head -5 | while read line; do
-            # Extract test name and error
-            TEST_NAME=$(echo "$line" | grep -o "FAIL.*" | head -1)
-            ERROR_MSG=$(echo "$line" | sed 's/.*Error[[:space:]]*//')
-            
-            TITLE="Test failure in @smolitux/$PACKAGE: $(echo "$TEST_NAME" | cut -c1-30)..."
-            BODY="**Test Error:** $ERROR_MSG
-**Package:** @smolitux/$PACKAGE
-**Full Output:** 
-\`\`\`
-$line
-\`\`\`
-
-**Reproduction:**
-\`\`\`bash
-cd packages/@smolitux/$PACKAGE
-npm test
-\`\`\`
-
-**Fix Required:**
-- Review failing test case
-- Update component or test logic
-- Ensure all assertions pass
-- Run \`npm test\` to verify fix"
-
-            echo "    📝 Test: $(echo "$TEST_NAME" | cut -c1-20)..."
-            gh issue create \
-                --title "$TITLE" \
-                --label "bug,test-failure,package:$PACKAGE" \
-                --body "$BODY" >/dev/null 2>&1 && CREATED_COUNT=$((CREATED_COUNT + 1))
-        done
+    # GitHub auth
+    if ! gh auth status &> /dev/null; then
+        echo "❌ GitHub authentication required"
+        echo "   Run: gh auth login"
+        exit 1
     fi
     
-    # ───────────────────────────────────────────────
-    # Build Errors
-    # ───────────────────────────────────────────────
-    if [ -f "build.log" ] && grep -qE "(error|Error|ERROR)" build.log; then
-        echo "  🔨 Processing build errors..."
+    # Repository structure
+    if [ ! -d "packages/@smolitux" ]; then
+        echo "❌ Not in Smolitux UI repository root"
+        exit 1
+    fi
+    
+    echo "  ✅ Prerequisites OK"
+}
+
+# Phase 1: Analyzer Issues
+run_analyzer_issues() {
+    echo ""
+    echo "📊 PHASE 1: CREATING ANALYZER ISSUES"
+    echo "====================================="
+    
+    if [ -f "create_issues.sh" ]; then
+        echo "🔍 Loading analyzer issue creation..."
+        source create_issues.sh
         
-        grep -E "(error|Error|ERROR)" build.log | head -5 | while read line; do
-            # Extract error details
-            ERROR_TYPE="Build Error"
-            if echo "$line" | grep -q "TypeScript"; then
-                ERROR_TYPE="TypeScript Build Error"
-            elif echo "$line" | grep -q "Module"; then
-                ERROR_TYPE="Module Resolution Error"
+        echo "🚀 Creating analyzer validation issues..."
+        create_analyzer_issues
+        
+        ANALYZER_ISSUES=$(gh issue list --label ERROR,WARN --state open | wc -l)
+        TOTAL_ISSUES=$((TOTAL_ISSUES + ANALYZER_ISSUES))
+        echo "  ✅ Analyzer issues created: $ANALYZER_ISSUES"
+    else
+        echo "⚠️  create_issues.sh not found - skipping analyzer issues"
+    fi
+}
+
+# Phase 2: Package Testing & Issues
+run_package_testing() {
+    echo ""
+    echo "📦 PHASE 2: PACKAGE TESTING & ISSUE CREATION"
+    echo "============================================"
+    
+    local SUCCESSFUL_PACKAGES=0
+    local FAILED_PACKAGES=0
+    
+    for pkg in "${PACKAGES[@]}"; do
+        echo ""
+        echo "🔄 Processing @smolitux/$pkg..."
+        
+        PKG_DIR="packages/@smolitux/$pkg"
+        if [ ! -d "$PKG_DIR" ]; then
+            echo "  ⚠️  Package directory not found: $PKG_DIR"
+            FAILED_PACKAGES=$((FAILED_PACKAGES + 1))
+            continue
+        fi
+        
+        cd "$PKG_DIR"
+        
+        # Check package.json for scripts
+        AVAILABLE_SCRIPTS=""
+        if [ -f "package.json" ]; then
+            if grep -q '"lint"' package.json; then
+                AVAILABLE_SCRIPTS="$AVAILABLE_SCRIPTS lint"
             fi
-            
-            TITLE="$ERROR_TYPE in @smolitux/$PACKAGE"
-            BODY="**Build Error:** $line
-**Package:** @smolitux/$PACKAGE
-**Type:** $ERROR_TYPE
-
-**Reproduction:**
-\`\`\`bash
-cd packages/@smolitux/$PACKAGE
-npm run build
-\`\`\`
-
-**Fix Required:**
-- Resolve build compilation issues
-- Check for missing dependencies
-- Verify TypeScript configuration
-- Test with \`npm run build\`
-
-**Priority:** Critical - blocks package publishing"
-
-            echo "    📝 Build: $ERROR_TYPE"
-            gh issue create \
-                --title "$TITLE" \
-                --label "bug,build,package:$PACKAGE,priority:critical" \
-                --body "$BODY" >/dev/null 2>&1 && CREATED_COUNT=$((CREATED_COUNT + 1))
-        done
-    fi
+            if grep -q '"test"' package.json; then
+                AVAILABLE_SCRIPTS="$AVAILABLE_SCRIPTS test"
+            fi
+            if grep -q '"build"' package.json; then
+                AVAILABLE_SCRIPTS="$AVAILABLE_SCRIPTS build"
+            fi
+        fi
+        
+        echo "  📋 Available scripts:$AVAILABLE_SCRIPTS"
+        
+        # Run available scripts
+        PKG_ISSUES_BEFORE=$(gh issue list --label "package:$pkg" --state open | wc -l)
+        
+        if [[ "$AVAILABLE_SCRIPTS" == *"lint"* ]]; then
+            echo "  🔍 Running lint..."
+            npm run lint 2>&1 | tee lint.log > /dev/null || true
+        fi
+        
+        if [[ "$AVAILABLE_SCRIPTS" == *"test"* ]]; then
+            echo "  🧪 Running tests..."
+            npm test 2>&1 | tee test.log > /dev/null || true
+        fi
+        
+        if [[ "$AVAILABLE_SCRIPTS" == *"build"* ]]; then
+            echo "  🔨 Running build..."
+            npm run build 2>&1 | tee build.log > /dev/null || true
+        fi
+        
+        # Create issues from logs
+        if [ -f "../../create_package_issues.sh" ]; then
+            echo "  📝 Creating issues from test results..."
+            bash ../../create_package_issues.sh "$pkg" > /dev/null 2>&1 || true
+        fi
+        
+        PKG_ISSUES_AFTER=$(gh issue list --label "package:$pkg" --state open | wc -l)
+        PKG_NEW_ISSUES=$((PKG_ISSUES_AFTER - PKG_ISSUES_BEFORE))
+        
+        echo "  ✅ Package complete: $PKG_NEW_ISSUES new issues"
+        TOTAL_ISSUES=$((TOTAL_ISSUES + PKG_NEW_ISSUES))
+        SUCCESSFUL_PACKAGES=$((SUCCESSFUL_PACKAGES + 1))
+        
+        cd ../../..
+    done
     
-    echo "  ✅ Package issues created for $PACKAGE: $CREATED_COUNT new issues"
+    echo ""
+    echo "📊 Package Testing Summary:"
+    echo "  ✅ Successful: $SUCCESSFUL_PACKAGES packages"
+    echo "  ❌ Failed: $FAILED_PACKAGES packages"
+}
+
+# Final Report
+generate_final_report() {
+    local END_TIME=$(date +%s)
+    local DURATION=$((END_TIME - START_TIME))
+    
+    echo ""
+    echo "🎉 ANALYSIS COMPLETE!"
+    echo "===================="
+    echo ""
+    echo "📊 Final Statistics:"
+    echo "  ⏱️  Duration: ${DURATION}s"
+    echo "  📈 Total Issues Created: $TOTAL_ISSUES"
+    echo "  📦 Packages Processed: ${#PACKAGES[@]}"
+    echo ""
+    echo "🏷️  Issues by Type:"
+    echo "  🔴 Critical (build): $(gh issue list --label priority:critical --state open | wc -l)"
+    echo "  🟠 High (errors): $(gh issue list --label priority:high --state open | wc -l)"
+    echo "  🔧 Code Quality: $(gh issue list --label code-quality --state open | wc -l)"
+    echo "  🧪 Test Failures: $(gh issue list --label test-failure --state open | wc -l)"
+    echo ""
+    echo "📦 Issues by Package:"
+    for pkg in "${PACKAGES[@]}"; do
+        local count=$(gh issue list --label "package:$pkg" --state open | wc -l)
+        if [ $count -gt 0 ]; then
+            echo "  @smolitux/$pkg: $count"
+        fi
+    done
+    echo ""
+    echo "🔗 Quick Links:"
+    echo "  • All Issues: gh issue list --state open"
+    echo "  • Critical Issues: gh issue list --label priority:critical --state open"
+    echo "  • Code Quality: gh issue list --label code-quality --state open"
+    echo ""
+    
+    # Save report
+    cat > ANALYSIS_REPORT.md <<EOF
+# Smolitux UI Analysis Report
+
+**Generated:** $(date)
+**Duration:** ${DURATION}s
+**Total Issues:** $TOTAL_ISSUES
+
+## Issues by Type
+- Critical (build): $(gh issue list --label priority:critical --state open | wc -l)
+- High (errors): $(gh issue list --label priority:high --state open | wc -l)
+- Code Quality: $(gh issue list --label code-quality --state open | wc -l)
+- Test Failures: $(gh issue list --label test-failure --state open | wc -l)
+
+## Issues by Package
+$(for pkg in "${PACKAGES[@]}"; do
+    local count=$(gh issue list --label "package:$pkg" --state open | wc -l)
+    if [ $count -gt 0 ]; then
+        echo "- @smolitux/$pkg: $count"
+    fi
+done)
+
+## Next Steps
+1. Review critical build issues first
+2. Address code quality violations
+3. Fix failing tests
+4. Update package documentation
+
+## Commands
+- View all issues: \`gh issue list --state open\`
+- Filter by package: \`gh issue list --label "package:core" --state open\`
+- Filter by type: \`gh issue list --label "priority:critical" --state open\`
+EOF
+    
+    echo "📄 Report saved: ANALYSIS_REPORT.md"
 }
 
 # ───────────────────────────────────────────────
 # Main Execution
 # ───────────────────────────────────────────────
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <package-name>"
-    echo "Example: $0 core"
+main() {
+    check_prerequisites
+    run_analyzer_issues
+    run_package_testing
+    generate_final_report
+    
     echo ""
-    echo "Available packages:"
-    echo "  core, theme, utils, testing, layout, charts"
-    echo "  media, community, ai, blockchain, resonance"
-    echo "  federation, voice-control"
-    exit 1
+    echo "🚀 MISSION COMPLETE!"
+    echo "All issues have been created and categorized."
+    echo "Use the GitHub Issues dashboard to track progress."
+}
+
+# Handle interrupts gracefully
+trap 'echo ""; echo "⚠️  Analysis interrupted"; exit 1' INT TERM
+
+# Run if executed directly
+if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
+    main "$@"
 fi
-
-echo "🔍 Processing package: @smolitux/$PACKAGE"
-
-# Check if we're in the right directory
-if [ ! -d "packages/@smolitux/$PACKAGE" ]; then
-    echo "❌ Error: Package directory packages/@smolitux/$PACKAGE not found"
-    echo "   Make sure you're in the repository root"
-    exit 1
-fi
-
-# Change to package directory
-cd packages/@smolitux/$PACKAGE || exit 1
-
-# Check for log files
-LOG_FILES=0
-[ -f "lint.log" ] && LOG_FILES=$((LOG_FILES + 1))
-[ -f "test.log" ] && LOG_FILES=$((LOG_FILES + 1))
-[ -f "build.log" ] && LOG_FILES=$((LOG_FILES + 1))
-
-if [ $LOG_FILES -eq 0 ]; then
-    echo "⚠️  Warning: No log files found (lint.log, test.log, build.log)"
-    echo "   Run the testing commands first:"
-    echo "   npm run lint 2>&1 | tee lint.log"
-    echo "   npm test 2>&1 | tee test.log"
-    echo "   npm run build 2>&1 | tee build.log"
-    exit 1
-fi
-
-# Create issues
-create_package_issues $PACKAGE
-
-echo ""
-echo "📊 Summary for @smolitux/$PACKAGE:"
-echo "  Issues created: $CREATED_COUNT"
-echo "  View issues: gh issue list --label package:$PACKAGE --state open"
-
-cd ../../..
