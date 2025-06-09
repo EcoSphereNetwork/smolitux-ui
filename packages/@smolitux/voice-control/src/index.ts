@@ -19,3 +19,5 @@ export type {
 } from './types';
 export { VoiceRecognition } from './components/VoiceRecognition';
 export type { VoiceRecognitionProps } from './components/VoiceRecognition';
+export { SpeechSynthesis } from './components/SpeechSynthesis';
+export type { SpeechSynthesisProps } from './components/SpeechSynthesis/SpeechSynthesis';

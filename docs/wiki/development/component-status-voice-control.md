@@ -5,6 +5,7 @@
 | VoiceControlProvider | ✅ | ✅ | ✅ | Ready |
 | withVoiceControl | ✅ | ✅ | ✅ | Ready |
 | SpeechSynthesizer | ✅ | ✅ | ✅ | Ready |
+| SpeechSynthesis | ✅ | ✅ | ✅ | Ready |
 | VoiceRecognition | ✅ | ✅ | ✅ | Ready |
 | FeedbackManager | ✅ | – | – | Ready |
 | VoiceControlManager | ✅ | – | – | Ready |
@@ -15,4 +16,4 @@
 | ModelTrainer | ✅ | – | – | Ready |
 | ModelTrainingComponent | ✅ | ✅ | ✅ | Ready |
 
-_Last updated: 2025-06-12_
+_Last updated: 2025-06-09

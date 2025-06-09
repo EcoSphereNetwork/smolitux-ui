@@ -300,3 +300,4 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 - Added DeFiDashboard to blockchain TODO list.
 - Implemented GDPR privacy controls in community package
 - Added ChatInterface component entry.
+- SpeechSynthesis component implemented.

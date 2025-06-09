@@ -1,0 +1,1 @@
+export { SpeechSynthesis } from './SpeechSynthesis';

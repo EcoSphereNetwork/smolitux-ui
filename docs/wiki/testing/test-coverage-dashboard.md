@@ -36,3 +36,4 @@
 
 - Updated tooling instructions after ESLint flat config migration.
 - PrivacyContext tests added for community package
+- Updated coverage after adding SpeechSynthesis component.
