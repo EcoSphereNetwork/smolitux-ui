@@ -46,3 +46,4 @@
 ---
 *Updated by Codex AI*
 - 2025-06-09: Added Navigation component to @smolitux/layout
+- Updated community components with privacy consent management

@@ -35,3 +35,4 @@
 ### Update 2025-06-15
 
 - Updated tooling instructions after ESLint flat config migration.
+- PrivacyContext tests added for community package

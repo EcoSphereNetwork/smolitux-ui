@@ -297,3 +297,4 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 - General tooling upgrade with ESLint flat config.
 ### Update 2025-06-09
 - Added DeFiDashboard to blockchain TODO list.
+- Implemented GDPR privacy controls in community package
