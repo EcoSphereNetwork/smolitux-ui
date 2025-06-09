@@ -8,6 +8,7 @@
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { render, RenderResult } from '@testing-library/react';
 import React from 'react';
+import type { RunOptions, Result } from 'axe-core';
 
 // Erweitere Jest mit axe-Matchers
 expect.extend(toHaveNoViolations);
@@ -30,7 +31,7 @@ export interface A11yTestOptions {
   /**
    * Zusätzliche axe-Konfiguration
    */
-  axeOptions?: any;
+  axeOptions?: RunOptions;
 }
 
 /**
@@ -38,11 +39,11 @@ export interface A11yTestOptions {
  */
 export interface A11yTestResult {
   /** Gefundene Verstöße */
-  violations: any[];
+  violations: Result[];
   /** Bestandene Prüfungen */
-  passes: any[];
+  passes: Result[];
   /** Unvollständige Prüfungen */
-  incomplete: any[];
+  incomplete: Result[];
   /** Ergebnis des Renderns */
   renderResult: RenderResult;
 }

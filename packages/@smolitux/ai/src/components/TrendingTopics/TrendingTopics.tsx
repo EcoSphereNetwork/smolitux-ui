@@ -82,6 +82,8 @@ export interface TrendingTopicsProps {
 /**
  * TrendingTopics-Komponente für die Anzeige von Trending-Themen und -Inhalten
  */
+export type TabId = 'trending' | 'rising' | 'new';
+
 export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
   title = 'Trending-Themen',
   description,
@@ -108,7 +110,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
   const [selectedTimeRange, setSelectedTimeRange] = useState(currentTimeRange);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(currentCategory);
   const [expandedTopicId, setExpandedTopicId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'trending' | 'rising' | 'new'>('trending');
+  const [activeTab, setActiveTab] = useState<TabId>('trending');
 
   // Themen nach Tab filtern und sortieren
   const filteredTopics = topics
@@ -338,14 +340,16 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
       {/* Tabs */}
       <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
         <div className="flex space-x-4">
-          {[
-            { id: 'trending', label: 'Trending' },
-            { id: 'rising', label: 'Aufsteigend' },
-            { id: 'new', label: 'Neu' },
-          ].map((tab) => (
+          {(
+            [
+              { id: 'trending', label: 'Trending' },
+              { id: 'rising', label: 'Aufsteigend' },
+              { id: 'new', label: 'Neu' },
+            ] as { id: TabId; label: string }[]
+          ).map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id)}
               className={`px-2 py-1 text-sm font-medium ${
                 activeTab === tab.id
                   ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
