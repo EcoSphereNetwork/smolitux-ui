@@ -16,4 +16,4 @@
 | @smolitux/testing         | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
 
-> Letzte Aktualisierung: 2025-06-12
+> Letzte Aktualisierung: 2025-06-09 – Kommentar-TODOs geprüft

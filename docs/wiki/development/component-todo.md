@@ -2,6 +2,8 @@
 
 Diese Liste basiert auf einem Offline-Scan vom 2025-06-08. Tests konnten mangels Abhängigkeiten nicht ausgeführt werden.
 
+_Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
+
 
 ## @smolitux/ai
 

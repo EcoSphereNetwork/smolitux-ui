@@ -147,7 +147,7 @@ describe('Theme Integration', () => {
     );
 
     // The button should have the custom primary color
-    // Note: In a real test, we would need to check the computed style
+    // 🔍 NOTE [Codex]: In a real test, we would need to check the computed style – prüfen
     // This is just a placeholder for the concept
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();

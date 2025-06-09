@@ -84,5 +84,7 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 - Created `component-status-testing.md` documenting package status.
 - Verified integration of testing helpers across packages.
 
+*2025-06-09:* Standardized NOTE comments in tests.
+
 ---
 _Updated by Codex AI_
