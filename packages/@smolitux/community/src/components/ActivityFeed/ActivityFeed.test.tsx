@@ -1,21 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ActivityFeed } from './ActivityFeed';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
+import { ActivityFeed, ActivityItem } from './ActivityFeed';
 
-describe('ActivityFeed', () => {
-  it('renders without crashing', () => {
-    render(<ActivityFeed />);
-    expect(screen.getByRole('button', { name: /ActivityFeed/i })).toBeInTheDocument();
-  });
+const sample: ActivityItem[] = [
+  { id: '1', type: 'post', user: { id: 'u1', name: 'Alice', username: 'alice' }, timestamp: new Date() },
+];
 
-  it('applies custom className', () => {
-    render(<ActivityFeed className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
-  });
-
-  it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
-    render(<ActivityFeed ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
-  });
+it('calls onLoadMore when load button is clicked', async () => {
+  const handleLoadMore = jest.fn().mockResolvedValue(undefined);
+  render(
+    <ActivityFeed activities={sample} hasMore onLoadMore={handleLoadMore} />
+  );
+  await userEvent.click(screen.getByRole('button', { name: /Weitere Aktivitäten laden/i }));
+  expect(handleLoadMore).toHaveBeenCalled();
 });

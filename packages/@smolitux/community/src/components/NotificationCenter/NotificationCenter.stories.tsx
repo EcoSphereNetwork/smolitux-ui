@@ -14,22 +14,13 @@ const meta: Meta<typeof NotificationCenter> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const notifications = [
+  { id: 'n1', message: 'Alice liked your post.' },
+  { id: 'n2', message: 'Bob started following you.' },
+];
+
 export const Default: Story = {
   args: {
-    children: 'NotificationCenter',
-  },
-};
-
-export const CustomStyle: Story = {
-  args: {
-    children: 'Custom NotificationCenter',
-    className: 'custom-style',
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    children: 'Interactive NotificationCenter',
-    onClick: () => alert('Clicked!'),
+    notifications,
   },
 };

@@ -18,7 +18,7 @@
 
 ### Tier 3: Advanced Features
 - [x] **@smolitux/media** (AudioPlayer, VideoPlayer, ImageGallery, MediaGrid)
-- [ ] **@smolitux/community** (ActivityFeed, UserProfile)
+- [x] **@smolitux/community** (ActivityFeed, UserProfile)
 
 ### Tier 4: Specialized
 - [ ] **@smolitux/ai** (ContentAnalytics, SentimentDisplay)
