@@ -1,5 +1,11 @@
 # Smolitux UI Component Test Status Report
 
+**Legende**
+
+- ✅ abgeschlossen
+- 🧪 getestet
+- ♿ barrierefrei geprüft
+
 This document provides a comprehensive test status report for all components in the Smolitux UI library version 0.3.0.
 
 ## Test Status Overview
@@ -337,3 +343,15 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 ### Update 2025-06-16
 - Added global config utility for testing package.
 - Added ActivityPubViewer, IdentityBridge and FederationSettings components in @smolitux/federation.
+\n### Component Counts (scanned via Codex)
+- ai: 41 TSX files
+- blockchain: 42 TSX files
+- charts: 69 TSX files
+- community: 17 TSX files
+- core: 534 TSX files
+- federation: 28 TSX files
+- layout: 44 TSX files
+- media: 33 TSX files
+- resonance: 88 TSX files
+- utils: 42 TSX files
+- voice-control: 6 TSX files
