@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeProvider, useTheme } from './theme-provider';
-import { defaultTheme } from './Default';
+import { ThemeProvider, useTheme } from './providers/ThemeProvider';
+import { tokens } from './tokens';
 import Button from '../../core/src/components/Button';
 
 const meta: Meta = {
@@ -32,7 +32,7 @@ export const ThemeShowcase: Story = {
 export const ColorPalette: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 8 }}>
-      {Object.entries(defaultTheme.colors.primary).map(([k, v]) => (
+      {Object.entries(tokens.colors.primary).map(([k, v]) => (
         <div key={k} style={{ background: v, width: 40, height: 40 }} />
       ))}
     </div>
@@ -42,7 +42,7 @@ export const ColorPalette: Story = {
 export const TypographyScale: Story = {
   render: () => (
     <div>
-      {Object.entries(defaultTheme.typography.fontSize).map(([k, v]) => (
+      {Object.entries(tokens.typography.fontSize).map(([k, v]) => (
         <p key={k} style={{ fontSize: v, margin: 0 }}>
           {k} - {v}
         </p>

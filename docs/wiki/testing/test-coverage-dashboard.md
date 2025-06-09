@@ -40,3 +40,4 @@
 
 ### Update 2025-06-16
 - Added tests for new guard utilities in @smolitux/utils.
+### Update 2025-06-16 - Theme tokens structured

@@ -1,13 +1,13 @@
 import { getColorByTheme, getSpacing } from './ThemeUtilities';
-import { defaultTheme } from './Default';
+import { tokens } from './tokens';
 
 describe('Theme utilities', () => {
   test('resolves color by theme', () => {
-    const color = getColorByTheme(defaultTheme, 'primary', '500');
+    const color = getColorByTheme(tokens as any, 'primary', '500');
     expect(color).toBe('#0075E1');
   });
 
   test('calculates numeric spacing', () => {
-    expect(getSpacing(defaultTheme, 2)).toBe('2rem');
+    expect(getSpacing(tokens as any, 2)).toBe('2rem');
   });
 });

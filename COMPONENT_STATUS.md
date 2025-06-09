@@ -8,7 +8,7 @@
 
 ### Tier 1: Foundation (START HERE)
 - [ ] **@smolitux/core** (60+ components) - Button, Modal, Table, Input, etc.
-- [ ] **@smolitux/theme** (design tokens)
+- [x] **@smolitux/theme** (design tokens)
 - [ ] **@smolitux/utils** (utilities)
 - [ ] **@smolitux/testing** (test helpers)
 
@@ -49,6 +49,7 @@
 *Updated by Codex AI*
 - 2025-06-09: Added Navigation component to @smolitux/layout
 - Updated community components with privacy consent management
+- 2025-06-09 Updated theme package with structured tokens
 
 ### Update 2025-06-13
 - Added automated annotation script for TODO/FIXME comments.

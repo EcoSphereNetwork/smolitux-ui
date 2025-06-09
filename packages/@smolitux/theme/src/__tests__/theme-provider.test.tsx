@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { ThemeProvider, useTheme } from '../theme-provider';
+import { ThemeProvider, useTheme } from '../providers/ThemeProvider';
 
 function TestComponent() {
   const { themeMode, toggleTheme } = useTheme();

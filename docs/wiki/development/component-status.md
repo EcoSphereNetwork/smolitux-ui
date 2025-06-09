@@ -34,7 +34,8 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/core | TextArea | ✅ | ✅ | ❌ | ✅ | Ready |
 | @smolitux/core | Toast | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Tooltip | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
-| @smolitux/theme | ThemeProvider | ✅ | ❌ | ❌ | ✅ | Ready |
+| @smolitux/theme | ThemeProvider | ✅ | ✅ | ❌ | ✅ | Ready |
+| @smolitux/theme | Tokens & Utilities | ✅ | ✅ | ❌ | ✅ | Ready |
 | @smolitux/layout | Container | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/layout | Grid | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/layout | Flex | ✅ | ✅ | ❌ | ❌ | Ready |
@@ -114,7 +115,7 @@ This document provides a comprehensive test status report for all components in 
 
 ### Status by Package (Version 0.2.2)
 - **@smolitux/core**: 12 components ready, 17 need A11y tests
-- **@smolitux/theme**: 1 component ready
+- **@smolitux/theme**: 2 components ready
 - **@smolitux/layout**: 2 components ready, 3 need A11y tests
 - **@smolitux/charts**: 7 components ready
 - **@smolitux/ai**: 9 components need A11y tests
