@@ -78,6 +78,7 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/media | MediaGrid | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | MediaUploader | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | VideoPlayer | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/media | Lightbox | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/resonance | FeedFilter | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/resonance | FeedItem | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/resonance | FeedSidebar | ✅ | ✅ | ❌ | ❌ | Ready |
