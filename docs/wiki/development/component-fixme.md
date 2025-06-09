@@ -11,7 +11,7 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 | Komponente | FIXMEs |
 |------------|-------|
 | Dropdown | Props nicht typisiert |
-| Flex | Props nicht typisiert |
+| Flex | Props typisiert (behoben) |
 | Menu | Props nicht typisiert |
 
 ## @smolitux/layout
@@ -23,3 +23,5 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 
 ### Update 2025-06-09
 - Fixed ESLint config to enable linting.
+### Update 2025-06-14
+- Marked Flex props as typed.

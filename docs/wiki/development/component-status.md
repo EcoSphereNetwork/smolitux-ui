@@ -307,3 +307,5 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 ### Update 2025-06-09 - Automated TODO/FIXME scan executed.
 ### Update 2025-06-09
 - Fixed ESLint configuration in root to resolve missing config error.
+### Update 2025-06-14
+- Marked Flex component as fixed in documentation.
