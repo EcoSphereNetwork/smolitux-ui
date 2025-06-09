@@ -158,3 +158,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | primitives | a11y-Test fehlt, Kein Storybook vorhanden |
 
 
+
+### Update 2025-06-13
+- Added automate TODO/FIXME annotator script `scripts/annotate-components.js`.
+
