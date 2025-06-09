@@ -22,3 +22,6 @@ export * from './validators';
 
 // Formatting utilities
 export * from './formatters';
+
+// Class name utility
+export * from './cn';
