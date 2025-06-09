@@ -51,7 +51,7 @@ export const useAnimation = (
     return {
       duration: options.duration || transitionPreset.duration,
       easing: options.easing || transitionPreset.easing,
-      delay: options.delay || (transitionPreset as any).delay || 0,
+      delay: options.delay || (transitionPreset as TransitionPreset).delay || 0,
       iterations: options.iterationCount || 1,
       direction: options.direction || 'normal',
       fill: options.fillMode || 'both',

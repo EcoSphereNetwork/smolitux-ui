@@ -158,14 +158,14 @@ export const Motion = forwardRef<HTMLElement, MotionProps>(
       animationRef.current = ref.current.animate(keyframeValue as Keyframe[], {
         duration: transitionPreset.duration,
         easing: transitionPreset.easing,
-        delay: (transitionPreset as any).delay || 0,
+        delay: (transitionPreset as TransitionPreset).delay || 0,
         iterations: repeat === 'infinite' ? Infinity : repeat,
         fill: 'both',
       });
 
       // Event-Listener für Animation
       if (onAnimationStart) {
-        (animationRef.current as any).onstart = onAnimationStart;
+        (animationRef.current as unknown as { onstart?: () => void }).onstart = onAnimationStart;
       }
 
       if (onAnimationComplete) {
@@ -223,7 +223,7 @@ export const Motion = forwardRef<HTMLElement, MotionProps>(
       }
 
       // Transition hinzufügen
-      const delay = (transitionPreset as any).delay || 0;
+      const delay = (transitionPreset as TransitionPreset).delay || 0;
       const transitionValue = `all ${transitionPreset.duration}ms ${transitionPreset.easing}${
         delay > 0 ? ` ${delay}ms` : ''
       }`;
