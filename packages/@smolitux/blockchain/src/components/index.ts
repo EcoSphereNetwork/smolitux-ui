@@ -6,3 +6,4 @@ export * from './TransactionHistory';
 // Export new components
 export * from './TokenEconomy';
 export * from './SmartContractInteraction';
+export * from './NFTGallery';

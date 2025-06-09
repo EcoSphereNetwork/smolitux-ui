@@ -19,6 +19,19 @@ export interface TokenInfo {
   address: string;
 }
 
+export interface NFTItem {
+  /** Token ID */
+  tokenId: string;
+  /** NFT name */
+  name?: string;
+  /** Image URL */
+  imageUrl?: string;
+  /** Description */
+  description?: string;
+  /** Chain ID */
+  chainId?: number;
+}
+
 export type TransactionType = 'all' | 'send' | 'receive' | 'stake' | 'unstake' | 'reward' | 'fee';
 
 export interface Transaction {
