@@ -43,3 +43,5 @@ export {
 } from './components/RadarChart/RadarChart';
 export { default as DonutChart, type DonutChartProps } from './components/DonutChart/DonutChart';
 export { default as Histogram, type HistogramProps } from './components/Histogram/Histogram';
+export { default as ChartAxis, type ChartAxisProps, type ChartAxisTick } from './components/ChartAxis/ChartAxis';
+export { default as ChartLegend, type ChartLegendProps, type LegendItem } from './components/ChartLegend/ChartLegend';
