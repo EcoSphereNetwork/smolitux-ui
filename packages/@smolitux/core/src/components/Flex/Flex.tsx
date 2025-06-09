@@ -1,4 +1,3 @@
-// FIXME: Props nicht typisiert
 import React, { forwardRef } from 'react';
 
 export type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
@@ -113,8 +112,8 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
     ref
   ) => {
     // Hilfsfunktion zum Generieren von Klassen für responsive Eigenschaften
-    const getResponsiveClasses = (
-      prop: any,
+    const getResponsiveClasses = <T extends string>(
+      prop: T | Partial<Record<FlexBreakpoint, T>> | undefined,
       classPrefix: string,
       valueMap: Record<string, Record<string, string>>
     ): string => {

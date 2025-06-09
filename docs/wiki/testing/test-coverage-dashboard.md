@@ -24,3 +24,5 @@
 ### Update 2025-06-09 - Automated TODO/FIXME scan executed.
 ### Update 2025-06-09
 - Fixed ESLint configuration; lint command works.
+### Update 2025-06-14
+- Documentation updated for Flex component props typing fix.

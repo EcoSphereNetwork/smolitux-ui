@@ -51,3 +51,5 @@
 
 ### Update 2025-06-09
 - Fixed ESLint configuration in root.
+### Update 2025-06-14
+- Flex component props typed; updated docs.
