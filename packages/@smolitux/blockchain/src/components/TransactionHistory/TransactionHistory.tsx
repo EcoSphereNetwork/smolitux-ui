@@ -1,42 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button } from '@smolitux/core';
-
-export type TransactionType = 'all' | 'send' | 'receive' | 'stake' | 'unstake' | 'reward' | 'fee';
-
-export interface Transaction {
-  /** Eindeutige ID der Transaktion */
-  id: string;
-  /** Hash der Transaktion */
-  hash: string;
-  /** Typ der Transaktion */
-  type: 'send' | 'receive' | 'stake' | 'unstake' | 'reward' | 'fee';
-  /** Betrag der Transaktion */
-  amount: string;
-  /** Symbol des Tokens */
-  tokenSymbol: string;
-  /** Absender-Adresse */
-  from: string;
-  /** Empfänger-Adresse */
-  to: string;
-  /** Zeitpunkt der Transaktion */
-  timestamp: Date;
-  /** Status der Transaktion */
-  status: 'pending' | 'confirmed' | 'failed';
-  /** Netzwerk der Transaktion */
-  network: string;
-  /** Gaskosten der Transaktion */
-  gasUsed?: string;
-  /** Gaspreis der Transaktion */
-  gasPrice?: string;
-  /** Gesamte Gaskosten der Transaktion */
-  gasFee?: string;
-  /** Block-Nummer der Transaktion */
-  blockNumber?: number;
-  /** Anzahl der Bestätigungen */
-  confirmations?: number;
-  /** Notiz zur Transaktion */
-  note?: string;
-}
+import { TransactionType, Transaction } from '../types';
 
 export interface TransactionHistoryProps {
   /** Transaktionen */

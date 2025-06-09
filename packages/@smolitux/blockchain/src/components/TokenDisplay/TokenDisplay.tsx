@@ -1,20 +1,6 @@
 import React from 'react';
 import { Card } from '@smolitux/core';
-
-export interface TokenInfo {
-  /** Symbol des Tokens */
-  symbol: string;
-  /** Name des Tokens */
-  name: string;
-  /** Token-Guthaben */
-  balance: string;
-  /** Token-Wert in USD */
-  valueUSD?: number;
-  /** Token-Logo URL */
-  logoUrl?: string;
-  /** Token-Adresse */
-  address: string;
-}
+import { TokenInfo } from '../types';
 
 export interface TokenDisplayProps {
   /** Token-Informationen */

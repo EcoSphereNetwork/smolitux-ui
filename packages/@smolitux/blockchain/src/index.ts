@@ -11,3 +11,4 @@ export * from './components/TokenDistributionChart';
 // Export new Blockchain components
 export * from './components/TokenEconomy';
 export * from './components/SmartContractInteraction';
+export * from './types';
