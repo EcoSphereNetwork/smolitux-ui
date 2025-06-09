@@ -11,5 +11,6 @@ This page tracks the implementation status for the `@smolitux/blockchain` packag
 | SmartContractInteraction | In progress |
 | TokenDistributionChart | In progress |
 | TokenEconomy | In progress |
+| NFTGallery | In progress |
 
-*Last updated: 2025-06-08*
+*Last updated: 2025-06-09*
