@@ -48,3 +48,6 @@
 - Added automated annotation script for TODO/FIXME comments.
 
 ### Update 2025-06-09 - Automated TODO/FIXME scan executed.
+
+### Update 2025-06-09
+- Fixed ESLint configuration in root.

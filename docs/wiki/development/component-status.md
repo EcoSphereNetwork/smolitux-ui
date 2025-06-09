@@ -305,3 +305,5 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 - Added automated annotation script for TODO/FIXME comments.
 
 ### Update 2025-06-09 - Automated TODO/FIXME scan executed.
+### Update 2025-06-09
+- Fixed ESLint configuration in root to resolve missing config error.

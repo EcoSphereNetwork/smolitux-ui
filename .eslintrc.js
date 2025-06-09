@@ -8,17 +8,14 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
+    'prettier',
   ],
-  rules: {
-    'react/prop-types': 'off',
-    'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
-    'jsx-a11y/anchor-is-valid': 'warn',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: { jsx: true },
+    project: ['./tsconfig.json'],
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
+  settings: { react: { version: 'detect' } },
+  ignorePatterns: ['dist/', 'build/', 'node_modules/', '**/*.test.tsx'],
 };
