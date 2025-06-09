@@ -16,6 +16,7 @@ Diese Dokumentation beschreibt die verfügbaren Komponenten in der Smolitux UI-B
   - [TrendingTopics](#trendingtopics)
   - [EngagementScore](#engagementscore)
   - [Voice-Komponenten](#voice-komponenten)
+  - [Blockchain](#blockchain)
 - [Styling](#styling)
 - [Theming](#theming)
 - [Barrierefreiheit](#barrierefreiheit)
@@ -256,6 +257,10 @@ function Example() {
 ## Voice-Komponenten
 
 Die Voice-Komponenten integrieren Sprachbefehle in Standard-UI-Elemente. Eine Übersicht befindet sich unter [Voice-Komponenten](/docs/components/voice/index).
+
+## Blockchain
+
+Die Blockchain-Komponenten ermöglichen die Integration von Web3-Funktionalität. Weitere Details finden sich im Verzeichnis [Blockchain](./blockchain/README.md).
 
 ## Styling
 
