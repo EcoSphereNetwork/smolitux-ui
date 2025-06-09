@@ -31,3 +31,4 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 ### Update 2025-06-09
 - Added DeFiDashboard implementation notes.
 - Added privacy preference hooks; no FIXMEs
+- Added ChatInterface component without FIXMEs.

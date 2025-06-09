@@ -47,6 +47,7 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/charts | RadarChart | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/charts | ScatterPlot | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/charts | Heatmap | ✅ | ✅ | ❌ | ❌ | Ready |
+| @smolitux/ai | ChatInterface | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/ai | ContentAnalytics | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/ai | ContentModerator | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/ai | EngagementScore | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
@@ -116,7 +117,7 @@ This document provides a comprehensive test status report for all components in 
 - **@smolitux/theme**: 1 component ready
 - **@smolitux/layout**: 2 components ready, 3 need A11y tests
 - **@smolitux/charts**: 7 components ready
-- **@smolitux/ai**: 8 components need A11y tests
+- **@smolitux/ai**: 9 components need A11y tests
 - **@smolitux/blockchain**: All components complete with A11y tests
 - **@smolitux/community**: 5 components need A11y tests
 - **@smolitux/federation**: 5 components need A11y tests
@@ -155,6 +156,7 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 ### Offline Scan 2025-06-08
 | Package | Component | Status |
 |---------|-----------|--------|
+| @smolitux/ai | ChatInterface | ⚠️ Teilweise |
 | @smolitux/ai | ContentAnalytics | ⚠️ Teilweise |
 | @smolitux/ai | ContentModerator | ⚠️ Teilweise |
 | @smolitux/ai | EngagementScore | ⚠️ Teilweise |
@@ -316,3 +318,4 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 ### Update 2025-06-09
 - Added DeFiDashboard component implementation with tests and stories.
 - Added privacy consent context to community components (2025-06-09)
+- Added ChatInterface component in @smolitux/ai package.
