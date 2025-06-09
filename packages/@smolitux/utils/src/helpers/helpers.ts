@@ -2,9 +2,9 @@ export function debounce<T extends (...args: any[]) => any>(
   fn: T,
   wait: number,
   immediate = false
-) {
+): T {
   let timeout: NodeJS.Timeout | null = null;
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: unknown, ...args: Parameters<T>) {
     const later = () => {
       timeout = null;
       if (!immediate) fn.apply(this, args);
@@ -16,9 +16,9 @@ export function debounce<T extends (...args: any[]) => any>(
   } as T;
 }
 
-export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number) {
+export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number): T {
   let inThrottle = false;
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: unknown, ...args: Parameters<T>) {
     if (!inThrottle) {
       fn.apply(this, args);
       inThrottle = true;
@@ -27,10 +27,13 @@ export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number)
   } as T;
 }
 
-export function memoize<T extends (...args: any[]) => any>(fn: T): T {
+export function memoize<T extends (...args: any[]) => any>(
+  fn: T,
+  resolver?: (...args: Parameters<T>) => string
+): T {
   const cache = new Map<string, ReturnType<T>>();
-  return function (this: any, ...args: Parameters<T>) {
-    const key = JSON.stringify(args);
+  return function (this: unknown, ...args: Parameters<T>) {
+    const key = resolver ? resolver(...args) : JSON.stringify(args);
     if (!cache.has(key)) {
       cache.set(key, fn.apply(this, args));
     }
@@ -38,8 +41,31 @@ export function memoize<T extends (...args: any[]) => any>(fn: T): T {
   } as T;
 }
 
-export function deepClone<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
+export function deepClone<T>(obj: T, seen = new Map<any, any>()): T {
+  if (obj === null || typeof obj !== 'object') return obj;
+  if (seen.has(obj)) return seen.get(obj);
+
+  if (obj instanceof Date) {
+    return new Date(obj.getTime()) as unknown as T;
+  }
+  if (obj instanceof RegExp) {
+    return new RegExp(obj) as unknown as T;
+  }
+  if (Array.isArray(obj)) {
+    const arr: unknown[] = [];
+    seen.set(obj, arr);
+    obj.forEach((item, idx) => {
+      arr[idx] = deepClone(item, seen);
+    });
+    return arr as unknown as T;
+  }
+
+  const cloned: Record<string, unknown> = {};
+  seen.set(obj, cloned);
+  Object.entries(obj as Record<string, unknown>).forEach(([key, value]) => {
+    cloned[key] = deepClone(value as unknown, seen);
+  });
+  return cloned as T;
 }
 
 export function deepMerge<T extends object, U extends object>(target: T, source: U): T & U {
@@ -66,34 +92,58 @@ export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export async function retry<T>(fn: () => Promise<T>, attempts = 3, delayMs = 0): Promise<T> {
+export interface RetryOptions {
+  retries?: number;
+  delay?: number;
+  backoff?: boolean;
+}
+
+export async function retry<T>(fn: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
+  const { retries = 3, delay = 0, backoff = false } = options;
   let lastError: unknown;
-  for (let i = 0; i < attempts; i++) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       return await fn();
     } catch (err) {
       lastError = err;
-      if (delayMs) await sleep(delayMs);
+      if (attempt === retries) break;
+      const wait = backoff ? delay * Math.pow(2, attempt) : delay;
+      if (wait > 0) await sleep(wait);
     }
   }
   throw lastError;
 }
 
-export function groupBy<T>(arr: T[], key: (item: T) => string): Record<string, T[]> {
+export function groupBy<T>(
+  arr: T[],
+  key: keyof T | ((item: T) => string)
+): Record<string, T[]> {
+  if (!Array.isArray(arr)) {
+    throw new TypeError('arr must be an array');
+  }
+  const accessor = typeof key === 'function' ? key : (item: T) => String(item[key]);
   return arr.reduce<Record<string, T[]>>((acc, item) => {
-    const k = key(item);
+    const k = accessor(item);
     if (!acc[k]) acc[k] = [];
     acc[k].push(item);
     return acc;
   }, {});
 }
 
-export function sortBy<T>(arr: T[], key: (item: T) => any): T[] {
+export function sortBy<T>(
+  arr: T[],
+  key: keyof T | ((item: T) => unknown),
+  order: 'asc' | 'desc' = 'asc'
+): T[] {
+  if (!Array.isArray(arr)) {
+    throw new TypeError('arr must be an array');
+  }
+  const accessor = typeof key === 'function' ? key : (item: T) => item[key];
   return [...arr].sort((a, b) => {
-    const ka = key(a);
-    const kb = key(b);
-    if (ka > kb) return 1;
-    if (ka < kb) return -1;
+    const ka = accessor(a);
+    const kb = accessor(b);
+    if (ka > kb) return order === 'asc' ? 1 : -1;
+    if (ka < kb) return order === 'asc' ? -1 : 1;
     return 0;
   });
 }
