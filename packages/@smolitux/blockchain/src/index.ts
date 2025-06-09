@@ -12,4 +12,5 @@ export * from './components/TokenDistributionChart';
 export * from './components/TokenEconomy';
 export * from './components/SmartContractInteraction';
 export * from './components/NFTGallery';
+export * from './components/DeFiDashboard';
 export * from './types';

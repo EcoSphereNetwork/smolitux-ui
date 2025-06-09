@@ -17,6 +17,7 @@ yarn add @smolitux/blockchain
 - TransactionHistory: Shows transaction history
 - StakingInterface: Interface for staking tokens
 - TokenDistributionChart: Visualizes token distribution
+- DeFiDashboard: Overview of DeFi protocols
 
 ## Usage
 

@@ -27,3 +27,5 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 - Marked Flex props as typed.
 ### Update 2025-06-15
 - Updated linting workflow using ESLint flat configuration.
+### Update 2025-06-09
+- Added DeFiDashboard implementation notes.
