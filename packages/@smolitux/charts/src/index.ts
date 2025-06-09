@@ -41,3 +41,5 @@ export {
   type RadarChartSeries,
   type RadarChartDataPoint,
 } from './components/RadarChart/RadarChart';
+export { default as DonutChart, type DonutChartProps } from './components/DonutChart/DonutChart';
+export { default as Histogram, type HistogramProps } from './components/Histogram/Histogram';
