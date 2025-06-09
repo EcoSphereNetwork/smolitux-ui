@@ -1,5 +1,4 @@
-// TODO: forwardRef hinzufügen
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 export type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
 export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -44,7 +43,24 @@ export interface BadgeProps {
  * <Badge isDot variant="warning" />
  * ```
  */
-export const Badge: React.FC<BadgeProps> = ({
+export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
+  (
+    {
+      children,
+      variant = 'default',
+      size = 'md',
+      rounded = false,
+      className = '',
+      icon,
+      isCounter = false,
+      maxCount,
+      isDot = false,
+      outline = false,
+      htmlProps = {},
+      id,
+    },
+    ref
+  ) => {
   children,
   variant = 'default',
   size = 'md',
@@ -173,6 +189,8 @@ export const Badge: React.FC<BadgeProps> = ({
       {displayContent}
     </span>
   );
-};
+);
+
+Badge.displayName = 'Badge';
 
 export default Badge;

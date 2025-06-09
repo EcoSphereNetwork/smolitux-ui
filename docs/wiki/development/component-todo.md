@@ -216,7 +216,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | Accordion        | forwardRef hinzufügen |
 | Alert            | forwardRef hinzufügen |
 | Avatar           | forwardRef hinzufügen |
-| Badge            | forwardRef hinzufügen |
+| Badge            | – |
 | Collapse         | forwardRef hinzufügen |
 | ColorPicker      | forwardRef hinzufügen |
 | Dialog           | forwardRef hinzufügen |
@@ -296,6 +296,8 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 ### Update 2025-06-15
 
 - General tooling upgrade with ESLint flat config.
+### Update 2025-06-09
+- Added forwardRef to Badge component in @smolitux/core.
 ### Update 2025-06-09
 - Added DeFiDashboard to blockchain TODO list.
 - Implemented GDPR privacy controls in community package
