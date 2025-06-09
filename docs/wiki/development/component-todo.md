@@ -130,6 +130,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | Grid | – |
 | Header | Fehlende Tests, Kein Storybook vorhanden |
 | Sidebar | – |
+| Navigation | – |
 
 ## @smolitux/media
 

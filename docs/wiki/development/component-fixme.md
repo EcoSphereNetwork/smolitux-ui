@@ -19,6 +19,7 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 | Komponente | FIXMEs |
 |------------|-------|
 | Grid | Props nicht typisiert |
+| Navigation | – |
 
 
 ### Update 2025-06-09

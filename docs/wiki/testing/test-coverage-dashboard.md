@@ -16,7 +16,7 @@
 | @smolitux/testing         | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
 
-> Letzte Aktualisierung: 2025-06-09 – DeFiDashboard component covered
+> Letzte Aktualisierung: 2025-06-09 – DeFiDashboard component covered; Navigation component added
 
 ### Update 2025-06-13
 - Added annotation script entry in docs.

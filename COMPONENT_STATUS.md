@@ -1,6 +1,7 @@
 # Smolitux UI - Codex Progress
 
 **Started:** Mon Jun  9 13:10:56 UTC 2025
+**Last Updated:** Mon Jun  9 13:12:09 UTC 2025
 **Strategy:** Work with existing codebase, no setup dependencies
 
 ## 🎯 Package Priority (from AGENTS.md):
@@ -44,3 +45,4 @@
 
 ---
 *Updated by Codex AI*
+- 2025-06-09: Added Navigation component to @smolitux/layout
