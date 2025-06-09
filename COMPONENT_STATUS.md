@@ -9,7 +9,7 @@
 ### Tier 1: Foundation (START HERE)
 - [ ] **@smolitux/core** (60+ components) - Button, Modal, Table, Input, etc.
 - [ ] **@smolitux/theme** (design tokens) - done
-- [ ] **@smolitux/utils** (utilities)
+- [x] **@smolitux/utils** (utilities) - improved helper typings
 - [x] **@smolitux/testing** (test helpers) - custom matchers added
 
 ### Tier 2: Layout & Visualization
@@ -43,6 +43,7 @@
 7. Ensure accessibility compliance
 8. Update this file after each session
 9. Card, Modal, Table, and Form updated with forwardRef support
+10. Remove remaining `any` casts in components
 
 ### Update 2025-06-12
 - Voice control package completed with Speech API types, accessibility tests and demo stories.
