@@ -5,7 +5,7 @@ import { useTheme } from '@smolitux/theme';
 // Proper typing for theme object
 interface Theme {
   themeMode?: 'light' | 'dark';
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface PieChartDataPoint {

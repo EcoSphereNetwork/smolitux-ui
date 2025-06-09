@@ -128,7 +128,7 @@ export const RadarChart = forwardRef<SVGSVGElement, RadarChartProps>(
     const theme = useTheme() as any;
 
     // Function to safely determine the theme mode with multiple fallback options
-    const getThemeMode = (themeObj: any): 'dark' | 'light' => {
+    const getThemeMode = (themeObj: unknown): 'dark' | 'light' => {
       if (!themeObj || typeof themeObj !== 'object') return 'light';
 
       // Check common theme mode properties

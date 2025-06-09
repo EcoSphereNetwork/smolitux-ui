@@ -47,7 +47,7 @@ export interface FileUploadProps
   /** Callback bei Upload-Abschluss */
   onUploadComplete?: (file: FileInfo) => void;
   /** Callback bei Upload-Fehler */
-  onUploadError?: (file: FileInfo, error: any) => void;
+  onUploadError?: (file: FileInfo, error: unknown) => void;
   /** Automatischer Upload */
   autoUpload?: boolean;
   /** Maximale Dateigröße in Bytes */
@@ -353,7 +353,7 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           updateFileStatus(fileInfo.id, 'success');
           onUploadComplete?.({ ...fileInfo, status: 'success' });
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Upload fehlgeschlagen
         const errorMessage = error.message || 'Unbekannter Fehler beim Upload.';
         updateFileError(fileInfo.id, errorMessage);

@@ -5,7 +5,7 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Box: React.FC<BoxProps> = ({ children, ...props }) => {
-  return <div {...props}>{children}</div>;
+  return <div {...props} data-testid="primitives">{children}</div>;
 };
 
 export interface FlexProps extends BoxProps {

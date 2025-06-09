@@ -513,7 +513,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
       if (!indicator) return null;
 
-      return <div className="absolute inset-y-0 right-0 flex items-center pr-2">{indicator}</div>;
+      return <div className="absolute inset-y-0 right-0 flex items-center pr-2" data-testid="Radio">{indicator}</div>;
     }, [
       showSuccessIndicator,
       showErrorIndicator,

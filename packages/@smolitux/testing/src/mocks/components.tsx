@@ -7,3 +7,5 @@ export const MockButton = ({ children }: { children?: React.ReactNode }) => (
 export const MockInput = (props: React.InputHTMLAttributes<HTMLInputElement>) => (
   <input data-testid="mock-input" {...props} />
 );
+
+export default components;

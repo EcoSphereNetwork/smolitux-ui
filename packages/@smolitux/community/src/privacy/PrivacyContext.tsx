@@ -56,3 +56,5 @@ export const PrivacyConsentProvider: React.FC<{
 };
 
 export const usePrivacyConsent = () => useContext(PrivacyConsentContext);
+
+export default PrivacyContext;

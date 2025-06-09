@@ -5,7 +5,7 @@ import { useTheme } from '@smolitux/theme';
 // Define the expected theme shape
 interface Theme {
   themeMode?: 'light' | 'dark';
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface LineChartDataPoint {

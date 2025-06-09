@@ -194,7 +194,7 @@ describe('LineChart', () => {
     expect(legendText).toHaveAttribute('fill', '#654321');
   });
   test('handles malformed data gracefully', () => {
-    const badData: any = { id: "bad" };
+    const badData: unknown = { id: "bad" };
     render(<LineChart data={badData} />);
     const svg = document.querySelector('svg');
     expect(svg).toBeInTheDocument();

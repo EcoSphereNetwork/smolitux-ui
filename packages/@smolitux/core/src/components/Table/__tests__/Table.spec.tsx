@@ -33,9 +33,9 @@ describe('Table Snapshots', () => {
   ];
 
   const mockColumns = [
-    { id: 'name', header: 'Name', cell: (row: any) => row.name, sortable: true },
-    { id: 'age', header: 'Age', cell: (row: any) => row.age, sortable: true },
-    { id: 'city', header: 'City', cell: (row: any) => row.city },
+    { id: 'name', header: 'Name', cell: (row: unknown) => row.name, sortable: true },
+    { id: 'age', header: 'Age', cell: (row: unknown) => row.age, sortable: true },
+    { id: 'city', header: 'City', cell: (row: unknown) => row.city },
   ];
 
   it('renders default table correctly', () => {
@@ -56,8 +56,8 @@ describe('Table Snapshots', () => {
       {
         id: 'actions',
         header: 'Actions',
-        accessor: (row: any) => row.id,
-        cell: (value: any) => <button data-testid={`action-${value}`}>Edit</button>,
+        accessor: (row: unknown) => row.id,
+        cell: (value: unknown) => <button data-testid={`action-${value}`}>Edit</button>,
       },
     ];
 

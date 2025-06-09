@@ -1268,7 +1268,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
                 backgroundColor: rangeObj.color || 'rgba(59, 130, 246, 0.2)',
               };
 
-        return <div key={index} className={`${rangeObj.className || ''}`} style={rangeStyle} />;
+        return <div key={index} className={`${rangeObj.className || ''}`} style={rangeStyle} / data-testid="Slider">;
       });
     };
 
@@ -1387,7 +1387,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
 
       if (!indicator) return null;
 
-      return <div className="ml-2">{indicator}</div>;
+      return <div className="ml-2" data-testid="Slider">{indicator}</div>;
     };
 
     // Bestimme die ARIA-Attribute für den Slider

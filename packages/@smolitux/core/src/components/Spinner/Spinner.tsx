@@ -119,7 +119,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
             </div>
           );
         default:
-          return <div className={spinnerClasses} style={customStyle} aria-hidden="true"></div>;
+          return <div className={spinnerClasses} style={customStyle} aria-hidden="true" data-testid="Spinner"></div>;
       }
     };
 

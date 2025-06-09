@@ -582,13 +582,13 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       arrowStyle.bottom = '16px';
     }
 
-    return <div style={arrowStyle} aria-hidden="true" />;
+    return <div style={arrowStyle} aria-hidden="true" / data-testid="Popover.a11y">;
   };
 
   // Hole die Props für den Trigger
   const getTriggerProps = () => {
-    const triggerProps: any = {
-      ref: (node: any) => {
+    const triggerProps: unknown = {
+      ref: (node: unknown) => {
         triggerRef.current = node;
 
         // Wenn das Kind ein Ref hat, setze es

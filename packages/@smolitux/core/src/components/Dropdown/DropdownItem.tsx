@@ -129,7 +129,7 @@ export const DropdownItem = React.forwardRef<HTMLDivElement, DropdownItemProps>(
       .join(' ');
 
     // Basis-Element definieren (Link oder div)
-    const ItemComponent: any = href && !isDisabled ? 'a' : 'div';
+    const ItemComponent: unknown = href && !isDisabled ? 'a' : 'div';
     const itemProps = href && !isDisabled ? { href } : {};
 
     return (

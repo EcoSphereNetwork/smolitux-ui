@@ -55,7 +55,7 @@ const alignMap: Record<GridAlign, string> = {
 const getPrefix = (bp: GridBreakpoint) =>
   bp === 'sm' ? 'sm:' : bp === 'md' ? 'md:' : bp === 'lg' ? 'lg:' : bp === 'xl' ? 'xl:' : '2xl:';
 
-const responsive = (prop: any, prefix: string, map: Record<string, string>) => {
+const responsive = (prop: unknown, prefix: string, map: Record<string, string>) => {
   if (prop === undefined) return '';
   if (typeof prop === 'object') {
     return Object.entries(prop)
