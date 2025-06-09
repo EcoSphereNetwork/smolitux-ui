@@ -8,6 +8,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 
 | Komponente             | TODOs                                     |
 | ---------------------- | ----------------------------------------- |
+| ChatInterface          | –                                         |
 | ContentAnalytics       | a11y-Test fehlt, Kein Storybook vorhanden |
 | ContentModerator       | a11y-Test fehlt, Kein Storybook vorhanden |
 | EngagementScore        | a11y-Test fehlt, Kein Storybook vorhanden |
@@ -298,3 +299,4 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 ### Update 2025-06-09
 - Added DeFiDashboard to blockchain TODO list.
 - Implemented GDPR privacy controls in community package
+- Added ChatInterface component entry.

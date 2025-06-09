@@ -47,3 +47,16 @@
 *Updated by Codex AI*
 - 2025-06-09: Added Navigation component to @smolitux/layout
 - Updated community components with privacy consent management
+
+### Update 2025-06-13
+- Added automated annotation script for TODO/FIXME comments.
+
+### Update 2025-06-09 - Automated TODO/FIXME scan executed.
+
+### Update 2025-06-09
+- Fixed ESLint configuration in root.
+### Update 2025-06-14
+- Flex component props typed; updated docs.
+### Update 2025-06-15
+- Migrated repository to ESLint 9 flat config.
+*2025-06-09: Added ChatInterface component*

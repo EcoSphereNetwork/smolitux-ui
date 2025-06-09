@@ -16,7 +16,7 @@
 | @smolitux/testing       | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
 
-> Letzte Aktualisierung: 2025-06-18 – Lightbox component added; DeFiDashboard component covered; Navigation component added
+> Letzte Aktualisierung: 2025-06-18 – Lightbox component added; DeFiDashboard component covered; Navigation component added; ChatInterface component added
 
 ### Update 2025-06-13
 
