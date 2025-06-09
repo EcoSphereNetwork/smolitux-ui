@@ -74,6 +74,10 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/federation | FederatedSearch | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/federation | FederationStatus | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/federation | PlatformSelector | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/federation | ProtocolHandler | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/federation | ActivityPubViewer | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/federation | IdentityBridge | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/federation | FederationSettings | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/media | AudioPlayer | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | MediaCarousel | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/media | ImageGallery | ✅ | ✅ | ❌ | ❌ | Ready |
@@ -121,7 +125,7 @@ This document provides a comprehensive test status report for all components in 
 - **@smolitux/ai**: 9 components need A11y tests
 - **@smolitux/blockchain**: All components complete with A11y tests
 - **@smolitux/community**: 5 components need A11y tests
-- **@smolitux/federation**: 5 components need A11y tests
+ - **@smolitux/federation**: 9 components need A11y tests
 - **@smolitux/media**: 6 components ready, 1 needs A11y tests
 - **@smolitux/resonance**: 17 components ready
 - **@smolitux/utils**: Ready
@@ -241,6 +245,10 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 | @smolitux/federation | FederatedSearch | ⚠️ Teilweise |
 | @smolitux/federation | FederationStatus | ❌ Offen |
 | @smolitux/federation | PlatformSelector | ❌ Offen |
+| @smolitux/federation | ProtocolHandler | ❌ Offen |
+| @smolitux/federation | ActivityPubViewer | ❌ Offen |
+| @smolitux/federation | IdentityBridge | ❌ Offen |
+| @smolitux/federation | FederationSettings | ❌ Offen |
 | @smolitux/layout | Container | ✅ Fertig |
 | @smolitux/layout | DashboardLayout | ❌ Offen |
 | @smolitux/layout | Flex | ✅ Fertig |
@@ -328,3 +336,4 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 - Added guard utilities to @smolitux/utils package.
 ### Update 2025-06-16
 - Added global config utility for testing package.
+- Added ActivityPubViewer, IdentityBridge and FederationSettings components in @smolitux/federation.

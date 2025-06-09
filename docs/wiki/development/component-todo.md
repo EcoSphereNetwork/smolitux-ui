@@ -109,22 +109,17 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | voice            | a11y-Test fehlt                          |
 
 ## @smolitux/federation
-
-| Komponente         | TODOs                                     |
-| ------------------ | ----------------------------------------- |
-| ActivityStream     | Fehlende Tests, Kein Storybook vorhanden  |
-| CrossPlatformShare | Fehlende Tests, Kein Storybook vorhanden  |
-| FederatedSearch    | a11y-Test fehlt, Kein Storybook vorhanden |
-| FederationStatus   | Fehlende Tests, Kein Storybook vorhanden  |
-| PlatformSelector   | Fehlende Tests, Kein Storybook vorhanden  |
-
-## @smolitux/layout
-
-| Komponente      | TODOs                                    |
-| --------------- | ---------------------------------------- |
-| Container       | –                                        |
-| Flex | – |
-| Footer | Fehlende Tests, Kein Storybook vorhanden |
+| Komponente | TODOs |
+|------------|-------|
+| ActivityStream | Fehlende Tests, Kein Storybook vorhanden |
+| CrossPlatformShare | Fehlende Tests, Kein Storybook vorhanden |
+| FederatedSearch | a11y-Test fehlt, Kein Storybook vorhanden |
+| FederationStatus | Fehlende Tests, Kein Storybook vorhanden |
+| PlatformSelector | Fehlende Tests, Kein Storybook vorhanden |
+| ProtocolHandler | Fehlende Tests, Kein Storybook vorhanden |
+| ActivityPubViewer | Fehlende Tests, Kein Storybook vorhanden |
+| IdentityBridge | Fehlende Tests, Kein Storybook vorhanden |
+| FederationSettings | Fehlende Tests, Kein Storybook vorhanden |
 | Grid | – |
 | Header | Fehlende Tests, Kein Storybook vorhanden |
 | Sidebar | – |
@@ -245,12 +240,13 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | ------------------ | --------------------- |
 | ActivityStream     | forwardRef hinzufügen |
 | CrossPlatformShare | forwardRef hinzufügen |
-| FederatedSearch    | forwardRef hinzufügen |
-| FederationStatus   | forwardRef hinzufügen |
-| PlatformSelector   | forwardRef hinzufügen |
-| ProtocolHandler    | forwardRef hinzufügen |
-
-## @smolitux/layout
+| FederatedSearch | forwardRef hinzufügen |
+| FederationStatus | forwardRef hinzufügen |
+| PlatformSelector | forwardRef hinzufügen |
+| ProtocolHandler | forwardRef hinzufügen |
+| ActivityPubViewer | forwardRef hinzufügen |
+| IdentityBridge | forwardRef hinzufügen |
+| FederationSettings | forwardRef hinzufügen |
 
 | Komponente      | TODOs                 |
 | --------------- | --------------------- |
@@ -309,3 +305,4 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 - [@smolitux/theme] Document tokens directory
 ### Update 2025-06-16
 - Added configuration utility to @smolitux/testing; no todos pending.
+- Added ActivityPubViewer, IdentityBridge and FederationSettings to TODO lists.

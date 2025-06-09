@@ -21,6 +21,20 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 | Grid | Props nicht typisiert |
 | Navigation | – |
 
+## @smolitux/federation
+
+| Komponente | FIXMEs |
+|------------|-------|
+| ActivityStream | Props nicht typisiert |
+| CrossPlatformShare | Props nicht typisiert |
+| FederatedSearch | Props nicht typisiert |
+| FederationStatus | Props nicht typisiert |
+| PlatformSelector | Props nicht typisiert |
+| ProtocolHandler | Props nicht typisiert |
+| ActivityPubViewer | Props nicht typisiert |
+| IdentityBridge | Props nicht typisiert |
+| FederationSettings | Props nicht typisiert |
+
 
 ### Update 2025-06-09
 - Fixed ESLint config to enable linting.
@@ -39,3 +53,4 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 - [@smolitux/theme] Remove legacy provider file
 ### Update 2025-06-16
 - No remaining FIXMEs for @smolitux/testing after adding config utility.
+- Added federation component FIXMEs for new components.
