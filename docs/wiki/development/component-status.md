@@ -300,3 +300,6 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 
 ### Update 2025-06-09 (Comment Tasks Scan)
 - Standardized NOTE comments in tests using Codex format.
+
+### Update 2025-06-13
+- Added automated annotation script for TODO/FIXME comments.
