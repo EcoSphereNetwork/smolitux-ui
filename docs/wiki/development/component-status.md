@@ -319,6 +319,8 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 ### Update 2025-06-09
 - Added DeFiDashboard component implementation with tests and stories.
 - Added privacy consent context to community components (2025-06-09)
+### Update 2025-06-09
+- Badge component now uses forwardRef and updated unit tests.
 - Added ChatInterface component in @smolitux/ai package.
 - Added SpeechSynthesis component to voice-control package.
 

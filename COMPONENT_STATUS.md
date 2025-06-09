@@ -52,6 +52,7 @@
 - 2025-06-09: Added Navigation component to @smolitux/layout
 - Updated community components with privacy consent management
 - 2025-06-09 Updated theme package with structured tokens
+- 2025-06-09: Added forwardRef to Badge component with updated tests
 
 ### Update 2025-06-13
 - Added automated annotation script for TODO/FIXME comments.

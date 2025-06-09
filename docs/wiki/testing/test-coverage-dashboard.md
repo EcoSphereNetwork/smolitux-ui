@@ -44,3 +44,5 @@
 - DonutChart wrapper tests added
 ### Update 2025-06-16
 - Added global config utility for testing package.
+### Update 2025-06-09
+- Added tests for Badge forwardRef implementation in core package.
