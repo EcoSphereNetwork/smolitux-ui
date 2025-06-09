@@ -10,7 +10,13 @@ export class FeedbackManager {
         'click',
         () => {
           if (!this.audioContext) {
-            this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+            const WebkitAudioContext = (
+              window as typeof window & { webkitAudioContext?: typeof AudioContext }
+            ).webkitAudioContext;
+            const Ctor = window.AudioContext || WebkitAudioContext;
+            if (Ctor) {
+              this.audioContext = new Ctor();
+            }
           }
         },
         { once: true }

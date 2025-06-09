@@ -51,7 +51,11 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setThemeMode,
   };
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value} data-testid="theme-provider">
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
 // Hook für Theme-Context
