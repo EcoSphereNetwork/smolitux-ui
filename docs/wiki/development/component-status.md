@@ -324,3 +324,5 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 
 ### Update 2025-06-16
 - Added guard utilities to @smolitux/utils package.
+### Update 2025-06-16
+- Added global config utility for testing package.

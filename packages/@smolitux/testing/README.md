@@ -19,6 +19,17 @@ expect(element).toHaveAriaAttributes({ 'aria-label': 'save' });
 expect(element).toBeFocusable();
 ```
 
+### Global Configuration
+
+Passe das Testverhalten über eine zentrale Konfiguration an:
+
+```tsx
+import { configure } from '@smolitux/testing';
+import { darkTheme } from '@smolitux/theme';
+
+configure({ theme: darkTheme });
+```
+
 ### Custom Jest Matchers
 
 Beim Import dieses Pakets werden zusätzliche Jest-Matcher registriert.

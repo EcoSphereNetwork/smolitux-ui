@@ -37,3 +37,5 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 ### Update 2025-06-16
 - Added guards utility entry.
 - [@smolitux/theme] Remove legacy provider file
+### Update 2025-06-16
+- No remaining FIXMEs for @smolitux/testing after adding config utility.
