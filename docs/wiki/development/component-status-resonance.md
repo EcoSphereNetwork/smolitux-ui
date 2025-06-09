@@ -23,5 +23,6 @@ This page tracks the implementation and test status of the platform specific com
 | Profile | ProfileHeader | ✅ | ✅ | ✅ | Ready |
 | Profile | ProfileWallet | ✅ | ✅ | ✅ | Ready |
 | Platform | PlatformIntegration | ✅ | ✅ | ✅ | Ready |
+| Platform | PlatformNotice | ✅ | ✅ | ✅ | Ready |
 
-> Last updated: 2025-06-08
+> Last updated: 2025-06-09
