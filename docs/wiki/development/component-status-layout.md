@@ -11,5 +11,6 @@ This document tracks the current implementation and test status for the `@smolit
 | Footer | ✅ | ❌ | ✅ | Needs A11y Tests |
 | Sidebar | ✅ | ✅ | ✅ | Ready |
 | Stack | ✅ | ❌ | ✅ | Pending |
+| Navigation | ✅ | ❌ | ✅ | Needs A11y Tests |
 
 *Updated: 2025-06-09*

@@ -39,6 +39,7 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/layout | Grid | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/layout | Flex | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/layout | Sidebar | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/layout | Navigation | ✅ | ❌ | ❌ | ❌ | Ready |
 | @smolitux/charts | AreaChart | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/charts | BarChart | ✅ | ✅ | ❌ | ❌ | Ready |
 | @smolitux/charts | LineChart | ✅ | ✅ | ❌ | ❌ | Ready |
@@ -112,7 +113,7 @@ This document provides a comprehensive test status report for all components in 
 ### Status by Package (Version 0.2.2)
 - **@smolitux/core**: 12 components ready, 17 need A11y tests
 - **@smolitux/theme**: 1 component ready
-- **@smolitux/layout**: 2 components ready, 2 need A11y tests
+- **@smolitux/layout**: 2 components ready, 3 need A11y tests
 - **@smolitux/charts**: 7 components ready
 - **@smolitux/ai**: 8 components need A11y tests
 - **@smolitux/blockchain**: All components complete with A11y tests

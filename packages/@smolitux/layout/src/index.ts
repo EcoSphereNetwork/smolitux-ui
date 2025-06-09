@@ -7,6 +7,11 @@ export {
   type SidebarProps,
   type SidebarItem,
 } from './components/Sidebar/Sidebar';
+export {
+  default as Navigation,
+  type NavigationProps,
+  type NavigationItem,
+} from './components/Navigation/Navigation';
 export { default as Header, type HeaderProps } from './components/Header/Header';
 export { default as Footer, type FooterProps } from './components/Footer/Footer';
 export {
