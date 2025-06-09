@@ -1,4 +1,5 @@
 // packages/@smolitux/layout/src/components/Flex/index.ts
 export { Flex } from './Flex';
 export { FlexA11y } from './Flex.a11y';
-export type { FlexProps, Breakpoint, ResponsiveProp } from './Flex';
+export type { FlexProps } from './Flex';
+export type { Breakpoint, ResponsiveProp } from '../../types';

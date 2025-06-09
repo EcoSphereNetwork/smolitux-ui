@@ -68,6 +68,10 @@ _2025-06-12_: Added SpeechSynthesizer with tests and stories for voice feedback.
 - Accessibility tests still missing. Next step: implement protocol validation and network error handling tests.
 ### Update 2025-06-08 (Resonance)
 - Added `PlatformIntegration` component to **@smolitux/resonance** with tests and stories.
+### Update 2025-06-12 (Layout Session)
+- Unified responsive type definitions across layout components.
+- Added additional grid logic tests and story examples.
+- Created `docs/wiki/development/component-status-layout.md` to track layout progress.
 
 ---
 _Updated by Codex AI_
