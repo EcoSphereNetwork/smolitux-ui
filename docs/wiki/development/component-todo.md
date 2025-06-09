@@ -301,3 +301,6 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 - Implemented GDPR privacy controls in community package
 - Added ChatInterface component entry.
 - SpeechSynthesis component implemented.
+
+### Update 2025-06-16
+- Added guard utilities.

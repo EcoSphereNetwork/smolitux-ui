@@ -37,3 +37,6 @@
 - Updated tooling instructions after ESLint flat config migration.
 - PrivacyContext tests added for community package
 - Updated coverage after adding SpeechSynthesis component.
+
+### Update 2025-06-16
+- Added tests for new guard utilities in @smolitux/utils.
