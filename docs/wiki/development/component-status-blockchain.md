@@ -4,13 +4,13 @@ This page tracks the implementation status for the `@smolitux/blockchain` packag
 
 | Component | Status |
 |-----------|--------|
-| WalletConnect | In progress |
-| TokenDisplay | In progress |
-| TransactionHistory | In progress |
-| StakingInterface | In progress |
-| SmartContractInteraction | In progress |
-| TokenDistributionChart | In progress |
-| TokenEconomy | In progress |
-| NFTGallery | In progress |
+| WalletConnect | Complete |
+| TokenDisplay | Complete |
+| TransactionHistory | Complete |
+| StakingInterface | Complete |
+| SmartContractInteraction | Complete |
+| TokenDistributionChart | Complete |
+| TokenEconomy | Complete |
+| NFTGallery | Complete |
 
 *Last updated: 2025-06-09*
