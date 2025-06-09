@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect } from 'react';
 import { Input, InputProps } from '../Input';
 import { withVoiceControl, VoiceControlProps } from '@smolitux/voice-control';

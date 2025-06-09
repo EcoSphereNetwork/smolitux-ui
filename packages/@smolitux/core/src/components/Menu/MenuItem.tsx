@@ -1,4 +1,4 @@
-// FIXME: Props nicht typisiert
+// 🛠 FIXME [Codex]: Props nicht typisiert – Fehlerbehebung erforderlich
 // packages/@smolitux/core/src/components/Menu/MenuItem.improved.tsx
 import React, { useState, useEffect, useRef, useId } from 'react';
 import { useMenuContext } from './Menu';

@@ -1,4 +1,4 @@
-// FIXME: Props nicht typisiert
+// 🛠 FIXME [Codex]: Props nicht typisiert – Fehlerbehebung erforderlich
 // packages/@smolitux/core/src/components/Dropdown/DropdownItem.tsx
 import React, { useRef, useEffect } from 'react';
 import { useDropdownContext } from './Dropdown';

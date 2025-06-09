@@ -1,4 +1,4 @@
-// TODO: forwardRef hinzufügen
+// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React from 'react';
 import { Flex } from '../primitives';
 import { TabView } from '@smolitux/core';
