@@ -32,3 +32,4 @@ Diese Datei sammelt automatisch erkannte FIXMEs in den Komponenten.
 - Added DeFiDashboard implementation notes.
 - Added privacy preference hooks; no FIXMEs
 - Added ChatInterface component without FIXMEs.
+- SpeechSynthesis component added; no FIXMEs.

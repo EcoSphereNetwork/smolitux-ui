@@ -319,3 +319,4 @@ See also [Resonance Component Status](./component-status-resonance.md) for packa
 - Added DeFiDashboard component implementation with tests and stories.
 - Added privacy consent context to community components (2025-06-09)
 - Added ChatInterface component in @smolitux/ai package.
+- Added SpeechSynthesis component to voice-control package.
