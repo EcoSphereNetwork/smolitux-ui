@@ -6,3 +6,4 @@
 | VideoPlayer  | Ready  |
 | ImageGallery | Ready  |
 | MediaGrid    | Ready  |
+| ImageViewer  | Ready  |
