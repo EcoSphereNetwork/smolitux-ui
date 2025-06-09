@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeProvider, useTheme } from './theme-provider';
+import { ThemeProvider, useTheme } from './providers/ThemeProvider';
 
 const meta: Meta = {
   title: 'Theme/ThemeProvider',

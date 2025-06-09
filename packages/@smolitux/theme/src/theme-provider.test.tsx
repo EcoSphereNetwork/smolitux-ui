@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderHook, act } from '@testing-library/react';
-import { ThemeProvider, useTheme } from './theme-provider';
+import { ThemeProvider, useTheme } from './providers/ThemeProvider';
 
 describe('ThemeProvider', () => {
   it('provides default light mode and toggles theme', () => {

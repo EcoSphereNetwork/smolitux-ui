@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from '../theme-provider';
+import { ThemeProvider } from '../providers/ThemeProvider';
 import Button from '../../../core/src/components/Button';
 
 describe('core integration', () => {

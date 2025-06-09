@@ -304,3 +304,4 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 
 ### Update 2025-06-16
 - Added guard utilities.
+- [@smolitux/theme] Document tokens directory
