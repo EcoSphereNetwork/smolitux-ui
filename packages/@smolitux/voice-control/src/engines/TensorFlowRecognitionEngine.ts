@@ -1,6 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 import * as speech from '@tensorflow-models/speech-commands';
 import { RecognitionEngine } from './RecognitionEngine';
+import type { RecognizerParams } from '../types';
 
 export class TensorFlowRecognitionEngine implements RecognitionEngine {
   private model: speech.SpeechCommandRecognizer | null = null;
@@ -19,7 +20,7 @@ export class TensorFlowRecognitionEngine implements RecognitionEngine {
       this.model = speech.create('BROWSER_FFT');
       await this.model.ensureModelLoaded();
       this.commandVocabulary = this.model.wordLabels();
-      (this.model.params() as any).scoreThreshold = 0.75;
+      (this.model.params() as unknown as RecognizerParams).scoreThreshold = 0.75;
       // warmup
       await tf.ready();
     } catch (error) {
@@ -40,7 +41,10 @@ export class TensorFlowRecognitionEngine implements RecognitionEngine {
           const scores = Array.from(result.scores as Float32Array);
           const maxScore = Math.max(...scores);
           const maxIndex = scores.indexOf(maxScore);
-          if (maxScore > ((this.model!.params() as any).scoreThreshold || 0)) {
+          const threshold =
+            (this.model!.params() as unknown as RecognizerParams).scoreThreshold ||
+            0;
+          if (maxScore > threshold) {
             const recognizedCommand = this.commandVocabulary[maxIndex];
             this.onResult(recognizedCommand);
           }
