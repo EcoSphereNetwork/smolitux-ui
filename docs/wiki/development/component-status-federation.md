@@ -11,6 +11,7 @@ This page tracks the progress and quality of the **federation** package. Compone
 | FederatedSearch | ✅ | ❌ | ❌ | Needs A11y Tests |
 | FederationStatus | ✅ | ❌ | ❌ | Needs A11y Tests |
 | PlatformSelector | ✅ | ❌ | ❌ | Needs A11y Tests |
+| ProtocolHandler | ✅ | ❌ | ❌ | Needs A11y Tests |
 
 ## Next Steps
 
@@ -20,4 +21,4 @@ This page tracks the progress and quality of the **federation** package. Compone
 4. Ensure all components export strict TypeScript types with no `any` usage.
 5. Add accessibility tests for interactive elements.
 
-_Last updated: 2025-06-08 by Codex_
+_Last updated: 2025-06-09 by Codex_

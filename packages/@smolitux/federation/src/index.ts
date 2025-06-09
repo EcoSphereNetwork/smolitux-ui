@@ -9,3 +9,4 @@ export { PlatformSelector } from './components/PlatformSelector';
 export { ActivityStream } from './components/ActivityStream';
 export { FederationStatus } from './components/FederationStatus';
 export { CrossPlatformShare } from './components/CrossPlatformShare';
+export { ProtocolHandler } from './components/ProtocolHandler';

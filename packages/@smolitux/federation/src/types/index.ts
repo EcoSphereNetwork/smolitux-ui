@@ -108,3 +108,50 @@ export interface FederatedSearchProps {
   /** Standardmäßige Suchfilter */
   defaultFilters?: Record<string, unknown>;
 }
+
+export type ProtocolCapability = 'messages' | 'presence' | 'search' | 'media';
+
+export interface ProtocolEndpoint {
+  path: string;
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+}
+
+export type AuthMethod = 'none' | 'token' | 'basic' | 'oauth2';
+
+export interface SupportedProtocol {
+  name: 'ActivityPub' | 'ATProtocol' | 'Matrix' | 'Nostr' | 'RSS';
+  version: string;
+  capabilities: ProtocolCapability[];
+  endpoints: ProtocolEndpoint[];
+  authentication: AuthMethod[];
+}
+
+export interface ProtocolMessage {
+  protocol: SupportedProtocol['name'];
+  content: Record<string, unknown>;
+}
+
+export interface ProtocolConnection {
+  protocol: SupportedProtocol['name'];
+  status: 'connected' | 'connecting' | 'disconnected' | 'error';
+}
+
+export interface ProtocolErrorHandling {
+  retries?: number;
+  retryDelay?: number;
+}
+
+export interface ProtocolAuth {
+  token?: string;
+  username?: string;
+  password?: string;
+}
+
+export interface ProtocolHandlerProps {
+  protocols: SupportedProtocol[];
+  onMessage?: (message: ProtocolMessage) => void;
+  onConnection?: (connection: ProtocolConnection) => void;
+  errorHandling?: ProtocolErrorHandling;
+  authentication?: ProtocolAuth;
+  className?: string;
+}
