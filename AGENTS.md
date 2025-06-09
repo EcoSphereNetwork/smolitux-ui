@@ -7,6 +7,11 @@
 **READ docs/wiki/testing/test-coverage-dashboard.md**    
 **READ docs/wiki/development/component-todo.md**    
 
+**Update befor push/PR docs/wiki/development/component-status.md report and document all changes**     
+**Update befor push/PR COMPONENT_STATUS.md report and document all changes**     
+**Update befor push/PR docs/wiki/testing/test-coverage-dashboard.md report and document all changes**    
+**Update befor push/PR docs/wiki/development/component-todo.md report and document all changes**    
+
 This repository hosts the **Smolitux UI** component library. Packages live under `packages/@smolitux/` and are written in TypeScript.
 
 ## Repository Layout
