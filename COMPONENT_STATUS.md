@@ -45,6 +45,7 @@
 9. Added SpeechSynthesis component implementation.
 10. Added guard utilities in @smolitux/utils.
 11. Added DonutChart tests in charts package
+12. Added global config utility for @smolitux/testing.
 
 ---
 *Updated by Codex AI*

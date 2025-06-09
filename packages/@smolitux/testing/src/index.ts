@@ -12,6 +12,7 @@ import * as mocks from './mocks';
 import * as helpers from './helpers';
 import * as generators from './generators';
 import userEvent from './user-events';
+import * as config from './config';
 
 // Register custom Jest matchers on import
 expect.extend(customMatchers);
@@ -28,6 +29,7 @@ export {
   helpers,
   generators,
   userEvent,
+  config,
 };
 
 export default {
@@ -39,4 +41,5 @@ export default {
   helpers,
   generators,
   userEvent,
+  config,
 };

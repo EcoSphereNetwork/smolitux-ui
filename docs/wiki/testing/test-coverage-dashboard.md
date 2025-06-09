@@ -16,7 +16,7 @@
 | @smolitux/testing       | ✅ Getestet  | –          | –        | –         | –     |
 | @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
 
-> Letzte Aktualisierung: 2025-06-18 – Lightbox component added; DeFiDashboard component covered; Navigation component added; ChatInterface component added
+> Letzte Aktualisierung: 2025-06-18 – Lightbox component added; DeFiDashboard component covered; Navigation component added; ChatInterface component added; Global config utility documented
 
 ### Update 2025-06-13
 
@@ -42,3 +42,5 @@
 - Added tests for new guard utilities in @smolitux/utils.
 ### Update 2025-06-16 - Theme tokens structured
 - DonutChart wrapper tests added
+### Update 2025-06-16
+- Added global config utility for testing package.
