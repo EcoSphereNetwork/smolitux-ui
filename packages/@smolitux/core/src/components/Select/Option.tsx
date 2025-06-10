@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 export interface OptionProps extends React.OptionHTMLAttributes<HTMLOptionElement> {
   /** Wert der Option */
@@ -26,29 +25,37 @@ export interface OptionProps extends React.OptionHTMLAttributes<HTMLOptionElemen
  * <Option value="option3" description="Beschreibung für Option 3">Option 3</Option>
  * ```
  */
-export const Option: React.FC<OptionProps> = ({
-  value,
-  children,
-  disabled,
-  description,
-  icon,
-  group,
-  ...props
-}) => {
-  return (
+export const Option = forwardRef<HTMLOptionElement, OptionProps>(
+  (
+    {
+      value,
+      children,
+      disabled,
+      description,
+      icon,
+      group,
+      'data-testid': dataTestId = 'option',
+      ...props
+    },
+    ref
+  ) => (
     <option
+      ref={ref}
       value={value}
       disabled={disabled}
       title={description}
       data-icon={icon ? 'true' : undefined}
       data-description={description}
       data-group={group}
+      data-testid={dataTestId}
       {...props}
     >
       {children}
       {disabled && <span className="sr-only"> (nicht verfügbar)</span>}
     </option>
-  );
-};
+  )
+);
+
+Option.displayName = 'Option';
 
 export default Option;

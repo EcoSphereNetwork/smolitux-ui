@@ -7,6 +7,11 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ## [0.3.3] - 2025-06-17
 ### Added
 - Component counts documented in component-status.md
+
+## [0.3.4] - 2025-06-18
+### Changed
+- Added forwardRef and data-testid to `Option` component
+- Updated related tests and stories
 ## [0.3.2] - 2025-06-08
 ### Added
 - Offline Komponentenscan und TODO-Liste erstellt
