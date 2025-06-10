@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import { Slide } from '../Slide';
 
 describe('Slide', () => {
@@ -30,4 +30,14 @@ describe('Slide', () => {
     );
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
+
+  it('returns null when not in and mountOnEnter', () => {
+    const { queryByTestId } = render(
+      <Slide in={false} mountOnEnter>
+        <div data-testid="content">Content</div>
+      </Slide>
+    );
+    expect(queryByTestId('content')).toBeNull();
+  });
+
 });

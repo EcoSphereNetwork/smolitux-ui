@@ -55,6 +55,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Fixed
 - `FeedItem` in `@smolitux/resonance` now forwards refs correctly
 
+## [0.3.7] - 2025-06-20
+### Changed
+- `Slide` component now uses `forwardRef` for external ref access and updated tests
+
 ## [0.3.8] - 2025-06-20
 ### Added
 - forwardRef support for `DashboardLayout`
