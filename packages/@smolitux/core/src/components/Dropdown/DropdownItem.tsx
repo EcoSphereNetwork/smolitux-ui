@@ -7,7 +7,7 @@ export interface DropdownItemProps extends React.HTMLAttributes<HTMLDivElement> 
   /** Inhalt des Items */
   children: React.ReactNode;
   /** Wert des Items (für onSelect) */
-  value: string;
+  value?: string;
   /** Icon links vom Label */
   icon?: React.ReactNode;
   /** Icon rechts vom Label */
