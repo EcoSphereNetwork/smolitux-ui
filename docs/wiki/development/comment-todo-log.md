@@ -11,22 +11,22 @@
 - [ ] `src/components/TrendingTopics/TrendingTopics.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 
 ## Paket: @blockchain
-- [ ] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-- [ ] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: Tests fehlen – geprüft & umgesetzt
+- [x] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/TokenDistributionChart/TokenDistributionChart.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/TokenDistributionChart/TokenDistributionChart.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/NFTGallery/NFTGallery.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/NFTGallery/NFTGallery.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/StakingInterface/StakingInterface.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/StakingInterface/StakingInterface.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-- [ ] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: Tests fehlen – geprüft & umgesetzt
+- [x] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/TokenEconomy/TokenEconomy.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/TokenEconomy/TokenEconomy.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/SmartContractInteraction/SmartContractInteraction.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/SmartContractInteraction/SmartContractInteraction.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-- [ ] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: Tests fehlen – geprüft & umgesetzt
+- [x] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 
 ## Paket: @charts
 - [x] `src/components/Histogram/Histogram.tsx`: ✅ Tests vorhanden
