@@ -128,6 +128,10 @@ npm run test:e2e      # End-to-End-Tests mit Playwright
 ./scripts/deploy.sh [environment]
 ```
 
+## 📜 Changelog
+
+Aktuelle Änderungen finden sich im [CHANGELOG.md](CHANGELOG.md). Version 0.3.7 behebt das Ref-Forwarding in der `FeedItem`-Komponente.
+
 ## 🤝 Contributing
 
 Beiträge sind willkommen! Siehe [CONTRIBUTING.md](CONTRIBUTING.md) für Details.
