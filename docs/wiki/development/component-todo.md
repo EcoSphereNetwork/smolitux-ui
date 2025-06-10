@@ -121,7 +121,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | IdentityBridge | Fehlende Tests, Kein Storybook vorhanden |
 | FederationSettings | Fehlende Tests, Kein Storybook vorhanden |
 | Grid | – |
-| Header | Fehlende Tests, Kein Storybook vorhanden |
+| Header | – |
 | Sidebar | – |
 | Navigation | – |
 

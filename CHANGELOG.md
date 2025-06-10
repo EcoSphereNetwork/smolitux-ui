@@ -53,6 +53,14 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 ## [0.3.8] - 2025-06-20
 ### Added
+- forwardRef support for `DashboardLayout`
+- Accessibility tests for `Header` and `Footer`
+- Storybook stories for `NotificationCenter`
+### Changed
+- DashboardLayout forwards refs to its root element
+- `NotificationCenter` now forwards refs and exposes a `data-testid`
+## [0.3.2] - 2025-06-08
+### Added
 - Storybook stories for `NotificationCenter`
 ### Changed
 - `NotificationCenter` now forwards refs and exposes a `data-testid`
