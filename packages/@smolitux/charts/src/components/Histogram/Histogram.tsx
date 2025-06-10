@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 import React, { forwardRef, useMemo } from 'react';
 import BarChart, { type BarChartProps, type BarChartSeries } from '../BarChart/BarChart';
 
