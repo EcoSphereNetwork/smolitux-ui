@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartAxis Snapshot matches snapshot 1`] = `
+<DocumentFragment>
+  <svg>
+    <g
+      class="smolitux-chart-axis"
+      data-testid="chart-axis"
+    >
+      <line
+        stroke="currentColor"
+        x1="0"
+        x2="100"
+        y1="0"
+        y2="0"
+      />
+      <g
+        class="tick"
+      >
+        <line
+          stroke="currentColor"
+          x1="0"
+          x2="0"
+          y1="0"
+          y2="6"
+        />
+        <text
+          fill="currentColor"
+          font-size="12"
+          text-anchor="middle"
+          x="0"
+          y="18"
+        >
+          0
+        </text>
+      </g>
+    </g>
+  </svg>
+</DocumentFragment>
+`;

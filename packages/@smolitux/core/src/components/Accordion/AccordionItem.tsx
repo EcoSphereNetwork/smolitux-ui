@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useAccordionContext } from './Accordion';
 
-export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AccordionItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Titel des Panels */
   title: React.ReactNode;
   /** Eindeutige ID des Panels */

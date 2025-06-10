@@ -30,7 +30,7 @@ export interface TextProps extends BoxProps {
  * Text is a component for displaying text with various typographic styles.
  * It extends the Box component with text-specific properties.
  */
-export const Text = forwardRef<HTMLDivElement, TextProps>(
+export const Text = forwardRef<HTMLElement, TextProps>(
   (
     {
       as = 'span',

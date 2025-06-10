@@ -1,6 +1,6 @@
 // packages/@smolitux/core/src/components/Skeleton/index.ts
 import { default as BaseSkeleton, type SkeletonProps } from './Skeleton';
-import { default as SkeletonA11y, type SkeletonA11yProps } from './Skeleton.a11y';
+import { default as SkeletonA11y, type SkeletonProps as SkeletonA11yProps } from './Skeleton.a11y';
 
 // Erweitere Skeleton um die A11y-Komponente
 const Skeleton = Object.assign(BaseSkeleton, {

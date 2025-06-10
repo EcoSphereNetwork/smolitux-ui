@@ -16,6 +16,12 @@ import { Button, ButtonProps } from './Button';
  * ```
  */
 export interface A11yButtonProps extends Omit<ButtonProps, 'aria-label'> {
+  /** Ob der Button nur ein Icon enthält */
+  isIconButton?: boolean;
+  /** Ob der Button gerade lädt */
+  isLoading?: boolean;
+  /** Ob der Button gerade lädt (Alternative) */
+  loading?: boolean;
   /**
    * Beschreibender Text für den Button (wird als aria-label verwendet)
    * Besonders wichtig für Icon-Buttons ohne sichtbaren Text
@@ -31,7 +37,7 @@ export interface A11yButtonProps extends Omit<ButtonProps, 'aria-label'> {
   /**
    * Ob der Button als "current" markiert werden soll (z.B. für Navigation)
    */
-  isCurrent?: boolean;
+  isCurrentPage?: boolean;
 
   /**
    * Zusätzliche Beschreibung für Screenreader
@@ -103,7 +109,7 @@ export interface A11yButtonProps extends Omit<ButtonProps, 'aria-label'> {
    * Ob der Button gerade aktiv ist
    * Setzt aria-current
    */
-  isCurrent?: boolean;
+  isActive?: boolean;
 
   /**
    * Ob der Button eine Aktion ausführt, die Zeit benötigt
@@ -169,12 +175,13 @@ export interface A11yButtonProps extends Omit<ButtonProps, 'aria-label'> {
 /**
  * Button-Komponente mit verbesserten Barrierefreiheits-Funktionen
  */
-export const A11yButton = React.forwardRef<HTMLButtonElement, A11yButtonProps>(
+export const A11yButton = React.forwardRef<HTMLDivElement, A11yButtonProps>(
   (
     {
       label,
       id: providedId,
-      isCurrent,
+      isCurrentPage,
+      isActive,
       description,
       describedBy,
       hasPopup,
@@ -217,7 +224,7 @@ export const A11yButton = React.forwardRef<HTMLButtonElement, A11yButtonProps>(
     else if (hasGrid) ariaHasPopup = 'grid';
 
     // Bestimme den Wert für aria-current
-    const ariaCurrent = isCurrent ? 'page' : undefined;
+    const ariaCurrent = isCurrentPage ? 'page' : isActive ? 'true' : undefined;
 
     // Bestimme den Wert für aria-describedby
     const ariaDescribedBy = descriptionId || describedBy;
@@ -242,7 +249,7 @@ export const A11yButton = React.forwardRef<HTMLButtonElement, A11yButtonProps>(
           aria-owns={owns}
           aria-keyshortcuts={keyShortcuts}
           aria-live={live}
-          aria-atomic={atomic ? 'true' : undefined}
+          aria-atomic={atomic ? true : undefined}
           aria-relevant={relevant}
           data-testid={testId}
           isIconButton={isIconButton}

@@ -1358,3 +1358,5 @@ ISSUE: Missing/invalid story for packages/@smolitux/core/src/components/Popover/
 ISSUE: Missing/invalid test for packages/@smolitux/core/src/components/Button/Button.a11y.tsx
 ISSUE: Missing/invalid story for packages/@smolitux/core/src/components/Button/Button.a11y.tsx
 ... and 66 more issues
+✅ Button (@smolitux/core): Generated (2025-06-10T13:09:11.704Z)
+✅ Excellent Button (@smolitux/core): 93.3% (2025-06-10T13:09:27.733Z)

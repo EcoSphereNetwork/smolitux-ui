@@ -1,5 +1,5 @@
 export type ClassValue = string | number | boolean | null | undefined | ClassDictionary | ClassArray;
-export interface ClassDictionary { [key: string]: any }
+export interface ClassDictionary { [key: string]: unknown }
 export interface ClassArray extends Array<ClassValue> {}
 
 /**

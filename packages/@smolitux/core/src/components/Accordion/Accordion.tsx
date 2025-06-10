@@ -36,7 +36,7 @@ export const useAccordionContext = () => {
   return context;
 };
 
-export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AccordionProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Kinder-Elemente (AccordionItem) */
   children: React.ReactNode;
   /** ID des anfänglich geöffneten Panels */

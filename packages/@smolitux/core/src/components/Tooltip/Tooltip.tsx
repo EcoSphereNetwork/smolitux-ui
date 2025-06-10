@@ -47,7 +47,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
 
   // Refs
-  const triggerRef = useRef<HTMLElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null) as React.MutableRefObject<HTMLElement | null>;
   const tooltipRef = useRef<HTMLDivElement>(null);
   const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -152,15 +152,16 @@ export const Tooltip: React.FC<TooltipProps> = ({
   // Clone trigger element with event listeners
   const triggerElement = React.cloneElement(children, {
     ref: (node: HTMLElement | null) => {
-      triggerRef.current = node;
+      if (node) {
+        triggerRef.current = node;
+      }
 
       // Forward ref if the original element has one
-      const { ref } = children as React.ReactElement;
-      if (typeof ref === 'function') {
-        ref(node);
-      } else if (ref && typeof ref === 'object') {
-        ref.current = node;
+      const originalRef = (children as any).ref;
+      if (typeof originalRef === 'function') {
+        originalRef(node);
       }
+      // Wir vermeiden die direkte Zuweisung zu ref.current, da es ein readonly property sein könnte
     },
     onMouseEnter: (e: React.MouseEvent) => {
       showTooltip();

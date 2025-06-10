@@ -165,4 +165,7 @@ export const useToast = () => {
   };
 };
 
+// Export the useToastMethods hook
+export const useToastMethods = useToast;
+
 export default ToastProvider;

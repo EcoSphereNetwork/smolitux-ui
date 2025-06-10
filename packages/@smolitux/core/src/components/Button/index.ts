@@ -1,7 +1,12 @@
 import { Button as BaseButton } from './Button';
 import { A11yButton } from './Button.a11y';
 
-export type { ButtonProps, ButtonVariant, ButtonSize, ButtonShape } from './Button';
+export type { ButtonProps } from './Button';
+
+// Definiere die Typen, die in der Button-Komponente verwendet werden
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'danger';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonShape = 'rounded' | 'square' | 'pill';
 export type { A11yButtonProps } from './Button.a11y';
 
 /**

@@ -1,6 +1,6 @@
 // packages/@smolitux/core/src/components/ProgressBar/index.ts
 import { default as BaseProgressBar, type ProgressBarProps } from './ProgressBar';
-import { default as ProgressBarA11y, type ProgressBarA11yProps } from './ProgressBar.a11y';
+import { default as ProgressBarA11y, type ProgressBarProps as ProgressBarA11yProps } from './ProgressBar.a11y';
 
 // Erweitere ProgressBar um die A11y-Komponente
 export const ProgressBar = Object.assign(BaseProgressBar, {

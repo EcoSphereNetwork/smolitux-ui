@@ -276,13 +276,13 @@ export const Modal: React.FC<ModalProps> = ({
       previousFocusRef.current = document.activeElement as HTMLElement;
 
       // Ankündigung für Screenreader
-      announceToScreenReader(i18n.modalOpened);
+      announceToScreenReader(i18n.modalOpened || 'Dialog geöffnet');
     }
 
     return () => {
       if (!isOpen) {
         // Ankündigung für Screenreader beim Schließen
-        announceToScreenReader(i18n.modalClosed);
+        announceToScreenReader(i18n.modalClosed || 'Dialog geschlossen');
       }
 
       if (

@@ -75,7 +75,7 @@ export const SkeletonA11y = forwardRef<HTMLDivElement, SkeletonProps>(
     const uniqueId = useId();
     const skeletonId = rest.id || `skeleton-${uniqueId}`;
     const descriptionId = description ? `description-${skeletonId}` : undefined;
-    const containerRef = React.useRef<HTMLDivElement>(null);
+    const containerRef = React.useRef<HTMLDivElement | null>(null);
 
     // Kombiniere den externen Ref mit unserem internen Ref
     const combinedRef = (node: HTMLDivElement | null) => {

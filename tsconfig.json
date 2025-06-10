@@ -7,7 +7,7 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["node", "@docusaurus/module-type-aliases"]
+    "types": ["node"]
   },
   "include": ["packages", "docs"],
   "exclude": [

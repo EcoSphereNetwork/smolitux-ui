@@ -389,9 +389,9 @@ const Table = <T extends Record<string, unknown>>({
       if (aValue === bValue) return 0;
 
       if (sortDirection === 'asc') {
-        return aValue < bValue ? -1 : 1;
+        return String(aValue) < String(bValue) ? -1 : 1;
       } else {
-        return aValue > bValue ? -1 : 1;
+        return String(aValue) > String(bValue) ? -1 : 1;
       }
     });
   }, [filteredData, columns, sortColumn, sortDirection]);
@@ -772,7 +772,7 @@ const Table = <T extends Record<string, unknown>>({
             aria-label={ariaLabel}
             summary={summary}
             role="grid"
-            aria-rowcount={displayData.length + 1} // +1 für Header-Zeile
+            aria-rowcount={paginatedData.length + 1} // +1 für Header-Zeile
             aria-colcount={columns.length}
           >
             {caption && captionPosition === 'bottom' && (
@@ -783,7 +783,7 @@ const Table = <T extends Record<string, unknown>>({
 
             {showHeader && (
               <thead className="bg-gray-50 dark:bg-gray-800">
-                <tr role="row" aria-rowindex="1">
+                <tr role="row" aria-rowindex={1}>
                   {/* Checkbox für "Alle auswählen" */}
                   {selectable && multiSelect && (
                     <th
@@ -807,7 +807,7 @@ const Table = <T extends Record<string, unknown>>({
 
                   {/* Einzelne Spaltenheader */}
                   {columns.map(
-                    (column) =>
+                    (column, index) =>
                       !column.hidden && (
                         <th
                           key={column.id}
@@ -816,7 +816,7 @@ const Table = <T extends Record<string, unknown>>({
                           style={{ width: column.width }}
                           onClick={() => column.sortable && sortable && handleSort(column.id)}
                           role="columnheader"
-                          aria-colindex={columnIndex + 1}
+                          aria-colindex={index + 1}
                           aria-sort={
                             sortColumn === column.id
                               ? sortDirection === 'asc'
@@ -978,13 +978,13 @@ const Table = <T extends Record<string, unknown>>({
 
                     {/* Zelleninhalte */}
                     {columns.map(
-                      (column) =>
+                      (column, index) =>
                         !column.hidden && (
                           <td
                             key={column.id}
                             className={getCellClasses(column)}
                             role="gridcell"
-                            aria-colindex={columnIndex + 1}
+                            aria-colindex={index + 1}
                           >
                             {column.cell(row, rowIndex)}
                           </td>
@@ -999,13 +999,13 @@ const Table = <T extends Record<string, unknown>>({
               <tfoot className={`bg-gray-50 dark:bg-gray-800 ${footerClassName}`}>
                 <tr>
                   {columns.map(
-                    (column) =>
+                    (column, index) =>
                       !column.hidden && (
                         <td
                           key={column.id}
                           className={getCellClasses(column)}
                           role="gridcell"
-                          aria-colindex={columnIndex + 1}
+                          aria-colindex={index + 1}
                         >
                           {/* Footer-Inhalt hier */}
                         </td>

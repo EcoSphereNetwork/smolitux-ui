@@ -111,7 +111,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
     const itemsMap = useRef(new Map<string, number>());
     const itemsCounter = useRef(0);
-    const menuRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLDivElement | null>(null) as React.MutableRefObject<HTMLDivElement | null>;
 
     // Registrieren eines neuen Items
     const registerItem = (id: string) => {
@@ -286,7 +286,9 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
               } else if (ref) {
                 (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
               }
-              menuRef.current = node;
+              if (node) {
+                menuRef.current = node;
+              }
             }}
             role="menu"
             id={menuId}
