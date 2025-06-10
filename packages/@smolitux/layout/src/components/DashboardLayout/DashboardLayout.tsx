@@ -1,6 +1,5 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/layout/src/components/DashboardLayout/DashboardLayout.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import Header, { HeaderProps } from '../Header/Header';
 import Sidebar, { SidebarProps } from '../Sidebar/Sidebar';
 import Footer, { FooterProps } from '../Footer/Footer';
@@ -39,18 +38,22 @@ export interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElemen
  * </DashboardLayout>
  * ```
  */
-export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
-  header = { show: true },
-  sidebar = { show: true },
-  footer = { show: true },
-  children,
-  sidebarCollapsed = false,
-  maxWidth = 'full',
-  contentPadding = true,
-  responsive = true,
-  className = '',
-  ...rest
-}) => {
+export const DashboardLayout = forwardRef<HTMLDivElement, DashboardLayoutProps>(
+  (
+    {
+      header = { show: true },
+      sidebar = { show: true },
+      footer = { show: true },
+      children,
+      sidebarCollapsed = false,
+      maxWidth = 'full',
+      contentPadding = true,
+      responsive = true,
+      className = '',
+      ...rest
+    },
+    ref
+  ) => {
   // State für Sidebar Collapse und Mobile-Layout
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(sidebarCollapsed);
   const [isMobile, setIsMobile] = useState(false);
@@ -161,6 +164,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       )}
     </div>
   );
-};
+});
 
 export default DashboardLayout;
