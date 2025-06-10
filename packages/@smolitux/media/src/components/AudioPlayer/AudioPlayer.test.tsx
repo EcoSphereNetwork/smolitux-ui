@@ -3,19 +3,21 @@ import { render, screen } from '@testing-library/react';
 import { AudioPlayer } from './AudioPlayer';
 
 describe('AudioPlayer', () => {
-  it('renders without crashing', () => {
-    render(<AudioPlayer />);
-    expect(screen.getByRole('button', { name: /AudioPlayer/i })).toBeInTheDocument();
+  const src = 'test.mp3';
+
+  it('renders play button', () => {
+    render(<AudioPlayer src={src} />);
+    expect(screen.getByRole('button', { name: /play/i })).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
-    render(<AudioPlayer className="custom-class" />);
+    render(<AudioPlayer src={src} className="custom-class" />);
     expect(screen.getByRole('button')).toHaveClass('custom-class');
   });
 
   it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
-    render(<AudioPlayer ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    const ref = React.createRef<HTMLDivElement>();
+    render(<AudioPlayer src={src} ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 });

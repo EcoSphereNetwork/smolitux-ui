@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, forwardRef } from 'react';
 import type { MediaSrc } from '../../types';
 
 export interface AudioPlayerProps {
@@ -34,12 +33,14 @@ export interface AudioPlayerProps {
 /**
  * AudioPlayer-Komponente für die Wiedergabe von Audioinhalten
  */
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({
-  src,
-  title,
-  artist,
-  album,
-  coverImage,
+export const AudioPlayer = forwardRef<HTMLDivElement, AudioPlayerProps>(
+  (
+    {
+      src,
+      title,
+      artist,
+      album,
+      coverImage,
   autoPlay = false,
   loop = false,
   volume = 0.8,
@@ -47,8 +48,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   onPause,
   onEnded,
   onTimeUpdate,
-  className = '',
-}) => {
+      className = '',
+    },
+    ref
+) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -172,6 +175,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <div
+      ref={ref}
       className={`flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 ${className}`}
     >
       {/* Audio-Element */}
@@ -202,6 +206,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       <div className="mb-2">
         <input
           type="range"
+          aria-label="Seek"
           min={0}
           max={duration || 0}
           value={currentTime}
@@ -308,6 +313,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
           <input
             type="range"
+            aria-label="Volume"
             min={0}
             max={1}
             step={0.01}
@@ -319,4 +325,6 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       </div>
     </div>
   );
-};
+});
+
+AudioPlayer.displayName = 'AudioPlayer';

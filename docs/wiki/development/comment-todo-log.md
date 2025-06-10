@@ -99,7 +99,7 @@
 - [ ] `src/components/MediaGrid/MediaGrid.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/MediaUploader/MediaUploader.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/MediaCarousel/MediaCarousel.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/AudioPlayer/AudioPlayer.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/AudioPlayer/AudioPlayer.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen (erledigt)
 
 ## Paket: @resonance
 - [ ] `src/components/monetization/RevenueModel.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
