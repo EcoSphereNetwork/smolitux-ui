@@ -12,6 +12,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Changed
 - Added forwardRef and data-testid to `Option` component
 - Updated related tests and stories
+
+## [0.3.5] - 2025-06-18
+### Changed
+- `Tooltip` component now uses `forwardRef` for external ref access
 ## [0.3.2] - 2025-06-08
 ### Added
 - Offline Komponentenscan und TODO-Liste erstellt

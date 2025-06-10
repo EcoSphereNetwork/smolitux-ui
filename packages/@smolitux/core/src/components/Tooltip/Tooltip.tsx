@@ -1,5 +1,10 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import './Tooltip.css';
 
 export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';
@@ -30,18 +35,22 @@ export interface TooltipProps {
 /**
  * Tooltip component that displays additional information when hovering over an element
  */
-export const Tooltip: React.FC<TooltipProps> = ({
-  content,
-  children,
-  position = 'top',
-  delay = 0,
-  hideDelay = 0,
-  maxWidth = 250,
-  className = '',
-  disabled = false,
-  arrow = true,
-  id,
-}) => {
+export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
+  (
+    {
+      content,
+      children,
+      position = 'top',
+      delay = 0,
+      hideDelay = 0,
+      maxWidth = 250,
+      className = '',
+      disabled = false,
+      arrow = true,
+      id,
+    },
+    ref
+  ) => {
   // State
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
@@ -51,6 +60,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const tooltipRef = useRef<HTMLDivElement>(null);
   const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useImperativeHandle(ref, () => tooltipRef.current as HTMLDivElement | null);
 
   // Generate unique ID for accessibility
   const tooltipId = id || `tooltip-${Math.random().toString(36).substring(2, 10)}`;
@@ -238,6 +249,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
       )}
     </>
   );
-};
+});
+
+Tooltip.displayName = 'Tooltip';
 
 export default Tooltip;
