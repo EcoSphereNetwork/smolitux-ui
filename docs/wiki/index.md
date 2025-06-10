@@ -144,6 +144,7 @@ Our component library is organized into functional categories for easy navigatio
 - **[Internationalization](guides/internationalization.md)** - Multi-language support
 - **[Migration Guide](guides/migration-guide.md)** - Migrating between versions
 - **[Voice Control Guide](guides/voice-control-guide.md)** - Sprachsteuerung in der Praxis
+- **[Open-Source Licenses](guides/open-source-licenses.md)** - Overview of licenses used in dependencies
 - **[Examples](examples/form-examples.md)** - Code examples:
   - [Form Examples](examples/form-examples.md)
   - [Layout Examples](examples/layout-examples.md)
