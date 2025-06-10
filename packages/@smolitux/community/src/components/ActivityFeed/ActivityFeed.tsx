@@ -356,7 +356,7 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
 
   // Aktivitätstext generieren
   const getActivityText = (activity: ActivityItem): string => {
-    const { type, user, target, metadata } = activity;
+    const { type, target, metadata } = activity;
 
     switch (type) {
       case 'post':

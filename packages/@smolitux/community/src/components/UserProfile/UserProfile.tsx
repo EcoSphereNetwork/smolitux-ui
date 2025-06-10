@@ -1,6 +1,6 @@
 // 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState } from 'react';
-import { Card, Button } from '@smolitux/core';
+import { Button } from '@smolitux/core';
 import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
 export interface UserStats {

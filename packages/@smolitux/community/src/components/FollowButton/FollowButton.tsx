@@ -7,7 +7,6 @@ export interface FollowButtonProps {
   /** Benutzer-ID des zu folgenden Benutzers */
   userId: string;
   /** Benutzername des zu folgenden Benutzers */
-  username?: string;
   /** Folgt der aktuelle Benutzer bereits diesem Benutzer? */
   isFollowing?: boolean;
   /** Ist der aktuelle Benutzer angemeldet? */
@@ -35,7 +34,6 @@ export interface FollowButtonProps {
  */
 export const FollowButton: React.FC<FollowButtonProps> = ({
   userId,
-  username,
   isFollowing = false,
   isLoggedIn = true,
   isSelf = false,

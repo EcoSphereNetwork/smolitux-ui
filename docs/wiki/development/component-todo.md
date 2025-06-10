@@ -49,7 +49,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | ActivityFeed       | Fehlende Tests, Kein Storybook vorhanden  |
 | CommentSection     | a11y-Test fehlt, Kein Storybook vorhanden |
 | FollowButton       | Fehlende Tests, Kein Storybook vorhanden  |
-| NotificationCenter | Fehlende Tests, Kein Storybook vorhanden  |
+| NotificationCenter | – |
 | UserProfile        | Fehlende Tests, Kein Storybook vorhanden  |
 
 ## @smolitux/core
@@ -201,7 +201,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | ActivityFeed       | forwardRef hinzufügen |
 | CommentSection     | forwardRef hinzufügen |
 | FollowButton       | forwardRef hinzufügen |
-| NotificationCenter | forwardRef hinzufügen |
+| NotificationCenter | – |
 | UserProfile        | forwardRef hinzufügen |
 
 ## @smolitux/core
