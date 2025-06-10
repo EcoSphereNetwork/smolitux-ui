@@ -2,7 +2,8 @@
 import React, { useRef, useEffect } from 'react';
 import { useDropdownContext } from './Dropdown';
 
-export interface DropdownToggleProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface DropdownToggleProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Inhalt des Toggle-Buttons */
   children: React.ReactNode;
   /** Icon links vom Label */
@@ -35,15 +36,20 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, DropdownToggle
       rightIcon,
       variant = 'default',
       size = 'md',
-      isDisabled = false,
+      isDisabled,
       fullWidth = false,
       className = '',
       onClick,
+      disabled,
       ...rest
     },
     ref
   ) => {
-    const { isOpen, setIsOpen, triggerRef, dropdownId, setActiveItemIndex } = useDropdownContext();
+    const { isOpen, setIsOpen, triggerRef, dropdownId, setActiveItemIndex } =
+      useDropdownContext();
+
+    const isDisabledState =
+      typeof isDisabled === 'boolean' ? isDisabled : !!disabled;
 
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -100,7 +106,7 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, DropdownToggle
       sizeClasses[size],
 
       // Status
-      isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+      isDisabledState ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
 
       // Weitere Optionen
       fullWidth ? 'w-full' : '',
@@ -113,7 +119,7 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, DropdownToggle
 
     // Click-Handler
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (isDisabled) {
+      if (isDisabledState) {
         e.preventDefault();
         return;
       }
@@ -133,7 +139,7 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, DropdownToggle
 
     // Tastatur-Handler
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-      if (isDisabled) return;
+      if (isDisabledState) return;
 
       switch (e.key) {
         case 'ArrowDown':
@@ -168,8 +174,8 @@ export const DropdownToggle = React.forwardRef<HTMLButtonElement, DropdownToggle
         aria-haspopup="menu"
         aria-expanded={isOpen}
         aria-controls={isOpen ? `${dropdownId}-menu` : undefined}
-        aria-disabled={isDisabled ? 'true' : 'false'}
-        disabled={isDisabled}
+        aria-disabled={isDisabledState ? 'true' : 'false'}
+        disabled={isDisabledState}
         {...rest}
       >
         {/* Icon (links) */}
