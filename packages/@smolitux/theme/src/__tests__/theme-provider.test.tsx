@@ -5,10 +5,10 @@ import '@testing-library/jest-dom';
 import { ThemeProvider, useTheme } from '../providers/ThemeProvider';
 
 function TestComponent() {
-  const { themeMode, toggleTheme } = useTheme();
+  const { mode, toggleMode } = useTheme();
   return (
-    <button onClick={toggleTheme} data-testid="mode">
-      {themeMode}
+    <button onClick={toggleMode} data-testid="mode">
+      {mode}
     </button>
   );
 }

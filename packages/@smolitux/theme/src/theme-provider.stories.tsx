@@ -12,11 +12,11 @@ export default meta;
 type Story = StoryObj;
 
 const Example: React.FC = () => {
-  const { themeMode, toggleTheme } = useTheme();
+  const { mode, toggleMode } = useTheme();
   return (
     <div>
-      <p>Current mode: {themeMode}</p>
-      <button onClick={toggleTheme}>Toggle</button>
+      <p>Current mode: {mode}</p>
+      <button onClick={toggleMode}>Toggle</button>
     </div>
   );
 };
