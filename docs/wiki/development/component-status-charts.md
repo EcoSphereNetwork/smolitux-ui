@@ -14,4 +14,4 @@ This page tracks the completion status of the chart components in the `@smolitux
 | DonutChart  | ✅ Complete | Wrapper around PieChart with donut mode                    |
 | Histogram   | ✅ Complete | Displays frequency distribution using bars                 |
 
-_Last updated: 2025-06-10_
+_Last updated: 2025-06-20_
