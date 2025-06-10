@@ -8,12 +8,14 @@ import { SpeechSynthesizer } from '../src/SpeechSynthesizer';
 describe('SpeechSynthesizer', () => {
   afterEach(() => {
     jest.restoreAllMocks();
+    delete (window as any).speechSynthesis;
   });
 
   test('falls back when unsupported', () => {
     Object.defineProperty(window, 'speechSynthesis', {
       value: undefined,
       configurable: true,
+      writable: true,
     });
     const synthesizer = new SpeechSynthesizer();
     const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
@@ -26,6 +28,7 @@ describe('SpeechSynthesizer', () => {
     Object.defineProperty(window, 'speechSynthesis', {
       value: { speak: speakMock, cancel: jest.fn() },
       configurable: true,
+      writable: true,
     });
     const synthesizer = new SpeechSynthesizer();
     synthesizer.speak('hi');
