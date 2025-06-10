@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 import React, { forwardRef } from 'react';
 
 export interface LegendItem {

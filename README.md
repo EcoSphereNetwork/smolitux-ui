@@ -55,6 +55,7 @@ Wenn du mit automatisierten Helfern wie **Codex** arbeitest, findest du alle Reg
 - 🐳 **Docker Support**: Container-Setups und Build-Skripte
 - 🔄 **Dependency Management**: Automatische Updates
 - 🧪 **Testing Framework**: Jest und Playwright
+- 📈 **Charts Tests**: Verbesserte Testabdeckung für Chart-Komponenten
 
 ## 🚀 Getting Started
 
