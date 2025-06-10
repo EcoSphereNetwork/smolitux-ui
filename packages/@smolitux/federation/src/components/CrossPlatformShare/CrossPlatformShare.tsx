@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Checkbox, Tooltip, Alert } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
@@ -12,14 +11,14 @@ interface CrossPlatformShareProps {
   isOpen: boolean;
 }
 
-export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
+export const CrossPlatformShare = React.forwardRef<HTMLDivElement, CrossPlatformShareProps>(({
   content,
   contentType,
   platforms,
   onShare,
   onClose,
   isOpen,
-}) => {
+}, ref) => {
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
   const [isSharing, setIsSharing] = useState(false);
   const [shareResult, setShareResult] = useState<{
@@ -96,7 +95,7 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
   };
 
   return (
-    <Card className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <Card ref={ref} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <Card className="w-full max-w-lg p-6 mx-4 bg-white rounded-lg shadow-xl">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Auf Plattformen teilen</h2>
@@ -187,6 +186,8 @@ export const CrossPlatformShare: React.FC<CrossPlatformShareProps> = ({
       </Card>
     </Card>
   );
-};
+});
+
+CrossPlatformShare.displayName = 'CrossPlatformShare';
 
 export default CrossPlatformShare;

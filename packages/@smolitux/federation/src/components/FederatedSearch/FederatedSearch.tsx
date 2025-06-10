@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect, useRef } from 'react';
 import { Input, Button, Card } from '@smolitux/core';
 import { SearchResult, FederatedSearchProps } from '../../types';
@@ -6,7 +5,7 @@ import { SearchResult, FederatedSearchProps } from '../../types';
 /**
  * FederatedSearch-Komponente für die Suche über mehrere föderierte Plattformen
  */
-export const FederatedSearch: React.FC<FederatedSearchProps> = ({
+export const FederatedSearch = React.forwardRef<HTMLDivElement, FederatedSearchProps>(({
   platforms,
   onSearch,
   onResultClick,
@@ -15,7 +14,7 @@ export const FederatedSearch: React.FC<FederatedSearchProps> = ({
   placeholder = 'Suche über föderierte Plattformen...',
   defaultActivePlatforms,
   defaultFilters = {},
-}) => {
+}, ref) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [activePlatforms, setActivePlatforms] = useState<string[]>(
@@ -240,7 +239,7 @@ export const FederatedSearch: React.FC<FederatedSearchProps> = ({
   };
 
   return (
-    <div className={className}>
+    <div ref={ref} className={className}>
       {/* Suchleiste */}
       <div className="mb-4">
         <div className="flex">
@@ -670,4 +669,6 @@ export const FederatedSearch: React.FC<FederatedSearchProps> = ({
       ) : null}
     </div>
   );
-};
+});
+
+FederatedSearch.displayName = 'FederatedSearch';

@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, Input } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
@@ -142,7 +141,7 @@ export interface ActivityStreamProps {
 /**
  * ActivityStream-Komponente für die Anzeige von ActivityPub-Aktivitäten und Interaktionen
  */
-export const ActivityStream: React.FC<ActivityStreamProps> = ({
+export const ActivityStream = React.forwardRef<HTMLDivElement, ActivityStreamProps>(({
   activities,
   pageSize = 10,
   onLoadMore,
@@ -156,7 +155,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
   hasMore = false,
   showFilters = true,
   defaultFilters = {},
-}) => {
+}, ref) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [filters, setFilters] = useState<Record<string, unknown>>(defaultFilters);
@@ -516,7 +515,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
   };
 
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <Card ref={ref} className={`overflow-hidden ${className}`}>
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">ActivityPub Stream</h3>
@@ -835,4 +834,6 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
       </div>
     </Card>
   );
-};
+});
+
+ActivityStream.displayName = 'ActivityStream';

@@ -12,9 +12,9 @@ export interface IdentityBridgeProps {
   className?: string;
 }
 
-export const IdentityBridge: React.FC<IdentityBridgeProps> = ({ identities, onUnlink, className }) => {
+export const IdentityBridge = React.forwardRef<HTMLDivElement, IdentityBridgeProps>(({ identities, onUnlink, className }, ref) => {
   return (
-    <Card className={className} data-testid="identity-bridge">
+    <Card ref={ref} className={className} data-testid="identity-bridge">
       <h3 className="font-semibold mb-2">Linked Identities</h3>
       <ul className="space-y-1">
         {identities.map((id) => (
@@ -30,6 +30,8 @@ export const IdentityBridge: React.FC<IdentityBridgeProps> = ({ identities, onUn
       </ul>
     </Card>
   );
-};
+});
+
+IdentityBridge.displayName = 'IdentityBridge';
 
 export default IdentityBridge;

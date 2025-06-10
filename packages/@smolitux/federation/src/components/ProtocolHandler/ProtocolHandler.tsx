@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from '@smolitux/core';
 import {
@@ -13,14 +12,14 @@ interface ConnectionState {
   socket?: WebSocket;
 }
 
-export const ProtocolHandler: React.FC<ProtocolHandlerProps> = ({
+export const ProtocolHandler = React.forwardRef<HTMLDivElement, ProtocolHandlerProps>(({
   protocols,
   onMessage,
   onConnection,
   errorHandling = { retries: 3, retryDelay: 1000 },
   authentication,
   className,
-}) => {
+}, ref) => {
   const [connections, setConnections] = useState<Record<string, ConnectionState>>(
     {}
   );
@@ -85,7 +84,7 @@ export const ProtocolHandler: React.FC<ProtocolHandlerProps> = ({
   };
 
   return (
-    <Card className={className} data-testid="protocol-handler">
+    <Card ref={ref} className={className} data-testid="protocol-handler">
       <h3 className="font-semibold mb-2">Protocol Connections</h3>
       <ul className="space-y-1">
         {protocols.map((p) => (
@@ -107,6 +106,8 @@ export const ProtocolHandler: React.FC<ProtocolHandlerProps> = ({
       </div>
     </Card>
   );
-};
+});
+
+ProtocolHandler.displayName = 'ProtocolHandler';
 
 export default ProtocolHandler;
