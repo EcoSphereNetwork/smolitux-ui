@@ -10,7 +10,7 @@ const config = {
     // SVG und andere Assets
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/test-utils/fileMock.js',
     // Alias-Auflösung für '@smolitux/'
-    '^@smolitux/(.*)$': '<rootDir>/packages/@smolitux/$1/src',
+    '^@smolitux/([^/]+)/?(.*)$': '<rootDir>/packages/@smolitux/$1/src/$2',
     '^jest-matcher-utils$': '<rootDir>/node_modules/jest-matcher-utils',
     // Mock für y18n
     '^y18n$': '<rootDir>/test-utils/y18n.js',
