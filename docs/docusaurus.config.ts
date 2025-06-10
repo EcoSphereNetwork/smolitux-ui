@@ -91,8 +91,8 @@ const config: Config = {
     navbar: {
       title: 'Smolitux-UI',
       logo: {
-        alt: 'Smolitux-UI Logo',
-        src: 'img/logo.svg',
+        alt: 'EcoSphereNetwork Logo',
+        src: 'https://avatars.githubusercontent.com/u/168775088?s=400&u=a782fd605bdf54421b8bb4b011a8fb3d93ffa5cc&v=4',
       },
       items: [
         {
