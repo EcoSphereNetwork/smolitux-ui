@@ -32,3 +32,11 @@ export const Interactive: Story = {
     onClick: () => alert('Clicked!'),
   },
 };
+
+export const WithCloseButton: Story = {
+  args: {
+    content: 'Closable content',
+    showCloseButton: true,
+    children: <button>Trigger</button>,
+  },
+};

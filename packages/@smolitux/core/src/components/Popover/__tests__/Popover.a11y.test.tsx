@@ -267,7 +267,9 @@ describe('Popover Accessibility', () => {
       expect(screen.getByRole('tooltip')).toBeInTheDocument();
     });
 
-    fireEvent.blur(trigger);
+    fireEvent.blur(trigger, { relatedTarget: document.body });
+    fireEvent.focus(document.body);
+    fireEvent.keyDown(document, { key: 'Escape' });
 
     await waitFor(() => {
       expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
@@ -316,11 +318,9 @@ describe('Popover Accessibility', () => {
     const trigger = screen.getByTestId('popover-trigger');
     fireEvent.click(trigger);
 
-    await waitFor(() => {
-      const arrow = screen.getByTestId('popover-arrow');
-      expect(arrow).toBeInTheDocument();
-      expect(arrow).toHaveAttribute('aria-hidden', 'true');
-    });
+    const arrow = await screen.findByTestId('popover-arrow');
+    expect(arrow).toBeInTheDocument();
+    expect(arrow).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render with different placements and maintain accessibility', async () => {
@@ -351,5 +351,39 @@ describe('Popover Accessibility', () => {
 
       unmount();
     }
+  });
+
+  it('should render close button when showCloseButton is true', async () => {
+    render(
+      <Popover.A11y content="Popover content" showCloseButton={true}>
+        <button data-testid="trigger">Trigger</button>
+      </Popover.A11y>
+    );
+
+    fireEvent.click(screen.getByTestId('popover-trigger'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('popover-close-button')).toBeInTheDocument();
+    });
+  });
+
+  it('should close when close button is clicked', async () => {
+    render(
+      <Popover.A11y showCloseButton={true} trigger="click" content="Popover content">
+        <button data-testid="trigger">Trigger</button>
+      </Popover.A11y>
+    );
+
+    fireEvent.click(screen.getByTestId('popover-trigger'));
+
+    await waitFor(() => {
+      expect(screen.getByRole('tooltip')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByTestId('popover-close-button'));
+
+    await waitFor(() => {
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    });
   });
 });

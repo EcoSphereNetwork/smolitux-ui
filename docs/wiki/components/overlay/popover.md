@@ -159,6 +159,8 @@ function ControlledPopoverExample() {
 | `closeOnClickOutside` | `boolean` | `true` | Automatisch schließen, wenn außerhalb geklickt wird |
 | `closeOnEsc` | `boolean` | `true` | Automatisch schließen, wenn ESC gedrückt wird |
 | `showArrow` | `boolean` | `true` | Pfeil anzeigen |
+| `showCloseButton` | `boolean` | `false` | Schließen-Button im Popover anzeigen |
+| `closeButtonLabel` | `string` | `'Close'` | Beschriftung des Schließen-Buttons |
 | `offset` | `number` | `8` | Offset vom Trigger-Element (in px) |
 | `maxWidth` | `number \| string` | `'none'` | Maximale Breite des Popovers |
 | `title` | `ReactNode` | - | Titel des Popovers |

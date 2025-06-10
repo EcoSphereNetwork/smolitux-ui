@@ -40,6 +40,10 @@ export interface PopoverProps {
   closeOnEsc?: boolean;
   /** Pfeil anzeigen */
   showArrow?: boolean;
+  /** Schließen-Button anzeigen */
+  showCloseButton?: boolean;
+  /** Beschriftung für den Schließen-Button */
+  closeButtonLabel?: string;
   /** Offset vom Trigger-Element (in px) */
   offset?: number;
   /** Maximale Breite des Popovers */
@@ -63,7 +67,17 @@ export interface PopoverProps {
   /** ARIA-Atomic für den Popover */
   ariaAtomic?: boolean;
   /** ARIA-Relevant für den Popover */
-  ariaRelevant?: string;
+  ariaRelevant?:
+    | 'additions'
+    | 'removals'
+    | 'text'
+    | 'all'
+    | 'additions removals'
+    | 'additions text'
+    | 'removals additions'
+    | 'removals text'
+    | 'text additions'
+    | 'text removals';
   /** ARIA-Hidden für den Popover */
   ariaHidden?: boolean;
   /** ARIA-Expanded für den Trigger */
@@ -130,6 +144,8 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
   closeOnClickOutside = true,
   closeOnEsc = true,
   showArrow = true,
+  showCloseButton = false,
+  closeButtonLabel = 'Close',
   offset = 8,
   maxWidth = 'none',
   title,
@@ -174,7 +190,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
   const [announceMessage, setAnnounceMessage] = useState('');
 
   // Refs
-  const triggerRef = useRef<HTMLElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -582,14 +598,14 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       arrowStyle.bottom = '16px';
     }
 
-    return <div style={arrowStyle} aria-hidden="true" data-testid="Popover.a11y" />;
+    return <div style={arrowStyle} aria-hidden="true" data-testid="popover-arrow" />;
   };
 
   // Hole die Props für den Trigger
   const getTriggerProps = () => {
-    const triggerProps: unknown = {
-      ref: (node: unknown) => {
-        triggerRef.current = node;
+    const triggerProps: Record<string, any> = {
+      ref: (node: Element | null) => {
+        triggerRef.current = node as HTMLElement | null;
 
         // Wenn das Kind ein Ref hat, setze es
         const { ref } = children as any;
@@ -605,6 +621,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       'aria-controls': isOpenState ? popoverId : undefined,
       'aria-owns': ariaOwns,
       'aria-pressed': ariaPressed,
+      'data-testid': 'popover-trigger',
     };
 
     if (trigger === 'click' || trigger === 'manual') {
@@ -702,13 +719,36 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
           aria-hidden={ariaHidden}
           aria-live={ariaLive}
           aria-atomic={ariaAtomic}
-          aria-relevant={ariaRelevant}
-          aria-busy={ariaBusy}
-          aria-disabled={ariaDisabled}
-          aria-keyshortcuts={ariaKeyshortcuts}
-          aria-roledescription={ariaRoledescription}
-          tabIndex={-1}
-        >
+      aria-relevant={ariaRelevant}
+      aria-busy={ariaBusy}
+      aria-disabled={ariaDisabled}
+      aria-keyshortcuts={ariaKeyshortcuts}
+      aria-roledescription={ariaRoledescription}
+      tabIndex={-1}
+      data-testid="popover"
+      data-placement={placement}
+    >
+          {showCloseButton && (
+            <button
+              type="button"
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 focus:outline-none"
+              onClick={close}
+              aria-label={closeButtonLabel}
+              data-testid="popover-close-button"
+            >
+              <span className="sr-only">{closeButtonLabel}</span>
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
           {title && (
             <div id={titleId} className="font-bold mb-2">
               {title}
