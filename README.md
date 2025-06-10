@@ -157,6 +157,7 @@ Beiträge sind willkommen! Siehe [CONTRIBUTING.md](CONTRIBUTING.md) für Details
 ## 📄 License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+For an overview of third-party licenses used in this project, see [Open-Source Licenses](docs/wiki/guides/open-source-licenses.md).
 
 ---
 

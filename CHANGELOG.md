@@ -39,8 +39,6 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Changed
 
 - `Collapse` component now supports `forwardRef` and exposes the container ref.
-
-<<<<<<< HEAD
 ## [0.3.7] - 2025-06-10
 ### Fixed
 - Removed obsolete test TODO comments for chart components
@@ -61,6 +59,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
 - `Slide` component now uses `forwardRef` for external ref access and updated tests
 - `FeedItem` in `@smolitux/resonance` now forwards refs correctly
+- Documentation page summarizing common open-source licenses
 ## [0.3.2] - 2025-06-08
 ### Added
 - Storybook stories for `NotificationCenter`
