@@ -82,12 +82,12 @@
 - [ ] `src/components/Table/Table.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 
 ## Paket: @federation
-- [ ] `src/components/FederatedSearch/FederatedSearch.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/FederationStatus/FederationStatus.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/PlatformSelector/PlatformSelector.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/ProtocolHandler/ProtocolHandler.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/ActivityStream/ActivityStream.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/CrossPlatformShare/CrossPlatformShare.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/FederatedSearch/FederatedSearch.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/FederationStatus/FederationStatus.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/PlatformSelector/PlatformSelector.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/ProtocolHandler/ProtocolHandler.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/ActivityStream/ActivityStream.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/CrossPlatformShare/CrossPlatformShare.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 
 ## Paket: @layout
 - [ ] `src/components/DashboardLayout/DashboardLayout.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
