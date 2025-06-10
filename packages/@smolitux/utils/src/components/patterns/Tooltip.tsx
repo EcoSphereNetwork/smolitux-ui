@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, forwardRef } from 'react';
 import { Box } from '../primitives/Box';
 
 export type TooltipPlacement =
@@ -59,7 +58,7 @@ export interface TooltipProps {
  * Tooltip component for displaying additional information on hover.
  * It supports different placements, delays, and behaviors.
  */
-export const Tooltip: React.FC<TooltipProps> = ({
+export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(({
   content,
   children,
   placement = 'top',
@@ -78,7 +77,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   offset = 8,
   closeOnClick = true,
   closeOnEsc = true,
-}) => {
+}, ref) => {
   // State for tooltip visibility
   const [isOpen, setIsOpen] = useState(defaultIsOpen);
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -373,7 +372,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   };
 
   return (
-    <Box className={className}>
+    <Box ref={ref} className={className}>
       {trigger}
       {tooltipIsOpen && (
         <Box
@@ -410,6 +409,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
       )}
     </Box>
   );
-};
+});
 
 Tooltip.displayName = 'Tooltip';
