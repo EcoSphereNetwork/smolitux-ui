@@ -50,6 +50,10 @@ export interface PopoverProps {
   closeOnEsc?: boolean;
   /** Pfeil anzeigen */
   showArrow?: boolean;
+  /** Schließen-Button anzeigen */
+  showCloseButton?: boolean;
+  /** Beschriftung für den Schließen-Button */
+  closeButtonLabel?: string;
   /** Offset vom Trigger-Element (in px) */
   offset?: number;
   /** Maximale Breite des Popovers */
@@ -91,6 +95,8 @@ export const Popover: React.FC<PopoverProps> = ({
   closeOnClickOutside = true,
   closeOnEsc = true,
   showArrow = true,
+  showCloseButton = false,
+  closeButtonLabel = 'Close',
   offset = 8,
   maxWidth = 320,
   title,
@@ -524,8 +530,8 @@ export const Popover: React.FC<PopoverProps> = ({
           id={popoverId}
           role="tooltip"
           className={`
-            absolute z-${zIndex} bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-${zIndex} bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             ${className}
           `}
@@ -540,6 +546,27 @@ export const Popover: React.FC<PopoverProps> = ({
           data-testid={dataTestId}
           data-placement={placement}
         >
+          {showCloseButton && (
+            <button
+              type="button"
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 focus:outline-none"
+              onClick={closePopover}
+              aria-label={closeButtonLabel}
+              data-testid={`${dataTestId}-close-button`}
+            >
+              <span className="sr-only">{closeButtonLabel}</span>
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
           {/* Title */}
           {title && (
             <div

@@ -311,4 +311,28 @@ describe('Popover', () => {
     expect(popover).toHaveAttribute('aria-label', 'Test popover');
     expect(popover).toHaveAttribute('role', 'tooltip');
   });
+
+  it('renders close button when showCloseButton is true', () => {
+    render(
+      <Popover content="Popover Content" isOpen={true} showCloseButton={true}>
+        <button>Trigger</button>
+      </Popover>
+    );
+
+    expect(screen.getByTestId('popover-close-button')).toBeInTheDocument();
+  });
+
+  it('closes when close button is clicked', () => {
+    render(
+      <Popover content="Popover Content" showCloseButton={true} trigger="click">
+        <button>Trigger</button>
+      </Popover>
+    );
+
+    fireEvent.click(screen.getByText('Trigger'));
+    expect(screen.getByText('Popover Content')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('popover-close-button'));
+    expect(screen.queryByText('Popover Content')).not.toBeInTheDocument();
+  });
 });
