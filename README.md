@@ -32,6 +32,8 @@
 ## 🎯 About
 Smolitux UI stellt standardisierte UI-Komponenten für Webanwendungen bereit und wird im gesamten *EcoSphere Network* eingesetzt.
 
+Wenn du mit automatisierten Helfern wie **Codex** arbeitest, findest du alle Regeln und Abläufe in [AGENTS.md](AGENTS.md). Weitere Details sind im [Codex-Wiki](docs/wiki/codex/index.md) dokumentiert.
+
 ### Why Use This Library?
 - 🚀 **Quick Start**: Sofort einsatzbereite Komponenten
 - 🔄 **CI/CD Ready**: GitHub Actions Workflows für Tests und Builds
