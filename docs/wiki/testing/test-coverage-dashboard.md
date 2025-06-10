@@ -1,50 +1,78 @@
-# Test Coverage Dashboard
+# Smolitux UI Component Status
 
-| Paket                   | Status       | Statements | Branches | Functions | Lines |
-| ----------------------- | ------------ | ---------- | -------- | --------- | ----- |
-| @smolitux/core          | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/theme         | ✅ Getestet  | –          | –        | –         | –     |
-| @smolitux/layout        | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/charts        | ✅ Getestet  | –          | –        | –         | –     |
-| @smolitux/ai            | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/blockchain    | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/community     | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/federation    | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/media         | ✅ Getestet  | –          | –        | –         | –     |
-| @smolitux/resonance     | ⚠️ Teilweise | –          | –        | –         | –     |
-| @smolitux/utils         | ✅ Getestet  | –          | –        | –         | –     |
-| @smolitux/testing       | ✅ Getestet  | –          | –        | –         | –     |
-| @smolitux/voice-control | ❌ Offen     | –          | –        | –         | –     |
+Total Components: 883
+Test Coverage: 43%
+Story Coverage: 28%
+Last Updated: 2025-06-10 22:20:12
 
-> Letzte Aktualisierung: 2025-06-18 – Lightbox component added; DeFiDashboard component covered; Navigation component added; ChatInterface component added; Global config utility documented
+## Summary
+This report shows the completion status of all components in the Smolitux UI library.
 
-### Update 2025-06-13
+## Package Overview
 
-- Added annotation script entry in docs.
+### @smolitux/core
+- Components: 476
+- Tests: 185/476 (38%)
+- Stories: 149/476 (31%)
+- Status: ⚠️ In Progress
 
-### Update 2025-06-09 - Automated TODO/FIXME scan executed.
+### @smolitux/utils
+- Components: 42
+- Tests: 18/42 (42%)
+- Stories: 15/42 (35%)
+- Status: ⚠️ In Progress
 
-### Update 2025-06-09
+### @smolitux/layout
+- Components: 44
+- Tests: 23/44 (52%)
+- Stories: 10/44 (22%)
+- Status: ⚠️ In Progress
 
-- Fixed ESLint configuration; lint command works.
+### @smolitux/charts
+- Components: 66
+- Tests: 44/66 (66%)
+- Stories: 11/66 (16%)
+- Status: ⚠️ In Progress
 
-### Update 2025-06-14
+### @smolitux/media
+- Components: 33
+- Tests: 17/33 (51%)
+- Stories: 8/33 (24%)
+- Status: ⚠️ In Progress
 
-- Documentation updated for Flex component props typing fix.
+### @smolitux/community
+- Components: 17
+- Tests: 7/17 (41%)
+- Stories: 5/17 (29%)
+- Status: ⚠️ In Progress
 
-### Update 2025-06-15
+### @smolitux/ai
+- Components: 41
+- Tests: 20/41 (48%)
+- Stories: 10/41 (24%)
+- Status: ⚠️ In Progress
 
-- Updated tooling instructions after ESLint flat config migration.
-- PrivacyContext tests added for community package
-- Updated coverage after adding SpeechSynthesis component.
+### @smolitux/blockchain
+- Components: 42
+- Tests: 21/42 (50%)
+- Stories: 10/42 (23%)
+- Status: ⚠️ In Progress
 
-### Update 2025-06-16
-- Added tests for new guard utilities in @smolitux/utils.
-### Update 2025-06-16 - Theme tokens structured
-- DonutChart wrapper tests added
-### Update 2025-06-16
-- Added global config utility for testing package.
-### Update 2025-06-09
-- Added tests for Badge forwardRef implementation in core package.
-### Update 2025-06-09
-- Added test coverage entries for new federation components.
+### @smolitux/resonance
+- Components: 88
+- Tests: 40/88 (45%)
+- Stories: 27/88 (30%)
+- Status: ⚠️ In Progress
+
+### @smolitux/federation
+- Components: 28
+- Tests: 10/28 (35%)
+- Stories: 9/28 (32%)
+- Status: ⚠️ In Progress
+
+### @smolitux/voice-control
+- Components: 6
+- Tests: 2/6 (33%)
+- Stories: 2/6 (33%)
+- Status: ⚠️ In Progress
+
