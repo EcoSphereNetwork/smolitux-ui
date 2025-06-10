@@ -40,7 +40,6 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 - `Collapse` component now supports `forwardRef` and exposes the container ref.
 
-<<<<<<< HEAD
 ## [0.3.7] - 2025-06-10
 ### Fixed
 - Removed obsolete test TODO comments for chart components
