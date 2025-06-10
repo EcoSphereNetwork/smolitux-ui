@@ -42,7 +42,7 @@ export const DashboardLayout = forwardRef<HTMLDivElement, DashboardLayoutProps>(
   (
     {
       header = { show: true },
-      sidebar = { show: true },
+      sidebar = { show: true, items: [] },
       footer = { show: true },
       children,
       sidebarCollapsed = false,
@@ -114,7 +114,7 @@ export const DashboardLayout = forwardRef<HTMLDivElement, DashboardLayoutProps>(
   };
 
   return (
-    <div className={`min-h-screen ${className}`} {...rest}>
+    <div ref={ref} className={`min-h-screen ${className}`} {...rest}>
       {/* Header */}
       {header.show && (
         <Header
@@ -165,5 +165,7 @@ export const DashboardLayout = forwardRef<HTMLDivElement, DashboardLayoutProps>(
     </div>
   );
 });
+
+DashboardLayout.displayName = 'DashboardLayout';
 
 export default DashboardLayout;
