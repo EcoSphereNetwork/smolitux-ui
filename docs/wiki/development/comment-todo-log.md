@@ -42,7 +42,7 @@
 
 ## Paket: @core
 - [ ] `src/components/ColorPicker/ColorPicker.original.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/Tooltip/Tooltip.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/Tooltip/Tooltip.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/Toast/ToastProvider.original.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Toast/ToastProvider.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/LanguageSwitcher/LanguageSwitcher.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
