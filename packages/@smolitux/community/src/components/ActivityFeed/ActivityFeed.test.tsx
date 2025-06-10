@@ -16,3 +16,9 @@ it('calls onLoadMore when load button is clicked', async () => {
   await userEvent.click(screen.getByRole('button', { name: /Weitere Aktivitäten laden/i }));
   expect(handleLoadMore).toHaveBeenCalled();
 });
+
+it('forwards ref correctly', () => {
+  const ref = React.createRef<HTMLDivElement>();
+  render(<ActivityFeed activities={sample} ref={ref} />);
+  expect(ref.current).toBeInstanceOf(HTMLDivElement);
+});

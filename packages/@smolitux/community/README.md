@@ -18,6 +18,8 @@ yarn add @smolitux/community
 - ActivityFeed: Displays user activity
 - FollowButton: Button for following users or topics
 
+All components forward their refs to the underlying DOM element to support advanced integrations.
+
 ## Usage
 
 ```jsx

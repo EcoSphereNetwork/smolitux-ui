@@ -1,5 +1,5 @@
 // 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, forwardRef } from 'react';
 import { Button, Input } from '@smolitux/core';
 import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
@@ -49,14 +49,18 @@ export interface CommentSectionProps {
 /**
  * CommentSection-Komponente für Diskussionen zu Inhalten
  */
-export const CommentSection: React.FC<CommentSectionProps> = ({
-  comments,
-  currentUser,
-  onAddComment,
-  onLikeComment,
-  onDeleteComment,
-  className = '',
-}) => {
+export const CommentSection = forwardRef<HTMLDivElement, CommentSectionProps>(
+  (
+    {
+      comments,
+      currentUser,
+      onAddComment,
+      onLikeComment,
+      onDeleteComment,
+      className = '',
+    },
+    ref,
+  ) => {
   const [newComment, setNewComment] = useState('');
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyContent, setReplyContent] = useState('');
@@ -333,7 +337,10 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
 
   return (
     <>
-      <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${className}`}>
+      <div
+        ref={ref}
+        className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${className}`}
+      >
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Kommentare ({comments.length})
@@ -393,4 +400,4 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </>
   );
-};
+});

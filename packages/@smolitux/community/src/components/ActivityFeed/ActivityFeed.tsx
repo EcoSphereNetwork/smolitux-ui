@@ -1,5 +1,5 @@
 // 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { Card, Button } from '@smolitux/core';
 import { usePrivacyConsent } from '../../privacy';
 import { PrivacySettings } from '../../privacy';
@@ -64,16 +64,20 @@ export interface ActivityFeedProps {
 /**
  * ActivityFeed-Komponente für die Anzeige von Benutzeraktivitäten
  */
-export const ActivityFeed: React.FC<ActivityFeedProps> = ({
-  activities,
-  pageSize = 10,
-  onLoadMore,
-  onActivityClick,
-  onUserClick,
-  className = '',
-  loading = false,
-  hasMore = false,
-}) => {
+export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(
+  (
+    {
+      activities,
+      pageSize = 10,
+      onLoadMore,
+      onActivityClick,
+      onUserClick,
+      className = '',
+      loading = false,
+      hasMore = false,
+    },
+    ref,
+  ) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const { preferences } = usePrivacyConsent();
   const [showPrivacy, setShowPrivacy] = useState(false);
@@ -405,7 +409,7 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
 
   return (
     <>
-      <Card className={`overflow-hidden ${className}`}>
+      <Card ref={ref} className={`overflow-hidden ${className}`}>
         {/* Header */}
         <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Aktivitäten</h3>
@@ -569,4 +573,4 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({
       <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </>
   );
-};
+});
