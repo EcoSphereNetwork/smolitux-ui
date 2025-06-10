@@ -24,3 +24,18 @@ export const Default: Story = {
     notifications,
   },
 };
+
+export const NoNotifications: Story = {
+  args: {
+    notifications: [],
+  },
+};
+
+export const ManyUnread: Story = {
+  args: {
+    notifications: Array.from({ length: 5 }).map((_, i) => ({
+      id: `u${i}`,
+      message: `Neue Nachricht ${i + 1}`,
+    })),
+  },
+};

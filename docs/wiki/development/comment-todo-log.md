@@ -36,7 +36,7 @@
 ## Paket: @community
 - [ ] `src/components/CommentSection/CommentSection.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/FollowButton/FollowButton.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/NotificationCenter/NotificationCenter.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/NotificationCenter/NotificationCenter.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/ActivityFeed/ActivityFeed.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/UserProfile/UserProfile.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 

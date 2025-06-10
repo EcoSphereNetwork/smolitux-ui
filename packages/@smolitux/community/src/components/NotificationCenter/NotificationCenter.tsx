@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useEffect, useRef } from 'react';
+import React, { forwardRef, useState, useEffect, useRef } from 'react';
 import { Button } from '@smolitux/core';
 import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
@@ -55,17 +54,29 @@ export interface NotificationCenterProps {
 /**
  * NotificationCenter-Komponente für die Anzeige von Benachrichtigungen
  */
-export const NotificationCenter: React.FC<NotificationCenterProps> = ({
-  notifications,
-  onMarkAsRead,
-  onMarkAllAsRead,
-  onDelete,
-  onClick,
-  className = '',
-}) => {
+export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterProps>(
+  (
+    {
+      notifications,
+      onMarkAsRead,
+      onMarkAllAsRead,
+      onDelete,
+      onClick,
+      className = '',
+    },
+    ref,
+  ) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'unread'>('all');
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const combinedRef = (node: HTMLDivElement | null) => {
+    (dropdownRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    if (typeof ref === 'function') {
+      ref(node);
+    } else if (ref) {
+      (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    }
+  };
   const { preferences } = usePrivacyConsent();
   const [showPrivacy, setShowPrivacy] = useState(false);
 
@@ -375,7 +386,11 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
 
   return (
     <>
-      <div className={`relative ${className}`} ref={dropdownRef}>
+      <div
+        className={`relative ${className}`}
+        ref={combinedRef}
+        data-testid="notification-center"
+      >
         {/* Benachrichtigungsicon */}
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -414,7 +429,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
                 Benachrichtigungen
               </h3>
               <div className="flex items-center gap-2">
-                <Button variant="text" size="sm" onClick={() => setShowPrivacy(true)}>
+                <Button variant="secondary" size="sm" onClick={() => setShowPrivacy(true)}>
                   Privacy
                 </Button>
                 {unreadCount > 0 && (
@@ -590,4 +605,4 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
       <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </>
   );
-};
+});
