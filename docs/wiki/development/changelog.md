@@ -9,6 +9,9 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - Added named export for `defaultTheme` and cleaned up theme exports
 - `Slide` component now forwards refs and tests were updated accordingly.
 
+### Added
+- Documentation page summarizing common open-source licenses
+
 ### Fixed
 - `FeedItem` in `@smolitux/resonance` now forwards refs correctly
 
@@ -38,7 +41,3 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ### Geändert
 - Verbesserte Exportstruktur in der Utils-Bibliothek für einfachere Importe
 - Aktualisierte Dokumentation mit neuen Varianten und Props
-
-### Behoben
-- Typfehler in der Button-Komponente
-- Typfehler in der TabView-Komponente

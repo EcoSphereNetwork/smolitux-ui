@@ -1,5 +1,7 @@
 # 🧾 Kommentar-Backlog: Aufgaben aus `@smolitux/*` Quellcode
 
+- [ ] `docs/wiki/guides/open-source-licenses.md`: 📚 Neuer Leitfaden zu gängigen Open-Source-Lizenzen
+
 ## Paket: @ai
 - [ ] `src/components/EngagementScore/EngagementScore.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/ContentAnalytics/ContentAnalytics.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
