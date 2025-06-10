@@ -250,7 +250,6 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 
 | Komponente      | TODOs                 |
 | --------------- | --------------------- |
-| DashboardLayout | forwardRef hinzufügen |
 
 ## @smolitux/media
 

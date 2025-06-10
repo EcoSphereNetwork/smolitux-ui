@@ -90,7 +90,7 @@
 - [ ] `src/components/CrossPlatformShare/CrossPlatformShare.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 
 ## Paket: @layout
-- [ ] `src/components/DashboardLayout/DashboardLayout.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/DashboardLayout/DashboardLayout.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Grid/Grid.tsx`: 🛠 FIXME [Codex]: Props nicht typisiert – Fehlerbehebung erforderlich
 
 ## Paket: @media
