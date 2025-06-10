@@ -19,6 +19,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ## [0.3.2] - 2025-06-17
 - Removed legacy theme-provider implementation in @smolitux/theme
 - Updated monorepo TypeScript path mappings
+## [0.3.7] - 2025-06-20
+### Added
+- Documentation page summarizing common open-source licenses
+
 
 ## [0.2.3] - 2025-06-08
 

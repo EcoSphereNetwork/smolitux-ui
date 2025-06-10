@@ -143,6 +143,7 @@ Our component library is organized into functional categories for easy navigatio
 - **[Form Validation](guides/form-validation.md)** - How to handle form validation
 - **[Internationalization](guides/internationalization.md)** - Multi-language support
 - **[Migration Guide](guides/migration-guide.md)** - Migrating between versions
+- **[Open-Source Licenses](guides/open-source-licenses.md)** - Overview of licenses used in dependencies
 - **[Voice Control Guide](guides/voice-control-guide.md)** - Sprachsteuerung in der Praxis
 - **[Open-Source Licenses](guides/open-source-licenses.md)** - Overview of licenses used in dependencies
 - **[Examples](examples/form-examples.md)** - Code examples:
