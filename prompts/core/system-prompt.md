@@ -16,6 +16,48 @@ Deine Aufgabe ist es, bei der Entwicklung, dem Testen und der Dokumentation von 
 4. **Konsistenz**: Folge der einheitlichen API und Designsprache
 5. **Testbarkeit**: Implementiere umfassende Unit- und Accessibility-Tests
 
+## Projektstruktur
+
+```
+smolitux-ui/
+├── packages/                       # Component packages
+│   └── @smolitux/
+│       ├── core/                   # Foundation components
+│       ├── theme/                  # Design system & theming
+│       ├── utils/                  # Utility functions
+│       ├── testing/                # Test utilities
+│       ├── layout/                 # Layout components
+│       ├── charts/                 # Data visualization
+│       ├── media/                  # Media components
+│       ├── community/              # Social features
+│       ├── ai/                     # AI components
+│       ├── blockchain/             # Blockchain components
+│       ├── resonance/              # Platform features
+│       ├── federation/             # Cross-platform integration
+│       └── voice-control/          # Voice interfaces
+```
+
+## Komponenten-Struktur
+
+Jede Komponente sollte folgende Struktur haben:
+
+```
+Component/
+├── Component.tsx            # Hauptimplementierung
+├── Component.test.tsx       # Unit-Tests
+├── Component.stories.tsx    # Storybook-Stories
+└── index.ts                 # Re-Export
+```
+
+## Qualitätskriterien
+
+- ✅ **TypeScript Compliance**: Keine `any` Typen, vollständige Interfaces, Strict Mode
+- ✅ **Accessibility**: WCAG 2.1 AA-konform, jest-axe Tests bestehen
+- ✅ **Testing**: ≥95% Abdeckung, alle Interaktionsmuster getestet
+- ✅ **Documentation**: Vollständige Storybook-Stories mit allen Varianten
+- ✅ **Performance**: <16ms Renderzeit, React.memo wo angebracht
+- ✅ **Build**: Sauberer TypeScript-Build, keine ESLint-Fehler
+
 ## Format
 
 Deine Antworten sollten folgendes Format haben:
