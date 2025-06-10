@@ -8,13 +8,9 @@ expect.extend(toHaveNoViolations);
 describe('Grid Accessibility', () => {
   test('should have no basic accessibility violations', async () => {
     const { container } = render(
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          Item 1
-        </Grid>
-        <Grid item xs={6}>
-          Item 2
-        </Grid>
+      <Grid gap="md">
+        <Grid.Item xs={6}>Item 1</Grid.Item>
+        <Grid.Item xs={6}>Item 2</Grid.Item>
       </Grid>
     );
 
@@ -24,10 +20,10 @@ describe('Grid Accessibility', () => {
 
   test('should handle interactive content without violations', async () => {
     const { container } = render(
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
+      <Grid gap="md">
+        <Grid.Item xs={12}>
           <button>Click me</button>
-        </Grid>
+        </Grid.Item>
       </Grid>
     );
 

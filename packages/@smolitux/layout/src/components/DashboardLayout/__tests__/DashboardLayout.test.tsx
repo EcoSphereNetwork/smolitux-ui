@@ -22,7 +22,7 @@ jest.mock('../../Container/Container', () => ({
 describe('DashboardLayout', () => {
   it('renders children inside container', () => {
     const { getByText } = render(
-      <DashboardLayout header={{ show: false }} sidebar={{ show: false }} footer={{ show: false }}>
+      <DashboardLayout header={{ show: false }} sidebar={{ show: false, items: [] }} footer={{ show: false }}>
         <span>content</span>
       </DashboardLayout>
     );
