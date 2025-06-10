@@ -3,16 +3,17 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { WalletConnect } from '../WalletConnect';
 import { EthereumProvider } from '../../../types';
 
-const mockEthereum = {
-  request: jest.fn(),
+const mockRequest = jest.fn();
+const mockEthereum: EthereumProvider = {
+  request: mockRequest as unknown as EthereumProvider['request'],
   on: jest.fn(),
   removeListener: jest.fn(),
-} as unknown as EthereumProvider;
+};
 
 describe('WalletConnect', () => {
   beforeEach(() => {
     (window as any).ethereum = mockEthereum;
-    mockEthereum.request.mockResolvedValue(['0xabc']);
+    mockRequest.mockResolvedValue(['0xabc']);
   });
 
   afterEach(() => {

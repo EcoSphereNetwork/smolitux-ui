@@ -6,16 +6,17 @@ import { EthereumProvider } from '../../../types';
 
 expect.extend(toHaveNoViolations);
 
-const mockEthereum = {
-  request: jest.fn(),
+const mockRequest = jest.fn();
+const mockEthereum: EthereumProvider = {
+  request: mockRequest as unknown as EthereumProvider['request'],
   on: jest.fn(),
   removeListener: jest.fn(),
-} as unknown as EthereumProvider;
+};
 
 describe('WalletConnect a11y', () => {
   beforeEach(() => {
     (window as any).ethereum = mockEthereum;
-    mockEthereum.request.mockResolvedValue(['0xabc']);
+    mockRequest.mockResolvedValue(['0xabc']);
   });
 
   afterEach(() => {
