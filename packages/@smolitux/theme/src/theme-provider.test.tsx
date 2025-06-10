@@ -8,11 +8,11 @@ describe('ThemeProvider', () => {
       <ThemeProvider>{children}</ThemeProvider>
     );
     const { result } = renderHook(() => useTheme(), { wrapper });
-    expect(result.current.themeMode).toBe('light');
+    expect(result.current.mode).toBe('light');
     act(() => {
-      result.current.toggleTheme();
+      result.current.toggleMode();
     });
-    expect(result.current.themeMode).toBe('dark');
+    expect(result.current.mode).toBe('dark');
   });
 
   it('throws when used outside provider', () => {

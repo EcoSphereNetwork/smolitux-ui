@@ -10,6 +10,6 @@ describe('core integration', () => {
         <Button>click</Button>
       </ThemeProvider>
     );
-    expect(screen.getByRole('button')).toHaveTextContent('click');
+    expect(screen.getByTestId('Button')).toHaveTextContent('click');
   });
 });

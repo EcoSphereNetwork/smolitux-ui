@@ -8,6 +8,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Added
 - Component counts documented in component-status.md
 
+### Fixed
+- Removed legacy theme-provider implementation
+- Updated TypeScript path mappings
+
 ## [0.3.4] - 2025-06-18
 ### Changed
 - Added forwardRef and data-testid to `Option` component
