@@ -4,48 +4,49 @@ import * as speech from '@tensorflow-models/speech-commands';
 export interface TrainingOptions {
   epochs?: number;
   batchSize?: number;
-  learningRate?: number;
+  optimizer?: string | tf.Optimizer;
   validationSplit?: number;
-  callbacks?: tf.CallbackArgs;
+  callbacks?: tf.CustomCallbackArgs;
 }
 
 export class ModelTrainer {
-  private recognizer: speech.SpeechCommandRecognizer;
+  private baseRecognizer: speech.SpeechCommandRecognizer;
+  private recognizer: speech.TransferSpeechCommandRecognizer | null = null;
   private customWords: string[] = [];
 
   constructor() {
-    this.recognizer = speech.create('BROWSER_FFT');
+    this.baseRecognizer = speech.create('BROWSER_FFT');
   }
 
   public async init() {
-    await this.recognizer.ensureModelLoaded();
+    await this.baseRecognizer.ensureModelLoaded();
+    this.recognizer = this.baseRecognizer.createTransfer('custom');
   }
 
   public async collectExample(word: string, durationSec = 2): Promise<void> {
+    if (!this.recognizer) return;
     if (!this.customWords.includes(word)) {
       this.customWords.push(word);
     }
-    return new Promise<void>((resolve) => {
-      this.recognizer.collectExample(word, {
-        durationSec,
-        onComplete: () => resolve(),
-      });
-    });
+    await this.recognizer!.collectExample(word, { durationSec });
   }
 
   public async train(options: TrainingOptions = {}): Promise<tf.History> {
     const {
       epochs = 50,
       batchSize = 32,
-      learningRate = 0.01,
+      optimizer = 'sgd',
       validationSplit = 0.2,
       callbacks = {},
     } = options;
+    if (!this.recognizer) {
+      throw new Error('Recognizer not initialized');
+    }
     const trainingOptions: speech.TransferLearnConfig = {
       epochs,
       callback: callbacks,
       batchSize,
-      learningRate,
+      optimizer,
       validationSplit,
     };
     return this.recognizer.train(trainingOptions);
@@ -58,13 +59,13 @@ export class ModelTrainer {
     let result: tf.io.SaveResult;
     switch (format) {
       case 'indexeddb':
-        result = await this.recognizer.save(`indexeddb://${name}`);
+        result = await this.recognizer!.save(`indexeddb://${name}`);
         break;
       case 'downloads':
-        result = await this.recognizer.save(`downloads://${name}`);
+        result = await this.recognizer!.save(`downloads://${name}`);
         break;
       case 'localstorage':
-        result = await this.recognizer.save(`localstorage://${name}`);
+        result = await this.recognizer!.save(`localstorage://${name}`);
         break;
       default:
         throw new Error(`Unsupported save format: ${format}`);
@@ -78,6 +79,7 @@ export class ModelTrainer {
     name = 'custom-model'
   ): Promise<boolean> {
     try {
+      if (!this.recognizer) return false;
       switch (format) {
         case 'indexeddb':
           await this.recognizer.load(`indexeddb://${name}`);
@@ -104,20 +106,15 @@ export class ModelTrainer {
   }
 
   public getExampleCounts(): { [word: string]: number } {
-    return this.recognizer.countExamples();
+    return this.recognizer ? this.recognizer.countExamples() : {};
   }
 
   public clearExamples(word?: string): void {
+    if (!this.recognizer) return;
+    this.recognizer.clearExamples();
     if (word) {
-      this.recognizer.clearExamples(word);
-      const counts = this.recognizer.countExamples();
-      if (!counts[word] || counts[word] === 0) {
-        this.customWords = this.customWords.filter((w) => w !== word);
-      }
+      this.customWords = this.customWords.filter((w) => w !== word);
     } else {
-      for (const w of this.customWords) {
-        this.recognizer.clearExamples(w);
-      }
       this.customWords = [];
     }
   }
