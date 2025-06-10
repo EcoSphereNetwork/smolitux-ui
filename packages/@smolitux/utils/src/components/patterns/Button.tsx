@@ -1,28 +1,36 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-export interface ButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Visual variant of the button */
   variant?: 'primary' | 'secondary' | 'tertiary';
+  /** Size variant */
   size?: 'small' | 'medium' | 'large';
-  disabled?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  variant = 'primary',
-  size = 'medium',
-  disabled = false,
-}) => {
-  return (
+/**
+ * Basic button component.
+ * It forwards its ref and allows styling via `variant` and `size` props.
+ */
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      children = 'Button',
+      variant = 'primary',
+      size = 'medium',
+      className = '',
+      ...rest
+    },
+    ref
+  ) => (
     <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`button button-${variant} button-${size}`}
+      ref={ref}
+      className={`button button-${variant} button-${size} ${className}`.trim()}
+      {...rest}
     >
       {children}
     </button>
-  );
-};
+  )
+);
+
+Button.displayName = 'Button';
