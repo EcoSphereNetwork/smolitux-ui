@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FeedItem } from './FeedItem';
+import { FeedItem, FeedItemData } from './FeedItem';
 
 const meta: Meta<typeof FeedItem> = {
   title: 'Components/FeedItem',
@@ -13,22 +13,31 @@ const meta: Meta<typeof FeedItem> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const demoItem: FeedItemData = {
+  id: '1',
+  author: { id: 'u1', name: 'Alice', avatar: 'https://placehold.co/40' },
+  createdAt: new Date().toISOString(),
+  contentType: 'text',
+  content: { text: 'Hello world' },
+  stats: { likes: 0, comments: 0, shares: 0, views: 0 },
+};
+
 export const Default: Story = {
   args: {
-    children: 'FeedItem',
+    item: demoItem,
   },
 };
 
 export const CustomStyle: Story = {
   args: {
-    children: 'Custom FeedItem',
+    item: demoItem,
     className: 'custom-style',
   },
 };
 
 export const Interactive: Story = {
   args: {
-    children: 'Interactive FeedItem',
+    item: demoItem,
     onClick: () => alert('Clicked!'),
   },
 };

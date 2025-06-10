@@ -12,6 +12,8 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 ### Fixed
 - `FeedItem` in `@smolitux/resonance` now forwards refs correctly
+### Fixed
+- `FeedItem` in `@smolitux/resonance` now forwards refs correctly
 
 ## [0.3.1] - 2025-06-08
 
