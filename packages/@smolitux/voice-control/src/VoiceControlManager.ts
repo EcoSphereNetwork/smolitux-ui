@@ -1,6 +1,5 @@
 import { RecognitionEngine } from './engines/RecognitionEngine';
 import { WebSpeechRecognitionEngine } from './engines/WebSpeechRecognitionEngine';
-import { TensorFlowRecognitionEngine } from './engines/TensorFlowRecognitionEngine';
 import { CommandProcessor } from './CommandProcessor';
 import { FeedbackManager } from './FeedbackManager';
 
@@ -19,7 +18,14 @@ export class VoiceControlManager {
   constructor(engineType: EngineType = 'webSpeech', language = 'de-DE') {
     switch (engineType) {
       case 'tensorFlow':
-        this.recognitionEngine = new TensorFlowRecognitionEngine();
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
+          const mod = require('./engines/TensorFlowRecognitionEngine') as typeof import('./engines/TensorFlowRecognitionEngine');
+          this.recognitionEngine = new mod.TensorFlowRecognitionEngine();
+        } catch {
+          console.warn('TensorFlow engine not available, falling back to Web Speech API.');
+          this.recognitionEngine = new WebSpeechRecognitionEngine(language);
+        }
         break;
       case 'external':
         this.recognitionEngine = new WebSpeechRecognitionEngine(language);
