@@ -3,6 +3,7 @@ sam:
   title: Founder & Technical Lead @ EcoSphereNetwork
   url: https://www.ecospherenetwork.org
   image_url: https://github.com/EcoSphereNetwork.png
+  github: 161sam
   page:
     # customize the url of the author page at /blog/authors/<permalink>
     permalink: '/all-sam-articles'
@@ -18,6 +19,7 @@ johanna:
   title: Co-Founder & Digital Strategy Lead @ EcoSphereNetwork
   url: https://www.ecospherenetwork.org
   image_url: https://github.com/EcoSphereNetwork.png
+  github:
   page: true
   socials:
     discord: https://discord.gg/raUqSAQPnz
