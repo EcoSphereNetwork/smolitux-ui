@@ -135,6 +135,7 @@ Our component library is organized into functional categories for easy navigatio
 ### Features
 
 - **[Voice Control](features/voice-control/README.md)** - Grundinfrastruktur und Integration der Sprachsteuerung
+- **[Voice Modal Integration](features/voice-control/modal-integration.md)** - Modal​ per Sprachbefehl öffnen und schließen
 
 ### Guides & Examples
 
