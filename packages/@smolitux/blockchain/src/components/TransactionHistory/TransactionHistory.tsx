@@ -2,7 +2,7 @@
 // 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState } from 'react';
 import { Card, Button } from '@smolitux/core';
-import { TransactionType, Transaction } from '../types';
+import { TransactionType, Transaction } from '../../types';
 
 export interface TransactionHistoryProps {
   /** Transaktionen */
