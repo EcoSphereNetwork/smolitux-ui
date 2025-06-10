@@ -87,7 +87,7 @@ export const DropdownItem = React.forwardRef<HTMLDivElement, DropdownItemProps>(
       }
 
       // onSelect-Handler aufrufen
-      if (onSelect) {
+      if (onSelect && value !== undefined) {
         onSelect(value);
       }
 
@@ -129,8 +129,8 @@ export const DropdownItem = React.forwardRef<HTMLDivElement, DropdownItemProps>(
       .join(' ');
 
     // Basis-Element definieren (Link oder div)
-    const ItemComponent: unknown = href && !isDisabled ? 'a' : 'div';
-    const itemProps = href && !isDisabled ? { href } : {};
+    const ItemComponent = 'div';
+    const itemProps = {};
 
     return (
       <ItemComponent
