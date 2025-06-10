@@ -42,7 +42,9 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
     const checkConnection = async () => {
       if (isEthereumAvailable) {
         try {
-          const accounts = await ethereum!.request({ method: 'eth_accounts' });
+          const accounts = await ethereum!.request<string[]>({
+            method: 'eth_accounts',
+          });
           if (accounts.length > 0) {
             setWalletAddress(accounts[0]);
             setIsConnected(true);
@@ -79,11 +81,17 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
         window.location.reload();
       };
 
-      ethereum!.on('accountsChanged', handleAccountsChanged);
+      ethereum!.on(
+        'accountsChanged',
+        handleAccountsChanged as unknown as (...args: unknown[]) => void
+      );
       ethereum!.on('chainChanged', handleChainChanged);
 
       return () => {
-        ethereum!.removeListener('accountsChanged', handleAccountsChanged);
+        ethereum!.removeListener(
+          'accountsChanged',
+          handleAccountsChanged as unknown as (...args: unknown[]) => void
+        );
         ethereum!.removeListener('chainChanged', handleChainChanged);
       };
     }
@@ -102,7 +110,9 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
     setError(null);
 
     try {
-      const accounts = await ethereum!.request({ method: 'eth_requestAccounts' });
+      const accounts = await ethereum!.request<string[]>({
+        method: 'eth_requestAccounts',
+      });
       setWalletAddress(accounts[0]);
       setIsConnected(true);
       onConnect(accounts[0], ethereum!);
