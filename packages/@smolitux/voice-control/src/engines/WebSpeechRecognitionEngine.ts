@@ -1,5 +1,11 @@
 import { RecognitionEngine } from './RecognitionEngine';
-import type { SpeechAPISupport, SpeechRecognitionConstructor } from '../types';
+import type {
+  SpeechAPISupport,
+  SpeechRecognitionConstructor,
+  SpeechRecognition,
+  SpeechRecognitionEvent,
+  SpeechRecognitionErrorEvent,
+} from '../types';
 
 export class WebSpeechRecognitionEngine implements RecognitionEngine {
   private recognition: SpeechRecognition | null = null;

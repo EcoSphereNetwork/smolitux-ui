@@ -61,7 +61,7 @@ export const VoiceRecognition = forwardRef<HTMLDivElement, VoiceRecognitionProps
       try {
         if (listening) r.stop();
         else r.start();
-      } catch (e) {
+      } catch {
         // ignore start errors when already started
       }
     };

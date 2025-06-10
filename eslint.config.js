@@ -33,7 +33,10 @@ const baseConfig = [
       react: { version: 'detect' }
     }
   },
-  prettier
+  prettier,
+  {
+    ignores: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx']
+  }
 ];
 
 export default baseConfig;

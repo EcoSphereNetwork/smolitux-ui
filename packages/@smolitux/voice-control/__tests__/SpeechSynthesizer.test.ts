@@ -1,5 +1,10 @@
 import { SpeechSynthesizer } from '../src/SpeechSynthesizer';
 
+// Minimal mock for SpeechSynthesisUtterance in jsdom environment
+(global as any).SpeechSynthesisUtterance = function (this: any, text: string) {
+  this.text = text;
+};
+
 describe('SpeechSynthesizer', () => {
   afterEach(() => {
     jest.restoreAllMocks();

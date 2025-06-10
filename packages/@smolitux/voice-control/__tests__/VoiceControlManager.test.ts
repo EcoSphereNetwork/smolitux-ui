@@ -5,14 +5,15 @@ describe('VoiceControlManager', () => {
   test('registers components and processes commands', () => {
     const manager = new VoiceControlManager('webSpeech');
     // stub recognition engine methods to avoid browser APIs
-    (manager as any).recognitionEngine = {
-      onResult: () => {},
-      onStateChange: () => {},
-      start: jest.fn(),
-      stop: jest.fn(),
-      cleanup: jest.fn(),
-      isSupported: () => true,
-    } as WebSpeechRecognitionEngine;
+  (manager as any).recognitionEngine = {
+    onResult: () => {},
+    onStateChange: () => {},
+    start: jest.fn(),
+    stop: jest.fn(),
+    cleanup: jest.fn(),
+    isSupported: () => true,
+  } as unknown as WebSpeechRecognitionEngine;
+  (manager as any).setupEventListeners();
 
     manager.registerComponent('test', ['click']);
     let recognizedCommand = '';
