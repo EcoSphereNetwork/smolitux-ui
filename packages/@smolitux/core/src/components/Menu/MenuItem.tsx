@@ -76,7 +76,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
 
     const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
     const itemIndex = registerItem(id);
-    const itemRef = useRef<HTMLLIElement>(null);
+    const itemRef = useRef<HTMLLIElement | null>(null) as React.MutableRefObject<HTMLLIElement | null>;
 
     // Generiere eindeutige IDs für ARIA-Attribute
     const uniqueId = useId();
@@ -145,7 +145,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       .join(' ');
 
     // Basis-Element definieren (Link oder div)
-    const ItemComponent: unknown = href && !disabled ? 'a' : 'li';
+    const ItemComponent = href && !disabled ? 'a' : 'li';
     const itemProps = href && !disabled ? { href } : {};
 
     // Rendere die versteckte Beschreibung
@@ -170,7 +170,9 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
             } else if (ref) {
               (ref as React.MutableRefObject<HTMLLIElement | null>).current = node;
             }
-            itemRef.current = node;
+            if (node) {
+              itemRef.current = node;
+            }
           }}
           id={itemId}
           role="menuitem"

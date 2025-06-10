@@ -190,7 +190,7 @@ export type I18nContextValue = {
   /**
    * Die unterstützten Sprachen
    */
-  supportedLocales: Locale[];
+  supportedLocales: readonly Locale[];
 
   /**
    * Die Standardsprache
@@ -205,12 +205,12 @@ export type I18nContextValue = {
   /**
    * Die Standardnamespaces
    */
-  defaultNamespaces: TranslationNamespace[];
+  defaultNamespaces: readonly TranslationNamespace[];
 
   /**
    * Die Fallback-Namespaces
    */
-  fallbackNamespaces: TranslationNamespace[];
+  fallbackNamespaces: readonly TranslationNamespace[];
 
   /**
    * Ändert die aktuelle Sprache

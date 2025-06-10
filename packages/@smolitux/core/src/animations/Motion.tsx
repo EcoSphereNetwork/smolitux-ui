@@ -155,7 +155,7 @@ export const Motion = forwardRef<HTMLElement, MotionProps>(
         typeof animate === 'string' ? keyframes[animate as KeyframeAnimation] : animate;
 
       // Animation erstellen und starten
-      animationRef.current = ref.current.animate(keyframeValue as Keyframe[], {
+      animationRef.current = ref.current.animate(keyframeValue as unknown as Keyframe[], {
         duration: transitionPreset.duration,
         easing: transitionPreset.easing,
         delay: (transitionPreset as TransitionPreset).delay || 0,

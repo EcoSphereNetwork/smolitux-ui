@@ -1,0 +1,1444 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorPicker Snapshots renders color picker with all features enabled correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  w-full "
+    data-testid="color-picker-container"
+  >
+    <label
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+      for="color-picker-ionab205p-text-input"
+      id="color-picker-ionab205p-label"
+    >
+      Color 
+    </label>
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-describedby="color-picker-ionab205p-helper"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        aria-labelledby="color-picker-ionab205p-label"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-ionab205p"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(255, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #ff0000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        aria-describedby="color-picker-ionab205p-helper"
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-12 text-lg
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            flex-grow
+          "
+        id="color-picker-ionab205p-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="rgb(0, 0, 0)"
+      />
+    </div>
+    <p
+      class="mt-1 text-sm text-gray-500 dark:text-gray-400"
+      id="color-picker-ionab205p-helper"
+    >
+      Choose a color
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with alpha channel correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-mafewxb20"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-mafewxb20-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with custom className correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   custom-color-picker"
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-yf9qstgbm"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-yf9qstgbm-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different formats correctly: ColorPicker with format hex 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-4p3ktewdb"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(255, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #ff0000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-4p3ktewdb-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#ff0000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different formats correctly: ColorPicker with format hsl 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-1rl57qf5j"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(255, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #ff0000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-1rl57qf5j-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="hsl(0, 0%, 0%)"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different formats correctly: ColorPicker with format rgb 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-he0uys9de"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(255, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #ff0000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-he0uys9de-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="rgb(0, 0, 0)"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different popup positions correctly: ColorPicker with popup position bottom 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-6ajmmw09z"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-6ajmmw09z-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different popup positions correctly: ColorPicker with popup position left 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-3s5ndwlbr"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-3s5ndwlbr-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different popup positions correctly: ColorPicker with popup position right 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-yyzpiwwpr"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-yyzpiwwpr-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different popup positions correctly: ColorPicker with popup position top 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-z1uiz66mx"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-z1uiz66mx-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different sizes correctly: ColorPicker with size lg 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-dpzaalqpd"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-12 text-lg
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-dpzaalqpd-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different sizes correctly: ColorPicker with size md 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-127tmsa49"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-127tmsa49-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with different sizes correctly: ColorPicker with size sm 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-90f6dozrg"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-8 text-sm
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-90f6dozrg-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with error message correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-describedby="color-picker-2yaex8qoe-error"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        aria-invalid="true"
+        class="
+            
+            cursor-pointer
+            border-red-500 dark:border-red-500
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-2yaex8qoe"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        aria-describedby="color-picker-2yaex8qoe-error"
+        aria-invalid="true"
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            border-red-500 dark:border-red-500
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-2yaex8qoe-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+    <p
+      class="mt-1 text-sm text-red-600 dark:text-red-400"
+      id="color-picker-2yaex8qoe-error"
+      role="alert"
+    >
+      Invalid color
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with fullWidth correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  w-full "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-18abtl40r"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            flex-grow
+          "
+        id="color-picker-18abtl40r-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with helper text correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-describedby="color-picker-7qw6wyrkg-helper"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-7qw6wyrkg"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        aria-describedby="color-picker-7qw6wyrkg-helper"
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-7qw6wyrkg-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+    <p
+      class="mt-1 text-sm text-gray-500 dark:text-gray-400"
+      id="color-picker-7qw6wyrkg-helper"
+    >
+      Choose a color
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with label correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <label
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+      for="color-picker-wzd5bygei-text-input"
+      id="color-picker-wzd5bygei-label"
+    >
+      Color 
+    </label>
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        aria-labelledby="color-picker-wzd5bygei-label"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-wzd5bygei"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-wzd5bygei-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with open popup correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="true"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-nphv8v02x"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-nphv8v02x-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+    <div
+      aria-label="Farbwähler"
+      aria-modal="true"
+      class="
+            absolute z-10 bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 
+            dark:border-gray-700 p-4 w-64 top-full mt-2
+          "
+      data-testid="color-picker-popup"
+      role="dialog"
+    >
+      <div
+        class="mb-4"
+      >
+        <label
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          for="color-picker-nphv8v02x-color-input"
+        >
+          Farbe
+        </label>
+        <input
+          aria-describedby="color-picker-nphv8v02x-color-description"
+          class="w-full h-10 p-0 border-0 rounded-md cursor-pointer"
+          id="color-picker-nphv8v02x-color-input"
+          type="color"
+          value="#000000"
+        />
+        <p
+          class="sr-only"
+          id="color-picker-nphv8v02x-color-description"
+        >
+          Verwenden Sie die Pfeiltasten, um die Farbe anzupassen, oder geben Sie einen Hex-Farbwert ein.
+        </p>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <label
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
+          Format
+        </label>
+        <div
+          class="flex space-x-2"
+        >
+          <button
+            aria-pressed="true"
+            class="
+                    px-3 py-1 rounded-md text-sm
+                    bg-primary-500 text-white
+                    focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+                  "
+            type="button"
+          >
+            HEX
+          </button>
+          <button
+            aria-pressed="false"
+            class="
+                    px-3 py-1 rounded-md text-sm
+                    bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
+                    focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+                  "
+            type="button"
+          >
+            RGB
+          </button>
+          <button
+            aria-pressed="false"
+            class="
+                    px-3 py-1 rounded-md text-sm
+                    bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
+                    focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+                  "
+            type="button"
+          >
+            HSL
+          </button>
+        </div>
+      </div>
+      <div>
+        <div
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          id="color-picker-nphv8v02x-presets"
+        >
+          Voreingestellte Farben
+        </div>
+        <div
+          aria-labelledby="color-picker-nphv8v02x-presets"
+          class="flex flex-wrap gap-2"
+          role="grid"
+        >
+          <div
+            role="gridcell"
+          >
+            <button
+              aria-label="Farbe #ff0000 auswählen"
+              class="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 flex items-center justify-center"
+              data-testid="preset-color"
+              style="background-color: rgb(255, 0, 0); color: rgb(255, 255, 255);"
+              tabindex="0"
+              type="button"
+            />
+          </div>
+          <div
+            role="gridcell"
+          >
+            <button
+              aria-label="Farbe #00ff00 auswählen"
+              class="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 flex items-center justify-center"
+              data-testid="preset-color"
+              style="background-color: rgb(0, 255, 0); color: rgb(0, 0, 0);"
+              tabindex="0"
+              type="button"
+            />
+          </div>
+          <div
+            role="gridcell"
+          >
+            <button
+              aria-label="Farbe #0000ff auswählen"
+              class="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 flex items-center justify-center"
+              data-testid="preset-color"
+              style="background-color: rgb(0, 0, 255); color: rgb(255, 255, 255);"
+              tabindex="0"
+              type="button"
+            />
+          </div>
+          <div
+            role="gridcell"
+          >
+            <button
+              aria-label="Farbe #ffff00 auswählen"
+              class="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 flex items-center justify-center"
+              data-testid="preset-color"
+              style="background-color: rgb(255, 255, 0); color: rgb(0, 0, 0);"
+              tabindex="0"
+              type="button"
+            />
+          </div>
+          <div
+            role="gridcell"
+          >
+            <button
+              aria-label="Farbe #ff00ff auswählen"
+              class="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 flex items-center justify-center"
+              data-testid="preset-color"
+              style="background-color: rgb(255, 0, 255); color: rgb(255, 255, 255);"
+              tabindex="0"
+              type="button"
+            />
+          </div>
+          <div
+            role="gridcell"
+          >
+            <button
+              aria-label="Farbe #00ffff auswählen"
+              class="w-8 h-8 rounded-md cursor-pointer border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 flex items-center justify-center"
+              data-testid="preset-color"
+              style="background-color: rgb(0, 255, 255); color: rgb(0, 0, 0);"
+              tabindex="0"
+              type="button"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-4 flex justify-end"
+      >
+        <button
+          aria-label="Farbwähler schließen"
+          class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500"
+          type="button"
+        >
+          Schließen
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with preset colors correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-5pe822nht"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-5pe822nht-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders color picker with value correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-8bo4ntt8v"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(255, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #ff0000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-8bo4ntt8v-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#ff0000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders default color picker correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-viangtbfh"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-viangtbfh-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders disabled color picker correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative opacity-50 cursor-not-allowed  "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-disabled="true"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-not-allowed
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        disabled=""
+        id="color-picker-5mwm7awky"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            bg-gray-100 dark:bg-gray-800 cursor-not-allowed
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        disabled=""
+        id="color-picker-5mwm7awky-text-input"
+        placeholder="Farbwert eingeben"
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ColorPicker Snapshots renders readonly color picker correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative   "
+    data-testid="color-picker-container"
+  >
+    <div
+      class="flex items-center"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="
+            
+            cursor-pointer
+            
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+          "
+        id="color-picker-77rwxlnv6"
+        type="button"
+      >
+        <div
+          aria-hidden="true"
+          class="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 mr-2"
+          data-testid="color-preview"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span
+          class="sr-only"
+        >
+          Aktuelle Farbe: #000000. Drücken Sie Enter, um den Farbwähler zu öffnen.
+        </span>
+      </button>
+      <input
+        class="
+            ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
+            h-10 text-base
+            
+            
+            bg-gray-50 dark:bg-gray-900 cursor-default
+            focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
+            w-40
+          "
+        id="color-picker-77rwxlnv6-text-input"
+        placeholder="Farbwert eingeben"
+        readonly=""
+        type="text"
+        value="#000000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

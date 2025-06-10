@@ -325,7 +325,7 @@ export const ToastA11y: React.FC<ToastA11yProps> = ({
       aria-describedby={ariaDescribedby || (description ? `${id}-description` : undefined)}
       aria-live={isLiveRegion ? determineAriaLive() : undefined}
       aria-atomic={isLiveRegion ? ariaAtomic : undefined}
-      aria-relevant={isLiveRegion ? ariaRelevant : undefined}
+      aria-relevant={isLiveRegion ? (ariaRelevant as any) : undefined}
       tabIndex={autoFocus ? 0 : -1}
     >
       <div className="toast-content">

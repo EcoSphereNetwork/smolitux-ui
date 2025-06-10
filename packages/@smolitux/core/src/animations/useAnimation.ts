@@ -68,7 +68,7 @@ export const useAnimation = (
     }
 
     // Neue Animation erstellen und starten
-    animationRef.current = ref.current.animate(keyframeValue as Keyframe[], getAnimationOptions());
+    animationRef.current = ref.current.animate(keyframeValue as unknown as Keyframe[], getAnimationOptions());
 
     // Event-Listener für Animation-Ende
     animationRef.current.onfinish = () => {

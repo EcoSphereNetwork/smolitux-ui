@@ -442,9 +442,9 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
         // Screenreader-Ankündigung
         if (newIsOpen) {
-          announceToScreenReader(i18n.calendarOpened);
+          announceToScreenReader(i18n.calendarOpened || 'Calendar opened');
         } else {
-          announceToScreenReader(i18n.calendarClosed);
+          announceToScreenReader(i18n.calendarClosed || 'Calendar closed');
         }
       }
     };
@@ -465,11 +465,11 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
       // Prüfen, ob das Datum im gültigen Bereich liegt
       if (minDate && newDate < minDate) {
-        announceToScreenReader(i18n.dateDisabled);
+        announceToScreenReader(i18n.dateDisabled || 'Date disabled');
         return;
       }
       if (maxDate && newDate > maxDate) {
-        announceToScreenReader(i18n.dateDisabled);
+        announceToScreenReader(i18n.dateDisabled || 'Date disabled');
         return;
       }
 
@@ -663,7 +663,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       switch (e.key) {
         case 'ArrowLeft':
           // Einen Tag zurück
-          if (currentDate) {
+          if (currentDate && currentDate instanceof Date) {
             const newDate = new Date(currentDate);
             newDate.setDate(newDate.getDate() - 1);
             if (!isControlled) setInternalValue(newDate);
@@ -674,7 +674,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
           break;
         case 'ArrowRight':
           // Einen Tag vor
-          if (currentDate) {
+          if (currentDate && currentDate instanceof Date) {
             const newDate = new Date(currentDate);
             newDate.setDate(newDate.getDate() + 1);
             if (!isControlled) setInternalValue(newDate);
@@ -685,7 +685,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
           break;
         case 'ArrowUp':
           // Eine Woche zurück
-          if (currentDate) {
+          if (currentDate && currentDate instanceof Date) {
             const newDate = new Date(currentDate);
             newDate.setDate(newDate.getDate() - 7);
             if (!isControlled) setInternalValue(newDate);
@@ -696,7 +696,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
           break;
         case 'ArrowDown':
           // Eine Woche vor
-          if (currentDate) {
+          if (currentDate && currentDate instanceof Date) {
             const newDate = new Date(currentDate);
             newDate.setDate(newDate.getDate() + 7);
             if (!isControlled) setInternalValue(newDate);

@@ -280,7 +280,7 @@ export const ToastProviderA11y: React.FC<ToastProviderA11yProps> = ({
         role={containerRole}
         aria-live={containerAriaLive}
         aria-atomic={containerAriaAtomic}
-        aria-relevant={containerAriaRelevant}
+        aria-relevant={containerAriaRelevant as any}
       >
         {toasts.map((toast) => (
           <ToastA11y key={toast.id} {...toast} onClose={() => close(toast.id)} />

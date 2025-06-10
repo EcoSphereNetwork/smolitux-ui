@@ -26,5 +26,6 @@ export * from './guards';
 // Formatting utilities
 export * from './formatters';
 
-// Class name utility
+// Class name utilities
 export * from './cn';
+export * from './clsx';

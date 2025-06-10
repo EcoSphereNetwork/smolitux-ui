@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartLegend Snapshot matches snapshot 1`] = `
+<DocumentFragment>
+  <svg>
+    <g
+      class="smolitux-chart-legend"
+      data-testid="chart-legend"
+    >
+      <g
+        class="legend-item"
+        transform="translate(0, 0)"
+      >
+        <rect
+          fill="#ff0000"
+          height="12"
+          rx="2"
+          width="12"
+        />
+        <text
+          dominant-baseline="middle"
+          fill="currentColor"
+          font-size="12"
+          x="16"
+          y="6"
+        >
+          A
+        </text>
+      </g>
+    </g>
+  </svg>
+</DocumentFragment>
+`;

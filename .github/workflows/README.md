@@ -1,171 +1,116 @@
-# Reusable GitHub Actions Workflows
+# Smolitux UI GitHub Actions Workflows
 
-This directory contains a collection of reusable GitHub Actions workflows that can be used as templates for your projects.
+This directory contains a collection of GitHub Actions workflows for the Smolitux UI component library.
 
 ## Available Workflows
 
-### 1. Project Automation (`project-automation.yml`)
-Handles project management automation:
-- Issue and PR triage
-- Welcome messages for first-time contributors
-- Project board automation
-- Auto-assignment of issues/PRs
-
-Usage:
-```yaml
-jobs:
-  project-automation:
-    uses: ./.github/workflows/project-automation.yml
-    with:
-      project-name: 'Main Project'
-      triage-label: 'needs-review'
-      welcome-message: 'Thanks for contributing!'
-      auto-assign: true
-    secrets:
-      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
-```
-
-### 2. Security Scanning (`security.yml`)
-Comprehensive security analysis:
-- CodeQL analysis
-- SAST (Static Application Security Testing)
-- Dependency vulnerability scanning
-- Container security scanning
-- Custom security issue creation
-
-Usage:
-```yaml
-jobs:
-  security:
-    uses: ./.github/workflows/security.yml
-    with:
-      languages: '["python", "javascript"]'
-      severity-level: 'high'
-      enable-dependency-scan: true
-      enable-container-scan: true
-    secrets:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-```
-
-### 3. Dependency Management (`dependency-management.yml`)
-Automated dependency updates:
-- Multiple package manager support (poetry, pip, conda)
-- Scheduled updates
-- Automated PR creation
-- Optional auto-merge
-- Detailed update reports
-
-Usage:
-```yaml
-jobs:
-  dependencies:
-    uses: ./.github/workflows/dependency-management.yml
-    with:
-      package-manager: 'poetry'
-      update-schedule: '0 0 * * 1'
-      auto-merge: true
-      labels: 'dependencies,automated'
-    secrets:
-      RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
-```
-
-### 4. Code Quality (`code-quality.yml`)
+### 1. Quality (`quality.yml`)
 Comprehensive code quality checks:
-- Multi-version Python testing
-- Style checking (ruff, black)
-- Type checking (mypy)
+- Linting (ESLint, Prettier)
+- Type checking (TypeScript)
+- Code style enforcement
 - Complexity analysis
-- Coverage reporting
-- Detailed quality reports
+- Accessibility checks
 
 Usage:
 ```yaml
 jobs:
   quality:
-    uses: ./.github/workflows/code-quality.yml
+    uses: ./.github/workflows/quality.yml
     with:
-      python-versions: '["3.9", "3.10", "3.11"]'
-      enable-type-check: true
-      max-complexity: 10
-      coverage-threshold: 85
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-```
-
-### 5. Docker Build (`docker-build.yml`)
-Container image building and publishing:
-- Multi-platform support
-- Build caching
-- Registry authentication
-- Metadata handling
-- Automated tagging
-
-Usage:
-```yaml
-jobs:
-  build:
-    uses: ./.github/workflows/docker-build.yml
-    with:
-      image-name: 'myorg/myapp'
-      platforms: 'linux/amd64,linux/arm64'
-      push: true
-    secrets:
-      REGISTRY_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-```
-
-### 6. Deployment (`deploy.yml`)
-Flexible deployment automation:
-- Multiple deployment methods
-- Infrastructure as Code support
-- Cloud provider integration
-- Environment management
-- Deployment verification
-
-Usage:
-```yaml
-jobs:
-  deploy:
-    uses: ./.github/workflows/deploy.yml
-    with:
-      environment: 'production'
-      use-terraform: true
-      terraform-workspace: 'prod'
-    secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-```
-
-### 7. Create Issue on Workflow Failure (create-issue-on-failure.yml)
-Handles the automatic creation of GitHub issues when a workflow fails. This workflow ensures that any failed workflow is documented as an issue in the repository for easy tracking and resolution.
-Features:
-
-- Detects failed workflows.
-- Automatically creates an issue with details of the failure.
-- Includes failure metadata like workflow name, run ID, and commit information.
-
-
-Usage:
-```yaml
-jobs:
-  create-issue:
-    uses: ./.github/workflows/create-issue-on-failure.yml
-    with:
-      issue-title: '[Workflow Failure] ${{ github.workflow }}'
-      issue-body: |
-        ## Workflow Failure Details
-        - **Workflow Name**: ${{ github.workflow }}
-        - **Run ID**: ${{ github.run_id }}
-        - **Commit**: ${{ github.sha }}
-        - **Branch**: ${{ github.ref }}
-        - **Triggered By**: @${{ github.actor }}
-        
-        [View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-      labels: 'failure, automation'
+      node-version: '18'
+      typescript-strict: true
+      eslint-config: '.eslintrc.js'
+      prettier-config: '.prettierrc'
     secrets:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
 
+### 2. Testing (`testing.yml`)
+Comprehensive testing suite:
+- Unit tests
+- Integration tests
+- Visual regression tests
+- Browser compatibility tests
+- Accessibility tests
+- Coverage reporting
+
+Usage:
+```yaml
+jobs:
+  testing:
+    uses: ./.github/workflows/testing.yml
+    with:
+      node-version: '18'
+      coverage-threshold: 80
+      browsers: '["chrome", "firefox", "safari"]'
+      test-command: 'npm test'
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### 3. Documentation (`documentation.yml`)
+Documentation generation and deployment:
+- Storybook build
+- API documentation generation
+- Markdown documentation
+- Deployment to GitHub Pages
+
+Usage:
+```yaml
+jobs:
+  documentation:
+    uses: ./.github/workflows/documentation.yml
+    with:
+      node-version: '18'
+      storybook-build-command: 'npm run build-storybook'
+      docs-directory: 'docs'
+      deploy-branch: 'gh-pages'
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### 4. CI (`ci.yml`)
+Continuous integration workflow:
+- Build validation
+- Dependency checks
+- Security scanning
+- Performance benchmarking
+
+Usage:
+```yaml
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+    with:
+      node-version: '18'
+      build-command: 'npm run build'
+      security-scan: true
+      performance-benchmark: true
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### 5. Release (`release.yml`)
+Release automation:
+- Version bumping
+- Changelog generation
+- Package publishing
+- GitHub release creation
+
+Usage:
+```yaml
+jobs:
+  release:
+    uses: ./.github/workflows/release.yml
+    with:
+      node-version: '18'
+      release-type: 'minor'
+      publish-command: 'npm publish'
+      changelog-command: 'npm run generate-changelog'
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
 ## Required Secrets
@@ -173,13 +118,7 @@ jobs:
 Configure these secrets based on the workflows you use:
 
 1. `GITHUB_TOKEN`: Automatically provided by GitHub
-2. `PROJECT_TOKEN`: For project board operations
-3. `SNYK_TOKEN`: For [Snyk](https://app.snyk.io/login) security scanning
-4. `SONAR_TOKEN`: For [SonarCloud](https://www.sonarsource.com/products/sonarcloud/signup-free/) analysis
-5. `CODECOV_TOKEN`: For [Codecov](https://about.codecov.io/codecov-free-trial/) coverage reporting
-6. `RENOVATE_TOKEN`: For [Renovate](https://github.com/marketplace/renovate) dependency updates 
-7. `AWS_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY`: For AWS deployments
-8. `DOCKER_USERNAME` & `DOCKER_PASSWORD`: For container registry
+2. `NPM_TOKEN`: For publishing packages to npm
 
 ## Best Practices
 

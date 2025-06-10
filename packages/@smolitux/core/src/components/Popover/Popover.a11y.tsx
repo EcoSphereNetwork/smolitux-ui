@@ -582,7 +582,7 @@ export const PopoverA11y: React.FC<PopoverProps> = ({
       arrowStyle.bottom = '16px';
     }
 
-    return <div style={arrowStyle} aria-hidden="true" / data-testid="Popover.a11y">;
+    return <div style={arrowStyle} aria-hidden="true" data-testid="Popover.a11y" />;
   };
 
   // Hole die Props für den Trigger

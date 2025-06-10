@@ -10,6 +10,6 @@ describe('cn utility', () => {
   });
 
   it('deduplicates classes and ignores falsy values', () => {
-    expect(cn('a', null, undefined, 'a', 0 && 'b')).toBe('a');
+    expect(cn('a', null, undefined, 'a', false && 'b')).toBe('a');
   });
 });

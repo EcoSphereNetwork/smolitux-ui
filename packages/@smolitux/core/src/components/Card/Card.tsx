@@ -28,7 +28,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Farbvariante der Karte */
   type?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
   /** Padding-Größe */
-  padding?: 'none' | 'small' | 'medium' | 'large' | string;
+  padding?: 'none' | 'small' | 'medium' | 'large';
   /** Randradius */
   borderRadius?: 'none' | 'small' | 'medium' | 'large';
   /** Benutzerdefinierte Breite */
@@ -233,7 +233,7 @@ export const Card = memo(
       <div
         data-testid="card-content"
         id={contentId}
-        className={noPadding ? '' : paddingClasses[padding]}
+        className={noPadding ? '' : paddingClasses[padding as keyof typeof paddingClasses]}
       >
         {children}
       </div>

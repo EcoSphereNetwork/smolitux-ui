@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container Snapshots renders default container 1`] = `
+<DocumentFragment>
+  <div
+    class="w-full mx-auto max-w-3xl px-4 sm:px-6 md:px-8"
+  >
+    Content
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Container Snapshots renders with options 1`] = `
+<DocumentFragment>
+  <div
+    class="w-full mx-auto max-w-5xl h-full flex flex-col items-center justify-center"
+  >
+    <p>
+      Centered
+    </p>
+  </div>
+</DocumentFragment>
+`;

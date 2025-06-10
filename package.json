@@ -9,7 +9,8 @@
   "scripts": {
     "lint": "eslint packages/@smolitux --ext .ts,.tsx",
     "test": "jest",
-    "build": "tsup"
+    "build": "tsup",
+    "build:all": "npm run build --workspace=@smolitux/utils && npm run build --workspace=@smolitux/theme && npm run build --workspace=@smolitux/core"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
@@ -17,8 +18,8 @@
     "@types/node": "^22.13.13",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
-    "typescript-eslint": "^8.33.1",
     "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -29,6 +30,9 @@
     "ts-jest": "^29.3.0",
     "tsup": "^8.0.0",
     "typescript": "^5.8.2",
-    "eslint-config-prettier": "^10.1.5"
+    "typescript-eslint": "^8.33.1"
+  },
+  "dependencies": {
+    "commander": "^14.0.0"
   }
 }

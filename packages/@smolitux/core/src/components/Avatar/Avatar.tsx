@@ -278,7 +278,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {effectiveStatus && (
         <>
           <span
-            className={`absolute bottom-0 right-0 block h-${size === 'xs' || size === 'sm' ? '2' : '3'} w-${size === 'xs' || size === 'sm' ? '2' : '3'} rounded-full ring-2 ring-white dark:ring-gray-800 ${badgeColor ? `bg-${badgeColor}` : statusClasses[effectiveStatus] || 'bg-gray-500'}`}
+            className={`absolute bottom-0 right-0 block h-${size === 'xs' || size === 'sm' ? '2' : '3'} w-${size === 'xs' || size === 'sm' ? '2' : '3'} rounded-full ring-2 ring-white dark:ring-gray-800 ${badgeColor ? `bg-${badgeColor}` : (statusClasses[effectiveStatus as keyof typeof statusClasses] || 'bg-gray-500')}`}
             aria-hidden="true"
             data-testid="avatar-badge"
           />

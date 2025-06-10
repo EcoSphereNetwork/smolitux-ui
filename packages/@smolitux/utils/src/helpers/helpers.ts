@@ -138,12 +138,20 @@ export function sortBy<T>(
   if (!Array.isArray(arr)) {
     throw new TypeError('arr must be an array');
   }
-  const accessor = typeof key === 'function' ? key : (item: T) => item[key];
+  const accessor = typeof key === 'function' 
+    ? key as (item: T) => unknown 
+    : (item: T) => item[key as keyof T];
+  
   return [...arr].sort((a, b) => {
     const ka = accessor(a);
     const kb = accessor(b);
-    if (ka > kb) return order === 'asc' ? 1 : -1;
-    if (ka < kb) return order === 'asc' ? -1 : 1;
+    
+    // Type-safe comparison using String conversion
+    const strA = String(ka);
+    const strB = String(kb);
+    
+    if (strA > strB) return order === 'asc' ? 1 : -1;
+    if (strA < strB) return order === 'asc' ? -1 : 1;
     return 0;
   });
 }

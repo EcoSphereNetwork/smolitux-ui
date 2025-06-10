@@ -1268,7 +1268,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
                 backgroundColor: rangeObj.color || 'rgba(59, 130, 246, 0.2)',
               };
 
-        return <div key={index} className={`${rangeObj.className || ''}`} style={rangeStyle} / data-testid="Slider">;
+        return <div key={index} className={`${rangeObj.className || ''}`} style={rangeStyle} data-testid="Slider" />;
       });
     };
 
