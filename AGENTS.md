@@ -470,5 +470,128 @@ node scripts/annotate-components.js
 - Accessibility score 100/100
 
 ---
+"Vorherige Analysie" (Bezugnehmend auf den aktuellen Prompt):
+Notes
 
+    The repository contains multiple overlapping developer guides. Key instructions are in AGENTS.md and repeated in old versions as well as in documentation under docs/wiki.
+
+    Extensive automation scripts (scripts/smolitux-analyzer.sh, scripts/smolitux-completion-finisher.sh) already perform analysis, test/story generation and issue detection.
+
+Summary
+1. Überblick & Reduktion
+
+    Aktuelle Ziele
+    Root-Anleitung definiert die Mission: alle Komponenten vollständig, keine TypeScript/ESLint-Fehler, 100 % Testabdeckung, Storybook-Dokumentation und A11y-Konformität
+
+.
+
+Schnellstart
+Empfohlener Ablauf: Analyzer → Completion Finisher → Komponenten-Workflow
+
+.
+
+Prio-Matrix
+Pakete sind klar priorisiert von core/theme bis zu resonance und voice-control
+
+.
+
+Komponenten-Workflow
+Detaillierte Vorlage für Analyse, Implementierung, Tests und Stories in AGENTS.md
+
+.
+
+Weitere Leitfäden
+packages/@smolitux/AGENTS.md enthält fast identische Anweisungen und Qualitäts-Checklisten
+
+.
+
+Doku-Duplikate
+docs/wiki/Codex.md und docs/wiki/OPTIMIZED_CODEX.md bieten nochmals ähnliche Workflows und Dos & Don’ts (z. B. Quick Start Decision Tree)
+
+.
+
+Prompts
+Unter docs/wiki/development/prompts/* existieren zahlreiche paket- oder themenspezifische Prompts; Beispiel CODEX-FINAL-PROMPT.md wiederholt Priorisierung, Minimal-Templates und Qualitäts-Checklisten
+
+.
+
+Automationsskripte
+scripts/smolitux-analyzer.sh analysiert Komponenten/Test/Story-Abdeckung und Validierungsfehler
+.
+scripts/smolitux-completion-finisher.sh generiert Tests/Stories, behebt Importe/Exports und aktualisiert COMPONENT_STATUS.md
+
+.
+
+Workflows
+.github/workflows/ci.yml führt Linting, Tests, A11y-Tests, Build und Storybook-Build aus
+
+    .
+
+2. Strukturierungs- & Redesign-Plan
+
+    Redundante Dateien: AGENTS.old.md, AGENTS.old2.md und verschiedene Prompt-Dateien sind inhaltlich nahezu identisch. Zusammenführung in eine schlanke Anleitung spart Pflegeaufwand.
+
+    Empfehlung:
+
+        Zentrale AGENTS.md im Root als Hauptreferenz.
+
+        Subdirectory-AGENTS für Paket-spezifische Besonderheiten (packages/@smolitux/AGENTS.md kann stark gekürzt nur noch Befehle/Prio enthalten).
+
+        Dokumentation: docs/wiki/Codex.md als ausführlicher Leitfaden, OPTIMIZED_CODEX.md als Kurzreferenz. Andere Prompt-Dateien zusammenführen.
+
+        Skripte beibehalten, aber Module vereinheitlichen (z. B. Parameter für Paketliste).
+
+        Workflows können modularisiert werden, indem z. B. Paket-Builds in Matrix-Jobs aufgeteilt werden.
+
+3. Prompt- & Agentensystem
+
+    Modulares Prompt-System:
+
+        Root AGENTS.md – allgemeine Regeln, Repository-Überblick, globale „Do’s & Don’ts“.
+
+        packages/@smolitux/*/AGENTS.md – nur paketbezogene Details (besondere Abhängigkeiten, Mocking-Hinweise).
+
+        docs/wiki/development/prompts/ – thematische Prompts (z. B. „Component Completion“, „Issue Creation“), jedoch einheitlich nummeriert und kurz gehalten.
+
+    Best Practices:
+
+        Einheitlicher Aufbau für Komponenten (forwardRef, data-testid, vollständige Props, Accessibility-Tests).
+
+        Fortschrittsdateien (COMPONENT_STATUS.md, Coverage-Dashboard) regelmäßig aktualisieren.
+
+        Verpflichtende Befehle: npm run lint, npm test, npm run build vor jedem PR.
+
+4. Automatisierung & DevOps
+
+    Vereinfachtes Setup:
+
+        Ein zentrales Skript steuert analyze → test → build → deploy für jedes Paket nacheinander.
+
+        Fehlerausgaben werden gesammelt und mittels create_issues.sh automatisiert als GitHub-Issue eingestellt.
+
+        Nach jedem Lauf speichert das Skript eine kurze Markdown-Zusammenfassung im Repo (z. B. LIVE_PROCESS_REPORT.md).
+
+        Der Analyzer ermittelt fehlende Tests/Stories und ruft bei Bedarf den Completion Finisher auf.
+
+        CI-Workflow nutzt Matrix-Jobs pro Paket, führt Analyzer + Tests aus und lädt Reports als Artefakte hoch.
+
+        Persistente Issues: das Skript liest offene Issues und prüft nach Fix-Builds, ob sie geschlossen werden können.
+
+    Debugging & Coverage:
+
+        Coverage-Berichte werden pro Paket generiert (generate-coverage-dashboard.sh), in der Wiki-Doku verlinkt.
+
+        Storybook-Builds erfolgen nur bei erfolgreichen Lint-/Test-Jobs.
+
+    Continuous Deployment:
+
+        Storybook wird nach erfolgreichem Build automatisch auf GitHub Pages deployed (bereits in ci.yml vorgesehen)
+
+        .
+
+        Builds der einzelnen Pakete (Dist-Ordner) werden als Artefakte abgelegt und könnten an einen Paket-Registry-Job angebunden werden (ohne Release).
+
+Durch Reduktion der vielen ähnlichen Leitfäden auf wenige klar strukturierte Dateien entsteht ein konsistentes, wartbares Agenten- und Skriptsystem. Automatisierte Analyse, Issue-Erstellung und Paket-Pipeline gewährleisten kontinuierliche Qualität für alle Smolitux-UI-Pakete.
+
+---
 **🎯 This optimized guide ensures systematic, high-quality completion of the entire Smolitux UI component library while maintaining efficiency and avoiding common pitfalls. Follow this guide to achieve production-ready status with full functionality, zero errors, and complete test coverage.**
