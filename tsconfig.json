@@ -10,8 +10,7 @@
     "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@smolitux/*": ["packages/@smolitux/*/src"],
-      "@smolitux/*/*": ["packages/@smolitux/*/src/*"]
+      "@smolitux/*": ["packages/@smolitux/*/src"]
     }
   },
   "include": ["packages", "docs"],
