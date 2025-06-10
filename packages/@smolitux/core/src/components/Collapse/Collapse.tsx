@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useRef, useEffect, useState } from 'react';
 import { useTransition } from '../../animations/useTransition';
 import { TransitionPresetName, TransitionPreset } from '../../animations/transitions';
@@ -108,7 +107,8 @@ export type CollapseProps = {
 /**
  * Collapse-Komponente für Ein- und Ausklappeffekte
  */
-export const Collapse: React.FC<CollapseProps> = ({
+export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
+  ({
   in: inProp = false,
   orientation = 'vertical',
   timeout = 300,
@@ -123,7 +123,9 @@ export const Collapse: React.FC<CollapseProps> = ({
   className,
   style,
   ariaProps,
-}) => {
+  },
+  ref
+) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<number>(0);
   const isHorizontal = orientation === 'horizontal';
@@ -142,9 +144,9 @@ export const Collapse: React.FC<CollapseProps> = ({
   const {
     state,
     isVisible,
-    ref,
+    ref: transitionRef,
     style: transitionStyle,
-  } = useTransition({
+  } = useTransition<HTMLDivElement>({
     in: inProp,
     timeout,
     transition,
@@ -193,9 +195,18 @@ export const Collapse: React.FC<CollapseProps> = ({
     };
   };
 
+  const combinedRef = (node: HTMLDivElement | null) => {
+    transitionRef.current = node;
+    if (typeof ref === 'function') {
+      ref(node);
+    } else if (ref) {
+      (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    }
+  };
+
   return (
     <div
-      ref={ref as React.LegacyRef<HTMLDivElement>}
+      ref={combinedRef}
       className={className}
       style={{ ...collapseStyle, ...style }}
       data-state={state}
@@ -206,6 +217,6 @@ export const Collapse: React.FC<CollapseProps> = ({
       <div ref={contentRef}>{children}</div>
     </div>
   );
-};
+});
 
 export default Collapse;

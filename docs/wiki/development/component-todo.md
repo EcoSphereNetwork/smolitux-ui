@@ -212,7 +212,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | Alert            | forwardRef hinzufügen |
 | Avatar           | forwardRef hinzufügen |
 | Badge            | – |
-| Collapse         | forwardRef hinzufügen |
+| Collapse         | – |
 | ColorPicker      | forwardRef hinzufügen |
 | Dialog           | forwardRef hinzufügen |
 | Drawer           | forwardRef hinzufügen |

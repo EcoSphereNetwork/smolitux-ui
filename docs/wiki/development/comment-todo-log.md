@@ -53,7 +53,7 @@
 - [ ] `src/components/Menu/MenuItem.original.tsx`: 🛠 FIXME [Codex]: Props nicht typisiert – Fehlerbehebung erforderlich
 - [ ] `src/components/Menu/MenuDropdown.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Stepper/Stepper.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/Collapse/Collapse.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/Collapse/Collapse.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/Form/Form.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Dialog/Dialog.original.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Dialog/Dialog.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
