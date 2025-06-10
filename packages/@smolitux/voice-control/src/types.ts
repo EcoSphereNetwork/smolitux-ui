@@ -49,6 +49,11 @@ export interface SpeechAPISupport {
   webkitSpeechRecognition?: SpeechRecognitionConstructor;
 }
 
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  interface Window extends SpeechAPISupport {}
+}
+
 export interface RecognizerParams {
   scoreThreshold?: number;
 }
