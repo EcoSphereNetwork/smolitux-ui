@@ -1,6 +1,5 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 // packages/@smolitux/core/src/components/Menu/MenuDropdown.tsx
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useImperativeHandle } from 'react';
 import ReactDOM from 'react-dom';
 import Menu from './Menu';
 
@@ -58,7 +57,7 @@ export interface MenuDropdownProps {
  * </MenuDropdown>
  * ```
  */
-export const MenuDropdown: React.FC<MenuDropdownProps> = ({
+export const MenuDropdown = React.forwardRef<HTMLDivElement, MenuDropdownProps>(({
   trigger,
   children,
   isOpen: controlledIsOpen,
@@ -74,7 +73,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
   closeDelay = 0,
   maxWidth = 'auto',
   minWidth = 'trigger',
-}) => {
+}, ref) => {
   // State für das Dropdown
   const [isOpen, setIsOpen] = useState(controlledIsOpen || false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -82,6 +81,9 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // expose dropdown element via ref
+  useImperativeHandle(ref, () => dropdownRef.current as HTMLDivElement | null);
 
   // Das Dropdown wird durch externe Props oder internen State gesteuert
   const isControlled = controlledIsOpen !== undefined;
@@ -315,6 +317,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       <div
         ref={dropdownRef}
         className="rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
+        data-testid="MenuDropdown"
         style={getDropdownStyle()}
       >
         <Menu
@@ -340,6 +343,8 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
       {dropdownIsOpen && renderDropdown()}
     </>
   );
-};
+});
+
+MenuDropdown.displayName = 'MenuDropdown';
 
 export default MenuDropdown;
