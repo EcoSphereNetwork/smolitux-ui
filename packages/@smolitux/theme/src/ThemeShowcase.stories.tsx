@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeProvider, useTheme } from './providers/ThemeProvider';
 import { tokens } from './tokens';
-import Button from '../../core/src/components/Button';
+import Button from '@smolitux/core/components/Button';
 
 const meta: Meta = {
   title: 'Theme/Showcase',
