@@ -44,13 +44,11 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Fixed
 - Removed obsolete test TODO comments for chart components
 - Updated documentation to reflect existing tests
-
 ## [0.3.7] - 2025-06-19
 ### Changed
 - Updated EthereumProvider typing with generic request results
 - Implemented `forwardRef` for WalletConnect, TokenDisplay and TransactionHistory
 - Simplified tests and added ref forwarding checks
-
 ## [0.3.8] - 2025-06-20
 ### Added
 - forwardRef support for `DashboardLayout`
@@ -60,6 +58,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - DashboardLayout forwards refs to its root element
 - `NotificationCenter` now forwards refs and exposes a `data-testid`
 - `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
+- `Slide` component now uses `forwardRef` for external ref access and updated tests
 ## [0.3.2] - 2025-06-08
 ### Added
 - Storybook stories for `NotificationCenter`
