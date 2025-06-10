@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Input } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
@@ -37,7 +36,7 @@ export interface PlatformSelectorProps {
 /**
  * PlatformSelector-Komponente für die Auswahl und Konfiguration von Föderationsplattformen
  */
-export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
+export const PlatformSelector = React.forwardRef<HTMLDivElement, PlatformSelectorProps>(({
   platforms,
   selectedPlatforms = [],
   onSelectionChange,
@@ -52,7 +51,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
   showCategoryFilter = true,
   showSearch = true,
   showTrustFilter = true,
-}) => {
+}, ref) => {
   const [selection, setSelection] = useState<string[]>(selectedPlatforms);
   const [searchQuery, setSearchQuery] = useState('');
   const [newPlatformUrl, setNewPlatformUrl] = useState('');
@@ -212,7 +211,7 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
   };
 
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <Card ref={ref} className={`overflow-hidden ${className}`}>
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -557,4 +556,6 @@ export const PlatformSelector: React.FC<PlatformSelectorProps> = ({
       </div>
     </Card>
   );
-};
+});
+
+PlatformSelector.displayName = 'PlatformSelector';

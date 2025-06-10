@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState } from 'react';
 import { Card, Button, ProgressBar } from '@smolitux/core';
 import { FederatedPlatform } from '../../types';
@@ -42,7 +41,7 @@ export interface FederationStatusProps {
 /**
  * FederationStatus-Komponente für die Anzeige des Föderationsstatus und der Verbindungen
  */
-export const FederationStatus: React.FC<FederationStatusProps> = ({
+export const FederationStatus = React.forwardRef<HTMLDivElement, FederationStatusProps>(({
   platforms,
   onRefresh,
   onConnect,
@@ -53,7 +52,7 @@ export const FederationStatus: React.FC<FederationStatusProps> = ({
   className = '',
   loading = false,
   federationStatus,
-}) => {
+}, ref) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [expandedPlatformId, setExpandedPlatformId] = useState<string | null>(null);
   const [actionInProgress, setActionInProgress] = useState<string | null>(null);
@@ -236,7 +235,7 @@ export const FederationStatus: React.FC<FederationStatusProps> = ({
   };
 
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <Card ref={ref} className={`overflow-hidden ${className}`}>
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Föderationsstatus</h3>
@@ -537,4 +536,6 @@ export const FederationStatus: React.FC<FederationStatusProps> = ({
       </div>
     </Card>
   );
-};
+});
+
+FederationStatus.displayName = 'FederationStatus';

@@ -238,15 +238,15 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 
 | Komponente         | TODOs                 |
 | ------------------ | --------------------- |
-| ActivityStream     | forwardRef hinzufügen |
-| CrossPlatformShare | forwardRef hinzufügen |
-| FederatedSearch | forwardRef hinzufügen |
-| FederationStatus | forwardRef hinzufügen |
-| PlatformSelector | forwardRef hinzufügen |
-| ProtocolHandler | forwardRef hinzufügen |
-| ActivityPubViewer | forwardRef hinzufügen |
-| IdentityBridge | forwardRef hinzufügen |
-| FederationSettings | forwardRef hinzufügen |
+| ActivityStream     | forwardRef hinzugefügt |
+| CrossPlatformShare | forwardRef hinzugefügt |
+| FederatedSearch | forwardRef hinzugefügt |
+| FederationStatus | forwardRef hinzugefügt |
+| PlatformSelector | forwardRef hinzugefügt |
+| ProtocolHandler | forwardRef hinzugefügt |
+| ActivityPubViewer | forwardRef hinzugefügt |
+| IdentityBridge | forwardRef hinzugefügt |
+| FederationSettings | forwardRef hinzugefügt |
 
 | Komponente      | TODOs                 |
 | --------------- | --------------------- |
