@@ -11,6 +11,7 @@ Diese Dokumentation enthält wichtige Informationen für Entwickler, die an der 
 ### Analyse und Verbesserung
 
 - [Build-Analyse](./build-analysis.md) - Analyse der Probleme beim Build-Prozess
+- [Erste Analyse 2025-06-09](./analysis-2025-06-09.md) - Zusammenfassung des aktuellen Entwicklungsstands
 - [Verbesserungsplan](./roadmap.md) - Plan zur Verbesserung der Bibliothek
 - [Build-Fix-Anleitung](./build-fix-guide.md) - Anleitung zur Behebung der Build-Probleme
 
