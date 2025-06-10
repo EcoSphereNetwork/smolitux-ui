@@ -8,14 +8,18 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 - Adjusted jest configuration path for `@smolitux/testing`
 - Added named export for `defaultTheme` in theme package
+## [0.3.7] - 2025-06-20
+
+### Changed
+
+- Adjusted jest configuration path for `@smolitux/testing`
+- Added named export for `defaultTheme` in theme package
+- `FeedItem` in `@smolitux/resonance` now forwards refs correctly
 
 ## [0.3.1] - 2025-06-08
 
 - component status updated with voice-control package
 
-## [0.3.2] - 2025-06-17
-- Removed legacy theme-provider implementation in @smolitux/theme
-- Updated monorepo TypeScript path mappings
 ## [0.3.2] - 2025-06-17
 - Removed legacy theme-provider implementation in @smolitux/theme
 - Updated monorepo TypeScript path mappings

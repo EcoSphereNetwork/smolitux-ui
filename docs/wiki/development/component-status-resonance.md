@@ -25,4 +25,4 @@ This page tracks the implementation and test status of the platform specific com
 | Platform | PlatformIntegration | ✅ | ✅ | ✅ | Ready |
 | Platform | PlatformNotice | ✅ | ✅ | ✅ | Ready |
 
-> Last updated: 2025-06-09
+> Last updated: 2025-06-19
