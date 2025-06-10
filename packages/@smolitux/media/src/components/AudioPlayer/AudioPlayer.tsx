@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, forwardRef } from 'react';
 import type { MediaSrc } from '../../types';
 
 export interface AudioPlayerProps {
@@ -34,7 +33,8 @@ export interface AudioPlayerProps {
 /**
  * AudioPlayer-Komponente für die Wiedergabe von Audioinhalten
  */
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({
+export const AudioPlayer = forwardRef<HTMLDivElement, AudioPlayerProps>(
+  ({
   src,
   title,
   artist,
@@ -48,7 +48,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   onEnded,
   onTimeUpdate,
   className = '',
-}) => {
+  },
+  ref
+) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -319,4 +321,6 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       </div>
     </div>
   );
-};
+});
+
+AudioPlayer.displayName = 'AudioPlayer';

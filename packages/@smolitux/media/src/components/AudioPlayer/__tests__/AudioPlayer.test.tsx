@@ -37,4 +37,10 @@ describe('AudioPlayer', () => {
     const audioElement = document.querySelector('audio') as HTMLAudioElement;
     expect(audioElement.src).toContain('blob:');
   });
+
+  it('forwards ref to root element', () => {
+    const ref = React.createRef<HTMLDivElement>();
+    render(<AudioPlayer src={src} ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+  });
 });

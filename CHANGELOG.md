@@ -59,6 +59,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Changed
 - DashboardLayout forwards refs to its root element
 - `NotificationCenter` now forwards refs and exposes a `data-testid`
+- `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
 ## [0.3.2] - 2025-06-08
 ### Added
 - Storybook stories for `NotificationCenter`
