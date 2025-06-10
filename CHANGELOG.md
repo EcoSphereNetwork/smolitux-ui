@@ -39,7 +39,6 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Changed
 
 - `Collapse` component now supports `forwardRef` and exposes the container ref.
-<<<<<<< HEAD
 ## [0.3.7] - 2025-06-10
 ### Changed
 - `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
@@ -66,6 +65,9 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
 - `Slide` component now uses `forwardRef` for external ref access and updated tests
 - Documentation page summarizing common open-source licenses
+- Forward refs added to all federation components with display names
+- Updated federation Jest rootDir
+- Updated TODO logs for federation components
 ## [0.3.2] - 2025-06-08
 ### Added
 - Storybook stories for `NotificationCenter`
