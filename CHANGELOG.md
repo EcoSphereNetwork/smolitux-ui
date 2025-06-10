@@ -60,6 +60,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - forwardRef support for `DashboardLayout`
 - Accessibility tests for `Header` and `Footer`
 - Storybook stories for `NotificationCenter`
+- Component counts documented in component-status.md
 ### Changed
 - DashboardLayout forwards refs to its root element
 - `NotificationCenter` now forwards refs and exposes a `data-testid`
