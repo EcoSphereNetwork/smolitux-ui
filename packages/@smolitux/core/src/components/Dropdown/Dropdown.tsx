@@ -8,7 +8,7 @@ type DropdownContextType = {
   setIsOpen: (isOpen: boolean) => void;
   activeItemIndex: number | null;
   setActiveItemIndex: (index: number | null) => void;
-  registerItem: (id: string) => number;
+  registerItem: (id?: string) => number;
   triggerRef: React.RefObject<HTMLElement>;
   dropdownId: string;
   onSelect?: (value: string) => void;
@@ -26,7 +26,8 @@ export const useDropdownContext = () => {
   return context;
 };
 
-export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DropdownProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
   /** Kinder-Elemente (DropdownToggle, DropdownMenu) */
   children: React.ReactNode;
   /** Ist das Dropdown geöffnet (kontrollierter Modus) */
@@ -110,12 +111,13 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const dropdownIsOpen = isControlled ? controlledIsOpen : isOpen;
 
     // Registrieren eines neuen Items
-    const registerItem = useCallback((id: string) => {
-      if (!itemsMap.current.has(id)) {
-        itemsMap.current.set(id, itemsCounter.current);
+    const registerItem = useCallback((id?: string) => {
+      const key = id ?? `item-${itemsCounter.current}`;
+      if (!itemsMap.current.has(key)) {
+        itemsMap.current.set(key, itemsCounter.current);
         return itemsCounter.current++;
       }
-      return itemsMap.current.get(id)!;
+      return itemsMap.current.get(key)!;
     }, []);
 
     // State-Änderungen propagieren

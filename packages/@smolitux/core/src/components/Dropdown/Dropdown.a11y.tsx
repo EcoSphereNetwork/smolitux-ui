@@ -42,7 +42,8 @@ export const useDropdownA11yContext = () => {
   return context;
 };
 
-export interface DropdownA11yProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DropdownA11yProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
   /** Kinder-Elemente (DropdownToggle, DropdownMenu) */
   children: React.ReactNode;
   /** Ist das Dropdown geöffnet (kontrollierter Modus) */

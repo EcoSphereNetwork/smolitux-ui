@@ -104,25 +104,29 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
           case 'ArrowDown':
           case 'Down': // Für ältere Browser
             e.preventDefault();
-            setActiveItemIndex((prev) => {
-              const nextIndex = prev === null ? 0 : (prev + 1) % itemsRef.current.length;
+            {
+              const nextIndex =
+                activeItemIndex === null
+                  ? 0
+                  : (activeItemIndex + 1) % itemsRef.current.length;
               const nextItem = itemsRef.current[nextIndex];
               if (nextItem) nextItem.focus();
-              return nextIndex;
-            });
+              setActiveItemIndex(nextIndex);
+            }
             break;
           case 'ArrowUp':
           case 'Up': // Für ältere Browser
             e.preventDefault();
-            setActiveItemIndex((prev) => {
+            {
               const nextIndex =
-                prev === null
+                activeItemIndex === null
                   ? itemsRef.current.length - 1
-                  : (prev - 1 + itemsRef.current.length) % itemsRef.current.length;
+                  : (activeItemIndex - 1 + itemsRef.current.length) %
+                      itemsRef.current.length;
               const nextItem = itemsRef.current[nextIndex];
               if (nextItem) nextItem.focus();
-              return nextIndex;
-            });
+              setActiveItemIndex(nextIndex);
+            }
             break;
           case 'Home':
             e.preventDefault();
@@ -194,7 +198,7 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
     const childrenWithRefs = React.Children.map(children, (child, index) => {
       if (!React.isValidElement(child)) return child;
 
-      return React.cloneElement(child, {
+      return React.cloneElement(child as React.ReactElement, {
         ref: (el: HTMLElement | null) => {
           itemsRef.current[index] = el;
 
