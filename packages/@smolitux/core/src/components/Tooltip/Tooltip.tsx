@@ -61,7 +61,8 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
   const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useImperativeHandle(ref, () => tooltipRef.current as HTMLDivElement | null);
+  // Expose the tooltip DOM node to parent components
+  useImperativeHandle(ref, () => tooltipRef.current as HTMLDivElement);
 
   // Generate unique ID for accessibility
   const tooltipId = id || `tooltip-${Math.random().toString(36).substring(2, 10)}`;

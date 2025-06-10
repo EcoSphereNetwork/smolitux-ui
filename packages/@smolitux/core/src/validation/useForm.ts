@@ -76,52 +76,7 @@ export const useForm = (options: FormOptions = {}) => {
     delete fieldsRef.current[name];
   }, []);
 
-  // Feldwert setzen
-  const setFieldValue = useCallback(
-    (name: string, value: unknown) => {
-      setValues((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-
-      // Feld als schmutzig markieren, wenn der Wert sich geändert hat
-      const initialValue = initialValuesRef.current[name];
-      const isDirty = value !== initialValue;
-
-      setDirty((prev) => ({
-        ...prev,
-        [name]: isDirty,
-      }));
-
-      // Validieren, falls erforderlich
-      if (
-        validateOnChange &&
-        (!validateOnlyTouched || touched[name]) &&
-        (!validateOnlyDirty || isDirty)
-      ) {
-        validateField(name);
-      }
-    },
-    [validateOnChange, validateOnlyTouched, validateOnlyDirty, touched, validateField]
-  );
-
-  // Feld als berührt markieren
-  const setFieldTouched = useCallback(
-    (name: string, isTouched = true) => {
-      setTouched((prev) => ({
-        ...prev,
-        [name]: isTouched,
-      }));
-
-      // Validieren, falls erforderlich
-      if (validateOnBlur && isTouched && (!validateOnlyDirty || dirty[name])) {
-        validateField(name);
-      }
-    },
-    [validateOnBlur, validateOnlyDirty, dirty, validateField]
-  );
-
-  // Feld validieren
+  // Feld validieren - moved before usage in other callbacks
   const validateField = useCallback(
     async (name: string): Promise<boolean> => {
       const field = fieldsRef.current[name];
@@ -198,6 +153,52 @@ export const useForm = (options: FormOptions = {}) => {
     },
     [values, touched, dirty, errors, formState, onError]
   );
+
+  // Feldwert setzen
+  const setFieldValue = useCallback(
+    (name: string, value: unknown) => {
+      setValues((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+
+      // Feld als schmutzig markieren, wenn der Wert sich geändert hat
+      const initialValue = initialValuesRef.current[name];
+      const isDirty = value !== initialValue;
+
+      setDirty((prev) => ({
+        ...prev,
+        [name]: isDirty,
+      }));
+
+      // Validieren, falls erforderlich
+      if (
+        validateOnChange &&
+        (!validateOnlyTouched || touched[name]) &&
+        (!validateOnlyDirty || isDirty)
+      ) {
+        validateField(name);
+      }
+    },
+    [validateOnChange, validateOnlyTouched, validateOnlyDirty, touched, validateField]
+  );
+
+  // Feld als berührt markieren
+  const setFieldTouched = useCallback(
+    (name: string, isTouched = true) => {
+      setTouched((prev) => ({
+        ...prev,
+        [name]: isTouched,
+      }));
+
+      // Validieren, falls erforderlich
+      if (validateOnBlur && isTouched && (!validateOnlyDirty || dirty[name])) {
+        validateField(name);
+      }
+    },
+    [validateOnBlur, validateOnlyDirty, dirty, validateField]
+  );
+
 
   // Formular validieren
   const validateForm = useCallback(async (): Promise<boolean> => {
