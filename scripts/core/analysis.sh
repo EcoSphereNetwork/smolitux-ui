@@ -3,8 +3,9 @@
 # SMOLITUX CORE ANALYSIS
 # Core analysis functions for Smolitux scripts
 
-# Source utils
-source "$(dirname "$0")/utils.sh"
+# Source utils using the script's directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/utils.sh"
 
 # Analyze repository
 analyze_repository() {
