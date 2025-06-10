@@ -24,15 +24,22 @@ export interface TransactionHistoryProps {
 /**
  * TransactionHistory-Komponente für die Anzeige von Blockchain-Transaktionen
  */
-export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
-  transactions,
-  pageSize = 10,
-  onTransactionClick,
-  onFilter,
-  onPageChange,
-  className = '',
-  loading = false,
-}) => {
+export const TransactionHistory = React.forwardRef<
+  HTMLDivElement,
+  TransactionHistoryProps
+>(
+  (
+    {
+      transactions,
+      pageSize = 10,
+      onTransactionClick,
+      onFilter,
+      onPageChange,
+      className = '',
+      loading = false,
+    },
+    ref
+  ) => {
   const [activeType, setActiveType] = useState<TransactionType>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedTransaction, setExpandedTransaction] = useState<string | null>(null);
@@ -280,7 +287,8 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
   };
 
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <div ref={ref} data-testid="transaction-history">
+      <Card className={`overflow-hidden ${className}`}>
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -701,6 +709,9 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
           </div>
         </div>
       )}
-    </Card>
+      </Card>
+    </div>
   );
-};
+});
+
+TransactionHistory.displayName = 'TransactionHistory';

@@ -18,12 +18,11 @@ export interface TokenDisplayProps {
 /**
  * TokenDisplay-Komponente für die Anzeige von Token-Informationen
  */
-export const TokenDisplay: React.FC<TokenDisplayProps> = ({
-  token,
-  showDetails = false,
-  onClick,
-  className = '',
-}) => {
+export const TokenDisplay = React.forwardRef<HTMLDivElement, TokenDisplayProps>(
+  (
+    { token, showDetails = false, onClick, className = '' },
+    ref
+  ) => {
   const { symbol, name, balance, valueUSD, logoUrl, address } = token;
 
   // Token-Adresse formatieren
@@ -48,10 +47,11 @@ export const TokenDisplay: React.FC<TokenDisplayProps> = ({
   };
 
   return (
-    <Card
-      className={`p-4 ${onClick ? 'cursor-pointer hover:shadow-md transition-shadow' : ''} ${className}`}
-      onClick={onClick ? handleClick : undefined}
-    >
+    <div ref={ref} data-testid="token-display">
+      <Card
+        className={`p-4 ${onClick ? 'cursor-pointer hover:shadow-md transition-shadow' : ''} ${className}`}
+        onClick={onClick ? handleClick : undefined}
+      >
       <div className="flex items-center">
         {/* Token-Logo */}
         <div className="flex-shrink-0 mr-4">
@@ -100,6 +100,9 @@ export const TokenDisplay: React.FC<TokenDisplayProps> = ({
           </div>
         </div>
       )}
-    </Card>
+      </Card>
+    </div>
   );
-};
+});
+
+TokenDisplay.displayName = 'TokenDisplay';
