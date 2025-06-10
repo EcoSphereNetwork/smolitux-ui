@@ -22,6 +22,7 @@ yarn add @smolitux/community
 
 ```jsx
 import { CommentSection } from '@smolitux/community';
+import { NotificationCenter } from '@smolitux/community';
 
 const MyComponent = () => {
   const comments = [
@@ -33,6 +34,13 @@ const MyComponent = () => {
   };
 
   return <CommentSection comments={comments} onAddComment={handleAddComment} />;
+};
+
+const NotificationExample = () => {
+  const notifications = [
+    { id: 'n1', message: 'Alice liked your post.' },
+  ];
+  return <NotificationCenter notifications={notifications} />;
 };
 ```
 

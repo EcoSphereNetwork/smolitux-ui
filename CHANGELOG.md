@@ -29,6 +29,12 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Fixed
 - Removed obsolete test TODO comments for chart components
 - Updated documentation to reflect existing tests
+
+## [0.3.8] - 2025-06-20
+### Added
+- Storybook stories for `NotificationCenter`
+### Changed
+- `NotificationCenter` now forwards refs and exposes a `data-testid`
 ## [0.3.2] - 2025-06-08
 ### Added
 - Offline Komponentenscan und TODO-Liste erstellt
