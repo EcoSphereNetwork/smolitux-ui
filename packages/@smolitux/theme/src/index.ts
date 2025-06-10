@@ -7,3 +7,4 @@ export { tokens, type Tokens } from './tokens';
 export { createCssVariables, applyCssVariables } from './utils/cssVariables';
 export type { Theme, ThemeOptions, ColorShades, Colors, Typography, Spacing, BorderRadius, Shadows, Breakpoints, ZIndices } from './theme-types';
 export { ThemeTypen } from './ThemeTypen';
+export { defaultTheme } from './Default';
