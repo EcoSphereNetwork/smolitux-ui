@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FileUpload.original } from './FileUpload.original';
+import ThemeTypen from './ThemeTypen';
 
-const meta: Meta<typeof FileUpload.original> = {
-  title: 'Components/FileUpload.original',
-  component: FileUpload.original,
+const meta: Meta<typeof ThemeTypen> = {
+  title: 'Components/ThemeTypen',
+  component: ThemeTypen,
   parameters: {
     layout: 'centered',
   },
@@ -15,20 +15,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'FileUpload.original',
+    children: 'ThemeTypen',
   },
 };
 
 export const CustomStyle: Story = {
   args: {
-    children: 'Custom FileUpload.original',
+    children: 'Custom ThemeTypen',
     className: 'custom-style',
   },
 };
 
 export const Interactive: Story = {
   args: {
-    children: 'Interactive FileUpload.original',
+    children: 'Interactive ThemeTypen',
     onClick: () => alert('Clicked!'),
   },
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Radio.a11y } from './Radio.a11y';
+import RadioA11y from './Radio.a11y';
 
-const meta: Meta<typeof Radio.a11y> = {
-  title: 'Components/Radio.a11y',
-  component: Radio.a11y,
+const meta: Meta<typeof RadioA11y> = {
+  title: 'Components/RadioA11y',
+  component: RadioA11y,
   parameters: {
     layout: 'centered',
   },
@@ -16,20 +16,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Radio.a11y',
+    children: 'RadioA11y',
   },
 };
 
 export const CustomStyle: Story = {
   args: {
-    children: 'Custom Radio.a11y',
+    children: 'Custom RadioA11y',
     className: 'custom-style',
   },
 };
 
 export const Interactive: Story = {
   args: {
-    children: 'Interactive Radio.a11y',
+    children: 'Interactive RadioA11y',
     onClick: () => alert('Clicked!'),
   },
 };

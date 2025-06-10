@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Stepper.a11y } from './Stepper.a11y';
+import StepperA11y from './Stepper.a11y';
 
-const meta: Meta<typeof Stepper.a11y> = {
-  title: 'Components/Stepper.a11y',
-  component: Stepper.a11y,
+const meta: Meta<typeof StepperA11y> = {
+  title: 'Components/StepperA11y',
+  component: StepperA11y,
   parameters: {
     layout: 'centered',
   },
@@ -16,20 +16,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Stepper.a11y',
+    children: 'StepperA11y',
   },
 };
 
 export const CustomStyle: Story = {
   args: {
-    children: 'Custom Stepper.a11y',
+    children: 'Custom StepperA11y',
     className: 'custom-style',
   },
 };
 
 export const Interactive: Story = {
   args: {
-    children: 'Interactive Stepper.a11y',
+    children: 'Interactive StepperA11y',
     onClick: () => alert('Clicked!'),
   },
 };

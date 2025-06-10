@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MediaPlayer.a11y } from './MediaPlayer.a11y';
+import MediaPlayerA11y from './MediaPlayer.a11y';
 
-const meta: Meta<typeof MediaPlayer.a11y> = {
-  title: 'Components/MediaPlayer.a11y',
-  component: MediaPlayer.a11y,
+const meta: Meta<typeof MediaPlayerA11y> = {
+  title: 'Components/MediaPlayerA11y',
+  component: MediaPlayerA11y,
   parameters: {
     layout: 'centered',
   },
@@ -16,20 +16,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'MediaPlayer.a11y',
+    children: 'MediaPlayerA11y',
   },
 };
 
 export const CustomStyle: Story = {
   args: {
-    children: 'Custom MediaPlayer.a11y',
+    children: 'Custom MediaPlayerA11y',
     className: 'custom-style',
   },
 };
 
 export const Interactive: Story = {
   args: {
-    children: 'Interactive MediaPlayer.a11y',
+    children: 'Interactive MediaPlayerA11y',
     onClick: () => alert('Clicked!'),
   },
 };

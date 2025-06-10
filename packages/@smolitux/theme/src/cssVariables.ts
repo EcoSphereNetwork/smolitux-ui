@@ -1,4 +1,4 @@
-import { Theme } from './Theme-Typen';
+import { Theme } from './theme-types';
 
 export function createCssVariables(theme: Theme): Record<string, string> {
   const vars: Record<string, string> = {};
