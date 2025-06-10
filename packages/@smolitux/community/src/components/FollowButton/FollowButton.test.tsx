@@ -10,3 +10,9 @@ test('triggers onFollowChange on click', async () => {
   await userEvent.click(screen.getByRole('button'));
   expect(onFollowChange).toHaveBeenCalledWith('u1', true);
 });
+
+test('forwards ref correctly', () => {
+  const ref = React.createRef<HTMLButtonElement>();
+  render(<FollowButton userId="u1" onFollowChange={jest.fn()} ref={ref} />);
+  expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+});

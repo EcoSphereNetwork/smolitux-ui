@@ -11,6 +11,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - Adjusted Jest configuration path for `@smolitux/testing`
 - Added named export for `defaultTheme` and cleaned up theme exports
 
+## [0.3.8] - 2025-06-21
+### Added
+- forwardRef support for community package components
+
 ## [0.3.3] - 2025-06-17
 
 ### Added
