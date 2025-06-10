@@ -8,9 +8,9 @@ export interface FederationSettingsProps {
   className?: string;
 }
 
-export const FederationSettings: React.FC<FederationSettingsProps> = ({ protocols, enabled, onToggle, className }) => {
+export const FederationSettings = React.forwardRef<HTMLDivElement, FederationSettingsProps>(({ protocols, enabled, onToggle, className }, ref) => {
   return (
-    <Card className={className} data-testid="federation-settings">
+    <Card ref={ref} className={className} data-testid="federation-settings">
       <h3 className="font-semibold mb-2">Protocols</h3>
       <div className="space-y-2">
         {protocols.map((p) => (
@@ -26,6 +26,8 @@ export const FederationSettings: React.FC<FederationSettingsProps> = ({ protocol
       </div>
     </Card>
   );
-};
+});
+
+FederationSettings.displayName = 'FederationSettings';
 
 export default FederationSettings;
