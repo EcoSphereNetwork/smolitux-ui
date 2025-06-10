@@ -8,13 +8,8 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 - Adjusted jest configuration path for `@smolitux/testing`
 - Added named export for `defaultTheme` in theme package
-## [0.3.7] - 2025-06-20
-
-### Changed
-
-- Adjusted jest configuration path for `@smolitux/testing`
-- Added named export for `defaultTheme` in theme package
 - `FeedItem` in `@smolitux/resonance` now forwards refs correctly
+- `Slide` component now forwards refs and tests were updated accordingly.
 
 ## [0.3.1] - 2025-06-08
 
@@ -23,10 +18,6 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ## [0.3.2] - 2025-06-17
 - Removed legacy theme-provider implementation in @smolitux/theme
 - Updated monorepo TypeScript path mappings
-
-## [0.3.7] - 2025-06-20
-### Changed
-- `Slide` component now forwards refs and tests were updated accordingly.
 ## [0.2.3] - 2025-06-08
 
 - Updated TypeScript docs configuration
