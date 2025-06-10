@@ -355,3 +355,5 @@ export const FeedItem = React.forwardRef<HTMLDivElement, FeedItemProps>(
     </Card>
   );
 });
+
+FeedItem.displayName = 'FeedItem';
