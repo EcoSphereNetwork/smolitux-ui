@@ -4,8 +4,17 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 > **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](/docs/wiki/index.md). Die aktuelle Version des Changelogs finden Sie [hier](/docs/wiki/development/changelog.md).
 
+## [0.3.7] - 2025-06-20
+
+### Changed
+
+- Adjusted jest configuration path for `@smolitux/testing`
+- Added named export for `defaultTheme` in theme package
+
 ## [0.3.3] - 2025-06-17
+
 ### Added
+
 - Component counts documented in component-status.md
 
 ### Fixed
@@ -13,16 +22,22 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - Updated TypeScript path mappings
 
 ## [0.3.4] - 2025-06-18
+
 ### Changed
+
 - Added forwardRef and data-testid to `Option` component
 - Updated related tests and stories
 
 ## [0.3.5] - 2025-06-18
+
 ### Changed
+
 - `Tooltip` component now uses `forwardRef` for external ref access
 
 ## [0.3.6] - 2025-06-19
+
 ### Changed
+
 - `Collapse` component now supports `forwardRef` and exposes the container ref.
 
 ## [0.3.7] - 2025-06-10
@@ -42,23 +57,30 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Changed
 - `NotificationCenter` now forwards refs and exposes a `data-testid`
 ## [0.3.2] - 2025-06-08
+
 ### Added
+
 - Offline Komponentenscan und TODO-Liste erstellt
 
 ## [0.3.1] - 2025-06-08
 
 ### Added
+
 - component status updated with voice-control package
+
 ## [0.3.0] - 2025-06-08
+
 ### Added
+
 - minimal project setup without Lerna
 - central TypeScript, ESLint and Jest configuration
 
 ## [0.2.3] - 2025-06-08
+
 ### Changed
+
 - updated TypeScript build configuration for docs
 - declared Node.js and Docusaurus module types in root config
-
 
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -66,19 +88,23 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.2.2] - 2025-04-02
 
 ### Hinzugefügt
+
 - Umfassender Komponenten-Teststatus-Bericht in der Dokumentation
 - Detaillierte Release Notes für Version 0.2.2
 
 ### Geändert
+
 - Verbesserte Codeformatierung in allen Dateien
 - Aktualisierte Versionsnummer in package.json und lerna.json
 
 ### Behoben
+
 - Syntaxfehler in FormField.tsx behoben
 - Syntaxfehler in ActivityStream.tsx behoben
 - HTML-Dateien mit .tsx-Erweiterung in .html umbenannt, um TypeScript-Kompilierungsfehler zu vermeiden
 
 ### Hinzugefügt
+
 - Storybook-Stories für mehrere Komponenten (Button, Card, Avatar, Breadcrumb, Tooltip, Modal, Table, Accordion)
 - Cypress E2E-Tests für Komponenten
 - Cypress Accessibility-Tests
@@ -90,6 +116,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - TabView-Komponente: Unterstützung für `onChange`-Prop als Alias für `onTabChange`
 
 ### Verbessert
+
 - Überarbeitung der Button-Komponente mit besserer Barrierefreiheit
 - Flex-Komponente mit Tailwind-CSS-Integration
 - Verbesserte TypeScript-Typisierung für alle Komponenten
@@ -98,6 +125,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Aktualisierte Dokumentation mit neuen Varianten und Props
 
 ### Behoben
+
 - Barrierefreiheitsprobleme in mehreren Komponenten
 - Inkonsistenzen im Theming-System
 - Probleme mit der Tastaturnavigation in interaktiven Komponenten
@@ -107,6 +135,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.2.1] - 2025-03-26
 
 ### Hinzugefügt
+
 - Neue Komponenten für ResonanceLink:
   - Governance-Komponenten:
     - GovernanceDashboard: Übersicht über Community-Governance
@@ -134,6 +163,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - SmartContractInteraction: Interaktion mit Smart Contracts
 
 ### Verbessert
+
 - Verbesserte Typendefinitionen für alle Komponenten
 - Bessere Dokumentation mit JSDoc-Kommentaren
 - Optimierte Leistung bei komplexen Komponenten
@@ -142,6 +172,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Hinzugefügt: Test-App zur Demonstration der Komponenten
 
 ### Fehlerbehebungen
+
 - Behoben: Syntaxfehler in Charts-Komponenten
 - Behoben: Fehlerhafte Snapshot-Tests
 - Behoben: Probleme mit der Formularvalidierung
@@ -152,6 +183,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.2.0] - 2025-03-25
 
 ### Hinzugefügt
+
 - Erste Version der erweiterten Komponenten-Bibliothek
 - Neue Pakete für spezifische Anwendungsbereiche:
   - @smolitux/ai: KI-bezogene Komponenten
@@ -164,6 +196,7 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.1.0] - 2025-03-24
 
 ### Hinzugefügt
+
 - Erste Version der Smolitux UI Komponenten-Bibliothek
 - Core-Komponenten:
   - Alert: Für Benachrichtigungen und Warnungen
@@ -188,10 +221,12 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - useTheme: Hook für Theme-Zugriff
 
 ### Geändert
+
 - Alle Komponenten haben jetzt default exports
 - TypeScript-Deklarationsdateien (DTS) wurden vorübergehend deaktiviert
 
 ### Bekannte Probleme
+
 - Charts-Komponenten haben Syntaxfehler und sind noch nicht nutzbar
 - Einige Tests schlagen fehl aufgrund von Snapshot-Änderungen
 - Formularvalidierung und Internationalisierung sind noch nicht vollständig implementiert
