@@ -2,6 +2,8 @@
 
 ## **DIREKTER BEFEHL FÜR CODEX:**
 
+Du hast Zugriff auf das Remote Repository, nutze gh (Github-CLI).
+
 ```
 JETZT SOFORT: Merge den nächsten offenen PR aus der Liste. 
 BEWÄHRTE METHODE: 1) gh pr view [PR-NUMBER] --json state (prüfe dass offen) 
