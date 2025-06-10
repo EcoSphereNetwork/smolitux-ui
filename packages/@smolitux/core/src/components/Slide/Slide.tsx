@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useTransition } from '../../animations/useTransition';
 import { TransitionPresetName, TransitionPreset } from '../../animations/transitions';
 
@@ -70,7 +69,7 @@ export type SlideProps = {
 /**
  * Slide-Komponente für Gleiteffekte
  */
-export const Slide: React.FC<SlideProps> = ({
+export const Slide = forwardRef<HTMLDivElement, SlideProps>(({
   in: inProp = false,
   direction = 'right',
   timeout = 300,
@@ -83,8 +82,7 @@ export const Slide: React.FC<SlideProps> = ({
   children,
   className,
   style,
-}) => {
-  const nodeRef = useRef<HTMLDivElement>(null);
+}, forwardedRef) => {
 
   // Transformations-Werte basierend auf der Richtung
   const getTransformValue = (state: 'entering' | 'entered' | 'exiting' | 'exited'): string => {
@@ -109,7 +107,7 @@ export const Slide: React.FC<SlideProps> = ({
     isVisible,
     ref,
     style: transitionStyle,
-  } = useTransition({
+  } = useTransition<HTMLDivElement>({
     in: inProp,
     timeout,
     transition,
@@ -130,10 +128,24 @@ export const Slide: React.FC<SlideProps> = ({
     overflow: 'hidden',
   };
 
+  const handleRef = (element: HTMLDivElement | null) => {
+    if (ref && 'current' in ref) {
+      (ref as React.MutableRefObject<HTMLDivElement | null>).current = element;
+    }
+
+    if (forwardedRef) {
+      if (typeof forwardedRef === 'function') {
+        forwardedRef(element);
+      } else if (forwardedRef && 'current' in forwardedRef) {
+        (forwardedRef as React.MutableRefObject<HTMLDivElement | null>).current = element;
+      }
+    }
+  };
+
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {
     return React.cloneElement(children as React.ReactElement, {
-      ref,
+      ref: handleRef,
       style: {
         ...slideStyle,
         ...style,
@@ -149,7 +161,7 @@ export const Slide: React.FC<SlideProps> = ({
   // Ansonsten wrappen wir die Kinder in einem div
   return (
     <div
-      ref={ref as React.LegacyRef<HTMLDivElement>}
+      ref={handleRef}
       className={className}
       style={{ ...slideStyle, ...style }}
       data-state={state}
@@ -157,6 +169,8 @@ export const Slide: React.FC<SlideProps> = ({
       {children}
     </div>
   );
-};
+});
+
+Slide.displayName = 'Slide';
 
 export default Slide;
