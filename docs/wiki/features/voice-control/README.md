@@ -18,6 +18,8 @@ Diese Dokumentation beschreibt die Sprachsteuerungsfunktionalität für die Smol
 
 Die Sprachsteuerungsfunktionalität ermöglicht Benutzern, mit Smolitux-UI-Komponenten durch Sprachbefehle zu interagieren. Dies verbessert die Barrierefreiheit und bietet eine alternative Eingabemethode für verschiedene Anwendungsfälle.
 
+Eine Schritt-für-Schritt-Anleitung zur praktischen Nutzung finden Sie im [Voice Control Guide](../guides/voice-control-guide.md).
+
 ### Hauptfunktionen
 
 - **Vollständige Komponentensteuerung**: Alle Smolitux-UI-Komponenten können mit Sprachbefehlen gesteuert werden
