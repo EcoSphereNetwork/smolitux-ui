@@ -2,7 +2,7 @@
 // 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from '@smolitux/core';
-import { EthereumProvider } from '../types';
+import { EthereumProvider } from '../../types';
 
 export interface WalletConnectProps {
   /** Callback bei erfolgreicher Verbindung */
