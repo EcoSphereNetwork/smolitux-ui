@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Slide.a11y } from './Slide.a11y';
+import SlideA11y from './Slide.a11y';
 
-const meta: Meta<typeof Slide.a11y> = {
-  title: 'Components/Slide.a11y',
-  component: Slide.a11y,
+const meta: Meta<typeof SlideA11y> = {
+  title: 'Components/SlideA11y',
+  component: SlideA11y,
   parameters: {
     layout: 'centered',
   },
@@ -16,20 +16,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Slide.a11y',
+    children: 'SlideA11y',
   },
 };
 
 export const CustomStyle: Story = {
   args: {
-    children: 'Custom Slide.a11y',
+    children: 'Custom SlideA11y',
     className: 'custom-style',
   },
 };
 
 export const Interactive: Story = {
   args: {
-    children: 'Interactive Slide.a11y',
+    children: 'Interactive SlideA11y',
     onClick: () => alert('Clicked!'),
   },
 };

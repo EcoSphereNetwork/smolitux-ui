@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox.a11y } from './Checkbox.a11y';
+import CheckboxA11y from './Checkbox.a11y';
 
-const meta: Meta<typeof Checkbox.a11y> = {
-  title: 'Components/Checkbox.a11y',
-  component: Checkbox.a11y,
+const meta: Meta<typeof CheckboxA11y> = {
+  title: 'Components/CheckboxA11y',
+  component: CheckboxA11y,
   parameters: {
     layout: 'centered',
   },
@@ -16,20 +16,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Checkbox.a11y',
+    children: 'CheckboxA11y',
   },
 };
 
 export const CustomStyle: Story = {
   args: {
-    children: 'Custom Checkbox.a11y',
+    children: 'Custom CheckboxA11y',
     className: 'custom-style',
   },
 };
 
 export const Interactive: Story = {
   args: {
-    children: 'Interactive Checkbox.a11y',
+    children: 'Interactive CheckboxA11y',
     onClick: () => alert('Clicked!'),
   },
 };
