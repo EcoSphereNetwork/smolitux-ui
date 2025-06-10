@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid Snapshots renders container with two items 1`] = `
+<DocumentFragment>
+  <div
+    class="grid grid-cols-12 gap-md justify-start items-stretch"
+  >
+    <div
+      class="col-span-6"
+    >
+      One
+    </div>
+    <div
+      class="col-span-6"
+    >
+      Two
+    </div>
+  </div>
+</DocumentFragment>
+`;

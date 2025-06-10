@@ -136,8 +136,11 @@ export const FlexA11y = forwardRef<HTMLDivElement, FlexProps>(
       map?: Record<string, string>
     ) => {
       if (prop === undefined) return '';
-      const convert = (value: unknown) => (map ? map[value] || value : value);
-      if (typeof prop === 'object') {
+      const convert = (value: unknown) => {
+        const key = String(value);
+        return map ? map[key] || key : key;
+      };
+      if (typeof prop === 'object' && prop !== null) {
         return Object.entries(prop)
           .map(([bp, val]) => `${bp}:${prefix}-${convert(val)}`)
           .join(' ');

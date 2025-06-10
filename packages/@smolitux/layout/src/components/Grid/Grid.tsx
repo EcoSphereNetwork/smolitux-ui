@@ -28,11 +28,11 @@ export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const gapMap: Record<GridGap, string> = {
   none: '0',
-  xs: '1',
-  sm: '2',
-  md: '4',
-  lg: '6',
-  xl: '8',
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
 };
 
 const justifyMap: Record<GridJustify, string> = {
@@ -55,16 +55,25 @@ const alignMap: Record<GridAlign, string> = {
 const getPrefix = (bp: GridBreakpoint) =>
   bp === 'sm' ? 'sm:' : bp === 'md' ? 'md:' : bp === 'lg' ? 'lg:' : bp === 'xl' ? 'xl:' : '2xl:';
 
-const responsive = (prop: unknown, prefix: string, map: Record<string, string>) => {
+const responsive = (
+  prop: unknown,
+  prefix: string,
+  map: Record<string, string>
+) => {
   if (prop === undefined) return '';
-  if (typeof prop === 'object') {
-    return Object.entries(prop)
-      .map(
-        ([bp, val]) => `${getPrefix(bp as GridBreakpoint)}${prefix}-${map[val as keyof typeof map]}`
-      )
+
+  const convert = (value: unknown) => {
+    const key = String(value);
+    return map[key] ?? key;
+  };
+
+  if (typeof prop === 'object' && prop !== null) {
+    return Object.entries(prop as Record<string, unknown>)
+      .map(([bp, val]) => `${getPrefix(bp as GridBreakpoint)}${prefix}-${convert(val)}`)
       .join(' ');
   }
-  return `${prefix}-${map[prop as keyof typeof map]}`;
+
+  return `${prefix}-${convert(prop)}`;
 };
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>(

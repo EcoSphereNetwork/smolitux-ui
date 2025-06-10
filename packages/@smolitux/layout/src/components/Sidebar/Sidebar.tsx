@@ -1,7 +1,7 @@
 // packages/@smolitux/layout/src/components/Sidebar/Sidebar.tsx
 import React, { useState, useEffect, forwardRef } from 'react';
 import { useTheme } from '@smolitux/theme';
-import { breakpoints } from '@smolitux/utils/styling';
+import { breakpoints } from '@smolitux/utils/src/styling';
 
 export interface SidebarItem {
   /** Eindeutige ID des Items */
@@ -59,6 +59,8 @@ export interface SidebarProps {
   collapseBreakpoint?: keyof typeof breakpoints | number;
   /** Footer-Inhalt */
   footer?: React.ReactNode;
+  /** Zusätzliche CSS-Klassen */
+  className?: string;
 }
 
 /**
@@ -98,7 +100,8 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
     },
     ref
   ) => {
-    const { themeMode } = useTheme();
+    // Ensure theme context is initialized
+    useTheme();
     const [isCollapsed, setIsCollapsed] = useState(collapsed);
     const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
