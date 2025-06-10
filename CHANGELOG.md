@@ -40,6 +40,8 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 - `Collapse` component now supports `forwardRef` and exposes the container ref.
 ## [0.3.7] - 2025-06-10
+### Changed
+- `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
 ### Fixed
 - Removed obsolete test TODO comments for chart components
 - Updated documentation to reflect existing tests
