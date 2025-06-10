@@ -1,21 +1,21 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Flex } from './Flex';
 
 describe('Flex', () => {
   it('renders without crashing', () => {
-    render(<Flex />);
-    expect(screen.getByRole('button', { name: /Flex/i })).toBeInTheDocument();
+    const { container } = render(<Flex />);
+    expect(container.firstChild).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
-    render(<Flex className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
+    const { container } = render(<Flex className="custom-class" />);
+    expect(container.firstChild).toHaveClass('custom-class');
   });
 
   it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
+    const ref = React.createRef<HTMLDivElement>();
     render(<Flex ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });
