@@ -12,6 +12,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Added
 - Documentation page summarizing common open-source licenses
 
+## [0.3.7] - 2025-06-19
 ### Fixed
 - `FeedItem` in `@smolitux/resonance` now forwards refs correctly
 

@@ -50,9 +50,6 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Fixed
 - Removed obsolete test TODO comments for chart components
 - Updated documentation to reflect existing tests
-### Fixed
-- Removed obsolete test TODO comments for chart components
-- Updated documentation to reflect existing tests
 
 ## [0.3.7] - 2025-06-19
 ### Changed
@@ -63,6 +60,20 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - `FeedItem` in `@smolitux/resonance` now forwards refs correctly
 
 ## [0.3.8] - 2025-06-20
+### Added
+- forwardRef support for `DashboardLayout`
+- Accessibility tests for `Header` and `Footer`
+- Storybook stories for `NotificationCenter`
+- Component counts documented in component-status.md
+### Changed
+- DashboardLayout forwards refs to its root element
+- `NotificationCenter` now forwards refs and exposes a `data-testid`
+- `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
+- `Slide` component now uses `forwardRef` for external ref access and updated tests
+- Documentation page summarizing common open-source licenses
+- Forward refs added to all federation components with display names
+- Updated federation Jest rootDir
+- Updated TODO logs for federation components
 ### Added
 - forwardRef support for `DashboardLayout`
 - Accessibility tests for `Header` and `Footer`
