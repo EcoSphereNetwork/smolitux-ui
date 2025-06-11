@@ -2,37 +2,18 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## [0.3.7] - 2025-06-20
-
-### Added
-- Documentation page summarizing common open-source licenses
-
-### Changed
-
-- Adjusted Jest configuration path for `@smolitux/testing`
-- Added named export for `defaultTheme` and cleaned up theme exports
-
 ## [0.3.1] - 2025-06-08
-
 - component status updated with voice-control package
 
-## [0.3.2] - 2025-06-17
-- Removed legacy theme-provider implementation in @smolitux/theme
-- Updated monorepo TypeScript path mappings
-- Reverted explicit package paths in tsconfig
+## [0.3.7] - 2025-06-20
+### Changed
+- `Slide` component now forwards refs and tests were updated accordingly.
 
-## [0.3.2] - 2025-06-10
-- Enabled ref forwarding for Tooltip and TabView in utils package
-
-
-
-## [0.3.3] - 2025-06-19
-- Restored explicit TypeScript path mappings for all packages
-- Removed invalid wildcard alias causing build errors
 
 ## [0.2.3] - 2025-06-08
-
 - Updated TypeScript docs configuration
+
+
 
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/),
 und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -40,26 +21,22 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.2.2] - 2023-03-26
 
 ### Hinzugefügt
-
 - Button-Komponente: Unterstützung für `solid`-Variante als Alias für `primary`
 - Button-Komponente: Unterstützung für `outline`-Variante als Alias für `ghost`
 - Button-Komponente: Unterstützung für `isLoading`-Prop als Alias für `loading`
 - TabView-Komponente: Unterstützung für `onChange`-Prop als Alias für `onTabChange`
 
 ### Geändert
-
 - Verbesserte Exportstruktur in der Utils-Bibliothek für einfachere Importe
 - Aktualisierte Dokumentation mit neuen Varianten und Props
 
 ### Behoben
-
 - Typfehler in der Button-Komponente
 - Typfehler in der TabView-Komponente
 
 ## [0.2.1] - 2025-03-26
 
 ### Hinzugefügt
-
 - Neue Komponenten für ResonanceLink:
   - Governance-Komponenten:
     - GovernanceDashboard: Übersicht über Community-Governance
@@ -87,7 +64,6 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - SmartContractInteraction: Interaktion mit Smart Contracts
 
 ### Verbessert
-
 - Verbesserte Typendefinitionen für alle Komponenten
 - Bessere Dokumentation mit JSDoc-Kommentaren
 - Optimierte Leistung bei komplexen Komponenten
@@ -96,7 +72,6 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Hinzugefügt: Test-App zur Demonstration der Komponenten
 
 ### Fehlerbehebungen
-
 - Behoben: Syntaxfehler in Charts-Komponenten
 - Behoben: Fehlerhafte Snapshot-Tests
 - Behoben: Probleme mit der Formularvalidierung
@@ -107,7 +82,6 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.2.0] - 2025-03-25
 
 ### Hinzugefügt
-
 - Erste Version der erweiterten Komponenten-Bibliothek
 - Neue Pakete für spezifische Anwendungsbereiche:
   - @smolitux/ai: KI-bezogene Komponenten
@@ -120,41 +94,6 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [0.1.0] - 2025-03-24
 
 ### Hinzugefügt
-### Verbessert
-
-- Verbesserte Typendefinitionen für alle Komponenten
-- Bessere Dokumentation mit JSDoc-Kommentaren
-- Optimierte Leistung bei komplexen Komponenten
-- Verbesserte Browserkompatibilität durch Erkennung der Ausführungsumgebung
-- Hinzugefügt: Primitive Komponenten (Box, Flex, Text) für konsistentes Layout
-- Hinzugefügt: Test-App zur Demonstration der Komponenten
-
-### Fehlerbehebungen
-
-- Behoben: Syntaxfehler in Charts-Komponenten
-- Behoben: Fehlerhafte Snapshot-Tests
-- Behoben: Probleme mit der Formularvalidierung
-- Behoben: Falsche Modul-Pfade in package.json-Dateien (index.mjs statt index.esm.js)
-- Behoben: Probleme mit i18n-Initialisierung in Node.js-Umgebungen
-- Behoben: Fehlerhafte Importe zwischen Paketen, die auf interne Quellcode-Pfade verwiesen
-
-## [0.2.0] - 2025-03-25
-
-### Hinzugefügt
-
-- Erste Version der erweiterten Komponenten-Bibliothek
-- Neue Pakete für spezifische Anwendungsbereiche:
-  - @smolitux/ai: KI-bezogene Komponenten
-  - @smolitux/blockchain: Blockchain-bezogene Komponenten
-  - @smolitux/community: Community-bezogene Komponenten
-  - @smolitux/federation: Föderations-bezogene Komponenten
-  - @smolitux/media: Medien-bezogene Komponenten
-  - @smolitux/utils: Hilfsfunktionen und -komponenten
-
-## [0.1.0] - 2025-03-24
-
-### Hinzugefügt
-
 - Erste Version der Smolitux UI Komponenten-Bibliothek
 - Core-Komponenten:
   - Alert: Für Benachrichtigungen und Warnungen
@@ -179,17 +118,15 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - useTheme: Hook für Theme-Zugriff
 
 ### Geändert
-
 - Alle Komponenten haben jetzt default exports
 - TypeScript-Deklarationsdateien (DTS) wurden vorübergehend deaktiviert
 
 ### Bekannte Probleme
-
 - Charts-Komponenten haben Syntaxfehler und sind noch nicht nutzbar
 - Einige Tests schlagen fehl aufgrund von Snapshot-Änderungen
 - Formularvalidierung und Internationalisierung sind noch nicht vollständig implementiert
-
 ## [0.3.0] - 2025-06-08
-
 - Repository reinitialized without Lerna
 - Minimal TypeScript, ESLint and Jest setup
+
+

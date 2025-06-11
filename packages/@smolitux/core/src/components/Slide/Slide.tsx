@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useTransition } from '../../animations/useTransition';
 import { TransitionPresetName, TransitionPreset } from '../../animations/transitions';
+import { mergeRefs } from '../../utils/mergeRefs';
 
 export type SlideDirection = 'up' | 'down' | 'left' | 'right';
 
@@ -134,19 +135,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(({
     overflow: 'hidden',
   };
 
-  const handleRef = (element: HTMLDivElement | null) => {
-    if (ref && 'current' in ref) {
-      (ref as React.MutableRefObject<HTMLDivElement | null>).current = element;
-    }
-
-    if (forwardedRef) {
-      if (typeof forwardedRef === 'function') {
-        forwardedRef(element);
-      } else if (forwardedRef && 'current' in forwardedRef) {
-        (forwardedRef as React.MutableRefObject<HTMLDivElement | null>).current = element;
-      }
-    }
-  };
+  const handleRef = mergeRefs(ref, forwardedRef);
 
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {

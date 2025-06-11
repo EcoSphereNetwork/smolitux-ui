@@ -39,4 +39,5 @@ describe('Slide', () => {
     );
     expect(queryByTestId('slide')).toBeNull();
   });
+
 });
