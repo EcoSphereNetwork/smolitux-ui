@@ -47,6 +47,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ## [0.3.7] - 2025-06-10
 ### Changed
 - `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
+- Added `forwardRef` to `Tooltip` and `TabView` components in `@smolitux/utils` with updated tests
 ### Fixed
 - Removed obsolete test TODO comments for chart components
 - Updated documentation to reflect existing tests

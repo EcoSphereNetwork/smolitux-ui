@@ -12,15 +12,15 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ## [0.3.1] - 2025-06-08
 
 - component status updated with voice-control package
-## [0.3.2] - 2025-06-17
-- Removed legacy theme-provider implementation in @smolitux/theme
-- Updated monorepo TypeScript path mappings
-- Reverted explicit package paths in tsconfig
 
 ## [0.3.2] - 2025-06-17
 - Removed legacy theme-provider implementation in @smolitux/theme
 - Updated monorepo TypeScript path mappings
 - Reverted explicit package paths in tsconfig
+
+## [0.3.2] - 2025-06-10
+- Enabled ref forwarding for Tooltip and TabView in utils package
+
 ## [0.2.3] - 2025-06-08
 
 - Updated TypeScript docs configuration
@@ -77,6 +77,40 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - TokenEconomy: Visualisierung der Token-Wirtschaft
   - SmartContractInteraction: Interaktion mit Smart Contracts
 
+### Verbessert
+
+- Verbesserte Typendefinitionen für alle Komponenten
+- Bessere Dokumentation mit JSDoc-Kommentaren
+- Optimierte Leistung bei komplexen Komponenten
+- Verbesserte Browserkompatibilität durch Erkennung der Ausführungsumgebung
+- Hinzugefügt: Primitive Komponenten (Box, Flex, Text) für konsistentes Layout
+- Hinzugefügt: Test-App zur Demonstration der Komponenten
+
+### Fehlerbehebungen
+
+- Behoben: Syntaxfehler in Charts-Komponenten
+- Behoben: Fehlerhafte Snapshot-Tests
+- Behoben: Probleme mit der Formularvalidierung
+- Behoben: Falsche Modul-Pfade in package.json-Dateien (index.mjs statt index.esm.js)
+- Behoben: Probleme mit i18n-Initialisierung in Node.js-Umgebungen
+- Behoben: Fehlerhafte Importe zwischen Paketen, die auf interne Quellcode-Pfade verwiesen
+
+## [0.2.0] - 2025-03-25
+
+### Hinzugefügt
+
+- Erste Version der erweiterten Komponenten-Bibliothek
+- Neue Pakete für spezifische Anwendungsbereiche:
+  - @smolitux/ai: KI-bezogene Komponenten
+  - @smolitux/blockchain: Blockchain-bezogene Komponenten
+  - @smolitux/community: Community-bezogene Komponenten
+  - @smolitux/federation: Föderations-bezogene Komponenten
+  - @smolitux/media: Medien-bezogene Komponenten
+  - @smolitux/utils: Hilfsfunktionen und -komponenten
+
+## [0.1.0] - 2025-03-24
+
+### Hinzugefügt
 ### Verbessert
 
 - Verbesserte Typendefinitionen für alle Komponenten

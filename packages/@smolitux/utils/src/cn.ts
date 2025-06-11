@@ -1,6 +1,6 @@
 export type ClassValue = string | number | boolean | null | undefined | ClassDictionary | ClassArray;
 export interface ClassDictionary { [key: string]: unknown }
-export interface ClassArray extends Array<ClassValue> {}
+export type ClassArray = ClassValue[];
 
 /**
  * Combine class names conditionally.
