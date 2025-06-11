@@ -5,8 +5,8 @@ export function createCssVariables(theme: Tokens): Record<string, string> {
 
   const walk = (obj: Record<string, unknown>, path: string[] = []): void => {
     Object.entries(obj).forEach(([key, value]) => {
-      if (typeof value === 'object') {
-        walk(value, [...path, key]);
+      if (value && typeof value === 'object') {
+        walk(value as Record<string, unknown>, [...path, key]);
       } else {
         vars[`--${[...path, key].join('-')}`] = String(value);
       }
