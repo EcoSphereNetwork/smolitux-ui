@@ -17,6 +17,9 @@
   [Request Feature](https://github.com/EcoSphereNetwork/smolitux-ui/issues)
 </div>
 
+> 📘 Die vollständige Dokumentation findest du unter:\
+> 👉 [https://ecospherenetwork.github.io/smolitux-ui/](https://ecospherenetwork.github.io/smolitux-ui/)
+
 ## 📋 Table of Contents
 - [About](#-about)
 - [Key Features](#-key-features)
@@ -30,7 +33,7 @@
 - [License](#-license)
 
 ## 🎯 About
-Smolitux UI stellt standardisierte UI-Komponenten für Webanwendungen bereit und wird im gesamten *EcoSphere Network* eingesetzt.
+Smolitux UI stellt standardisierte UI-Komponenten für Webanwendungen bereit und wird im gesamten *EcoSphere Network* eingesetzt. Einen ausführlichen Projektüberblick findest du im [Blogartikel](https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview).
 
 Wenn du mit automatisierten Helfern wie **Codex** arbeitest, findest du alle Regeln und Abläufe in [AGENTS.md](AGENTS.md). Weitere Details sind im [Codex-Wiki](docs/wiki/codex/index.md) dokumentiert.
 
@@ -67,6 +70,14 @@ Wenn du mit automatisierten Helfern wie **Codex** arbeitest, findest du alle Reg
 
 ```bash
 npm install @smolitux/core @smolitux/theme
+```
+
+Um die Dokumentationsseite lokal zu starten:
+
+```bash
+cd docs
+npm install
+npm start
 ```
 
 ## 📁 Project Structure

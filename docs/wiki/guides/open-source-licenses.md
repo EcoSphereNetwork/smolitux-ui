@@ -11,4 +11,4 @@ Smolitux UI builds upon many fantastic open‑source projects. These dependencie
 
 Other packages may use additional licenses. Always refer to the specific package documentation if you are uncertain about its terms.
 
-Smolitux UI itself is released under the [MIT License](../../LICENSE).
+Smolitux UI itself is released under the [MIT License](https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/LICENSE).

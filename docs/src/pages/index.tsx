@@ -20,12 +20,12 @@ function HomepageHeader() {
         <div className={styles.buttons} style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/guides/quickstart">
+            to="/wiki/guides/quickstart">
             Smolitux-UI Schnellstart
           </Link>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/wiki/">
             Dokumentation
           </Link>
         </div>
