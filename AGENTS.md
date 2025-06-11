@@ -57,7 +57,7 @@ smolitux-ui/
 ```bash
 # 1. Verify git repository and remote configuration
 git remote -v
-# Should show: origin  https://github.com/EcoSphereNetwork/smolitux-ui (fetch/push)
+# Should show: origin  https://github.com/EcoSphereNetwork/smolitux-ui.git (fetch/push)
 
 # 2. Verify GitHub CLI authentication
 gh auth status
@@ -130,7 +130,7 @@ Before any git operations, ensure proper setup:
 # Verify repository remote
 if [ -z "$(git remote)" ]; then
     echo "❌ No remote configured"
-    git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui
+    git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui.git
     git fetch origin --prune
 fi
 
