@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { TransactionHistory } from '../TransactionHistory';
 import { Transaction } from '../../../types';
+
 jest.mock('@smolitux/core', () => ({
   Card: (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />,
   Button: (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
