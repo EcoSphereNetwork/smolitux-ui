@@ -19,7 +19,6 @@ Diese Dokumentation enthält wichtige Informationen für Entwickler, die an der 
 
 - [Implementierungsplan](./roadmap/implementation-plan.md) - Schrittweise Umsetzung der weiteren Entwicklung
 - [Kalkulation v0.2.2](./Finanzierung/Kalkulation-v0.2.2.md) - Übersicht der geplanten Aufwände
-- [Entwickler-Prompt](./Entwickler-Prompt.md) - Leitfaden für neue Entwickler
 - [Roadmap](./roadmap.md) - Gesamte Entwicklungs-Roadmap
 
 ### Entwicklungsrichtlinien
@@ -72,4 +71,4 @@ Wir freuen uns über Beiträge zur Verbesserung der Smolitux-UI-Bibliothek. Bitt
 
 ## Lizenz
 
-Smolitux-UI ist unter der [MIT-Lizenz](https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/LICENSE) lizenziert.
+Smolitux-UI ist unter der [MIT-Lizenz](https://github.com/EcoSphereNetwork/smolitux-ui/blob/main/LICENSE) lizenziert. Eine Übersicht über häufig genutzte Lizenzen unserer Abhängigkeiten findet sich im Abschnitt [*Open-Source Licenses*](../guides/open-source-licenses.md).

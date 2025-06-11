@@ -40,7 +40,7 @@ const ModelTrainingComponent: React.FC = () => {
     const options: TrainingOptions = {
       epochs: 50,
       callbacks: {
-        onEpochEnd: (epoch) => setTrainingProgress((epoch + 1) / 50),
+        onEpochEnd: (epoch: number) => setTrainingProgress((epoch + 1) / 50),
       },
     };
     await trainer.train(options);

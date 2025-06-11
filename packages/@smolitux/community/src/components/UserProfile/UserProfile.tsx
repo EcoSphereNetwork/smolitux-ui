@@ -1,6 +1,5 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState } from 'react';
-import { Card, Button } from '@smolitux/core';
+import React, { useState, forwardRef } from 'react';
+import { Button } from '@smolitux/core';
 import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
 export interface UserStats {
@@ -65,12 +64,14 @@ export interface UserProfileProps {
 /**
  * UserProfile-Komponente für die Anzeige von Benutzerprofilen
  */
-export const UserProfile: React.FC<UserProfileProps> = ({
-  userId,
-  username,
-  displayName,
-  avatarUrl,
-  coverImageUrl,
+export const UserProfile = forwardRef<HTMLDivElement, UserProfileProps>(
+  (
+    {
+      userId,
+      username,
+      displayName,
+      avatarUrl,
+      coverImageUrl,
   bio,
   joinDate,
   stats,
@@ -80,8 +81,10 @@ export const UserProfile: React.FC<UserProfileProps> = ({
   isFollowing = false,
   onFollow,
   onEdit,
-  className = '',
-}) => {
+      className = '',
+    },
+    ref,
+  ) => {
   const [following, setFollowing] = useState(isFollowing);
   const [isLoading, setIsLoading] = useState(false);
   const { preferences } = usePrivacyConsent();
@@ -120,6 +123,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
   return (
     <>
       <div
+        ref={ref}
         className={`bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden ${className}`}
       >
         {/* Cover-Bild */}
@@ -323,4 +327,4 @@ export const UserProfile: React.FC<UserProfileProps> = ({
       <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </>
   );
-};
+});

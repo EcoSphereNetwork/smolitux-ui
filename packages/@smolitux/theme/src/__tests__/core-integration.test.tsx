@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from '../providers/ThemeProvider';
-import Button from '../../../core/src/components/Button';
+import Button from '@smolitux/core/components/Button';
 
 describe('core integration', () => {
   test('Button renders inside ThemeProvider', () => {
@@ -10,6 +10,6 @@ describe('core integration', () => {
         <Button>click</Button>
       </ThemeProvider>
     );
-    expect(screen.getByRole('button')).toHaveTextContent('click');
+    expect(screen.getByTestId('Button')).toHaveTextContent('click');
   });
 });

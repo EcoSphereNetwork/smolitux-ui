@@ -49,7 +49,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | ActivityFeed       | Fehlende Tests, Kein Storybook vorhanden  |
 | CommentSection     | a11y-Test fehlt, Kein Storybook vorhanden |
 | FollowButton       | Fehlende Tests, Kein Storybook vorhanden  |
-| NotificationCenter | Fehlende Tests, Kein Storybook vorhanden  |
+| NotificationCenter | – |
 | UserProfile        | Fehlende Tests, Kein Storybook vorhanden  |
 
 ## @smolitux/core
@@ -121,7 +121,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | IdentityBridge | Fehlende Tests, Kein Storybook vorhanden |
 | FederationSettings | Fehlende Tests, Kein Storybook vorhanden |
 | Grid | – |
-| Header | Fehlende Tests, Kein Storybook vorhanden |
+| Header | – |
 | Sidebar | – |
 | Navigation | – |
 
@@ -201,7 +201,7 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 | ActivityFeed       | forwardRef hinzufügen |
 | CommentSection     | forwardRef hinzufügen |
 | FollowButton       | forwardRef hinzufügen |
-| NotificationCenter | forwardRef hinzufügen |
+| NotificationCenter | – |
 | UserProfile        | forwardRef hinzufügen |
 
 ## @smolitux/core
@@ -238,19 +238,18 @@ _Update 2025-06-09:_ Kommentar-TODOs in Testdateien vereinheitlicht.
 
 | Komponente         | TODOs                 |
 | ------------------ | --------------------- |
-| ActivityStream     | forwardRef hinzufügen |
-| CrossPlatformShare | forwardRef hinzufügen |
-| FederatedSearch | forwardRef hinzufügen |
-| FederationStatus | forwardRef hinzufügen |
-| PlatformSelector | forwardRef hinzufügen |
-| ProtocolHandler | forwardRef hinzufügen |
-| ActivityPubViewer | forwardRef hinzufügen |
-| IdentityBridge | forwardRef hinzufügen |
-| FederationSettings | forwardRef hinzufügen |
+| ActivityStream     | forwardRef hinzugefügt |
+| CrossPlatformShare | forwardRef hinzugefügt |
+| FederatedSearch | forwardRef hinzugefügt |
+| FederationStatus | forwardRef hinzugefügt |
+| PlatformSelector | forwardRef hinzugefügt |
+| ProtocolHandler | forwardRef hinzugefügt |
+| ActivityPubViewer | forwardRef hinzugefügt |
+| IdentityBridge | forwardRef hinzugefügt |
+| FederationSettings | forwardRef hinzugefügt |
 
 | Komponente      | TODOs                 |
 | --------------- | --------------------- |
-| DashboardLayout | forwardRef hinzufügen |
 
 ## @smolitux/media
 

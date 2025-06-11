@@ -1,6 +1,7 @@
 # WalletConnect
 
 WalletConnect stellt eine Schnittstelle bereit, um sich mit verschiedenen Krypto-Wallets zu verbinden. Die Komponente bietet Buttons für MetaMask und WalletConnect und meldet den Verbindungsstatus an den Aufrufer.
+Die Komponente verwendet `forwardRef`, sodass Sie einen Ref auf das Wurzelelement erhalten können.
 
 ## Props
 

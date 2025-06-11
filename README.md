@@ -17,6 +17,9 @@
   [Request Feature](https://github.com/EcoSphereNetwork/smolitux-ui/issues)
 </div>
 
+> 📘 Die vollständige Dokumentation ist verfügbar unter:\
+> 👉 [https://ecospherenetwork.github.io/smolitux-ui/](https://ecospherenetwork.github.io/smolitux-ui/)
+
 ## 📋 Table of Contents
 - [About](#-about)
 - [Key Features](#-key-features)
@@ -30,7 +33,7 @@
 - [License](#-license)
 
 ## 🎯 About
-Smolitux UI stellt standardisierte UI-Komponenten für Webanwendungen bereit und wird im gesamten *EcoSphere Network* eingesetzt.
+Smolitux UI stellt standardisierte UI-Komponenten für Webanwendungen bereit und wird im gesamten *EcoSphere Network* eingesetzt. Einen ausführlichen Projektüberblick findest du im [Blogartikel](https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview).
 
 Wenn du mit automatisierten Helfern wie **Codex** arbeitest, findest du alle Regeln und Abläufe in [AGENTS.md](AGENTS.md). Weitere Details sind im [Codex-Wiki](docs/wiki/codex/index.md) dokumentiert.
 
@@ -55,6 +58,7 @@ Wenn du mit automatisierten Helfern wie **Codex** arbeitest, findest du alle Reg
 - 🐳 **Docker Support**: Container-Setups und Build-Skripte
 - 🔄 **Dependency Management**: Automatische Updates
 - 🧪 **Testing Framework**: Jest und Playwright
+- 📈 **Charts Tests**: Verbesserte Testabdeckung für Chart-Komponenten
 
 ## 🚀 Getting Started
 
@@ -66,6 +70,14 @@ Wenn du mit automatisierten Helfern wie **Codex** arbeitest, findest du alle Reg
 
 ```bash
 npm install @smolitux/core @smolitux/theme
+```
+
+Um die Dokumentationsseite lokal zu starten:
+
+```bash
+cd docs
+npm install
+npm start
 ```
 
 ## 📁 Project Structure
@@ -127,6 +139,10 @@ npm run test:e2e      # End-to-End-Tests mit Playwright
 ./scripts/deploy.sh [environment]
 ```
 
+## 📜 Changelog
+
+Aktuelle Änderungen finden sich im [CHANGELOG.md](CHANGELOG.md). Version 0.3.7 behebt das Ref-Forwarding in der `FeedItem`-Komponente.
+
 ## 🤝 Contributing
 
 Beiträge sind willkommen! Siehe [CONTRIBUTING.md](CONTRIBUTING.md) für Details.
@@ -152,6 +168,7 @@ Beiträge sind willkommen! Siehe [CONTRIBUTING.md](CONTRIBUTING.md) für Details
 ## 📄 License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+For an overview of third-party licenses used in this project, see [Open-Source Licenses](docs/wiki/guides/open-source-licenses.md).
 
 ---
 

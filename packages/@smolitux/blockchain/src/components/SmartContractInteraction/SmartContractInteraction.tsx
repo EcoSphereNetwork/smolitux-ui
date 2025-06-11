@@ -115,7 +115,7 @@ export const SmartContractInteraction: React.FC<SmartContractInteractionProps> =
     if (typeof result === 'object') {
       try {
         return JSON.stringify(result, null, 2);
-      } catch (e) {
+      } catch {
         return 'Complex object';
       }
     }

@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { Button } from '@smolitux/core';
 import { usePrivacyConsent, PrivacySettings } from '../../privacy';
 
@@ -7,7 +6,6 @@ export interface FollowButtonProps {
   /** Benutzer-ID des zu folgenden Benutzers */
   userId: string;
   /** Benutzername des zu folgenden Benutzers */
-  username?: string;
   /** Folgt der aktuelle Benutzer bereits diesem Benutzer? */
   isFollowing?: boolean;
   /** Ist der aktuelle Benutzer angemeldet? */
@@ -33,20 +31,23 @@ export interface FollowButtonProps {
 /**
  * FollowButton-Komponente zum Folgen/Entfolgen von Benutzern
  */
-export const FollowButton: React.FC<FollowButtonProps> = ({
-  userId,
-  username,
-  isFollowing = false,
-  isLoggedIn = true,
-  isSelf = false,
+export const FollowButton = forwardRef<HTMLButtonElement, FollowButtonProps>(
+  (
+    {
+      userId,
+      isFollowing = false,
+      isLoggedIn = true,
+      isSelf = false,
   followerCount,
   onFollowChange,
   onLoginRequired,
   size = 'md',
   variant = 'primary',
   className = '',
-  showCount = false,
-}) => {
+      showCount = false,
+    },
+    ref,
+  ) => {
   const [following, setFollowing] = useState(isFollowing);
   const [count, setCount] = useState(followerCount || 0);
   const [isLoading, setIsLoading] = useState(false);
@@ -130,6 +131,7 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
   if (variant === 'icon') {
     const element = (
       <button
+        ref={ref}
         onClick={handleFollowClick}
         disabled={isLoading || isSelf}
         className={`inline-flex items-center justify-center ${
@@ -207,6 +209,7 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
   if (variant === 'text') {
     const element = (
       <button
+        ref={ref}
         onClick={handleFollowClick}
         disabled={isLoading || isSelf}
         className={`inline-flex items-center ${
@@ -290,6 +293,7 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
   // Standard-Button (primary oder outline)
   const element = (
     <Button
+      ref={ref}
       variant={getButtonVariant()}
       size={size}
       onClick={handleFollowClick}
@@ -372,4 +376,4 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
       <PrivacySettings open={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </>
   );
-};
+});

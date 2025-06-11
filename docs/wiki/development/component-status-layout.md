@@ -7,10 +7,10 @@ This document tracks the current implementation and test status for the `@smolit
 | Container | ✅ | ✅ | ✅ | Ready |
 | Grid | ✅ | ✅ | ✅ | Ready |
 | Flex | ✅ | ✅ | ✅ | Ready |
-| Header | ✅ | ❌ | ✅ | Needs A11y Tests |
-| Footer | ✅ | ❌ | ✅ | Needs A11y Tests |
+| Header | ✅ | ✅ | ✅ | Ready |
+| Footer | ✅ | ✅ | ✅ | Ready |
 | Sidebar | ✅ | ✅ | ✅ | Ready |
 | Stack | ✅ | ❌ | ✅ | Pending |
 | Navigation | ✅ | ❌ | ✅ | Needs A11y Tests |
 
-*Updated: 2025-06-09*
+*Updated: 2025-06-10*

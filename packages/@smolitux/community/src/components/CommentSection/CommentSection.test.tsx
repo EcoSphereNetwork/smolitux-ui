@@ -1,21 +1,22 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { CommentSection } from './CommentSection';
 
 describe('CommentSection', () => {
-  it('renders without crashing', () => {
-    render(<CommentSection />);
-    expect(screen.getByRole('button', { name: /CommentSection/i })).toBeInTheDocument();
-  });
+  const baseProps = {
+    comments: [],
+    onAddComment: jest.fn().mockResolvedValue(undefined),
+    onLikeComment: jest.fn().mockResolvedValue(undefined),
+  };
 
-  it('applies custom className', () => {
-    render(<CommentSection className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
+  it('renders without crashing', () => {
+    const { container } = render(<CommentSection {...baseProps} />);
+    expect(container.firstChild).toBeInTheDocument();
   });
 
   it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
-    render(<CommentSection ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    const ref = React.createRef<HTMLDivElement>();
+    render(<CommentSection {...baseProps} ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 });

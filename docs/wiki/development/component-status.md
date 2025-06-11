@@ -256,11 +256,11 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 | @smolitux/federation | IdentityBridge | ❌ Offen |
 | @smolitux/federation | FederationSettings | ❌ Offen |
 | @smolitux/layout | Container | ✅ Fertig |
-| @smolitux/layout | DashboardLayout | ❌ Offen |
+| @smolitux/layout | DashboardLayout | ✅ Fertig |
 | @smolitux/layout | Flex | ✅ Fertig |
 | @smolitux/layout | Footer | ✅ Fertig |
 | @smolitux/layout | Grid | ✅ Fertig |
-| @smolitux/layout | Header | ❌ Offen |
+| @smolitux/layout | Header | ✅ Fertig |
 | @smolitux/layout | Sidebar | ✅ Fertig |
 | @smolitux/media | AudioPlayer | ⚠️ Teilweise |
 | @smolitux/media | MediaCarousel | ⚠️ Teilweise |

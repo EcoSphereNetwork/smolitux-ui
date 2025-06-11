@@ -1,5 +1,7 @@
 # 🧾 Kommentar-Backlog: Aufgaben aus `@smolitux/*` Quellcode
 
+- [x] `docs/wiki/guides/open-source-licenses.md`: 📚 Neuer Leitfaden zu gängigen Open-Source-Lizenzen
+
 ## Paket: @ai
 - [ ] `src/components/EngagementScore/EngagementScore.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/ContentAnalytics/ContentAnalytics.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
@@ -11,34 +13,38 @@
 - [ ] `src/components/TrendingTopics/TrendingTopics.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 
 ## Paket: @blockchain
-- [ ] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-- [ ] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: Tests fehlen – geprüft & umgesetzt
+- [x] `src/components/TransactionHistory/TransactionHistory.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/TokenDistributionChart/TokenDistributionChart.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/TokenDistributionChart/TokenDistributionChart.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/NFTGallery/NFTGallery.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/NFTGallery/NFTGallery.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/StakingInterface/StakingInterface.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/StakingInterface/StakingInterface.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-- [ ] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: Tests fehlen – geprüft & umgesetzt
+- [x] `src/components/WalletConnect/WalletConnect.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/TokenEconomy/TokenEconomy.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/TokenEconomy/TokenEconomy.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/SmartContractInteraction/SmartContractInteraction.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 - [ ] `src/components/SmartContractInteraction/SmartContractInteraction.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-- [ ] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: Tests fehlen – geprüft & umgesetzt
+- [x] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 
 ## Paket: @charts
 - [x] `src/components/ChartAxis/ChartAxis.tsx`: ✅ Tests vorhanden
 - [x] `src/components/ChartLegend/ChartLegend.tsx`: ✅ Tests vorhanden
 - [x] `src/components/Histogram/Histogram.tsx`: ✅ Tests vorhanden
+- [x] `src/components/Histogram/Histogram.tsx`: ✅ Tests vorhanden
+- [x] `src/components/ChartAxis/ChartAxis.tsx`: ✅ Tests vorhanden
+- [x] `src/components/ChartLegend/ChartLegend.tsx`: ✅ Tests vorhanden
+
 
 ## Paket: @community
-- [ ] `src/components/CommentSection/CommentSection.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/FollowButton/FollowButton.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/NotificationCenter/NotificationCenter.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/ActivityFeed/ActivityFeed.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/UserProfile/UserProfile.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/CommentSection/CommentSection.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/FollowButton/FollowButton.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/NotificationCenter/NotificationCenter.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/ActivityFeed/ActivityFeed.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/UserProfile/UserProfile.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 
 ## Paket: @core
 - [ ] `src/components/ColorPicker/ColorPicker.original.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
@@ -60,7 +66,7 @@
 - [ ] `src/components/Alert/Alert.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/TabView/TabView.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/TabView/TabView.fixed.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/Slide/Slide.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/Slide/Slide.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/voice/VoiceSelect.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/voice/VoiceModal.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/voice/VoiceButton.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
@@ -82,15 +88,15 @@
 - [ ] `src/components/Table/Table.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 
 ## Paket: @federation
-- [ ] `src/components/FederatedSearch/FederatedSearch.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/FederationStatus/FederationStatus.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/PlatformSelector/PlatformSelector.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/ProtocolHandler/ProtocolHandler.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/ActivityStream/ActivityStream.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/CrossPlatformShare/CrossPlatformShare.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/FederatedSearch/FederatedSearch.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/FederationStatus/FederationStatus.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/PlatformSelector/PlatformSelector.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/ProtocolHandler/ProtocolHandler.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/ActivityStream/ActivityStream.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/CrossPlatformShare/CrossPlatformShare.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 
 ## Paket: @layout
-- [ ] `src/components/DashboardLayout/DashboardLayout.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/DashboardLayout/DashboardLayout.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Grid/Grid.tsx`: 🛠 FIXME [Codex]: Props nicht typisiert – Fehlerbehebung erforderlich
 
 ## Paket: @media
@@ -99,7 +105,7 @@
 - [ ] `src/components/MediaGrid/MediaGrid.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/MediaUploader/MediaUploader.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/MediaCarousel/MediaCarousel.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/AudioPlayer/AudioPlayer.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/AudioPlayer/AudioPlayer.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen (erledigt)
 
 ## Paket: @resonance
 - [ ] `src/components/monetization/RevenueModel.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
@@ -107,7 +113,7 @@
 - [ ] `src/components/monetization/CreatorDashboard.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/platform/PlatformIntegration.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/platform/PlatformNotice.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/feed/FeedItem.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/feed/FeedItem.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/feed/FeedView.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/feed/FeedSidebar.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/feed/FeedFilter.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
@@ -125,6 +131,6 @@
 - [ ] `src/components/profile/ProfileWallet.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 
 ## Paket: @utils
-- [ ] `src/components/patterns/Tooltip.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/patterns/Tooltip.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/patterns/Button.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/patterns/TabView.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/patterns/TabView.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt

@@ -43,4 +43,14 @@ describe('DashboardLayout', () => {
     expect(container.querySelector('aside')).toBeInTheDocument();
     expect(container.querySelector('footer')).toBeInTheDocument();
   });
+
+  it('forwards ref to root element', () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const { container } = render(
+      <DashboardLayout ref={ref} header={{ show: false }} sidebar={{ show: false, items: [] }} footer={{ show: false }}>
+        test
+      </DashboardLayout>
+    );
+    expect(ref.current).toBe(container.firstChild);
+  });
 });

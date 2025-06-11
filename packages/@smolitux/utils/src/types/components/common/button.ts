@@ -1,4 +1,4 @@
-import { ResponsiveValue } from '../../common/responsive';
+
 
 // Button variants
 export type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'link';

@@ -18,10 +18,13 @@ yarn add @smolitux/community
 - ActivityFeed: Displays user activity
 - FollowButton: Button for following users or topics
 
+All components forward their refs to the underlying DOM element to support advanced integrations.
+
 ## Usage
 
 ```jsx
 import { CommentSection } from '@smolitux/community';
+import { NotificationCenter } from '@smolitux/community';
 
 const MyComponent = () => {
   const comments = [
@@ -33,6 +36,13 @@ const MyComponent = () => {
   };
 
   return <CommentSection comments={comments} onAddComment={handleAddComment} />;
+};
+
+const NotificationExample = () => {
+  const notifications = [
+    { id: 'n1', message: 'Alice liked your post.' },
+  ];
+  return <NotificationCenter notifications={notifications} />;
 };
 ```
 

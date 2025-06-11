@@ -62,7 +62,7 @@ jobs:
       - name: Generate accessibility report
         run: npm run test:a11y:report
       - name: Upload accessibility report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: a11y-report
           path: a11y-report/
@@ -83,7 +83,7 @@ jobs:
       - name: Build packages
         run: npm run build
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
@@ -107,7 +107,7 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook || echo "Storybook build failed, but continuing"
       - name: Upload Storybook
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: storybook
           path: storybook-static/

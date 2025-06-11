@@ -52,10 +52,10 @@ export const DeFiDashboard: React.FC<DeFiDashboardProps> = ({
                   <Text as="h3" style={{ fontWeight: 600 }}>
                     {protocol.name}
                   </Text>
-                  <Text size="sm" color="#6b7280">
+                  <Text className="text-sm text-gray-500 dark:text-gray-400">
                     TVL: {protocol.tvl}
                   </Text>
-                  <Text size="sm" color="#6b7280">
+                  <Text className="text-sm text-gray-500 dark:text-gray-400">
                     APY: {protocol.apy}%
                   </Text>
                 </Box>

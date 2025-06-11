@@ -1,6 +1,6 @@
 // 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
 // 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card } from '@smolitux/core';
 
 export interface TokenDistributionSegment {
@@ -165,24 +165,24 @@ export const TokenDistributionChart: React.FC<TokenDistributionChartProps> = ({
       <div className="flex flex-col items-center">
         <svg ref={chartRef} viewBox="0 0 100 100" className="w-48 h-48 md:w-64 md:h-64">
           {/* Kreissegmente */}
-          {pieChartData.map(({ segment, path }, index) => (
+          {pieChartData.map(({ segment: seg, path }, index) => (
             <path
               key={`segment-${index}`}
               d={path}
-              fill={segment.color}
+              fill={seg.color}
               stroke="#fff"
               strokeWidth="1"
               className="cursor-pointer transition-opacity duration-200"
               style={{
                 opacity:
-                  hoveredSegment && hoveredSegment !== segment
+                  hoveredSegment && hoveredSegment !== seg
                     ? 0.6
-                    : activeSegment && activeSegment !== segment
+                    : activeSegment && activeSegment !== seg
                       ? 0.6
                       : 1,
               }}
-              onClick={() => handleSegmentClick(segment)}
-              onMouseEnter={() => setHoveredSegment(segment)}
+              onClick={() => handleSegmentClick(seg)}
+              onMouseEnter={() => setHoveredSegment(seg)}
               onMouseLeave={() => setHoveredSegment(null)}
             />
           ))}
@@ -195,7 +195,7 @@ export const TokenDistributionChart: React.FC<TokenDistributionChartProps> = ({
           {/* Prozentsätze */}
           {showPercentages &&
             chartType !== 'donut' &&
-            pieChartData.map(({ segment, percentage, labelX, labelY }, index) => {
+            pieChartData.map(({ percentage, labelX, labelY }, index) => {
               // Nur Prozentsätze für größere Segmente anzeigen
               if (percentage < 5) return null;
 

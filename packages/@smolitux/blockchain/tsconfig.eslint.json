@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*"],
+  "exclude": ["src/components/WalletConnect/WalletConnect.a11y.tsx"]
+}

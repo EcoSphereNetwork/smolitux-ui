@@ -1,7 +1,7 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useTransition } from '../../animations/useTransition';
 import { TransitionPresetName, TransitionPreset } from '../../animations/transitions';
+import { mergeRefs } from '../../utils/mergeRefs';
 
 export type SlideDirection = 'up' | 'down' | 'left' | 'right';
 
@@ -65,12 +65,17 @@ export type SlideProps = {
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
+
+  /**
+   * Test-ID fuer das Wurzelelement
+   */
+  'data-testid'?: string;
 };
 
 /**
  * Slide-Komponente für Gleiteffekte
  */
-export const Slide: React.FC<SlideProps> = ({
+export const Slide = forwardRef<HTMLDivElement, SlideProps>(({
   in: inProp = false,
   direction = 'right',
   timeout = 300,
@@ -83,8 +88,8 @@ export const Slide: React.FC<SlideProps> = ({
   children,
   className,
   style,
-}) => {
-  const nodeRef = useRef<HTMLDivElement>(null);
+  'data-testid': dataTestId = 'slide',
+}, forwardedRef) => {
 
   // Transformations-Werte basierend auf der Richtung
   const getTransformValue = (state: 'entering' | 'entered' | 'exiting' | 'exited'): string => {
@@ -109,7 +114,7 @@ export const Slide: React.FC<SlideProps> = ({
     isVisible,
     ref,
     style: transitionStyle,
-  } = useTransition({
+  } = useTransition<HTMLDivElement>({
     in: inProp,
     timeout,
     transition,
@@ -130,10 +135,12 @@ export const Slide: React.FC<SlideProps> = ({
     overflow: 'hidden',
   };
 
+  const handleRef = mergeRefs(ref, forwardedRef);
+
   // Wenn es ein einzelnes Kind ist, klonen wir es und fügen die Transition-Props hinzu
   if (React.isValidElement(children)) {
     return React.cloneElement(children as React.ReactElement, {
-      ref,
+      ref: handleRef,
       style: {
         ...slideStyle,
         ...style,
@@ -143,20 +150,24 @@ export const Slide: React.FC<SlideProps> = ({
         ? `${className} ${children.props.className || ''}`
         : children.props.className,
       'data-state': state,
+      'data-testid': dataTestId,
     });
   }
 
   // Ansonsten wrappen wir die Kinder in einem div
   return (
     <div
-      ref={ref as React.LegacyRef<HTMLDivElement>}
+      ref={handleRef}
       className={className}
       style={{ ...slideStyle, ...style }}
       data-state={state}
+      data-testid={dataTestId}
     >
       {children}
     </div>
   );
-};
+});
+
+Slide.displayName = 'Slide';
 
 export default Slide;

@@ -10,7 +10,9 @@
     "lint": "eslint packages/@smolitux --ext .ts,.tsx",
     "test": "jest",
     "build": "tsup",
-    "build:all": "npm run build --workspace=@smolitux/utils && npm run build --workspace=@smolitux/theme && npm run build --workspace=@smolitux/core"
+    "build:all": "npm run build --workspace=@smolitux/utils && npm run build --workspace=@smolitux/theme && npm run build --workspace=@smolitux/core",
+    "docs:build": "npm --workspace docs run build",
+    "docs:deploy": "npm --workspace docs run deploy"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
@@ -25,6 +27,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^30.0.0-beta.3",

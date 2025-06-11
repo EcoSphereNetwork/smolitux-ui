@@ -18,6 +18,8 @@ yarn add @smolitux/media
 - MediaGrid: Displays media in a grid layout
 - MediaCarousel: Displays media in a carousel
 
+All components use `forwardRef` for easy ref access.
+
 ## Usage
 
 ```jsx

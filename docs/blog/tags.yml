@@ -16,7 +16,7 @@ components:
 smolitux-os:
   label: Smoilitux-OS
   permalink: /smolitux-os
-  description: Smolitux-OS 
+  description: Smolitux-OS
 
 smolit-assistant:
   label: Smolit
@@ -28,3 +28,32 @@ resonance:
   permalink: /resonance
   description: Resonance - real social Media
 
+roadmap:
+  label: Roadmap
+  permalink: /roadmap
+  description: Projektplanung und Ausblick
+
+sustainability:
+  label: Sustainability
+  permalink: /sustainability
+  description: Nachhaltige Entwicklung
+
+accessibility:
+  label: Accessibility
+  permalink: /accessibility
+  description: Barrierefreiheit
+
+a11y:
+  label: A11y
+  permalink: /a11y
+  description: Accessibility Testing
+
+community:
+  label: Community
+  permalink: /community
+  description: EcoSphereNetwork Community
+
+overview:
+  label: Overview
+  permalink: /overview
+  description: Projektübersicht

@@ -16,6 +16,12 @@ export type {
   VoiceCommandRegistration,
   FeedbackType,
   RecognizerParams,
+  SpeechRecognition,
+  SpeechRecognitionEvent,
+  SpeechRecognitionErrorEvent,
+  SpeechRecognitionResult,
+  SpeechRecognitionResultList,
+  SpeechRecognitionAlternative,
 } from './types';
 export { VoiceRecognition } from './components/VoiceRecognition';
 export type { VoiceRecognitionProps } from './components/VoiceRecognition';

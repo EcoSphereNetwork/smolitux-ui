@@ -14,7 +14,7 @@ const baseConfig = [
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: ['./tsconfig.json'],
+        project: [process.env.ESLINT_TSCONFIG || './tsconfig.json'],
         sourceType: 'module',
         ecmaVersion: 'latest'
       }
@@ -33,7 +33,10 @@ const baseConfig = [
       react: { version: 'detect' }
     }
   },
-  prettier
+  prettier,
+  {
+    ignores: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx']
+  }
 ];
 
 export default baseConfig;

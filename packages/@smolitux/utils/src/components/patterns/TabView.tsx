@@ -1,5 +1,4 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { Box } from '../primitives/Box';
 import { Flex } from '../primitives/Flex';
 
@@ -53,7 +52,7 @@ export interface TabViewProps {
  * TabView component for displaying content in tabs.
  * It supports different orientations, sizes, and variants.
  */
-export const TabView: React.FC<TabViewProps> = ({
+export const TabView = forwardRef<HTMLDivElement, TabViewProps>(({ 
   tabs,
   activeTab: controlledActiveTab,
   onChange,
@@ -69,7 +68,7 @@ export const TabView: React.FC<TabViewProps> = ({
   inactiveTabClassName = '',
   className = '',
   children,
-}) => {
+}, ref) => {
   // State for the active tab
   const [activeTab, setActiveTab] = useState<string>(
     controlledActiveTab || (tabs.length > 0 ? tabs[0].id : '')
@@ -225,12 +224,12 @@ export const TabView: React.FC<TabViewProps> = ({
   };
 
   return (
-    <Box className={`tab-view ${className}`}>
+    <Box ref={ref} className={`tab-view ${className}`}>
       {renderTabList()}
       {renderTabPanels()}
       {children}
     </Box>
   );
-};
+});
 
 TabView.displayName = 'TabView';

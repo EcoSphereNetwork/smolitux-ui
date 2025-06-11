@@ -11,10 +11,10 @@ export default meta;
 type Story = StoryObj;
 
 const Demo = () => {
-  const { themeMode, toggleTheme } = useTheme();
+  const { mode, toggleMode } = useTheme();
   return (
-    <button onClick={toggleTheme} style={{ padding: 8 }}>
-      Current: {themeMode}
+    <button onClick={toggleMode} style={{ padding: 8 }}>
+      Current: {mode}
     </button>
   );
 };

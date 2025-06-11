@@ -16,9 +16,9 @@ export interface ActivityPubViewerProps {
   className?: string;
 }
 
-export const ActivityPubViewer: React.FC<ActivityPubViewerProps> = ({ activity, className }) => {
+export const ActivityPubViewer = React.forwardRef<HTMLDivElement, ActivityPubViewerProps>(({ activity, className }, ref) => {
   return (
-    <Card className={className} data-testid="activitypub-viewer">
+    <Card ref={ref} className={className} data-testid="activitypub-viewer">
       <h3 className="font-semibold" data-testid="actor">
         {activity.actor}
       </h3>
@@ -29,7 +29,10 @@ export const ActivityPubViewer: React.FC<ActivityPubViewerProps> = ({ activity, 
         </p>
       )}
     </Card>
+
   );
-};
+});
+
+ActivityPubViewer.displayName = 'ActivityPubViewer';
 
 export default ActivityPubViewer;

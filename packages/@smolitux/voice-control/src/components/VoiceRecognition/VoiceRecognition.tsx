@@ -1,16 +1,15 @@
 import React, { forwardRef, useEffect, useState, useRef } from 'react';
+import type {
+  SpeechRecognition,
+  SpeechRecognitionErrorEvent,
+  SpeechRecognitionEvent,
+} from '../../types';
 
 export interface VoiceRecognitionProps {
   language?: string;
   onResult?: (transcript: string, isFinal: boolean) => void;
   autoStart?: boolean;
   className?: string;
-}
-
-declare global {
-  interface Window {
-    webkitSpeechRecognition: typeof SpeechRecognition;
-  }
 }
 
 export const VoiceRecognition = forwardRef<HTMLDivElement, VoiceRecognitionProps>(
@@ -37,11 +36,11 @@ export const VoiceRecognition = forwardRef<HTMLDivElement, VoiceRecognitionProps
 
       recognition.onstart = () => setListening(true);
       recognition.onend = () => setListening(false);
-      recognition.onerror = (e) => {
+      recognition.onerror = (e: SpeechRecognitionErrorEvent) => {
         setError(e.error);
         setListening(false);
       };
-      recognition.onresult = (e) => {
+      recognition.onresult = (e: SpeechRecognitionEvent) => {
         const last = e.results[e.results.length - 1];
         const transcript = last[0].transcript;
         onResult?.(transcript, last.isFinal);
@@ -61,7 +60,7 @@ export const VoiceRecognition = forwardRef<HTMLDivElement, VoiceRecognitionProps
       try {
         if (listening) r.stop();
         else r.start();
-      } catch (e) {
+      } catch {
         // ignore start errors when already started
       }
     };

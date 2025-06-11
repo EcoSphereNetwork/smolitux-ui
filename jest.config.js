@@ -2,6 +2,9 @@
 const config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  globals: {
+    'ts-jest': { diagnostics: false }
+  },
   roots: ['<rootDir>/packages'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
@@ -10,7 +13,7 @@ const config = {
     // SVG und andere Assets
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/test-utils/fileMock.js',
     // Alias-Auflösung für '@smolitux/'
-    '^@smolitux/(.*)$': '<rootDir>/packages/@smolitux/$1/src',
+    '^@smolitux/([^/]+)/?(.*)$': '<rootDir>/packages/@smolitux/$1/src/$2',
     '^jest-matcher-utils$': '<rootDir>/node_modules/jest-matcher-utils',
     // Mock für y18n
     '^y18n$': '<rootDir>/test-utils/y18n.js',
@@ -32,7 +35,7 @@ const config = {
   },
   testMatch: ['**/__tests__/**/*.test.{ts,tsx}', '**/__tests__/**/*.spec.{ts,tsx}'],
   transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.json' }],
+    '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.json', diagnostics: false }],
   },
   transformIgnorePatterns: [
     '/node_modules/(?!y18n)/'

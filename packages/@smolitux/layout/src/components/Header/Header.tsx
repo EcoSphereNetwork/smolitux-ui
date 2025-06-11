@@ -1,8 +1,8 @@
 // packages/@smolitux/layout/src/components/Header/Header.tsx
 import React, { forwardRef } from 'react';
-import { useTheme } from '@smolitux/theme';
 
-export interface HeaderProps {
+export interface HeaderProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
   /** Titel im Header */
   title?: React.ReactNode;
   /** Logo des Headers */
@@ -58,7 +58,6 @@ export const Header = forwardRef<HTMLElement, HeaderProps>(
     },
     ref
   ) => {
-    const { themeMode } = useTheme();
 
     // Varianten-spezifische Klassen
     const variantClasses = {

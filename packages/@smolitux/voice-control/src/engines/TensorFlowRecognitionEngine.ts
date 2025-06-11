@@ -37,7 +37,7 @@ export class TensorFlowRecognitionEngine implements RecognitionEngine {
       this.listening = true;
       this.onStateChange(true);
       this.model.listen(
-        (result) => {
+        async (result) => {
           const scores = Array.from(result.scores as Float32Array);
           const maxScore = Math.max(...scores);
           const maxIndex = scores.indexOf(maxScore);

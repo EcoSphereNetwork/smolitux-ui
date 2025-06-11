@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React from 'react';
 import { Card } from '@smolitux/core';
 import { Box, Flex, Text } from '../primitives';
@@ -73,16 +72,21 @@ export interface FeedItemProps {
 /**
  * FeedItem-Komponente für die Anzeige eines einzelnen Beitrags im Feed.
  * Unterstützt verschiedene Inhaltstypen und Interaktionen.
+ * Refs können auf das Wurzelelement weitergereicht werden.
  */
-export const FeedItem: React.FC<FeedItemProps> = ({
-  item,
-  onLike,
-  onComment,
-  onShare,
-  onClick,
-  className = '',
-  style,
-}) => {
+export const FeedItem = React.forwardRef<HTMLDivElement, FeedItemProps>(
+  (
+    {
+      item,
+      onLike,
+      onComment,
+      onShare,
+      onClick,
+      className = '',
+      style,
+    },
+    ref
+  ) => {
   const handleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (onLike) onLike(item.id);
@@ -191,6 +195,7 @@ export const FeedItem: React.FC<FeedItemProps> = ({
 
   return (
     <Card
+      ref={ref}
       className={`feed-item ${className}`}
       style={{
         marginBottom: '16px',
@@ -350,4 +355,6 @@ export const FeedItem: React.FC<FeedItemProps> = ({
       </Box>
     </Card>
   );
-};
+});
+
+FeedItem.displayName = 'FeedItem';

@@ -1,8 +1,6 @@
-// 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from '@smolitux/core';
-import { EthereumProvider } from '../types';
+import { EthereumProvider } from '../../types';
 
 export interface WalletConnectProps {
   /** Callback bei erfolgreicher Verbindung */
@@ -18,12 +16,16 @@ export interface WalletConnectProps {
 /**
  * WalletConnect-Komponente für die Verbindung mit Krypto-Wallets
  */
-export const WalletConnect: React.FC<WalletConnectProps> = ({
-  onConnect,
-  onDisconnect,
-  supportedWallets = ['metamask', 'walletconnect'],
-  className = '',
-}) => {
+export const WalletConnect = React.forwardRef<HTMLDivElement, WalletConnectProps>(
+  (
+    {
+      onConnect,
+      onDisconnect,
+      supportedWallets = ['metamask', 'walletconnect'],
+      className = '',
+    },
+    ref
+  ) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
@@ -42,7 +44,9 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
     const checkConnection = async () => {
       if (isEthereumAvailable) {
         try {
-          const accounts = await ethereum!.request({ method: 'eth_accounts' });
+          const accounts = await ethereum!.request<string[]>({
+            method: 'eth_accounts',
+          });
           if (accounts.length > 0) {
             setWalletAddress(accounts[0]);
             setIsConnected(true);
@@ -79,11 +83,17 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
         window.location.reload();
       };
 
-      ethereum!.on('accountsChanged', handleAccountsChanged);
+      ethereum!.on(
+        'accountsChanged',
+        handleAccountsChanged as unknown as (...args: unknown[]) => void
+      );
       ethereum!.on('chainChanged', handleChainChanged);
 
       return () => {
-        ethereum!.removeListener('accountsChanged', handleAccountsChanged);
+        ethereum!.removeListener(
+          'accountsChanged',
+          handleAccountsChanged as unknown as (...args: unknown[]) => void
+        );
         ethereum!.removeListener('chainChanged', handleChainChanged);
       };
     }
@@ -102,7 +112,9 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
     setError(null);
 
     try {
-      const accounts = await ethereum!.request({ method: 'eth_requestAccounts' });
+      const accounts = await ethereum!.request<string[]>({
+        method: 'eth_requestAccounts',
+      });
       setWalletAddress(accounts[0]);
       setIsConnected(true);
       onConnect(accounts[0], ethereum!);
@@ -134,7 +146,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
   };
 
   return (
-    <div className={className} data-testid="wallet-connect">
+    <div ref={ref} className={className} data-testid="wallet-connect">
       {isConnected ? (
         <div className="flex items-center space-x-2">
           <div className="flex items-center bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-3 py-1 rounded-full text-sm">
@@ -239,4 +251,6 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
       )}
     </div>
   );
-};
+});
+
+WalletConnect.displayName = 'WalletConnect';

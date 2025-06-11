@@ -1,4 +1,4 @@
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   fn: T,
   wait: number,
   immediate = false
@@ -16,7 +16,7 @@ export function debounce<T extends (...args: any[]) => any>(
   } as T;
 }
 
-export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number): T {
+export function throttle<T extends (...args: unknown[]) => unknown>(fn: T, wait: number): T {
   let inThrottle = false;
   return function (this: unknown, ...args: Parameters<T>) {
     if (!inThrottle) {
@@ -27,23 +27,23 @@ export function throttle<T extends (...args: any[]) => any>(fn: T, wait: number)
   } as T;
 }
 
-export function memoize<T extends (...args: any[]) => any>(
+export function memoize<T extends (...args: unknown[]) => unknown>(
   fn: T,
   resolver?: (...args: Parameters<T>) => string
 ): T {
   const cache = new Map<string, ReturnType<T>>();
   return function (this: unknown, ...args: Parameters<T>) {
     const key = resolver ? resolver(...args) : JSON.stringify(args);
-    if (!cache.has(key)) {
-      cache.set(key, fn.apply(this, args));
-    }
-    return cache.get(key)!;
+      if (!cache.has(key)) {
+        cache.set(key, fn.apply(this, args) as ReturnType<T>);
+      }
+      return cache.get(key)!;
   } as T;
 }
 
-export function deepClone<T>(obj: T, seen = new Map<any, any>()): T {
+export function deepClone<T>(obj: T, seen = new Map<unknown, unknown>()): T {
   if (obj === null || typeof obj !== 'object') return obj;
-  if (seen.has(obj)) return seen.get(obj);
+  if (seen.has(obj)) return seen.get(obj) as T;
 
   if (obj instanceof Date) {
     return new Date(obj.getTime()) as unknown as T;
@@ -69,15 +69,15 @@ export function deepClone<T>(obj: T, seen = new Map<any, any>()): T {
 }
 
 export function deepMerge<T extends object, U extends object>(target: T, source: U): T & U {
-  const result = { ...target } as any;
+  const result: Record<string, unknown> = { ...target } as Record<string, unknown>;
   for (const [key, value] of Object.entries(source)) {
     if (value && typeof value === 'object' && !Array.isArray(value)) {
-      result[key] = deepMerge(result[key] || {}, value as any);
+      result[key] = deepMerge(result[key] || {}, value as unknown as Record<string, unknown>);
     } else {
       result[key] = value;
     }
   }
-  return result;
+  return result as T & U;
 }
 
 export function generateUUID(): string {
