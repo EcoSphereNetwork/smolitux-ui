@@ -3,6 +3,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { TokenDisplay } from '../TokenDisplay';
 import { TokenInfo } from '../../../types';
 
+jest.mock('@smolitux/core', () => ({
+  Card: (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />,
+  Button: (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <button {...props} />
+  ),
+}));
 const token: TokenInfo = {
   symbol: 'ETH',
   name: 'Ethereum',

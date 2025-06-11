@@ -2,6 +2,9 @@
 const config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  globals: {
+    'ts-jest': { diagnostics: false }
+  },
   roots: ['<rootDir>/packages'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {

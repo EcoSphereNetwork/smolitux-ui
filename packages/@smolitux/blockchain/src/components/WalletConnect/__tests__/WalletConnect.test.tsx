@@ -3,6 +3,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { WalletConnect } from '../WalletConnect';
 import { EthereumProvider } from '../../../types';
 
+jest.mock('@smolitux/core', () => ({
+  Button: (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <button {...props} />
+  ),
+  Card: (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />,
+}));
 const mockRequest = jest.fn();
 const mockEthereum: EthereumProvider = {
   request: mockRequest as unknown as EthereumProvider['request'],
@@ -12,13 +18,13 @@ const mockEthereum: EthereumProvider = {
 
 describe('WalletConnect', () => {
   beforeEach(() => {
-    (window as any).ethereum = mockEthereum;
+    (window as unknown as { ethereum: EthereumProvider }).ethereum = mockEthereum;
     mockRequest.mockResolvedValue(['0xabc']);
   });
 
   afterEach(() => {
     jest.resetAllMocks();
-    delete (window as any).ethereum;
+    delete (window as unknown as { ethereum?: EthereumProvider }).ethereum;
   });
 
   it('shows wallet options after clicking connect', () => {
