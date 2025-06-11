@@ -17,7 +17,7 @@
   [Request Feature](https://github.com/EcoSphereNetwork/smolitux-ui/issues)
 </div>
 
-> 📘 Die vollständige Dokumentation findest du unter:\
+> 📘 Die vollständige Dokumentation ist verfügbar unter:\
 > 👉 [https://ecospherenetwork.github.io/smolitux-ui/](https://ecospherenetwork.github.io/smolitux-ui/)
 
 ## 📋 Table of Contents
