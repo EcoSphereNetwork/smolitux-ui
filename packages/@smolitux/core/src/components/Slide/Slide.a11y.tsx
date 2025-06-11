@@ -134,7 +134,7 @@ export const SlideA11y: React.FC<SlideProps> = ({
   in: inProp = false,
   direction = 'down',
   timeout = 300,
-  transition = 'ease',
+  transition = 'slide',
   appear = false,
   mountOnEnter = false,
   unmountOnExit = false,
@@ -172,7 +172,7 @@ export const SlideA11y: React.FC<SlideProps> = ({
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   // Verwende useTransition für die Animation
-  const { state, styles: transitionStyles } = useTransition({
+  const { state, style: transitionStyle } = useTransition({
     in: inProp,
     timeout: prefersReducedMotion ? 0 : timeout,
     transition,
@@ -217,7 +217,7 @@ export const SlideA11y: React.FC<SlideProps> = ({
 
   // Kombiniere die Transition-Styles mit den Slide-Styles
   const slideStyle = {
-    ...transitionStyles,
+    ...transitionStyle,
     ...getSlideStyles(),
     ...style,
   };

@@ -64,6 +64,11 @@ export type SlideProps = {
    * Zusätzliche CSS-Eigenschaften
    */
   style?: React.CSSProperties;
+
+  /**
+   * Test-ID fuer das Wurzelelement
+   */
+  'data-testid'?: string;
 };
 
 /**
@@ -82,6 +87,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(({
   children,
   className,
   style,
+  'data-testid': dataTestId = 'slide',
 }, forwardedRef) => {
 
   // Transformations-Werte basierend auf der Richtung
@@ -155,6 +161,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(({
         ? `${className} ${children.props.className || ''}`
         : children.props.className,
       'data-state': state,
+      'data-testid': dataTestId,
     });
   }
 
@@ -165,6 +172,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(({
       className={className}
       style={{ ...slideStyle, ...style }}
       data-state={state}
+      data-testid={dataTestId}
     >
       {children}
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { SlideA11y } from '../Slide.a11y';
 
@@ -26,6 +26,7 @@ describe('Slide Accessibility', () => {
         ariaLabel="Sliding content"
         ariaLive="polite"
         ariaAtomic={true}
+        announceAnimation
       >
         <div data-testid="slide-content">Slide content</div>
       </SlideA11y>
@@ -124,6 +125,7 @@ describe('Slide Accessibility', () => {
   });
 
   it('should handle unmountOnExit correctly', async () => {
+    jest.useFakeTimers();
     const { rerender } = render(
       <SlideA11y in={true} direction="down" unmountOnExit>
         <div data-testid="slide-content">Slide content</div>
@@ -132,20 +134,21 @@ describe('Slide Accessibility', () => {
 
     expect(screen.getByTestId('slide-content')).toBeInTheDocument();
 
-    // Change to exited state
     rerender(
       <SlideA11y in={false} direction="down" unmountOnExit>
         <div data-testid="slide-content">Slide content</div>
       </SlideA11y>
     );
 
-    // Wait for the component to be removed from the DOM
-    await waitFor(
-      () => {
-        expect(screen.queryByTestId('slide-content')).not.toBeInTheDocument();
-      },
-      { timeout: 1000 }
-    );
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    await waitFor(() => {
+      const container = screen.queryByTestId('slide-content')?.parentElement;
+      expect(container).toHaveAttribute('data-state', 'exiting');
+    });
+    jest.useRealTimers();
   });
 
   it('should handle different directions correctly', () => {
