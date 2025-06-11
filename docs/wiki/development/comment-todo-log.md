@@ -127,6 +127,6 @@
 - [ ] `src/components/profile/ProfileWallet.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 
 ## Paket: @utils
-- [ ] `src/components/patterns/Tooltip.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/patterns/Tooltip.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [ ] `src/components/patterns/Button.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/patterns/TabView.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/patterns/TabView.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
