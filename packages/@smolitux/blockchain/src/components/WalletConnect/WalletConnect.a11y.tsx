@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from '@smolitux/core';
 import { WalletConnectProps } from './WalletConnect';

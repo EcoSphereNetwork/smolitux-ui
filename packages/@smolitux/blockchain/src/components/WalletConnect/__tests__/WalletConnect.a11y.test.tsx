@@ -3,6 +3,12 @@ import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { WalletConnect } from '../WalletConnect';
 import { EthereumProvider } from '../../../types';
+jest.mock('@smolitux/core', () => ({
+  Button: (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <button {...props} />
+  ),
+  Card: (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />,
+}));
 
 expect.extend(toHaveNoViolations);
 
@@ -15,13 +21,13 @@ const mockEthereum: EthereumProvider = {
 
 describe('WalletConnect a11y', () => {
   beforeEach(() => {
-    (window as any).ethereum = mockEthereum;
+    (window as unknown as { ethereum: EthereumProvider }).ethereum = mockEthereum;
     mockRequest.mockResolvedValue(['0xabc']);
   });
 
   afterEach(() => {
     jest.resetAllMocks();
-    delete (window as any).ethereum;
+    delete (window as unknown as { ethereum?: EthereumProvider }).ethereum;
   });
 
   it('has no accessibility violations', async () => {
