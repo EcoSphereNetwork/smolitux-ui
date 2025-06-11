@@ -118,10 +118,3 @@ und dieses Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 - Syntaxfehler in FormField.tsx behoben
 - Syntaxfehler in ActivityStream.tsx behoben
-- HTML-Dateien mit .tsx-Erweiterung in .html umbenannt, um TypeScript-Kompilierungsfehler zu vermeiden
-
-### Hinzugefügt
-
-- Storybook-Stories für mehrere Komponenten (Button, Card, Avatar, Breadcrumb, Tooltip, Modal, Table, Accordion)
-- Cypress E2E-Tests für Komponenten
-- Cypress Accessibility-Tests
