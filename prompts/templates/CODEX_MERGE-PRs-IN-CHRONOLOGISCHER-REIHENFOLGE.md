@@ -2,7 +2,7 @@
 
 ## **DIREKTER BEFEHL FÜR CODEX:**
 
-Du hast Zugriff auf das Remote Repository, nutze gh (Github-CLI).
+REPO_URL=https://github.com/EcoSphereNetwork/smolitux-ui
 
 ```
 JETZT SOFORT: Merge PRs in chronologischer Reihenfolge (ÄLTESTER ZUERST).
