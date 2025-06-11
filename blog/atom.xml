@@ -14,15 +14,15 @@
         <updated>2025-07-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Einführung ins Projekt Smolitux-UI]]></summary>
         <content type="html"><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="einführung-ins-projekt-smolitux-ui">Einführung ins Projekt Smolitux-UI<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#einf%C3%BChrung-ins-projekt-smolitux-ui" class="hash-link" aria-label="Direkter Link zur Einführung ins Projekt Smolitux-UI" title="Direkter Link zur Einführung ins Projekt Smolitux-UI">​</a></h2>
-<p>Smolitux-UI ist die zentrale Komponentenbibliothek des EcoSphereNetwork. Sie stellt wiederverwendbare React-Komponenten bereit, die vollständig dokumentiert und auf Barrierefreiheit ausgelegt sind. Die <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/index.md">Wiki</a> bietet eine detaillierte Übersicht über alle Module und Richtlinien.</p>
+<p>Smolitux-UI ist die zentrale Komponentenbibliothek des EcoSphereNetwork. Sie stellt wiederverwendbare React-Komponenten bereit, die vollständig dokumentiert und auf Barrierefreiheit ausgelegt sind. Die <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki">Wiki</a> bietet eine detaillierte Übersicht über alle Module und Richtlinien.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="technische-basis">Technische Basis<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#technische-basis" class="hash-link" aria-label="Direkter Link zur Technische Basis" title="Direkter Link zur Technische Basis">​</a></h2>
-<p>Das Projekt basiert auf React und TypeScript. Für das Styling kommt Tailwind CSS zum Einsatz, während Storybook die visuelle Dokumentation übernimmt. Tests laufen mit Jest und Playwright. Weitere Details finden sich in der <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/guides/quickstart.md">Quickstart-Anleitung</a> und der <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/architecture-design.md">Architektur-Dokumentation</a>.</p>
+<p>Das Projekt basiert auf React und TypeScript. Für das Styling kommt Tailwind CSS zum Einsatz, während Storybook die visuelle Dokumentation übernimmt. Tests laufen mit Jest und Playwright. Weitere Details finden sich in der <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/guides/quickstart">Quickstart-Anleitung</a> und der <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/architecture-design">Architektur-Dokumentation</a>.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="architektur-und-komponentenstruktur">Architektur und Komponentenstruktur<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#architektur-und-komponentenstruktur" class="hash-link" aria-label="Direkter Link zur Architektur und Komponentenstruktur" title="Direkter Link zur Architektur und Komponentenstruktur">​</a></h2>
-<p>Die Bibliothek ist als Monorepo organisiert. Unter <code>packages/@smolitux/</code> befinden sich Kernpakete wie <code>core</code>, <code>layout</code>, <code>theme</code> und <code>utils</code>. Jedes Paket kapselt eigenständige Komponenten und kann unabhängig genutzt werden. Eine vollständige Beschreibung liefert die Seite <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/package-structure.md">Paketstruktur</a>.</p>
+<p>Die Bibliothek ist als Monorepo organisiert. Unter <code>packages/@smolitux/</code> befinden sich Kernpakete wie <code>core</code>, <code>layout</code>, <code>theme</code> und <code>utils</code>. Jedes Paket kapselt eigenständige Komponenten und kann unabhängig genutzt werden. Eine vollständige Beschreibung liefert die Seite <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/package-structure">Paketstruktur</a>.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ziele-vision-und-einsatzbereich">Ziele, Vision und Einsatzbereich<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#ziele-vision-und-einsatzbereich" class="hash-link" aria-label="Direkter Link zur Ziele, Vision und Einsatzbereich" title="Direkter Link zur Ziele, Vision und Einsatzbereich">​</a></h2>
 <p>Ziel des Projekts ist eine nachhaltige, zugängliche UI-Lösung für alle Anwendungen des EcoSphereNetwork. Die Vision umfasst eine modulare Erweiterbarkeit, hohe Testabdeckung und strenge Coding-Standards. Einsatzbereiche reichen von klassischen Web-Apps bis zu Voice-Control-Oberflächen.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ausblick--roadmap">Ausblick / Roadmap<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#ausblick--roadmap" class="hash-link" aria-label="Direkter Link zur Ausblick / Roadmap" title="Direkter Link zur Ausblick / Roadmap">​</a></h2>
-<p>Die aktuelle <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/roadmap-main.md">Roadmap</a> sieht eine Erweiterung der Barrierefreiheitstests und neue Features wie Voice Control vor. Langfristig soll Smolitux-UI als Basis für ein ganzes Ökosystem von Anwendungen dienen.</p>]]></content>
+<p>Die aktuelle <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/roadmap-main">Roadmap</a> sieht eine Erweiterung der Barrierefreiheitstests und neue Features wie Voice Control vor. Langfristig soll Smolitux-UI als Basis für ein ganzes Ökosystem von Anwendungen dienen.</p>]]></content>
         <author>
             <name>Sam Schimmelpfennig</name>
             <uri>https://www.ecospherenetwork.org</uri>
@@ -34,7 +34,7 @@
         <title type="html"><![CDATA[All Posts by Sam Schimmelpfennig]]></title>
         <id>https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles</id>
         <link href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles"/>
-        <updated>2025-06-11T12:35:14.000Z</updated>
+        <updated>2025-06-11T12:40:37.000Z</updated>
         <summary type="html"><![CDATA[Welcome to my author page! I'm Sam Schimmelpfennig, Founder & Technical Lead at EcoSphereNetwork. My focus is on creating sustainable, efficient digital solutions while guiding our technical vision and implementation.]]></summary>
         <content type="html"><![CDATA[<p>Welcome to my author page! I'm Sam Schimmelpfennig, Founder &amp; Technical Lead at EcoSphereNetwork. My focus is on creating sustainable, efficient digital solutions while guiding our technical vision and implementation.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="my-background">My Background<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles#my-background" class="hash-link" aria-label="Direkter Link zur My Background" title="Direkter Link zur My Background">​</a></h2>
@@ -72,7 +72,7 @@
         <title type="html"><![CDATA[authors/johanna]]></title>
         <id>https://ecospherenetwork.github.io/smolitux-ui/blog/authors/johanna</id>
         <link href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/johanna"/>
-        <updated>2025-06-11T12:35:14.000Z</updated>
+        <updated>2025-06-11T12:40:37.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Introducing Smolitux-UI: Sustainable Components for Modern Web Apps]]></title>
@@ -82,20 +82,20 @@
         <summary type="html"><![CDATA[Smolitux-UI is the component library that powers the EcoSphereNetwork ecosystem. Built with accessibility and sustainability in mind, it provides a rich set of React components that help developers create fast, inclusive user interfaces.]]></summary>
         <content type="html"><![CDATA[<p>Smolitux-UI is the component library that powers the EcoSphereNetwork ecosystem. Built with accessibility and sustainability in mind, it provides a rich set of React components that help developers create fast, inclusive user interfaces.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-smolitux-ui">What is Smolitux-UI?<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#what-is-smolitux-ui" class="hash-link" aria-label="Direkter Link zur What is Smolitux-UI?" title="Direkter Link zur What is Smolitux-UI?">​</a></h2>
-<p>Smolitux-UI offers a comprehensive collection of reusable UI components. Each component follows modern architecture guidelines and adheres to the WCAG accessibility standards. The documentation in our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/index.md">Wiki</a> details the full component list and best practices.</p>
+<p>Smolitux-UI offers a comprehensive collection of reusable UI components. Each component follows modern architecture guidelines and adheres to the WCAG accessibility standards. The documentation in our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki">Wiki</a> details the full component list and best practices.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="key-features">Key Features<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#key-features" class="hash-link" aria-label="Direkter Link zur Key Features" title="Direkter Link zur Key Features">​</a></h2>
 <ul>
 <li><strong>Modern Architecture</strong> – modular packages like <code>core</code>, <code>layout</code> and <code>theme</code> provide a flexible foundation.</li>
-<li><strong>Accessibility</strong> – components are tested against our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/testing/a11y-test-plan.md">A11y Test Plan</a>.</li>
+<li><strong>Accessibility</strong> – components are tested against our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/testing/a11y-test-plan">A11y Test Plan</a>.</li>
 <li><strong>Documentation</strong> – every component is documented with usage examples and guidelines.</li>
 <li><strong>Sustainable Development</strong> – optimized rendering and a focus on minimal resource usage.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="architecture-overview">Architecture Overview<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#architecture-overview" class="hash-link" aria-label="Direkter Link zur Architecture Overview" title="Direkter Link zur Architecture Overview">​</a></h2>
-<p>Our monorepo is organized under <code>packages/@smolitux/</code> with packages for charts, media, and more. The <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/architecture-design.md">Architecture section</a> explains the build process and dependencies in detail.</p>
+<p>Our monorepo is organized under <code>packages/@smolitux/</code> with packages for charts, media, and more. The <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/architecture-design">Architecture section</a> explains the build process and dependencies in detail.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="roadmap">Roadmap<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#roadmap" class="hash-link" aria-label="Direkter Link zur Roadmap" title="Direkter Link zur Roadmap">​</a></h2>
-<p>Version 0.2.2 introduced a complete component set and improved testing. Upcoming milestones from our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/roadmap-main.md">Roadmap</a> include expanded accessibility coverage and new features like voice control.</p>
+<p>Version 0.2.2 introduced a complete component set and improved testing. Upcoming milestones from our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/roadmap-main">Roadmap</a> include expanded accessibility coverage and new features like voice control.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="get-involved">Get Involved<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#get-involved" class="hash-link" aria-label="Direkter Link zur Get Involved" title="Direkter Link zur Get Involved">​</a></h2>
-<p>Contributions are welcome! Check out the <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/guide.md">Development Guide</a> and join the discussion on <a href="https://github.com/EcoSphereNetwork/smolitux-ui" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>]]></content>
+<p>Contributions are welcome! Check out the <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/guide">Development Guide</a> and join the discussion on <a href="https://github.com/EcoSphereNetwork/smolitux-ui" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>]]></content>
         <author>
             <name>Sam Schimmelpfennig</name>
             <uri>https://www.ecospherenetwork.org</uri>
