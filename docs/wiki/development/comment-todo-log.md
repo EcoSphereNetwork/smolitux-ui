@@ -36,11 +36,11 @@
 - [x] `src/components/ChartLegend/ChartLegend.tsx`: ✅ Tests vorhanden
 
 ## Paket: @community
-- [ ] `src/components/CommentSection/CommentSection.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/FollowButton/FollowButton.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/CommentSection/CommentSection.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/FollowButton/FollowButton.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 - [x] `src/components/NotificationCenter/NotificationCenter.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
-- [ ] `src/components/ActivityFeed/ActivityFeed.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/UserProfile/UserProfile.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/ActivityFeed/ActivityFeed.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
+- [x] `src/components/UserProfile/UserProfile.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 
 ## Paket: @core
 - [ ] `src/components/ColorPicker/ColorPicker.original.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen

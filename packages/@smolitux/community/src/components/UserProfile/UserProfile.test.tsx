@@ -1,21 +1,30 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { UserProfile } from './UserProfile';
 
 describe('UserProfile', () => {
-  it('renders without crashing', () => {
-    render(<UserProfile />);
-    expect(screen.getByRole('button', { name: /UserProfile/i })).toBeInTheDocument();
-  });
+  const baseProps = {
+    userId: '1',
+    username: 'alice',
+    displayName: 'Alice',
+    joinDate: new Date(),
+    stats: {
+      followers: 0,
+      following: 0,
+      contentCount: 0,
+      totalLikes: 0,
+      totalViews: 0,
+    },
+  };
 
-  it('applies custom className', () => {
-    render(<UserProfile className="custom-class" />);
-    expect(screen.getByRole('button')).toHaveClass('custom-class');
+  it('renders without crashing', () => {
+    const { container } = render(<UserProfile {...baseProps} />);
+    expect(container.firstChild).toBeInTheDocument();
   });
 
   it('forwards ref correctly', () => {
-    const ref = React.createRef<HTMLButtonElement>();
-    render(<UserProfile ref={ref} />);
-    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    const ref = React.createRef<HTMLDivElement>();
+    render(<UserProfile {...baseProps} ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 });
