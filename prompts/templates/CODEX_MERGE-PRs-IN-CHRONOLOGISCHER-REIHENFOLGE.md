@@ -14,7 +14,7 @@ echo "🔍 VALIDATING SETUP..."
 if ! git remote get-url origin &>/dev/null; then
     echo "❌ SETUP ERFORDERLICH - Repository remote fehlt"
     echo "💡 Setup sollte automatisch ausgeführt worden sein"
-    echo "🔧 Manueller Fix: git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui"
+    echo "🔧 Manueller Fix: git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui.git"
     exit 1
 fi
 
