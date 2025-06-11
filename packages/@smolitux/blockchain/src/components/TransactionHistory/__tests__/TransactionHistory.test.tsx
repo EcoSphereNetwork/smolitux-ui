@@ -2,6 +2,12 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { TransactionHistory } from '../TransactionHistory';
 import { Transaction } from '../../../types';
+jest.mock('@smolitux/core', () => ({
+  Card: (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />,
+  Button: (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <button {...props} />
+  ),
+}));
 
 describe('TransactionHistory', () => {
   const transactions: Transaction[] = [
@@ -21,7 +27,7 @@ describe('TransactionHistory', () => {
 
   it('renders transaction entries', () => {
     render(<TransactionHistory transactions={transactions} />);
-    expect(screen.getByText('Gesendet')).toBeInTheDocument();
+    expect(screen.getAllByText('Gesendet')[0]).toBeInTheDocument();
   });
 
   it('handles transaction click', () => {
@@ -32,7 +38,7 @@ describe('TransactionHistory', () => {
         onTransactionClick={handleClick}
       />
     );
-    fireEvent.click(screen.getByText('Gesendet'));
+    fireEvent.click(screen.getAllByText('Gesendet')[1]);
     expect(handleClick).toHaveBeenCalledWith(transactions[0]);
   });
 

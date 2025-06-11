@@ -45,11 +45,13 @@ export const TokenDisplay = React.forwardRef<HTMLDivElement, TokenDisplayProps>(
   };
 
   return (
-    <div ref={ref} data-testid="token-display">
-      <Card
-        className={`p-4 ${onClick ? 'cursor-pointer hover:shadow-md transition-shadow' : ''} ${className}`}
-        onClick={onClick ? handleClick : undefined}
-      >
+    <div
+      ref={ref}
+      data-testid="token-display"
+      className={`${onClick ? 'cursor-pointer hover:shadow-md transition-shadow' : ''} ${className}`}
+      onClick={onClick ? handleClick : undefined}
+    >
+      <Card className="p-4">
       <div className="flex items-center">
         {/* Token-Logo */}
         <div className="flex-shrink-0 mr-4">

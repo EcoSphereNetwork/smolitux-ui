@@ -19,7 +19,7 @@ import {
   INTERPOLATION_SEPARATOR,
   PLURAL_RULES,
 } from './constants';
-import { I18nOptions, TranslationResources } from './types';
+import { I18nOptions } from './types';
 
 /**
  * Initialisiert i18next mit den angegebenen Optionen
@@ -40,7 +40,6 @@ export const initI18n = (options: I18nOptions = {}) => {
     fallback = true,
     fallbackLocale = FALLBACK_LOCALE,
     fallbackNamespaces = FALLBACK_NAMESPACES,
-    interpolation = true,
     interpolationPrefix = INTERPOLATION_PREFIX,
     interpolationSuffix = INTERPOLATION_SUFFIX,
     interpolationSeparator = INTERPOLATION_SEPARATOR,
@@ -108,7 +107,7 @@ export const initI18n = (options: I18nOptions = {}) => {
     // Debug
     debug,
     saveMissing: logMissingTranslations,
-    missingKeyHandler: (lng, ns, key, fallbackValue) => {
+    missingKeyHandler: (lng, ns, key) => {
       if (debug) {
         console.warn(`Missing translation: ${key} (${ns}) in ${lng}`);
       }

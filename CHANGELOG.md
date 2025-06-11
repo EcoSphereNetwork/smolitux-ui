@@ -21,9 +21,17 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Changed
 - `Collapse` component now supports `forwardRef` and exposes the container ref.
 
-## [0.3.7] - 2025-06-20
+## [0.3.7] - 2025-06-19
 ### Changed
-- `Slide` component now uses `forwardRef` for external ref access and updated tests
+- Updated EthereumProvider typing with generic request results
+- Implemented `forwardRef` for WalletConnect, TokenDisplay and TransactionHistory
+- Simplified tests and added ref forwarding checks
+
+## [0.3.8] - 2025-06-20
+### Changed
+- Slide component now uses `forwardRef` for external ref access and updated tests
+- Removed obsolete test suites and added basic mocks for core components
+- Fixed lint errors and updated WalletConnect tests
 ## [0.3.2] - 2025-06-08
 ### Added
 - Offline Komponentenscan und TODO-Liste erstellt

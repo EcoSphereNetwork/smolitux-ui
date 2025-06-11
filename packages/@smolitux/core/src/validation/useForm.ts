@@ -199,7 +199,6 @@ export const useForm = (options: FormOptions = {}) => {
     [validateOnBlur, validateOnlyDirty, dirty, validateField]
   );
 
-
   // Formular validieren
   const validateForm = useCallback(async (): Promise<boolean> => {
     setIsValidating(true);
