@@ -6,8 +6,8 @@ module.exports = {
   rootDir: __dirname,
   moduleNameMapper: {
     ...base.moduleNameMapper,
-    '^@smolitux/([^/]+)/?(.*)$': '<rootDir>/../../../packages/@smolitux/$1/src/$2',
     '^jest-matcher-utils$': '<rootDir>/../../../node_modules/jest-matcher-utils',
+    '^@smolitux/([^/]+)/?(.*)$': '<rootDir>/../../../packages/@smolitux/$1/src/$2',
   },
   roots: ['<rootDir>/src'],
   collectCoverageFrom: [
