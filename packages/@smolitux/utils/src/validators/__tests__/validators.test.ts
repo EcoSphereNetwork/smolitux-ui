@@ -14,7 +14,7 @@ import {
   isJSON,
   isEthereumAddress,
   isBase64,
-} from './validators';
+} from '../validators';
 
 describe('validators', () => {
   describe('isEmail', () => {

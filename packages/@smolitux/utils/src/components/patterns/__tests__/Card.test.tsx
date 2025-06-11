@@ -15,7 +15,7 @@ describe('Card', () => {
 
   it('applies custom style', () => {
     const { container } = render(<Card style={{ backgroundColor: 'red' }}>Test Content</Card>);
-    expect(container.firstChild).toHaveStyle('background-color: red');
+    expect(container.firstChild).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   it('renders with border when bordered=true', () => {
