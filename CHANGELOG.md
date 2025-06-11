@@ -10,6 +10,9 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 - Adjusted Jest configuration path for `@smolitux/testing`
 - Added named export for `defaultTheme` and cleaned up theme exports
+### Fixed
+- Marked ChartAxis, ChartLegend and Histogram tests as complete in documentation
+- Removed obsolete in-code TODO comments referencing missing tests
 
 ## [0.3.8] - 2025-06-21
 ### Added
