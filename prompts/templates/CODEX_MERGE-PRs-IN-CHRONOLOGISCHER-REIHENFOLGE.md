@@ -11,11 +11,123 @@ BEWÄHRTE METHODE: 1) gh pr list --json number,createdAt --jq 'sort_by(.createdA
 2) git checkout main && git pull origin main 
 3) git checkout origin/pr/[PR-NUMBER] -b pr-[PR-NUMBER] 
 4) git rebase origin/main 
-5) BEI KONFLIKTEN: Öffne jede konfliktierte Datei → kombiniere BEIDE Versionen (NIE Features löschen) → git add . → git rebase --continue 
+5) BEI KONFLIKTEN: Öffne jede konfliktierte Datei → kombiniere BEIDE Versionen (NIE Features löschen) → PRIORITÄT: Bug-Fixes und Verbesserungen IMMER beibehalten → git add . → git rebase --continue 
 6) git push -f origin pr-[PR-NUMBER] 
 7) gh pr merge [PR-NUMBER] --merge --delete-branch 
 DANN: Zeige "✅ PR #[NUMBER] GEMERGT" und fahre mit dem NÄCHST-ÄLTEREN offenen PR fort.
-KRITISCH: Features aus BEIDEN Seiten behalten, NIEMALS überschreiben.
+KRITISCH: Features aus BEIDEN Seiten behalten, Bug-Fixes PERSISTENT beibehalten, alle Fehler dauerhaft beheben.
+```
+
+---
+
+## **🐛 BUG-FIX & VERBESSERUNGS-PRIORITÄT:**
+
+### **GRUNDPRINZIP:**
+```
+HÖCHSTE PRIORITÄT: Bug-Fixes und Fehler-Korrekturen IMMER beibehalten
+REGEL: Wenn Code in einem PR verbessert/repariert wurde → DIESE Version verwenden
+ZIEL: Alle Bugs persistent beheben, keine Rückschritte bei Qualität
+```
+
+### **Bug-Fix Erkennungs-Pattern:**
+```bash
+# PR-Beschreibung analysieren für Bug-Fix Indikatoren:
+gh pr view $PR_NUMBER --json title,body --jq '.title + " " + .body' | grep -iE "(fix|bug|error|issue|patch|repair|resolve|correct|improve)"
+
+# Typische Bug-Fix Patterns:
+# - "Fix memory leak in component"
+# - "Resolve infinite loop bug" 
+# - "Patch security vulnerability"
+# - "Correct calculation error"
+# - "Improve performance bottleneck"
+```
+
+### **Bug-Fix Konflikt-Auflösung:**
+```typescript
+// BEISPIEL: Bug-Fix vs. alte Implementation
+<<<<<<< HEAD
+// Alte, fehlerhafte Version:
+function calculateTotal(items) {
+  let total = 0;
+  for (let item of items) {
+    total += item.price; // BUG: Nicht null-safe
+  }
+  return total;
+}
+=======
+// Bug-Fix Version (aus PR):
+function calculateTotal(items) {
+  let total = 0;
+  for (let item of items) {
+    total += item?.price || 0; // FIX: Null-safe mit Fallback
+  }
+  return total;
+}
+>>>>>>> pr-branch
+
+// LÖSUNG - Bug-Fix Version IMMER bevorzugen:
+function calculateTotal(items) {
+  let total = 0;
+  for (let item of items) {
+    total += item?.price || 0; // FIX: Null-safe mit Fallback - BEHALTEN
+  }
+  return total;
+  // Zusätzliche Features aus main hier hinzufügen falls vorhanden
+}
+```
+
+### **Performance-Verbesserungs-Konflikte:**
+```typescript
+// BEISPIEL: Performance-Optimierung vs. alte Implementation
+<<<<<<< HEAD
+// Alte, langsamere Version:
+const processData = (data) => {
+  return data.map(item => item.value).filter(val => val > 0); // Ineffizient
+}
+=======
+// Optimierte Version (aus PR):
+const processData = (data) => {
+  const result = [];
+  for (const item of data) {
+    if (item.value > 0) result.push(item.value); // Optimiert
+  }
+  return result;
+}
+>>>>>>> pr-branch
+
+// LÖSUNG - Optimierte Version beibehalten:
+const processData = (data) => {
+  const result = [];
+  for (const item of data) {
+    if (item.value > 0) result.push(item.value); // OPTIMIERUNG BEHALTEN
+  }
+  return result;
+  // Weitere Features aus main hier ergänzen
+}
+```
+
+### **Security-Fix Konflikte:**
+```typescript
+// BEISPIEL: Security-Verbesserung vs. alte Implementation
+<<<<<<< HEAD
+// Unsichere Version:
+const validateInput = (input) => {
+  return input.length > 0; // Unzureichende Validation
+}
+=======
+// Sichere Version (aus PR):
+const validateInput = (input) => {
+  if (typeof input !== 'string') return false;
+  return input.trim().length > 0 && input.length < 1000; // Sichere Validation
+}
+>>>>>>> pr-branch
+
+// LÖSUNG - Sichere Version IMMER verwenden:
+const validateInput = (input) => {
+  if (typeof input !== 'string') return false;
+  return input.trim().length > 0 && input.length < 1000; // SECURITY FIX BEHALTEN
+  // Erweiterte Features aus main hier hinzufügen
+}
 ```
 
 ---
@@ -63,49 +175,64 @@ NEXT_OLDEST=$(gh pr list --json number,createdAt --jq 'sort_by(.createdAt) | .[0
 
 ---
 
-## **🚨 UNIVERSAL KONFLIKT-AUFLÖSUNG:**
+## **🚨 UNIVERSAL KONFLIKT-AUFLÖSUNG MIT BUG-FIX PRIORITÄT:**
+
+### **AUFLÖSUNGS-REIHENFOLGE:**
+```
+1. SECURITY FIXES → Höchste Priorität
+2. BUG FIXES → Sehr hohe Priorität  
+3. PERFORMANCE IMPROVEMENTS → Hohe Priorität
+4. NEW FEATURES → Normale Priorität (beide behalten)
+5. DOCUMENTATION → Kombinieren
+```
 
 ### **COMPONENT_STATUS.md (Standard-Pattern):**
 ```markdown
-# IMMER BEIDE Versionen kombinieren:
+# IMMER BEIDE Versionen kombinieren + Bug-Fixes priorisieren:
 <<<<<<< HEAD
 **Started:** Sun Jun  8 22:54:15 UTC 2025
 **Strategy:** Work with existing codebase
+**Bug Status:** Known memory leak in ComponentX
 =======
 **Started:** Sun Jun  8 23:23:02 UTC 2025  
 **Strategy:** Work with existing codebase, enhanced features
+**Bug Status:** Memory leak fixed in ComponentX
 >>>>>>> pr-branch
 
-# LÖSUNG - Timestamps und Features kombinieren:
+# LÖSUNG - Bug-Fixes IMMER beibehalten:
 **Started:** Sun Jun  8 22:54:15 UTC 2025
-**Last Updated:** [NEUESTER_TIMESTAMP]
+**Last Updated:** Sun Jun  8 23:23:02 UTC 2025
 **Strategy:** Work with existing codebase, enhanced features
+**Bug Status:** Memory leak FIXED in ComponentX  ← BUG-FIX BEHALTEN
 
-# Status Updates aus BEIDEN Seiten behalten:
+# Status Updates aus BEIDEN Seiten behalten, Bug-Fixes priorisieren:
 - [EXISTING_FEATURE]: ✅ Status (aus main)
+- [MEMORY_LEAK_FIX]: ✅ FIXED (aus PR) ← KRITISCH BEHALTEN
 - [NEW_FEATURE]: ✅ Implemented (aus PR)
 - [ANOTHER_FEATURE]: ✅ Enhanced (aus PR)
 ```
 
-### **Package Index Konflikte:**
+### **Package Index Konflikte mit Bug-Fix Priorität:**
 ```typescript
 // packages/@smolitux/[PACKAGE]/src/index.ts
-// FALSCH (Feature-Verlust):
+// FALSCH (Feature-Verlust und Bug-Rückfall):
 <<<<<<< HEAD
 export { ExistingComponent } from './components/ExistingComponent';
-export { OldUtility } from './utils/OldUtility';
+export { OldUtility } from './utils/OldUtility'; // Hat bekannte Bugs
 =======
 export { ExistingComponent } from './components/ExistingComponent';
 export { NewComponent } from './components/NewComponent';
+export { FixedUtility } from './utils/FixedUtility'; // Bug-Fix Version
 export { EnhancedUtility } from './utils/EnhancedUtility';
 >>>>>>> pr-branch
 
-// RICHTIG - ALLE Exports behalten:
+// RICHTIG - Bug-Fixes priorisieren, ALLE Exports behalten:
 export { ExistingComponent } from './components/ExistingComponent';
-export { OldUtility } from './utils/OldUtility';           // Aus main
-export { NewComponent } from './components/NewComponent';   // Aus PR
-export { EnhancedUtility } from './utils/EnhancedUtility'; // Aus PR
+export { FixedUtility } from './utils/FixedUtility';     // BUG-FIX PRIORISIERT
+export { NewComponent } from './components/NewComponent';   // Neu aus PR
+export { EnhancedUtility } from './utils/EnhancedUtility'; // Neu aus PR
 export * from './types';                                   // Alle types
+// HINWEIS: OldUtility nicht exportieren da FixedUtility die korrigierte Version ist
 ```
 
 ### **README/Documentation Konflikte:**
@@ -225,10 +352,13 @@ gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "  \(
 
 ---
 
-## **✅ FEATURE-ERHALTUNGS-CHECKLISTE:**
+## **✅ FEATURE-ERHALTUNGS & BUG-FIX CHECKLISTE:**
 
 ### **Vor dem Merge:**
 - [ ] PR-Chronologie bestätigt (ältester zuerst)
+- [ ] **PR auf Bug-Fixes analysiert** (fix/bug/error/issue Keywords)
+- [ ] **Security-Fixes identifiziert** (security/vulnerability Keywords)
+- [ ] **Performance-Verbesserungen identifiziert** (performance/optimize Keywords)
 - [ ] Alle neuen Komponenten aus PR identifiziert
 - [ ] Alle neuen Utilities/Helpers aus PR identifiziert  
 - [ ] Alle neuen Types/Interfaces aus PR identifiziert
@@ -237,17 +367,23 @@ gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "  \(
 
 ### **Bei Konflikt-Auflösung:**
 - [ ] **BEIDE Versionen analysiert** (main + PR)
-- [ ] **ALLE Features kombiniert** (keine gelöscht)
-- [ ] **Exports/Imports erweitert** (nicht überschrieben)
-- [ ] **Documentation ergänzt** (nicht ersetzt)
-- [ ] **Tests zusammengeführt** (alle behalten)
+- [ ] **BUG-FIXES aus PR PRIORISIERT** (immer die korrigierte Version wählen)
+- [ ] **SECURITY-FIXES aus PR PRIORISIERT** (niemals unsichere Version behalten)
+- [ ] **PERFORMANCE-IMPROVEMENTS aus PR PRIORISIERT** (optimierte Version bevorzugen)
+- [ ] **ALLE Features kombiniert** (keine gelöscht, außer durch Bug-Fixes ersetzt)
+- [ ] **Exports/Imports erweitert** (nicht überschrieben, Bug-Fixes priorisiert)
+- [ ] **Documentation ergänzt** (nicht ersetzt, Fixes dokumentiert)
+- [ ] **Tests zusammengeführt** (alle behalten, Bug-Fix Tests priorisiert)
 
 ### **Nach dem Merge:**
 - [ ] Neue Features in main branch verfügbar
-- [ ] Bestehende Features unverändert funktional
-- [ ] Package exports vollständig
-- [ ] Documentation aktualisiert
-- [ ] Zero Data Loss bestätigt
+- [ ] **ALLE BUG-FIXES persistent angewendet** (keine Rückfälle)
+- [ ] **ALLE SECURITY-FIXES aktiv** (keine Schwachstellen wieder eingeführt)
+- [ ] **ALLE PERFORMANCE-IMPROVEMENTS aktiv** (keine Verlangsamungen)
+- [ ] Bestehende Features unverändert funktional (außer durch Fixes verbessert)
+- [ ] Package exports vollständig (korrigierte Versionen exportiert)
+- [ ] Documentation aktualisiert (Bug-Fixes dokumentiert)
+- [ ] Zero Data Loss bestätigt (+ Zero Bug Regression)
 - [ ] **Chronologische Reihenfolge eingehalten**
 
 ---
@@ -292,8 +428,11 @@ echo "⏭️ NEXT OLDEST: #$NEXT_OLDEST"
 - ✅ **Chronologische Reihenfolge**: Ältester PR zuerst, neuester zuletzt
 - ✅ **Bewährte Methode**: Basiert auf erfolgreichem PR #371
 - ✅ **Zero Data Loss**: Alle Features aus beiden Seiten behalten
+- ✅ **Zero Bug Regression**: Alle Bug-Fixes persistent beibehalten
+- ✅ **Security First**: Alle Security-Fixes priorisiert und persistent
+- ✅ **Performance Optimized**: Alle Performance-Verbesserungen beibehalten
 - ✅ **Universal einsetzbar**: Für jeden PR-Typ geeignet
-- ✅ **Konflikt-sicher**: Klare Auflösungsstrategien
+- ✅ **Konflikt-sicher**: Klare Auflösungsstrategien mit Bug-Fix Priorität
 - ✅ **Wiederholbar**: Identischer Prozess für alle PRs
 - ✅ **Nachvollziehbar**: Klare chronologische Dokumentation
 
