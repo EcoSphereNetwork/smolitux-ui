@@ -66,6 +66,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 ## [0.3.8] - 2025-06-20
 ### Added
+- Documentation page summarizing common open-source licenses
 - forwardRef support for `DashboardLayout`
 - Accessibility tests for `Header` and `Footer`
 - Storybook stories for `NotificationCenter`
@@ -75,11 +76,9 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - `NotificationCenter` now forwards refs and exposes a `data-testid`
 - `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
 - `Slide` component now uses `forwardRef` for external ref access and updated tests
-- Documentation page summarizing common open-source licenses
 - Forward refs added to all federation components with display names
 - Updated federation Jest rootDir
 - Updated TODO logs for federation components
-
 ## [0.3.2] - 2025-06-08
 
 ### Added
