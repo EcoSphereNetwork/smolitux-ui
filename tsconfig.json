@@ -10,6 +10,7 @@
     "types": ["node", "jest"],
     "baseUrl": ".",
     "paths": {
+      "@smolitux/*": ["packages/@smolitux/*/src"],
       "@smolitux/ai": ["packages/@smolitux/ai/src"],
       "@smolitux/ai/*": ["packages/@smolitux/ai/src/*"],
       "@smolitux/blockchain": ["packages/@smolitux/blockchain/src"],
@@ -35,7 +36,7 @@
       "@smolitux/utils": ["packages/@smolitux/utils/src"],
       "@smolitux/utils/*": ["packages/@smolitux/utils/src/*"],
       "@smolitux/voice-control": ["packages/@smolitux/voice-control/src"],
-      "@smolitux/voice-control/*": ["packages/@smolitux/voice-control/src/*"],
+      "@smolitux/voice-control/*": ["packages/@smolitux/voice-control/src/*"]
     }
   },
   "include": ["packages", "docs"],
