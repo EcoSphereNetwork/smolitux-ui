@@ -48,6 +48,7 @@ const config: Config = {
           path: 'wiki',
           sidebarCollapsible: true,
           sidebarCollapsed: false,
+          exclude: ['legacy/**', 'codex/**', 'development/prompts/**'],
         },
         blog: {
           showReadingTime: true,

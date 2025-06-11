@@ -10,7 +10,7 @@ Führe im Projektverzeichnis folgenden Befehl aus:
 npm run storybook
 ```
 
-Anschließend ist die Oberfläche unter <http://localhost:6006> erreichbar.
+Anschließend ist die Oberfläche unter [http://localhost:6006](http://localhost:6006) erreichbar.
 
 ## Struktur der Stories
 

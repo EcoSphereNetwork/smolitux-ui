@@ -1,6 +1,6 @@
 ---
 slug: smolitux-ui-roadmap-2025
-title: Smolitux-UI Roadmap for 2025: Sustainability Meets Accessibility
+title: "Smolitux-UI Roadmap for 2025: Sustainability Meets Accessibility"
 authors:
   - sam
   - johanna
