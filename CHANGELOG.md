@@ -22,6 +22,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Added
 - forwardRef support for community package components
 
+## [0.3.8] - 2025-06-21
+### Added
+- forwardRef support for community package components
+
 ## [0.3.3] - 2025-06-17
 
 ### Added

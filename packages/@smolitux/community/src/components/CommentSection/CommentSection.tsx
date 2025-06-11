@@ -1,4 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState, ChangeEvent, forwardRef } from 'react';
 import { Button, Input } from '@smolitux/core';
 import { usePrivacyConsent, PrivacySettings } from '../../privacy';
