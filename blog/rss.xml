@@ -4,84 +4,272 @@
         <title>Smolitux-UI Blog</title>
         <link>https://ecospherenetwork.github.io/smolitux-ui/blog</link>
         <description>Smolitux-UI Blog</description>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 01 Jul 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>de</language>
         <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/welcome</link>
-            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/welcome</guid>
-            <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Docusaurus blogging features are powered by the blog plugin.]]></description>
-            <content:encoded><![CDATA[<p><a href="https://docusaurus.io/docs/blog" target="_blank" rel="noopener noreferrer">Docusaurus blogging features</a> are powered by the <a href="https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog" target="_blank" rel="noopener noreferrer">blog plugin</a>.</p>
-<p>Here are a few tips you might find useful.</p>
-<p>Simply add Markdown files (or folders) to the <code>blog</code> directory.</p>
-<p>Regular blog authors can be added to <code>authors.yml</code>.</p>
-<p>The blog post date can be extracted from filenames, such as:</p>
+            <title><![CDATA[Smolitux-UI Project Overview]]></title>
+            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview</link>
+            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview</guid>
+            <pubDate>Tue, 01 Jul 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Einführung ins Projekt Smolitux-UI]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="einführung-ins-projekt-smolitux-ui">Einführung ins Projekt Smolitux-UI<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#einf%C3%BChrung-ins-projekt-smolitux-ui" class="hash-link" aria-label="Direkter Link zur Einführung ins Projekt Smolitux-UI" title="Direkter Link zur Einführung ins Projekt Smolitux-UI">​</a></h2>
+<p>Smolitux-UI ist die zentrale Komponentenbibliothek des EcoSphereNetwork. Sie stellt wiederverwendbare React-Komponenten bereit, die vollständig dokumentiert und auf Barrierefreiheit ausgelegt sind. Die <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/index.md">Wiki</a> bietet eine detaillierte Übersicht über alle Module und Richtlinien.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="technische-basis">Technische Basis<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#technische-basis" class="hash-link" aria-label="Direkter Link zur Technische Basis" title="Direkter Link zur Technische Basis">​</a></h2>
+<p>Das Projekt basiert auf React und TypeScript. Für das Styling kommt Tailwind CSS zum Einsatz, während Storybook die visuelle Dokumentation übernimmt. Tests laufen mit Jest und Playwright. Weitere Details finden sich in der <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/guides/quickstart.md">Quickstart-Anleitung</a> und der <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/architecture-design.md">Architektur-Dokumentation</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="architektur-und-komponentenstruktur">Architektur und Komponentenstruktur<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#architektur-und-komponentenstruktur" class="hash-link" aria-label="Direkter Link zur Architektur und Komponentenstruktur" title="Direkter Link zur Architektur und Komponentenstruktur">​</a></h2>
+<p>Die Bibliothek ist als Monorepo organisiert. Unter <code>packages/@smolitux/</code> befinden sich Kernpakete wie <code>core</code>, <code>layout</code>, <code>theme</code> und <code>utils</code>. Jedes Paket kapselt eigenständige Komponenten und kann unabhängig genutzt werden. Eine vollständige Beschreibung liefert die Seite <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/package-structure.md">Paketstruktur</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ziele-vision-und-einsatzbereich">Ziele, Vision und Einsatzbereich<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#ziele-vision-und-einsatzbereich" class="hash-link" aria-label="Direkter Link zur Ziele, Vision und Einsatzbereich" title="Direkter Link zur Ziele, Vision und Einsatzbereich">​</a></h2>
+<p>Ziel des Projekts ist eine nachhaltige, zugängliche UI-Lösung für alle Anwendungen des EcoSphereNetwork. Die Vision umfasst eine modulare Erweiterbarkeit, hohe Testabdeckung und strenge Coding-Standards. Einsatzbereiche reichen von klassischen Web-Apps bis zu Voice-Control-Oberflächen.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ausblick--roadmap">Ausblick / Roadmap<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-overview#ausblick--roadmap" class="hash-link" aria-label="Direkter Link zur Ausblick / Roadmap" title="Direkter Link zur Ausblick / Roadmap">​</a></h2>
+<p>Die aktuelle <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/roadmap-main.md">Roadmap</a> sieht eine Erweiterung der Barrierefreiheitstests und neue Features wie Voice Control vor. Langfristig soll Smolitux-UI als Basis für ein ganzes Ökosystem von Anwendungen dienen.</p>]]></content:encoded>
+            <category>Overview</category>
+            <category>Roadmap</category>
+        </item>
+        <item>
+            <title><![CDATA[All Posts by Sam Schimmelpfennig]]></title>
+            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles</link>
+            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles</guid>
+            <pubDate>Wed, 11 Jun 2025 12:16:16 GMT</pubDate>
+            <description><![CDATA[Welcome to my author page! I'm Sam Schimmelpfennig, Founder & Technical Lead at EcoSphereNetwork. My focus is on creating sustainable, efficient digital solutions while guiding our technical vision and implementation.]]></description>
+            <content:encoded><![CDATA[<p>Welcome to my author page! I'm Sam Schimmelpfennig, Founder &amp; Technical Lead at EcoSphereNetwork. My focus is on creating sustainable, efficient digital solutions while guiding our technical vision and implementation.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="my-background">My Background<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles#my-background" class="hash-link" aria-label="Direkter Link zur My Background" title="Direkter Link zur My Background">​</a></h2>
+<p>With extensive experience in software development, DevOps, AI engineering, and Linux administration, I bring a comprehensive technical skill set to EcoSphereNetwork. My background includes:</p>
 <ul>
-<li><code>2019-05-30-welcome.md</code></li>
-<li><code>2019-05-30-welcome/index.md</code></li>
+<li>Full-stack development with a focus on sustainable, efficient code</li>
+<li>DevOps engineering and infrastructure management</li>
+<li>AI/ML implementation for environmental applications</li>
+<li>UI/UX design with an emphasis on sustainability</li>
+<li>Linux system administration and optimization</li>
 </ul>
-<p>A blog post folder can be convenient to co-locate blog post images:</p>
-<p><img decoding="async" loading="lazy" alt="Docusaurus Plushie" src="https://ecospherenetwork.github.io/smolitux-ui/assets/images/docusaurus-plushie-banner-a60f7593abca1e3eef26a9afa244e4fb.jpeg" width="1500" height="500" class="img_ev3q"></p>
-<p>The blog supports tags as well!</p>
-<p><strong>And if you don't want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content:encoded>
-            <category>Facebook</category>
-            <category>Hello</category>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="my-work-at-ecospherenetwork">My Work at EcoSphereNetwork<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles#my-work-at-ecospherenetwork" class="hash-link" aria-label="Direkter Link zur My Work at EcoSphereNetwork" title="Direkter Link zur My Work at EcoSphereNetwork">​</a></h2>
+<p>At EcoSphereNetwork, I lead the technical development of our projects, including Smolitux-UI, our open-source component library built with sustainability and accessibility at its core. My responsibilities include:</p>
+<ul>
+<li>Establishing the technical vision and roadmap</li>
+<li>Overseeing development of sustainable, accessible UI components</li>
+<li>Building and maintaining our infrastructure as a DAO</li>
+<li>Implementing AI solutions for environmental applications</li>
+<li>Leading our open source initiatives</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="my-publications">My Publications<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles#my-publications" class="hash-link" aria-label="Direkter Link zur My Publications" title="Direkter Link zur My Publications">​</a></h2>
+<p>Below you'll find all my blog posts on sustainable UI design, digital carbon footprint reduction, and our ongoing work at Smolitux-UI.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="connect-with-me">Connect With Me<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles#connect-with-me" class="hash-link" aria-label="Direkter Link zur Connect With Me" title="Direkter Link zur Connect With Me">​</a></h2>
+<p>I'm always eager to connect with fellow designers, developers, and sustainability enthusiasts. You can find me on:</p>
+<ul>
+<li><a href="https://x.com/ESN_Community" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+<li><a href="https://www.linkedin.com/in/ecospherenetwork" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+<li><a href="https://github.com/EcoSphereNetwork" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+<li><a href="https://www.instagram.com/ecospherenetwork/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+</ul>
+<p>Or email me directly at: <a href="mailto:sam@ecospherenetwork.org" target="_blank" rel="noopener noreferrer">sam@ecospherenetwork.org</a></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="my-posts">My Posts<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/authors/all-sam-articles#my-posts" class="hash-link" aria-label="Direkter Link zur My Posts" title="Direkter Link zur My Posts">​</a></h2>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[authors/johanna]]></title>
+            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/authors/johanna</link>
+            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/authors/johanna</guid>
+            <pubDate>Wed, 11 Jun 2025 12:16:16 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Introducing Smolitux-UI: Sustainable Components for Modern Web Apps]]></title>
+            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui</link>
+            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui</guid>
+            <pubDate>Tue, 10 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Smolitux-UI is the component library that powers the EcoSphereNetwork ecosystem. Built with accessibility and sustainability in mind, it provides a rich set of React components that help developers create fast, inclusive user interfaces.]]></description>
+            <content:encoded><![CDATA[<p>Smolitux-UI is the component library that powers the EcoSphereNetwork ecosystem. Built with accessibility and sustainability in mind, it provides a rich set of React components that help developers create fast, inclusive user interfaces.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-smolitux-ui">What is Smolitux-UI?<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#what-is-smolitux-ui" class="hash-link" aria-label="Direkter Link zur What is Smolitux-UI?" title="Direkter Link zur What is Smolitux-UI?">​</a></h2>
+<p>Smolitux-UI offers a comprehensive collection of reusable UI components. Each component follows modern architecture guidelines and adheres to the WCAG accessibility standards. The documentation in our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/index.md">Wiki</a> details the full component list and best practices.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="key-features">Key Features<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#key-features" class="hash-link" aria-label="Direkter Link zur Key Features" title="Direkter Link zur Key Features">​</a></h2>
+<ul>
+<li><strong>Modern Architecture</strong> – modular packages like <code>core</code>, <code>layout</code> and <code>theme</code> provide a flexible foundation.</li>
+<li><strong>Accessibility</strong> – components are tested against our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/testing/a11y-test-plan.md">A11y Test Plan</a>.</li>
+<li><strong>Documentation</strong> – every component is documented with usage examples and guidelines.</li>
+<li><strong>Sustainable Development</strong> – optimized rendering and a focus on minimal resource usage.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="architecture-overview">Architecture Overview<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#architecture-overview" class="hash-link" aria-label="Direkter Link zur Architecture Overview" title="Direkter Link zur Architecture Overview">​</a></h2>
+<p>Our monorepo is organized under <code>packages/@smolitux/</code> with packages for charts, media, and more. The <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/architecture/architecture-design.md">Architecture section</a> explains the build process and dependencies in detail.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="roadmap">Roadmap<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#roadmap" class="hash-link" aria-label="Direkter Link zur Roadmap" title="Direkter Link zur Roadmap">​</a></h2>
+<p>Version 0.2.2 introduced a complete component set and improved testing. Upcoming milestones from our <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/roadmap-main.md">Roadmap</a> include expanded accessibility coverage and new features like voice control.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="get-involved">Get Involved<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/introducing-smolitux-ui#get-involved" class="hash-link" aria-label="Direkter Link zur Get Involved" title="Direkter Link zur Get Involved">​</a></h2>
+<p>Contributions are welcome! Check out the <a href="https://ecospherenetwork.github.io/smolitux-ui/wiki/development/guide.md">Development Guide</a> and join the discussion on <a href="https://github.com/EcoSphereNetwork/smolitux-ui" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>]]></content:encoded>
+            <category>Components</category>
+            <category>EcoSphereNetwork</category>
+            <category>Sustainability</category>
+        </item>
+        <item>
+            <title><![CDATA[Accessibility First: Building Inclusive Components in Smolitux-UI]]></title>
+            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux</link>
+            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux</guid>
+            <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Creating truly universal user interfaces requires a deep commitment to accessibility. At EcoSphereNetwork, we're dedicated to ensuring that Smolitux-UI components meet the highest standards of accessibility while maintaining excellent design and performance.]]></description>
+            <content:encoded><![CDATA[<p>Creating truly universal user interfaces requires a deep commitment to accessibility. At EcoSphereNetwork, we're dedicated to ensuring that Smolitux-UI components meet the highest standards of accessibility while maintaining excellent design and performance.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-accessibility-matters">Why Accessibility Matters<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#why-accessibility-matters" class="hash-link" aria-label="Direkter Link zur Why Accessibility Matters" title="Direkter Link zur Why Accessibility Matters">​</a></h2>
+<p>Technology should empower everyone, regardless of their abilities or how they interact with digital interfaces. When we build accessible components:</p>
+<ul>
+<li>We reach a wider audience (approximately 15% of the global population lives with some form of disability)</li>
+<li>We improve usability for all users (many accessibility features benefit everyone)</li>
+<li>We ensure compliance with international standards and legal requirements</li>
+<li>We reflect our values of inclusion and equal access</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="our-accessibility-approach-in-smolitux-ui">Our Accessibility Approach in Smolitux-UI<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#our-accessibility-approach-in-smolitux-ui" class="hash-link" aria-label="Direkter Link zur Our Accessibility Approach in Smolitux-UI" title="Direkter Link zur Our Accessibility Approach in Smolitux-UI">​</a></h2>
+<p>At Smolitux-UI, accessibility isn't an afterthought—it's built into our design system from the ground up. Here's how we're implementing accessibility across our component library:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="keyboard-navigation">Keyboard Navigation<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#keyboard-navigation" class="hash-link" aria-label="Direkter Link zur Keyboard Navigation" title="Direkter Link zur Keyboard Navigation">​</a></h3>
+<p>All interactive components in Smolitux-UI are fully navigable using a keyboard alone:</p>
+<ul>
+<li><strong>Focus indicators</strong>: Clear, visible focus states that meet contrast requirements</li>
+<li><strong>Logical tab order</strong>: Navigation follows a natural, logical sequence</li>
+<li><strong>Keyboard shortcuts</strong>: Common actions have keyboard equivalents</li>
+<li><strong>Focus trapping</strong>: Modal dialogs and similar components appropriately trap and manage focus</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="screen-reader-compatibility">Screen Reader Compatibility<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#screen-reader-compatibility" class="hash-link" aria-label="Direkter Link zur Screen Reader Compatibility" title="Direkter Link zur Screen Reader Compatibility">​</a></h3>
+<p>Our components communicate effectively with assistive technologies:</p>
+<ul>
+<li><strong>Semantic HTML</strong>: We use proper HTML elements for their intended purpose</li>
+<li><strong>ARIA attributes</strong>: Where native semantics aren't sufficient, we implement appropriate ARIA roles, states, and properties</li>
+<li><strong>Meaningful text alternatives</strong>: All images and non-text content have appropriate alternative text</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="visual-accessibility">Visual Accessibility<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#visual-accessibility" class="hash-link" aria-label="Direkter Link zur Visual Accessibility" title="Direkter Link zur Visual Accessibility">​</a></h3>
+<p>We ensure our components are visually accessible to users with various visual impairments:</p>
+<ul>
+<li><strong>Color contrast</strong>: All text meets WCAG 2.1 AA standard (4.5:1 for normal text, 3:1 for large text)</li>
+<li><strong>Color independence</strong>: Information is never conveyed through color alone</li>
+<li><strong>Resizable text</strong>: Text scales without breaking layouts or functionality</li>
+<li><strong>Reduced motion</strong>: Animations can be disabled for users who experience motion sickness</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cognitive-accessibility">Cognitive Accessibility<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#cognitive-accessibility" class="hash-link" aria-label="Direkter Link zur Cognitive Accessibility" title="Direkter Link zur Cognitive Accessibility">​</a></h3>
+<p>We make our components easy to understand and use:</p>
+<ul>
+<li><strong>Clear language</strong>: Instructions and labels use simple, direct language</li>
+<li><strong>Consistent patterns</strong>: Similar components work in similar ways</li>
+<li><strong>Error prevention</strong>: Forms include validation and confirmation steps for critical actions</li>
+<li><strong>Progressive disclosure</strong>: Complex interfaces reveal information gradually to reduce cognitive load</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="our-accessibility-testing-process">Our Accessibility Testing Process<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#our-accessibility-testing-process" class="hash-link" aria-label="Direkter Link zur Our Accessibility Testing Process" title="Direkter Link zur Our Accessibility Testing Process">​</a></h2>
+<p>Creating accessible components requires rigorous testing. Our process includes:</p>
+<ol>
+<li><strong>Automated testing</strong>: We use tools like axe-core, Lighthouse, and WAVE to catch common issues</li>
+<li><strong>Manual keyboard testing</strong>: Every component is tested with keyboard-only navigation</li>
+<li><strong>Screen reader testing</strong>: Components are verified with NVDA, JAWS, and VoiceOver</li>
+<li><strong>User testing</strong>: We conduct sessions with users who rely on assistive technologies</li>
+<li><strong>Documentation review</strong>: All component documentation includes accessibility guidelines</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="current-focus-form-components">Current Focus: Form Components<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#current-focus-form-components" class="hash-link" aria-label="Direkter Link zur Current Focus: Form Components" title="Direkter Link zur Current Focus: Form Components">​</a></h2>
+<p>In our latest sprint, we've been focusing on enhancing the accessibility of our form components. Some key improvements include:</p>
+<ul>
+<li><strong>Enhanced form labels</strong>: All inputs now have properly associated labels</li>
+<li><strong>Error messaging</strong>: Form errors are now announced to screen readers automatically</li>
+<li><strong>Input grouping</strong>: Related inputs are properly grouped with fieldsets and legends</li>
+<li><strong>Enhanced validation</strong>: Form validation provides clear feedback in multiple formats</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="join-our-accessibility-journey">Join Our Accessibility Journey<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/accessibility-focus-smolitux#join-our-accessibility-journey" class="hash-link" aria-label="Direkter Link zur Join Our Accessibility Journey" title="Direkter Link zur Join Our Accessibility Journey">​</a></h2>
+<p>We believe accessibility is a collaborative effort. We welcome contributions from the community:</p>
+<ul>
+<li>Try our components with your assistive technology and report any issues</li>
+<li>Suggest accessibility enhancements through GitHub issues</li>
+<li>Contribute accessible component variations to our library</li>
+</ul>
+<p>By prioritizing accessibility in Smolitux-UI, we're not just building components—we're creating inclusive digital experiences that work for everyone.</p>
+<p>In future posts, I'll dive deeper into specific accessibility techniques for individual components. Stay tuned!</p>]]></content:encoded>
+            <category>Accessibility</category>
+            <category>A11y</category>
+            <category>Components</category>
             <category>Docusaurus</category>
         </item>
         <item>
-            <title><![CDATA[MDX Blog Post]]></title>
-            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/mdx-blog-post</link>
-            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/mdx-blog-post</guid>
-            <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></description>
-            <content:encoded><![CDATA[<p>Blog posts support <a href="https://docusaurus.io/docs/markdown-features" target="_blank" rel="noopener noreferrer">Docusaurus Markdown features</a>, such as <a href="https://mdxjs.com/" target="_blank" rel="noopener noreferrer">MDX</a>.</p>
-<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tipp</div><div class="admonitionContent_BuS1"><p>Use the power of React to create interactive blog posts.</p></div></div>
-<!-- -->
-<p>For example, use JSX to create an interactive button:</p>
-<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">button onClick</span><span class="token operator" style="color:#393A34">=</span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token arrow operator" style="color:#393A34">=&gt;</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">alert</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">'button clicked!'</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">}</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token maybe-class-name">Click</span><span class="token plain"> me</span><span class="token operator" style="color:#393A34">!</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token operator" style="color:#393A34">/</span><span class="token plain">button</span><span class="token operator" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="In die Zwischenablage kopieren" title="Kopieren" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<button>Click me!</button>]]></content:encoded>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[Long Blog Post]]></title>
-            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/long-blog-post</link>
-            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/long-blog-post</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[This is the summary of a very long blog post,]]></description>
-            <content:encoded><![CDATA[<p>This is the summary of a very long blog post,</p>
-<p>Use a <code>&lt;!--</code> <code>truncate</code> <code>--&gt;</code> comment to limit blog post size in the list view.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[First Blog Post]]></title>
-            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/first-blog-post</link>
-            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/first-blog-post</guid>
-            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet...]]></description>
-            <content:encoded><![CDATA[<p>Lorem ipsum dolor sit amet...</p>
-<p>...consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hola</category>
-            <category>Docusaurus</category>
+            <title><![CDATA[Smolitux-UI Roadmap for 2025: Sustainability Meets Accessibility]]></title>
+            <link>https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025</link>
+            <guid>https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025</guid>
+            <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[As we look ahead to 2025, we're excited to share our vision for the future of Smolitux-UI. This roadmap represents our commitment to creating a component library that is both environmentally sustainable and universally accessible.]]></description>
+            <content:encoded><![CDATA[<p>As we look ahead to 2025, we're excited to share our vision for the future of Smolitux-UI. This roadmap represents our commitment to creating a component library that is both environmentally sustainable and universally accessible.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="our-vision-for-smolitux-ui">Our Vision for Smolitux-UI<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#our-vision-for-smolitux-ui" class="hash-link" aria-label="Direkter Link zur Our Vision for Smolitux-UI" title="Direkter Link zur Our Vision for Smolitux-UI">​</a></h2>
+<p>At EcoSphereNetwork, we believe that digital sustainability and accessibility are not separate concerns but complementary goals. By optimizing our components for both, we create interfaces that are:</p>
+<ul>
+<li><strong>Environmentally responsible</strong>: Reduced energy consumption and carbon footprint</li>
+<li><strong>Universally usable</strong>: Accessible to people of all abilities</li>
+<li><strong>High-performing</strong>: Fast, responsive, and efficient</li>
+<li><strong>Beautiful</strong>: Modern design that doesn't compromise on aesthetics</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="key-focus-areas-for-2025">Key Focus Areas for 2025<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#key-focus-areas-for-2025" class="hash-link" aria-label="Direkter Link zur Key Focus Areas for 2025" title="Direkter Link zur Key Focus Areas for 2025">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="q1-foundation-enhancement">Q1: Foundation Enhancement<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#q1-foundation-enhancement" class="hash-link" aria-label="Direkter Link zur Q1: Foundation Enhancement" title="Direkter Link zur Q1: Foundation Enhancement">​</a></h3>
+<p><strong>Sustainability Improvements:</strong></p>
+<ul>
+<li>Implement baseline energy consumption metrics for all components</li>
+<li>Optimize render performance to reduce CPU usage</li>
+<li>Develop guidelines for energy-efficient animation</li>
+</ul>
+<p><strong>Accessibility Enhancements:</strong></p>
+<ul>
+<li>Complete WCAG 2.1 AA compliance audit and remediation</li>
+<li>Implement improved keyboard navigation patterns</li>
+<li>Enhance screen reader announcements for interactive components</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="q2-advanced-component-development">Q2: Advanced Component Development<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#q2-advanced-component-development" class="hash-link" aria-label="Direkter Link zur Q2: Advanced Component Development" title="Direkter Link zur Q2: Advanced Component Development">​</a></h3>
+<p><strong>Sustainability Improvements:</strong></p>
+<ul>
+<li>Launch our "Green Mode" theme with optimized dark color schemes</li>
+<li>Develop image optimization utilities with WebP and AVIF support</li>
+<li>Create data visualization components with energy-efficient rendering</li>
+</ul>
+<p><strong>Accessibility Enhancements:</strong></p>
+<ul>
+<li>Build enhanced form components with improved validation patterns</li>
+<li>Develop new navigation components with mobile accessibility focus</li>
+<li>Create accessible modal and dialog components with proper focus management</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="q3-framework-integration">Q3: Framework Integration<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#q3-framework-integration" class="hash-link" aria-label="Direkter Link zur Q3: Framework Integration" title="Direkter Link zur Q3: Framework Integration">​</a></h3>
+<p><strong>Sustainability Improvements:</strong></p>
+<ul>
+<li>Release plugins for popular bundlers to analyze component energy usage</li>
+<li>Develop integration guides for React, Vue, and Angular with sustainability best practices</li>
+<li>Launch our carbon footprint calculator for Smolitux-UI implementations</li>
+</ul>
+<p><strong>Accessibility Enhancements:</strong></p>
+<ul>
+<li>Create framework-specific accessibility testing utilities</li>
+<li>Develop enhanced documentation with accessibility examples for each framework</li>
+<li>Build integration with popular accessibility testing tools</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="q4-community-and-ecosystem">Q4: Community and Ecosystem<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#q4-community-and-ecosystem" class="hash-link" aria-label="Direkter Link zur Q4: Community and Ecosystem" title="Direkter Link zur Q4: Community and Ecosystem">​</a></h3>
+<p><strong>Sustainability Improvements:</strong></p>
+<ul>
+<li>Launch our Green UI certification program</li>
+<li>Create contributor guidelines for sustainable component development</li>
+<li>Release case studies on energy savings from Smolitux-UI implementations</li>
+</ul>
+<p><strong>Accessibility Enhancements:</strong></p>
+<ul>
+<li>Establish our accessibility ambassador program</li>
+<li>Host virtual workshops on building accessible interfaces</li>
+<li>Create comprehensive a11y testing documentation and templates</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="community-involvement">Community Involvement<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#community-involvement" class="hash-link" aria-label="Direkter Link zur Community Involvement" title="Direkter Link zur Community Involvement">​</a></h2>
+<p>We believe that the best component libraries are built with active community participation. Here's how you can get involved:</p>
+<ul>
+<li><strong>Join our Discord</strong>: Connect with other developers interested in sustainable and accessible UI</li>
+<li><strong>Contribute on GitHub</strong>: Submit pull requests, report issues, or review code</li>
+<li><strong>Participate in testing</strong>: Help us test components for accessibility and performance</li>
+<li><strong>Share your implementations</strong>: Show us how you're using Smolitux-UI in your projects</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="commitment-to-open-source">Commitment to Open Source<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#commitment-to-open-source" class="hash-link" aria-label="Direkter Link zur Commitment to Open Source" title="Direkter Link zur Commitment to Open Source">​</a></h2>
+<p>Smolitux-UI is and will remain completely open source. We believe that sustainable and accessible design patterns should be freely available to all developers. Our MIT license ensures that you can use our components in any project, commercial or personal.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="measuring-our-impact">Measuring Our Impact<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#measuring-our-impact" class="hash-link" aria-label="Direkter Link zur Measuring Our Impact" title="Direkter Link zur Measuring Our Impact">​</a></h2>
+<p>We're committed to transparency about our impact. Throughout 2025, we'll be publishing:</p>
+<ul>
+<li>Quarterly sustainability reports measuring energy efficiency improvements</li>
+<li>Accessibility conformance reports for all components</li>
+<li>Case studies from organizations implementing Smolitux-UI</li>
+<li>Performance benchmarks comparing Smolitux-UI to other component libraries</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="join-us-on-this-journey">Join Us on This Journey<a href="https://ecospherenetwork.github.io/smolitux-ui/blog/smolitux-ui-roadmap-2025#join-us-on-this-journey" class="hash-link" aria-label="Direkter Link zur Join Us on This Journey" title="Direkter Link zur Join Us on This Journey">​</a></h2>
+<p>Creating a more sustainable and accessible web is a collective effort. We invite you to join us in building Smolitux-UI into a component library that sets new standards for both environmental responsibility and inclusive design.</p>
+<p>Stay tuned for more updates, and reach out if you're interested in contributing to this important work!</p>
+<p><em>- Sam Schimmelpfennig &amp; Johanna Gassmann, EcoSphereNetwork</em></p>]]></content:encoded>
+            <category>Roadmap</category>
+            <category>Sustainability</category>
+            <category>Accessibility</category>
+            <category>Community</category>
         </item>
     </channel>
 </rss>
