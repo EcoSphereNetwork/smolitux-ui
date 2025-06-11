@@ -23,6 +23,7 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Fixed
 - Removed legacy theme-provider implementation
 - Updated TypeScript path mappings
+- Reverted explicit package paths in tsconfig
 
 ## [0.3.4] - 2025-06-18
 
