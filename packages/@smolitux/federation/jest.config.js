@@ -3,5 +3,6 @@ const base = require('../../../jest.config');
 module.exports = {
   ...base,
   rootDir: path.resolve(__dirname, '../../..'),
+  roots: ['<rootDir>/packages/@smolitux/federation'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 };
