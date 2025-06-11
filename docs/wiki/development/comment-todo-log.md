@@ -31,9 +31,13 @@
 - [x] `src/components/TokenDisplay/TokenDisplay.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
 
 ## Paket: @charts
+- [x] `src/components/ChartAxis/ChartAxis.tsx`: ✅ Tests vorhanden
+- [x] `src/components/ChartLegend/ChartLegend.tsx`: ✅ Tests vorhanden
+- [x] `src/components/Histogram/Histogram.tsx`: ✅ Tests vorhanden
 - [x] `src/components/Histogram/Histogram.tsx`: ✅ Tests vorhanden
 - [x] `src/components/ChartAxis/ChartAxis.tsx`: ✅ Tests vorhanden
 - [x] `src/components/ChartLegend/ChartLegend.tsx`: ✅ Tests vorhanden
+
 
 ## Paket: @community
 - [x] `src/components/CommentSection/CommentSection.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – geprüft & umgesetzt
