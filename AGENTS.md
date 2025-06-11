@@ -50,6 +50,23 @@ smolitux-ui/
 
 ## 🚀 Quick Start Guide
 
+### Initial Setup Verification
+
+**IMPORTANT:** Always verify repository setup before starting any development work:
+
+```bash
+# 1. Verify git repository and remote configuration
+git remote -v
+# Should show: origin  https://github.com/EcoSphereNetwork/smolitux-ui (fetch/push)
+
+# 2. Verify GitHub CLI authentication
+gh auth status
+# Should show: ✓ Logged in to github.com account [username]
+
+# 3. If setup is missing or incomplete, the environment should have run the setup script automatically
+# If not, you can manually verify setup requirements are met
+```
+
 ### Repository Analysis
 
 Before starting any work, analyze the current state of the repository:
@@ -101,6 +118,42 @@ bash scripts/workflows/analyze-component.sh --package $PACKAGE --component $COMP
 
 # Complete component
 bash scripts/workflows/complete-component.sh --package $PACKAGE --component $COMPONENT
+```
+
+## 🔧 Git & GitHub Operations
+
+### Repository State Validation
+
+Before any git operations, ensure proper setup:
+
+```bash
+# Verify repository remote
+if [ -z "$(git remote)" ]; then
+    echo "❌ No remote configured"
+    git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui
+    git fetch origin --prune
+fi
+
+# Verify GitHub CLI authentication
+if ! gh auth status &>/dev/null; then
+    echo "❌ GitHub CLI not authenticated"
+    echo "Run: gh auth login --web"
+fi
+```
+
+### PR Operations (when applicable)
+
+For environments with PR access:
+
+```bash
+# List PRs chronologically (oldest first)
+gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "#\(.number): \(.title) (Created: \(.createdAt[:10]))"'
+
+# Checkout specific PR
+gh pr checkout [PR-NUMBER]
+
+# Repository synchronization
+git fetch origin --prune
 ```
 
 ## 📊 Package Priority Matrix
@@ -468,7 +521,7 @@ bash scripts/workflows/generate-coverage-dashboard.sh
 ## 🚨 Critical Guidelines
 
 ### ✅ MUST DO
-1. **Always run analyzer first** to understand current state
+1. **Always verify setup first** - check git/GitHub configuration before work
 2. **Work systematically** through packages in priority order
 3. **Validate each component** before moving to next
 4. **Update progress tracking** after each session
@@ -478,7 +531,7 @@ bash scripts/workflows/generate-coverage-dashboard.sh
 8. **Add proper test-ids** - data-testid for all testable elements
 
 ### ❌ NEVER DO
-1. **Skip validation** - always test before moving on
+1. **Skip setup validation** - always ensure git/GitHub is properly configured
 2. **Generate duplicates** - check for existing files first
 3. **Use any types** - always use proper TypeScript typing
 4. **Ignore accessibility** - include a11y tests from start
