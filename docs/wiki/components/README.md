@@ -256,7 +256,7 @@ function Example() {
 
 ## Voice-Komponenten
 
-Die Voice-Komponenten integrieren Sprachbefehle in Standard-UI-Elemente. Eine Übersicht befindet sich unter [Voice-Komponenten](/docs/components/voice/index).
+Die Voice-Komponenten integrieren Sprachbefehle in Standard-UI-Elemente. Eine Übersicht befindet sich unter [Voice-Komponenten](/wiki/components/voice/).
 
 ## Blockchain
 

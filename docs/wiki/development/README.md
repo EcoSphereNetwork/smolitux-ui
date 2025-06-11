@@ -19,7 +19,6 @@ Diese Dokumentation enthält wichtige Informationen für Entwickler, die an der 
 
 - [Implementierungsplan](./roadmap/implementation-plan.md) - Schrittweise Umsetzung der weiteren Entwicklung
 - [Kalkulation v0.2.2](./Finanzierung/Kalkulation-v0.2.2.md) - Übersicht der geplanten Aufwände
-- [Entwickler-Prompt](./Entwickler-Prompt.md) - Leitfaden für neue Entwickler
 - [Roadmap](./roadmap.md) - Gesamte Entwicklungs-Roadmap
 
 ### Entwicklungsrichtlinien

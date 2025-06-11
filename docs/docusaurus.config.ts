@@ -17,11 +17,11 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'EcoSphereNetwork', // Usually your GitHub org/user name.
+  organizationName: 'ecospherenetwork', // Usually your GitHub org/user name.
   projectName: 'smolitux-ui', // Usually your repo name.
   trailingSlash: false,
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
