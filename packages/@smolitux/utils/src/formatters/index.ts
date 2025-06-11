@@ -35,7 +35,8 @@ export interface FormatCurrencyOptions {
 }
 
 export function formatCurrency(value: number, options: FormatCurrencyOptions = {}): string {
-  let { locale = 'en-US', currency = 'USD', decimals = 2 } = options;
+  const { locale = 'en-US', currency = 'USD' } = options;
+  let { decimals = 2 } = options;
   if (currency === 'JPY' && options.decimals === undefined) {
     decimals = 0;
   }

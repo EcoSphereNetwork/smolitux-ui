@@ -27,7 +27,7 @@ export const is = {
   },
 
   /** Determine if value is a function */
-  function(value: unknown): value is Function {
+  function(value: unknown): value is (...args: unknown[]) => unknown {
     return typeof value === 'function';
   },
 };

@@ -31,9 +31,9 @@ export interface FormControlProps extends InteractiveProps {
   /** Name des Formularelements */
   name?: string;
   /** Wert des Formularelements */
-  value?: any;
+  value?: unknown;
   /** Standardwert des Formularelements */
-  defaultValue?: any;
+  defaultValue?: unknown;
   /** Ob das Formularelement erforderlich ist */
   required?: boolean;
   /** Ob das Formularelement schreibgeschützt ist */
