@@ -11,6 +11,8 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 - Adjusted Jest configuration path for `@smolitux/testing`
 - Added named export for `defaultTheme` and cleaned up theme exports
+### Fixed
+- `FeedItem` in `@smolitux/resonance` now forwards refs correctly
 
 ## [0.3.1] - 2025-06-08
 
