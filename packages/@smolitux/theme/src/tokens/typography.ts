@@ -1,4 +1,4 @@
-export const typography = {
+export const typographyTokens = {
   fontFamily: {
     sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
     serif: ['Merriweather', 'Georgia', 'serif'],
@@ -29,4 +29,4 @@ export const typography = {
     loose: 2,
   },
 };
-export type Typography = typeof typography;
+export type TypographyTokens = typeof typographyTokens;

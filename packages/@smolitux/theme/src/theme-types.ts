@@ -13,12 +13,13 @@ export interface ColorShades {
   700: string;
   800: string;
   900: string;
+  950: string;
 }
 
 export interface Colors {
   primary: ColorShades;
   secondary: ColorShades;
-  gray: ColorShades;
+  neutral: ColorShades;
   success: ColorShades;
   warning: ColorShades;
   error: ColorShades;

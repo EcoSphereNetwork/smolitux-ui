@@ -4,7 +4,7 @@ import { createCssVariables, applyCssVariables } from '../utils/cssVariables';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 
-export interface ThemeConfig extends Tokens {}
+export type ThemeConfig = Tokens;
 
 interface ThemeContextValue {
   theme: ThemeConfig;
