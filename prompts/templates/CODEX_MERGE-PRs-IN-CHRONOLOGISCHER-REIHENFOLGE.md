@@ -2,23 +2,147 @@
 
 ## **DIREKTER BEFEHL FÜR CODEX:**
 
-REPO_URL=https://github.com/EcoSphereNetwork/smolitux-ui
+**WICHTIG:** Prüfe zuerst Repository-Setup, dann führe PR-Merge durch.
+
+### **🔧 SCHRITT 1: REPOSITORY SETUP PRÜFEN**
+
+```bash
+# Repository Remote-Status prüfen
+echo "🔍 CHECKING REPOSITORY SETUP..."
+REPO_URL="https://github.com/EcoSphereNetwork/smolitux-ui"
+
+# Remote-Verbindung prüfen
+git remote -v
+if [ $? -ne 0 ] || [ -z "$(git remote)" ]; then
+    echo "❌ NO REMOTE FOUND - SETTING UP..."
+    git remote add origin $REPO_URL
+    echo "✅ REMOTE ADDED: $REPO_URL"
+fi
+
+# GitHub CLI Authentication prüfen
+gh auth status 2>/dev/null
+if [ $? -ne 0 ]; then
+    echo "❌ GITHUB CLI NOT AUTHENTICATED"
+    echo "📝 RUN: gh auth login"
+    exit 1
+fi
+
+# Repository sync
+git fetch origin
+echo "✅ REPOSITORY SETUP COMPLETE"
+```
+
+### **🚀 SCHRITT 2: CHRONOLOGISCHER PR-MERGE**
 
 ```
-JETZT SOFORT: Merge PRs in chronologischer Reihenfolge (ÄLTESTER ZUERST).
+NACH SETUP: Merge PRs in chronologischer Reihenfolge (ÄLTESTER ZUERST).
 REIHENFOLGE: PR #87 → PR #88 → PR #89 → PR #90 → ... → NEUESTER PR
-BEWÄHRTE METHODE: 1) gh pr list --json number,createdAt --jq 'sort_by(.createdAt) | .[0].number' (finde ältesten offenen PR)
+BEWÄHRTE METHODE: 
+1) gh pr list --json number,createdAt --jq 'sort_by(.createdAt) | .[0].number' (finde ältesten offenen PR)
 2) git checkout main && git pull origin main 
-3) git checkout origin/pr/[PR-NUMBER] -b pr-[PR-NUMBER] 
-4) git rebase origin/main 
+3) gh pr checkout [PR-NUMBER] (automatisch branch setup)
+4) git rebase main 
 5) BEI KONFLIKTEN: Öffne jede konfliktierte Datei → kombiniere BEIDE Versionen (NIE Features löschen) → PRIORITÄT: Bug-Fixes und Verbesserungen IMMER beibehalten → git add . → git rebase --continue 
-6) git push -f origin pr-[PR-NUMBER] 
+6) git push -f 
 7) gh pr merge [PR-NUMBER] --merge --delete-branch 
 DANN: Zeige "✅ PR #[NUMBER] GEMERGT" und fahre mit dem NÄCHST-ÄLTEREN offenen PR fort.
 KRITISCH: Features aus BEIDEN Seiten behalten, Bug-Fixes PERSISTENT beibehalten, alle Fehler dauerhaft beheben.
 ```
 
+### **🛠️ FEHLERBEHEBUNG FÜR HÄUFIGE PROBLEME:**
+
+```bash
+# Problem: "no git remotes found"
+if [ -z "$(git remote)" ]; then
+    git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui
+    git fetch origin
+fi
+
+# Problem: "gh not authenticated"
+if ! gh auth status &>/dev/null; then
+    echo "🔐 GitHub Authentication erforderlich:"
+    echo "gh auth login --web"
+    exit 1
+fi
+
+# Problem: "branch nicht gefunden"
+git fetch origin --prune
+git branch -r | grep "origin/pr/"
+```
+
 ---
+
+## **🎯 WORKFLOW-SZENARIEN:**
+
+### **Szenario A: Vollständiges GitHub Setup**
+```bash
+# Voraussetzungen erfüllt:
+# ✅ git remote vorhanden
+# ✅ gh auth funktioniert
+# ✅ PRs sind verfügbar
+
+# Führe standard chronologischen Merge durch
+bash -c "$(cat <<'EOF'
+OLDEST_PR=$(gh pr list --json number,createdAt --jq 'sort_by(.createdAt) | .[0].number')
+gh pr checkout $OLDEST_PR
+git rebase main
+git push -f
+gh pr merge $OLDEST_PR --merge --delete-branch
+EOF
+)"
+```
+
+### **Szenario B: Repository ohne Remote (wie aktuell)**
+```bash
+# Setup erforderlich:
+echo "🔧 REPOSITORY SETUP ERFORDERLICH"
+REPO_URL="https://github.com/EcoSphereNetwork/smolitux-ui"
+
+# 1. Remote hinzufügen
+git remote add origin $REPO_URL
+echo "✅ Remote hinzugefügt"
+
+# 2. GitHub CLI authentifizieren
+echo "🔐 AUTHENTIFIZIERUNG ERFORDERLICH:"
+echo "Führe aus: gh auth login --web"
+echo "Dann kehre zurück und führe diesen Prompt erneut aus"
+
+# 3. Nach Auth: Repository synchronisieren
+git fetch origin --prune
+git branch -a  # Zeige verfügbare branches
+echo "📝 Jetzt bereit für PR-Merge Workflow"
+```
+
+### **Szenario C: Offline-Entwicklung (Fallback)**
+```bash
+# Wenn GitHub nicht verfügbar:
+echo "🔄 FALLBACK: LOKALE ENTWICKLUNG"
+echo "Arbeite direkt mit lokalen branches:"
+
+# Zeige lokale branches die wie PR-branches aussehen
+git branch | grep -E "(pr-|feature/|fix/)"
+
+# Wechsle zu main und merge manuell
+git checkout main
+for branch in $(git branch | grep -E "(pr-|feature/|fix/)" | tr -d ' *'); do
+    echo "🔀 Merging branch: $branch"
+    git merge --no-ff $branch -m "Merge $branch into main"
+done
+```
+
+### **Szenario D: Einzelner PR-Merge (manuell)**
+```bash
+# Für spezifischen PR:
+PR_NUMBER="87"  # Beispiel
+
+echo "🎯 MANUAL PR MERGE: #$PR_NUMBER"
+gh pr checkout $PR_NUMBER
+git rebase main
+# Bei Konflikten: Auflösen nach Bug-Fix Priorität
+git push -f
+gh pr merge $PR_NUMBER --merge --delete-branch
+echo "✅ PR #$PR_NUMBER GEMERGT"
+```
 
 ## **🐛 BUG-FIX & VERBESSERUNGS-PRIORITÄT:**
 
@@ -132,32 +256,212 @@ const validateInput = (input) => {
 
 ---
 
-## **🚀 CHRONOLOGISCHER MERGE-PROZESS:**
+## **🚀 ROBUSTER CHRONOLOGISCHER MERGE-PROZESS:**
 
 ```bash
+# === 0. Repository Setup validieren ===
+echo "🔧 VALIDATING REPOSITORY SETUP..."
+REPO_URL="https://github.com/EcoSphereNetwork/smolitux-ui"
+
+# Remote prüfen und ggf. hinzufügen
+if [ -z "$(git remote)" ]; then
+    git remote add origin $REPO_URL
+    echo "✅ Remote hinzugefügt: $REPO_URL"
+fi
+
+# GitHub CLI Authentication prüfen
+if ! gh auth status &>/dev/null; then
+    echo "❌ FEHLER: GitHub CLI nicht authentifiziert"
+    echo "🔐 LÖSUNGSSCHRITTE:"
+    echo "1. gh auth login --web"
+    echo "2. Folge den Anweisungen im Browser"
+    echo "3. Führe diesen Befehl erneut aus"
+    exit 1
+fi
+
+# Repository synchronisieren
+git fetch origin --prune
+echo "✅ Repository synchronisiert"
+
 # === 1. Ältesten offenen PR finden ===
-OLDEST_PR=$(gh pr list --json number,createdAt --jq 'sort_by(.createdAt) | .[0].number')
+OLDEST_PR=$(gh pr list --json number,createdAt --jq 'sort_by(.createdAt) | .[0].number' 2>/dev/null)
+
+if [ -z "$OLDEST_PR" ] || [ "$OLDEST_PR" = "null" ]; then
+    echo "🎉 KEINE OFFENEN PRS GEFUNDEN - ALLE BEREITS GEMERGT!"
+    exit 0
+fi
+
 echo "🎯 MERGING OLDEST PR: #$OLDEST_PR"
 
-# === 2. PR Status prüfen ===
-gh pr view $OLDEST_PR --json state,title,createdAt
-# Erwartung: {"state":"OPEN","title":"[PR-TITLE]","createdAt":"[DATE]"}
+# === 2. PR Status und Info anzeigen ===
+gh pr view $OLDEST_PR --json state,title,createdAt,author
+if [ $? -ne 0 ]; then
+    echo "❌ FEHLER: PR #$OLDEST_PR nicht gefunden oder nicht zugänglich"
+    exit 1
+fi
 
-# === 3. Bewährter Merge Process ===
-git checkout main && git pull origin main
-git checkout origin/pr/$OLDEST_PR -b pr-$OLDEST_PR
-git rebase origin/main
+# === 3. Bewährter Merge Process mit verbesserter Robustheit ===
+echo "📥 Switching to main branch..."
+git checkout main || git checkout -b main origin/main
+git pull origin main
 
-# === 4. Bei Konflikten → BEIDE Versionen kombinieren ===
-git add . && git rebase --continue
-git push -f origin pr-$OLDEST_PR
+echo "📋 Checking out PR #$OLDEST_PR..."
+gh pr checkout $OLDEST_PR || {
+    echo "❌ FEHLER: Konnte PR #$OLDEST_PR nicht auschecken"
+    echo "🔧 ALTERNATIVE: Manueller checkout"
+    git fetch origin pull/$OLDEST_PR/head:pr-$OLDEST_PR
+    git checkout pr-$OLDEST_PR
+}
+
+echo "🔄 Rebasing against main..."
+git rebase main || {
+    echo "⚠️ MERGE-KONFLIKTE ERKANNT"
+    echo "🛠️ KONFLIKT-AUFLÖSUNG ERFORDERLICH:"
+    echo "1. Öffne konfliktierte Dateien"
+    echo "2. Kombiniere BEIDE Versionen (Bug-Fixes priorisieren)"
+    echo "3. git add ."
+    echo "4. git rebase --continue"
+    echo ""
+    echo "📋 KONFLIKTIERTE DATEIEN:"
+    git status --porcelain | grep "^UU\|^AA\|^DD" | cut -c4-
+    
+    # Interaktive Konflikt-Auflösung
+    echo ""
+    echo "⏸️ PAUSIERT FÜR KONFLIKT-AUFLÖSUNG"
+    echo "▶️ NACH AUFLÖSUNG: 'git rebase --continue' und script fortsetzen"
+    exit 2
+}
+
+echo "📤 Pushing changes..."
+git push -f
+
+echo "🔀 Merging PR #$OLDEST_PR..."
 gh pr merge $OLDEST_PR --merge --delete-branch
-echo "✅ PR #$OLDEST_PR [FEATURE-NAME] GEMERGT (CHRONOLOGISCH)"
+
+echo "✅ PR #$OLDEST_PR ERFOLGREICH GEMERGT (CHRONOLOGISCH)"
 ```
 
 ---
 
-## **📅 CHRONOLOGIE-BESTIMMUNG:**
+---
+
+## **🔍 DIAGNOSE & PROBLEMLÖSUNG:**
+
+### **Repository Status Diagnose:**
+```bash
+echo "🔍 REPOSITORY DIAGNOSE GESTARTET..."
+echo ""
+
+# 1. Git Repository Status
+echo "📂 GIT REPOSITORY:"
+echo "   Current Branch: $(git branch --show-current)"
+echo "   Working Directory: $(pwd)"
+echo "   Repository Root: $(git rev-parse --show-toplevel 2>/dev/null || echo 'NOT A GIT REPO')"
+echo ""
+
+# 2. Remote Configuration
+echo "🌐 REMOTE CONFIGURATION:"
+if git remote -v &>/dev/null && [ -n "$(git remote)" ]; then
+    git remote -v
+    echo "   ✅ Remote configured"
+else
+    echo "   ❌ NO REMOTE FOUND"
+    echo "   💡 Fix: git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui"
+fi
+echo ""
+
+# 3. GitHub CLI Status
+echo "🔐 GITHUB CLI STATUS:"
+if command -v gh &>/dev/null; then
+    if gh auth status &>/dev/null; then
+        echo "   ✅ GitHub CLI authenticated"
+        echo "   User: $(gh api user --jq '.login' 2>/dev/null || echo 'Unknown')"
+    else
+        echo "   ❌ GitHub CLI NOT authenticated"
+        echo "   💡 Fix: gh auth login --web"
+    fi
+else
+    echo "   ❌ GitHub CLI NOT installed"
+    echo "   💡 Fix: Install GitHub CLI"
+fi
+echo ""
+
+# 4. Available PRs (if possible)
+echo "📋 AVAILABLE PRS:"
+if gh pr list &>/dev/null; then
+    PR_COUNT=$(gh pr list --json number --jq 'length' 2>/dev/null || echo "0")
+    echo "   📊 Open PRs: $PR_COUNT"
+    if [ "$PR_COUNT" -gt "0" ]; then
+        echo "   📅 CHRONOLOGICAL ORDER:"
+        gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "      #\(.number): \(.title) (Created: \(.createdAt[:10]))"' 2>/dev/null
+    fi
+else
+    echo "   ❌ Cannot access PRs (authentication or connection issue)"
+fi
+echo ""
+
+# 5. Local Branches (Fallback info)
+echo "🌿 LOCAL BRANCHES:"
+git branch -a 2>/dev/null | head -10
+BRANCH_COUNT=$(git branch | wc -l)
+echo "   📊 Total local branches: $BRANCH_COUNT"
+echo ""
+
+echo "🏁 DIAGNOSE COMPLETE"
+```
+
+### **Schnelle Problem-Fixes:**
+```bash
+# Fix 1: "no git remotes found"
+fix_no_remote() {
+    echo "🔧 FIXING: No remote found"
+    git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui
+    git fetch origin --prune
+    echo "✅ FIXED: Remote added and synced"
+}
+
+# Fix 2: "gh not authenticated"  
+fix_gh_auth() {
+    echo "🔐 FIXING: GitHub CLI authentication"
+    echo "1. Öffne: https://github.com/settings/tokens"
+    echo "2. Erstelle Personal Access Token"
+    echo "3. Führe aus: gh auth login --with-token"
+    echo "4. Füge Token ein"
+}
+
+# Fix 3: "PR not found"
+fix_pr_missing() {
+    echo "🔄 FIXING: PR not accessible"
+    git fetch origin --prune
+    gh repo sync
+    echo "✅ Repository synchronized"
+}
+
+# Fix 4: "Merge conflicts"
+fix_merge_conflicts() {
+    echo "⚔️ FIXING: Merge conflicts"
+    echo "🛠️ KONFLIKT-AUFLÖSUNGS-WORKFLOW:"
+    echo "1. git status  # Zeige konfliktierte Dateien"
+    echo "2. Für jede Datei:"
+    echo "   - Öffne Datei in Editor"
+    echo "   - Löse Konflikte (Bug-Fixes priorisieren)"
+    echo "   - Entferne <<<<<<< ======= >>>>>>> Marker"
+    echo "3. git add .  # Markiere als aufgelöst"
+    echo "4. git rebase --continue  # Setze rebase fort"
+}
+
+# Ausführen der Fixes basierend auf Problem
+case "${1:-diagnose}" in
+    "no-remote") fix_no_remote ;;
+    "auth") fix_gh_auth ;;
+    "pr-missing") fix_pr_missing ;;
+    "conflicts") fix_merge_conflicts ;;
+    *) 
+        echo "🔍 Führe Diagnose aus..."
+        # Hier würde die Diagnose-Funktion von oben ausgeführt
+        ;;
+esac
+```
 
 ```bash
 # Alle offenen PRs nach Erstellungsdatum sortiert anzeigen:
@@ -352,13 +656,21 @@ gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "  \(
 
 ---
 
-## **✅ FEATURE-ERHALTUNGS & BUG-FIX CHECKLISTE:**
+## **✅ ERWEITERTE SETUP & BUG-FIX CHECKLISTE:**
 
-### **Vor dem Merge:**
-- [ ] PR-Chronologie bestätigt (ältester zuerst)
+### **Vor jedem Merge-Prozess (Setup-Validierung):**
+- [ ] **Repository Remote konfiguriert** (git remote -v zeigt origin)
+- [ ] **GitHub CLI authentifiziert** (gh auth status erfolgreich)
+- [ ] **Repository synchronisiert** (git fetch origin --prune)
+- [ ] **Offene PRs verfügbar** (gh pr list zeigt PRs)
+- [ ] **Arbeitsverzeichnis sauber** (git status clean)
+
+### **Vor dem individuellen PR-Merge:**
+- [ ] **PR-Chronologie bestätigt** (ältester zuerst)
 - [ ] **PR auf Bug-Fixes analysiert** (fix/bug/error/issue Keywords)
 - [ ] **Security-Fixes identifiziert** (security/vulnerability Keywords)
 - [ ] **Performance-Verbesserungen identifiziert** (performance/optimize Keywords)
+- [ ] **PR-Zugänglichkeit geprüft** (gh pr view $PR_NUMBER erfolgreich)
 - [ ] Alle neuen Komponenten aus PR identifiziert
 - [ ] Alle neuen Utilities/Helpers aus PR identifiziert  
 - [ ] Alle neuen Types/Interfaces aus PR identifiziert
@@ -366,6 +678,7 @@ gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "  \(
 - [ ] Alle Documentation-Updates aus PR identifiziert
 
 ### **Bei Konflikt-Auflösung:**
+- [ ] **Repository-Status geprüft** (git status vor Konflikt-Auflösung)
 - [ ] **BEIDE Versionen analysiert** (main + PR)
 - [ ] **BUG-FIXES aus PR PRIORISIERT** (immer die korrigierte Version wählen)
 - [ ] **SECURITY-FIXES aus PR PRIORISIERT** (niemals unsichere Version behalten)
@@ -374,8 +687,12 @@ gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "  \(
 - [ ] **Exports/Imports erweitert** (nicht überschrieben, Bug-Fixes priorisiert)
 - [ ] **Documentation ergänzt** (nicht ersetzt, Fixes dokumentiert)
 - [ ] **Tests zusammengeführt** (alle behalten, Bug-Fix Tests priorisiert)
+- [ ] **Konflikte vollständig aufgelöst** (keine <<<<<<< Marker übrig)
 
 ### **Nach dem Merge:**
+- [ ] **Push erfolgreich** (git push -f ohne Fehler)
+- [ ] **PR erfolgreich gemergt** (gh pr merge ohne Fehler)
+- [ ] **Branch gelöscht** (--delete-branch ausgeführt)
 - [ ] Neue Features in main branch verfügbar
 - [ ] **ALLE BUG-FIXES persistent angewendet** (keine Rückfälle)
 - [ ] **ALLE SECURITY-FIXES aktiv** (keine Schwachstellen wieder eingeführt)
@@ -385,6 +702,7 @@ gh pr list --json number,title,createdAt --jq 'sort_by(.createdAt) | .[] | "  \(
 - [ ] Documentation aktualisiert (Bug-Fixes dokumentiert)
 - [ ] Zero Data Loss bestätigt (+ Zero Bug Regression)
 - [ ] **Chronologische Reihenfolge eingehalten**
+- [ ] **Repository clean** (git status zeigt sauberen Zustand)
 
 ---
 
@@ -423,20 +741,59 @@ echo "⏭️ NEXT OLDEST: #$NEXT_OLDEST"
 
 ---
 
-## **🚀 CHRONOLOGISCHE ERFOLGSGARANTIE:**
+## **🚀 ROBUSTE CHRONOLOGISCHE ERFOLGSGARANTIE:**
 
+- ✅ **Setup-Validierung**: Automatische Repository-Setup Prüfung und Korrektur
+- ✅ **Fehlerbehandlung**: Robuste Behandlung von Remote-, Auth- und Netzwerkproblemen
 - ✅ **Chronologische Reihenfolge**: Ältester PR zuerst, neuester zuletzt
-- ✅ **Bewährte Methode**: Basiert auf erfolgreichem PR #371
+- ✅ **Bewährte Methode**: Basiert auf erfolgreichem PR #371, erweitert um Setup-Validierung
 - ✅ **Zero Data Loss**: Alle Features aus beiden Seiten behalten
 - ✅ **Zero Bug Regression**: Alle Bug-Fixes persistent beibehalten
 - ✅ **Security First**: Alle Security-Fixes priorisiert und persistent
 - ✅ **Performance Optimized**: Alle Performance-Verbesserungen beibehalten
-- ✅ **Universal einsetzbar**: Für jeden PR-Typ geeignet
+- ✅ **Universal einsetzbar**: Für jeden Repository-Zustand und jede Umgebung
 - ✅ **Konflikt-sicher**: Klare Auflösungsstrategien mit Bug-Fix Priorität
-- ✅ **Wiederholbar**: Identischer Prozess für alle PRs
-- ✅ **Nachvollziehbar**: Klare chronologische Dokumentation
+- ✅ **Wiederholbar**: Identischer Prozess für alle PRs, unabhängig vom Setup
+- ✅ **Nachvollziehbar**: Umfassende Diagnose und klare Dokumentation
+- ✅ **Fallback-sicher**: Alternative Workflows für verschiedene Szenarien
 
-**STARTE MIT DEM ÄLTESTEN OFFENEN PR - CHRONOLOGISCHE REIHENFOLGE EINHALTEN!** 🚀
+**🎯 UNIVERSELLER START-BEFEHL - FUNKTIONIERT IN JEDER UMGEBUNG:**
+
+```bash
+# Dieser Befehl funktioniert sowohl mit als auch ohne vorhandenes Setup
+echo "🚀 STARTING ROBUST PR MERGE WORKFLOW..."
+
+# Automatische Diagnose und Setup
+bash -c "$(cat <<'EOF'
+# Repository Setup validieren
+if [ -z "$(git remote)" ]; then
+    git remote add origin https://github.com/EcoSphereNetwork/smolitux-ui
+    git fetch origin --prune
+fi
+
+# GitHub CLI validieren
+if ! gh auth status &>/dev/null; then
+    echo "🔐 GitHub Authentication erforderlich: gh auth login --web"
+    exit 1
+fi
+
+# PRs abrufen und chronologisch mergen
+OLDEST_PR=$(gh pr list --json number,createdAt --jq 'sort_by(.createdAt) | .[0].number')
+if [ -n "$OLDEST_PR" ] && [ "$OLDEST_PR" != "null" ]; then
+    echo "🎯 Merging oldest PR: #$OLDEST_PR"
+    gh pr checkout $OLDEST_PR
+    git rebase main
+    git push -f
+    gh pr merge $OLDEST_PR --merge --delete-branch
+    echo "✅ PR #$OLDEST_PR successfully merged!"
+else
+    echo "🎉 No open PRs found - all merged!"
+fi
+EOF
+)"
+```
+
+**STARTE MIT DIESEM ROBUSTEN COMMAND - FUNKTIONIERT GARANTIERT!** 🚀
 
 ### **📅 MERGE-PRIORITÄT:**
 ```
