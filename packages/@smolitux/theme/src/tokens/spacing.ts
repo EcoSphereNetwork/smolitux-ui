@@ -1,4 +1,4 @@
-export const spacing = {
+export const spacingTokens = {
   px: '1px',
   0: '0',
   0.5: '0.125rem',
@@ -23,4 +23,4 @@ export const spacing = {
   56: '14rem',
   64: '16rem',
 };
-export type Spacing = typeof spacing;
+export type SpacingTokens = typeof spacingTokens;

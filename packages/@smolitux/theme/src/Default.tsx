@@ -1,4 +1,4 @@
-import { Theme } from './types';
+import { Theme } from './theme-types';
 
 export const defaultTheme: Theme = {
   colors: {
@@ -13,6 +13,7 @@ export const defaultTheme: Theme = {
       700: '#004285',
       800: '#002957',
       900: '#001429',
+      950: '#000a14',
     },
     secondary: {
       50: '#F0FDF4',
@@ -25,8 +26,9 @@ export const defaultTheme: Theme = {
       700: '#15803D',
       800: '#166534',
       900: '#14532D',
+      950: '#0f3a24',
     },
-    gray: {
+    neutral: {
       50: '#F9FAFB',
       100: '#F3F4F6',
       200: '#E5E7EB',
@@ -37,6 +39,7 @@ export const defaultTheme: Theme = {
       700: '#374151',
       800: '#1F2937',
       900: '#111827',
+      950: '#0b0f16',
     },
     success: {
       50: '#ECFDF5',
@@ -49,6 +52,7 @@ export const defaultTheme: Theme = {
       700: '#047857',
       800: '#065F46',
       900: '#064E3B',
+      950: '#022e20',
     },
     warning: {
       50: '#FFFBEB',
@@ -61,6 +65,7 @@ export const defaultTheme: Theme = {
       700: '#B45309',
       800: '#92400E',
       900: '#78350F',
+      950: '#4e2c07',
     },
     error: {
       50: '#FEF2F2',
@@ -73,6 +78,7 @@ export const defaultTheme: Theme = {
       700: '#B91C1C',
       800: '#991B1B',
       900: '#7F1D1D',
+      950: '#4c0b0b',
     },
     info: {
       50: '#EFF6FF',
@@ -85,6 +91,7 @@ export const defaultTheme: Theme = {
       700: '#1D4ED8',
       800: '#1E40AF',
       900: '#1E3A8A',
+      950: '#14255e',
     },
     white: '#FFFFFF',
     black: '#000000',
