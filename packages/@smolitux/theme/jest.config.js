@@ -5,6 +5,7 @@ module.exports = {
   ...base,
   rootDir: __dirname,
   moduleNameMapper: {
+    ...base.moduleNameMapper,
     '^jest-matcher-utils$': '<rootDir>/../../../node_modules/jest-matcher-utils',
     '^@smolitux/([^/]+)/?(.*)$': '<rootDir>/../../../packages/@smolitux/$1/src/$2',
   },
