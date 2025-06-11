@@ -14,7 +14,7 @@ const baseConfig = [
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: ['./tsconfig.json'],
+        project: [process.env.ESLINT_TSCONFIG || './tsconfig.json'],
         sourceType: 'module',
         ecmaVersion: 'latest'
       }

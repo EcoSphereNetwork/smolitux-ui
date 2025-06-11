@@ -13,7 +13,7 @@
     "build:js": "tsup src/index.ts --format cjs,esm --external whatwg-url",
     "build:types": "tsc --emitDeclarationOnly",
     "dev": "tsup src/index.ts --format cjs,esm --watch --external whatwg-url",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint": "ESLINT_TSCONFIG=tsconfig.eslint.json TSESTREE_NO_DEFAULT_PROJECT=1 eslint \"src/**/*.{ts,tsx}\"",
     "test": "jest"
   },
   "dependencies": {

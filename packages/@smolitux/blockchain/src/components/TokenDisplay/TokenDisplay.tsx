@@ -1,5 +1,3 @@
-// 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React from 'react';
 import { Card } from '@smolitux/core';
 import { TokenInfo } from '../../types';
