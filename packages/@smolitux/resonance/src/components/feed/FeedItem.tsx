@@ -72,6 +72,7 @@ export interface FeedItemProps {
 /**
  * FeedItem-Komponente für die Anzeige eines einzelnen Beitrags im Feed.
  * Unterstützt verschiedene Inhaltstypen und Interaktionen.
+ * Refs können auf das Wurzelelement weitergereicht werden.
  */
 export const FeedItem = React.forwardRef<HTMLDivElement, FeedItemProps>(
   (
