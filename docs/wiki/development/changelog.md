@@ -26,6 +26,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 
 
+## [0.3.3] - 2025-06-19
+- Restored explicit TypeScript path mappings for all packages
+- Removed invalid wildcard alias causing build errors
+
 ## [0.2.3] - 2025-06-08
 
 - Updated TypeScript docs configuration

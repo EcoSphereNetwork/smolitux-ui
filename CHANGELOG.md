@@ -83,6 +83,10 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - Updated federation Jest rootDir
 - Updated TODO logs for federation components
 - Fixed TypeScript path aliases for all packages
+## [0.3.7] - 2025-06-19
+### Fixed
+- Restored explicit TypeScript path mappings for all packages
+- Removed invalid wildcard alias causing build errors
 ## [0.3.2] - 2025-06-08
 ### Added
 - Documentation page summarizing common open-source licenses
