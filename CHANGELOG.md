@@ -50,6 +50,9 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 ### Fixed
 - Removed obsolete test TODO comments for chart components
 - Updated documentation to reflect existing tests
+### Fixed
+- Removed obsolete test TODO comments for chart components
+- Updated documentation to reflect existing tests
 
 ## [0.3.7] - 2025-06-19
 ### Changed

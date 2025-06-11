@@ -35,7 +35,8 @@
       "@smolitux/federation": ["packages/@smolitux/federation/src"],
       "@smolitux/federation/*": ["packages/@smolitux/federation/src/*"],
       "@smolitux/voice-control": ["packages/@smolitux/voice-control/src"],
-      "@smolitux/voice-control/*": ["packages/@smolitux/voice-control/src/*"]
+      "@smolitux/voice-control/*": ["packages/@smolitux/voice-control/src/*"],
+      "@smolitux/*": ["packages/@smolitux/*/src"]
     }
   },
   "include": ["packages", "docs"],
