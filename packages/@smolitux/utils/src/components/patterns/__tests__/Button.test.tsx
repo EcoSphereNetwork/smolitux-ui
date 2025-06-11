@@ -22,7 +22,7 @@ describe('Button', () => {
       </Button>
     );
     expect(container.firstChild).toHaveClass('custom');
-    expect(container.firstChild).toHaveStyle('background-color: red');
+    expect(container.firstChild).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   it('is disabled when disabled prop is true', () => {
