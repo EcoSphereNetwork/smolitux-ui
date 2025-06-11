@@ -1,9 +1,9 @@
 # Smolitux UI Component Status
 
-Total Components: 882
+Total Components: 883
 Test Coverage: 43%
-Story Coverage: 29%
-Last Updated: 2025-06-10 23:22:50
+Story Coverage: 28%
+Last Updated: 2025-06-10 23:25:21
 Previous Update: 2025-06-10 22:09:41
 
 ## Summary
@@ -36,9 +36,15 @@ This report shows the completion status of all components in the Smolitux UI lib
 - Status: ⚠️ In Progress
 
 ### @smolitux/media
+<<<<<<< HEAD
 - Components: 32
 - Tests: 16/32 (50%)
 - Stories: 8/32 (25%)
+=======
+- Components: 33
+- Tests: 17/33 (51%)
+- Stories: 8/33 (24%)
+>>>>>>> 5d8fb622d (Update coverage dashboards)
 - Status: ⚠️ In Progress
 
 ### @smolitux/community
@@ -76,3 +82,7 @@ This report shows the completion status of all components in the Smolitux UI lib
 - Tests: 2/6 (33%)
 - Stories: 2/6 (33%)
 - Status: ⚠️ In Progress
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5d8fb622d (Update coverage dashboards)
