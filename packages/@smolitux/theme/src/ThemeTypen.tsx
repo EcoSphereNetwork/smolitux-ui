@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-export interface ThemeTypenProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export type ThemeTypenProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const ThemeTypen = forwardRef<HTMLButtonElement, ThemeTypenProps>(
   ({ children, ...props }, ref) => (
