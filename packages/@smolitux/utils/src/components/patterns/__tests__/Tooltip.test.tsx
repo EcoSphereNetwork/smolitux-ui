@@ -209,7 +209,7 @@ describe('Tooltip', () => {
     );
 
     fireEvent.mouseEnter(screen.getByText('Hover me'));
-    expect(document.querySelector('.tooltip')).toHaveStyle('background-color: red');
+    expect(document.querySelector('.tooltip')).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   it('renders with different placements', () => {

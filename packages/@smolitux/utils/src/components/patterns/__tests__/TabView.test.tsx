@@ -111,7 +111,7 @@ describe('TabView', () => {
     expect(enclosedTab).toHaveStyle('border-width: 1px');
     expect(enclosedTab).toHaveStyle('border-style: solid');
     expect(enclosedTab).toHaveStyle('border-color: #3b82f6');
-    expect(enclosedTab).toHaveStyle('border-bottom-color: transparent');
+    expect(enclosedTab).toHaveStyle('border-bottom-color: rgba(0, 0, 0, 0)');
 
     rerender(<TabView tabs={tabs} activeTab="tab1" variant="soft-rounded" />);
     const softRoundedTab = screen.getByText('Tab 1').closest('.tab');

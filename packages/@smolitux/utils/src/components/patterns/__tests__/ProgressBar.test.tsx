@@ -16,7 +16,7 @@ describe('ProgressBar', () => {
 
   it('applies custom style', () => {
     const { container } = render(<ProgressBar value={50} style={{ backgroundColor: 'red' }} />);
-    expect(container.firstChild).toHaveStyle('background-color: red');
+    expect(container.firstChild).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   it('shows value when showValue=true', () => {
