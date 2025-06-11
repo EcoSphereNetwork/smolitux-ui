@@ -10,7 +10,9 @@
     "lint": "eslint packages/@smolitux --ext .ts,.tsx",
     "test": "jest",
     "build": "tsup",
-    "build:all": "npm run build --workspace=@smolitux/utils && npm run build --workspace=@smolitux/theme && npm run build --workspace=@smolitux/core"
+    "build:all": "npm run build --workspace=@smolitux/utils && npm run build --workspace=@smolitux/theme && npm run build --workspace=@smolitux/core",
+    "docs:build": "npm --workspace docs run build",
+    "docs:deploy": "npm --workspace docs run deploy"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
