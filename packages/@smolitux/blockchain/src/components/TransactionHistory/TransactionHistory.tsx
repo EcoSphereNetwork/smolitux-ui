@@ -1,5 +1,3 @@
-// 🔧 TODO [Codex]: Tests fehlen – prüfen & umsetzen
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React, { useState } from 'react';
 import { Card, Button } from '@smolitux/core';
 import { TransactionType, Transaction } from '../../types';
