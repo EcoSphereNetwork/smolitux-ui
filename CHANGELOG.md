@@ -4,28 +4,33 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 
 > **Hinweis:** Die vollständige Dokumentation finden Sie im [Wiki](/docs/wiki/index.md). Die aktuelle Version des Changelogs finden Sie [hier](/docs/wiki/development/changelog.md).
 
-## [0.3.3] - 2025-06-17
-### Added
-- Component counts documented in component-status.md
+## [0.3.7] - 2025-06-20
+### Fixed
+- Marked ChartAxis, ChartLegend and Histogram tests as complete in documentation
+- Removed obsolete in-code TODO comments referencing missing tests
+
+## [0.3.6] - 2025-06-19
+### Changed
+- `Collapse` component now supports `forwardRef` and exposes the container ref.
+
+## [0.3.5] - 2025-06-18
+### Changed
+- `Tooltip` component now uses `forwardRef` for external ref access
 
 ## [0.3.4] - 2025-06-18
 ### Changed
 - Added forwardRef and data-testid to `Option` component
 - Updated related tests and stories
 
-## [0.3.5] - 2025-06-18
-### Changed
-- `Tooltip` component now uses `forwardRef` for external ref access
+## [0.3.3] - 2025-06-17
+### Added
+- Component counts documented in component-status.md
 
-## [0.3.6] - 2025-06-19
-### Changed
-- `Collapse` component now supports `forwardRef` and exposes the container ref.
 ## [0.3.2] - 2025-06-08
 ### Added
 - Offline Komponentenscan und TODO-Liste erstellt
 
 ## [0.3.1] - 2025-06-08
-
 ### Added
 - component status updated with voice-control package
 ## [0.3.0] - 2025-06-08
