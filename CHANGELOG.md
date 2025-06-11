@@ -82,6 +82,22 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei dokumentiert
 - Forward refs added to all federation components with display names
 - Updated federation Jest rootDir
 - Updated TODO logs for federation components
+- Fixed TypeScript path aliases for all packages
+## [0.3.2] - 2025-06-08
+### Added
+- Documentation page summarizing common open-source licenses
+- forwardRef support for `DashboardLayout`
+- Accessibility tests for `Header` and `Footer`
+- Storybook stories for `NotificationCenter`
+- Component counts documented in component-status.md
+### Changed
+- DashboardLayout forwards refs to its root element
+- `NotificationCenter` now forwards refs and exposes a `data-testid`
+- `AudioPlayer` component now uses `forwardRef` and sets `displayName`.
+- `Slide` component now uses `forwardRef` for external ref access and updated tests
+- Forward refs added to all federation components with display names
+- Updated federation Jest rootDir
+- Updated TODO logs for federation components
 ## [0.3.2] - 2025-06-08
 
 ### Added
