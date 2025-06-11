@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { WalletConnect } from '../WalletConnect';
 import { EthereumProvider } from '../../../types';
+
 jest.mock('@smolitux/core', () => ({
   Button: (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button {...props} />

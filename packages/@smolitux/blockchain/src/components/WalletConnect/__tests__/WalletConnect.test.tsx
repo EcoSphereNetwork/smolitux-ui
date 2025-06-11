@@ -9,6 +9,7 @@ jest.mock('@smolitux/core', () => ({
   ),
   Card: (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />,
 }));
+
 const mockRequest = jest.fn();
 const mockEthereum: EthereumProvider = {
   request: mockRequest as unknown as EthereumProvider['request'],

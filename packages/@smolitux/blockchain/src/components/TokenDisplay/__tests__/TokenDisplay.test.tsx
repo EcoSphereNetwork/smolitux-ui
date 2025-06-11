@@ -9,6 +9,7 @@ jest.mock('@smolitux/core', () => ({
     <button {...props} />
   ),
 }));
+
 const token: TokenInfo = {
   symbol: 'ETH',
   name: 'Ethereum',
