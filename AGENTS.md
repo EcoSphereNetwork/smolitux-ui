@@ -37,7 +37,7 @@ Avoids:
 
 ### 🔄 In Progress
 - **@smolitux/core** – 534 foundational components – 🔄 Active
-- Completed: Button, Card, Checkbox, Collapse, ColorPicker (5/534)
+- Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker (6/534)
 
 
 ### ⏳ Pending
