@@ -65,8 +65,8 @@ describe('Card', () => {
     );
 
     const card = screen.getByText('Card Content').closest('.card');
-    expect(card).toHaveStyle('background-color: lightblue');
-    expect(card).toHaveStyle('padding: 20px');
+    expect(card).toHaveAttribute('style', expect.stringContaining('background-color: lightblue'));
+    expect(card).toHaveAttribute('style', expect.stringContaining('padding: 20px'));
   });
 
   it('renders with different variants', () => {

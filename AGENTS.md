@@ -37,6 +37,7 @@ Avoids:
 
 ### 🔄 In Progress
 - **@smolitux/core** – 534 foundational components – 🔄 Active
+  - Completed: Button, Card, Checkbox (3/534)
 
 ### ⏳ Pending
 - **@smolitux/utils**  

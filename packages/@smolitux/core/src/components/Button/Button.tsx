@@ -4,23 +4,11 @@ import { clsx } from '@smolitux/utils';
 /**
  * Props for the Button component
  */
-export interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Whether the button is an icon button */
-  isIconButton?: boolean;
-  /** ID of the button */
-  id?: string;
-  /** Content to display inside the component */
-  children?: React.ReactNode;
-  /** Additional CSS classes to apply */
-  className?: string;
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Visual variant of the component */
   variant?: 'primary' | 'secondary' | 'tertiary' | 'danger';
   /** Size variant of the component */
   size?: 'sm' | 'md' | 'lg';
-  /** Whether the component is disabled */
-  disabled?: boolean;
-  /** Click event handler */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 /**
@@ -34,7 +22,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
  * <Button variant="primary">Content</Button>
  * ```
  */
-export const Button = forwardRef<HTMLDivElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
@@ -42,32 +30,28 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
       variant = 'primary',
       size = 'md',
       disabled = false,
-      onClick,
+      type = 'button',
       ...props
     },
     ref
-  ) => {
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          'smx-button',
-          `smx-button--${variant}`,
-          `smx-button--${size}`,
-          {
-            'smx-button--disabled': disabled,
-          },
-          className
-        )}
-        onClick={disabled ? undefined : onClick}
-        aria-disabled={disabled}
-        data-testid="Button"
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
+  ) => (
+    <button
+      ref={ref}
+      type={type}
+      className={clsx(
+        'smx-button',
+        `smx-button--${variant}`,
+        `smx-button--${size}`,
+        { 'smx-button--disabled': disabled },
+        className
+      )}
+      disabled={disabled}
+      data-testid="Button"
+      {...props}
+    >
+      {children}
+    </button>
+  )
 );
 
 Button.displayName = 'Button';
