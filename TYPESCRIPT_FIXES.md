@@ -6,7 +6,7 @@ Dieses Dokument enthält eine Übersicht der TypeScript-Fehler, die in der Smoli
 
 Folgende Komponenten wurden vorübergehend deaktiviert, um einen erfolgreichen Build zu ermöglichen:
 
-1. **FormField**: Probleme mit der Typzuweisung für Labels und Refs
+1. **FormField**: Probleme mit der Typzuweisung für Labels und Refs – *Behoben ✅*
 2. **Menu und MenuItem**: Probleme mit Refs und Event-Handlern
 3. **MenuDivider und MenuDropdown**: Abhängigkeiten zu Menu-Komponenten
 4. **FileUpload**: Probleme mit FormControlContextType
