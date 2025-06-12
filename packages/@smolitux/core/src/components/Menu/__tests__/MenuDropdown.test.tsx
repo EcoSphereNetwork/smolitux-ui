@@ -4,6 +4,10 @@ import userEvent from '@testing-library/user-event';
 import { MenuDropdown } from '../MenuDropdown';
 import Button from '../../Button';
 
+jest.mock('@smolitux/theme', () => ({
+  useTheme: () => ({ themeMode: 'light' }),
+}));
+
 describe('MenuDropdown', () => {
   it('forwards ref to dropdown container', async () => {
     const user = userEvent.setup();
