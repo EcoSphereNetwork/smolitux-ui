@@ -2,7 +2,8 @@
 
 ## Overall Progress
 - Packages completed: 1/13
- - Components completed in @smolitux/core: 11/534
+- Components completed in @smolitux/core: 11/534
+
 
 ## Recent Activity
 - Completed Dialog component with tests and documentation
@@ -11,5 +12,6 @@
 - Implemented FileUpload component with tests and stories
 
 ## Next Action
- - Continue component loop with Icon
+- Continue component loop with Icon
+
 
