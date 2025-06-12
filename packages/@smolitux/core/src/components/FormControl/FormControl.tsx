@@ -28,6 +28,12 @@ export interface FormControlContextType {
   isSuccess?: boolean;
   /** Ist das Formularfeld im Ladezustand? */
   isLoading?: boolean;
+  /** Fehlermeldung */
+  errorMessage?: string;
+  /** Erfolgsmeldung */
+  successMessage?: string;
+  /** Hilfetext */
+  helperText?: string;
 }
 
 export type FormControlSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -72,6 +78,9 @@ export const useFormControl = () => {
       isInvalid: false,
       isSuccess: false,
       isLoading: false,
+      errorMessage: undefined,
+      successMessage: undefined,
+      helperText: undefined,
     };
   }
   return context;
@@ -301,11 +310,16 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
         isInvalid: Boolean(error) || isInvalid,
         isSuccess,
         isLoading,
+        errorMessage: error ? error.toString() : undefined,
+        successMessage: successMessage ? successMessage.toString() : undefined,
+        helperText: helperText ? helperText.toString() : undefined,
       }),
       [
         disabled,
         required,
         error,
+        successMessage,
+        helperText,
         uniqueId,
         label,
         name,
