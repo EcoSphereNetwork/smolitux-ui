@@ -3,6 +3,21 @@ import { render, screen, fireEvent } from '@testing-library/react';
 // import { a11y } from '@smolitux/testing';
 import { DatePicker } from '../DatePicker';
 
+// Mock Theme and FormControl to avoid context errors
+jest.mock('@smolitux/theme', () => ({
+  useTheme: jest.fn(() => ({ themeMode: 'light' })),
+}));
+
+jest.mock('../../FormControl/FormControl', () => ({
+  useFormControl: () => ({
+    id: 'test-id',
+    disabled: false,
+    hasError: false,
+    required: false,
+    readOnly: false,
+  }),
+}));
+
 // Mock für a11y, da es Probleme mit jest-axe gibt
 const a11y = {
   testA11y: async () => ({ violations: [] }),

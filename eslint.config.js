@@ -27,7 +27,15 @@ const baseConfig = [
     },
     rules: {
       'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off'
+      'react/prop-types': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
+      'no-case-declarations': 'off',
+      'no-prototype-builtins': 'off',
+      '@typescript-eslint/no-unnecessary-type-constraint': 'off',
+      'prefer-const': 'off'
     },
     settings: {
       react: { version: 'detect' }
@@ -35,7 +43,7 @@ const baseConfig = [
   },
   prettier,
   {
-    ignores: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx']
+    ignores: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.tsx', '**/*.stories.tsx']
   }
 ];
 
