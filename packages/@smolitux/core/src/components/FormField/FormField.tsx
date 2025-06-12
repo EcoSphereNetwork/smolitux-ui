@@ -1,11 +1,10 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 import React from 'react';
 import {
   FormField as ValidationFormField,
   FormFieldProps as ValidationFormFieldProps,
 } from '../../validation/FormField';
 
-export type FormFieldProps<T = any> = ValidationFormFieldProps<T> & {
+export type FormFieldProps<T = unknown> = ValidationFormFieldProps<T> & {
   /**
    * Die Größe des Formularfelds
    */
@@ -57,11 +56,6 @@ export type FormFieldProps<T = any> = ValidationFormFieldProps<T> & {
   labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   /**
-   * Ob das Label eine andere Schriftfamilie haben soll
-   */
-  labelFont?: string;
-
-  /**
    * Ob das Label einen anderen Schriftstil haben soll
    */
   labelStyle?: React.CSSProperties;
@@ -95,6 +89,16 @@ export type FormFieldProps<T = any> = ValidationFormFieldProps<T> & {
    * Ob der Hilfetext eine andere CSS-Klasse haben soll
    */
   helperTextClassName?: string;
+
+  /**
+   * Zusätzliche Klasse für die Fehlermeldung
+   */
+  errorClassName?: string;
+
+  /**
+   * Ob das Label ausgeblendet werden soll
+   */
+  hideLabel?: boolean;
 
   /**
    * Ob das Formularfeld einen Tooltip haben soll
@@ -195,12 +199,23 @@ export type FormFieldProps<T = any> = ValidationFormFieldProps<T> & {
    * Der maximale Fortschritt des Formularfelds
    */
   progressMax?: number;
+
+  /** Zusätzliche CSS-Klasse für das Wrapper-Element */
+  className?: string;
+
+  /** Inline-Stile für das Wrapper-Element */
+  style?: React.CSSProperties;
+
+  /** Eingabekomponente */
+  component: React.ComponentType<Record<string, unknown>>;
+
+  children?: React.ReactNode;
 };
 
 /**
  * FormField-Komponente
  */
-export const FormField = <T extends any>({
+export const FormField = <T,>({
   size = 'md',
   variant = 'outline',
   labelPlacement = 'top',
@@ -211,7 +226,6 @@ export const FormField = <T extends any>({
   labelStrikethrough = false,
   labelColor,
   labelSize,
-  labelFont,
   labelStyle,
   labelClassName = '',
   helperText,
@@ -219,6 +233,8 @@ export const FormField = <T extends any>({
   helperTextSize = 'sm',
   helperTextStyle,
   helperTextClassName = '',
+  errorClassName = '',
+  hideLabel = false,
   tooltip,
   hint,
   bordered = true,
@@ -245,10 +261,214 @@ export const FormField = <T extends any>({
   children,
   ...props
 }: FormFieldProps<T>) => {
-  // Erstelle ein Wrapper-Komponente, die die Validierungs-FormField-Komponente umschließt
-  // Wir deaktivieren die FormField-Komponente vorübergehend, um den Build zu ermöglichen
-  
-  return null;
+  const EnhancedComponent = (componentProps: Record<string, unknown>) => {
+    const {
+      name,
+      value,
+      onChange,
+      onBlur,
+      hasError,
+      errorMessages,
+      touched,
+      ...restProps
+    } = componentProps as ValidationFormFieldProps<T> & {
+      errorMessages?: string[];
+      [key: string]: unknown;
+    };
+
+    const inputProps = { ...restProps } as Record<string, unknown>;
+    delete inputProps.labelPlacement;
+    delete inputProps.labelWidth;
+    delete inputProps.labelBold;
+    delete inputProps.labelItalic;
+    delete inputProps.labelUnderline;
+    delete inputProps.labelStrikethrough;
+    delete inputProps.labelColor;
+    delete inputProps.labelSize;
+    delete inputProps.labelStyle;
+    delete inputProps.labelClassName;
+    delete inputProps.helperText;
+    delete inputProps.helperTextColor;
+    delete inputProps.helperTextSize;
+    delete inputProps.helperTextStyle;
+    delete inputProps.helperTextClassName;
+    delete inputProps.errorClassName;
+    delete inputProps.hideLabel;
+    delete inputProps.errorMessage;
+    delete inputProps.isInvalid;
+    delete inputProps.dirty;
+    delete inputProps.touched;
+    delete inputProps.required;
+    delete inputProps.disabled;
+    delete inputProps.readOnly;
+    delete inputProps['data-testid'];
+    delete inputProps.hint;
+    delete inputProps.bordered;
+    delete inputProps.shadow;
+    delete inputProps.rounded;
+    delete inputProps.background;
+    delete inputProps.padding;
+    delete inputProps.fullWidth;
+    delete inputProps.className;
+    delete inputProps.style;
+    delete inputProps.component;
+    delete inputProps.children;
+
+    const labelClasses = [
+      hideLabel ? 'sr-only' : 'block',
+      labelBold ? 'font-bold' : 'font-medium',
+      labelItalic ? 'italic' : '',
+      labelUnderline ? 'underline' : '',
+      labelStrikethrough ? 'line-through' : '',
+      labelColor ? `text-${labelColor}` : 'text-gray-700 dark:text-gray-300',
+      labelSize ? `text-${labelSize}` : 'text-sm',
+      labelClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const helperTextClasses = [
+      'mt-1',
+      helperTextColor ? `text-${helperTextColor}` : 'text-gray-500 dark:text-gray-400',
+      helperTextSize ? `text-${helperTextSize}` : 'text-xs',
+      helperTextClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const errorTextClasses = [
+      'mt-1 text-xs text-red-500 dark:text-red-400',
+      errorClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const containerClasses = [
+      'form-field',
+      hasError || props.isInvalid ? 'is-invalid' : '',
+      labelPlacement === 'left' ? 'sm:flex sm:items-start' : '',
+      labelPlacement === 'right' ? 'sm:flex sm:flex-row-reverse sm:items-start' : '',
+      bordered ? 'border border-gray-300 dark:border-gray-600' : '',
+      shadow ? 'shadow-md' : '',
+      rounded ? 'rounded-lg' : '',
+      background ? 'bg-white dark:bg-gray-800' : '',
+      padding ? 'p-4' : '',
+      fullWidth ? 'w-full' : '',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const labelStyles = {
+      ...labelStyle,
+      ...(labelPlacement !== 'top' && labelWidth
+        ? { width: typeof labelWidth === 'number' ? `${labelWidth}px` : labelWidth }
+        : {}),
+    } as React.CSSProperties;
+
+    const enhancedProps = {
+      ...inputProps,
+      name,
+      value,
+      onChange,
+      onBlur,
+      hasError,
+      errorMessages,
+      size,
+      variant,
+      disabled: disabled || loading,
+      readOnly,
+      required,
+      isLoading: loading,
+      showLoadingIndicator,
+      showSuccessIndicator,
+      showErrorIndicator,
+      showCounter,
+      maxLength,
+      showProgressBar,
+      progress,
+      progressMax,
+      tooltip,
+      isValid: !hasError && touched,
+      isInvalid: hasError,
+    };
+
+    return (
+      <div className={containerClasses} style={style} data-testid="form-field">
+        {(props as { label?: React.ReactNode }).label && (
+          <label htmlFor={(props as { id?: string }).id || name} className={labelClasses} style={labelStyles} data-testid="label">
+            {(props as { label?: React.ReactNode }).label}
+            {required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
+            {tooltip && (
+              <span className="ml-1 text-gray-400 cursor-help" title={tooltip} aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="inline-block w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+            )}
+          </label>
+        )}
+
+        <div className={labelPlacement !== 'top' ? 'sm:flex-1' : ''}>
+          {React.createElement(component, enhancedProps, children)}
+
+          {helperText || hasError || props.isInvalid ? (
+            <div
+              className={hasError || props.isInvalid ? errorTextClasses : helperTextClasses}
+              style={helperTextStyle}
+              data-testid={hasError || props.isInvalid ? 'error-message' : 'helper-text'}
+            >
+              {(
+                hasError && errorMessages && errorMessages.length > 0
+                  ? errorMessages[0]
+                  : props.isInvalid
+                  ? (props as { errorMessage?: React.ReactNode }).errorMessage
+                  : helperText
+              ) as React.ReactNode}
+            </div>
+          ) : null}
+
+          {hint && <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">{hint}</div>}
+
+          {showCounter && maxLength && (
+            <div className="mt-1 text-xs text-gray-500 dark:text-gray-400 text-right">
+              {value ? String(value).length : 0} / {maxLength}
+            </div>
+          )}
+
+          {showProgressBar && (
+            <div className="mt-1 w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full">
+              <div
+                className="h-1 bg-primary-500 dark:bg-primary-400 rounded-full"
+                style={{ width: `${Math.min(100, (progress / progressMax) * 100)}%` }}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <ValidationFormField
+      component={EnhancedComponent}
+      disabled={disabled || loading}
+      readOnly={readOnly}
+      required={required}
+      {...props}
+    >
+      {children}
+    </ValidationFormField>
+  );
 };
 
 export default FormField;

@@ -21,7 +21,11 @@ export type TransitionOptions = {
 export type TransitionResult<T extends HTMLElement = HTMLElement> = {
   state: TransitionState;
   isVisible: boolean;
-  ref: React.RefObject<T>;
+  /**
+   * Ref auf das animierte Element. Mutable, damit aufrufende Komponenten den
+   * aktuellen DOM-Knoten setzen können.
+   */
+  ref: React.MutableRefObject<T | null>;
   style: React.CSSProperties;
 };
 
@@ -59,7 +63,7 @@ export const useTransition = <T extends HTMLElement = HTMLElement>(
     return !mountOnEnter;
   });
 
-  const ref = useRef<T>(null);
+  const ref = useRef<T | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Transition-Optionen auflösen
