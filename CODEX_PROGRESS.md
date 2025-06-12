@@ -2,7 +2,8 @@
 
 ## Overall Progress
 - Packages completed: 1/13
- - Components completed in @smolitux/core: 12/534
+- Components completed in @smolitux/core: 12/534
+
 
 ## Recent Activity
 - Completed Dialog component with tests and documentation
@@ -14,4 +15,5 @@
 
 ## Next Action
  - Continue component loop with Input
+
 
