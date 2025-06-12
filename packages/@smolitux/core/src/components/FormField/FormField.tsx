@@ -243,8 +243,44 @@ export const FormField = <T,>({
   ...props
 }: FormFieldProps<T>) => {
   const EnhancedComponent = (componentProps: Record<string, unknown>) => {
-    const { name, value, onChange, onBlur, hasError, errorMessages, touched, ...restProps } =
-      componentProps as ValidationFormFieldProps<T> & Record<string, unknown>;
+    const {
+      name,
+      value,
+      onChange,
+      onBlur,
+      hasError,
+      errorMessages,
+      touched,
+      ...restProps
+    } = componentProps as ValidationFormFieldProps<T> & Record<string, unknown>;
+
+    const inputProps = { ...restProps } as Record<string, unknown>;
+    delete inputProps.labelPlacement;
+    delete inputProps.labelWidth;
+    delete inputProps.labelBold;
+    delete inputProps.labelItalic;
+    delete inputProps.labelUnderline;
+    delete inputProps.labelStrikethrough;
+    delete inputProps.labelColor;
+    delete inputProps.labelSize;
+    delete inputProps.labelStyle;
+    delete inputProps.labelClassName;
+    delete inputProps.helperText;
+    delete inputProps.helperTextColor;
+    delete inputProps.helperTextSize;
+    delete inputProps.helperTextStyle;
+    delete inputProps.helperTextClassName;
+    delete inputProps.hint;
+    delete inputProps.bordered;
+    delete inputProps.shadow;
+    delete inputProps.rounded;
+    delete inputProps.background;
+    delete inputProps.padding;
+    delete inputProps.fullWidth;
+    delete inputProps.className;
+    delete inputProps.style;
+    delete inputProps.component;
+    delete inputProps.children;
 
     const labelClasses = [
       'block',
@@ -293,7 +329,7 @@ export const FormField = <T,>({
     } as React.CSSProperties;
 
     const enhancedProps = {
-      ...restProps,
+      ...inputProps,
       name,
       value,
       onChange,
