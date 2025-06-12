@@ -164,7 +164,7 @@ export const A11yDrawer: React.FC<A11yDrawerProps> = (props) => {
         aria-atomic={atomic ? 'true' : undefined}
         aria-relevant={relevant}
         data-testid={testId || 'a11y-drawer'}
-        returnFocusToElement={trapFocus ? (document.activeElement as HTMLElement) : undefined}
+        trapFocus={trapFocus}
         {...rest}
       />
 
