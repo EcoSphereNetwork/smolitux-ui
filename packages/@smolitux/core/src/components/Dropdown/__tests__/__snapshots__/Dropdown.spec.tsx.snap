@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown snapshot closed 1`] = `
+<div
+  className=""
+>
+  <button
+    aria-controls="dropdown-test-list"
+    aria-disabled={false}
+    aria-expanded={false}
+    aria-haspopup="listbox"
+    className="border px-3 py-1 rounded w-full text-left"
+    data-testid="dropdown-button"
+    disabled={false}
+    id="dropdown-test"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    type="button"
+  >
+    One
+  </button>
+</div>
+`;
