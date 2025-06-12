@@ -10,7 +10,7 @@ describe('Button', () => {
   // Rendering tests
   it('renders without crashing', () => {
     render(<Button>Test</Button>);
-    expect(screen.getByTestId('Button')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('renders children correctly', () => {
@@ -35,12 +35,19 @@ describe('Button', () => {
     expect(screen.getByTestId('Button')).toHaveClass('smx-button--lg');
   });
 
+  it('uses button element with type attribute', () => {
+    render(<Button>Test</Button>);
+    const element = screen.getByRole('button');
+    expect(element.tagName).toBe('BUTTON');
+    expect(element).toHaveAttribute('type', 'button');
+  });
+
   // Disabled state tests
   it('applies disabled state correctly', () => {
     render(<Button disabled>Test</Button>);
-    const element = screen.getByTestId('Button');
+    const element = screen.getByRole('button');
     expect(element).toHaveClass('smx-button--disabled');
-    expect(element).toHaveAttribute('aria-disabled', 'true');
+    expect(element).toBeDisabled();
   });
 
   // Interaction tests
@@ -48,17 +55,21 @@ describe('Button', () => {
     const user = userEvent.setup();
     const handleClick = jest.fn();
     render(<Button onClick={handleClick}>Test</Button>);
-    
-    await user.click(screen.getByTestId('Button'));
+
+    await user.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   it('does not trigger click when disabled', async () => {
     const user = userEvent.setup();
     const handleClick = jest.fn();
-    render(<Button onClick={handleClick} disabled>Test</Button>);
-    
-    await user.click(screen.getByTestId('Button'));
+    render(
+      <Button onClick={handleClick} disabled>
+        Test
+      </Button>
+    );
+
+    await user.click(screen.getByRole('button'));
     expect(handleClick).not.toHaveBeenCalled();
   });
 

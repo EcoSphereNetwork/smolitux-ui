@@ -20,18 +20,12 @@ jest.mock('../../FormControl/FormControl', () => ({
 
 describe('DatePicker Snapshots', () => {
   beforeEach(() => {
-    // Mock für Date
-    const mockDate = new Date(2023, 0, 15); // 15. Januar 2023
-    jest.spyOn(global, 'Date').mockImplementation((args) => {
-      if (args) {
-        return new Date(args);
-      }
-      return mockDate;
-    });
+    // Fix system time for deterministic snapshots
+    jest.useFakeTimers().setSystemTime(new Date(2023, 0, 15));
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    jest.useRealTimers();
   });
 
   it('renders default date picker correctly', () => {

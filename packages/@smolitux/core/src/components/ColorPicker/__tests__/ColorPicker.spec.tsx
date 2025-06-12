@@ -19,6 +19,13 @@ jest.mock('../../FormControl/FormControl', () => ({
 }));
 
 describe('ColorPicker Snapshots', () => {
+  beforeAll(() => {
+    jest.spyOn(Math, 'random').mockReturnValue(0.42);
+  });
+
+  afterAll(() => {
+    (Math.random as jest.Mock).mockRestore();
+  });
   it('renders default color picker correctly', () => {
     const { asFragment } = render(<ColorPicker />);
     expect(asFragment()).toMatchSnapshot();
