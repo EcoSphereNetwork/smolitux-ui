@@ -1,104 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown Snapshots renders closed dropdown 1`] = `
+exports[`Dropdown snapshot closed 1`] = `
 <div
-  className="dropdown dropdown-md"
-  data-placement="bottom"
-  data-testid="dropdown"
-  id="dropdown-test"
+  className=""
 >
   <button
-    aria-disabled="false"
+    aria-controls="dropdown-test-list"
+    aria-disabled={false}
     aria-expanded={false}
-    aria-haspopup="menu"
-    className="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 text-sm py-2 px-3 cursor-pointer"
+    aria-haspopup="listbox"
+    className="border px-3 py-1 rounded w-full text-left"
+    data-testid="dropdown-button"
     disabled={false}
+    id="dropdown-test"
+
     onClick={[Function]}
     onKeyDown={[Function]}
     type="button"
   >
-    <span>
-      Menu
-    </span>
-    <svg
-      aria-hidden="true"
-      className="ml-2 h-4 w-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M19 9l-7 7-7-7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
+    One
   </button>
 </div>
 `;
 
-exports[`Dropdown Snapshots renders open dropdown 1`] = `
-<div
-  className="dropdown dropdown-md"
-  data-placement="bottom"
-  data-testid="dropdown"
-  id="dropdown-test"
->
-  <button
-    aria-controls="dropdown-test-menu"
-    aria-disabled="false"
-    aria-expanded={true}
-    aria-haspopup="menu"
-    className="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 text-sm py-2 px-3 cursor-pointer"
-    disabled={false}
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    type="button"
-  >
-    <span>
-      Menu
-    </span>
-    <svg
-      aria-hidden="true"
-      className="ml-2 h-4 w-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M19 9l-7 7-7-7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
-  </button>
-  <div
-    aria-labelledby="dropdown-test-toggle"
-    aria-orientation="vertical"
-    className="rounded-md shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden absolute z-10 mt-1 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-sm"
-    id="dropdown-test-menu"
-    role="menu"
-    style={{}}
-    tabIndex={-1}
-  >
-    <div
-      aria-disabled="false"
-      aria-selected={false}
-      className="flex items-center px-4 py-2 text-left w-full transition-colors duration-150 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
-      data-value="profile"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="menuitem"
-      tabIndex={0}
-    >
-      <span
-        className="flex-grow truncate"
-      >
-        Profile
-      </span>
-    </div>
-  </div>
-</div>
-`;
