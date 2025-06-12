@@ -166,6 +166,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     ref?: React.Ref<HTMLElement>
   };
   const triggerElement = React.cloneElement(child, {
+
       ref: (node: HTMLElement | null) => {
       if (node) {
         triggerRef.current = node;
@@ -173,6 +174,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
       // Forward ref if the original element has one
       const originalRef = child.ref as
+      
         | ((instance: HTMLElement | null) => void)
         | React.RefObject<HTMLElement>
         | null
