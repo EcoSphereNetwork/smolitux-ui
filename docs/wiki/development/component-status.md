@@ -27,7 +27,7 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/core | Drawer | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | FileUpload | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | FormControl | ✅ | ❌ | ❌ | ✅ | Needs A11y Tests |
-| @smolitux/core | Menu | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/core | Menu | ✅ | ✅ | ✅ | ✅ | Ready |
 | @smolitux/core | Modal | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Pagination | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Popover | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |

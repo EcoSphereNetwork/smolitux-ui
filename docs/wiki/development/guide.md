@@ -336,3 +336,8 @@ Die Bibliothek folgt der [Semantic Versioning](https://semver.org/)-Spezifikatio
 3. **Storybook**: Erstelle interaktive Beispiele mit Storybook
 4. **Kommentare**: Kommentiere komplexe Logik im Code
 5. **Änderungsprotokoll**: Halte das Änderungsprotokoll aktuell
+
+### Menu-Komponenten
+
+- Nutze `Tab` und `Arrow`-Tasten zur Navigation innerhalb eines Menus.
+- Untermenüs werden mit `ArrowRight` bzw. `ArrowDown` geöffnet und mit `ArrowLeft` oder `ArrowUp` geschlossen, abhängig von der Ausrichtung.
