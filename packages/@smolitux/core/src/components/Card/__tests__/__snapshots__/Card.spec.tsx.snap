@@ -3,15 +3,27 @@
 exports[`Card Snapshots renders correctly with custom background color 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-blue-100 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-y8l0kq8b7"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -20,7 +32,9 @@ exports[`Card Snapshots renders correctly with custom background color 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-y8l0kq8b7-content"
   >
     Blue Card
   </div>
@@ -30,15 +44,27 @@ exports[`Card Snapshots renders correctly with custom background color 1`] = `
 exports[`Card Snapshots renders correctly with custom border color 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border-red-500 
+        card-bordered border-red-500 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-pn6ci95ev"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -47,7 +73,9 @@ exports[`Card Snapshots renders correctly with custom border color 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-pn6ci95ev-content"
   >
     Red Border Card
   </div>
@@ -57,15 +85,27 @@ exports[`Card Snapshots renders correctly with custom border color 1`] = `
 exports[`Card Snapshots renders correctly with custom className 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         custom-class
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-46ygb76tn"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -74,7 +114,9 @@ exports[`Card Snapshots renders correctly with custom className 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-46ygb76tn-content"
   >
     Card Content
   </div>
@@ -84,15 +126,27 @@ exports[`Card Snapshots renders correctly with custom className 1`] = `
 exports[`Card Snapshots renders correctly with custom width and height 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-3x5wwyizv"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": "200px",
@@ -101,7 +155,9 @@ exports[`Card Snapshots renders correctly with custom width and height 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-3x5wwyizv-content"
   >
     Custom Size Card
   </div>
@@ -111,15 +167,27 @@ exports[`Card Snapshots renders correctly with custom width and height 1`] = `
 exports[`Card Snapshots renders correctly with default props 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-ihjfzntfd"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -128,7 +196,9 @@ exports[`Card Snapshots renders correctly with default props 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-ihjfzntfd-content"
   >
     Card Content
   </div>
@@ -138,15 +208,27 @@ exports[`Card Snapshots renders correctly with default props 1`] = `
 exports[`Card Snapshots renders correctly with elevated variant 1`] = `
 <div
   className="
+        card
+        card-elevated
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
-        shadow-md
+        
+        
+        
+        card-elevated
+        
+        
+        
         p-4
         
       "
   data-testid="card"
+  data-variant="elevated"
+  id="card-endc2c5ef"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -155,7 +237,9 @@ exports[`Card Snapshots renders correctly with elevated variant 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-endc2c5ef-content"
   >
     Elevated Card
   </div>
@@ -165,15 +249,27 @@ exports[`Card Snapshots renders correctly with elevated variant 1`] = `
 exports[`Card Snapshots renders correctly with flat variant 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-g61fuzsu8"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -182,7 +278,9 @@ exports[`Card Snapshots renders correctly with flat variant 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-g61fuzsu8-content"
   >
     Flat Card
   </div>
@@ -192,15 +290,27 @@ exports[`Card Snapshots renders correctly with flat variant 1`] = `
 exports[`Card Snapshots renders correctly with full border radius 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow undefined 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-ghd0thict"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -209,7 +319,9 @@ exports[`Card Snapshots renders correctly with full border radius 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-ghd0thict-content"
   >
     Full Border Radius Card
   </div>
@@ -219,22 +331,27 @@ exports[`Card Snapshots renders correctly with full border radius 1`] = `
 exports[`Card Snapshots renders correctly with header and footer 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
-  header={
-    <div
-      data-testid="card-header"
-    >
-      Card Header
-    </div>
-  }
+  data-variant="flat"
+  id="card-3vjjg44ot"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -243,13 +360,27 @@ exports[`Card Snapshots renders correctly with header and footer 1`] = `
   }
 >
   <div
+    className="card-header flex justify-between items-center border-b border-gray-200 dark:border-gray-700 px-4 py-3"
+    data-testid="card-header"
+    id="card-3vjjg44ot-header"
+  >
+    <div
+      data-testid="card-header"
+    >
+      Card Header
+    </div>
+  </div>
+  <div
+    className="p-4"
     data-testid="card-content"
+    id="card-3vjjg44ot-content"
   >
     Card Body
   </div>
   <div
-    className="border-t border-gray-200 dark:border-gray-700 px-4 py-3"
+    className="card-footer border-t border-gray-200 dark:border-gray-700 px-4 py-3"
     data-testid="card-footer"
+    id="card-3vjjg44ot-footer"
   >
     <div
       data-testid="card-footer"
@@ -263,15 +394,28 @@ exports[`Card Snapshots renders correctly with header and footer 1`] = `
 exports[`Card Snapshots renders correctly with hover effect 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
-        transition-shadow duration-200 hover:shadow-lg 
+        card-bordered border border-gray-200 dark:border-gray-700 
+        card-hoverable transition-shadow duration-200 hover:shadow-lg 
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
+  data-hoverable="true"
   data-testid="card"
+  data-variant="flat"
+  id="card-pgra1e2jg"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -280,7 +424,9 @@ exports[`Card Snapshots renders correctly with hover effect 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-pgra1e2jg-content"
   >
     Hoverable Card
   </div>
@@ -290,15 +436,27 @@ exports[`Card Snapshots renders correctly with hover effect 1`] = `
 exports[`Card Snapshots renders correctly with large border radius 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-xl 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-6sf8xc1kj"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -307,7 +465,9 @@ exports[`Card Snapshots renders correctly with large border radius 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-6sf8xc1kj-content"
   >
     Large Border Radius Card
   </div>
@@ -317,15 +477,27 @@ exports[`Card Snapshots renders correctly with large border radius 1`] = `
 exports[`Card Snapshots renders correctly with large padding 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-6
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-isxad9rz1"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -334,7 +506,9 @@ exports[`Card Snapshots renders correctly with large padding 1`] = `
   }
 >
   <div
+    className="p-6"
     data-testid="card-content"
+    id="card-isxad9rz1-content"
   >
     Large Padding Card
   </div>
@@ -344,15 +518,27 @@ exports[`Card Snapshots renders correctly with large padding 1`] = `
 exports[`Card Snapshots renders correctly with medium border radius 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-5ngu7r4ty"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -361,7 +547,9 @@ exports[`Card Snapshots renders correctly with medium border radius 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-5ngu7r4ty-content"
   >
     Medium Border Radius Card
   </div>
@@ -371,15 +559,27 @@ exports[`Card Snapshots renders correctly with medium border radius 1`] = `
 exports[`Card Snapshots renders correctly with medium padding 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-tp9ibrgjj"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -388,7 +588,9 @@ exports[`Card Snapshots renders correctly with medium padding 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-tp9ibrgjj-content"
   >
     Medium Padding Card
   </div>
@@ -398,15 +600,27 @@ exports[`Card Snapshots renders correctly with medium padding 1`] = `
 exports[`Card Snapshots renders correctly with no border radius 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-none 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-19o78gmhc"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -415,7 +629,9 @@ exports[`Card Snapshots renders correctly with no border radius 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-19o78gmhc-content"
   >
     No Border Radius Card
   </div>
@@ -425,15 +641,27 @@ exports[`Card Snapshots renders correctly with no border radius 1`] = `
 exports[`Card Snapshots renders correctly with no padding 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-0
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-7qzzvcz83"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -442,7 +670,9 @@ exports[`Card Snapshots renders correctly with no padding 1`] = `
   }
 >
   <div
+    className="p-0"
     data-testid="card-content"
+    id="card-7qzzvcz83-content"
   >
     No Padding Card
   </div>
@@ -452,25 +682,40 @@ exports[`Card Snapshots renders correctly with no padding 1`] = `
 exports[`Card Snapshots renders correctly with onClick handler 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        card-clickable cursor-pointer
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-eemo1z4bw"
   onClick={[Function]}
+  onKeyDown={[Function]}
+  role="button"
   style={
     {
       "height": undefined,
       "width": undefined,
     }
   }
+  tabIndex={0}
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-eemo1z4bw-content"
   >
     Clickable Card
   </div>
@@ -480,15 +725,27 @@ exports[`Card Snapshots renders correctly with onClick handler 1`] = `
 exports[`Card Snapshots renders correctly with outlined variant 1`] = `
 <div
   className="
+        card
+        card-outlined
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
-        border border-gray-200 dark:border-gray-700
+        
+        
+        card-outlined
+        
+        
+        
+        
         p-4
         
       "
   data-testid="card"
+  data-variant="outlined"
+  id="card-hbkmpf1cu"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -497,7 +754,9 @@ exports[`Card Snapshots renders correctly with outlined variant 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-hbkmpf1cu-content"
   >
     Outlined Card
   </div>
@@ -507,15 +766,27 @@ exports[`Card Snapshots renders correctly with outlined variant 1`] = `
 exports[`Card Snapshots renders correctly with small border radius 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-sm 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-4
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-4r2ke8auc"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -524,7 +795,9 @@ exports[`Card Snapshots renders correctly with small border radius 1`] = `
   }
 >
   <div
+    className="p-4"
     data-testid="card-content"
+    id="card-4r2ke8auc-content"
   >
     Small Border Radius Card
   </div>
@@ -534,15 +807,27 @@ exports[`Card Snapshots renders correctly with small border radius 1`] = `
 exports[`Card Snapshots renders correctly with small padding 1`] = `
 <div
   className="
+        card
+        card-flat
         bg-white dark:bg-gray-800 
         shadow rounded-lg 
-        border border-gray-200 dark:border-gray-700 
+        card-bordered border border-gray-200 dark:border-gray-700 
          
+        
+        
+        
+        
+        
+        
         
         p-3
         
       "
   data-testid="card"
+  data-variant="flat"
+  id="card-5mctgs9x5"
+  onKeyDown={[Function]}
+  role="region"
   style={
     {
       "height": undefined,
@@ -551,7 +836,9 @@ exports[`Card Snapshots renders correctly with small padding 1`] = `
   }
 >
   <div
+    className="p-3"
     data-testid="card-content"
+    id="card-5mctgs9x5-content"
   >
     Small Padding Card
   </div>
