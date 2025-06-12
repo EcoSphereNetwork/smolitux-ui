@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { useDrawerLogic, DrawerPlacement } from './useDrawerLogic';
+import { useDrawerLogic, type DrawerPlacement } from './useDrawerLogic';
 import './Drawer.css';
 
 export interface DrawerProps {
@@ -74,7 +74,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       onOpenChange?.(logic.isOpen);
     }, [logic.isOpen, isOpen, onOpenChange]);
 
-    const drawerRef = useRef<HTMLDivElement>(null);
+    const drawerRef = useRef<HTMLDivElement | null>(null);
     // merge refs
     const setRef = (node: HTMLDivElement | null) => {
       drawerRef.current = node;
@@ -143,3 +143,4 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 Drawer.displayName = 'Drawer';
 
 export default Drawer;
+export type { DrawerPlacement } from './useDrawerLogic';
