@@ -4,6 +4,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Menu } from '../Menu';
 import { MenuItem } from '../MenuItem';
 
+// Theme hook mock, since Menu expects a ThemeProvider context
+jest.mock('@smolitux/theme', () => ({
+  useTheme: () => ({ themeMode: 'light' }),
+}));
+
 describe('Menu', () => {
   it('renders correctly with default props', () => {
     const { container } = render(

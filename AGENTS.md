@@ -37,8 +37,9 @@ Avoids:
 
 ### 🔄 In Progress
  - **@smolitux/core** – 534 foundational components – 🔄 Active
-  - Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer (8/534)
-  - Current Focus: Dropdown
+ - Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer (8/534)
+ - Current Focus: Dropdown
+
 
 ### ⏳ Pending
 - **@smolitux/utils**  
@@ -132,7 +133,14 @@ No terminal commands are required. Activation is triggered by prompt input.
    - Implement → Test → Document → Validate → Commit → Push → Track
 
 4. **Post-cycle update**:  
-   After each component and package cycle:
+   After each 
+6. **UPDATE PROGRESS**
+
+   * Mark `Dialog` as complete in `CODEX_PROGRESS.md`
+   * Update `AGENTS.md` with component progress
+
+---
+component and package cycle:
    - Update `AGENTS.md`  
    - Update `CODEX_PROGRESS.md`  
    - Generate new `NEXT_Codex_Prompt-[package].md`
