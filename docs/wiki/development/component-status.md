@@ -216,6 +216,10 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 | @smolitux/core | Form | ✅ Fertig |
 | @smolitux/core | FormControl | ✅ Fertig |
 | @smolitux/core | FormField | ✅ Fertig |
+| @smolitux/core | FormLabel | ✅ Fertig |
+| @smolitux/core | FormHint | ✅ Fertig |
+| @smolitux/core | FormError | ✅ Fertig |
+| @smolitux/core | FormSuccess | ✅ Fertig |
 | @smolitux/core | Grid | ✅ Fertig |
 | @smolitux/core | Input | ✅ Fertig |
 | @smolitux/core | LanguageSwitcher | ✅ Fertig |

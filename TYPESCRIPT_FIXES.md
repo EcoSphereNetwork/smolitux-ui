@@ -12,7 +12,7 @@ Folgende Komponenten wurden vorübergehend deaktiviert, um einen erfolgreichen B
 4. **FileUpload**: Probleme mit FormControlContextType
 5. **DatePicker**: Probleme mit Refs und booleschen Werten
 6. **TimePicker**: Probleme mit Refs und Prop-Typen
-7. **Validierungskomponenten**: Probleme mit generischen Typen
+7. **Validierungskomponenten**: Probleme mit generischen Typen – *Behoben ✅*
 8. **Internationalisierungskomponenten**: Probleme mit Kontext-Typen
 
 ## 🛠️ Lösungsansätze für häufige Fehler
