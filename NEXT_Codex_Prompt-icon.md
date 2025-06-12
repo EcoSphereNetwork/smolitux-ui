@@ -1,3 +1,4 @@
-# NEXT Codex Prompt – Icon
+# NEXT Codex Prompt – Icon complete
 
-Continue autonomous component loop with Icon in @smolitux/core.
+Icon component implemented with accessible SVG support and Storybook stories. Continue with Input component in @smolitux/core package.
+

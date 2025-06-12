@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon snapshot 1`] = `
+<svg
+  aria-hidden={true}
+  className=""
+  data-icon="check"
+  data-testid="icon"
+  fill="none"
+  height={24}
+  role="presentation"
+  stroke="currentColor"
+  strokeWidth={2}
+  viewBox="0 0 24 24"
+  width={24}
+>
+  <path
+    d="M5 13l4 4L19 7"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+`;
