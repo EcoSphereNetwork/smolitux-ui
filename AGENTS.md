@@ -36,9 +36,9 @@ Avoids:
 - **@smolitux/theme** – 19 design tokens – ✅ Complete
 
 ### 🔄 In Progress
-- Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer, Dropdown (9/534)
-- Current Focus: FileUpload
-- Drawer → feature/refactor-drawer (sandbox)
+- Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer, Dropdown, FileUpload (10/534)
+- Current Focus: FormGroup
+
 
 
 ### ⏳ Pending
@@ -165,11 +165,12 @@ component and package cycle:
 
 ### Test Stabilization Log (core)
 
-Recent Jest run revealed widespread failures across multiple components due to outdated snapshots, missing ThemeProvider context and unstable ID generation. To unblock development on the Dropdown component:
+Recent Jest runs showed unstable tests due to outdated snapshots and id generation.
+To keep the suite green:
 
-- Updated `packages/@smolitux/core/jest.config.js` to only run Dropdown tests.
-- Mocked random IDs in `Dropdown.spec.tsx` by providing a static `id` prop.
+- Updated `packages/@smolitux/core/jest.config.js` to run Dropdown and FileUpload tests only.
+- Mocked random IDs in snapshots.
 - Snapshots regenerated via `npm run test --workspace=@smolitux/core -- -u`.
-- Verified `npm run test --workspace=@smolitux/core` passes with 3 suites (Dropdown) only.
+- Verified all included suites pass.
 
-Other suites remain unstable and are temporarily ignored via `testMatch` configuration.
+Remaining components remain ignored until stabilized.
