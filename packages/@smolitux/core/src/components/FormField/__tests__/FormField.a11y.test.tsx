@@ -1,17 +1,37 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { Form } from '../../../validation/Form';
 import { FormFieldA11y } from '../FormField.a11y';
+
+const renderWithForm = (ui: React.ReactElement) =>
+  render(<Form onSubmit={jest.fn()}>{ui}</Form>);
 
 // Erweitere Jest-Matcher um axe-Prüfungen
 expect.extend(toHaveNoViolations);
 
-// Mock-Komponente für Tests
-const MockInput = (props: unknown) => <input {...props} />;
+// Mock-Komponente für Tests, filtert nicht-native Props heraus
+const MockInput = ({
+  isLoading,
+  showLoadingIndicator,
+  showSuccessIndicator,
+  showErrorIndicator,
+  showCounter,
+  maxLength,
+  showProgressBar,
+  progress,
+  progressMax,
+  tooltip,
+  isValid,
+  isInvalid,
+  errorMessages,
+  hasError,
+  ...rest
+}: Record<string, unknown>) => <input {...rest} />;
 
 describe('FormField Accessibility', () => {
   it('should have no accessibility violations', async () => {
-    const { container } = render(
+    const { container } = renderWithForm(
       <FormFieldA11y
         label="Name"
         helperText="Bitte geben Sie Ihren vollständigen Namen ein"
@@ -24,7 +44,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should have proper ARIA attributes', () => {
-    render(
+    renderWithForm(
       <FormFieldA11y
         label="Email"
         helperText="Ihre geschäftliche Email-Adresse"
@@ -48,7 +68,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle error states correctly', () => {
-    render(
+    renderWithForm(
       <FormFieldA11y
         label="Email"
         component={MockInput}
@@ -68,7 +88,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle required state correctly', () => {
-    render(<FormFieldA11y label="Name" required component={MockInput} type="text" />);
+    renderWithForm(<FormFieldA11y label="Name" required component={MockInput} type="text" />);
 
     const input = screen.getByLabelText('Name', { exact: false });
     expect(input).toHaveAttribute('aria-required', 'true');
@@ -81,7 +101,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle disabled state correctly', () => {
-    render(<FormFieldA11y label="Name" disabled component={MockInput} type="text" />);
+    renderWithForm(<FormFieldA11y label="Name" disabled component={MockInput} type="text" />);
 
     const input = screen.getByLabelText('Name');
     expect(input).toBeDisabled();
@@ -89,7 +109,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle loading state correctly', () => {
-    render(
+    renderWithForm(
       <FormFieldA11y label="Name" loading showLoadingIndicator component={MockInput} type="text" />
     );
 
@@ -101,7 +121,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle tooltip correctly', () => {
-    render(
+    renderWithForm(
       <FormFieldA11y
         label="Name"
         tooltip="Bitte geben Sie Ihren vollständigen Namen ein"
@@ -119,14 +139,14 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle hidden label correctly', () => {
-    render(<FormFieldA11y label="Name" hideLabel component={MockInput} type="text" />);
+    renderWithForm(<FormFieldA11y label="Name" hideLabel component={MockInput} type="text" />);
 
     const label = screen.getByText('Name');
     expect(label).toHaveClass('sr-only');
   });
 
   it('should handle counter correctly', () => {
-    render(
+    renderWithForm(
       <FormFieldA11y
         label="Beschreibung"
         showCounter
@@ -147,7 +167,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle progress bar correctly', () => {
-    render(
+    renderWithForm(
       <FormFieldA11y
         label="Upload"
         showProgressBar
@@ -168,7 +188,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle description correctly', () => {
-    render(
+    renderWithForm(
       <FormFieldA11y
         label="Name"
         description="Dieses Feld ist für Ihren vollständigen Namen vorgesehen"
@@ -189,7 +209,7 @@ describe('FormField Accessibility', () => {
   });
 
   it('should handle different label placements correctly', () => {
-    const { rerender } = render(
+    const { rerender } = renderWithForm(
       <FormFieldA11y
         label="Name"
         labelPlacement="left"
@@ -200,24 +220,26 @@ describe('FormField Accessibility', () => {
     );
 
     // Überprüfe, ob der Container die richtige Klasse hat
-    expect(screen.getByText('Name').parentElement?.parentElement).toHaveClass('sm:flex');
+    expect(screen.getByText('Name').parentElement).toHaveClass('sm:flex', 'sm:items-start');
 
     // Überprüfe, ob das Label den richtigen Stil hat
     expect(screen.getByText('Name')).toHaveStyle({ width: '100px' });
 
     // Ändere die Label-Position auf "right"
     rerender(
-      <FormFieldA11y
-        label="Name"
-        labelPlacement="right"
-        labelWidth="100px"
-        component={MockInput}
-        type="text"
-      />
+      <Form onSubmit={jest.fn()}>
+        <FormFieldA11y
+          label="Name"
+          labelPlacement="right"
+          labelWidth="100px"
+          component={MockInput}
+          type="text"
+        />
+      </Form>
     );
 
     // Überprüfe, ob der Container die richtige Klasse hat
-    expect(screen.getByText('Name').parentElement?.parentElement).toHaveClass(
+    expect(screen.getByText('Name').parentElement).toHaveClass(
       'sm:flex-row-reverse'
     );
   });
