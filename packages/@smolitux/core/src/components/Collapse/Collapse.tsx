@@ -169,12 +169,14 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     return typeof collapsedSize === 'number' ? `${collapsedSize}px` : collapsedSize;
   };
 
+  const maxSizeProp = `max${sizeProp.charAt(0).toUpperCase()}${sizeProp.slice(1)}`;
+
   const collapseStyle: React.CSSProperties = {
     ...transitionStyle,
     overflow: 'hidden',
     [sizeProp]: getSize(),
     // Wenn die Größe 'auto' ist, setzen wir eine maximale Größe, um die Animation zu ermöglichen
-    ...(getSize() === 'auto' && { [`max-${sizeProp}`]: `${size}px` }),
+    ...(getSize() === 'auto' && { [maxSizeProp]: `${size}px` }),
   };
 
   // Generiere eine eindeutige ID für ARIA-Attribute, wenn keine angegeben wurde
@@ -196,7 +198,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
   };
 
   const combinedRef = (node: HTMLDivElement | null) => {
-    transitionRef.current = node;
+    (transitionRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
     if (typeof ref === 'function') {
       ref(node);
     } else if (ref) {

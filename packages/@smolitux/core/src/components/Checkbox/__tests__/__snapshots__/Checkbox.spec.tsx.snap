@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox Snapshots renders checked checkbox 1`] = `
+<div
+  className="flex items-start  "
+  data-testid="checkbox-container"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+>
+  <div
+    className="flex items-center "
+  >
+    <div
+      className="relative"
+    >
+      <input
+        checked={true}
+        className="h-5 w-5 bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 rounded hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 transition duration-150 ease-in-out cursor-pointer"
+        disabled={false}
+        id="checkbox-checked"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        required={false}
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    className="ml-2"
+    data-testid="label-container"
+  >
+    <div
+      className=""
+    >
+      <label
+        className="
+            text-base
+            font-medium text-gray-700 dark:text-gray-300
+            cursor-pointer
+            
+          "
+        data-testid="checkbox-label"
+        htmlFor="checkbox-checked"
+      >
+        Check me
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Checkbox Snapshots renders default checkbox 1`] = `
+<div
+  className="flex items-start  "
+  data-testid="checkbox-container"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+>
+  <div
+    className="flex items-center "
+  >
+    <div
+      className="relative"
+    >
+      <input
+        className="h-5 w-5 bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 rounded hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 transition duration-150 ease-in-out cursor-pointer"
+        disabled={false}
+        id="checkbox-default"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        required={false}
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    className="ml-2"
+    data-testid="label-container"
+  >
+    <div
+      className=""
+    >
+      <label
+        className="
+            text-base
+            font-medium text-gray-700 dark:text-gray-300
+            cursor-pointer
+            
+          "
+        data-testid="checkbox-label"
+        htmlFor="checkbox-default"
+      >
+        Check me
+      </label>
+    </div>
+  </div>
+</div>
+`;
