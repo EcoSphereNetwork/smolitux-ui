@@ -162,14 +162,14 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
   }, [isVisible]);
 
   // Clone trigger element with event listeners
-    const triggerElement = React.cloneElement(children, {
+  const triggerElement = React.cloneElement(children as React.ReactElement<any>, {
       ref: (node: HTMLElement | null) => {
       if (node) {
         triggerRef.current = node;
       }
 
       // Forward ref if the original element has one
-      const originalRef = (children as React.ReactElement).ref as
+      const originalRef = (children as React.ReactElement & { ref?: React.Ref<HTMLElement> }).ref as
         | ((instance: HTMLElement | null) => void)
         | React.RefObject<HTMLElement>
         | null

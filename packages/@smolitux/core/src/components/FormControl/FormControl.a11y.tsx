@@ -32,6 +32,8 @@ export interface FormControlContextType {
   isLoading?: boolean;
   /** Hilfetext für das Formularfeld */
   helperText?: string;
+  /** Erfolgsmeldung */
+  successMessage?: string;
 }
 
 export type FormControlSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -78,6 +80,7 @@ export const useFormControl = () => {
       isSuccess: false,
       isLoading: false,
       helperText: undefined,
+      successMessage: undefined,
     };
   }
   return context;
@@ -309,11 +312,13 @@ export const FormControlA11y = forwardRef<HTMLDivElement, FormControlProps>(
         isSuccess,
         isLoading,
         helperText: helperText?.toString(),
+        successMessage: successMessage ? successMessage.toString() : undefined,
       }),
       [
         disabled,
         required,
         error,
+        successMessage,
         formControlId,
         label,
         name,
