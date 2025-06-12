@@ -1,3 +1,3 @@
-# NEXT Codex Prompt – Input
+# NEXT Codex Prompt – Input ✅
 
-Proceed with implementing the Input component in @smolitux/core.
+Input component is complete. Continue with the Label component next.

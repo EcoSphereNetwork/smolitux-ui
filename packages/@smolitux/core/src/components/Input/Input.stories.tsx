@@ -2,33 +2,37 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from './Input';
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
+  title: 'Components/Core/Input',
   component: Input,
-  parameters: {
-    layout: 'centered',
+  args: {
+    value: '',
+    onChange: () => {},
+  },
+  argTypes: {
+    onChange: { action: 'changed' },
   },
   tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj<typeof meta>;
+
+type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    children: 'Input',
+    placeholder: 'Type here',
   },
 };
 
-export const CustomStyle: Story = {
+export const Password: Story = {
   args: {
-    children: 'Custom Input',
-    className: 'custom-style',
+    type: 'password',
+    placeholder: 'Password',
   },
 };
 
-export const Interactive: Story = {
+export const Disabled: Story = {
   args: {
-    children: 'Interactive Input',
-    onClick: () => alert('Clicked!'),
+    disabled: true,
+    placeholder: 'Disabled input',
   },
 };
