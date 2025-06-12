@@ -1,5 +1,3 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-// packages/@smolitux/core/src/components/Dialog/Dialog.improved.tsx
 import React, { useEffect, useRef, useCallback, forwardRef } from 'react';
 import mergeRefs from '../../utils/mergeRefs';
 
