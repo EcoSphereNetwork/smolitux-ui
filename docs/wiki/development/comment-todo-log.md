@@ -73,7 +73,7 @@
 - [ ] `src/components/voice/VoiceCard.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/voice/VoiceInput.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/RadioGroup/RadioGroup.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-- [ ] `src/components/FormField/FormField.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
+- [x] `src/components/FormField/FormField.tsx`: Komponente reaktiviert
 - [ ] `src/components/Drawer/Drawer.original.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Drawer/Drawer.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
 - [ ] `src/components/Tabs/Tabs.tsx`: 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
