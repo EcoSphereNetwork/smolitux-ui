@@ -559,6 +559,7 @@ export const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>((props
           `}
           aria-haspopup="dialog"
           aria-expanded={isOpen}
+          aria-label={ariaLabel}
           aria-labelledby={label ? labelId : undefined}
           aria-describedby={
             [
