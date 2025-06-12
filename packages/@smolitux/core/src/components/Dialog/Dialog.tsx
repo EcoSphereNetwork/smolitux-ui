@@ -1,6 +1,5 @@
-// 🔧 TODO [Codex]: forwardRef hinzufügen – prüfen & umsetzen
-// packages/@smolitux/core/src/components/Dialog/Dialog.improved.tsx
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, forwardRef } from 'react';
+import mergeRefs from '../../utils/mergeRefs';
 
 // Versuche den Theme-Import, mit Fallback für Tests und Entwicklung
 let useTheme: () => { themeMode: string; colors?: Record<string, unknown> };
@@ -108,7 +107,7 @@ export interface DialogProps {
  * </Dialog>
  * ```
  */
-export const Dialog: React.FC<DialogProps> = ({
+export const Dialog = forwardRef<HTMLDivElement, DialogProps>(({
   isOpen,
   onClose,
   title,
@@ -139,12 +138,14 @@ export const Dialog: React.FC<DialogProps> = ({
   width,
   height,
   'data-testid': dataTestId = 'dialog',
-}) => {
+  ...rest
+}, forwardedRef) => {
   // Theme-Werte
   const { themeMode } = useTheme();
   const isDarkMode = themeMode === 'dark';
 
   const dialogRef = useRef<HTMLDivElement>(null);
+  const handleRef = mergeRefs(dialogRef, forwardedRef);
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -403,6 +404,7 @@ export const Dialog: React.FC<DialogProps> = ({
   return (
     <div
       className={`fixed inset-0 z-${zIndex} overflow-y-auto`}
+      {...rest}
       aria-labelledby={title ? titleId : undefined}
       aria-describedby={description ? descriptionId : bodyId}
       role={isAlertDialog ? 'alertdialog' : 'dialog'}
@@ -422,7 +424,7 @@ export const Dialog: React.FC<DialogProps> = ({
       <div className="flex min-h-screen items-center justify-center p-4">
         {/* Dialog Panel */}
         <div
-          ref={dialogRef}
+          ref={handleRef}
           className={`
             relative bg-white dark:bg-gray-800 
             rounded-lg shadow-xl text-left 
@@ -531,6 +533,8 @@ export const Dialog: React.FC<DialogProps> = ({
       </div>
     </div>
   );
-};
+});
+
+Dialog.displayName = 'Dialog';
 
 export default Dialog;
