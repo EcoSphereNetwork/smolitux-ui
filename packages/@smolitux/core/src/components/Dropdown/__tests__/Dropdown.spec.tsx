@@ -9,7 +9,7 @@ describe('Dropdown Snapshots', () => {
   test('renders closed dropdown', () => {
     const tree = renderer
       .create(
-        <Dropdown>
+        <Dropdown id="dropdown-test">
           <DropdownToggle>Menu</DropdownToggle>
           <DropdownMenu>
             <DropdownItem value="profile">Profile</DropdownItem>
@@ -23,7 +23,7 @@ describe('Dropdown Snapshots', () => {
   test('renders open dropdown', () => {
     const tree = renderer
       .create(
-        <Dropdown isOpen>
+        <Dropdown id="dropdown-test" isOpen>
           <DropdownToggle>Menu</DropdownToggle>
           <DropdownMenu>
             <DropdownItem value="profile">Profile</DropdownItem>
