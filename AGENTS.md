@@ -36,9 +36,8 @@ Avoids:
 - **@smolitux/theme** – 19 design tokens – ✅ Complete
 
 ### 🔄 In Progress
-- **@smolitux/core** – 534 foundational components – 🔄 Active
-- Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog (7/534)
-- Current Focus: Drawer (paused due to integration issues)
+  - Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer (8/534)
+  - Current Focus: Dropdown
 - Drawer → feature/refactor-drawer (sandbox)
 
 ### ⏳ Pending

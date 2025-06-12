@@ -1,34 +1,49 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { Drawer } from './Drawer';
 
 const meta: Meta<typeof Drawer> = {
   title: 'Components/Drawer',
   component: Drawer,
-  parameters: {
-    layout: 'centered',
+  argTypes: {
+    placement: { control: 'select', options: ['left', 'right', 'top', 'bottom'] },
+    hasOverlay: { control: 'boolean' },
+    trapFocus: { control: 'boolean' },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+
+type Story = StoryObj<typeof Drawer>;
 
 export const Default: Story = {
   args: {
-    children: 'Drawer',
+    isOpen: true,
+    children: 'Drawer content',
   },
 };
 
-export const CustomStyle: Story = {
+export const Positions: Story = {
   args: {
-    children: 'Custom Drawer',
-    className: 'custom-style',
+    isOpen: true,
+    placement: 'left',
+    children: 'Drawer content',
   },
 };
 
 export const Interactive: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <div>
+        <button onClick={() => setOpen(true)}>Open Drawer</button>
+        <Drawer {...args} isOpen={open} onOpenChange={setOpen}>
+          Drawer content
+        </Drawer>
+      </div>
+    );
+  },
   args: {
-    children: 'Interactive Drawer',
-    onClick: () => alert('Clicked!'),
+    placement: 'right',
   },
 };
