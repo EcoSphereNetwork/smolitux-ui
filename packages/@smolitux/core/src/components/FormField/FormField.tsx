@@ -56,6 +56,10 @@ export type FormFieldProps<T = unknown> = ValidationFormFieldProps<T> & {
   labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   /**
+   * Ob das Label eine andere Schriftfamilie haben soll
+   */
+
+  /**
    * Ob das Label einen anderen Schriftstil haben soll
    */
   labelStyle?: React.CSSProperties;
