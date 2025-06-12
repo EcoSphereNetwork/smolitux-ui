@@ -262,3 +262,5 @@ Thu Jun 12 08:10:57 UTC 2025: Build failed due to missing modules during jest ru
 Thu Jun 12 08:23:53 UTC 2025: Build failed due to tsup rootDir error
 Thu Jun 12 11:41:23 UTC 2025: Build failed due to readonly ref assignment in Collapse component
 Thu Jun 12 12:45:00 UTC 2025: Collapse fixed by making useTransition ref mutable and assigning combined refs in component
+Thu Jun 12 13:55:00 UTC 2025: Tests failed with "useTheme must be used within a ThemeProvider". Added ThemeProvider wrapper or mocks in tests to resolve.
+

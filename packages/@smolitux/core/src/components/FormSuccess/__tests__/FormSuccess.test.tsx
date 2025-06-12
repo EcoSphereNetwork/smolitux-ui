@@ -6,7 +6,7 @@ import { FormSuccess } from '../FormSuccess';
 describe('FormSuccess', () => {
   it('renders success message from context', () => {
     render(
-      <FormControl id="suc" successMessage="Looks good" isSuccess>
+      <FormControl id="suc" successMessage="Looks good" isSuccess hideSuccessMessage>
         <FormSuccess />
         <input id="suc" />
       </FormControl>

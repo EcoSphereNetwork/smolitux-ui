@@ -6,7 +6,7 @@ import { FormError } from '../FormError';
 describe('FormError', () => {
   it('renders error when context has error', () => {
     render(
-      <FormControl id="err" error="Required field">
+      <FormControl id="err" error="Required field" hideError>
         <FormError />
         <input id="err" />
       </FormControl>

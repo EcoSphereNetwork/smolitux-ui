@@ -6,9 +6,9 @@ import { a11y } from '@smolitux/testing';
 describe('FormError Accessibility', () => {
   it('has no violations', async () => {
     const { violations } = await a11y.testA11y(
-      <FormControl id="err" error="oops">
+      <FormControl id="err" error="oops" hideError>
         <FormError />
-        <input id="err" />
+        <input id="err" aria-label="username" />
       </FormControl>
     );
     expect(violations).toHaveLength(0);
