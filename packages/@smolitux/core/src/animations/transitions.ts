@@ -10,7 +10,7 @@ export type TransitionPreset = {
 
 export type TransitionVariant = 'ease' | 'linear' | 'ease-in' | 'ease-out' | 'ease-in-out';
 
-export const transitions = {
+export const transitions: Record<string, TransitionPreset> = {
   // Basis-Übergänge
   default: {
     duration: 300,
