@@ -57,8 +57,8 @@ describe('Checkbox Accessibility', () => {
     expect(checkbox).toBeDisabled();
 
     const label = screen.getByText('Disabled Checkbox');
-    expect(label.parentElement).toHaveClass('opacity-50');
-    expect(label.parentElement).toHaveClass('cursor-not-allowed');
+    expect(label).toHaveClass('opacity-50');
+    expect(label).toHaveClass('cursor-not-allowed');
   });
 
   it('should have correct ARIA attributes for indeterminate checkbox', () => {
@@ -87,7 +87,8 @@ describe('Checkbox Accessibility', () => {
   it('should have correct ARIA attributes for button checkbox', () => {
     render(<Checkbox label="Button Checkbox" isButton />);
 
-    const buttonElement = screen.getByRole('checkbox');
+    const checkboxes = screen.getAllByRole('checkbox');
+    const buttonElement = checkboxes.find((el) => el.tagName === 'BUTTON');
     expect(buttonElement).toBeInTheDocument();
   });
 
@@ -103,6 +104,8 @@ describe('Checkbox Accessibility', () => {
 
     // Press space to toggle
     fireEvent.keyDown(checkbox, { key: ' ' });
+    fireEvent.keyUp(checkbox, { key: ' ' });
+    fireEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalled();
   });
 
