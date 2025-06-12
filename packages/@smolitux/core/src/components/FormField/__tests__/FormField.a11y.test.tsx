@@ -220,24 +220,26 @@ describe('FormField Accessibility', () => {
     );
 
     // Überprüfe, ob der Container die richtige Klasse hat
-    expect(screen.getByText('Name').parentElement?.parentElement).toHaveClass('sm:flex');
+    expect(screen.getByText('Name').parentElement).toHaveClass('sm:flex', 'sm:items-start');
 
     // Überprüfe, ob das Label den richtigen Stil hat
     expect(screen.getByText('Name')).toHaveStyle({ width: '100px' });
 
     // Ändere die Label-Position auf "right"
     rerender(
-      <FormFieldA11y
-        label="Name"
-        labelPlacement="right"
-        labelWidth="100px"
-        component={MockInput}
-        type="text"
-      />
+      <Form onSubmit={jest.fn()}>
+        <FormFieldA11y
+          label="Name"
+          labelPlacement="right"
+          labelWidth="100px"
+          component={MockInput}
+          type="text"
+        />
+      </Form>
     );
 
     // Überprüfe, ob der Container die richtige Klasse hat
-    expect(screen.getByText('Name').parentElement?.parentElement).toHaveClass(
+    expect(screen.getByText('Name').parentElement).toHaveClass(
       'sm:flex-row-reverse'
     );
   });

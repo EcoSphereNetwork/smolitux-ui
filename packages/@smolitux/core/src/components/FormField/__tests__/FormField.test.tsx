@@ -32,8 +32,8 @@ describe('FormField', () => {
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
-  it('renders with required indicator when isRequired is true', () => {
-    renderWithForm(<FormField label="Username" isRequired component={MockInput} />);
+  it('renders with required indicator when required is true', () => {
+    renderWithForm(<FormField label="Username" required component={MockInput} />);
 
     const label = screen.getByText('Username');
     expect(label).toBeInTheDocument();
@@ -81,18 +81,18 @@ describe('FormField', () => {
     expect(formField).toHaveStyle('margin-bottom: 20px');
   });
 
-  it('renders with custom label position', () => {
+  it('renders with custom label placement', () => {
     renderWithForm(
-      <FormField label="Username" labelPosition="right" data-testid="form-field" component={MockInput} />
+      <FormField label="Username" labelPlacement="right" data-testid="form-field" component={MockInput} />
     );
 
     const formField = screen.getByTestId('form-field');
-    expect(formField).toHaveClass('label-right');
+    expect(formField).toHaveClass('sm:flex-row-reverse');
   });
 
   it('renders with custom label width', () => {
     renderWithForm(
-      <FormField label="Username" labelWidth="150px" data-testid="label" component={MockInput} />
+      <FormField label="Username" labelWidth="150px" labelPlacement="left" data-testid="label" component={MockInput} />
     );
 
     const label = screen.getByTestId('label');
@@ -142,7 +142,8 @@ describe('FormField', () => {
   it('renders with hidden label when hideLabel is true', () => {
     renderWithForm(<FormField label="Username" hideLabel component={MockInput} />);
 
-    expect(screen.queryByText('Username')).not.toBeVisible();
+    const label = screen.getByText('Username');
+    expect(label).toHaveClass('sr-only');
   });
 
   it('renders with id passed to the label and input', () => {

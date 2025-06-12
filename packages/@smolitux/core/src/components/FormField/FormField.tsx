@@ -56,10 +56,6 @@ export type FormFieldProps<T = unknown> = ValidationFormFieldProps<T> & {
   labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   /**
-   * Ob das Label eine andere Schriftfamilie haben soll
-   */
-
-  /**
    * Ob das Label einen anderen Schriftstil haben soll
    */
   labelStyle?: React.CSSProperties;
@@ -93,6 +89,16 @@ export type FormFieldProps<T = unknown> = ValidationFormFieldProps<T> & {
    * Ob der Hilfetext eine andere CSS-Klasse haben soll
    */
   helperTextClassName?: string;
+
+  /**
+   * Zusätzliche Klasse für die Fehlermeldung
+   */
+  errorClassName?: string;
+
+  /**
+   * Ob das Label ausgeblendet werden soll
+   */
+  hideLabel?: boolean;
 
   /**
    * Ob das Formularfeld einen Tooltip haben soll
@@ -193,6 +199,17 @@ export type FormFieldProps<T = unknown> = ValidationFormFieldProps<T> & {
    * Der maximale Fortschritt des Formularfelds
    */
   progressMax?: number;
+
+  /** Zusätzliche CSS-Klasse für das Wrapper-Element */
+  className?: string;
+
+  /** Inline-Stile für das Wrapper-Element */
+  style?: React.CSSProperties;
+
+  /** Eingabekomponente */
+  component: React.ComponentType<Record<string, unknown>>;
+
+  children?: React.ReactNode;
 };
 
 /**
@@ -216,6 +233,8 @@ export const FormField = <T,>({
   helperTextSize = 'sm',
   helperTextStyle,
   helperTextClassName = '',
+  errorClassName = '',
+  hideLabel = false,
   tooltip,
   hint,
   bordered = true,
@@ -252,7 +271,10 @@ export const FormField = <T,>({
       errorMessages,
       touched,
       ...restProps
-    } = componentProps as ValidationFormFieldProps<T> & Record<string, unknown>;
+    } = componentProps as ValidationFormFieldProps<T> & {
+      errorMessages?: string[];
+      [key: string]: unknown;
+    };
 
     const inputProps = { ...restProps } as Record<string, unknown>;
     delete inputProps.labelPlacement;
@@ -270,6 +292,16 @@ export const FormField = <T,>({
     delete inputProps.helperTextSize;
     delete inputProps.helperTextStyle;
     delete inputProps.helperTextClassName;
+    delete inputProps.errorClassName;
+    delete inputProps.hideLabel;
+    delete inputProps.errorMessage;
+    delete inputProps.isInvalid;
+    delete inputProps.dirty;
+    delete inputProps.touched;
+    delete inputProps.required;
+    delete inputProps.disabled;
+    delete inputProps.readOnly;
+    delete inputProps['data-testid'];
     delete inputProps.hint;
     delete inputProps.bordered;
     delete inputProps.shadow;
@@ -283,7 +315,7 @@ export const FormField = <T,>({
     delete inputProps.children;
 
     const labelClasses = [
-      'block',
+      hideLabel ? 'sr-only' : 'block',
       labelBold ? 'font-bold' : 'font-medium',
       labelItalic ? 'italic' : '',
       labelUnderline ? 'underline' : '',
@@ -304,10 +336,16 @@ export const FormField = <T,>({
       .filter(Boolean)
       .join(' ');
 
-    const errorTextClasses = ['mt-1 text-xs text-red-500 dark:text-red-400'].join(' ');
+    const errorTextClasses = [
+      'mt-1 text-xs text-red-500 dark:text-red-400',
+      errorClassName,
+    ]
+      .filter(Boolean)
+      .join(' ');
 
     const containerClasses = [
       'form-field',
+      hasError || props.isInvalid ? 'is-invalid' : '',
       labelPlacement === 'left' ? 'sm:flex sm:items-start' : '',
       labelPlacement === 'right' ? 'sm:flex sm:flex-row-reverse sm:items-start' : '',
       bordered ? 'border border-gray-300 dark:border-gray-600' : '',
@@ -357,9 +395,9 @@ export const FormField = <T,>({
 
     return (
       <div className={containerClasses} style={style} data-testid="form-field">
-        {props.label && (
-          <label htmlFor={props.id || name} className={labelClasses} style={labelStyles} data-testid="label">
-            {props.label as React.ReactNode}
+        {(props as { label?: React.ReactNode }).label && (
+          <label htmlFor={(props as { id?: string }).id || name} className={labelClasses} style={labelStyles} data-testid="label">
+            {(props as { label?: React.ReactNode }).label}
             {required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
             {tooltip && (
               <span className="ml-1 text-gray-400 cursor-help" title={tooltip} aria-hidden="true">
@@ -383,15 +421,21 @@ export const FormField = <T,>({
         <div className={labelPlacement !== 'top' ? 'sm:flex-1' : ''}>
           {React.createElement(component, enhancedProps, children)}
 
-          {(helperText || hasError) && (
+          {helperText || hasError || props.isInvalid ? (
             <div
-              className={hasError ? errorTextClasses : helperTextClasses}
+              className={hasError || props.isInvalid ? errorTextClasses : helperTextClasses}
               style={helperTextStyle}
-              data-testid={hasError ? 'error-message' : 'helper-text'}
+              data-testid={hasError || props.isInvalid ? 'error-message' : 'helper-text'}
             >
-              {hasError && errorMessages && errorMessages.length > 0 ? errorMessages[0] : helperText}
+              {(
+                hasError && errorMessages && errorMessages.length > 0
+                  ? errorMessages[0]
+                  : props.isInvalid
+                  ? (props as { errorMessage?: React.ReactNode }).errorMessage
+                  : helperText
+              ) as React.ReactNode}
             </div>
-          )}
+          ) : null}
 
           {hint && <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">{hint}</div>}
 
