@@ -95,7 +95,6 @@ export const useField = <T = unknown>(options: FieldOptions<T> = {}) => {
     if (validateOnMount) {
       validate(value, isInForm ? formContext.formState.values : undefined);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Wert ändern
