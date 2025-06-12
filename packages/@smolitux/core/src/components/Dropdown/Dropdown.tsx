@@ -1,249 +1,198 @@
-// packages/@smolitux/core/src/components/Dropdown/Dropdown.tsx
-import React, { useState, useRef, useEffect, createContext, useContext, useCallback } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useRef, useEffect, forwardRef } from 'react';
 
-// Dropdown-Context für Zustände und Funktionen
-type DropdownContextType = {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-  activeItemIndex: number | null;
-  setActiveItemIndex: (index: number | null) => void;
-  registerItem: (id?: string) => number;
-  triggerRef: React.RefObject<HTMLElement>;
-  dropdownId: string;
-  onSelect?: (value: string) => void;
-  closeDropdown: () => void;
-};
-
-const DropdownContext = createContext<DropdownContextType | undefined>(undefined);
-
-// Hook für Dropdown-Context
-export const useDropdownContext = () => {
-  const context = useContext(DropdownContext);
-  if (context === undefined) {
-    throw new Error('useDropdownContext must be used within a Dropdown component');
-  }
-  return context;
-};
-
-export interface DropdownProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
-  /** Kinder-Elemente (DropdownToggle, DropdownMenu) */
-  children: React.ReactNode;
-  /** Ist das Dropdown geöffnet (kontrollierter Modus) */
-  isOpen?: boolean;
-  /** Callback beim Öffnen/Schließen */
-  onOpenChange?: (isOpen: boolean) => void;
-  /** Callback beim Öffnen */
-  onOpen?: () => void;
-  /** Callback beim Schließen */
-  onClose?: () => void;
-  /** Callback bei Item-Auswahl */
-  onSelect?: (value: string) => void;
-  /** Position des Dropdowns relativ zum Trigger */
-  placement?: 'bottom' | 'top' | 'left' | 'right';
-  /** Größe des Dropdowns */
-  size?: 'sm' | 'md' | 'lg';
-  /** Ist das Dropdown deaktiviert? */
-  isDisabled?: boolean;
-  /** Bei Klick außerhalb schließen */
-  closeOnClickOutside?: boolean;
-  /** Bei ESC schließen */
-  closeOnEscape?: boolean;
-  /** Beim Auswählen eines Items automatisch schließen */
-  closeOnSelect?: boolean;
-  /** Eindeutige ID für das Dropdown (für ARIA) */
-  id?: string;
-  /** ARIA-Label für das Dropdown */
-  'aria-label'?: string;
+export interface DropdownOption {
+  value: string;
+  label: string;
+  group?: string;
 }
 
-/**
- * Dropdown-Komponente für Dropdown-Menüs mit verbesserter Barrierefreiheit
- *
- * @example
- * ```tsx
- * <Dropdown>
- *   <DropdownToggle>Options</DropdownToggle>
- *   <DropdownMenu>
- *     <DropdownItem value="edit">Edit</DropdownItem>
- *     <DropdownItem value="delete">Delete</DropdownItem>
- *   </DropdownMenu>
- * </Dropdown>
- * ```
- */
-export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
+export interface DropdownProps {
+  /** Current selected value */
+  value: string;
+  /** Options to display */
+  options: DropdownOption[];
+  /** Change handler */
+  onChange: (value: string) => void;
+  /** Disable the dropdown */
+  disabled?: boolean;
+  /** Optional label */
+  label?: string;
+  /** Enable search input */
+  searchable?: boolean;
+  /** Group options by their `group` field */
+  grouped?: boolean;
+  /** Optional id for the dropdown */
+  id?: string;
+  className?: string;
+}
+
+export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
   (
     {
-      children,
-      isOpen: controlledIsOpen,
-      onOpenChange,
-      onOpen,
-      onClose,
-      onSelect,
-      placement = 'bottom',
-      size = 'md',
-      isDisabled = false,
-      closeOnClickOutside = true,
-      closeOnEscape = true,
-      closeOnSelect = true,
-      id: providedId,
-      'aria-label': ariaLabel,
+      value,
+      options,
+      onChange,
+      disabled = false,
+      label,
+      searchable = false,
+      grouped = false,
+      id,
       className = '',
-      ...rest
     },
     ref
   ) => {
-    // Generiere eine eindeutige ID, wenn keine bereitgestellt wurde
-    const uniqueIdRef = useRef(`dropdown-${Math.random().toString(36).substr(2, 9)}`);
-    const dropdownId = providedId || uniqueIdRef.current;
+    const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('');
+    const [highlight, setHighlight] = useState<string | null>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const listRef = useRef<HTMLUListElement>(null);
 
-    // State für das Dropdown
-    const [isOpen, setIsOpen] = useState(controlledIsOpen || false);
-    const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
-    const triggerRef = useRef<HTMLElement>(null);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const itemsMap = useRef(new Map<string, number>());
-    const itemsCounter = useRef(0);
+    const dropdownId = id || `dropdown-${Math.random().toString(36).slice(2, 9)}`;
+    const listId = `${dropdownId}-list`;
 
-    // Das Dropdown wird durch externe Props oder internen State gesteuert
-    const isControlled = controlledIsOpen !== undefined;
-    const dropdownIsOpen = isControlled ? controlledIsOpen : isOpen;
-
-    // Registrieren eines neuen Items
-    const registerItem = useCallback((id?: string) => {
-      const key = id ?? `item-${itemsCounter.current}`;
-      if (!itemsMap.current.has(key)) {
-        itemsMap.current.set(key, itemsCounter.current);
-        return itemsCounter.current++;
-      }
-      return itemsMap.current.get(key)!;
-    }, []);
-
-    // State-Änderungen propagieren
-    const updateOpenState = useCallback(
-      (newIsOpen: boolean) => {
-        if (!isControlled) {
-          setIsOpen(newIsOpen);
-        }
-        if (onOpenChange) {
-          onOpenChange(newIsOpen);
-        }
-
-        if (newIsOpen) {
-          if (onOpen) onOpen();
-        } else {
-          if (onClose) onClose();
-          // Aktives Item zurücksetzen beim Schließen
-          setActiveItemIndex(null);
-        }
-      },
-      [isControlled, onOpenChange, onOpen, onClose]
+    const filteredOptions = options.filter((opt) =>
+      opt.label.toLowerCase().includes(search.toLowerCase())
     );
 
-    // Dropdown öffnen
-    const openDropdown = useCallback(() => {
-      if (isDisabled) return;
-      updateOpenState(true);
-    }, [isDisabled, updateOpenState]);
+    const groupedOptions = grouped
+      ? filteredOptions.reduce<Record<string, DropdownOption[]>>((acc, opt) => {
+          const g = opt.group || 'other';
+          acc[g] = acc[g] || [];
+          acc[g].push(opt);
+          return acc;
+        }, {})
+      : { all: filteredOptions };
 
-    // Dropdown schließen
-    const closeDropdown = useCallback(() => {
-      updateOpenState(false);
-    }, [updateOpenState]);
-
-    // Dropdown umschalten
-    const toggleDropdown = useCallback(() => {
-      if (isDisabled) return;
-      updateOpenState(!dropdownIsOpen);
-    }, [isDisabled, dropdownIsOpen, updateOpenState]);
-
-    // Bei Klick außerhalb schließen
-    useEffect(() => {
-      if (!closeOnClickOutside || !dropdownIsOpen) return;
-
-      const handleClickOutside = (e: MouseEvent) => {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(e.target as Node) &&
-          triggerRef.current &&
-          !triggerRef.current.contains(e.target as Node)
-        ) {
-          // Verzögerung hinzufügen, um sicherzustellen, dass der Test den Zustand erfassen kann
-          setTimeout(() => {
-            closeDropdown();
-          }, 0);
-        }
-      };
-
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [dropdownIsOpen, closeOnClickOutside, closeDropdown]);
-
-    // Bei ESC-Taste schließen
-    useEffect(() => {
-      if (!closeOnEscape || !dropdownIsOpen) return;
-
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          e.preventDefault();
-          closeDropdown();
-          // Fokus zurück auf den Trigger setzen
-          if (triggerRef.current) {
-            triggerRef.current.focus();
-          }
-        }
-      };
-
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
-    }, [dropdownIsOpen, closeOnEscape, closeDropdown]);
-
-    // Größen-spezifische Klassen
-    const sizeClasses = {
-      sm: 'dropdown-sm',
-      md: 'dropdown-md',
-      lg: 'dropdown-lg',
+    const toggleOpen = () => {
+      if (!disabled) setOpen((o) => !o);
     };
 
-    // CSS-Klassen zusammenstellen
-    const classes = [
-      'dropdown',
-      sizeClasses[size],
-      isDisabled ? 'dropdown-disabled' : '',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
+    const close = () => setOpen(false);
+
+    const handleSelect = (val: string) => {
+      onChange(val);
+      setHighlight(val);
+      close();
+      buttonRef.current?.focus();
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (disabled) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!open) {
+          setOpen(true);
+          return;
+        }
+        const opts = filteredOptions;
+        const currentIndex = opts.findIndex((o) => o.value === highlight);
+        const nextIndex =
+          e.key === 'ArrowDown'
+            ? Math.min(currentIndex + 1, opts.length - 1)
+            : Math.max(currentIndex - 1, 0);
+        const next = opts[nextIndex];
+        if (next) {
+          setHighlight(next.value);
+          const li = document.getElementById(`${dropdownId}-option-${next.value}`) as HTMLElement | null;
+          if (li && typeof li.scrollIntoView === 'function') {
+            li.scrollIntoView({ block: 'nearest' });
+          }
+        }
+      } else if (e.key === 'Enter' && open && highlight) {
+        e.preventDefault();
+        handleSelect(highlight);
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        close();
+      }
+    };
+
+    useEffect(() => {
+      if (open) {
+        const listener = (evt: MouseEvent) => {
+          if (
+            listRef.current &&
+            !listRef.current.contains(evt.target as Node) &&
+            buttonRef.current &&
+            !buttonRef.current.contains(evt.target as Node)
+          ) {
+            close();
+          }
+        };
+        document.addEventListener('mousedown', listener);
+        return () => document.removeEventListener('mousedown', listener);
+      }
+    }, [open]);
 
     return (
-      <DropdownContext.Provider
-        value={{
-          isOpen: dropdownIsOpen,
-          setIsOpen: updateOpenState,
-          activeItemIndex,
-          setActiveItemIndex,
-          registerItem,
-          triggerRef,
-          dropdownId,
-          onSelect,
-          closeDropdown,
-        }}
-      >
-        <div
-          ref={ref}
+      <div ref={ref} className={className}>
+        {label && (
+          <label htmlFor={dropdownId} className="block mb-1 text-sm font-medium">
+            {label}
+          </label>
+        )}
+        {searchable && open && (
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="mb-1 w-full border px-2 py-1 text-sm"
+            placeholder="Search..."
+            data-testid="dropdown-search"
+          />
+        )}
+        <button
+          ref={buttonRef}
           id={dropdownId}
-          className={classes}
-          data-placement={placement}
-          aria-label={ariaLabel}
-          data-testid="dropdown"
-          {...rest}
+          type="button"
+          disabled={disabled}
+          className="border px-3 py-1 rounded w-full text-left"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-controls={listId}
+          aria-activedescendant={highlight ? `${dropdownId}-option-${highlight}` : undefined}
+          aria-disabled={disabled}
+          onClick={toggleOpen}
+          onKeyDown={handleKeyDown}
+          data-testid="dropdown-button"
         >
-          {children}
-        </div>
-      </DropdownContext.Provider>
+          {options.find((o) => o.value === value)?.label || 'Select'}
+        </button>
+        {open && (
+          <ul
+            ref={listRef}
+            id={listId}
+            role="listbox"
+            className="mt-1 max-h-60 overflow-auto border rounded bg-white shadow"
+            data-testid="dropdown-list"
+          >
+            {Object.entries(groupedOptions).map(([group, opts]) => (
+              <React.Fragment key={group}>
+                {grouped && group !== 'other' && (
+                  <li className="px-3 py-1 text-xs font-semibold text-gray-500" role="presentation">
+                    {group}
+                  </li>
+                )}
+                {opts.map((opt) => (
+                  <li
+                    key={opt.value}
+                    id={`${dropdownId}-option-${opt.value}`}
+                    role="option"
+                    aria-selected={value === opt.value}
+                    className={`px-3 py-1 cursor-pointer hover:bg-gray-100 ${
+                      highlight === opt.value ? 'bg-gray-100' : ''
+                    }`}
+                    onClick={() => handleSelect(opt.value)}
+                    onMouseEnter={() => setHighlight(opt.value)}
+                  >
+                    {opt.label}
+                  </li>
+                ))}
+              </React.Fragment>
+            ))}
+          </ul>
+        )}
+      </div>
     );
   }
 );
