@@ -18,6 +18,7 @@ describe('Dropdown', () => {
     const tree = renderer
       .create(
         <Dropdown id="dropdown-test" value="one" onChange={() => {}} options={options} />
+
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
