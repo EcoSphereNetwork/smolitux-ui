@@ -175,7 +175,7 @@ export interface A11yButtonProps extends Omit<ButtonProps, 'aria-label'> {
 /**
  * Button-Komponente mit verbesserten Barrierefreiheits-Funktionen
  */
-export const A11yButton = React.forwardRef<HTMLDivElement, A11yButtonProps>(
+export const A11yButton = React.forwardRef<HTMLButtonElement, A11yButtonProps>(
   (
     {
       label,
@@ -252,7 +252,6 @@ export const A11yButton = React.forwardRef<HTMLDivElement, A11yButtonProps>(
           aria-atomic={atomic ? true : undefined}
           aria-relevant={relevant}
           data-testid={testId}
-          isIconButton={isIconButton}
           disabled={isDisabled || props.disabled}
           {...props}
         >

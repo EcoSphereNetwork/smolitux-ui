@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 
@@ -138,4 +139,11 @@ export const AllVariants: Story = {
       </div>
     </div>
   ),
+};
+
+export const Interactive: Story = {
+  render: () => {
+    const [count, setCount] = React.useState(0);
+    return <Button onClick={() => setCount((c) => c + 1)}>Clicked {count} times</Button>;
+  },
 };

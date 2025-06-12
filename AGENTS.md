@@ -36,7 +36,8 @@ Avoids:
 - **@smolitux/theme** – 19 design tokens – ✅ Complete
 
 ### 🔄 In Progress
-- **@smolitux/core** – 534 foundational components – 🔄 Active
+ - **@smolitux/core** – 534 foundational components – 🔄 Active
+  - Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker (6/534)
 
 ### ⏳ Pending
 - **@smolitux/utils**  
