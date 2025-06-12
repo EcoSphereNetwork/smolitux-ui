@@ -257,4 +257,4 @@ Verwenden Sie tsup statt rollup für den Build-Prozess:
 
 ## Fazit
 
-Die meisten Build-Probleme in der Smolitux-UI-Bibliothek lassen sich auf TypeScript-Konfigurationsprobleme, doppelte Exporte, Typprobleme in Komponenten, fehlende Abhängigkeiten und Probleme mit der Typinferenz zurückführen. Durch die Anwendung der oben beschriebenen Lösungsansätze können diese Probleme behoben werden.
+Die meisten Build-Probleme in der Smolitux-UI-Bibliothek lassen sich auf TypeScript-Konfigurationsprobleme, doppelte Exporte, Typprobleme in Komponenten, fehlende Abhängigkeiten und Probleme mit der Typinferenz zurückführen. Durch die Anwendung der oben beschriebenen Lösungsansätze können diese Probleme behoben werden.Thu Jun 12 08:10:57 UTC 2025: Build failed due to missing modules during jest runs
