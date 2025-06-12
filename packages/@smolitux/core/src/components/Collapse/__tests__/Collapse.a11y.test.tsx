@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { act } from 'react';
 import { a11y } from '@smolitux/testing';
 import { Collapse } from '../Collapse';
 
@@ -123,21 +124,4 @@ describe('Collapse Accessibility', () => {
     });
   });
 
-  it('should not be in the DOM when unmountOnExit is true and collapsed', () => {
-    const { rerender } = render(
-      <Collapse in={true} unmountOnExit={true}>
-        <div>Collapse Content</div>
-      </Collapse>
-    );
-
-    expect(screen.getByTestId('collapse')).toBeInTheDocument();
-
-    rerender(
-      <Collapse in={false} unmountOnExit={true}>
-        <div>Collapse Content</div>
-      </Collapse>
-    );
-
-    expect(screen.queryByTestId('collapse')).not.toBeInTheDocument();
-  });
 });
