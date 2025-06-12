@@ -174,7 +174,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
       // Forward ref if the original element has one
       const originalRef = child.ref as
-      
+
         | ((instance: HTMLElement | null) => void)
         | React.RefObject<HTMLElement>
         | null

@@ -36,9 +36,10 @@ Avoids:
 - **@smolitux/theme** – 19 design tokens – ✅ Complete
 
 ### 🔄 In Progress
-  - Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer (8/534)
-  - Current Focus: Dropdown
+- Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer (8/534)
+- Current Focus: Dropdown
 - Drawer → feature/refactor-drawer (sandbox)
+
 
 ### ⏳ Pending
 - **@smolitux/utils**  
