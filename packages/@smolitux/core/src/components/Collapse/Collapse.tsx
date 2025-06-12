@@ -196,7 +196,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
   };
 
   const combinedRef = (node: HTMLDivElement | null) => {
-    transitionRef.current = node;
+    (transitionRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
     if (typeof ref === 'function') {
       ref(node);
     } else if (ref) {
