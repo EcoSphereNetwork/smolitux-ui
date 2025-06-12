@@ -27,7 +27,7 @@ This document provides a comprehensive test status report for all components in 
 | @smolitux/core | Drawer | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | FileUpload | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | FormControl | ✅ | ❌ | ❌ | ✅ | Needs A11y Tests |
-| @smolitux/core | Menu | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
+| @smolitux/core | Menu | ✅ | ✅ | ✅ | ✅ | Ready |
 | @smolitux/core | Modal | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Pagination | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
 | @smolitux/core | Popover | ✅ | ❌ | ❌ | ❌ | Needs A11y Tests |
@@ -216,6 +216,10 @@ Dieser Bericht wird mit jeder Version aktualisiert, um den Fortschritt bei der T
 | @smolitux/core | Form | ✅ Fertig |
 | @smolitux/core | FormControl | ✅ Fertig |
 | @smolitux/core | FormField | ✅ Fertig |
+| @smolitux/core | FormLabel | ✅ Fertig |
+| @smolitux/core | FormHint | ✅ Fertig |
+| @smolitux/core | FormError | ✅ Fertig |
+| @smolitux/core | FormSuccess | ✅ Fertig |
 | @smolitux/core | Grid | ✅ Fertig |
 | @smolitux/core | Input | ✅ Fertig |
 | @smolitux/core | LanguageSwitcher | ✅ Fertig |

@@ -1,25 +1,39 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { Form } from '../../../validation/Form';
 import { FormField } from '../FormField';
+
+const MockInput = ({
+  errorMessages,
+  hasError,
+  isLoading,
+  showLoadingIndicator,
+  showSuccessIndicator,
+  showErrorIndicator,
+  showCounter,
+  maxLength,
+  showProgressBar,
+  progress,
+  progressMax,
+  tooltip,
+  isValid,
+  isInvalid,
+  ...rest
+}: Record<string, unknown>) => <input {...rest} />;
+
+const renderWithForm = (ui: React.ReactElement) =>
+  render(<Form onSubmit={jest.fn()}>{ui}</Form>);
 
 describe('FormField', () => {
   it('renders correctly with default props', () => {
-    render(
-      <FormField label="Username">
-        <input type="text" name="username" />
-      </FormField>
-    );
+    renderWithForm(<FormField label="Username" component={MockInput} />);
 
     expect(screen.getByText('Username')).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
-  it('renders with required indicator when isRequired is true', () => {
-    render(
-      <FormField label="Username" isRequired>
-        <input type="text" name="username" />
-      </FormField>
-    );
+  it('renders with required indicator when required is true', () => {
+    renderWithForm(<FormField label="Username" required component={MockInput} />);
 
     const label = screen.getByText('Username');
     expect(label).toBeInTheDocument();
@@ -27,41 +41,31 @@ describe('FormField', () => {
   });
 
   it('renders with helper text when provided', () => {
-    render(
-      <FormField label="Username" helperText="Enter your username">
-        <input type="text" name="username" />
-      </FormField>
+    renderWithForm(
+      <FormField label="Username" helperText="Enter your username" component={MockInput} />
     );
 
     expect(screen.getByText('Enter your username')).toBeInTheDocument();
   });
 
   it('renders with error message when isInvalid and errorMessage are provided', () => {
-    render(
-      <FormField label="Username" isInvalid errorMessage="Username is required">
-        <input type="text" name="username" />
-      </FormField>
+    renderWithForm(
+      <FormField label="Username" isInvalid errorMessage="Username is required" component={MockInput} />
     );
 
     expect(screen.getByText('Username is required')).toBeInTheDocument();
   });
 
   it('applies error styles when isInvalid is true', () => {
-    render(
-      <FormField label="Username" isInvalid data-testid="form-field">
-        <input type="text" name="username" />
-      </FormField>
-    );
+    renderWithForm(<FormField label="Username" isInvalid data-testid="form-field" component={MockInput} />);
 
     const formField = screen.getByTestId('form-field');
     expect(formField).toHaveClass('is-invalid');
   });
 
   it('renders with custom className', () => {
-    render(
-      <FormField label="Username" className="custom-field" data-testid="form-field">
-        <input type="text" name="username" />
-      </FormField>
+    renderWithForm(
+      <FormField label="Username" className="custom-field" data-testid="form-field" component={MockInput} />
     );
 
     const formField = screen.getByTestId('form-field');
@@ -69,32 +73,26 @@ describe('FormField', () => {
   });
 
   it('renders with custom style', () => {
-    render(
-      <FormField label="Username" style={{ marginBottom: '20px' }} data-testid="form-field">
-        <input type="text" name="username" />
-      </FormField>
+    renderWithForm(
+      <FormField label="Username" style={{ marginBottom: '20px' }} data-testid="form-field" component={MockInput} />
     );
 
     const formField = screen.getByTestId('form-field');
     expect(formField).toHaveStyle('margin-bottom: 20px');
   });
 
-  it('renders with custom label position', () => {
-    render(
-      <FormField label="Username" labelPosition="right" data-testid="form-field">
-        <input type="text" name="username" />
-      </FormField>
+  it('renders with custom label placement', () => {
+    renderWithForm(
+      <FormField label="Username" labelPlacement="right" data-testid="form-field" component={MockInput} />
     );
 
     const formField = screen.getByTestId('form-field');
-    expect(formField).toHaveClass('label-right');
+    expect(formField).toHaveClass('sm:flex-row-reverse');
   });
 
   it('renders with custom label width', () => {
-    render(
-      <FormField label="Username" labelWidth="150px" data-testid="label">
-        <input type="text" name="username" />
-      </FormField>
+    renderWithForm(
+      <FormField label="Username" labelWidth="150px" labelPlacement="left" data-testid="label" component={MockInput} />
     );
 
     const label = screen.getByTestId('label');
@@ -102,10 +100,8 @@ describe('FormField', () => {
   });
 
   it('renders with custom label className', () => {
-    render(
-      <FormField label="Username" labelClassName="custom-label" data-testid="label">
-        <input type="text" name="username" />
-      </FormField>
+    renderWithForm(
+      <FormField label="Username" labelClassName="custom-label" data-testid="label" component={MockInput} />
     );
 
     const label = screen.getByTestId('label');
@@ -113,15 +109,14 @@ describe('FormField', () => {
   });
 
   it('renders with custom helper text className', () => {
-    render(
+    renderWithForm(
       <FormField
         label="Username"
         helperText="Enter your username"
         helperTextClassName="custom-helper"
         data-testid="helper-text"
-      >
-        <input type="text" name="username" />
-      </FormField>
+        component={MockInput}
+      />
     );
 
     const helperText = screen.getByTestId('helper-text');
@@ -129,16 +124,15 @@ describe('FormField', () => {
   });
 
   it('renders with custom error message className', () => {
-    render(
+    renderWithForm(
       <FormField
         label="Username"
         isInvalid
         errorMessage="Username is required"
         errorClassName="custom-error"
         data-testid="error-message"
-      >
-        <input type="text" name="username" />
-      </FormField>
+        component={MockInput}
+      />
     );
 
     const errorMessage = screen.getByTestId('error-message');
@@ -146,21 +140,14 @@ describe('FormField', () => {
   });
 
   it('renders with hidden label when hideLabel is true', () => {
-    render(
-      <FormField label="Username" hideLabel>
-        <input type="text" name="username" />
-      </FormField>
-    );
+    renderWithForm(<FormField label="Username" hideLabel component={MockInput} />);
 
-    expect(screen.queryByText('Username')).not.toBeVisible();
+    const label = screen.getByText('Username');
+    expect(label).toHaveClass('sr-only');
   });
 
   it('renders with id passed to the label and input', () => {
-    render(
-      <FormField label="Username" id="username-field">
-        <input type="text" name="username" />
-      </FormField>
-    );
+    renderWithForm(<FormField label="Username" id="username-field" component={MockInput} />);
 
     const label = screen.getByText('Username');
     expect(label).toHaveAttribute('for', 'username-field');
