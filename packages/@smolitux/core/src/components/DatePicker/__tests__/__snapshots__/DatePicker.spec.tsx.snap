@@ -1,0 +1,1607 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker Snapshots renders date picker with all features enabled correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative w-full custom-date-picker"
+    data-testid="date-picker-container"
+  >
+    <label
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+      for="test-id"
+    >
+      Date
+    </label>
+    <div
+      class="relative"
+    >
+      <input
+        aria-describedby="test-id-helper"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        calendarposition="bottom"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-12 px-5 py-3 text-lg focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer custom-date-picker"
+        colorscheme="primary"
+        id="test-id"
+        placeholder="Select date"
+        type="text"
+        value="20.01.2023"
+        variant="filled"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <p
+      class="mt-1 text-sm text-gray-500 dark:text-gray-400"
+      id="test-id-helper"
+    >
+      Select a date
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with custom className correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  custom-date-picker"
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer custom-date-picker"
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with custom placeholder correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="Select date"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different calendar positions correctly: DatePicker with calendar position bottom 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        calendarposition="bottom"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different calendar positions correctly: DatePicker with calendar position left 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        calendarposition="left"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different calendar positions correctly: DatePicker with calendar position right 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        calendarposition="right"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different calendar positions correctly: DatePicker with calendar position top 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        calendarposition="top"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different color schemes correctly: DatePicker with color scheme danger 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        colorscheme="danger"
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different color schemes correctly: DatePicker with color scheme info 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        colorscheme="info"
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different color schemes correctly: DatePicker with color scheme primary 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        colorscheme="primary"
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different color schemes correctly: DatePicker with color scheme secondary 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        colorscheme="secondary"
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different color schemes correctly: DatePicker with color scheme success 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        colorscheme="success"
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different color schemes correctly: DatePicker with color scheme warning 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        colorscheme="warning"
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different date formats correctly: DatePicker with format MM/dd/yyyy 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value="01/20/2023"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different date formats correctly: DatePicker with format dd.MM.yyyy 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value="20.01.2023"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different date formats correctly: DatePicker with format yyyy-MM-dd 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value="2023-01-20"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different sizes correctly: DatePicker with size lg 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-12 px-5 py-3 text-lg focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different sizes correctly: DatePicker with size md 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different sizes correctly: DatePicker with size sm 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-8 px-3 py-1.5 text-sm focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different variants correctly: DatePicker with variant filled 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+        variant="filled"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different variants correctly: DatePicker with variant outline 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+        variant="outline"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with different variants correctly: DatePicker with variant unstyled 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+        variant="unstyled"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with error message correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-describedby="test-id-error"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        aria-invalid="true"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base border-red-500 dark:border-red-400 focus:ring-red-500 focus:border-red-500  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <p
+      class="mt-1 text-sm text-red-600 dark:text-red-400"
+      id="test-id-error"
+      role="alert"
+    >
+      Invalid date
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with fullWidth correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative w-full "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with helper text correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-describedby="test-id-helper"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <p
+      class="mt-1 text-sm text-gray-500 dark:text-gray-400"
+      id="test-id-helper"
+    >
+      Select a date
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with label correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <label
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+      for="test-id"
+    >
+      Date
+    </label>
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with max date correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with min date correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with open calendar correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders date picker with selected date correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value="2023-01-20"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders default date picker correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  cursor-pointer "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders disabled date picker correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  opacity-50 cursor-not-allowed "
+        disabled=""
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          disabled=""
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DatePicker Snapshots renders readonly date picker correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative  "
+    data-testid="date-picker-container"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="block rounded-md focus:outline-none focus:ring-2 focus-visible:ring-2 transition duration-150 ease-in-out appearance-none w-full text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-10 px-4 py-2 text-base focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400  opacity-50 cursor-not-allowed "
+        id="test-id"
+        placeholder="YYYY-MM-DD"
+        readonly=""
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      >
+        <button
+          aria-label="Kalender öffnen"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full p-1"
+          disabled=""
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

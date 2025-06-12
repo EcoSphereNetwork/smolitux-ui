@@ -150,7 +150,6 @@ export const useTransition = <T extends HTMLElement = HTMLElement>(
         onExiting?.();
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inProp, state]);
 
   // CSS-Stil basierend auf dem aktuellen Zustand

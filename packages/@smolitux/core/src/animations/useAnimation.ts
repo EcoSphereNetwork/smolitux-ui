@@ -51,8 +51,10 @@ export const useAnimation = (
     return {
       duration: options.duration || transitionPreset.duration,
       easing: options.easing || transitionPreset.easing,
-      delay:
-        options.delay ?? (transitionPreset as TransitionPreset).delay ?? transitionPreset.delay ?? 0,
+      delay: options.delay ??
+        ((('delay' in transitionPreset) && typeof transitionPreset.delay === 'number')
+          ? transitionPreset.delay
+          : 0),
       iterations: options.iterationCount || 1,
       direction: options.direction || 'normal',
       fill: options.fillMode || 'both',
@@ -114,7 +116,7 @@ export const useAnimation = (
         animationRef.current.cancel();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, deps);
 
   return [ref, { start, stop, pause, resume, isRunning }];

@@ -8,8 +8,8 @@ exports[`ColorPicker Snapshots renders color picker with all features enabled co
   >
     <label
       class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-      for="color-picker-ionab205p-text-input"
-      id="color-picker-ionab205p-label"
+      for="color-picker-f4bipx4bi-text-input"
+      id="color-picker-f4bipx4bi-label"
     >
       Color 
     </label>
@@ -17,17 +17,17 @@ exports[`ColorPicker Snapshots renders color picker with all features enabled co
       class="flex items-center"
     >
       <button
-        aria-describedby="color-picker-ionab205p-helper"
+        aria-describedby="color-picker-f4bipx4bi-helper"
         aria-expanded="false"
         aria-haspopup="dialog"
-        aria-labelledby="color-picker-ionab205p-label"
+        aria-labelledby="color-picker-f4bipx4bi-label"
         class="
             
             cursor-pointer
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-ionab205p"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -43,7 +43,7 @@ exports[`ColorPicker Snapshots renders color picker with all features enabled co
         </span>
       </button>
       <input
-        aria-describedby="color-picker-ionab205p-helper"
+        aria-describedby="color-picker-f4bipx4bi-helper"
         class="
             ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
             h-12 text-lg
@@ -53,7 +53,7 @@ exports[`ColorPicker Snapshots renders color picker with all features enabled co
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             flex-grow
           "
-        id="color-picker-ionab205p-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="rgb(0, 0, 0)"
@@ -61,7 +61,7 @@ exports[`ColorPicker Snapshots renders color picker with all features enabled co
     </div>
     <p
       class="mt-1 text-sm text-gray-500 dark:text-gray-400"
-      id="color-picker-ionab205p-helper"
+      id="color-picker-f4bipx4bi-helper"
     >
       Choose a color
     </p>
@@ -87,7 +87,7 @@ exports[`ColorPicker Snapshots renders color picker with alpha channel correctly
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-mafewxb20"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -112,7 +112,7 @@ exports[`ColorPicker Snapshots renders color picker with alpha channel correctly
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-mafewxb20-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -140,7 +140,7 @@ exports[`ColorPicker Snapshots renders color picker with custom className correc
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-yf9qstgbm"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -165,7 +165,7 @@ exports[`ColorPicker Snapshots renders color picker with custom className correc
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-yf9qstgbm-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -193,7 +193,7 @@ exports[`ColorPicker Snapshots renders color picker with different formats corre
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-4p3ktewdb"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -218,7 +218,7 @@ exports[`ColorPicker Snapshots renders color picker with different formats corre
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-4p3ktewdb-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#ff0000"
@@ -246,7 +246,7 @@ exports[`ColorPicker Snapshots renders color picker with different formats corre
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-1rl57qf5j"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -271,7 +271,7 @@ exports[`ColorPicker Snapshots renders color picker with different formats corre
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-1rl57qf5j-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="hsl(0, 0%, 0%)"
@@ -299,7 +299,7 @@ exports[`ColorPicker Snapshots renders color picker with different formats corre
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-he0uys9de"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -324,7 +324,7 @@ exports[`ColorPicker Snapshots renders color picker with different formats corre
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-he0uys9de-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="rgb(0, 0, 0)"
@@ -352,7 +352,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-6ajmmw09z"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -377,7 +377,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-6ajmmw09z-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -405,7 +405,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-3s5ndwlbr"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -430,7 +430,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-3s5ndwlbr-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -458,7 +458,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-yyzpiwwpr"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -483,7 +483,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-yyzpiwwpr-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -511,7 +511,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-z1uiz66mx"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -536,7 +536,7 @@ exports[`ColorPicker Snapshots renders color picker with different popup positio
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-z1uiz66mx-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -564,7 +564,7 @@ exports[`ColorPicker Snapshots renders color picker with different sizes correct
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-dpzaalqpd"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -589,7 +589,7 @@ exports[`ColorPicker Snapshots renders color picker with different sizes correct
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-dpzaalqpd-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -617,7 +617,7 @@ exports[`ColorPicker Snapshots renders color picker with different sizes correct
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-127tmsa49"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -642,7 +642,7 @@ exports[`ColorPicker Snapshots renders color picker with different sizes correct
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-127tmsa49-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -670,7 +670,7 @@ exports[`ColorPicker Snapshots renders color picker with different sizes correct
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-90f6dozrg"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -695,7 +695,7 @@ exports[`ColorPicker Snapshots renders color picker with different sizes correct
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-90f6dozrg-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -715,7 +715,7 @@ exports[`ColorPicker Snapshots renders color picker with error message correctly
       class="flex items-center"
     >
       <button
-        aria-describedby="color-picker-2yaex8qoe-error"
+        aria-describedby="color-picker-f4bipx4bi-error"
         aria-expanded="false"
         aria-haspopup="dialog"
         aria-invalid="true"
@@ -725,7 +725,7 @@ exports[`ColorPicker Snapshots renders color picker with error message correctly
             border-red-500 dark:border-red-500
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-2yaex8qoe"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -741,7 +741,7 @@ exports[`ColorPicker Snapshots renders color picker with error message correctly
         </span>
       </button>
       <input
-        aria-describedby="color-picker-2yaex8qoe-error"
+        aria-describedby="color-picker-f4bipx4bi-error"
         aria-invalid="true"
         class="
             ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
@@ -752,7 +752,7 @@ exports[`ColorPicker Snapshots renders color picker with error message correctly
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-2yaex8qoe-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -760,7 +760,7 @@ exports[`ColorPicker Snapshots renders color picker with error message correctly
     </div>
     <p
       class="mt-1 text-sm text-red-600 dark:text-red-400"
-      id="color-picker-2yaex8qoe-error"
+      id="color-picker-f4bipx4bi-error"
       role="alert"
     >
       Invalid color
@@ -787,7 +787,7 @@ exports[`ColorPicker Snapshots renders color picker with fullWidth correctly 1`]
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-18abtl40r"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -812,7 +812,7 @@ exports[`ColorPicker Snapshots renders color picker with fullWidth correctly 1`]
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             flex-grow
           "
-        id="color-picker-18abtl40r-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -832,7 +832,7 @@ exports[`ColorPicker Snapshots renders color picker with helper text correctly 1
       class="flex items-center"
     >
       <button
-        aria-describedby="color-picker-7qw6wyrkg-helper"
+        aria-describedby="color-picker-f4bipx4bi-helper"
         aria-expanded="false"
         aria-haspopup="dialog"
         class="
@@ -841,7 +841,7 @@ exports[`ColorPicker Snapshots renders color picker with helper text correctly 1
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-7qw6wyrkg"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -857,7 +857,7 @@ exports[`ColorPicker Snapshots renders color picker with helper text correctly 1
         </span>
       </button>
       <input
-        aria-describedby="color-picker-7qw6wyrkg-helper"
+        aria-describedby="color-picker-f4bipx4bi-helper"
         class="
             ml-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md 
             h-10 text-base
@@ -867,7 +867,7 @@ exports[`ColorPicker Snapshots renders color picker with helper text correctly 1
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-7qw6wyrkg-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -875,7 +875,7 @@ exports[`ColorPicker Snapshots renders color picker with helper text correctly 1
     </div>
     <p
       class="mt-1 text-sm text-gray-500 dark:text-gray-400"
-      id="color-picker-7qw6wyrkg-helper"
+      id="color-picker-f4bipx4bi-helper"
     >
       Choose a color
     </p>
@@ -891,8 +891,8 @@ exports[`ColorPicker Snapshots renders color picker with label correctly 1`] = `
   >
     <label
       class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-      for="color-picker-wzd5bygei-text-input"
-      id="color-picker-wzd5bygei-label"
+      for="color-picker-f4bipx4bi-text-input"
+      id="color-picker-f4bipx4bi-label"
     >
       Color 
     </label>
@@ -902,14 +902,14 @@ exports[`ColorPicker Snapshots renders color picker with label correctly 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="dialog"
-        aria-labelledby="color-picker-wzd5bygei-label"
+        aria-labelledby="color-picker-f4bipx4bi-label"
         class="
             
             cursor-pointer
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-wzd5bygei"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -934,7 +934,7 @@ exports[`ColorPicker Snapshots renders color picker with label correctly 1`] = `
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-wzd5bygei-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -962,7 +962,7 @@ exports[`ColorPicker Snapshots renders color picker with open popup correctly 1`
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-nphv8v02x"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -987,7 +987,7 @@ exports[`ColorPicker Snapshots renders color picker with open popup correctly 1`
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-nphv8v02x-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -1008,20 +1008,20 @@ exports[`ColorPicker Snapshots renders color picker with open popup correctly 1`
       >
         <label
           class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          for="color-picker-nphv8v02x-color-input"
+          for="color-picker-f4bipx4bi-color-input"
         >
           Farbe
         </label>
         <input
-          aria-describedby="color-picker-nphv8v02x-color-description"
+          aria-describedby="color-picker-f4bipx4bi-color-description"
           class="w-full h-10 p-0 border-0 rounded-md cursor-pointer"
-          id="color-picker-nphv8v02x-color-input"
+          id="color-picker-f4bipx4bi-color-input"
           type="color"
           value="#000000"
         />
         <p
           class="sr-only"
-          id="color-picker-nphv8v02x-color-description"
+          id="color-picker-f4bipx4bi-color-description"
         >
           Verwenden Sie die Pfeiltasten, um die Farbe anzupassen, oder geben Sie einen Hex-Farbwert ein.
         </p>
@@ -1075,12 +1075,12 @@ exports[`ColorPicker Snapshots renders color picker with open popup correctly 1`
       <div>
         <div
           class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          id="color-picker-nphv8v02x-presets"
+          id="color-picker-f4bipx4bi-presets"
         >
           Voreingestellte Farben
         </div>
         <div
-          aria-labelledby="color-picker-nphv8v02x-presets"
+          aria-labelledby="color-picker-f4bipx4bi-presets"
           class="flex flex-wrap gap-2"
           role="grid"
         >
@@ -1192,7 +1192,7 @@ exports[`ColorPicker Snapshots renders color picker with preset colors correctly
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-5pe822nht"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -1217,7 +1217,7 @@ exports[`ColorPicker Snapshots renders color picker with preset colors correctly
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-5pe822nht-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -1245,7 +1245,7 @@ exports[`ColorPicker Snapshots renders color picker with value correctly 1`] = `
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-8bo4ntt8v"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -1270,7 +1270,7 @@ exports[`ColorPicker Snapshots renders color picker with value correctly 1`] = `
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-8bo4ntt8v-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#ff0000"
@@ -1298,7 +1298,7 @@ exports[`ColorPicker Snapshots renders default color picker correctly 1`] = `
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-viangtbfh"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -1323,7 +1323,7 @@ exports[`ColorPicker Snapshots renders default color picker correctly 1`] = `
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-viangtbfh-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -1353,7 +1353,7 @@ exports[`ColorPicker Snapshots renders disabled color picker correctly 1`] = `
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
         disabled=""
-        id="color-picker-5mwm7awky"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -1379,7 +1379,7 @@ exports[`ColorPicker Snapshots renders disabled color picker correctly 1`] = `
             w-40
           "
         disabled=""
-        id="color-picker-5mwm7awky-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         type="text"
         value="#000000"
@@ -1407,7 +1407,7 @@ exports[`ColorPicker Snapshots renders readonly color picker correctly 1`] = `
             
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
           "
-        id="color-picker-77rwxlnv6"
+        id="color-picker-f4bipx4bi"
         type="button"
       >
         <div
@@ -1432,7 +1432,7 @@ exports[`ColorPicker Snapshots renders readonly color picker correctly 1`] = `
             focus:outline-none focus:ring-2 focus:ring-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500
             w-40
           "
-        id="color-picker-77rwxlnv6-text-input"
+        id="color-picker-f4bipx4bi-text-input"
         placeholder="Farbwert eingeben"
         readonly=""
         type="text"

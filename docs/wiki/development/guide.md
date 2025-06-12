@@ -348,3 +348,4 @@ Die Bibliothek folgt der [Semantic Versioning](https://semver.org/)-Spezifikatio
 - `FormLabel`, `FormHint`, `FormError` und `FormSuccess` greifen auf diesen Context zu.
 - Eingabefelder erhalten `aria-describedby` und `aria-errormessage` automatisch über die zugehörigen IDs.
 - Für Tests, die Komponenten mit `useTheme` verwenden, sollte ein `ThemeProvider` in den Test-Wrapper aufgenommen oder der Hook per Jest-Mock ersetzt werden.
+
