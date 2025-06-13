@@ -2,7 +2,7 @@
 
 ## Overall Progress
 - Packages completed: 1/13
-- Components completed in @smolitux/core: 20/534
+- Components completed in @smolitux/core: 21/534
 
 
 ## Recent Activity
@@ -16,10 +16,8 @@
 - Implemented Input component with tests and stories
 - Implemented Label component with tests and stories
 - Implemented Listbox component with tests and stories
-- Implemented Loader component with tests and stories
-- Implemented Modal component with tests and stories
-- Implemented Pagination component with tests and stories
-- Implemented ProgressBar component with tests and stories
+- Implemented ProgressBar component with accessibility fixes (42/42 tests passing)
+- Implemented Radio component with accessibility improvements (41/49 tests passing)
 
 ## Next Action
 - Continue component loop with next component

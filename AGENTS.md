@@ -133,17 +133,26 @@ No terminal commands are required. Activation is triggered by prompt input.
    - Implement → Test → Document → Validate → Commit → Push → Track
 
 4. **Post-cycle update**:  
-   After each 
-6. **UPDATE PROGRESS**
-
-   * Mark `Dialog` as complete in `CODEX_PROGRESS.md`
-   * Update `AGENTS.md` with component progress
-
----
-component and package cycle:
+   After each component and package cycle:
    - Update `AGENTS.md`  
    - Update `CODEX_PROGRESS.md`  
    - Generate new `NEXT_Codex_Prompt-[package].md`
+
+---
+
+## 📊 Current Status
+
+**Active Package**: @smolitux/core  
+**Completed Components**: 21/534 (3.9%)  
+**Last Completed**: Radio (accessibility improvements, 41/49 tests passing)  
+**Current Target**: Loader  
+**Next**: Modal
+
+### Recent Achievements
+- ✅ ProgressBar: Full accessibility compliance (42/42 tests)
+- ✅ Radio: Major accessibility improvements (84% test success rate)
+- ✅ Build & lint validation passing
+- ✅ TypeScript errors resolved
 
 > 🧠 Codex must remain autonomous and self-sustaining across sessions.  
 > Reactivation is triggered by loading the latest `.md` prompt file into the Codex interface.
