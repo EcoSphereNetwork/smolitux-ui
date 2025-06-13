@@ -30,6 +30,8 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   indeterminate?: boolean;
   /** ARIA-Label für den ProgressBar */
   ariaLabel?: string;
+  /** Custom ARIA valuetext */
+  ariaValuetext?: string;
   /** Beschreibung für den ProgressBar (für Screenreader) */
   description?: string;
   /** Ob der Fortschritt live aktualisiert wird */
@@ -38,6 +40,10 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   showTextValue?: boolean;
   /** Benutzerdefiniertes Textformat für Screenreader */
   textValueFormat?: string;
+  /** Ob Fortschritt angekündigt werden soll */
+  announceProgress?: boolean;
+  /** Format für Fortschrittsankündigungen */
+  announceFormat?: string;
 }
 
 /**
@@ -70,10 +76,13 @@ export const ProgressBarA11y = forwardRef<HTMLDivElement, ProgressBarProps>(
       indeterminate = false,
       className = '',
       ariaLabel,
+      ariaValuetext,
       description,
       liveUpdate = true,
       showTextValue = true,
       textValueFormat = '{value}%',
+      announceProgress = false,
+      announceFormat,
       ...rest
     },
     ref
@@ -83,7 +92,7 @@ export const ProgressBarA11y = forwardRef<HTMLDivElement, ProgressBarProps>(
     const progressId = rest.id || `progressbar-${uniqueId}`;
     const labelId = `label-${progressId}`;
     const descriptionId = description ? `description-${progressId}` : undefined;
-    const valueTextId = showTextValue ? `value-text-${progressId}` : undefined;
+    const valueTextId = (showTextValue || announceProgress) ? `value-text-${progressId}` : undefined;
 
     // Berechnung des Prozentsatzes
     const calculatePercentage = () => {
@@ -117,15 +126,30 @@ export const ProgressBarA11y = forwardRef<HTMLDivElement, ProgressBarProps>(
 
     // Formatierung des Textwerts für Screenreader
     const getTextValue = () => {
-      if (!showTextValue) return null;
+      if (!showTextValue && !announceProgress) return null;
 
       const percentage = calculatePercentage();
+      
+      // Use announceFormat if provided and announceProgress is true
+      if (announceProgress && announceFormat) {
+        return announceFormat
+          .replace('{value}', Math.round(percentage).toString())
+          .replace('{rawValue}', value.toString())
+          .replace('{min}', min.toString())
+          .replace('{max}', max.toString());
+      }
 
       return textValueFormat
         .replace('{value}', Math.round(percentage).toString())
         .replace('{rawValue}', value.toString())
         .replace('{min}', min.toString())
         .replace('{max}', max.toString());
+    };
+
+    // Get the aria-valuetext value
+    const getAriaValueText = () => {
+      if (ariaValuetext) return ariaValuetext;
+      return getTextValue();
     };
 
     // Größen-spezifische Klassen
@@ -211,7 +235,7 @@ export const ProgressBarA11y = forwardRef<HTMLDivElement, ProgressBarProps>(
 
     // Rendere den versteckten Textwert für Screenreader
     const renderTextValue = () => {
-      if (!showTextValue) return null;
+      if (!showTextValue && !announceProgress) return null;
 
       return (
         <div
@@ -224,6 +248,9 @@ export const ProgressBarA11y = forwardRef<HTMLDivElement, ProgressBarProps>(
         </div>
       );
     };
+
+    // The rest props are already filtered since we destructured all custom props above
+    const domProps = rest;
 
     return (
       <div className="w-full">
@@ -246,12 +273,12 @@ export const ProgressBarA11y = forwardRef<HTMLDivElement, ProgressBarProps>(
           aria-valuenow={indeterminate ? undefined : Math.max(min, Math.min(max, value))}
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-valuetext={getTextValue() || undefined}
+          aria-valuetext={getAriaValueText() || undefined}
           aria-label={ariaLabel}
           aria-labelledby={showLabel ? labelId : undefined}
           aria-describedby={[descriptionId, valueTextId].filter(Boolean).join(' ') || undefined}
           data-testid="progressbar"
-          {...rest}
+          {...domProps}
         >
           <div data-testid="progress-fill" className={progressClasses} style={progressStyle}></div>
         </div>

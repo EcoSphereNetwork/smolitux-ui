@@ -104,9 +104,13 @@ describe('ProgressBar Accessibility', () => {
     render(<ProgressBar.A11y value={75} showLabel ariaLabel="Ladefortschritt" />);
 
     const progressbar = screen.getByRole('progressbar');
-    const label = screen.getByText('75%');
-    expect(label).toBeInTheDocument();
-    expect(progressbar).toHaveAttribute('aria-labelledby', label.parentElement?.id);
+    // Get the visible label (not the screen reader one)
+    const labelContainer = screen.getByRole('progressbar').getAttribute('aria-labelledby');
+    expect(labelContainer).toBeTruthy();
+    
+    const labelElement = document.getElementById(labelContainer!);
+    expect(labelElement).toBeInTheDocument();
+    expect(labelElement).toHaveTextContent('75%');
   });
 
   it('should handle custom label format correctly', () => {

@@ -173,5 +173,5 @@ To keep the suite green:
 - Snapshots regenerated via `npm run test --workspace=@smolitux/core -- -u`.
 - Verified all included suites pass (178 tests).
 
-**Current Status**: 19/534 @smolitux/core components completed and validated.
+**Current Status**: 20/534 @smolitux/core components completed and validated.
 **Next Component**: Continue with next component in alphabetical order.
