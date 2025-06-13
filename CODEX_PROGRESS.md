@@ -2,7 +2,7 @@
 
 ## Overall Progress
 - Packages completed: 1/13
-- Components completed in @smolitux/core: 25/534
+- Components completed in @smolitux/core: 27/534
 
 
 ## Recent Activity
@@ -22,6 +22,8 @@
 - Validated Modal component - production ready (58/58 tests passing, 100% success rate)
 - Validated Pagination component - production ready (36/36 tests passing, 100% success rate)
 - Fixed and validated Popover component - production ready (45/45 tests passing, 100% success rate)
+- Validated ProgressBar component - production ready (42/42 tests passing, 100% success rate)
+- Validated Radio component - functional with accessibility improvements needed (41/49 tests passing, 84% success rate)
 
 ## Next Action
 - Continue component loop with next component

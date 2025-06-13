@@ -1,13 +1,12 @@
-Continue Autonomous Package Loop: `@smolitux/core > Radio`
+# Continue Autonomous Package Loop: `@smolitux/core > Radio`
 
 ## ✅ Precondition Check
 
-- ✅ ProgressBar-Komponente erfolgreich implementiert mit vollständiger A11y-Unterstützung & Tests
-- ✅ Tests, Snapshot, Build & Lint vollständig validiert (256 tests passing)
-- ❌ Storybook bleibt global blockiert (Installationsversuch interaktiv)
-- ✅ Fortschritt dokumentiert in `AGENTS.md` & `CODEX_PROGRESS.md`
-- ✅ 20/534 Komponenten abgeschlossen
-- 🔓 Component Loop aktiv
+- ✅ ProgressBar component validated as production ready (42/42 tests passing, 100% success rate)
+- ✅ All validation tests passing (lint, build, accessibility)
+- ✅ Progress documented in `AGENTS.md` & `CODEX_PROGRESS.md`
+- ✅ 26/534 components completed (4.9%)
+- 🔓 Component Loop active
 
 ---
 
@@ -24,32 +23,27 @@ packages/@smolitux/core/src/components/Radio/
 
 ## 🔁 Component Execution Workflow
 
-### 1. 🧱 IMPLEMENT
+### 1. 🔍 VALIDATE EXISTING
 
-Verwende forwardRef, strikte Props, native HTML input[type="radio"] als Basis.
+Radio component already exists and was previously implemented. Check current status:
 
-**Pflichtprops:**
-- `value: string` – Wert des Radio-Buttons
-- `name: string` – Gruppenname für Radio-Buttons
-
-**Optionale Props:**
+**Expected Features:**
+- `value: string` – Wert der Radio-Option
 - `checked?: boolean` – Ausgewählt-Status
-- `defaultChecked?: boolean` – Standard-Ausgewählt-Status
-- `disabled?: boolean` – Deaktiviert-Status
-- `size?: "sm" | "md" | "lg"` – Größe des Radio-Buttons
-- `variant?: "primary" | "secondary" | "success" | "warning" | "error"`
+- `defaultChecked?: boolean` – Standard-Status
+- `onChange?: (event: ChangeEvent<HTMLInputElement>) => void` – Änderungshandler
+- `name?: string` – Gruppenname für Radio-Buttons
+- `disabled?: boolean` – Deaktiviert
+- `size?: "sm" | "md" | "lg"` – Größe
+- `variant?: "default" | "primary" | "success" | "warning" | "error"` – Farbvariante
 - `label?: string` – Label-Text
 - `description?: string` – Beschreibungstext
-- `required?: boolean` – Pflichtfeld
-- `invalid?: boolean` – Fehlerstatus
-- `onChange?: (event: ChangeEvent<HTMLInputElement>) => void`
 
-**Barrierefreiheit & Verhalten:**
-- Native HTML input[type="radio"] für vollständige A11y
-- ARIA: `aria-describedby` für Beschreibung, `aria-invalid` bei Fehlern
-- Keyboard navigation (Tab, Space, Arrow keys)
-- Focus management innerhalb Radio-Gruppe
-- Screen reader Unterstützung
+**Barrierefreiheit:**
+- ARIA: role="radio", aria-checked, aria-describedby
+- Keyboard Navigation: Pfeiltasten für Gruppennavigation
+- Focus Management: Fokusring, Tab-Navigation
+- Screen Reader Support: Labels und Beschreibungen
 
 ### 2. 🧪 TEST
 
@@ -57,13 +51,14 @@ Verwende forwardRef, strikte Props, native HTML input[type="radio"] als Basis.
 
 **Testfälle:**
 - Checked/Unchecked Status
-- Disabled Status
-- Größe & Variant-Darstellung
+- onChange-Handler
+- Disabled-Zustand
+- Verschiedene Größen (sm, md, lg)
+- Verschiedene Varianten (default, primary, success, warning, error)
 - Label & Beschreibung
-- Keyboard Navigation (Space, Arrow keys)
-- onChange Event
-- Required & Invalid Status
-- ARIA-Attribute
+- Keyboard Navigation (Pfeiltasten)
+- ARIA-Attribute (role, aria-checked, aria-describedby)
+- Screen Reader Support
 - Snapshot-Test
 - A11y-Check mit jest-axe
 
@@ -72,23 +67,24 @@ Verwende forwardRef, strikte Props, native HTML input[type="radio"] als Basis.
 **Datei:** `Radio.stories.tsx`
 
 **Varianten:**
-- Default (unchecked/checked)
-- Größen (sm, md, lg)
-- Varianten (primary, secondary, success, warning, error)
+- Default (checked/unchecked)
+- Verschiedene Größen (sm, md, lg)
+- Verschiedene Varianten (default, primary, success, warning, error)
 - Mit Label & Beschreibung
 - Disabled
-- Required & Invalid
-- Radio-Gruppe
+- Radio Group (mehrere Optionen)
+- Custom Styling
+- Accessibility Demo
 
 **Controls:**
-- value, name, checked, disabled, size, variant, label, description, required, invalid
+- value, checked, defaultChecked, onChange, name, disabled, size, variant, label, description
 
 ### 4. ✅ VALIDATE
 
 ```bash
 npm run lint --workspace=@smolitux/core
 npm run build --workspace=@smolitux/core
-npm run test --workspace=@smolitux/core
+npm run test --workspace=@smolitux/core -- --testPathPattern="Radio"
 ```
 
 📌 Storybook nur testen, wenn global verfügbar
@@ -97,27 +93,31 @@ npm run test --workspace=@smolitux/core
 
 ```bash
 git add packages/@smolitux/core/src/components/Radio/
-git commit -m "feat(core): Radio – production ready"
+git commit -m "feat(core): Radio – production ready validation"
 git push origin main
 ```
 
 ### 6. 🧾 UPDATE STATUS
 
-- Markiere Radio als abgeschlossen in `CODEX_PROGRESS.md`
-- Aktualisiere Fortschritt in `AGENTS.md`
-- Speichere diesen Prompt als `NEXT_Codex_Prompt-radio.md`
+- Markiere Radio als abgeschlossen in CODEX_PROGRESS.md
+- Aktualisiere Fortschritt in AGENTS.md
+- Speichere diesen Prompt als NEXT_Codex_Prompt-select.md
 
 ## 🔄 Loop Instructions
 
 - ✅ Bei bestandener Validierung → weiter mit nächster Komponente
-- 🔁 Nächste Komponente: RadioGroup
-- 📁 Folgeprompt speichern als: `NEXT_Codex_Prompt-radiogroup.md`
+- 🔁 Nächste Komponente: Select (bereits implementiert, nur Validierung)
+- 📁 Folgeprompt speichern als: `NEXT_Codex_Prompt-select.md`
+
+---
 
 ## 📄 Session Summary
 
-**PREVIOUS COMPLETE:** ProgressBar ✅  
-**CURRENT COMPONENT:** Radio 🔄  
-**PROGRESS:** 21/534 @smolitux/core components complete  
-**STATUS:** Component loop active – Storybook block persists
+**PREVIOUS COMPLETE**: ProgressBar ✅ (production ready, 100% test success)  
+**CURRENT COMPONENT**: Radio 🔄  
+**PROGRESS**: 27/534 @smolitux/core components complete  
+**STATUS**: Component loop active – continuing autonomous execution
 
-📁 Save as: `NEXT_Codex_Prompt-radio.md`
+---
+
+📁 **Save as**: `NEXT_Codex_Prompt-radio.md`

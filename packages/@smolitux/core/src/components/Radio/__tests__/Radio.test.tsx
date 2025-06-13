@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { render } from '@smolitux/testing';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
 
