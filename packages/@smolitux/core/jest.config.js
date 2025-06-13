@@ -19,7 +19,8 @@ module.exports = {
     '<rootDir>/packages/@smolitux/core/src/components/Pagination/**/__tests__/*.{test,spec}.tsx',
     '<rootDir>/packages/@smolitux/core/src/components/Popover/**/__tests__/*.{test,spec}.tsx',
     '<rootDir>/packages/@smolitux/core/src/components/ProgressBar/**/__tests__/*.{test,spec}.tsx',
-    '<rootDir>/packages/@smolitux/core/src/components/Radio/**/__tests__/*.{test,spec}.tsx'
+    '<rootDir>/packages/@smolitux/core/src/components/Radio/**/__tests__/*.{test,spec}.tsx',
+    '<rootDir>/packages/@smolitux/core/src/components/Select/**/__tests__/*.{test,spec}.tsx'
   ],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
 };

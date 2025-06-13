@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { render } from '@smolitux/testing';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { Select } from '../';
 
