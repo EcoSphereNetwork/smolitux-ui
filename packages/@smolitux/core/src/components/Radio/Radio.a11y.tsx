@@ -254,7 +254,7 @@ export const RadioA11y = forwardRef<HTMLInputElement, RadioProps>(
 
     // Kombiniere Props mit FormControl-Context und RadioGroup-Context
     const _id =
-      id || radioGroup?.getRadioId?.(value as string) || formControl.id || `radio-${uniqueId}`;
+      id || radioGroup?.getRadioId?.(value as string) || formControl.id || `radio-${value || uniqueId}`;
     const _disabled = isDisabled ?? disabled ?? radioGroup?.disabled ?? formControl.disabled;
     const _required = isRequired ?? required ?? radioGroup?.required ?? formControl.required;
     const _error =
@@ -442,11 +442,21 @@ export const RadioA11y = forwardRef<HTMLInputElement, RadioProps>(
       (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === ' ' || e.key === 'Enter') {
           setIsPressed(true);
+          // Trigger change on Space key for accessibility
+          if (e.key === ' ' && !_checked) {
+            e.preventDefault();
+            const syntheticEvent = {
+              target: e.currentTarget,
+              currentTarget: e.currentTarget,
+              type: 'change',
+            } as React.ChangeEvent<HTMLInputElement>;
+            _onChange(syntheticEvent);
+          }
         }
 
         onKeyDown?.(e);
       },
-      [onKeyDown]
+      [onKeyDown, _onChange, _checked]
     );
 
     const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -603,18 +613,20 @@ export const RadioA11y = forwardRef<HTMLInputElement, RadioProps>(
       if (!label) return null;
 
       return (
-        <label
-          htmlFor={_id}
-          className={`${hideLabel ? 'sr-only' : ''} ${labelSizeClasses[_size]} text-gray-700 dark:text-gray-300 ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${labelClassName}`}
-          title={labelTooltip}
-        >
-          {label}
+        <>
+          <label
+            htmlFor={_id}
+            className={`${hideLabel ? 'sr-only' : ''} ${labelSizeClasses[_size]} text-gray-700 dark:text-gray-300 ${_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${labelClassName}`}
+            title={labelTooltip}
+          >
+            {label}
+          </label>
           {_required && (
             <span className="ml-1 text-red-500" aria-hidden="true">
               *
             </span>
           )}
-        </label>
+        </>
       );
     };
 
@@ -640,7 +652,7 @@ export const RadioA11y = forwardRef<HTMLInputElement, RadioProps>(
             className={`appearance-none ${radioClasses}`}
             title={radioTooltip || tooltip}
             aria-label={ariaLabel}
-            aria-checked={_checked}
+            aria-checked={_checked ? 'true' : 'false'}
             {...ariaAttributes}
             {...props}
           />
@@ -696,16 +708,35 @@ export const RadioA11y = forwardRef<HTMLInputElement, RadioProps>(
         {/* Label links */}
         {labelPosition === 'left' && renderLabel()}
 
-        {/* Radio */}
-        <div className={`flex items-center ${isVertical ? 'mb-2' : ''}`}>{renderRadio()}</div>
+        {/* Radio - simplified structure for better DOM positioning */}
+        <input
+          ref={handleRef}
+          type="radio"
+          id={_id}
+          name={_name}
+          value={value}
+          checked={_checked}
+          defaultChecked={defaultChecked}
+          onChange={_onChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          disabled={_disabled}
+          required={_required}
+          className={`appearance-none ${radioClasses}`}
+          title={radioTooltip || tooltip}
+          aria-label={ariaLabel}
+          aria-checked={_checked ? 'true' : 'false'}
+          {...ariaAttributes}
+          {...props}
+        />
 
         {/* Label rechts */}
-        {labelPosition === 'right' && (
-          <div className={`${isVertical ? '' : 'ml-2'}`}>
-            {renderLabel()}
-            {renderHelperText()}
-          </div>
-        )}
+        {labelPosition === 'right' && renderLabel()}
+        
+        {/* Helper text */}
+        {labelPosition === 'right' && renderHelperText()}
       </div>
     );
   }

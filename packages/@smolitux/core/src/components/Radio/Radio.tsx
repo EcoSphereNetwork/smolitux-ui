@@ -441,11 +441,21 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === ' ' || e.key === 'Enter') {
           setIsPressed(true);
+          // Trigger change on Space key for accessibility
+          if (e.key === ' ' && !_checked) {
+            e.preventDefault();
+            const syntheticEvent = {
+              target: e.currentTarget,
+              currentTarget: e.currentTarget,
+              type: 'change',
+            } as React.ChangeEvent<HTMLInputElement>;
+            _onChange(syntheticEvent);
+          }
         }
 
         onKeyDown?.(e);
       },
-      [onKeyDown]
+      [onKeyDown, _onChange, _checked]
     );
 
     const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -529,6 +539,9 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const ariaAttributes = useMemo(() => {
       const attributes: Record<string, string> = {};
 
+      // Add aria-checked for accessibility tests
+      attributes['aria-checked'] = _checked ? 'true' : 'false';
+
       if (description) {
         attributes['aria-describedby'] = `${_id}-description`;
       }
@@ -551,7 +564,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       }
 
       return attributes;
-    }, [description, _error, helperText, successMessage, _id]);
+    }, [description, _error, helperText, successMessage, _id, _checked]);
 
     // Rendere die Radio basierend auf dem Typ
     const renderRadio = () => {
