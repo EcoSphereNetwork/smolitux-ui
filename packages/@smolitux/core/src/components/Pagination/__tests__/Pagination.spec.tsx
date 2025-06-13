@@ -11,7 +11,7 @@ describe('Pagination Component', () => {
     expect(page1).toBeInTheDocument();
 
     // Check if next/prev buttons are rendered
-    expect(screen.getByLabelText('Zuruck')).toBeInTheDocument();
+    expect(screen.getByLabelText('Zurück')).toBeInTheDocument();
     expect(screen.getByLabelText('Weiter')).toBeInTheDocument();
   });
 
@@ -26,7 +26,7 @@ describe('Pagination Component', () => {
 
   it('disables previous button on first page', () => {
     render(<Pagination totalPages={10} currentPage={1} />);
-    expect(screen.getByLabelText('Zuruck')).toBeDisabled();
+    expect(screen.getByLabelText('Zurück')).toBeDisabled();
   });
 
   it('disables next button on last page', () => {

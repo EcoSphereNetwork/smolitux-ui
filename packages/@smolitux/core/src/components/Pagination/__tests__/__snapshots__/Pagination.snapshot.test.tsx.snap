@@ -1,0 +1,298 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination Snapshots renders default pagination 1`] = `
+<div
+  aria-label="Pagination"
+  className="flex items-center space-x-1 "
+  role="navigation"
+>
+  <button
+    aria-label="Erste"
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={true}
+    onClick={[Function]}
+    title="Erste"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+  <button
+    aria-label="Zurück"
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={true}
+    onClick={[Function]}
+    title="Zurück"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15 19l-7-7 7-7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+  <button
+    aria-current="page"
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-primary-500 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    1
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    2
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    3
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    4
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    5
+  </button>
+  <button
+    aria-label="Weiter"
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    title="Weiter"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 5l7 7-7 7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+  <button
+    aria-label="Letzte"
+    className="flex items-center justify-center rounded-md h-10 min-w-10 text-sm transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    title="Letzte"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 5l7 7-7 7M5 5l7 7-7 7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Pagination Snapshots renders with current page and size 1`] = `
+<div
+  aria-label="Pagination"
+  className="flex items-center space-x-1 "
+  role="navigation"
+>
+  <button
+    aria-label="Erste"
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    title="Erste"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+  <button
+    aria-label="Zurück"
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    title="Zurück"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15 19l-7-7 7-7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    1
+  </button>
+  <button
+    aria-current="page"
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-primary-500 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    2
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    3
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    4
+  </button>
+  <button
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    5
+  </button>
+  <span
+    className="flex items-center justify-center h-8 min-w-8 text-xs text-gray-500 dark:text-gray-400"
+  >
+    …
+  </span>
+  <button
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    10
+  </button>
+  <button
+    aria-label="Weiter"
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    title="Weiter"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 5l7 7-7 7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+  <button
+    aria-label="Letzte"
+    className="flex items-center justify-center rounded-md h-8 min-w-8 text-xs transition-colors duration-200 ease-in-out border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+    disabled={false}
+    onClick={[Function]}
+    title="Letzte"
+    type="button"
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 5l7 7-7 7M5 5l7 7-7 7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </button>
+</div>
+`;

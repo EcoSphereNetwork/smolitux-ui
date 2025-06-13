@@ -3,11 +3,21 @@ import React, { forwardRef, useMemo } from 'react';
 
 export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Anzahl der Seiten insgesamt */
-  pageCount: number;
+  totalPages?: number;
+  /** Anzahl der Seiten insgesamt (alternative prop name) */
+  pageCount?: number;
   /** Aktuelle Seite (1-basiert) */
-  currentPage: number;
+  currentPage?: number;
   /** Callback bei Seitenwechsel */
-  onChange: (page: number) => void;
+  onPageChange?: (page: number) => void;
+  /** Callback bei Seitenwechsel (alternative prop name) */
+  onChange?: (page: number) => void;
+  /** Seitengröße */
+  pageSize?: number;
+  /** Optionen für Seitengröße */
+  pageSizeOptions?: number[];
+  /** Callback bei Seitengrößenänderung */
+  onPageSizeChange?: (pageSize: number) => void;
   /** Anzahl der angezeigten Seiten */
   siblingCount?: number;
   /** Zeigt erste/letzte Seite */
@@ -17,7 +27,7 @@ export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   /** Größe der Pagination */
   size?: 'sm' | 'md' | 'lg';
   /** Variante der Pagination */
-  variant?: 'outlined' | 'filled' | 'simple';
+  variant?: 'outlined' | 'filled' | 'simple' | 'solid';
   /** Deaktiviert die Pagination */
   disabled?: boolean;
   /** Zeigt die Gesamtzahl der Seiten an */
@@ -45,18 +55,23 @@ export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLDivElemen
  * @example
  * ```tsx
  * <Pagination
- *   pageCount={10}
+ *   totalPages={10}
  *   currentPage={1}
- *   onChange={(page) => setCurrentPage(page)}
+ *   onPageChange={(page) => setCurrentPage(page)}
  * />
  * ```
  */
 export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   (
     {
+      totalPages,
       pageCount,
-      currentPage,
+      currentPage = 1,
+      onPageChange,
       onChange,
+      pageSize,
+      pageSizeOptions,
+      onPageSizeChange,
       siblingCount = 1,
       showFirstLast = true,
       showPrevNext = true,
@@ -77,6 +92,10 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     },
     ref
   ) => {
+    // Handle both prop name variants
+    const actualTotalPages = totalPages ?? pageCount ?? 1;
+    const actualOnPageChange = onPageChange ?? onChange;
+
     // Standardicons für Pagination
     const defaultIcons = {
       previous: (
@@ -162,6 +181,13 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         disabled:
           'border border-transparent bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed',
       },
+      solid: {
+        default:
+          'border border-transparent bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600',
+        active: 'border border-transparent bg-primary-500 dark:bg-primary-600 text-white',
+        disabled:
+          'border border-transparent bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed',
+      },
       simple: {
         default: 'border-0 bg-transparent hover:text-primary-600 dark:hover:text-primary-400',
         active: 'border-0 bg-transparent text-primary-600 dark:text-primary-400 font-medium',
@@ -175,26 +201,26 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       const totalPageNumbers = siblingCount * 2 + 3; // Anzahl der anzuzeigenden Seiten + erste & letzte
 
       // Wenn weniger Seiten als die anzuzeigenden Seiten vorhanden sind
-      if (totalPageNumbers >= pageCount) {
-        return Array.from({ length: pageCount }, (_, i) => i + 1);
+      if (totalPageNumbers >= actualTotalPages) {
+        return Array.from({ length: actualTotalPages }, (_, i) => i + 1);
       }
 
       // Berechnung des ersten und letzten Geschwister-Index
       const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
-      const rightSiblingIndex = Math.min(currentPage + siblingCount, pageCount);
+      const rightSiblingIndex = Math.min(currentPage + siblingCount, actualTotalPages);
 
       // Ob Ellipsen angezeigt werden sollen
       const shouldShowLeftDots = leftSiblingIndex > 2;
-      const shouldShowRightDots = rightSiblingIndex < pageCount - 1;
+      const shouldShowRightDots = rightSiblingIndex < actualTotalPages - 1;
 
       // Sonderfälle für erste und letzte Seite
       if (!shouldShowLeftDots && shouldShowRightDots) {
         const leftRange = Array.from({ length: 3 + siblingCount * 2 }, (_, i) => i + 1);
-        return [...leftRange, DOTS, pageCount];
+        return [...leftRange, DOTS, actualTotalPages];
       }
 
       if (shouldShowLeftDots && !shouldShowRightDots) {
-        const rightStart = pageCount - (2 + siblingCount * 2);
+        const rightStart = actualTotalPages - (2 + siblingCount * 2);
         const rightRange = Array.from(
           { length: 3 + siblingCount * 2 },
           (_, i) => rightStart + i + 1
@@ -207,19 +233,19 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
           { length: rightSiblingIndex - leftSiblingIndex + 1 },
           (_, i) => leftSiblingIndex + i
         );
-        return [1, DOTS, ...middleRange, DOTS, pageCount];
+        return [1, DOTS, ...middleRange, DOTS, actualTotalPages];
       }
 
       return [];
-    }, [currentPage, pageCount, siblingCount]);
+    }, [currentPage, actualTotalPages, siblingCount]);
 
     // Seitenwechsel-Handler
     const handlePageChange = (page: number) => {
-      if (page === currentPage || page < 1 || page > pageCount || disabled) {
+      if (page === currentPage || page < 1 || page > actualTotalPages || disabled) {
         return;
       }
 
-      onChange(page);
+      actualOnPageChange?.(page);
     };
 
     // Basis-Klassen für Pagination-Items
@@ -305,7 +331,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
             type="button"
             className={getItemClasses(false)}
             onClick={() => handlePageChange(currentPage + 1)}
-            disabled={disabled || currentPage === pageCount}
+            disabled={disabled || currentPage === actualTotalPages}
             aria-label={labels.next}
             title={labels.next}
           >
@@ -318,8 +344,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
           <button
             type="button"
             className={getItemClasses(false)}
-            onClick={() => handlePageChange(pageCount)}
-            disabled={disabled || currentPage === pageCount}
+            onClick={() => handlePageChange(actualTotalPages)}
+            disabled={disabled || currentPage === actualTotalPages}
             aria-label={labels.last}
             title={labels.last}
           >
@@ -330,7 +356,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         {/* Anzeige der Gesamtseitenzahl */}
         {showPageCount && (
           <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
-            {labels.page} {currentPage} / {pageCount}
+            {labels.page} {currentPage} / {actualTotalPages}
           </span>
         )}
       </div>
