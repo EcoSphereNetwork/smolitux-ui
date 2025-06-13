@@ -81,8 +81,13 @@ export {
   useFormControl,
 } from './components/FormControl/FormControl';
 export { default as Form, type FormProps } from './components/Form/Form';
-// Temporarily disabled due to TypeScript errors
-export { default as FormField, type FormFieldProps } from './components/FormField/FormField';
+export { 
+  FormField, 
+  type FormFieldProps, 
+  type FormFieldSize, 
+  type FormFieldVariant, 
+  type LabelPlacement 
+} from './components/FormField';
 export { default as FormLabel, type FormLabelProps } from './components/FormLabel';
 export { default as FormHint, type FormHintProps } from './components/FormHint';
 export { default as FormError, type FormErrorProps } from './components/FormError';

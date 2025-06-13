@@ -1,474 +1,209 @@
-import React from 'react';
-import {
-  FormField as ValidationFormField,
-  FormFieldProps as ValidationFormFieldProps,
-} from '../../validation/FormField';
-
-export type FormFieldProps<T = unknown> = ValidationFormFieldProps<T> & {
-  /**
-   * Die Größe des Formularfelds
-   */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
-  /**
-   * Die Variante des Formularfelds
-   */
-  variant?: 'outline' | 'filled' | 'flushed' | 'unstyled';
-
-  /**
-   * Die Ausrichtung des Labels
-   */
-  labelPlacement?: 'top' | 'left' | 'right';
-
-  /**
-   * Die Breite des Labels (nur für labelPlacement="left" oder "right")
-   */
-  labelWidth?: string | number;
-
-  /**
-   * Ob das Label fett sein soll
-   */
-  labelBold?: boolean;
-
-  /**
-   * Ob das Label kursiv sein soll
-   */
-  labelItalic?: boolean;
-
-  /**
-   * Ob das Label unterstrichen sein soll
-   */
-  labelUnderline?: boolean;
-
-  /**
-   * Ob das Label durchgestrichen sein soll
-   */
-  labelStrikethrough?: boolean;
-
-  /**
-   * Ob das Label eine andere Farbe haben soll
-   */
-  labelColor?: string;
-
-  /**
-   * Ob das Label eine andere Schriftgröße haben soll
-   */
-  labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
-  /**
-   * Ob das Label einen anderen Schriftstil haben soll
-   */
-  labelStyle?: React.CSSProperties;
-
-  /**
-   * Ob das Label eine andere CSS-Klasse haben soll
-   */
-  labelClassName?: string;
-
-  /**
-   * Ob das Formularfeld einen Hilfetext haben soll
-   */
-  helperText?: React.ReactNode;
-
-  /**
-   * Ob der Hilfetext eine andere Farbe haben soll
-   */
-  helperTextColor?: string;
-
-  /**
-   * Ob der Hilfetext eine andere Schriftgröße haben soll
-   */
-  helperTextSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
-  /**
-   * Ob der Hilfetext einen anderen Schriftstil haben soll
-   */
-  helperTextStyle?: React.CSSProperties;
-
-  /**
-   * Ob der Hilfetext eine andere CSS-Klasse haben soll
-   */
-  helperTextClassName?: string;
-
-  /**
-   * Zusätzliche Klasse für die Fehlermeldung
-   */
-  errorClassName?: string;
-
-  /**
-   * Ob das Label ausgeblendet werden soll
-   */
-  hideLabel?: boolean;
-
-  /**
-   * Ob das Formularfeld einen Tooltip haben soll
-   */
-  tooltip?: string;
-
-  /**
-   * Ob das Formularfeld einen Hinweis haben soll
-   */
-  hint?: React.ReactNode;
-
-  /**
-   * Ob das Formularfeld einen Rahmen haben soll
-   */
-  bordered?: boolean;
-
-  /**
-   * Ob das Formularfeld einen Schatten haben soll
-   */
-  shadow?: boolean;
-
-  /**
-   * Ob das Formularfeld abgerundete Ecken haben soll
-   */
-  rounded?: boolean;
-
-  /**
-   * Ob das Formularfeld einen Hintergrund haben soll
-   */
-  background?: boolean;
-
-  /**
-   * Ob das Formularfeld gepolstert sein soll
-   */
-  padding?: boolean;
-
-  /**
-   * Ob das Formularfeld die volle Breite einnehmen soll
-   */
-  fullWidth?: boolean;
-
-  /**
-   * Ob das Formularfeld deaktiviert sein soll
-   */
-  disabled?: boolean;
-
-  /**
-   * Ob das Formularfeld schreibgeschützt sein soll
-   */
-  readOnly?: boolean;
-
-  /**
-   * Ob das Formularfeld erforderlich sein soll
-   */
-  required?: boolean;
-
-  /**
-   * Ob das Formularfeld im Ladezustand sein soll
-   */
-  loading?: boolean;
-
-  /**
-   * Ob das Formularfeld einen Ladeindikator anzeigen soll
-   */
-  showLoadingIndicator?: boolean;
-
-  /**
-   * Ob das Formularfeld einen Erfolgsindikator anzeigen soll
-   */
-  showSuccessIndicator?: boolean;
-
-  /**
-   * Ob das Formularfeld einen Fehlerindikator anzeigen soll
-   */
-  showErrorIndicator?: boolean;
-
-  /**
-   * Ob das Formularfeld einen Zähler anzeigen soll
-   */
-  showCounter?: boolean;
-
-  /**
-   * Die maximale Länge des Formularfelds
-   */
-  maxLength?: number;
-
-  /**
-   * Ob das Formularfeld einen Fortschrittsbalken anzeigen soll
-   */
-  showProgressBar?: boolean;
-
-  /**
-   * Der aktuelle Fortschritt des Formularfelds
-   */
-  progress?: number;
-
-  /**
-   * Der maximale Fortschritt des Formularfelds
-   */
-  progressMax?: number;
-
-  /** Zusätzliche CSS-Klasse für das Wrapper-Element */
-  className?: string;
-
-  /** Inline-Stile für das Wrapper-Element */
-  style?: React.CSSProperties;
-
-  /** Eingabekomponente */
-  component: React.ComponentType<Record<string, unknown>>;
-
-  children?: React.ReactNode;
-};
+import React, { forwardRef } from 'react';
+import { clsx } from '@smolitux/utils';
 
 /**
- * FormField-Komponente
+ * FormField size variants
  */
-export const FormField = <T,>({
-  size = 'md',
-  variant = 'outline',
-  labelPlacement = 'top',
-  labelWidth,
-  labelBold = false,
-  labelItalic = false,
-  labelUnderline = false,
-  labelStrikethrough = false,
-  labelColor,
-  labelSize,
-  labelStyle,
-  labelClassName = '',
-  helperText,
-  helperTextColor,
-  helperTextSize = 'sm',
-  helperTextStyle,
-  helperTextClassName = '',
-  errorClassName = '',
-  hideLabel = false,
-  tooltip,
-  hint,
-  bordered = true,
-  shadow = false,
-  rounded = true,
-  background = false,
-  padding = false,
-  fullWidth = true,
-  disabled = false,
-  readOnly = false,
-  required = false,
-  loading = false,
-  showLoadingIndicator = true,
-  showSuccessIndicator = true,
-  showErrorIndicator = true,
-  showCounter = false,
-  maxLength,
-  showProgressBar = false,
-  progress = 0,
-  progressMax = 100,
-  className = '',
-  style,
-  component,
-  children,
-  ...props
-}: FormFieldProps<T>) => {
-  const EnhancedComponent = (componentProps: Record<string, unknown>) => {
-    const {
+export type FormFieldSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+/**
+ * FormField visual variants
+ */
+export type FormFieldVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
+
+/**
+ * Label placement options
+ */
+export type LabelPlacement = 'top' | 'left' | 'right';
+
+/**
+ * FormField props
+ */
+export interface FormFieldProps {
+  /** The form field content */
+  children: React.ReactNode;
+  
+  /** The label text */
+  label?: React.ReactNode;
+  
+  /** The field name */
+  name?: string;
+  
+  /** The field ID */
+  id?: string;
+  
+  /** The size of the form field */
+  size?: FormFieldSize;
+  
+  /** The visual variant of the form field */
+  variant?: FormFieldVariant;
+  
+  /** The label placement */
+  labelPlacement?: LabelPlacement;
+  
+  /** The width of the label (for left/right placement) */
+  labelWidth?: string | number;
+  
+  /** Helper text to display below the field */
+  helperText?: React.ReactNode;
+  
+  /** Error message to display */
+  errorMessage?: React.ReactNode;
+  
+  /** Whether the field has an error */
+  isInvalid?: boolean;
+  
+  /** Whether the field is required */
+  required?: boolean;
+  
+  /** Whether the field is disabled */
+  disabled?: boolean;
+  
+  /** Whether the field is read-only */
+  readOnly?: boolean;
+  
+  /** Whether the field is loading */
+  loading?: boolean;
+  
+  /** Whether to show a character counter */
+  showCounter?: boolean;
+  
+  /** Maximum character length for counter */
+  maxLength?: number;
+  
+  /** Current value for counter */
+  value?: string;
+  
+  /** Additional CSS classes */
+  className?: string;
+  
+  /** Additional styles */
+  style?: React.CSSProperties;
+}
+
+/**
+ * FormField component
+ *
+ * A wrapper component that provides consistent styling and layout for form fields.
+ * It includes support for labels, helper text, error messages, and various layout options.
+ */
+export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
+  (
+    {
+      children,
+      label,
       name,
-      value,
-      onChange,
-      onBlur,
-      hasError,
-      errorMessages,
-      touched,
-      ...restProps
-    } = componentProps as ValidationFormFieldProps<T> & {
-      errorMessages?: string[];
-      [key: string]: unknown;
-    };
-
-    const inputProps = { ...restProps } as Record<string, unknown>;
-    delete inputProps.labelPlacement;
-    delete inputProps.labelWidth;
-    delete inputProps.labelBold;
-    delete inputProps.labelItalic;
-    delete inputProps.labelUnderline;
-    delete inputProps.labelStrikethrough;
-    delete inputProps.labelColor;
-    delete inputProps.labelSize;
-    delete inputProps.labelStyle;
-    delete inputProps.labelClassName;
-    delete inputProps.helperText;
-    delete inputProps.helperTextColor;
-    delete inputProps.helperTextSize;
-    delete inputProps.helperTextStyle;
-    delete inputProps.helperTextClassName;
-    delete inputProps.errorClassName;
-    delete inputProps.hideLabel;
-    delete inputProps.errorMessage;
-    delete inputProps.isInvalid;
-    delete inputProps.dirty;
-    delete inputProps.touched;
-    delete inputProps.required;
-    delete inputProps.disabled;
-    delete inputProps.readOnly;
-    delete inputProps['data-testid'];
-    delete inputProps.hint;
-    delete inputProps.bordered;
-    delete inputProps.shadow;
-    delete inputProps.rounded;
-    delete inputProps.background;
-    delete inputProps.padding;
-    delete inputProps.fullWidth;
-    delete inputProps.className;
-    delete inputProps.style;
-    delete inputProps.component;
-    delete inputProps.children;
-
-    const labelClasses = [
-      hideLabel ? 'sr-only' : 'block',
-      labelBold ? 'font-bold' : 'font-medium',
-      labelItalic ? 'italic' : '',
-      labelUnderline ? 'underline' : '',
-      labelStrikethrough ? 'line-through' : '',
-      labelColor ? `text-${labelColor}` : 'text-gray-700 dark:text-gray-300',
-      labelSize ? `text-${labelSize}` : 'text-sm',
-      labelClassName,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const helperTextClasses = [
-      'mt-1',
-      helperTextColor ? `text-${helperTextColor}` : 'text-gray-500 dark:text-gray-400',
-      helperTextSize ? `text-${helperTextSize}` : 'text-xs',
-      helperTextClassName,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const errorTextClasses = [
-      'mt-1 text-xs text-red-500 dark:text-red-400',
-      errorClassName,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const containerClasses = [
-      'form-field',
-      hasError || props.isInvalid ? 'is-invalid' : '',
-      labelPlacement === 'left' ? 'sm:flex sm:items-start' : '',
-      labelPlacement === 'right' ? 'sm:flex sm:flex-row-reverse sm:items-start' : '',
-      bordered ? 'border border-gray-300 dark:border-gray-600' : '',
-      shadow ? 'shadow-md' : '',
-      rounded ? 'rounded-lg' : '',
-      background ? 'bg-white dark:bg-gray-800' : '',
-      padding ? 'p-4' : '',
-      fullWidth ? 'w-full' : '',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const labelStyles = {
-      ...labelStyle,
-      ...(labelPlacement !== 'top' && labelWidth
-        ? { width: typeof labelWidth === 'number' ? `${labelWidth}px` : labelWidth }
-        : {}),
-    } as React.CSSProperties;
-
-    const enhancedProps = {
-      ...inputProps,
-      name,
-      value,
-      onChange,
-      onBlur,
-      hasError,
-      errorMessages,
-      size,
-      variant,
-      disabled: disabled || loading,
-      readOnly,
-      required,
-      isLoading: loading,
-      showLoadingIndicator,
-      showSuccessIndicator,
-      showErrorIndicator,
-      showCounter,
+      id,
+      size = 'md',
+      variant = 'outline',
+      labelPlacement = 'top',
+      labelWidth,
+      helperText,
+      errorMessage,
+      isInvalid = false,
+      required = false,
+      disabled = false,
+      readOnly = false,
+      loading = false,
+      showCounter = false,
       maxLength,
-      showProgressBar,
-      progress,
-      progressMax,
-      tooltip,
-      isValid: !hasError && touched,
-      isInvalid: hasError,
-    };
-
+      value,
+      className,
+      style,
+    },
+    ref
+  ) => {
+    // Generate unique ID if not provided
+    const fieldId = id || (name ? `field-${name}` : undefined);
+    
+    // Calculate character count for counter
+    const characterCount = value ? value.length : 0;
+    
+    // CSS classes for the container
+    const containerClasses = clsx(
+      'form-field',
+      `form-field--${size}`,
+      `form-field--${variant}`,
+      {
+        'form-field--horizontal': labelPlacement !== 'top',
+        'form-field--reverse': labelPlacement === 'right',
+        'form-field--invalid': isInvalid,
+        'form-field--disabled': disabled,
+        'form-field--readonly': readOnly,
+        'form-field--loading': loading,
+      },
+      className
+    );
+    
+    // CSS classes for the label
+    const labelClasses = clsx(
+      'form-field__label',
+      {
+        'form-field__label--required': required,
+      }
+    );
+    
+    // CSS classes for helper text
+    const helperTextClasses = clsx(
+      'form-field__helper-text',
+      {
+        'form-field__helper-text--error': isInvalid,
+      }
+    );
+    
+    // Label styles for horizontal layout
+    const labelStyles: React.CSSProperties = {};
+    if (labelPlacement !== 'top' && labelWidth) {
+      labelStyles.width = typeof labelWidth === 'number' ? `${labelWidth}px` : labelWidth;
+    }
+    
     return (
-      <div className={containerClasses} style={style} data-testid="form-field">
-        {(props as { label?: React.ReactNode }).label && (
-          <label htmlFor={(props as { id?: string }).id || name} className={labelClasses} style={labelStyles} data-testid="label">
-            {(props as { label?: React.ReactNode }).label}
-            {required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
-            {tooltip && (
-              <span className="ml-1 text-gray-400 cursor-help" title={tooltip} aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="inline-block w-4 h-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-            )}
+      <div ref={ref} className={containerClasses} style={style} data-testid="FormField">
+        {/* Label */}
+        {label && (
+          <label htmlFor={fieldId} className={labelClasses} style={labelStyles}>
+            {label}
+            {required && <span className="form-field__required-indicator" aria-label="required">*</span>}
           </label>
         )}
-
-        <div className={labelPlacement !== 'top' ? 'sm:flex-1' : ''}>
-          {React.createElement(component, enhancedProps, children)}
-
-          {helperText || hasError || props.isInvalid ? (
-            <div
-              className={hasError || props.isInvalid ? errorTextClasses : helperTextClasses}
-              style={helperTextStyle}
-              data-testid={hasError || props.isInvalid ? 'error-message' : 'helper-text'}
-            >
-              {(
-                hasError && errorMessages && errorMessages.length > 0
-                  ? errorMessages[0]
-                  : props.isInvalid
-                  ? (props as { errorMessage?: React.ReactNode }).errorMessage
-                  : helperText
-              ) as React.ReactNode}
-            </div>
-          ) : null}
-
-          {hint && <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">{hint}</div>}
-
-          {showCounter && maxLength && (
-            <div className="mt-1 text-xs text-gray-500 dark:text-gray-400 text-right">
-              {value ? String(value).length : 0} / {maxLength}
+        
+        {/* Field content wrapper */}
+        <div className="form-field__content">
+          {/* Loading indicator */}
+          {loading && (
+            <div className="form-field__loading" aria-hidden="true">
+              <div className="form-field__spinner" />
             </div>
           )}
-
-          {showProgressBar && (
-            <div className="mt-1 w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full">
-              <div
-                className="h-1 bg-primary-500 dark:bg-primary-400 rounded-full"
-                style={{ width: `${Math.min(100, (progress / progressMax) * 100)}%` }}
-              />
+          
+          {/* Field content */}
+          <div className="form-field__field">
+            {children}
+          </div>
+          
+          {/* Helper text or error message */}
+          {(helperText || errorMessage) && (
+            <div className={helperTextClasses}>
+              {isInvalid && errorMessage ? errorMessage : helperText}
+            </div>
+          )}
+          
+          {/* Character counter */}
+          {showCounter && maxLength && (
+            <div className="form-field__counter">
+              <span className={characterCount > maxLength ? 'form-field__counter--over-limit' : ''}>
+                {characterCount}
+              </span>
+              <span className="form-field__counter-separator">/</span>
+              <span>{maxLength}</span>
             </div>
           )}
         </div>
       </div>
     );
-  };
+  }
+);
 
-  return (
-    <ValidationFormField
-      component={EnhancedComponent}
-      disabled={disabled || loading}
-      readOnly={readOnly}
-      required={required}
-      {...props}
-    >
-      {children}
-    </ValidationFormField>
-  );
-};
+FormField.displayName = 'FormField';
 
 export default FormField;
