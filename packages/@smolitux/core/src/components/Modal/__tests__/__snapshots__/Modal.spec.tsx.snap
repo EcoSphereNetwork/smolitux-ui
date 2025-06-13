@@ -17,7 +17,7 @@ exports[`Modal Snapshots renders correctly with bottom position 1`] = `
     className="flex min-h-screen p-4 items-end justify-center pb-10"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -93,7 +93,7 @@ exports[`Modal Snapshots renders correctly with custom ID 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="custom-modal-id"
       onClick={[Function]}
@@ -163,7 +163,7 @@ exports[`Modal Snapshots renders correctly with custom className 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn custom-class "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn custom-class  "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -233,7 +233,7 @@ exports[`Modal Snapshots renders correctly with default props 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -304,7 +304,7 @@ exports[`Modal Snapshots renders correctly with footer 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -387,7 +387,7 @@ exports[`Modal Snapshots renders correctly with large size 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -458,7 +458,7 @@ exports[`Modal Snapshots renders correctly with multiple props combined 1`] = `
     className="flex min-h-screen p-4 items-start justify-center pt-10"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  custom-class "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-lg shadow-xl rounded-lg border border-gray-200 dark:border-gray-700  custom-class  "
       data-testid="modal-content"
       id="combined-modal"
       onClick={[Function]}
@@ -547,7 +547,7 @@ exports[`Modal Snapshots renders correctly with small size 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-sm shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-sm shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -624,7 +624,7 @@ exports[`Modal Snapshots renders correctly with title 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -706,7 +706,7 @@ exports[`Modal Snapshots renders correctly with top position 1`] = `
     className="flex min-h-screen p-4 items-start justify-center pt-10"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -776,7 +776,7 @@ exports[`Modal Snapshots renders correctly without animation 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700   "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700    "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -852,7 +852,7 @@ exports[`Modal Snapshots renders correctly without border 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg  animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg  animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -928,7 +928,7 @@ exports[`Modal Snapshots renders correctly without close button 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -966,7 +966,7 @@ exports[`Modal Snapshots renders correctly without rounded corners 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl  border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md shadow-xl  border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}
@@ -1042,7 +1042,7 @@ exports[`Modal Snapshots renders correctly without shadow 1`] = `
     className="flex min-h-screen p-4 items-center justify-center"
   >
     <div
-      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md  rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn  "
+      className="relative bg-white dark:bg-gray-800 text-left transform transition-all w-full max-w-md  rounded-lg border border-gray-200 dark:border-gray-700 animate-scaleIn   "
       data-testid="modal-content"
       id="modal-f4bipx4bi"
       onClick={[Function]}

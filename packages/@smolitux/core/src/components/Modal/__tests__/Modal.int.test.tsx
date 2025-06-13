@@ -46,7 +46,7 @@ describe('Modal Integration', () => {
             <FormControl label="Test Input">
               <Input
                 value={formValue}
-                onChange={(e) => setFormValue(e.target.value)}
+                onChange={(value) => setFormValue(value)}
                 placeholder="Enter value"
               />
             </FormControl>

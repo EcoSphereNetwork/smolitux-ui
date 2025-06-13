@@ -14,7 +14,8 @@ module.exports = {
     '<rootDir>/packages/@smolitux/core/src/components/Input/**/__tests__/*.{test,spec}.tsx',
     '<rootDir>/packages/@smolitux/core/src/components/Label/**/__tests__/*.{test,spec}.tsx',
     '<rootDir>/packages/@smolitux/core/src/components/Listbox/**/__tests__/*.{test,spec}.tsx',
-    '<rootDir>/packages/@smolitux/core/src/components/Loader/**/*.{test,spec}.tsx'
+    '<rootDir>/packages/@smolitux/core/src/components/Loader/**/*.{test,spec}.tsx',
+    '<rootDir>/packages/@smolitux/core/src/components/Modal/**/__tests__/*.{test,spec}.tsx'
   ],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
 };
