@@ -18,7 +18,7 @@ const path = require('path');
 const { program } = require('commander');
 
 // Define the prompt directory
-const PROMPT_DIR = path.join(__dirname, '..', '..', 'prompts');
+const PROMPT_DIR = path.join(__dirname, '..', '..', 'docs', 'prompts');
 
 // Parse command line arguments
 program
