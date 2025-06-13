@@ -34,6 +34,7 @@ export { default as Button, type ButtonProps } from './components/Button/Button'
 export { default as ButtonA11y, type A11yButtonProps } from './components/Button/Button.a11y';
 export { default as Card, type CardProps } from './components/Card/Card';
 export { default as Input, type InputProps } from './components/Input/Input';
+export { default as Loader, type LoaderProps } from './components/Loader/Loader';
 export { default as Modal, type ModalProps } from './components/Modal/Modal';
 export { default as Select, type SelectProps, type SelectOption } from './components/Select/Select';
 // Temporarily disabled due to missing @smolitux/voice-control package

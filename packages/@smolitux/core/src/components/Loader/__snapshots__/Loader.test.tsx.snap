@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader matches snapshot 1`] = `
+<div
+  aria-label="Loading..."
+  aria-live="polite"
+  class="smolitux-loader inline-flex items-center justify-center smolitux-loader--primary"
+  role="status"
+>
+  <div
+    class="flex items-center"
+  >
+    <div
+      aria-hidden="true"
+      class="smolitux-loader__spinner animate-spin rounded-full border-2 border-current border-t-transparent text-blue-600"
+      style="width: 24px; height: 24px;"
+    />
+    <span
+      class="smolitux-loader__label ml-2 text-sm font-medium text-blue-600"
+    >
+      Loading...
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Loader matches snapshot for fullscreen mode 1`] = `
+<div
+  aria-label="Loading application..."
+  aria-live="polite"
+  class="smolitux-loader inline-flex items-center justify-center fixed inset-0 z-50 bg-white/80 backdrop-blur-sm smolitux-loader--contrast"
+  role="status"
+>
+  <div
+    class="flex items-center"
+  >
+    <div
+      aria-hidden="true"
+      class="smolitux-loader__spinner animate-spin rounded-full border-2 border-current border-t-transparent text-white"
+      style="width: 32px; height: 32px;"
+    />
+    <span
+      class="smolitux-loader__label ml-2 text-sm font-medium text-white"
+    >
+      Loading application...
+    </span>
+  </div>
+</div>
+`;
