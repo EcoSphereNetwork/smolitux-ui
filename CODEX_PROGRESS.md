@@ -2,7 +2,7 @@
 
 ## Overall Progress
 - Packages completed: 1/13
-- Components completed in @smolitux/core: 14/534
+- Components completed in @smolitux/core: 17/534
 
 
 ## Recent Activity
@@ -13,8 +13,11 @@
 - Implemented FormGroup component with tests and stories
 - Implemented Icon component with tests and stories
 - Implemented Input component with tests and stories
+- Implemented Label component with tests and stories
+- Implemented Listbox component with tests and stories (completed in previous session)
+- Implemented Loader component with tests and stories
 
 ## Next Action
-- Continue component loop with Listbox
+- Continue component loop with Modal
 
 
