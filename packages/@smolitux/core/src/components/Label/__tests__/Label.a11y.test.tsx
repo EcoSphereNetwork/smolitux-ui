@@ -1,11 +1,11 @@
 import React from 'react';
 import { a11y } from '@smolitux/testing';
-import { Input } from '../Input';
+import { Label } from '../Label';
 
-describe('Input a11y', () => {
+describe('Label a11y', () => {
   it('has no violations', async () => {
     const { violations } = await a11y.testA11y(
-      <Input value="" onChange={() => {}} aria-label="name" />,
+      <Label htmlFor="x">Label</Label>,
     );
     expect(violations).toHaveLength(0);
   });

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Listbox snapshot 1`] = `
+<div
+  aria-activedescendant="listbox-:r0:-option-0"
+  className="smx-listbox border rounded"
+  id="listbox-:r0:"
+  onKeyDown={[Function]}
+  role="listbox"
+  tabIndex={0}
+>
+  <div
+    aria-selected={true}
+    className="px-3 py-1 cursor-pointer bg-primary-500 text-white"
+    id="listbox-:r0:-option-0"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    role="option"
+  >
+    One
+  </div>
+  <div
+    aria-selected={false}
+    className="px-3 py-1 cursor-pointer"
+    id="listbox-:r0:-option-1"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    role="option"
+  >
+    Two
+  </div>
+  <div
+    aria-selected={false}
+    className="px-3 py-1 cursor-pointer"
+    id="listbox-:r0:-option-2"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    role="option"
+  >
+    Three
+  </div>
+</div>
+`;

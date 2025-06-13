@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormGroup snapshot 1`] = `
+<fieldset
+  aria-labelledby="fg-label"
+  className="smx-form-group"
+  id="fg"
+>
+  <legend
+    className="mb-1 font-medium"
+    id="fg-label"
+  >
+    Name
+  </legend>
+  <div
+    className=""
+  >
+    <input
+      id="name"
+    />
+  </div>
+</fieldset>
+`;
