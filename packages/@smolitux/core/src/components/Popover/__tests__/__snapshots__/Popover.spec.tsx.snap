@@ -2,24 +2,36 @@
 
 exports[`Popover Snapshots renders default popover correctly 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r0:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="bottom"
+    data-testid="popover"
+    id="popover-:r0:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid rgb(226, 232, 240); border-left: 1px solid rgb(226, 232, 240); top: -7px; left: -10px;"
     />
   </div>
 </DocumentFragment>
@@ -27,24 +39,36 @@ exports[`Popover Snapshots renders default popover correctly 1`] = `
 
 exports[`Popover Snapshots renders with arrow correctly 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r1:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="bottom"
+    data-testid="popover"
+    id="popover-:r1:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid rgb(226, 232, 240); border-left: 1px solid rgb(226, 232, 240); top: -7px; left: -10px;"
     />
   </div>
 </DocumentFragment>
@@ -52,24 +76,36 @@ exports[`Popover Snapshots renders with arrow correctly 1`] = `
 
 exports[`Popover Snapshots renders with custom className correctly 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r8:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             custom-popover
           "
+    data-placement="bottom"
+    data-testid="popover"
+    id="popover-:r8:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid rgb(226, 232, 240); border-left: 1px solid rgb(226, 232, 240); top: -7px; left: -10px;"
     />
   </div>
 </DocumentFragment>
@@ -77,24 +113,36 @@ exports[`Popover Snapshots renders with custom className correctly 1`] = `
 
 exports[`Popover Snapshots renders with custom width correctly 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r7:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="bottom"
+    data-testid="popover"
+    id="popover-:r7:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid rgb(226, 232, 240); border-left: 1px solid rgb(226, 232, 240); top: -7px; left: -10px;"
     />
   </div>
 </DocumentFragment>
@@ -102,24 +150,36 @@ exports[`Popover Snapshots renders with custom width correctly 1`] = `
 
 exports[`Popover Snapshots renders with different placements correctly: Popover with placement bottom 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r4:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="bottom"
+    data-testid="popover"
+    id="popover-:r4:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid rgb(226, 232, 240); border-left: 1px solid rgb(226, 232, 240); top: -7px; left: -10px;"
     />
   </div>
 </DocumentFragment>
@@ -127,24 +187,36 @@ exports[`Popover Snapshots renders with different placements correctly: Popover 
 
 exports[`Popover Snapshots renders with different placements correctly: Popover with placement left 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r5:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="left"
+    data-testid="popover"
+    id="popover-:r5:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; right: -5px; border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; top: -10px; left: -18px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; right: -5px; border-right: 1px solid rgb(226, 232, 240); border-top: 1px solid rgb(226, 232, 240); top: -10px; left: -18px;"
     />
   </div>
 </DocumentFragment>
@@ -152,24 +224,36 @@ exports[`Popover Snapshots renders with different placements correctly: Popover 
 
 exports[`Popover Snapshots renders with different placements correctly: Popover with placement right 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r3:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="right"
+    data-testid="popover"
+    id="popover-:r3:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-left: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; left: -7px; top: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-left: 1px solid rgb(226, 232, 240); border-bottom: 1px solid rgb(226, 232, 240); left: -7px; top: -10px;"
     />
   </div>
 </DocumentFragment>
@@ -177,24 +261,36 @@ exports[`Popover Snapshots renders with different placements correctly: Popover 
 
 exports[`Popover Snapshots renders with different placements correctly: Popover with placement top 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r2:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="top"
+    data-testid="popover"
+    id="popover-:r2:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       Popover Content
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; bottom: -5px; border-bottom: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; top: -18px; left: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; bottom: -5px; border-bottom: 1px solid rgb(226, 232, 240); border-right: 1px solid rgb(226, 232, 240); top: -18px; left: -10px;"
     />
   </div>
 </DocumentFragment>
@@ -202,20 +298,30 @@ exports[`Popover Snapshots renders with different placements correctly: Popover 
 
 exports[`Popover Snapshots renders with rich content correctly 1`] = `
 <DocumentFragment>
-  <button>
+  <button
+    aria-controls="popover-:r6:"
+    aria-expanded="true"
+    aria-haspopup="true"
+    data-testid="popover-trigger"
+  >
     Trigger
   </button>
   <div
     class="
-            absolute z-50 bg-white dark:bg-gray-800 
-            border border-gray-200 dark:border-gray-700 
+            absolute z-50 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
             rounded-md shadow-md p-4
             
           "
+    data-placement="bottom"
+    data-testid="popover"
+    id="popover-:r6:"
     role="tooltip"
     style="top: 10px; left: 10px; max-width: 320px;"
   >
-    <div>
+    <div
+      data-testid="popover-content"
+    >
       <div>
         <h3>
           Popover Title
@@ -229,7 +335,9 @@ exports[`Popover Snapshots renders with rich content correctly 1`] = `
       </div>
     </div>
     <div
-      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid #e2e8f0; border-left: 1px solid #e2e8f0; top: -7px; left: -10px;"
+      aria-hidden="true"
+      data-testid="popover-arrow"
+      style="position: absolute; width: 10px; height: 10px; transform: rotate(45deg); background-color: inherit; z-index: -1; border-top: 1px solid rgb(226, 232, 240); border-left: 1px solid rgb(226, 232, 240); top: -7px; left: -10px;"
     />
   </div>
 </DocumentFragment>
