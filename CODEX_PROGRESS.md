@@ -14,10 +14,9 @@
 - Implemented Icon component with tests and stories
 - Implemented Input component with tests and stories
 - Implemented Label component with tests and stories
-- Implemented Listbox component with tests and stories (completed in previous session)
+- Implemented Listbox component with tests and stories
 - Implemented Loader component with tests and stories
 
 ## Next Action
 - Continue component loop with Modal
-
 

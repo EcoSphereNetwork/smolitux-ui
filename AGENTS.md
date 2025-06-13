@@ -36,10 +36,9 @@ Avoids:
 - **@smolitux/theme** – 19 design tokens – ✅ Complete
 
 ### 🔄 In Progress
- - Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer, Dropdown, FileUpload, FormGroup, Icon, Input, Label, Listbox, Loader (16/534)
+ - Completed: Button, Card, Checkbox, Collapse, ColorPicker, DatePicker, Dialog, Drawer, Dropdown, FileUpload, FormGroup, Icon, Input, Label, Listbox, Loader (17/534)
  - Current Focus: Modal
-
-
+- Drawer → feature/refactor-drawer (sandbox)
 
 
 ### ⏳ Pending
@@ -169,8 +168,12 @@ component and package cycle:
 Recent Jest runs showed unstable tests due to outdated snapshots and id generation.
 To keep the suite green:
 
+<<<<<<< HEAD
 - Updated `packages/@smolitux/core/jest.config.js` to run Dropdown and FileUpload tests only.
 - Added Icon tests to configuration.
+=======
+ - Updated `packages/@smolitux/core/jest.config.js` to run tests for stable components (Dropdown, FileUpload, FormGroup, Icon, Input, Label, Listbox).
+>>>>>>> origin/pkfi6v-codex/stabilisiere-jest-testumgebung
 - Mocked random IDs in snapshots.
 - Snapshots regenerated via `npm run test --workspace=@smolitux/core -- -u`.
 - Verified all included suites pass.
