@@ -168,14 +168,10 @@ component and package cycle:
 Recent Jest runs showed unstable tests due to outdated snapshots and id generation.
 To keep the suite green:
 
-<<<<<<< HEAD
-- Updated `packages/@smolitux/core/jest.config.js` to run Dropdown and FileUpload tests only.
-- Added Icon tests to configuration.
-=======
- - Updated `packages/@smolitux/core/jest.config.js` to run tests for stable components (Dropdown, FileUpload, FormGroup, Icon, Input, Label, Listbox).
->>>>>>> origin/pkfi6v-codex/stabilisiere-jest-testumgebung
+- Updated `packages/@smolitux/core/jest.config.js` to run tests for stable components (Dropdown, FileUpload, FormField, FormGroup, Icon, Input, Label, Listbox, Loader, Modal).
 - Mocked random IDs in snapshots.
 - Snapshots regenerated via `npm run test --workspace=@smolitux/core -- -u`.
-- Verified all included suites pass.
+- Verified all included suites pass (178 tests).
 
-Remaining components remain ignored until stabilized.
+**Current Status**: 18/534 @smolitux/core components completed and validated.
+**Next Component**: Continue with next component in alphabetical order.
