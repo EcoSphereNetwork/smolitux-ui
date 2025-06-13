@@ -80,8 +80,13 @@ export {
   useFormControl,
 } from './components/FormControl/FormControl';
 export { default as Form, type FormProps } from './components/Form/Form';
-// Temporarily disabled due to TypeScript errors
-// export { default as FormField, type FormFieldProps } from './components/FormField/FormField';
+export { 
+  FormField, 
+  type FormFieldProps, 
+  type FormFieldSize, 
+  type FormFieldVariant, 
+  type LabelPlacement 
+} from './components/FormField';
 export { default as TextArea, type TextAreaProps } from './components/TextArea/TextArea';
 export { default as Switch, type SwitchProps } from './components/Switch/Switch';
 export {

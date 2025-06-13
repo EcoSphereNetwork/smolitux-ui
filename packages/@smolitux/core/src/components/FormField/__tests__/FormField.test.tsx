@@ -14,9 +14,9 @@ describe('FormField', () => {
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
-  it('renders with required indicator when isRequired is true', () => {
+  it('renders with required indicator when required is true', () => {
     render(
-      <FormField label="Username" isRequired>
+      <FormField label="Username" required>
         <input type="text" name="username" />
       </FormField>
     );
@@ -48,111 +48,57 @@ describe('FormField', () => {
 
   it('applies error styles when isInvalid is true', () => {
     render(
-      <FormField label="Username" isInvalid data-testid="form-field">
+      <FormField label="Username" isInvalid>
         <input type="text" name="username" />
       </FormField>
     );
 
-    const formField = screen.getByTestId('form-field');
-    expect(formField).toHaveClass('is-invalid');
+    const formField = screen.getByTestId('FormField');
+    expect(formField).toHaveClass('form-field--invalid');
   });
 
   it('renders with custom className', () => {
     render(
-      <FormField label="Username" className="custom-field" data-testid="form-field">
+      <FormField label="Username" className="custom-field">
         <input type="text" name="username" />
       </FormField>
     );
 
-    const formField = screen.getByTestId('form-field');
+    const formField = screen.getByTestId('FormField');
     expect(formField).toHaveClass('custom-field');
   });
 
   it('renders with custom style', () => {
     render(
-      <FormField label="Username" style={{ marginBottom: '20px' }} data-testid="form-field">
+      <FormField label="Username" style={{ marginBottom: '20px' }}>
         <input type="text" name="username" />
       </FormField>
     );
 
-    const formField = screen.getByTestId('form-field');
+    const formField = screen.getByTestId('FormField');
     expect(formField).toHaveStyle('margin-bottom: 20px');
   });
 
-  it('renders with custom label position', () => {
+  it('renders with custom label placement', () => {
     render(
-      <FormField label="Username" labelPosition="right" data-testid="form-field">
+      <FormField label="Username" labelPlacement="right">
         <input type="text" name="username" />
       </FormField>
     );
 
-    const formField = screen.getByTestId('form-field');
-    expect(formField).toHaveClass('label-right');
+    const formField = screen.getByTestId('FormField');
+    expect(formField).toHaveClass('form-field--reverse');
   });
 
   it('renders with custom label width', () => {
     render(
-      <FormField label="Username" labelWidth="150px" data-testid="label">
+      <FormField label="Username" labelWidth="150px" labelPlacement="left">
         <input type="text" name="username" />
       </FormField>
     );
 
-    const label = screen.getByTestId('label');
+    const label = screen.getByText('Username');
     expect(label).toHaveStyle('width: 150px');
-  });
-
-  it('renders with custom label className', () => {
-    render(
-      <FormField label="Username" labelClassName="custom-label" data-testid="label">
-        <input type="text" name="username" />
-      </FormField>
-    );
-
-    const label = screen.getByTestId('label');
-    expect(label).toHaveClass('custom-label');
-  });
-
-  it('renders with custom helper text className', () => {
-    render(
-      <FormField
-        label="Username"
-        helperText="Enter your username"
-        helperTextClassName="custom-helper"
-        data-testid="helper-text"
-      >
-        <input type="text" name="username" />
-      </FormField>
-    );
-
-    const helperText = screen.getByTestId('helper-text');
-    expect(helperText).toHaveClass('custom-helper');
-  });
-
-  it('renders with custom error message className', () => {
-    render(
-      <FormField
-        label="Username"
-        isInvalid
-        errorMessage="Username is required"
-        errorClassName="custom-error"
-        data-testid="error-message"
-      >
-        <input type="text" name="username" />
-      </FormField>
-    );
-
-    const errorMessage = screen.getByTestId('error-message');
-    expect(errorMessage).toHaveClass('custom-error');
-  });
-
-  it('renders with hidden label when hideLabel is true', () => {
-    render(
-      <FormField label="Username" hideLabel>
-        <input type="text" name="username" />
-      </FormField>
-    );
-
-    expect(screen.queryByText('Username')).not.toBeVisible();
   });
 
   it('renders with id passed to the label and input', () => {
@@ -164,5 +110,38 @@ describe('FormField', () => {
 
     const label = screen.getByText('Username');
     expect(label).toHaveAttribute('for', 'username-field');
+  });
+
+  it('generates field ID from name when id is not provided', () => {
+    render(
+      <FormField label="Username" name="username">
+        <input type="text" name="username" />
+      </FormField>
+    );
+
+    const label = screen.getByText('Username');
+    expect(label).toHaveAttribute('for', 'field-username');
+  });
+
+  it('renders character counter when enabled', () => {
+    render(
+      <FormField label="Username" showCounter maxLength={10} value="hello">
+        <input type="text" name="username" />
+      </FormField>
+    );
+
+    expect(screen.getByText('5')).toBeInTheDocument();
+    expect(screen.getByText('10')).toBeInTheDocument();
+  });
+
+  it('shows loading indicator when loading', () => {
+    render(
+      <FormField label="Username" loading>
+        <input type="text" name="username" />
+      </FormField>
+    );
+
+    const formField = screen.getByTestId('FormField');
+    expect(formField).toHaveClass('form-field--loading');
   });
 });
