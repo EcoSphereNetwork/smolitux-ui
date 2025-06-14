@@ -1,12 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { render } from '@smolitux/testing';
 import userEvent from '@testing-library/user-event';
 import { Slider } from '../Slider';
-
-// Mock für ThemeProvider
-jest.mock('@smolitux/theme', () => ({
-  useTheme: jest.fn(() => ({ themeMode: 'light' })),
-}));
 
 // Mock für den FormControl-Context
 jest.mock('../../FormControl', () => ({
